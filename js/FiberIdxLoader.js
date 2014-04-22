@@ -33,6 +33,6 @@ FiberIdxLoader.prototype = {
             fibers.push( parseFloat(lines[i]));
         }
         this.fiberIdx = fibers ;
-         return fibers;
+        return fibers;
     }
 };

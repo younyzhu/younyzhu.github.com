@@ -111,11 +111,10 @@
 <script src="./js/BoxLoader.js"></script>
 <script src="./js/TrackballControls.js"></script>
 <script src="./js/Detector.js"></script>
-<script src="./js/stats.min.js"></script>
 
 <script>
     if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
-    var container, stats;
+    var container;           //remove stats ./js/stats.min.js
 
     var camera, controls, scene, renderer;
     var group;
@@ -164,18 +163,18 @@
         scene = new THREE.Scene();
 
         var light;
-        light = new THREE.PointLight();
+        /*light = new THREE.PointLight();
         light.position.set( 0, 0, 0 );
-        scene.add( light );
+        scene.add( light );*/
 
         light = new THREE.DirectionalLight( 0xffeedd );
-        light.position.set( 0, 0, 120 );
+        light.position.set( 0, 0, 200 );
         scene.add( light );
         light = new THREE.DirectionalLight( 0xffeedd );
-        light.position.set( 0, 0, -120 );
+        light.position.set( -200, 0, 0 );
         scene.add( light );
         light = new THREE.DirectionalLight( 0xffeedd );
-        light.position.set( 120, 180, 0 );
+        light.position.set( 0, 200, 0 );
         scene.add( light );
         /*light = new THREE.DirectionalLight( 0xffeedd );
         light.position.set( -120, 0, 0 );
@@ -196,7 +195,7 @@
         floor.rotation.x = Math.PI / 2;
         scene.add(floor);
 
-        $( "start" ).addEventListener( 'click', onStartClick, false );
+        //$( "start" ).addEventListener( 'click', onStartClick, false );
 
         $( "progress" ).style.display = "block";
 
@@ -218,9 +217,10 @@
 
             $( "message" ).style.display = "none";
             $( "progressbar" ).style.display = "none";
-            $( "start" ).style.display = "block";
-            $( "start" ).className = "enabled";
-
+            //$( "start" ).style.display = "block";
+            //$( "start" ).className = "enabled";
+            $( "progress" ).style.display = "none";//from start click
+            scene.add(group);
         }
         //Generate the data file
         var fiberBundle =[];
@@ -229,17 +229,17 @@
         fiberBundle.push('cst');
         fiberBundle.push('ifo');
         fiberBundle.push('ilf');
-        var modelPath = './data/combine/s2.data';
+        var modelPath = './data/combine/s3.data';
 
-        var boxPath1 = './data/Tracing/s2/';
-        var boxPath2 = './data/Tracing/s2/';
-        var boxPath3 = './data/Tracing/s2/';
-        var fiberIdx = './data/Tracing/s2/';
+        var boxPath1 = './data/Tracing/s3/';
+        var boxPath2 = './data/Tracing/s3/';
+        var boxPath3 = './data/Tracing/s3/';
+        var fiberIdx = './data/Tracing/s3/';
         //var post ='.data';
-        var postBox1='/tumorbox_0_region_s2.data';
-        var postBox2='/tumorbox_1_region_s2.data';
-        var postBox3='/tumorbox_2_region_s2.data';
-        var postFiberIdx ='/fiberidx_2000002_region_s2.data';
+        var postBox1='/tumorbox_0_region_s3.data';
+        var postBox2='/tumorbox_1_region_s3.data';
+        var postBox3='/tumorbox_2_region_s3.data';
+        var postFiberIdx ='/fiberidx_2000002_region_s3.data';
 
         var bundleType = fiberBundle[THREE.Math.randInt(0,3)];// if has cg (0,4)
         if(bundleType != null)
@@ -288,7 +288,14 @@
         loaderbox.load( boxPath1, function ( geometry ) {
             if(geometry !== undefined && loaderbox.center !== null)
             {
-                var mesh = new THREE.Mesh( geometry, material );
+                var material1 = new THREE.MeshBasicMaterial({
+                    transparent: true,
+                    opacity: 0.5,
+                    color: 'silver'
+                });
+                //var mesh = new THREE.Mesh(geometry, material);
+                var mesh = THREE.SceneUtils.createMultiMaterialObject(geometry, [material, material1]);
+               // var mesh = new THREE.Mesh( geometry, material );
                 mesh.position.x = loaderbox.center.x;
                 mesh.position.y = loaderbox.center.y;
                 mesh.position.z = loaderbox.center.z ;
@@ -305,7 +312,14 @@
         loaderbox2.load( boxPath2, function ( geometry ) {
             if(geometry !== undefined && loaderbox2.center !== null)
             {
-                var mesh = new THREE.Mesh( geometry, material );
+                var material1 = new THREE.MeshBasicMaterial({
+                    transparent: true,
+                    opacity: 0.5,
+                    color: 'silver'
+                });
+                //var mesh = new THREE.Mesh(geometry, material);
+                var mesh = THREE.SceneUtils.createMultiMaterialObject(geometry, [material, material1]);
+               // var mesh = new THREE.Mesh( geometry, material );
                 mesh.position.x = loaderbox2.center.x;
                 mesh.position.y = loaderbox2.center.y;
                 mesh.position.z = loaderbox2.center.z ;
@@ -322,7 +336,14 @@
         loaderbox3.load( boxPath3, function ( geometry ) {
             if(geometry !== undefined && loaderbox3.center !== null)
             {
-                var mesh = new THREE.Mesh( geometry, material );
+                var material1 = new THREE.MeshBasicMaterial({
+                    transparent: true,
+                    opacity: 0.5,
+                    color: 'silver'
+                });
+                //var mesh = new THREE.Mesh(geometry, material);
+                var mesh = THREE.SceneUtils.createMultiMaterialObject(geometry, [material, material1]);
+                //var mesh = new THREE.Mesh( geometry, material );
                 mesh.position.x = loaderbox3.center.x;
                 mesh.position.y = loaderbox3.center.y;
                 mesh.position.z = loaderbox3.center.z ;
@@ -342,16 +363,17 @@
         renderer.setSize( window.innerWidth, window.innerHeight );
 
         container.appendChild( renderer.domElement );
-
+        /*
         stats = new Stats();
         stats.domElement.style.position = 'absolute';
         stats.domElement.style.top = '0px';
         stats.domElement.style.zIndex = 100;
         container.appendChild( stats.domElement );
-
+        */
         window.addEventListener( 'resize', onWindowResize, false );
 
     }
+    /*
     function setButtonActive( id ) {
 
         $( "start" ).style.backgroundColor = "green";
@@ -361,7 +383,7 @@
 
         $( "progress" ).style.display = "none";
         scene.add(group);
-    }
+    } */
     function onWindowResize() {
 
         camera.aspect = window.innerWidth / window.innerHeight;
@@ -456,7 +478,7 @@
     function render() {
 
         renderer.render( scene, camera );
-        stats.update();
+        //stats.update();
 
     }
 

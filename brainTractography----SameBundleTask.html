@@ -109,7 +109,7 @@
 <script src="./js/SameBundleGeoLoader.js"></script>
 <script src="./js/TrackballControls.js"></script>
 <script src="./js/Detector.js"></script>
-<script src="./js/stats.min.js"></script>
+
 
 <script>
     if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
@@ -162,18 +162,18 @@
         scene = new THREE.Scene();
 
         var light;
-        light = new THREE.PointLight();
-        light.position.set( 0, 0, 0 );
-        scene.add( light );
+        /*light = new THREE.PointLight();
+         light.position.set( 0, 0, 0 );
+         scene.add( light );*/
 
         light = new THREE.DirectionalLight( 0xffeedd );
-        light.position.set( 0, 0, 120 );
+        light.position.set( 0, 0, 200 );
         scene.add( light );
         light = new THREE.DirectionalLight( 0xffeedd );
-        light.position.set( 0, 0, -120 );
+        light.position.set( -200, 0, 0 );
         scene.add( light );
         light = new THREE.DirectionalLight( 0xffeedd );
-        light.position.set( 120, 180, 0 );
+        light.position.set( 0, 200, 0 );
         scene.add( light );
         /*light = new THREE.DirectionalLight( 0xffeedd );
          light.position.set( -120, 0, 0 );
@@ -194,7 +194,7 @@
         floor.rotation.x = Math.PI / 2;
         scene.add(floor);
 
-        $( "start" ).addEventListener( 'click', onStartClick, false );
+        //$( "start" ).addEventListener( 'click', onStartClick, false );
 
         $( "progress" ).style.display = "block";
 
@@ -216,9 +216,10 @@
 
             $( "message" ).style.display = "none";
             $( "progressbar" ).style.display = "none";
-            $( "start" ).style.display = "block";
-            $( "start" ).className = "enabled";
-
+            //$( "start" ).style.display = "block";
+            //$( "start" ).className = "enabled";
+            $( "progress" ).style.display = "none";//from start click
+            scene.add(group);
         }
         //Generate the data file
         var fiberBundle =[];
@@ -279,16 +280,17 @@
         renderer.setSize( window.innerWidth, window.innerHeight );
 
         container.appendChild( renderer.domElement );
-
+        /*
         stats = new Stats();
         stats.domElement.style.position = 'absolute';
         stats.domElement.style.top = '0px';
         stats.domElement.style.zIndex = 100;
         container.appendChild( stats.domElement );
-
+        */
         window.addEventListener( 'resize', onWindowResize, false );
 
     }
+    /*
     function setButtonActive( id ) {
 
         $( "start" ).style.backgroundColor = "green";
@@ -298,7 +300,7 @@
 
         $( "progress" ).style.display = "none";
         scene.add(group);
-    }
+    } */
     function onWindowResize() {
 
         camera.aspect = window.innerWidth / window.innerHeight;
@@ -323,7 +325,7 @@
     function render() {
 
         renderer.render( scene, camera );
-        stats.update();
+        //stats.update();     //remove  stats bar src="./js/stats.min.js">
 
     }
 

@@ -106,6 +106,7 @@ TubeGeometry = function( path, segments, radius, radialSegments, closed,yellowSt
 
     var white = new THREE.Color(0xFFFFFF);
     var yellow = new THREE.Color(0xFFFF00);
+    var red = new THREE.Color(0xFF0000);
     // construct the mesh for the tube
     var faceIdx = 0;
     for (i = 0; i < this.segments - 1; i++) {
@@ -144,8 +145,52 @@ TubeGeometry = function( path, segments, radius, radialSegments, closed,yellowSt
 
     // construct the mesh for the cap
     {
-        //for the front cap/*
+        //for the front cap
         if (yellowState) {
+            var uvs = [], centerUV = new THREE.Vector2( 0.5, 0.5 );
+            var center = path[0];
+            normal = normals[ 0 ];
+            binormal = binormals[ 0 ];
+            //scope.vertices.push(center);        //put the center of circle to the vertices matrix
+            uvs.push( centerUV );
+
+            for ( i = 0; i <= this.radialSegments; i ++ ) {
+
+                var segment = i / this.radialSegments * 2 * Math.PI;
+
+                cx = -(this.radius + 0.5 ) * Math.cos(segment); // TODO: Hack: Negating it so it faces outside.
+                cy = (this.radius + 0.5 ) * Math.sin(segment);
+                var tmpPos = new THREE.Vector3();
+                tmpPos.copy(center);
+                tmpPos.x += cx * normal.x + cy * binormal.x;
+                tmpPos.y += cx * normal.y + cy * binormal.y;
+                tmpPos.z += cx * normal.z + cy * binormal.z;
+
+                scope.vertices.push( tmpPos );
+                uvs.push( new THREE.Vector2( ( tmpPos.x / radius + 1 ) / 2, ( tmpPos.y / radius + 1 ) / 2 ) );
+
+            }
+
+           // var n = new THREE.Vector3( 0, 0, 1 );
+            var circlePointSt  = this.vertices.length - this.radialSegments-1;
+            for ( i = 1; i <= this.radialSegments; i ++ ) {
+
+                var v1 = circlePointSt+ i;
+                var v2 = circlePointSt+i + 1 ;
+                var v3 = circlePointSt;
+                if(i=== this.radialSegments)
+                {
+                    v1= circlePointSt + this.radialSegments;
+                    v2 = circlePointSt +1;
+                }
+                this.faces.push( new THREE.Face3( v1, v2, v3) );
+                this.faces[ faceIdx ].vertexColors[0] = red;
+                this.faces[ faceIdx ].vertexColors[1] = red;
+                this.faces[ faceIdx ].vertexColors[2] = red;
+                this.faceVertexUvs[ 0 ].push( [ uvs[ i ].clone(), uvs[ i + 1 ].clone(), centerUV.clone() ] );
+                faceIdx++;
+            }
+             /*
             for (j = 0; j < this.radialSegments - 2; j++) {
                 //a = this.grid[ 0 ][ 0 ];		// *** NOT NECESSARILY PLANAR ! ***
                 //b = this.grid[ 0 ][ j+1 ];
@@ -179,7 +224,7 @@ TubeGeometry = function( path, segments, radius, radialSegments, closed,yellowSt
                 this.faces[ faceIdx ].vertexColors[1] = yellow;
                 this.faces[ faceIdx ].vertexColors[2] = yellow;
                 faceIdx++;
-            }
+            } */
         }
         else {
             for (j = 0; j < this.radialSegments - 2; j++) {

@@ -163,22 +163,24 @@ function init() {
     scene = new THREE.Scene();
 
     var light;
-    light = new THREE.PointLight();
+    /*light = new THREE.PointLight();
     light.position.set( 0, 0, 0 );
     scene.add( light );
 
+     /*light = new THREE.PointLight();
+     light.position.set( 0, 0, 0 );
+     scene.add( light );*/
+
     light = new THREE.DirectionalLight( 0xffeedd );
-    light.position.set( 0, 0, 120 );
+    light.position.set( 0, 0, 200 );
     scene.add( light );
     light = new THREE.DirectionalLight( 0xffeedd );
-    light.position.set( 0, 0, -120 );
+    light.position.set( -200, 0, 0 );
     scene.add( light );
     light = new THREE.DirectionalLight( 0xffeedd );
-    light.position.set( 120, 180, 0 );
+    light.position.set( 0, 200, 0 );
     scene.add( light );
-    light = new THREE.DirectionalLight( 0xffeedd );
-    light.position.set( -120, 0, 0 );
-    scene.add( light );
+
     /*
     var helper = new THREE.GridHelper( 200, 10 );
     helper.setColors( 0x0000ff, 0x808080 );
@@ -196,7 +198,7 @@ function init() {
     floor.rotation.x = Math.PI / 2;
     scene.add(floor);
 
-    $( "start" ).addEventListener( 'click', onStartClick, false );
+    //$( "start" ).addEventListener( 'click', onStartClick, false );
 
     $( "progress" ).style.display = "block";
 
@@ -218,28 +220,33 @@ function init() {
 
         $( "message" ).style.display = "none";
         $( "progressbar" ).style.display = "none";
-        $( "start" ).style.display = "block";
-        $( "start" ).className = "enabled";
+        //$( "start" ).style.display = "block";
+        //$( "start" ).className = "enabled";
+        $( "progress" ).style.display = "none";//from start click
+        scene.add(group);
 
     }
+
     //Generate the data file
-    var fiberBundle =[];
-    fiberBundle.push('cc');
+    //var fiberBundle =[];
+    //fiberBundle.push('cc');
     //fiberBundle.push('cg');
-    fiberBundle.push('cst');
-    fiberBundle.push('ifo');
-    fiberBundle.push('ilf');
-    var modelPath = './data/single/s1_';
+    //fiberBundle.push('cst');
+    //fiberBundle.push('ifo');
+    //fiberBundle.push('ilf');
+    //var modelPath = './data/single/s1_';
+    var modelPath = './data/single/s1_cc.data';
     var boxPath1 = './data/FA/';
     var boxPath2 = './data/FA/';
-    var post ='.data';
+    //var post ='.data';
     var postBox1='/tumorbox_0_region_s1.data';
     var postBox2='/tumorbox_1_region_s1.data';
-    var bundleType = fiberBundle[THREE.Math.randInt(0,3)];// if has cg (0,4)
+    //var bundleType = fiberBundle[THREE.Math.randInt(0,1)];// if has cg (0,4)
+    var bundleType = 'cc';
     if(bundleType != null)
     {
-        modelPath += bundleType;
-        modelPath += post;
+        //modelPath += bundleType;
+        //modelPath += post;
         boxPath1 +=bundleType;
         boxPath1 += postBox1;
         boxPath2 +=bundleType;
@@ -260,11 +267,13 @@ function init() {
         {
             if(loader.minColor!== undefined && loader.maxColor!== undefined)
             {
+                var barGroup = new THREE.Object3D();
+                //Draw Color Bar
                 var barsquareGeometry = new THREE.Geometry();
-                barsquareGeometry.vertices.push(new THREE.Vector3(-5,  40, 0.0));
-                barsquareGeometry.vertices.push(new THREE.Vector3( 5,  40, 0.0));
-                barsquareGeometry.vertices.push(new THREE.Vector3( 5, -40, 0.0));
-                barsquareGeometry.vertices.push(new THREE.Vector3(-5, -40, 0.0));
+                barsquareGeometry.vertices.push(new THREE.Vector3(-2,  40, 0.0));
+                barsquareGeometry.vertices.push(new THREE.Vector3( 2,  40, 0.0));
+                barsquareGeometry.vertices.push(new THREE.Vector3( 2, -40, 0.0));
+                barsquareGeometry.vertices.push(new THREE.Vector3(-2, -40, 0.0));
                 barsquareGeometry.faces.push(new THREE.Face3(0, 1, 2));
 
                 barsquareGeometry.faces[0].vertexColors[0] = loader.minColor;
@@ -278,11 +287,57 @@ function init() {
                 var squareMaterial = new THREE.MeshBasicMaterial({
                     side:THREE.DoubleSide,
                     vertexColors:THREE.VertexColors});
-
                 var squareMesh = new THREE.Mesh(barsquareGeometry, squareMaterial);
-                squareMesh.position.set(150, 0, 0);
+                barGroup.add(squareMesh);
 
-                group.add(squareMesh);
+                //Draw ticks
+                /*
+                var tickMaterial = new THREE.MeshBasicMaterial({color:0x000000});
+                for(var k=0; k <4; ++k)
+                {
+                    var tickGeo = new THREE.Geometry();
+                    tickGeo.vertices.push(new THREE.Vector3(1, -40 +(k+1)*16+0.5,0));
+                    tickGeo.vertices.push(new THREE.Vector3(2, -40+(k+1)*16+0.5,0));
+                    tickGeo.vertices.push(new THREE.Vector3(2, -40+(k+1)*16-0.5,0));
+                    tickGeo.vertices.push(new THREE.Vector3(1, -40 +(k+1)*16-0.5,0));
+                    tickGeo.faces.push(new THREE.Face3(0, 1, 2));
+                    tickGeo.faces.push(new THREE.Face3(2, 3, 0));
+
+                    var tickMark = new THREE.Mesh(tickGeo, tickMaterial);
+
+                    //line.position.set(120, 0, 0);
+                    barGroup.add(tickMark);
+                }*/
+                //  Using lines become too thin, so change to use the region
+                for(var k=0; k <4; ++k)
+                {
+                    var tickpoint1 = new THREE.Vector3(1, -40 +(k+1)*16,0);
+                    var tickpoint2 = new THREE.Vector3(2, -40+(k+1)*16,0);
+
+                    var lineGeo = new THREE.Geometry();
+                    lineGeo.vertices.push(tickpoint1);
+                    lineGeo.vertices.push(tickpoint2);
+                    var line = new THREE.Line(lineGeo, new THREE.LineBasicMaterial( { linewidth: 10, color: 0x000000 } ) ) ;
+                    //line.position.set(120, 0, 0);
+                    barGroup.add(line);
+                }
+                // text label
+                for(k=0; k<=5; ++k)
+                {
+                    var label = ' 0.';
+                    label +=k*2;
+                    label +=' ';
+                    if(k===5)
+                        label =' 1.0 ';
+                    var textLabel = makeTextLabel(label,
+                            { fontsize: 20, borderColor: {r:255, g:255, b:0, a:1.0}, backgroundColor: {r:255, g:255, b:255, a:0.8}, fontColor:{r:0, g:0, b:0, a:1} });
+                    textLabel.position.set(2+16, -40 + k*16-4, 0);
+                    barGroup.add( textLabel );
+                }
+
+                barGroup.position.set(100, 0, 0);
+                group.add(barGroup);
+                //group.add(squareMesh);
             }
             //object.position.x = -114.6;
             //object.position.y = -117.8;
@@ -310,9 +365,16 @@ function init() {
 
             var spritey = makeTextSprite( " 1 ",
                     { fontsize: 12, borderColor: {r:255, g:255, b:0, a:1.0}, backgroundColor: {r:255, g:0, b:0, a:0.8} } );
-            spritey.position.set(loaderbox.center.x,loaderbox.center.y ,loaderbox.center.z);
+            spritey.position.set(loaderbox.center.x ,loaderbox.center.y ,loaderbox.center.z + 17);
             group.add( spritey );
-            var mesh = new THREE.Mesh( geometry, material );
+            var material1 = new THREE.MeshBasicMaterial({
+                transparent: true,
+                opacity: 0.5,
+                color: 'silver'
+            });
+            //var mesh = new THREE.Mesh(geometry, material);
+            var mesh = THREE.SceneUtils.createMultiMaterialObject(geometry, [material, material1]);
+            //var mesh = new THREE.Mesh( geometry, material );
             mesh.position.x = loaderbox.center.x;
             mesh.position.y = loaderbox.center.y;
             mesh.position.z = loaderbox.center.z ;
@@ -325,7 +387,14 @@ function init() {
     var loaderbox2 = new BoxLoader(manager );
     loaderbox2.load( boxPath2, function ( geometry ) {
         if (geometry !== undefined && loaderbox2.center !==null) {
-            var mesh = new THREE.Mesh(geometry, material);
+
+            var material1 = new THREE.MeshBasicMaterial({
+                opacity: 0.5,
+                transparent: true,
+                color: 'silver'
+            });
+            //var mesh = new THREE.Mesh(geometry, material);
+            var mesh = THREE.SceneUtils.createMultiMaterialObject(geometry, [material, material1]);
             var pos = loaderbox2.center.clone();
             mesh.position.x = pos.x;
             mesh.position.y = pos.y;
@@ -344,7 +413,7 @@ function init() {
     //render
     renderer = new THREE.WebGLRenderer({antialias:true});
     renderer.setSize( window.innerWidth, window.innerHeight );
-
+    //render.clearColor(0.5,0.5,0.5);
     container.appendChild( renderer.domElement );
 
     stats = new Stats();
@@ -356,6 +425,7 @@ function init() {
     window.addEventListener( 'resize', onWindowResize, false );
 
 }
+/*
 function setButtonActive( id ) {
 
     $( "start" ).style.backgroundColor = "green";
@@ -365,7 +435,7 @@ function onStartClick() {
 
     $( "progress" ).style.display = "none";
     scene.add(group);
-}
+}*/
 function onWindowResize() {
 
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -378,8 +448,7 @@ function onWindowResize() {
     render();
 
 }
-
-function makeTextSprite( message, parameters )
+function makeFontTexture(message, parameters)
 {
     if ( parameters === undefined ) parameters = {};
 
@@ -393,10 +462,12 @@ function makeTextSprite( message, parameters )
             parameters["borderThickness"] : 1;
 
     var borderColor = parameters.hasOwnProperty("borderColor") ?
-            parameters["borderColor"] : { r:0, g:0, b:0, a:1.0 };
+            parameters["borderColor"] : { r:255, g:255, b:255, a:1.0 };
 
     var backgroundColor = parameters.hasOwnProperty("backgroundColor") ?
             parameters["backgroundColor"] : { r:255, g:255, b:255, a:1.0 };
+    var fontColor = parameters.hasOwnProperty("fontColor") ?
+            parameters["fontColor"] : { r:0, g:0, b:0, a:1.0 };
 
     var canvas = document.createElement('canvas');
     var context = canvas.getContext('2d');
@@ -418,13 +489,30 @@ function makeTextSprite( message, parameters )
     // 1.4 is extra height factor for text below baseline: g,j,p,q.
 
     // text color
-    context.fillStyle = "rgba(255, 255, 255, 1.0)";
+    context.fillStyle = "rgba(" + fontColor.r + "," + fontColor.g + ","
+            + fontColor.b + "," + fontColor.a + ")";
 
     context.fillText( message, borderThickness, fontsize + borderThickness);
 
     // canvas contents will be used for a texture
     var texture = new THREE.Texture(canvas);
     texture.needsUpdate = true;
+    return texture;
+}
+
+function makeTextLabel( message, parameters )
+{
+    var texture = makeFontTexture(message, parameters);
+    var spriteMaterial = new THREE.SpriteMaterial(
+            { map: texture,useScreenCoordinates: true} );
+    var sprite = new THREE.Sprite( spriteMaterial );
+    sprite.scale.set(30,15,1.0);
+    return sprite;
+}
+
+function makeTextSprite( message, parameters )
+{
+    var texture = makeFontTexture(message, parameters);
 
     var spriteMaterial = new THREE.SpriteMaterial(
             { map: texture, useScreenCoordinates: false} );
