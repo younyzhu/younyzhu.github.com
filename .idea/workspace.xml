@@ -23,31 +23,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="brainTractography-----Tracing_task.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/brainTractography-----Tracing_task.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.22068965" vertical-offset="6192" max-vertical-offset="11856">
-              <caret line="266" column="74" selection-start-line="266" selection-start-column="9" selection-end-line="266" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="brainTractography----SameBundleTask.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/brainTractography----SameBundleTask.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="18.206896" vertical-offset="4752" max-vertical-offset="8184">
-              <caret line="176" column="27" selection-start-line="176" selection-start-column="27" selection-end-line="176" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="brainTractography-----Training.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/brainTractography-----Training.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.62069" vertical-offset="3631" max-vertical-offset="10872">
+            <state vertical-scroll-proportion="200.06897" vertical-offset="10002" max-vertical-offset="10872">
               <caret line="175" column="23" selection-start-line="175" selection-start-column="23" selection-end-line="175" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="brainTractography-----Tumor_Area_task.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/brainTractography-----Tumor_Area_task.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-14.896552" vertical-offset="8712" max-vertical-offset="9600">
+              <caret line="381" column="36" selection-start-line="381" selection-start-column="5" selection-end-line="381" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="brainTractography----FA_task.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/brainTractography----FA_task.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.21264368" vertical-offset="4951" max-vertical-offset="13656">
+              <caret line="214" column="76" selection-start-line="214" selection-start-column="9" selection-end-line="214" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -70,11 +70,11 @@
         <option value="$PROJECT_DIR$/brainTractography-----Tracing_task.html" />
         <option value="$PROJECT_DIR$/brainTractography-----LesionArea_task.html" />
         <option value="$PROJECT_DIR$/brainTractography-----Training.html" />
-        <option value="$PROJECT_DIR$/brainTractography-----Tumor_Area_task.html" />
         <option value="$PROJECT_DIR$/brainTractography----SameBundleTask.html" />
-        <option value="$PROJECT_DIR$/brainTractography----FA_task.html" />
         <option value="$PROJECT_DIR$/js/FiberGeoLoader.js" />
         <option value="$PROJECT_DIR$/js/FidxTubeGeometry.js" />
+        <option value="$PROJECT_DIR$/brainTractography-----Tumor_Area_task.html" />
+        <option value="$PROJECT_DIR$/brainTractography----FA_task.html" />
       </list>
     </option>
   </component>
@@ -143,6 +143,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RunManager" selected="Node.js.FidxTubeGeometry.js">
     <configuration default="false" name="brainTractography-----Tracing_task.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" uri="http://localhost:63342/brainTractography/brainTractography-----Tracing_task.html">
@@ -151,14 +152,6 @@
       <method />
     </configuration>
     <configuration default="false" name="FidxTubeGeometry.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-js-file="FidxTubeGeometry.js" working-dir="$PROJECT_DIR$/js">
-      <method />
-    </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
       <method />
     </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -171,14 +164,12 @@
       <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="CucumberJavaScriptRunConfigurationType" factoryName="Cucumber.js">
-      <option name="cucumberJsArguments" />
-      <option name="executablePath" />
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
       <option name="filePath" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
-      <envs />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
       <method />
     </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
@@ -186,6 +177,16 @@
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="Chrome" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="CucumberJavaScriptRunConfigurationType" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" />
+      <option name="executablePath" />
+      <option name="filePath" />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -225,6 +226,9 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="73ef11f7-8fc3-4bb7-9144-15f7f7a5fabe" name="Default" comment="" />
@@ -249,11 +253,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -285,6 +289,30 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/brainTractography-----Tracing_task.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6192" max-vertical-offset="11856">
+          <caret line="266" column="74" selection-start-line="266" selection-start-column="9" selection-end-line="266" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/brainTractography----SameBundleTask.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4752" max-vertical-offset="8184">
+          <caret line="176" column="27" selection-start-line="176" selection-start-column="27" selection-end-line="176" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/brainTractography-----Training.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3631" max-vertical-offset="10872">
+          <caret line="175" column="23" selection-start-line="175" selection-start-column="23" selection-end-line="175" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/brainTractography-----Tracing_task.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="6408" max-vertical-offset="11856">
@@ -341,7 +369,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.86874306" vertical-offset="1141" max-vertical-offset="7992">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -349,30 +376,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.82758623" vertical-offset="96" max-vertical-offset="1032">
           <caret line="35" column="8" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/brainTractography-----LesionArea_task.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.068966" vertical-offset="3637" max-vertical-offset="10296">
-          <caret line="177" column="27" selection-start-line="177" selection-start-column="27" selection-end-line="177" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/brainTractography-----Tumor_Area_task.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7172414" vertical-offset="3600" max-vertical-offset="9600">
-          <caret line="176" column="27" selection-start-line="176" selection-start-column="27" selection-end-line="176" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/brainTractography----FA_task.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.724138" vertical-offset="3192" max-vertical-offset="13656">
-          <caret line="152" column="48" selection-start-line="152" selection-start-column="27" selection-end-line="152" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -380,7 +383,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33259177" vertical-offset="2365" max-vertical-offset="3264">
           <caret line="113" column="45" selection-start-line="113" selection-start-column="18" selection-end-line="113" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -392,9 +394,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/brainTractography-----LesionArea_task.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.951724" vertical-offset="9426" max-vertical-offset="10296">
+          <caret line="177" column="27" selection-start-line="177" selection-start-column="27" selection-end-line="177" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/brainTractography-----Tracing_task.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.289655" vertical-offset="10986" max-vertical-offset="11856">
+          <caret line="266" column="74" selection-start-line="266" selection-start-column="9" selection-end-line="266" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/brainTractography----SameBundleTask.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="18.206896" vertical-offset="4752" max-vertical-offset="8184">
+        <state vertical-scroll-proportion="-3.5517242" vertical-offset="7314" max-vertical-offset="8184">
           <caret line="176" column="27" selection-start-line="176" selection-start-column="27" selection-end-line="176" selection-end-column="27" />
           <folding />
         </state>
@@ -402,16 +420,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/brainTractography-----Training.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.62069" vertical-offset="3631" max-vertical-offset="10872">
+        <state vertical-scroll-proportion="200.06897" vertical-offset="10002" max-vertical-offset="10872">
           <caret line="175" column="23" selection-start-line="175" selection-start-column="23" selection-end-line="175" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/brainTractography-----Tracing_task.html">
+    <entry file="file://$PROJECT_DIR$/brainTractography-----Tumor_Area_task.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22068965" vertical-offset="6192" max-vertical-offset="11856">
-          <caret line="266" column="74" selection-start-line="266" selection-start-column="9" selection-end-line="266" selection-end-column="9" />
+        <state vertical-scroll-proportion="-14.896552" vertical-offset="8712" max-vertical-offset="9600">
+          <caret line="381" column="36" selection-start-line="381" selection-start-column="5" selection-end-line="381" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/brainTractography----FA_task.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21264368" vertical-offset="4951" max-vertical-offset="13656">
+          <caret line="214" column="76" selection-start-line="214" selection-start-column="9" selection-end-line="214" selection-end-column="9" />
           <folding />
         </state>
       </provider>

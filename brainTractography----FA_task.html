@@ -110,11 +110,11 @@
 <script src="./js/BoxLoader.js"></script>
 <script src="./js/TrackballControls.js"></script>
 <script src="./js/Detector.js"></script>
-<script src="./js/stats.min.js"></script>
+
 
 <script>
 if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
-var container, stats;
+var container; //delete  stats src="./js/stats.min.js"
 
 var camera, controls, scene, renderer;
 var group;
@@ -415,13 +415,13 @@ function init() {
     renderer.setSize( window.innerWidth, window.innerHeight );
     //render.clearColor(0.5,0.5,0.5);
     container.appendChild( renderer.domElement );
-
+    /*
     stats = new Stats();
     stats.domElement.style.position = 'absolute';
     stats.domElement.style.top = '0px';
     stats.domElement.style.zIndex = 100;
     container.appendChild( stats.domElement );
-
+     */
     window.addEventListener( 'resize', onWindowResize, false );
 
 }
@@ -548,7 +548,7 @@ function animate() {
 function update()
 {
     controls.update();
-    stats.update();
+    //stats.update();
 }
 
 function render() {
