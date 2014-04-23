@@ -270,7 +270,8 @@
                 var material1 = new THREE.MeshBasicMaterial({
                     transparent: true,
                     opacity: 0.5,
-                    color: 'silver'
+                    color: 'silver',
+                    side: THREE.BackSide
                 });
                 var mesh = THREE.SceneUtils.createMultiMaterialObject(geometry, [material, material1]);
                // var mesh = new THREE.Mesh( geometry, material );
@@ -295,7 +296,8 @@
                 var material1 = new THREE.MeshBasicMaterial({
                     transparent: true,
                     opacity: 0.5,
-                    color: 'silver'
+                    color: 'silver',
+                    side: THREE.BackSide
                 });
                 //var mesh = new THREE.Mesh(geometry, material);
                 var mesh = THREE.SceneUtils.createMultiMaterialObject(geometry, [material, material1]);
@@ -321,11 +323,11 @@
                 var material1 = new THREE.MeshBasicMaterial({
                     transparent: true,
                     opacity: 0.5,
-                    color: 'silver'
+                    color: 'silver',
+                    side: THREE.BackSide
                 });
                 //var mesh = new THREE.Mesh(geometry, material);
                 var mesh = THREE.SceneUtils.createMultiMaterialObject(geometry, [material, material1]);
-                //var mesh = new THREE.Mesh( geometry, material );
                 mesh.position.x = loaderbox3.center.x;
                 mesh.position.y = loaderbox3.center.y;
                 mesh.position.z = loaderbox3.center.z ;

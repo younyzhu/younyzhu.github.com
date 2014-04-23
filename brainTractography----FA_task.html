@@ -317,7 +317,8 @@ function init() {
             var material1 = new THREE.MeshBasicMaterial({
                 transparent: true,
                 opacity: 0.5,
-                color: 'silver'
+                color: 'silver',
+                side: THREE.BackSide
             });
             var mesh = THREE.SceneUtils.createMultiMaterialObject(geometry, [material, material1]);
             //var mesh = new THREE.Mesh( geometry, material );
@@ -343,7 +344,8 @@ function init() {
             var material1 = new THREE.MeshBasicMaterial({
                 opacity: 0.5,
                 transparent: true,
-                color: 'silver'
+                color: 'silver',
+                side: THREE.BackSide
             });
             var mesh = THREE.SceneUtils.createMultiMaterialObject(geometry, [material, material1]);
             var pos = loaderbox2.center.clone();
