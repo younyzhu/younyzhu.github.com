@@ -255,17 +255,49 @@
                 var material = new THREE.MeshBasicMaterial({
                     color: 'black',transparent: true
                 });
-                var wireframeMaterial = new THREE.MeshBasicMaterial( { color: 0x00ee00, wireframe: true, transparent: true } );
+                //var wireframeMaterial = new THREE.MeshBasicMaterial( { color: 0x00ee00, wireframe: true, transparent: true } );
                 var mesh = new THREE.Mesh( geometry.clone(), material );
                 mesh.position.x = loaderbox.center.x;
                 mesh.position.y = loaderbox.center.y;
                 mesh.position.z = loaderbox.center.z ;
                 //group.add(mesh);
                 mainGroup.add(mesh);
-                var wireframemesh = new THREE.Mesh( geometry.clone(), wireframeMaterial );
-                wireframemesh.position = mesh.position;
+                //var wireframemesh = new THREE.Mesh( geometry.clone(), wireframeMaterial );
+                //wireframemesh.position = mesh.position;
                 //group.add(wireframemesh);
-                mainGroup.add(wireframemesh);
+                //mainGroup.add(wireframemesh);
+                {//create the wireframe
+                    var verticeGeo = new THREE.Geometry();
+                    var vertices =  geometry.vertices;
+                    for(var i =0;i<4;++i)
+                    {
+                        verticeGeo.vertices.push(vertices[2*i]);
+                        verticeGeo.vertices.push(vertices[2*i+1]);
+                    }
+                    {
+                        verticeGeo.vertices.push(vertices[0]);
+                        verticeGeo.vertices.push(vertices[5]);
+                        verticeGeo.vertices.push(vertices[1]);
+                        verticeGeo.vertices.push(vertices[4]);
+                        verticeGeo.vertices.push(vertices[2]);
+                        verticeGeo.vertices.push(vertices[7]);
+                        verticeGeo.vertices.push(vertices[3]);
+                        verticeGeo.vertices.push(vertices[6]);
+                    }
+                    for(i =0;i<2;++i)
+                    {
+                        verticeGeo.vertices.push(vertices[i]);
+                        verticeGeo.vertices.push(vertices[i+2]);
+                        verticeGeo.vertices.push(vertices[4+i]);
+                        verticeGeo.vertices.push(vertices[4+i+2]);
+                    }
+                    var materialLine = new THREE.LineBasicMaterial({ color: 'yellow' });
+                    var line = new THREE.Line( verticeGeo, materialLine,THREE.LinePieces );
+                    line.position.x = loaderbox.center.x;
+                    line.position.y = loaderbox.center.y;
+                    line.position.z = loaderbox.center.z ;
+                    mainGroup.add( line );
+                }
                 var spritey = makeTextSprite( " lesion area ",
                         { fontsize:12, borderColor: {r:255, g:255, b:0, a:1.0}, backgroundColor: {r:255, g:0, b:0, a:0.8} } );
                 spritey.position = mesh.position;
