@@ -109,17 +109,23 @@
 <script src="./js/FiberGeoLoader.js"></script>
 <script src="./js/MinmaxBoxGeometry.js"></script>
 <script src="./js/BoxLoader.js"></script>
-<script src="./js/TrackballControls.js"></script>
 <script src="./js/Detector.js"></script>
 
 <script>
     if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
     var container;           //remove stats ./js/stats.min.js
 
-    var camera, controls, scene, renderer;
+    var camera, scene, renderer;
     var group;
-    var cross;
+    var mainGroup;
     var loadedCount =0;
+    //for trackball
+    var mouseDown = false;
+    var rotateStartP = new THREE.Vector3(0,0,1);
+    var rotateEndP = new THREE.Vector3(0,0,1);
+    var quater;
+    var zoomValue =0;
+
     init();
     animate();
 
@@ -143,29 +149,11 @@
         camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1000 );
 
         camera.position.z = 220;
-        controls = new THREE.TrackballControls( camera );
-
-        controls.rotateSpeed = 1.0;
-        controls.zoomSpeed = 1.2;
-        controls.panSpeed = 0.8;
-
-        controls.noZoom = false;
-        controls.noPan = false;
-
-        controls.staticMoving = true;
-        controls.dynamicDampingFactor = 0.3;
-
-        controls.keys = [ 65, 83, 68 ];
-
-        controls.addEventListener( 'change', render );
 
         // scene
         scene = new THREE.Scene();
 
         var light;
-        /*light = new THREE.PointLight();
-        light.position.set( 0, 0, 0 );
-        scene.add( light );*/
 
         light = new THREE.DirectionalLight( 0xffeedd );
         light.position.set( 0, 0, 200 );
@@ -176,14 +164,7 @@
         light = new THREE.DirectionalLight( 0xffeedd );
         light.position.set( 0, 200, 0 );
         scene.add( light );
-        /*light = new THREE.DirectionalLight( 0xffeedd );
-        light.position.set( -120, 0, 0 );
-        scene.add( light );*/
-         /*
-        var helper = new THREE.GridHelper( 200, 10 );
-        helper.setColors( 0x0000ff, 0x808080 );
-        helper.position.y = -100;
-        scene.add( helper );  */
+
         // FLOOR
         var floorTexture = new THREE.ImageUtils.loadTexture( './images/checkerboard.jpg' );
         floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
@@ -195,11 +176,11 @@
         floor.rotation.x = Math.PI / 2;
         scene.add(floor);
 
-        //$( "start" ).addEventListener( 'click', onStartClick, false );
-
         $( "progress" ).style.display = "block";
 
-        group = new THREE.Object3D();
+        group = new THREE.Object3D();   //scene -> group(mainGroup, plane, bar) ->mainGroup(model, box, sphere)
+        mainGroup = new THREE.Object3D();
+
         function setProgressBar(loaded, total)
         {
             var bar = 250;
@@ -217,11 +198,10 @@
 
             $( "message" ).style.display = "none";
             $( "progressbar" ).style.display = "none";
-            //$( "start" ).style.display = "block";
-            //$( "start" ).className = "enabled";
             $( "progress" ).style.display = "none";//from start click
             scene.add(group);
         }
+
         //Generate the data file
         var fiberBundle =[];
         fiberBundle.push('cc');
@@ -263,17 +243,16 @@
 
         var loadIdx = new FiberIdxLoader(manager);
         loadIdx.load( fiberIdx, function ( fiberIdx )
-        //loadIdx.load( './data/tracingBox/fiberinx', function ( fiberIdx )
         {
             if(fiberIdx.length!==0 && loadIdx.center !== null)
             {
                 var loader = new GeometryLoader(manager,fiberIdx );
                 loader.load( modelPath, function ( object ) {
-                //loader.load( './data/single/s1_cc.data', function ( object ) {
                     object.position.x = -loader.center.x;
                     object.position.y = -loader.center.y;
                     object.position.z = -loader.center.z;
-                    group.add( object );
+                    //group.add( object );
+                    mainGroup.add(object);
                     loadedCount++;
                     setProgressBar(loadedCount, 4);
                 } );
@@ -293,7 +272,6 @@
                     opacity: 0.5,
                     color: 'silver'
                 });
-                //var mesh = new THREE.Mesh(geometry, material);
                 var mesh = THREE.SceneUtils.createMultiMaterialObject(geometry, [material, material1]);
                // var mesh = new THREE.Mesh( geometry, material );
                 mesh.position.x = loaderbox.center.x;
@@ -302,8 +280,10 @@
                 var spritey = makeTextSprite( " 1 ",
                         { fontsize:12, borderColor: {r:255, g:0, b:0, a:1.0}, backgroundColor: {r:255, g:100, b:100, a:0.8} } );
                 spritey.position.set(loaderbox.center.x,loaderbox.center.y ,loaderbox.center.z );
-                group.add( spritey );
-                group.add(mesh);
+                //group.add( spritey );
+                mainGroup.add(spritey);
+                //group.add(mesh);
+                mainGroup.add(mesh);
                 loadedCount++;
                 setProgressBar(loadedCount, 4);
             }
@@ -323,11 +303,13 @@
                 mesh.position.x = loaderbox2.center.x;
                 mesh.position.y = loaderbox2.center.y;
                 mesh.position.z = loaderbox2.center.z ;
-                group.add(mesh);
+                //group.add(mesh);
+                mainGroup.add(mesh);
                 var spritey = makeTextSprite( "2 ",
                         { fontsize:12, borderColor: {r:255, g:0, b:0, a:1.0}, backgroundColor: {r:255, g:100, b:100, a:0.8} } );
                 spritey.position.set(loaderbox2.center.x,loaderbox2.center.y ,loaderbox2.center.z );
-                group.add( spritey );
+                //group.add( spritey );
+                mainGroup.add(spritey);
                 loadedCount++;
                 setProgressBar(loadedCount, 4);
             }
@@ -347,43 +329,33 @@
                 mesh.position.x = loaderbox3.center.x;
                 mesh.position.y = loaderbox3.center.y;
                 mesh.position.z = loaderbox3.center.z ;
-                group.add(mesh);
+                //group.add(mesh);
+                mainGroup.add(mesh);
                 var spritey = makeTextSprite( "3 ",
                         { fontsize:12, borderColor: {r:255, g:0, b:0, a:1.0}, backgroundColor: {r:255, g:100, b:100, a:0.8} } );
                 spritey.position.set(loaderbox3.center.x,loaderbox3.center.y ,loaderbox3.center.z );
-                group.add( spritey );
+                //group.add( spritey );
+                mainGroup.add(spritey);
                 loadedCount++;
                 setProgressBar(loadedCount, 4);
             }
         } );
         //scene.add(group);
+        group.add(mainGroup);
 
         //render
         renderer = new THREE.WebGLRenderer({antialias:true});
         renderer.setSize( window.innerWidth, window.innerHeight );
 
         container.appendChild( renderer.domElement );
-        /*
-        stats = new Stats();
-        stats.domElement.style.position = 'absolute';
-        stats.domElement.style.top = '0px';
-        stats.domElement.style.zIndex = 100;
-        container.appendChild( stats.domElement );
-        */
+        document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+
+        document.addEventListener( 'mousewheel', onMouseWheel, false );
+        document.addEventListener( 'DOMMouseScroll', onMouseWheel, false ); // firefox
         window.addEventListener( 'resize', onWindowResize, false );
 
     }
-    /*
-    function setButtonActive( id ) {
 
-        $( "start" ).style.backgroundColor = "green";
-    }
-
-    function onStartClick() {
-
-        $( "progress" ).style.display = "none";
-        scene.add(group);
-    } */
     function onWindowResize() {
 
         camera.aspect = window.innerWidth / window.innerHeight;
@@ -396,6 +368,112 @@
         render();
 
     }
+
+    function onDocumentMouseDown( event ) {
+
+        event.preventDefault();
+
+        document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+        document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+        document.addEventListener( 'mouseout', onDocumentMouseOut, false );
+        mouseDown = true;
+        rotateStartP = projectOnTrackball(event.clientX, event.clientY);
+    }
+
+    function onDocumentMouseMove( event ) {
+
+        if(!mouseDown)
+        {
+            return;
+        }
+
+        rotateEndP = projectOnTrackball(event.clientX, event.clientY);
+
+
+    }
+    function getMouseOnScreen( pageX, pageY) {
+
+        return new THREE.Vector2.set(pageX / window.innerWidth ,pageY / window.innerHeight);
+
+    }
+
+    function projectOnTrackball(pageX, pageY) // The screen coordinate[(0,0)on the left-top] convert to the
+        //trackball coordinate [(0,0) on the center of the page]
+    {
+        var mouseOnBall = new THREE.Vector3();
+        mouseOnBall.set(
+                        ( pageX - window.innerWidth * 0.5 ) / (window.innerWidth * .5),
+                        ( window.innerHeight * 0.5 - pageY ) / ( window.innerHeight * .5),
+                0.0
+        );
+
+        var length = mouseOnBall.length();
+        if (length > 1.0) {
+
+            mouseOnBall.normalize();
+
+        }
+        else {
+            mouseOnBall.z = Math.sqrt(1.0 - length * length);
+        }
+        return mouseOnBall;
+    }
+
+    function rotateMatrix(rotateStart, rotateEnd)
+    {
+        var axis = new THREE.Vector3(),
+                quaternion = new THREE.Quaternion();
+
+        var angle = Math.acos( rotateStart.dot( rotateEnd ) / rotateStart.length() / rotateEnd.length() );
+
+        if ( angle )
+        {
+            axis.crossVectors( rotateStart, rotateEnd ).normalize();
+            angle *= 0.01;            //Here we could define rotate speed
+            quaternion.setFromAxisAngle( axis, angle );
+        }
+        return  quaternion;
+    }
+
+    function onDocumentMouseUp( event ) {
+
+        document.removeEventListener( 'mousemove', onDocumentMouseMove, false );
+        document.removeEventListener( 'mouseup', onDocumentMouseUp, false );
+        document.removeEventListener( 'mouseout', onDocumentMouseOut, false );
+        mouseDown = false;
+        rotateStartP = rotateEndP;
+
+    }
+
+    function onDocumentMouseOut( event ) {
+
+        document.removeEventListener( 'mousemove', onDocumentMouseMove, false );
+        document.removeEventListener( 'mouseup', onDocumentMouseUp, false );
+        document.removeEventListener( 'mouseout', onDocumentMouseOut, false );
+
+    }
+
+    function onMouseWheel( event ) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        var delta = 0;
+
+        if ( event.wheelDelta ) { // WebKit / Opera / Explorer 9
+
+            delta = event.wheelDelta / 40;
+
+        } else if ( event.detail ) { // Firefox
+
+            delta = - event.detail / 3;
+
+        }
+
+        zoomValue += delta /10;
+
+    }
+
     function makeTextSprite( message, parameters )
     {
         if ( parameters === undefined ) parameters = {};
@@ -471,14 +549,20 @@
     function animate() {
 
         requestAnimationFrame( animate );
-        controls.update();
+        update();
         render();
     }
-
+    function update(){
+        var rotateQuaternion = rotateMatrix(rotateStartP, rotateEndP);
+        quater = mainGroup.quaternion;
+        quater.multiplyQuaternions(rotateQuaternion,quater);
+        quater.normalize();
+        mainGroup.setRotationFromQuaternion(quater);
+        mainGroup.position.z += zoomValue;
+        zoomValue = 0;
+    }
     function render() {
-
         renderer.render( scene, camera );
-        //stats.update();
 
     }
 
