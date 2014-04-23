@@ -101,7 +101,8 @@
         scene.add( light );
 
         var helper = new THREE.GridHelper( 200, 10 );
-        helper.setColors( 0x0000ff, 0x808080 );
+        //helper.setColors( 0x0000ff, 0x808080 );
+        helper.setColors( 0x808080, 0x808080 );
         helper.position.y = -100;
         scene.add( helper );
         group = new THREE.Object3D();
@@ -141,9 +142,6 @@
 
                 scene.add(squareMesh);
             }
-            //object.position.x = -114.6;
-            //object.position.y = -117.8;
-            //object.position.z = -92.1;
             object.position.x = -loader.center.x;
             object.position.y = -loader.center.y;
             object.position.z = -loader.center.z;

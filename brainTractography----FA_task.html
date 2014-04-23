@@ -165,6 +165,7 @@ function init() {
     scene.add( light );
 
     // FLOOR
+    /*
     var floorTexture = new THREE.ImageUtils.loadTexture( './images/checkerboard.jpg' );
     floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
     floorTexture.repeat.set( 10, 10 );
@@ -174,6 +175,11 @@ function init() {
     floor.position.y = -100;
     floor.rotation.x = Math.PI / 2;
     scene.add(floor);
+    */
+    var helper = new THREE.GridHelper( 200, 10 );
+    helper.setColors( 0x808080, 0x808080 );
+    helper.position.y = -100;
+    scene.add( helper );
 
     $( "progress" ).style.display = "block";
 
@@ -289,7 +295,6 @@ function init() {
                     textLabel.position.set(2+16, -40 + k*16-4, 0);
                     barGroup.add( textLabel );
                 }
-
                 barGroup.position.set(130, 0, 0);
                 group.add(barGroup);
 
@@ -305,23 +310,51 @@ function init() {
     } );
 
 
-    var material = new THREE.MeshBasicMaterial({
-        wireframe: true,
-        wireframeLinewidth: 3,
-        color: 'yellow'
-    });
+
     var loaderbox = new BoxLoader(manager );
     loaderbox.load( boxPath1, function ( geometry ) {
         if(geometry !== undefined&& loaderbox.center !==null)
         {
-            var material1 = new THREE.MeshBasicMaterial({
+            var material = new THREE.MeshBasicMaterial({
                 transparent: true,
                 opacity: 0.5,
                 color: 'silver',
                 side: THREE.BackSide
             });
-            var mesh = THREE.SceneUtils.createMultiMaterialObject(geometry, [material, material1]);
-            //var mesh = new THREE.Mesh( geometry, material );
+            //var mesh = THREE.SceneUtils.createMultiMaterialObject(geometry, [material, material1]);
+            var mesh = new THREE.Mesh( geometry, material );
+            {//create the wireframe
+                var verticeGeo = new THREE.Geometry();
+                var vertices =  geometry.vertices;
+                for(var i =0;i<4;++i)
+                {
+                    verticeGeo.vertices.push(vertices[2*i]);
+                    verticeGeo.vertices.push(vertices[2*i+1]);
+                }
+                {
+                    verticeGeo.vertices.push(vertices[0]);
+                    verticeGeo.vertices.push(vertices[5]);
+                    verticeGeo.vertices.push(vertices[1]);
+                    verticeGeo.vertices.push(vertices[4]);
+                    verticeGeo.vertices.push(vertices[2]);
+                    verticeGeo.vertices.push(vertices[7]);
+                    verticeGeo.vertices.push(vertices[3]);
+                    verticeGeo.vertices.push(vertices[6]);
+                }
+                for(i =0;i<2;++i)
+                {
+                    verticeGeo.vertices.push(vertices[i]);
+                    verticeGeo.vertices.push(vertices[i+2]);
+                    verticeGeo.vertices.push(vertices[4+i]);
+                    verticeGeo.vertices.push(vertices[4+i+2]);
+                }
+                var materialLine = new THREE.LineBasicMaterial({ color: 'yellow' });
+                var line = new THREE.Line( verticeGeo, materialLine,THREE.LinePieces );
+                line.position.x = loaderbox.center.x;
+                line.position.y = loaderbox.center.y;
+                line.position.z = loaderbox.center.z ;
+                mainGroup.add( line );
+            }
             mesh.position.x = loaderbox.center.x;
             mesh.position.y = loaderbox.center.y;
             mesh.position.z = loaderbox.center.z ;
@@ -341,19 +374,51 @@ function init() {
     loaderbox2.load( boxPath2, function ( geometry ) {
         if (geometry !== undefined && loaderbox2.center !==null) {
 
-            var material1 = new THREE.MeshBasicMaterial({
+            var material = new THREE.MeshBasicMaterial({
                 opacity: 0.5,
                 transparent: true,
                 color: 'silver',
                 side: THREE.BackSide
             });
-            var mesh = THREE.SceneUtils.createMultiMaterialObject(geometry, [material, material1]);
+            var mesh = new THREE.Mesh( geometry, material );
             var pos = loaderbox2.center.clone();
             mesh.position.x = pos.x;
             mesh.position.y = pos.y;
             mesh.position.z = pos.z;
             //group.add(mesh);
             mainGroup.add(mesh);
+            {//create the wireframe
+                var verticeGeo = new THREE.Geometry();
+                var vertices =  geometry.vertices;
+                for(var i =0;i<4;++i)
+                {
+                    verticeGeo.vertices.push(vertices[2*i]);
+                    verticeGeo.vertices.push(vertices[2*i+1]);
+                }
+                {
+                    verticeGeo.vertices.push(vertices[0]);
+                    verticeGeo.vertices.push(vertices[5]);
+                    verticeGeo.vertices.push(vertices[1]);
+                    verticeGeo.vertices.push(vertices[4]);
+                    verticeGeo.vertices.push(vertices[2]);
+                    verticeGeo.vertices.push(vertices[7]);
+                    verticeGeo.vertices.push(vertices[3]);
+                    verticeGeo.vertices.push(vertices[6]);
+                }
+                for(i =0;i<2;++i)
+                {
+                    verticeGeo.vertices.push(vertices[i]);
+                    verticeGeo.vertices.push(vertices[i+2]);
+                    verticeGeo.vertices.push(vertices[4+i]);
+                    verticeGeo.vertices.push(vertices[4+i+2]);
+                }
+                var materialLine = new THREE.LineBasicMaterial({ color: 'yellow' });
+                var line = new THREE.Line( verticeGeo, materialLine,THREE.LinePieces );
+                line.position.x = loaderbox2.center.x;
+                line.position.y = loaderbox2.center.y;
+                line.position.z = loaderbox2.center.z ;
+                mainGroup.add( line );
+            }
             var spritey = makeTextSprite( " 2 ",
                     { fontsize:12, borderColor: {r:255, g:255, b:0, a:1.0}, backgroundColor: {r:255, g:0, b:0, a:0.8} } );
             spritey.position.set(pos.x,pos.y ,pos.z );

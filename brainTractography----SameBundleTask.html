@@ -164,6 +164,7 @@
         scene.add( light );
 
         // FLOOR
+        /*
         var floorTexture = new THREE.ImageUtils.loadTexture( './images/checkerboard.jpg' );
         floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
         floorTexture.repeat.set( 10, 10 );
@@ -173,6 +174,11 @@
         floor.position.y = -100;
         floor.rotation.x = Math.PI / 2;
         scene.add(floor);
+        */
+        var helper = new THREE.GridHelper( 200, 10 );
+        helper.setColors( 0x808080, 0x808080 );
+        helper.position.y = -100;
+        scene.add( helper );
 
         $( "progress" ).style.display = "block";
 
