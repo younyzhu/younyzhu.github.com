@@ -1,0 +1,33 @@
+before
+basic UI
+5/16/2014
+ribbons, visualization_backup
+5/17/2014~ 5/18/2014
+add 2d canvas navigation bar(navigationBar.js), the relation between 2D canvas box component
+with the object on the big canvas(main webGL 3D canvas).
+finished the box dragging position coordinate
+5/19/2014
+split the visualization.js into bubbleWidget.js and main.js
+backup the bubbleWidget(bubbleWidget.js and main.js)
+construct a new class: bubbleWidget which contains: 1. the container(canvas),the id, the connectionId
+5/20/2014
+use the requestAnimFrame to control the 2D canvas draw;
+finished simple connect line drawing between two widgets;
+And make the operation coordinate.
+//Till now incluse file:
+    //jquery related lab
+    <script src="./jqueryLib/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="./jqueryLib/jquery-ui-1.10.4.js" type="text/javascript"></script>
+    <script src="./jqueryLib/jquery.ui.position.js" type="text/javascript"></script>
+    <script src="./jqueryLib/jquery.contextMenu.js" type="text/javascript"></script>
+    //Three.js related lab
+    <script src="js/three.js"></script>
+    <script src="js/Detector.js"></script>
+    <script src="js/KeyboardState.js"></script>
+    //Custom js code
+    <script src="js/main.js" type="text/javascript"></script>              //main
+    <script src="js/ObjectLoader.js"></script>      //model loader(line, also could include tube, ribbon js)
+    <script src="js/navigationBar.js" type="text/javascript"></script>     //Draw 2D canvas on navigation bar
+    <script src="js/bubbleWidget.js" type="text/javascript"></script>      //Bubble widget on the main
+    <script src="js/connections.js" type="text/javascript"></script>       //connection line between two wodgets which have relationship in some kinds.
+
