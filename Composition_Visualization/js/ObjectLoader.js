@@ -70,6 +70,7 @@ GeometryLoader.prototype = {
             //geometry = new LineGeometry(vertexPosition,vertexColor);  vertexColors: THREE.VertexColors
             geometry.uuid = i;
             geometry.name = this.name;
+
             var grayness = Math.random() * 0.5 + 0.25;
             var material = new THREE.LineBasicMaterial();
             material.color.setRGB( grayness, grayness, grayness );

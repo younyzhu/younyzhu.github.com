@@ -10,6 +10,27 @@ var navigationCanvas = null;
 var pathConnection = null;
 var nvWidth = 0;
 
+function getPositions(id) {
+    var $bubble = $('#bubble'+id);
+    var pos = $bubble.position(); //offset()
+    var width = $bubble.width();
+    var height = $bubble.height();
+    //Get the left, right, top, bottom boundary of the Box
+    return [ [ pos.left, pos.left + width ], [ pos.top, pos.top + height ] ];
+}
+
+
+function checkCollisions(Id1, Id2){
+    var box1 = getPositions(Id1);
+    var box2 = getPositions(Id2);
+    return !((box2[0][0] > box1[0][1])//box2 left > box1 right
+    || (box2[0][1] < box1[0][0])//box2 right < box1 left
+    || (box2[1][1] < box1[1][0])//box2 bottom < box1 top
+    || (box2[1][0] > box1[1][0])); //box2 top < box1 bottom
+}
+
+
+
 $(document).ready(function(){
 
     if ( ! Detector.webgl )
@@ -31,7 +52,7 @@ $(document).ready(function(){
             {
                 BUBBLE_COUNT++;
                 addBubble(BUBBLE_COUNT,'5 fiber bundles',mousePosX,mousePosY);
-
+                manageBubblePos(BUBBLE_COUNT);
                 /*$('#bubble'+BUBBLE_COUNT).css({
                  left : mousePosX,
                  top : mousePosY
@@ -59,11 +80,16 @@ $(document).ready(function(){
                 {   if(Bubbles[BUBBLE_COUNT] !==null)
                     {
                         $("#bubble"+BUBBLE_COUNT).remove();
-                        if( Bubbles[BUBBLE_COUNT].connectionId !== null)
+                        var le = Bubbles[BUBBLE_COUNT].getlinkNodes().length;
+                        for(var i= 0; i<le; ++i)
                         {
-                            var nex = Bubbles[BUBBLE_COUNT].connectTo;
-                            pathConnection.remove(Bubbles[BUBBLE_COUNT].connectionId);
-                            Bubbles[nex].setConnection(null, null);
+                            var next = Bubbles[BUBBLE_COUNT].getlinkNodes()[i].connectTo;
+                            for(var j=0; j<Bubbles[next].getlinkNodes().length; ++j)
+                            {
+                                if(Bubbles[BUBBLE_COUNT].getlinkNodes()[i].connectionId === Bubbles[next].getlinkNodes()[j].connectionId)
+                                    Bubbles[next].spliceNodeLink(j);
+                            }
+                            pathConnection.remove( Bubbles[BUBBLE_COUNT].getlinkNodes()[i].connectionId );
                         }
                     }
                     BUBBLE_COUNT--;

@@ -3,14 +3,22 @@
  */
 var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
+function NodeLink( id, connectTo)
+{
+    this.connectionId = id;
+    this.connectTo = connectTo;
+}
+
+
 function Bubble(id,name)
 {
     this.CleanSelected = false;
     this.rotateState = true;
     this.selectState = false;
     ////////////////////////////////////////////////////////////////////////////////
-    this.connectionId = null;
-    this.connectTo = null;
+    //this.connectionId = null;
+    //this.connectTo = null;
+    this.connectionLinks = [];
     /*global THREE, window, document*/
     this.camera = null;
     this.scene = null;
@@ -62,6 +70,19 @@ function Bubble(id,name)
 }
 Bubble.prototype ={
     constructor: Bubble,
+    getlinkNodes: function()
+    {
+        return this.connectionLinks;
+    },
+    spliceNodeLink : function(index)
+    {
+        if(index >= 0&& index < this.connectionLinks.length) {
+            this.connectionLinks.splice(index, 1);
+        }
+    },
+    addlinkNode: function(node){
+        this.connectionLinks.push(node);
+    },
     setCleanState: function (state){
         this.CleanSelected = state;
     },
@@ -73,10 +94,11 @@ Bubble.prototype ={
         this.rotateState = false;
         this.selectState = true;
     },
-    setConnection: function (connectId, connectTo){
-        this.connectionId = connectId;
-        this.connectTo = connectTo;
-    },
+    /*
+     setConnection: function (connectId, connectTo){
+     this.connectionId = connectId;
+     this.connectTo = connectTo;
+     },*/
     fillScene: function () {
 
         var scope = this;
@@ -193,8 +215,9 @@ Bubble.prototype ={
         this.camera.position.set( 0, 0, 220 );
 
         $('#container'+ this.id).resize( function onWindowResize() {
-            scope.cWidth = $('#container'+ scope.id).width();
-            scope.cHeight = $('#container'+ scope.id).height();
+            var $containerId = $('#container'+ scope.id);
+            scope.cWidth = $containerId.width();
+            scope.cHeight = $containerId.height();
             scope.camera.aspect = scope.cWidth / scope.cHeight;
             scope.camera.updateProjectionMatrix();
 
@@ -425,7 +448,7 @@ Bubble.prototype ={
         }
         if(this.CleanSelected === true)
         {
-            var  childs = this.mainGroup.children;
+            var childs = this.mainGroup.children;
             for(var i = 0; i < childs.length; ++i)
             {
                 for(var j =0; j< childs[i].children.length ;++j)
@@ -444,6 +467,32 @@ Bubble.prototype ={
         this.renderer.render(this.scene, this.camera);
     }
 };
+function getWidgetCenter(index){
+    var $bubbleId = $('#bubble'+index);
+    var posx = $bubbleId.offset().left;//offset() or position()
+    var posy = $bubbleId.offset().top;
+    return {x: posx+$bubbleId.width()/2, y:posy + $bubbleId.height()/2};
+}
+function updateBubblePos(index, x, y)
+{
+    var $bubbleId = $('#bubble'+index);
+    var posx = $bubbleId.offset().left;//offset() or position()
+    var posy =$bubbleId.offset().top;
+    $bubbleId.css({
+        left: posx + x,
+        top: posy + y
+    });
+
+    var le = Bubbles[index].getlinkNodes().length;
+    for(var i= 0; i<le; ++i)
+    {
+        var next = Bubbles[index].getlinkNodes()[i].connectTo;
+        if(Bubbles[index].getlinkNodes()[i].connectionId !== null&& Bubbles[index]!==null && Bubbles[next]!==null )
+        {
+            pathConnection.update( Bubbles[index].getlinkNodes()[i].connectionId, getWidgetCenter(index), getWidgetCenter(next) );
+        }
+    }
+}
 function addBubble(id,name,mousePosX,mousePosY)
 {
     var bubblediv = $(bubble_div(id,name,mousePosX,mousePosY));
@@ -469,9 +518,9 @@ function addBubble(id,name,mousePosX,mousePosY)
         var top = 50 * heightPercent; //50 is the height of the navigation bar;
         return {x: left, y: top};
     }
-
-    var boxWidth = $('#bubble'+id).width()/window.innerWidth * nvWidth;
-    var boxHeight = $('#bubble'+id).height()/(window.innerHeight -50) * 50;
+    var $bubbleId = $('#bubble'+id);
+    var boxWidth = $bubbleId.width()/window.innerWidth * nvWidth;
+    var boxHeight = $bubbleId.height()/(window.innerHeight -50) * 50;
     var pos = currentToBoxPos(mousePosX,mousePosY);
     var color = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
     var currentView = new Rectangle(navigationCanvas, pos.x, pos.y, boxWidth, boxHeight, color, true );
@@ -484,34 +533,60 @@ function addBubble(id,name,mousePosX,mousePosY)
             //var originalPosition = ui.originalPosition; //drag begin position
             var currentId = parseInt( $(this).attr('id').replace(/bubble/, '') );
             navigationCanvas.updateRectPos(currentId, currentPos.x, currentPos.y);
-            var next = bubble.connectTo;
-            if(bubble.connectionId !== null&& Bubbles[id]!==null && Bubbles[next]!==null )
+
+            var le = Bubbles[id].getlinkNodes().length;
+            for(var i= 0; i<le; ++i)
             {
-                pathConnection.update( bubble.connectionId, getWidgetCenter(id), getWidgetCenter(next) );
+                var next = Bubbles[currentId].getlinkNodes()[i].connectTo;
+                if(Bubbles[currentId].getlinkNodes()[i].connectionId !== null&& Bubbles[currentId]!==null && Bubbles[next]!==null )
+                {
+                    pathConnection.update( Bubbles[currentId].getlinkNodes()[i].connectionId, getWidgetCenter(currentId), getWidgetCenter(next) );
+                }
+            }
+
+
+            /*
+             var next = bubble.connectTo;
+             if(bubble.connectionId !== null&& Bubbles[id]!==null && Bubbles[next]!==null )
+             {
+             pathConnection.update( bubble.connectionId, getWidgetCenter(id), getWidgetCenter(next) );
+             } */
+        },
+        stop: function(ev, ui) {
+            var position = ui.position;  //drag stop position
+            var currentPos = currentToBoxPos(position.left, position.top);
+            //var originalPosition = ui.originalPosition; //drag begin position
+            var currentId = parseInt($(this).attr('id').replace(/bubble/, ''));
+            navigationCanvas.updateRectPos(currentId, currentPos.x, currentPos.y);
+
+            var le = Bubbles[id].getlinkNodes().length;
+            for (var i = 0; i < le; ++i) {
+                var next = Bubbles[currentId].getlinkNodes()[i].connectTo;
+                if (Bubbles[currentId].getlinkNodes()[i].connectionId !== null && Bubbles[currentId] !== null && Bubbles[next] !== null) {
+                    pathConnection.update(Bubbles[currentId].getlinkNodes()[i].connectionId, getWidgetCenter(currentId), getWidgetCenter(next));
+                }
             }
         }
-        /*stop: function(ev, ui){  //when set draggable, there is no need to set the draggable  stop
-
-            var position = ui.position;  //drag stop position
-            var currentPos = currentToBoxPos(position.left,position.top);
-            //var originalPosition = ui.originalPosition; //drag begin position
-            var currentId = parseInt( $(this).attr('id').replace(/bubble/, '') );
-            navigationCanvas.updateRectPos(currentId, currentPos.x, currentPos.y);
-            var next = bubble.connectTo;
-            if(bubble.connectionId !== null&& Bubbles[id]!==null && Bubbles[next]!==null )
-            {
-                pathConnection.update( bubble.connectionId, getWidgetCenter(id), getWidgetCenter(next) );
-            }
-        }*/
     });
     $("canvas").draggable({ containment: '#bgCanvas', scroll: false}).resizable({
         resize: function(ev, ui) {
-            var width = $('#bubble'+id).width()/window.innerWidth * nvWidth;
-            var height = $('#bubble'+id).height()/(window.innerHeight -50) * 50;
+            var width = $bubbleId.width()/window.innerWidth * nvWidth;
+            var height = $bubbleId.height()/(window.innerHeight -50) * 50;
             navigationCanvas.updateRectResize(id, width, height);
-            var next = bubble.connectTo;
-            if (bubble.connectionId !== null && Bubbles[id] !== null && Bubbles[next] !== null) {
-                pathConnection.update(bubble.connectionId, getWidgetCenter(id), getWidgetCenter(next));
+            /*
+             var next = bubble.connectTo;
+             if (bubble.connectionId !== null && Bubbles[id] !== null && Bubbles[next] !== null) {
+             pathConnection.update(bubble.connectionId, getWidgetCenter(id), getWidgetCenter(next));
+             } */
+
+            var le = Bubbles[id].getlinkNodes().length;
+            for(var i= 0; i<le; ++i)
+            {
+                var next = Bubbles[id].getlinkNodes()[i].connectTo;
+                if(Bubbles[id].getlinkNodes()[i].connectionId !== null&& Bubbles[id]!==null && Bubbles[next]!==null )
+                {
+                    pathConnection.update( Bubbles[id].getlinkNodes()[i].connectionId, getWidgetCenter(id), getWidgetCenter(next) );
+                }
             }
         }
     });
@@ -530,24 +605,32 @@ function addBubble(id,name,mousePosX,mousePosY)
             }
         return maxindex;
     }
-    function getWidgetCenter(index){
-        var posx = $('#bubble'+index).offset().left;//offset() or position()
-        var posy =$('#bubble'+index).offset().top;
-        return {x: posx+$('#bubble'+index).width()/2, y:posy + $('#bubble'+index).height()/2};
-    }
-    var parent =$('#bubble'+id ).contextMenu({
+
+    var parent =$bubbleId.contextMenu({
         selector: '.dragheader',
         callback: function(key, options) {
             if(key==="delete")
             {
                 parent.remove();
                 navigationCanvas.remove(id);
-
-                if( Bubbles[id].connectionId !== null)
+                /*
+                 if( Bubbles[id].connectionId !== null)
+                 {
+                 var nex = Bubbles[id].connectTo;
+                 pathConnection.remove(Bubbles[id].connectionId);
+                 Bubbles[nex].setConnection(null, null);
+                 } */
+                var le = Bubbles[id].getlinkNodes().length;
+                for(var i= 0; i<le; ++i)
                 {
-                    var nex = Bubbles[id].connectTo;
-                    pathConnection.remove(Bubbles[id].connectionId);
-                    Bubbles[nex].setConnection(null, null);
+                    var next = Bubbles[id].getlinkNodes()[i].connectTo;
+                    for(var j=0; j<Bubbles[next].getlinkNodes().length; ++j)
+                    {
+                        if(Bubbles[id].getlinkNodes()[i].connectionId === Bubbles[next].getlinkNodes()[j].connectionId)
+                            Bubbles[next].spliceNodeLink(j);
+                    }
+
+                    pathConnection.remove( Bubbles[id].getlinkNodes()[i].connectionId );
                 }
                 delete bubble;
                 Bubbles[id] = null;
@@ -576,15 +659,20 @@ function addBubble(id,name,mousePosX,mousePosY)
                 var index = findMaxIndex(bubble.count);
                 if(index!==-1)
                 {
-                    var posx = $('#bubble'+id).offset().left;//offset() or position()
-                    var posy =$('#bubble'+id).offset().top;
-                    addBubble(BUBBLE_COUNT, bundles[index], posx +$('#bubble'+id).width() + 30, posy );
+                    var posx = $bubbleId.offset().left;//offset() or position()
+                    var posy =$bubbleId.offset().top;
+                    addBubble(BUBBLE_COUNT, bundles[index], posx +$bubbleId.width() + 30, posy );
 
                     var connection = new Connection(getWidgetCenter(id), getWidgetCenter(BUBBLE_COUNT));
                     pathConnection.addConnection(connection);
                     var connectId = pathConnection.connections.length-1;
-                    Bubbles[id].setConnection(connectId,BUBBLE_COUNT);
-                    Bubbles[BUBBLE_COUNT].setConnection(connectId,id);
+
+                    var node1 = new NodeLink(connectId,BUBBLE_COUNT);
+                    Bubbles[id].addlinkNode(node1);
+                    var node2 = new NodeLink(connectId,id);
+                    Bubbles[BUBBLE_COUNT].addlinkNode(node2);
+                    //Bubbles[id].setConnection(connectId,BUBBLE_COUNT);
+                    //Bubbles[BUBBLE_COUNT].setConnection(connectId,id);
                 }
                 else{
                     alert('Please select a bundle, before export the certain bundle!');
@@ -629,6 +717,152 @@ function bubble_div(id,name,mousePosX,mousePosY) {
     //
     tmp += '</div>';
     return tmp;
+}
+//This function is called when the navigation bar is move,actually,
+//the navigation bar can move in horizontal direction
+//So the whole bubble in screen space is just need to change the x-pos
+function resetAllBubblesPos(xChange)
+{
+    $('#bubble').children('.bubble').each(function ()
+    {
+        var offLeft = $(this).position().left;
+        $(this).css({left: offLeft - xChange});
+        var id = parseInt( $(this).attr('id').replace(/bubble/, '') );
+        var le = Bubbles[id].getlinkNodes().length;
+        for(var i= 0; i<le; ++i)
+        {
+            var next = Bubbles[id].getlinkNodes()[i].connectTo;
+            if(Bubbles[id].getlinkNodes()[i].connectionId !== null&& Bubbles[id]!==null && Bubbles[next]!==null )
+            {
+                pathConnection.update( Bubbles[id].getlinkNodes()[i].connectionId, getWidgetCenter(id), getWidgetCenter(next) );
+            }
+        }
+
+    });
+}
+function getWidgetInformation(index)
+{
+    var $bubbleId = $('#bubble'+index);
+    var width = $bubbleId.width();
+    var height = $bubbleId.height();
+    var posx = $bubbleId.offset().left;//offset() or position()
+    var posy = $bubbleId.offset().top;
+    var center = {x: posx+$bubbleId.width()/2, y:posy + $bubbleId.height()/2};
+    return {w:width,h:height,left:posx,top:posy,center:center};
+}
+function manageBubblePos(index)
+{
+    /*
+    var childs = $('#bubble').children('.bubble');
+    for(var i=0; i<childs.length; ++i)
+    {
+        if(i!==index)
+        {
+
+            if(checkCollisions(i,index))
+            {
+                // alert("Collision!");
+                var $bubbleId = $('#bubble'+i);
+                var $bubbleIndex = $('#bubble'+index);
+                // $bubbleId.animate({ "left": "-="+step1+"px" }, "fast" );
+
+                var bubble1 = getWidgetInformation(i);
+                var bubble2 = getWidgetInformation(index);
+
+                var center = {x:(bubble1.center.x+bubble2.center.x)/2.0, y:(bubble1.center.y+bubble2.center.y)/2.0};
+
+                if(Math.abs(center.x-bubble1.center.x) < bubble1.w/2.0 || Math.abs(center.y-bubble1.center.y) < bubble1.h/2.0)
+                {
+                    var Wlen = (bubble1.w/2 +bubble2.w/2) - Math.abs(bubble2.center.x - bubble1.center.x);
+                    var Hlen = (bubble1.h/2 +bubble2.h/2) - Math.abs(bubble2.center.y - bubble1.center.y);
+                    var step11 = Wlen * (bubble1.w)/(bubble1.w +bubble2.w);
+                    var step12 = Wlen * (bubble2.w)/(bubble1.w +bubble2.w);
+                    var step21 = Hlen * (bubble1.h)/(bubble1.h +bubble2.h);
+                    var step22 = Hlen * (bubble2.h)/(bubble1.h +bubble2.h);
+                    var IdLeft, IdTop;
+                    var IndexLeft, IndexTop;
+                    if(bubble1.center.x <center.x)
+                    {
+                        IdLeft = "-="+step11+"px";
+                        IndexLeft = "+="+step12+"px";
+                    }
+                    else
+                    {
+                        IdLeft = "+="+step11+"px";
+                        IndexLeft = "-="+step12+"px";
+                    }
+
+                    if(bubble1.center.y <center.y)
+                    {
+                        IdTop = "+="+step21+"px" ;
+                        IndexTop = "-="+ step22 +"px" ;
+                    }
+                    else
+                    {
+                        IdTop = "-="+step21+"px" ;
+                        IndexTop = "+="+ step22 +"px" ;
+                    }
+                    $bubbleId.animate({"left": IdLeft, "top": IdTop });
+                    $bubbleIndex.animate({ "left": IndexLeft, "top": IndexTop  } );
+                }
+            }
+        }
+    }
+     */
+    $('#bubble').children('.bubble').each(function () {
+        var id = parseInt( $(this).attr('id').replace(/bubble/, '') );
+        if(id!==index)
+        {
+
+            if(checkCollisions(id,index))
+            {
+                // alert("Collision!");
+                var $bubbleId = $('#bubble'+id);
+                var $bubbleIndex = $('#bubble'+index);
+                // $bubbleId.animate({ "left": "-="+step1+"px" }, "fast" );
+
+                var bubble1 = getWidgetInformation(id);
+                var bubble2 = getWidgetInformation(index);
+
+                var center = {x:(bubble1.center.x+bubble2.center.x)/2.0, y:(bubble1.center.y+bubble2.center.y)/2.0};
+
+                if(Math.abs(center.x-bubble1.center.x) < bubble1.w/2.0 || Math.abs(center.y-bubble1.center.y) < bubble1.h/2.0)
+                {
+                    var Wlen = (bubble1.w/2 +bubble2.w/2) - Math.abs(bubble2.center.x - bubble1.center.x);
+                    var Hlen = (bubble1.h/2 +bubble2.h/2) - Math.abs(bubble2.center.y - bubble1.center.y);
+                    var step11 = Wlen * (bubble1.w)/(bubble1.w +bubble2.w);
+                    var step12 = Wlen * (bubble2.w)/(bubble1.w +bubble2.w);
+                    var step21 = Hlen * (bubble1.h)/(bubble1.h +bubble2.h);
+                    var step22 = Hlen * (bubble2.h)/(bubble1.h +bubble2.h);
+                    var IdLeft, IdTop;
+                    var IndexLeft, IndexTop;
+                    if(bubble1.center.x <center.x)
+                    {
+                        IdLeft = "-="+step11+"px";
+                        IndexLeft = "+="+step12+"px";
+                    }
+                    else
+                    {
+                        IdLeft = "+="+step11+"px";
+                        IndexLeft = "-="+step12+"px";
+                    }
+
+                    if(bubble1.center.y <center.y)
+                    {
+                        IdTop = "+="+step21+"px" ;
+                        IndexTop = "-="+ step22 +"px" ;
+                    }
+                    else
+                    {
+                        IdTop = "-="+step21+"px" ;
+                        IndexTop = "+="+ step22 +"px" ;
+                    }
+                    $bubbleId.animate({"left": IdLeft, "top": IdTop });
+                    $bubbleIndex.animate({ "left": IndexLeft, "top": IndexTop  } );
+                }
+            }
+        }
+    });
 }
 
 function bubble_visual_cue() {
