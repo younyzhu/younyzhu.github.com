@@ -3,12 +3,6 @@
  */
 //modify from https://github.com/amclark
 //http://www.simonsarris.com
-function ConnectNode(Id,to)
-{
-    this.connectionId = Id;
-    this.connectTo = to;
-}
-
 function Rectangle(state, x, y, w ,h, color, fillState)
 {
     this.state = state;
@@ -20,8 +14,6 @@ function Rectangle(state, x, y, w ,h, color, fillState)
     this.strokeColor = color || "#0000ff";
     this.lineWidth   = 2;
     this.fillState = fillState;
-
-    this.connectLink = [];//for connect link to link other widget
 }
 
 Rectangle.prototype.draw = function(ctx)
@@ -81,12 +73,7 @@ Rectangle.prototype.draw = function(ctx)
         }
     }
 };
-Rectangle.prototype.spliceConnectLink = function(index)
-{
-    if(index >= 0&& index < this.connectLink.length) {
-    this.connectLink.splice(index,1);
-    }
-};
+
 Rectangle.prototype.contains = function(mx, my)
 {
     return  (this.x <= mx) && (this.x + this.w >= mx) &&
@@ -102,7 +89,7 @@ function NavCanvas(canvas)
     // This complicates things a little but but fixes mouse co-ordinate problems
     // when there's a border or padding. See getMouse for more detail
     // stylePaddingLeft, stylePaddingTop, styleBorderLeft, styleBorderTop,
-    var html, i;
+   /* var html, i;
     if (document.defaultView && document.defaultView.getComputedStyle) {
         this.stylePaddingLeft = parseInt(document.defaultView.getComputedStyle(canvas, null).paddingLeft, 10)      || 0;
         this.stylePaddingTop  = parseInt(document.defaultView.getComputedStyle(canvas, null).paddingTop, 10)       || 0;
@@ -114,7 +101,7 @@ function NavCanvas(canvas)
     html = document.body.parentNode;
     this.htmlTop = html.offsetTop;
     this.htmlLeft = html.offsetLeft;
-
+     */
     this.valid = false; // when set to false, the canvas will redraw everything
     this.shapes = [];  // the collection of things to be drawn
     this.dragging = false; // Keep track of when we are dragging
@@ -124,14 +111,16 @@ function NavCanvas(canvas)
     this.selection = null;
     this.dragoffx = 0; // See mousedown and mousemove events for explanation
     this.dragoffy = 0;
-
+    this.selectId = -1;
+    this.currentViewpointPosx =0;
+    this.currentViewpointPosy =0;
     // New, holds the 8 tiny boxes that will be our selection handles
     // the selection handles will be in this order:
     // 0  1  2
     // 3     4
     // 5  6  7
     this.selectionHandles = [];
-    for (i = 0; i < 8; i += 1) {
+    for (var i = 0; i < 8; i += 1) {
         this.selectionHandles.push(new Rectangle(this));
     }
 
@@ -157,10 +146,12 @@ function NavCanvas(canvas)
                 //The navigation bar current viewpoint in selected.(The biggest viewpoint) //2014/5/9
                 if(i===0)
                 {
+                    _this.oldPosx = mx;
                     _this.navViewSelected = true;
                 }
                 // Keep track of where in the object we clicked
                 // so we can move it smoothly (see mousemove)
+
                 _this.dragoffx = mx - _this.shapes[i].x;
                 _this.dragoffy = my - _this.shapes[i].y;
                 _this.dragging = true;
@@ -169,6 +160,7 @@ function NavCanvas(canvas)
                 return;
             }
         }
+
         // haven't returned means we have failed to select anything.
         // If there was an object selected, we deselect it
         if (_this.selection) {
@@ -176,7 +168,9 @@ function NavCanvas(canvas)
             _this.valid = false; // Need to clear the old selection border
         }
     }, true);
-
+    //This function is called when the navigation bar is move,actually,
+    //the navigation bar can move in horizontal direction
+    //So the whole bubble in screen space is just need to change the x-pos
     function boxToViewPointPos(mousePosX,mousePosY)  //mouse pos on the navigation bar
     {
         var widthPercent = mousePosX / nvWidth;
@@ -195,9 +189,20 @@ function NavCanvas(canvas)
             mouse = _this.getMouse(e);
             // We don't want to drag the object by its top-left corner, we want to drag it
             // from where we clicked. Thats why we saved the offset and use it here
-            _this.selection.x = mouse.x - _this.dragoffx;
-            _this.selection.y = mouse.y - _this.dragoffy;
-
+           // _this.selection.x = mouse.x - _this.dragoffx;
+           // _this.selection.y = mouse.y - _this.dragoffy;
+             _this.selection.x = mouse.x - _this.dragoffx;  //mouse move relative to the navigation viewpoint
+             _this.selection.y = mouse.y - _this.dragoffy;
+            if(_this.navViewSelected)
+            {
+                resetAllBubblesPos( (mx- _this.oldPosx)* window.innerWidth /nvWidth );
+                _this.oldPosx = mx;
+            }
+            if(_this.selectId > 0)
+            {
+                var pos = boxToViewPointPos(_this.selection.x, _this.selection.y);
+                updateBubblePos(_this.selectId, pos.x, pos.y);
+            }
             _this.valid = false; // Something's dragging so we must redraw
         }
         else if (_this.resizeDragging) {
@@ -245,7 +250,7 @@ function NavCanvas(canvas)
                     break;
             }
 
-            _this.valid = false; // Something's dragging so we must redraw
+            _this.valid = false;
         }
 
         // if there's a selection see if we grabbed one of the selection handles
@@ -305,6 +310,7 @@ function NavCanvas(canvas)
         _this.dragging = false;
         _this.resizeDragging = false;
         _this.expectResize = -1;
+        _this.selectId = -1;
         if (_this.selection !== null) {
             if (_this.selection.w < 0) {
                 _this.selection.w = -_this.selection.w;
@@ -316,6 +322,8 @@ function NavCanvas(canvas)
             }
         }
     }, true);
+
+    _this.navViewSelected = false;
 
     this.selectionColor = '#CC0000';
     this.selectionWidth = 2;
@@ -336,7 +344,7 @@ NavCanvas.prototype.addShape = function(shape) {
 NavCanvas.prototype.remove = function(value)
 {
     var l = this.shapes.length;
-     if(value >0 && value <l)
+    if(value >0 && value <l)
         this.shapes[value] = null;
     this.valid = false;
 };
@@ -409,8 +417,8 @@ NavCanvas.prototype.getMouse = function(e) {
 
     // Add padding and border style widths to offset
     // Also add the <html> offsets in case there's a position:fixed bar
-    offsetX += this.stylePaddingLeft + this.styleBorderLeft + this.htmlLeft;
-    offsetY += this.stylePaddingTop + this.styleBorderTop + this.htmlTop;
+    //offsetX += this.stylePaddingLeft + this.styleBorderLeft + this.htmlLeft;
+    //offsetY += this.stylePaddingTop + this.styleBorderTop + this.htmlTop;
 
     mx = e.pageX - offsetX;
     my = e.pageY - offsetY;

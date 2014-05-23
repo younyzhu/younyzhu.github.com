@@ -49,7 +49,7 @@ function Bubble(id,selectfiber)
     //Keyboard
     this.keyboard = new KeyboardState();
 
-    this.selectInfo = [ [], [], [], [], []];
+    this.selectInfo = [];
 
     this.init = __bind(this.init, this);
     this.fillScene = __bind(this.fillScene, this);
@@ -113,83 +113,28 @@ Bubble.prototype ={
             console.log( item, loaded, total );
         };
         //this.selectFiber : cc cg cst ifo ilf
-        var cc_loader;
-        var cg_loader ;
-        var cst_loader;
-        var ifo_loader ;
-        var ilf_loader;
+        var loader;
+
         if(this.selectFiber !==null)
         {
-            cc_loader = new GeometryLoader(manager,'cc',this.selectFiber[0] );
-            cg_loader = new GeometryLoader(manager,'cg',this.selectFiber[1] );
-            cst_loader = new GeometryLoader(manager,'cst',this.selectFiber[2] );
-            ifo_loader = new GeometryLoader(manager,'ifo',this.selectFiber[3] );
-            ilf_loader = new GeometryLoader(manager ,'ilf',this.selectFiber[4] );
+            loader = new GeometryLoader(manager,'cc',this.selectFiber );
         }
         else
         {
-            cc_loader = new GeometryLoader(manager,'cc');
-            cg_loader = new GeometryLoader(manager,'cg');
-            cst_loader = new GeometryLoader(manager,'cst');
-            ifo_loader = new GeometryLoader(manager,'ifo' );
-            ilf_loader = new GeometryLoader(manager ,'ilf' );
+            loader = new GeometryLoader(manager,'whole brain');
         }
 
-        cc_loader.load( './data/s1_cc.data', function ( object) {
-            if(cc_loader.center!==null)
+        loader.load( './data/whole_s1.data', function ( object) {
+            if(loader.center!==null)
             {
-                object.position.x = -cc_loader.center.x;
-                object.position.y = -cc_loader.center.y;
-                object.position.z = -cc_loader.center.z;
-                //group.add( object );
+                object.position.x = loader.center.x;
+                object.position.y = loader.center.y;
+                object.position.z = loader.center.z;
+
                 scope.mainGroup.add(object);
 
             }
         });
-
-        cg_loader.load( './data/s1_cg.data', function ( object ) {
-            if (cg_loader.center !== null) {
-                object.position.x = -cg_loader.center.x;
-                object.position.y = -cg_loader.center.y;
-                object.position.z = -cg_loader.center.z;
-                scope.mainGroup.add(object);
-            }
-        });
-
-        cst_loader.load( './data/s1_cst.data', function ( object ) {
-            if (cst_loader.center !== null ) {
-                //-116,-126,-94
-                object.position.x = 4-cst_loader.center.x;
-                object.position.y = -12-cst_loader.center.y;
-                object.position.z = -25-cst_loader.center.z;
-
-                scope.mainGroup.add(object);
-            }
-        });
-
-
-        ifo_loader.load( './data/s1_ifo.data', function ( object ) {
-            if (ifo_loader.center !== null) {
-                //-118,-125,-90
-                object.position.x = -32.0 - ifo_loader.center.x;
-                object.position.y = -3.2-ifo_loader.center.y;
-                object.position.z = -22- ifo_loader.center.z;
-                //group.add( object );
-                scope.mainGroup.add(object);
-            }
-        });
-
-        ilf_loader.load( './data/s1_ilf.data', function ( object ) {
-            if (ilf_loader.center !== null) {
-                //-118,-123,-90
-                object.position.x = -6 - ilf_loader.center.x;
-                object.position.y = 34-ilf_loader.center.y;
-                object.position.z = -12.3-ilf_loader.center.z;
-                //group.add( object );
-                scope.mainGroup.add(object);
-            }
-        });
-
         this.scene.add(this.mainGroup);
     },
 
@@ -406,97 +351,38 @@ Bubble.prototype ={
 
             var intersects = this.raycaster.intersectObjects( this.mainGroup.children, true);
 
-            if ( intersects.length > 0 ) {
+            if ( intersects.length > 0 )
+            {
 
                 this.currentIntersected = intersects[ 0 ].object;
-                if ( this.currentIntersected !== undefined ) {
+                if ( this.currentIntersected !== undefined )
+                {
                     this.currentIntersected.material.color.setRGB(1,1,0);
                 }
-                switch (this.currentIntersected.name)
-                {
-                    case 'cc':
-                    {
+
                         var flag = false;
-                        var tmp = parseInt(this.currentIntersected.geometry.name);
-                        for(i=0; i < this.selectInfo[0].length; ++i)
+                        var tmp = parseInt(this.currentIntersected.geometry.name);   //store the select bundle Id
+                        for(i=0; i < this.selectInfo.length; ++i)
                         {
-                            if(this.selectInfo[0][i] === tmp)
+                            if(this.selectInfo[i] === tmp)
                             {
                                 flag = true;
                                 break;
                             }
                         }
                         if(!flag)
-                            this.selectInfo[0].push( tmp );
-                        break;
+                            this.selectInfo.push( tmp );
                     }
 
-                    case 'cg':
-                        flag = false;
-                        tmp = parseInt(this.currentIntersected.geometry.name);
-                        for(i=0; i < this.selectInfo[1].length; ++i)
-                        {
-                            if(this.selectInfo[1][i] === tmp)
-                            {
-                                flag = true;
-                                break;
-                            }
-                        }
-                        if(!flag)
-                            this.selectInfo[1].push( tmp );
-                        break;
-                    case 'cst':
-                        flag = false;
-                        tmp = parseInt(this.currentIntersected.geometry.name);
-                        for(i=0; i < this.selectInfo[2].length; ++i)
-                        {
-                            if(this.selectInfo[2][i] === tmp)
-                            {
-                                flag = true;
-                                break;
-                            }
-                        }
-                        if(!flag)
-                            this.selectInfo[2].push( tmp );
-                        break;
-                    case 'ifo':
-                        flag = false;
-                        tmp = parseInt(this.currentIntersected.geometry.name);
-                        for(i=0; i < this.selectInfo[3].length; ++i)
-                        {
-                            if(this.selectInfo[3][i] === tmp)
-                            {
-                                flag = true;
-                                break;
-                            }
-                        }
-                        if(!flag)
-                            this.selectInfo[3].push( tmp );
-                        break;
-                    case 'ilf':
-                        flag = false;
-                        tmp = parseInt(this.currentIntersected.geometry.name);
-                        for(i=0; i < this.selectInfo[4].length; ++i)
-                        {
-                            if(this.selectInfo[4][i] === tmp)
-                            {
-                                flag = true;
-                                break;
-                            }
-                        }
-                        if(!flag)
-                            this.selectInfo[4].push( tmp );
-                        break;
-                    default:
-                        break;
-                }
+
                 this.currentIntersected.material.linewidth = 5;
 
                 this.selectHelper.visible = true;
                 this.selectHelper.position.copy( intersects[ 0 ].point );
 
             }
-            else {
+            else
+            {
 
                 this.currentIntersected = undefined;
 
@@ -504,7 +390,7 @@ Bubble.prototype ={
 
             }
         }
-        if(this.CleanSelected === true)
+        if( this.CleanSelected === true)
         {
             var childs = this.mainGroup.children;
             for(var i = 0; i < childs.length; ++i)

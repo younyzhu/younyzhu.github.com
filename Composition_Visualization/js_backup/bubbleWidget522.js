@@ -3,7 +3,14 @@
  */
 var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-function Bubble(id,name)
+function NodeLink( id, connectTo)
+{
+    this.connectionId = id;
+    this.connectTo = connectTo;
+}
+
+
+function Bubble(id,selectfiber)
 {
     this.CleanSelected = false;
     this.rotateState = true;
@@ -11,12 +18,12 @@ function Bubble(id,name)
     ////////////////////////////////////////////////////////////////////////////////
     //this.connectionId = null;
     //this.connectTo = null;
+    this.connectionLinks = [];
     /*global THREE, window, document*/
     this.camera = null;
     this.scene = null;
     this.renderer = null;
     this.id = id;
-    this.bunbleName = name;
 
     this.mainGroup = new THREE.Object3D();
     //var controls;
@@ -24,6 +31,7 @@ function Bubble(id,name)
     this.container = $('#container' + id)[0];
     this.cWidth = 400;
     this.cHeight = 400;
+    this.selectFiber = selectfiber;   //if selectFiber = null, there is no selected fibers
 
     //For trackball control
     this.mouseDown = false;
@@ -41,9 +49,7 @@ function Bubble(id,name)
     //Keyboard
     this.keyboard = new KeyboardState();
 
-    //change state: select, rotate
-
-    this.count = [ 0, 0, 0, 0, 0];
+    this.selectInfo = [ [], [], [], [], []];
 
     this.init = __bind(this.init, this);
     this.fillScene = __bind(this.fillScene, this);
@@ -62,6 +68,19 @@ function Bubble(id,name)
 }
 Bubble.prototype ={
     constructor: Bubble,
+    getlinkNodes: function()
+    {
+        return this.connectionLinks;
+    },
+    spliceNodeLink : function(index)
+    {
+        if(index >= 0&& index < this.connectionLinks.length) {
+            this.connectionLinks.splice(index, 1);
+        }
+    },
+    addlinkNode: function(node){
+        this.connectionLinks.push(node);
+    },
     setCleanState: function (state){
         this.CleanSelected = state;
     },
@@ -69,15 +88,15 @@ Bubble.prototype ={
         this.rotateState = true;
         this.selectState = false;
     },
-    /*
     setSelectState: function (){
         this.rotateState = false;
         this.selectState = true;
     },
-    setConnection: function (connectId, connectTo){
-        this.connectionId = connectId;
-        this.connectTo = connectTo;
-    }, */
+    /*
+     setConnection: function (connectId, connectTo){
+     this.connectionId = connectId;
+     this.connectTo = connectTo;
+     },*/
     fillScene: function () {
 
         var scope = this;
@@ -93,81 +112,83 @@ Bubble.prototype ={
         manager.onProgress = function ( item, loaded, total ) {
             console.log( item, loaded, total );
         };
-        if(this.bunbleName  === '5 fiber bundles')
+        //this.selectFiber : cc cg cst ifo ilf
+        var cc_loader;
+        var cg_loader ;
+        var cst_loader;
+        var ifo_loader ;
+        var ilf_loader;
+        if(this.selectFiber !==null)
         {
-            var cc_loader = new GeometryLoader(manager,'cc' );
-            cc_loader.load( './data/s1_cc.data', function ( object) {
-                if(cc_loader.center!==null)
-                {
-                    object.position.x = -cc_loader.center.x;
-                    object.position.y = -cc_loader.center.y;
-                    object.position.z = -cc_loader.center.z;
-                    //group.add( object );
-                    scope.mainGroup.add(object);
-
-                }
-            });
-            var cg_loader = new GeometryLoader(manager,'cg');
-            cg_loader.load( './data/s1_cg.data', function ( object ) {
-                if (cg_loader.center !== null) {
-                    object.position.x = -cg_loader.center.x;
-                    object.position.y = -cg_loader.center.y;
-                    object.position.z = -cg_loader.center.z;
-                    scope.mainGroup.add(object);
-                }
-            });
-            var cst_loader = new GeometryLoader(manager,'cst');
-            cst_loader.load( './data/s1_cst.data', function ( object ) {
-                if (cst_loader.center !== null ) {
-                    //-116,-126,-94
-                    object.position.x = 4-cst_loader.center.x;
-                    object.position.y = -12-cst_loader.center.y;
-                    object.position.z = -25-cst_loader.center.z;
-
-                    scope.mainGroup.add(object);
-                }
-            });
-
-            var ifo_loader = new GeometryLoader(manager,'ifo');
-            ifo_loader.load( './data/s1_ifo.data', function ( object ) {
-                if (ifo_loader.center !== null) {
-                    //-118,-125,-90
-                    object.position.x = -32.0 - ifo_loader.center.x;
-                    object.position.y = -3.2-ifo_loader.center.y;
-                    object.position.z = -22- ifo_loader.center.z;
-                    //group.add( object );
-                    scope.mainGroup.add(object);
-                }
-            });
-            var ilf_loader = new GeometryLoader(manager ,'ilf');
-            ilf_loader.load( './data/s1_ilf.data', function ( object ) {
-                if (ilf_loader.center !== null) {
-                    //-118,-123,-90
-                    object.position.x = -6 - ilf_loader.center.x;
-                    object.position.y = 34-ilf_loader.center.y;
-                    object.position.z = -12.3-ilf_loader.center.z;
-                    //group.add( object );
-                    scope.mainGroup.add(object);
-                }
-            });
+            cc_loader = new GeometryLoader(manager,'cc',this.selectFiber[0] );
+            cg_loader = new GeometryLoader(manager,'cg',this.selectFiber[1] );
+            cst_loader = new GeometryLoader(manager,'cst',this.selectFiber[2] );
+            ifo_loader = new GeometryLoader(manager,'ifo',this.selectFiber[3] );
+            ilf_loader = new GeometryLoader(manager ,'ilf',this.selectFiber[4] );
         }
-        else if(
-            this.bunbleName === 'cc' ||
-            this.bunbleName === 'cg' ||
-            this.bunbleName === 'cst' ||
-            this.bunbleName === 'ifo' ||
-            this.bunbleName === 'ilf')
+        else
         {
-            var loader = new GeometryLoader(manager ,this.bunbleName );
-            loader.load( './data/s1_'+this.bunbleName +'.data', function ( object ) {
-                if (loader.center !== null) {
-                    object.position.x = -loader.center.x;
-                    object.position.y = -loader.center.y;
-                    object.position.z = -loader.center.z;
-                    scope.mainGroup.add(object);
-                }
-            });
+            cc_loader = new GeometryLoader(manager,'cc');
+            cg_loader = new GeometryLoader(manager,'cg');
+            cst_loader = new GeometryLoader(manager,'cst');
+            ifo_loader = new GeometryLoader(manager,'ifo' );
+            ilf_loader = new GeometryLoader(manager ,'ilf' );
         }
+
+        cc_loader.load( './data/s1_cc.data', function ( object) {
+            if(cc_loader.center!==null)
+            {
+                object.position.x = -cc_loader.center.x;
+                object.position.y = -cc_loader.center.y;
+                object.position.z = -cc_loader.center.z;
+                //group.add( object );
+                scope.mainGroup.add(object);
+
+            }
+        });
+
+        cg_loader.load( './data/s1_cg.data', function ( object ) {
+            if (cg_loader.center !== null) {
+                object.position.x = -cg_loader.center.x;
+                object.position.y = -cg_loader.center.y;
+                object.position.z = -cg_loader.center.z;
+                scope.mainGroup.add(object);
+            }
+        });
+
+        cst_loader.load( './data/s1_cst.data', function ( object ) {
+            if (cst_loader.center !== null ) {
+                //-116,-126,-94
+                object.position.x = 4-cst_loader.center.x;
+                object.position.y = -12-cst_loader.center.y;
+                object.position.z = -25-cst_loader.center.z;
+
+                scope.mainGroup.add(object);
+            }
+        });
+
+
+        ifo_loader.load( './data/s1_ifo.data', function ( object ) {
+            if (ifo_loader.center !== null) {
+                //-118,-125,-90
+                object.position.x = -32.0 - ifo_loader.center.x;
+                object.position.y = -3.2-ifo_loader.center.y;
+                object.position.z = -22- ifo_loader.center.z;
+                //group.add( object );
+                scope.mainGroup.add(object);
+            }
+        });
+
+        ilf_loader.load( './data/s1_ilf.data', function ( object ) {
+            if (ilf_loader.center !== null) {
+                //-118,-123,-90
+                object.position.x = -6 - ilf_loader.center.x;
+                object.position.y = 34-ilf_loader.center.y;
+                object.position.z = -12.3-ilf_loader.center.z;
+                //group.add( object );
+                scope.mainGroup.add(object);
+            }
+        });
 
         this.scene.add(this.mainGroup);
     },
@@ -194,8 +215,9 @@ Bubble.prototype ={
         this.camera.position.set( 0, 0, 220 );
 
         $('#container'+ this.id).resize( function onWindowResize() {
-            scope.cWidth = $('#container'+ scope.id).width();
-            scope.cHeight = $('#container'+ scope.id).height();
+            var $containerId = $('#container'+ scope.id);
+            scope.cWidth = $containerId.width();
+            scope.cHeight = $containerId.height();
             scope.camera.aspect = scope.cWidth / scope.cHeight;
             scope.camera.updateProjectionMatrix();
 
@@ -390,22 +412,80 @@ Bubble.prototype ={
                 if ( this.currentIntersected !== undefined ) {
                     this.currentIntersected.material.color.setRGB(1,1,0);
                 }
-                switch (this.currentIntersected.geometry.name)
+                switch (this.currentIntersected.name)
                 {
                     case 'cc':
-                        this.count[0]++;
+                    {
+                        var flag = false;
+                        var tmp = parseInt(this.currentIntersected.geometry.name);
+                        for(i=0; i < this.selectInfo[0].length; ++i)
+                        {
+                            if(this.selectInfo[0][i] === tmp)
+                            {
+                                flag = true;
+                                break;
+                            }
+                        }
+                        if(!flag)
+                            this.selectInfo[0].push( tmp );
                         break;
+                    }
+
                     case 'cg':
-                        this.count[1]++;
+                        flag = false;
+                        tmp = parseInt(this.currentIntersected.geometry.name);
+                        for(i=0; i < this.selectInfo[1].length; ++i)
+                        {
+                            if(this.selectInfo[1][i] === tmp)
+                            {
+                                flag = true;
+                                break;
+                            }
+                        }
+                        if(!flag)
+                            this.selectInfo[1].push( tmp );
                         break;
                     case 'cst':
-                        this.count[2]++;
+                        flag = false;
+                        tmp = parseInt(this.currentIntersected.geometry.name);
+                        for(i=0; i < this.selectInfo[2].length; ++i)
+                        {
+                            if(this.selectInfo[2][i] === tmp)
+                            {
+                                flag = true;
+                                break;
+                            }
+                        }
+                        if(!flag)
+                            this.selectInfo[2].push( tmp );
                         break;
                     case 'ifo':
-                        this.count[3]++;
+                        flag = false;
+                        tmp = parseInt(this.currentIntersected.geometry.name);
+                        for(i=0; i < this.selectInfo[3].length; ++i)
+                        {
+                            if(this.selectInfo[3][i] === tmp)
+                            {
+                                flag = true;
+                                break;
+                            }
+                        }
+                        if(!flag)
+                            this.selectInfo[3].push( tmp );
                         break;
                     case 'ilf':
-                        this.count[4]++;
+                        flag = false;
+                        tmp = parseInt(this.currentIntersected.geometry.name);
+                        for(i=0; i < this.selectInfo[4].length; ++i)
+                        {
+                            if(this.selectInfo[4][i] === tmp)
+                            {
+                                flag = true;
+                                break;
+                            }
+                        }
+                        if(!flag)
+                            this.selectInfo[4].push( tmp );
                         break;
                     default:
                         break;
@@ -426,7 +506,7 @@ Bubble.prototype ={
         }
         if(this.CleanSelected === true)
         {
-            var  childs = this.mainGroup.children;
+            var childs = this.mainGroup.children;
             for(var i = 0; i < childs.length; ++i)
             {
                 for(var j =0; j< childs[i].children.length ;++j)
@@ -435,9 +515,9 @@ Bubble.prototype ={
                     childs[i].children[j].material.color.setRGB(grayness,grayness,grayness);
                 }
             }
-            for(i=0;i<this.count.length;i++)
+            for(i=0;i<this.selectInfo.length;i++)
             {
-                this.count[i] = 0;
+                this.selectInfo[i] = [];
             }
             this.CleanSelected = false;
         }
@@ -445,13 +525,40 @@ Bubble.prototype ={
         this.renderer.render(this.scene, this.camera);
     }
 };
-function addBubble(id,name,mousePosX,mousePosY)
+function getWidgetCenter(index){
+    var $bubbleId = $('#bubble'+index);
+    var posx = $bubbleId.offset().left;//offset() or position()
+    var posy = $bubbleId.offset().top;
+    return {x: posx+$bubbleId.width()/2, y:posy + $bubbleId.height()/2};
+}
+function updateBubblePos(index, x, y)
+{
+    var $bubbleId = $('#bubble'+index);
+    var posx = $bubbleId.offset().left;//offset() or position()
+    var posy =$bubbleId.offset().top;
+    $bubbleId.css({
+        left: posx + x,
+        top: posy + y
+    });
+
+    var le = Bubbles[index].getlinkNodes().length;
+    for(var i= 0; i<le; ++i)
+    {
+        var next = Bubbles[index].getlinkNodes()[i].connectTo;
+        if(Bubbles[index].getlinkNodes()[i].connectionId !== null&& Bubbles[index]!==null && Bubbles[next]!==null )
+        {
+            pathConnection.update( Bubbles[index].getlinkNodes()[i].connectionId, getWidgetCenter(index), getWidgetCenter(next) );
+        }
+    }
+}
+
+function addBubble(id, name, selectIfo, mousePosX,mousePosY)
 {
     var bubblediv = $(bubble_div(id,name,mousePosX,mousePosY));
     var bundles = ['cc','cg','cst','ifo','ilf'];
     $("#bubble").append(bubblediv);
-    var bubble = new Bubble(id,name);
-    //Bubbles.push(bubble);
+    var bubble = new Bubble(id,selectIfo);
+    Bubbles.push(bubble);
     try {
         bubble.init();
         bubble.fillScene();
@@ -470,14 +577,13 @@ function addBubble(id,name,mousePosX,mousePosY)
         var top = 50 * heightPercent; //50 is the height of the navigation bar;
         return {x: left, y: top};
     }
-
-    var boxWidth = $('#bubble'+id).width()/window.innerWidth * nvWidth;
-    var boxHeight = $('#bubble'+id).height()/(window.innerHeight -50) * 50;
+    var $bubbleId = $('#bubble'+id);
+    var boxWidth = $bubbleId.width()/window.innerWidth * nvWidth;
+    var boxHeight = $bubbleId.height()/(window.innerHeight -50) * 50;
     var pos = currentToBoxPos(mousePosX,mousePosY);
     var color = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
     var currentView = new Rectangle(navigationCanvas, pos.x, pos.y, boxWidth, boxHeight, color, true );
     navigationCanvas.addShape(currentView);
-
 
     $(".bubble").draggable({ containment: '#bgCanvas', scroll: false ,
         drag: function(ev, ui) {
@@ -486,112 +592,106 @@ function addBubble(id,name,mousePosX,mousePosY)
             //var originalPosition = ui.originalPosition; //drag begin position
             var currentId = parseInt( $(this).attr('id').replace(/bubble/, '') );
             navigationCanvas.updateRectPos(currentId, currentPos.x, currentPos.y);
-            if(navigationCanvas.shape[id].connectLink.length >0)
+
+            var le = Bubbles[id].getlinkNodes().length;
+            for(var i= 0; i<le; ++i)
             {
-                for(var i= 0, l = navigationCanvas.shape[id].connectLink.length; i<l ; i++)
+                var next = Bubbles[currentId].getlinkNodes()[i].connectTo;
+                if(Bubbles[currentId].getlinkNodes()[i].connectionId !== null&& Bubbles[currentId]!==null && Bubbles[next]!==null )
                 {
-                    var next = navigationCanvas.shape[id].connectLink[i].connectTo;
-                    if(navigationCanvas.shape[id].connectLink[i].connectionId !== null&& navigationCanvas.shape[id]!==null && navigationCanvas.shape[next]!==null )
-                    {
-                        pathConnection.update( navigationCanvas.shape[id].connectLink[i].connectionId, getWidgetCenter(id), getWidgetCenter(next) );
-                    }
+                    pathConnection.update( Bubbles[currentId].getlinkNodes()[i].connectionId, getWidgetCenter(currentId), getWidgetCenter(next) );
                 }
             }
 
 
-            /*var next = bubble.connectTo;
-            if(bubble.connectionId !== null&& Bubbles[id]!==null && Bubbles[next]!==null )
-            {
-                pathConnection.update( bubble.connectionId, getWidgetCenter(id), getWidgetCenter(next) );
-            }*/
-
-        }
-        /*stop: function(ev, ui){  //when set draggable, there is no need to set the draggable  stop
-
-            var position = ui.position;  //drag stop position
-            var currentPos = currentToBoxPos(position.left,position.top);
-            //var originalPosition = ui.originalPosition; //drag begin position
-            var currentId = parseInt( $(this).attr('id').replace(/bubble/, '') );
-            navigationCanvas.updateRectPos(currentId, currentPos.x, currentPos.y);
-            var next = bubble.connectTo;
-            if(bubble.connectionId !== null&& Bubbles[id]!==null && Bubbles[next]!==null )
-            {
-                pathConnection.update( bubble.connectionId, getWidgetCenter(id), getWidgetCenter(next) );
-            }
-        }*/
-    });
-    $("canvas").draggable({ containment: '#bgCanvas', scroll: false}).resizable({
-        resize: function(ev, ui) {
-            var width = $('#bubble'+id).width()/window.innerWidth * nvWidth;
-            var height = $('#bubble'+id).height()/(window.innerHeight -50) * 50;
-            navigationCanvas.updateRectResize(id, width, height);
-
-            for(var i= 0; i< navigationCanvas.shape[id].connectLink.length; i++)
-            {
-                var next = navigationCanvas.shape[id].connectLink[i].connectTo;
-                if(navigationCanvas.shape[id].connectLink[i].connectionId !== null&& navigationCanvas.shape[id]!==null && navigationCanvas.shape[next]!==null )
-                {
-                    pathConnection.update( navigationCanvas.shape[id].connectLink[i].connectionId, getWidgetCenter(id), getWidgetCenter(next) );
-                }
-            }
-
-            /*var next = bubble.connectTo;
+            /*
+             var next = bubble.connectTo;
              if(bubble.connectionId !== null&& Bubbles[id]!==null && Bubbles[next]!==null )
              {
              pathConnection.update( bubble.connectionId, getWidgetCenter(id), getWidgetCenter(next) );
-             }*/
-        }
-    });
-    function findMaxIndex(count)
-    {
-        var maxindex = -1;
-        var max =0;
-        for(var i=0; i < count.length; ++i)
-            if(count[i]>0)
-            {
-                if(count[i] >max)
-                {
-                    max = count[i];
-                    maxindex = i;
+             } */
+        },
+        stop: function(ev, ui) {
+            var position = ui.position;  //drag stop position
+            var currentPos = currentToBoxPos(position.left, position.top);
+            //var originalPosition = ui.originalPosition; //drag begin position
+            var currentId = parseInt($(this).attr('id').replace(/bubble/, ''));
+            navigationCanvas.updateRectPos(currentId, currentPos.x, currentPos.y);
+
+            var le = Bubbles[id].getlinkNodes().length;
+            for (var i = 0; i < le; ++i) {
+                var next = Bubbles[currentId].getlinkNodes()[i].connectTo;
+                if (Bubbles[currentId].getlinkNodes()[i].connectionId !== null && Bubbles[currentId] !== null && Bubbles[next] !== null) {
+                    pathConnection.update(Bubbles[currentId].getlinkNodes()[i].connectionId, getWidgetCenter(currentId), getWidgetCenter(next));
                 }
             }
-        return maxindex;
+        }
+    });
+    $("canvas").draggable({ containment: '#bgCanvas', scroll: false}).resizable({
+        resize: function(ev, ui) {
+            var width = $bubbleId.width()/window.innerWidth * nvWidth;
+            var height = $bubbleId.height()/(window.innerHeight -50) * 50;
+            navigationCanvas.updateRectResize(id, width, height);
+            /*
+             var next = bubble.connectTo;
+             if (bubble.connectionId !== null && Bubbles[id] !== null && Bubbles[next] !== null) {
+             pathConnection.update(bubble.connectionId, getWidgetCenter(id), getWidgetCenter(next));
+             } */
+
+            var le = Bubbles[id].getlinkNodes().length;
+            for(var i= 0; i<le; ++i)
+            {
+                var next = Bubbles[id].getlinkNodes()[i].connectTo;
+                if(Bubbles[id].getlinkNodes()[i].connectionId !== null&& Bubbles[id]!==null && Bubbles[next]!==null )
+                {
+                    pathConnection.update( Bubbles[id].getlinkNodes()[i].connectionId, getWidgetCenter(id), getWidgetCenter(next) );
+                }
+            }
+        }
+    });
+
+    function SelectionDetect(selectInfo)
+    {
+        var flag= false;
+        for(var i=0; i< selectInfo.length; ++i)
+        {
+            if(selectInfo[i].length !==0)
+            {
+                flag = true;
+                break;
+            }
+        }
+        return flag;
     }
-    function getWidgetCenter(index){
-        var posx = $('#bubble'+index).offset().left;//offset() or position()
-        var posy =$('#bubble'+index).offset().top;
-        return {x: posx+$('#bubble'+index).width()/2, y:posy + $('#bubble'+index).height()/2};
-    }
-    var parent =$('#bubble'+id ).contextMenu({
+
+    var parent =$bubbleId.contextMenu({
         selector: '.dragheader',
         callback: function(key, options) {
             if(key==="delete")
             {
                 parent.remove();
                 navigationCanvas.remove(id);
-                var navshape = navigationCanvas.shape[id];
-                for(var i=0; i< navshape.connectLink.length; i++)
-                {
-                    var next = navshape.connectLink[i].connectTo;
-                    pathConnection.remove(navshape.connectLink[i].connectionId);
-
-                    for(var j= 0,l=navigationCanvas.shape[next].connectLink.length; j<l;j++)
-                    {
-                        if(navigationCanvas.shape[next].connectLink[j].connectionId === navshape.connectLink[i].connectionId)
-                        {
-                            navigationCanvas.shapes.spliceConnectLink(j);
-                        }
-                    }
-                }
                 /*
-                if( Bubbles[id].connectionId !== null)
+                 if( Bubbles[id].connectionId !== null)
+                 {
+                 var nex = Bubbles[id].connectTo;
+                 pathConnection.remove(Bubbles[id].connectionId);
+                 Bubbles[nex].setConnection(null, null);
+                 } */
+                var le = Bubbles[id].getlinkNodes().length;
+                for(var i= 0; i<le; ++i)
                 {
-                    var nex = Bubbles[id].connectTo;
-                    pathConnection.remove(Bubbles[id].connectionId);
-                    Bubbles[nex].setConnection(null, null);
-                } */
+                    var next = Bubbles[id].getlinkNodes()[i].connectTo;
+                    for(var j=0; j<Bubbles[next].getlinkNodes().length; ++j)
+                    {
+                        if(Bubbles[id].getlinkNodes()[i].connectionId === Bubbles[next].getlinkNodes()[j].connectionId)
+                            Bubbles[next].spliceNodeLink(j);
+                    }
+
+                    pathConnection.remove( Bubbles[id].getlinkNodes()[i].connectionId );
+                }
                 delete bubble;
-                //Bubbles[id] = null;
+                Bubbles[id] = null;
             }
             else if(key==="select")
             {
@@ -614,20 +714,21 @@ function addBubble(id,name,mousePosX,mousePosY)
             else if(key==="export")
             {
                 BUBBLE_COUNT++;
-                var index = findMaxIndex(bubble.count);
-                if(index!==-1)
+
+                if(SelectionDetect(bubble.selectInfo))
                 {
-                    var posx = $('#bubble'+id).offset().left;//offset() or position()
-                    var posy =$('#bubble'+id).offset().top;
-                    addBubble(BUBBLE_COUNT, bundles[index], posx +$('#bubble'+id).width() + 30, posy );
+                    var posx = $bubbleId.offset().left;//offset() or position()
+                    var posy =$bubbleId.offset().top;
+                    addBubble(BUBBLE_COUNT,'Selected fiber bundles', bubble.selectInfo, posx + $bubbleId.width() + 30, posy );
 
                     var connection = new Connection(getWidgetCenter(id), getWidgetCenter(BUBBLE_COUNT));
                     pathConnection.addConnection(connection);
                     var connectId = pathConnection.connections.length-1;
-                    var from = new ConnectNode(connectId,BUBBLE_COUNT);
-                    navigationCanvas.shapes[id].connectLink.push(from);
-                    var to = new ConnectNode(connectId,id);
-                    navigationCanvas.shapes[id].connectLink.push(to);
+
+                    var node1 = new NodeLink(connectId,BUBBLE_COUNT);
+                    Bubbles[id].addlinkNode(node1);
+                    var node2 = new NodeLink(connectId,id);
+                    Bubbles[BUBBLE_COUNT].addlinkNode(node2);
                     //Bubbles[id].setConnection(connectId,BUBBLE_COUNT);
                     //Bubbles[BUBBLE_COUNT].setConnection(connectId,id);
                 }
@@ -674,6 +775,152 @@ function bubble_div(id,name,mousePosX,mousePosY) {
     //
     tmp += '</div>';
     return tmp;
+}
+//This function is called when the navigation bar is move,actually,
+//the navigation bar can move in horizontal direction
+//So the whole bubble in screen space is just need to change the x-pos
+function resetAllBubblesPos(xChange)
+{
+    $('#bubble').children('.bubble').each(function ()
+    {
+        var offLeft = $(this).position().left;
+        $(this).css({left: offLeft - xChange});
+        var id = parseInt( $(this).attr('id').replace(/bubble/, '') );
+        var le = Bubbles[id].getlinkNodes().length;
+        for(var i= 0; i<le; ++i)
+        {
+            var next = Bubbles[id].getlinkNodes()[i].connectTo;
+            if(Bubbles[id].getlinkNodes()[i].connectionId !== null&& Bubbles[id]!==null && Bubbles[next]!==null )
+            {
+                pathConnection.update( Bubbles[id].getlinkNodes()[i].connectionId, getWidgetCenter(id), getWidgetCenter(next) );
+            }
+        }
+
+    });
+}
+function getWidgetInformation(index)
+{
+    var $bubbleId = $('#bubble'+index);
+    var width = $bubbleId.width();
+    var height = $bubbleId.height();
+    var posx = $bubbleId.offset().left;//offset() or position()
+    var posy = $bubbleId.offset().top;
+    var center = {x: posx+$bubbleId.width()/2, y:posy + $bubbleId.height()/2};
+    return {w:width,h:height,left:posx,top:posy,center:center};
+}
+function manageBubblePos(index)
+{
+    /*
+     var childs = $('#bubble').children('.bubble');
+     for(var i=0; i<childs.length; ++i)
+     {
+     if(i!==index)
+     {
+
+     if(checkCollisions(i,index))
+     {
+     // alert("Collision!");
+     var $bubbleId = $('#bubble'+i);
+     var $bubbleIndex = $('#bubble'+index);
+     // $bubbleId.animate({ "left": "-="+step1+"px" }, "fast" );
+
+     var bubble1 = getWidgetInformation(i);
+     var bubble2 = getWidgetInformation(index);
+
+     var center = {x:(bubble1.center.x+bubble2.center.x)/2.0, y:(bubble1.center.y+bubble2.center.y)/2.0};
+
+     if(Math.abs(center.x-bubble1.center.x) < bubble1.w/2.0 || Math.abs(center.y-bubble1.center.y) < bubble1.h/2.0)
+     {
+     var Wlen = (bubble1.w/2 +bubble2.w/2) - Math.abs(bubble2.center.x - bubble1.center.x);
+     var Hlen = (bubble1.h/2 +bubble2.h/2) - Math.abs(bubble2.center.y - bubble1.center.y);
+     var step11 = Wlen * (bubble1.w)/(bubble1.w +bubble2.w);
+     var step12 = Wlen * (bubble2.w)/(bubble1.w +bubble2.w);
+     var step21 = Hlen * (bubble1.h)/(bubble1.h +bubble2.h);
+     var step22 = Hlen * (bubble2.h)/(bubble1.h +bubble2.h);
+     var IdLeft, IdTop;
+     var IndexLeft, IndexTop;
+     if(bubble1.center.x <center.x)
+     {
+     IdLeft = "-="+step11+"px";
+     IndexLeft = "+="+step12+"px";
+     }
+     else
+     {
+     IdLeft = "+="+step11+"px";
+     IndexLeft = "-="+step12+"px";
+     }
+
+     if(bubble1.center.y <center.y)
+     {
+     IdTop = "+="+step21+"px" ;
+     IndexTop = "-="+ step22 +"px" ;
+     }
+     else
+     {
+     IdTop = "-="+step21+"px" ;
+     IndexTop = "+="+ step22 +"px" ;
+     }
+     $bubbleId.animate({"left": IdLeft, "top": IdTop });
+     $bubbleIndex.animate({ "left": IndexLeft, "top": IndexTop  } );
+     }
+     }
+     }
+     }
+     */
+    $('#bubble').children('.bubble').each(function () {
+        var id = parseInt( $(this).attr('id').replace(/bubble/, '') );
+        if(id!==index)
+        {
+
+            if(checkCollisions(id,index))
+            {
+                // alert("Collision!");
+                var $bubbleId = $('#bubble'+id);
+                var $bubbleIndex = $('#bubble'+index);
+                // $bubbleId.animate({ "left": "-="+step1+"px" }, "fast" );
+
+                var bubble1 = getWidgetInformation(id);
+                var bubble2 = getWidgetInformation(index);
+
+                var center = {x:(bubble1.center.x+bubble2.center.x)/2.0, y:(bubble1.center.y+bubble2.center.y)/2.0};
+
+                if(Math.abs(center.x-bubble1.center.x) < bubble1.w/2.0 || Math.abs(center.y-bubble1.center.y) < bubble1.h/2.0)
+                {
+                    var Wlen = (bubble1.w/2 +bubble2.w/2) - Math.abs(bubble2.center.x - bubble1.center.x);
+                    var Hlen = (bubble1.h/2 +bubble2.h/2) - Math.abs(bubble2.center.y - bubble1.center.y);
+                    var step11 = Wlen * (bubble1.w)/(bubble1.w +bubble2.w);
+                    var step12 = Wlen * (bubble2.w)/(bubble1.w +bubble2.w);
+                    var step21 = Hlen * (bubble1.h)/(bubble1.h +bubble2.h);
+                    var step22 = Hlen * (bubble2.h)/(bubble1.h +bubble2.h);
+                    var IdLeft, IdTop;
+                    var IndexLeft, IndexTop;
+                    if(bubble1.center.x <center.x)
+                    {
+                        IdLeft = "-="+step11+"px";
+                        IndexLeft = "+="+step12+"px";
+                    }
+                    else
+                    {
+                        IdLeft = "+="+step11+"px";
+                        IndexLeft = "-="+step12+"px";
+                    }
+
+                    if(bubble1.center.y <center.y)
+                    {
+                        IdTop = "+="+step21+"px" ;
+                        IndexTop = "-="+ step22 +"px" ;
+                    }
+                    else
+                    {
+                        IdTop = "-="+step21+"px" ;
+                        IndexTop = "+="+ step22 +"px" ;
+                    }
+                    $bubbleId.animate({"left": IdLeft, "top": IdTop });
+                    $bubbleIndex.animate({ "left": IndexLeft, "top": IndexTop  } );
+                }
+            }
+        }
+    });
 }
 
 function bubble_visual_cue() {

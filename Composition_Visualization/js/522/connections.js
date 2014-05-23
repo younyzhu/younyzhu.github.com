@@ -22,6 +22,7 @@ Connection.prototype = {
         //p1        p3
         ctx.beginPath();
         ctx.moveTo(this.begin.x, this.begin.y);
+        //ctx.bezierCurveTo((this.begin.x + this.end.x) / 2.0,this.begin.y,(this.begin.x + this.end.x) / 2.0,this.end.y,this.end.x, this.end.y);
         ctx.bezierCurveTo((this.begin.x + this.end.x) / 2.0,this.end.y,(this.begin.x + this.end.x) / 2.0,this.begin.y,this.end.x, this.end.y);
         //ctx.closePath();
         //ink line
@@ -55,7 +56,6 @@ PathConnections.prototype = {
         this.connections.push(connection);
         this.valid = false;
     },
-
     clear : function() {
         this.ctx.clearRect(0, 0, this.width, this.height);
     },
