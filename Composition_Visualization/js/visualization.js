@@ -391,7 +391,8 @@ function addBubble(id,name,mousePosX,mousePosY)
 
     $("#bubble").append(bubblediv);
     var bubble = new Bubble(id);
-    try {
+    try
+    {
         bubble.init();
         bubble.fillScene();
         bubble.animate();

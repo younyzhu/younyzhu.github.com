@@ -117,19 +117,19 @@ Bubble.prototype ={
 
         if(this.selectFiber !==null)
         {
-            loader = new GeometryLoader(manager,'cc',this.selectFiber );
+            loader = new GeometryLoader(manager,'whole brain',this.selectFiber );
         }
         else
         {
             loader = new GeometryLoader(manager,'whole brain');
         }
 
-        loader.load( './data/whole_s1.data', function ( object) {
+        loader.load( './data/whole_s4.data', function ( object) {
             if(loader.center!==null)
             {
-                object.position.x = loader.center.x;
-                object.position.y = loader.center.y;
-                object.position.z = loader.center.z;
+                object.position.x = -loader.center.x;
+                object.position.y = -loader.center.y;
+                object.position.z = -loader.center.z;
 
                 scope.mainGroup.add(object);
 
@@ -340,46 +340,42 @@ Bubble.prototype ={
         this.zoomValue = 0;
     },
 
-    render: function () {
+    render: function ()
+    {
         if(this.mouseDown &&this.selectState)
         {
             // find intersections using mouse
-            var vector = new THREE.Vector3( this.mouse.x, this.mouse.y, 1 );
-            this.projector.unprojectVector( vector, this.camera );
+            var vector = new THREE.Vector3(this.mouse.x, this.mouse.y, 1);
+            this.projector.unprojectVector(vector, this.camera);
 
-            this.raycaster.set( this.camera.position, vector.sub( this.camera.position ).normalize() );
+            this.raycaster.set(this.camera.position, vector.sub(this.camera.position).normalize());
 
-            var intersects = this.raycaster.intersectObjects( this.mainGroup.children, true);
+            var intersects = this.raycaster.intersectObjects(this.mainGroup.children, true);
 
-            if ( intersects.length > 0 )
+            if (intersects.length > 0)
             {
 
                 this.currentIntersected = intersects[ 0 ].object;
-                if ( this.currentIntersected !== undefined )
+                if (this.currentIntersected !== undefined)
                 {
-                    this.currentIntersected.material.color.setRGB(1,1,0);
-                }
-
-                        var flag = false;
-                        var tmp = parseInt(this.currentIntersected.geometry.name);   //store the select bundle Id
-                        for(i=0; i < this.selectInfo.length; ++i)
+                    this.currentIntersected.material.color.setRGB(1, 1, 0);
+                    var flag = false;
+                    var tmp = parseInt(this.currentIntersected.geometry.name);   //store the select bundle Id
+                    for (i = 0; i < this.selectInfo.length; ++i)
+                    {
+                        if (this.selectInfo[i] === tmp)
                         {
-                            if(this.selectInfo[i] === tmp)
-                            {
-                                flag = true;
-                                break;
-                            }
+                            flag = true;
+                            break;
                         }
-                        if(!flag)
-                            this.selectInfo.push( tmp );
                     }
-
-
+                    if (!flag)
+                        this.selectInfo.push(tmp);
+                }
                 this.currentIntersected.material.linewidth = 5;
 
                 this.selectHelper.visible = true;
-                this.selectHelper.position.copy( intersects[ 0 ].point );
-
+                this.selectHelper.position.copy(intersects[ 0 ].point);
             }
             else
             {
@@ -401,10 +397,9 @@ Bubble.prototype ={
                     childs[i].children[j].material.color.setRGB(grayness,grayness,grayness);
                 }
             }
-            for(i=0;i<this.selectInfo.length;i++)
-            {
-                this.selectInfo[i] = [];
-            }
+
+            this.selectInfo.length = 0;
+
             this.CleanSelected = false;
         }
 
@@ -536,19 +531,6 @@ function addBubble(id, name, selectIfo, mousePosX,mousePosY)
         }
     });
 
-    function SelectionDetect(selectInfo)
-    {
-        var flag= false;
-        for(var i=0; i< selectInfo.length; ++i)
-        {
-            if(selectInfo[i].length !==0)
-            {
-                flag = true;
-                break;
-            }
-        }
-        return flag;
-    }
 
     var parent =$bubbleId.contextMenu({
         selector: '.dragheader',
@@ -601,7 +583,7 @@ function addBubble(id, name, selectIfo, mousePosX,mousePosY)
             {
                 BUBBLE_COUNT++;
 
-                if(SelectionDetect(bubble.selectInfo))
+                if(bubble.selectInfo.length !==0)
                 {
                     var posx = $bubbleId.offset().left;//offset() or position()
                     var posy =$bubbleId.offset().top;

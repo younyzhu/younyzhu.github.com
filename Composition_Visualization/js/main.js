@@ -51,7 +51,7 @@ $(document).ready(function(){
             if(key === 'Open_Bubble')
             {
                 BUBBLE_COUNT++;
-                addBubble(BUBBLE_COUNT,'5 fiber bundles',null,mousePosX,mousePosY);
+                addBubble(BUBBLE_COUNT,'5 fiber bundles',mousePosX,mousePosY,null,null);
                 //manageBubblePos(BUBBLE_COUNT);
                 /*$('#bubble'+BUBBLE_COUNT).css({
                  left : mousePosX,

@@ -1,18 +1,14 @@
 /**
  * Created by Yongnanzhu on 4/12/2014.
  */
-/**
- * @author mrdoob / http://mrdoob.com/
- */
 
-GeometryLoader = function ( manager, name, selected ) {
+GeometryLoader = function ( manager, selectFibers, deletedFibers, center ) {
 
     this.manager = ( manager !== undefined ) ? manager : THREE.DefaultLoadingManager;
-    //----------------------------------
-    this.center = null;
-    this.name = name;
-    this.deletedFiber = selected||null;
-    //-----------------------------------
+
+    this.center = center||null;
+    this.selectedFiber = selectFibers;
+    this.deletedFibers = deletedFibers;
 };
 GeometryLoader.prototype = {
 
@@ -43,15 +39,44 @@ GeometryLoader.prototype = {
         var positionminx=200,positionminy=200,positionminz=200;
         var positionmaxx=-200,positionmaxy=-200,positionmaxz=-200;
         //------------------------------
+        //  If...
+        //  this.selectedFiber = null;
+        //  this.deletedFibers = null;  //The model has not been refined
+        //  Or
+        //  this.selectedFiber = [];
+        //  this.deletedFibers = []; //The model has been refined, and one of the array.length > 0;
+
         for(var i=0;i<totalFiberNum;i++)
         {
             var flag = true;
-            if(this.deletedFiber !== null)
+            if(this.selectedFiber === null && this.deletedFibers === null)
+            {
+                flag = true;
+            }
+            else
             {
                 flag = false;
-                for(var k=0; k<this.deletedFiber.length;++k)
-                    if(i === this.deletedFiber[k])
-                        flag = true;
+                if(this.selectedFiber.length !==0)
+                //when we select fibers, there is no need to consider the deleted fibers,
+                //because I have already excluded the deleted fibers for selecting.
+                {
+                    for(var k=0; k<this.selectedFiber.length;++k)
+                        if(i === this.selectedFiber[k])
+                        {
+                            flag = true;
+                            break;
+                        }
+                }
+                if(this.selectedFiber.length === 0 && this.deletedFibers.length !==0)
+                {
+                    for(k=0; k<this.deletedFibers.length;++k)
+                        if(i !== this.deletedFibers[k])
+                        {
+                            flag = true;
+                            break;
+                        }
+                }
+
             }
              if(flag)
              {
@@ -75,19 +100,16 @@ GeometryLoader.prototype = {
                      geometry.colors.push( new THREE.Vector3( parseFloat(vals[3]), parseFloat(vals[4]), parseFloat(vals[5]) ) );
                      vertexColor.push( new THREE.Vector3( parseFloat(vals[3]), parseFloat(vals[4]), parseFloat(vals[5]) ) );
                  }
-                 this.center = new THREE.Vector3((positionminx + positionmaxx)/2.0,
-                         (positionminy + positionmaxy)/2.0, (positionminz + positionmaxz)/2.0);
-
                  //geometry = new LineGeometry(vertexPosition,vertexColor);  vertexColors: THREE.VertexColors
                  //geometry.uuid = i;
-                 geometry.name = i; //This is to recode which line is selected.
-
+                 //geometry.name = i; //This is to recode which line is selected.
                  var grayness = Math.random() * 0.5 + 0.25;
                  var material = new THREE.LineBasicMaterial();
                  material.color.setRGB( grayness, grayness, grayness );
                  material.grayness = grayness; // *** NOTE THIS
                  var line = new THREE.Line( geometry, material,THREE.LineStrip );
-                 line.name = this.name;
+                 //line.name = this.name; //No need
+                 line.name = i; //This is to recode which line is selected.
                  object.add( line );
                  /*
                   var ribbongeometry = new RibbonGeometry(vertexPosition, 1, vertexColor);
@@ -99,6 +121,10 @@ GeometryLoader.prototype = {
              }
 
         }
+        if(this.center === null)
+            this.center = new THREE.Vector3((positionminx + positionmaxx)/2.0,
+                    (positionminy + positionmaxy)/2.0, (positionminz + positionmaxz)/2.0);
+        object.center = this.center;//Need remember the center of object
         return object;
     }
 

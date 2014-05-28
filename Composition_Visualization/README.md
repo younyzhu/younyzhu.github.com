@@ -11,31 +11,53 @@ split the visualization.js into bubbleWidget.js and main.js
 backup the bubbleWidget(bubbleWidget.js and main.js)
 construct a new class: bubbleWidget which contains: the container(canvas),the id, the connectionId    
 * 5/20/2014    
-1.use the requestAnimFrame to control the 2D canvas draw;   (For the navigation bar, I have consider the svg method or 2D canvas, and finally I pick up 2D canvas)   
-2.finished simple connect line drawing between two widgets;   
-3.And make the operation coordinate.   
-4.modify the link connection, so that we can support the multiply links. (For the link connect, I have consider the svg method or 2D canvas, and finally I pick up 2D canvas)   
-5.Add navigation Bar(Select the current viewpoint) move to control the current  viewpoint object move, this realize the virtual space screen    
+ 1. use the requestAnimFrame to control the 2D canvas draw;   (For the navigation bar, I have consider the svg method or 2D canvas, and finally I pick up 2D canvas)   
+ 2. finished simple connect line drawing between two widgets;   
+ 3. And make the operation coordinate.   
+ 4. modify the link connection, so that we can support the multiply links. (For the link connect, I have consider the svg method or 2D canvas, and finally I pick up 2D canvas)   
+ 5. Add navigation Bar(Select the current viewpoint) move to control the current  viewpoint object move, this realize the virtual space screen  
+   
 * 5/21/2014    
-1.modify the bugs in navigation bar, and the coordinate with the current view box;   
-2.make the drag, draging and operation on virtual space coordinate.    
+ 1. modify the bugs in navigation bar, and the coordinate with the current view box;   
+ 2. make the drag, draging and operation on virtual space coordinate.    
 * 5/22/2014        
-1.collision detection of the bubble widget   
-2.if two widget collision, they should automatic split.
+ 1. collision detection of the bubble widget   
+ 2. if two widget collision, they should automatic split.
 Modify: change from geometry.name to line.name so in Bubble we need to modify   
-3.select the reserve of select data.   
-4.finished keep quary by select.   
+ 3. select the reserve of select data.   
+ 4. finished keep quary by select.   
 (When you change the mode, you should use keyboard to rotate the model (Arrow key or (A,S,D,W)))    
  [I use the line.name to keep the fiber bundle name, and use the line.geometry.name to keep the select fiber bundle]   
  ----This is used for 5 single fiber bundle
 5.Start to convert to a single fiber bundle.
- 
- 
- 
- 
- 
-**Till now incluse file**:
-    //jquery related lab
+* 5/23/2014----5/26/2014
+ 1. build ray caster to select and drag the sphere multi-shpere selectors
+ 2. build the intersection between the sphere and the fibers(line)
+ 3. finished fiber bundle: Logical operation: (AND OR), SELECT DELETE
+--Two class: FiberSelector.js (Selector: for every sphere selector, FiberSelector: manage the whole selector and select the select result);
+Those are in the sphereSelector.html.
+* 5/27/2014
+1. Modify the bug in the delete function of multi-selection
+//Connect the selector in sphereSelector.html
+so change some files here: ObjectLoader.js
+I was very angry about me, I spend a day to find another bug: the program goes well when I write in sphereSelector.html,
+However, when I moved it to the bubble program,
+It cannot move. At spend a day to find the bugs in ray caster, and the difference between the two program.
+Today I find the program is in the Mousedown MouseMove event EventListener. It shoud not be the problem!!!
+I was so careless!!
+* 5/28/2014    
+ 1. Split the file(bubbleWidget.js) -> bubble.js and bubbleWidget.js
+ 2. In FiberSelector.js, we has a global variable, which is to store the deleted fiber,so that we do not need to calculate the intersection of the deleted fibers.  
+**Illustruction:** I use this.SelectResults to store the fibers that are selected by current selectors,
+                   and I use this.deletedFibers to store all the fibers that have been deleted from the current model.
+ 3. ObjectLoader.js: this.selectedFibers, this.deletedFibers. [Model = select_fibers + deleted_fibers + left_fibers]   
+When loader a dataset, we need to know which is to select and which is to delete:   
+  * if the this.deletedFibers.length === 0, we just need to load the select fibers;
+  * if this.selectedFibers.length === 0, we need to loader the model wipes out the deleted fibers;
+  * if this.selectedFibers.length !== 0 && this.deletedFibers.length !== 0, we just need to load the selected fiber.
+
+**Till now incluse file**:     
+    //jquery related lab   
     <script src="./jqueryLib/jquery-1.10.2.js" type="text/javascript"></script>
     <script src="./jqueryLib/jquery-ui-1.10.4.js" type="text/javascript"></script>
     <script src="./jqueryLib/jquery.ui.position.js" type="text/javascript"></script>
@@ -48,6 +70,7 @@ Modify: change from geometry.name to line.name so in Bubble we need to modify
     <script src="js/main.js" type="text/javascript"></script>              //main
     <script src="js/ObjectLoader.js"></script>      //model loader(line, also could include tube, ribbon js)
     <script src="js/navigationBar.js" type="text/javascript"></script>     //Draw 2D canvas on navigation bar
+    <script src="js/bubble.js" type="text/javascript"></script>      //Render the objects
     <script src="js/bubbleWidget.js" type="text/javascript"></script>      //Bubble widget on the main
     <script src="js/connections.js" type="text/javascript"></script>       //connection line between two wodgets which have relationship in some kinds.
-
+    <script src="js/FiberSelector.js"></script>   // Sphere selector to refine fibers
