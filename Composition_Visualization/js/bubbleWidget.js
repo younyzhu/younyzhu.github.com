@@ -38,7 +38,7 @@ function updateBubblePos(index, x, y) {
 function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers, objectCenter) {
     var bubblediv = $(bubble_div(id, name, mousePosX, mousePosY));
     $("#bubble").append(bubblediv);
-    var bubble = new Bubble(id, selectedFibers, deletedFibers, objectCenter);
+    var bubble = new Bubble(id, selectedFibers, deletedFibers, objectCenter);//just Id
     Bubbles.push(bubble);
     try {
         bubble.init();
@@ -179,6 +179,7 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
     });
     $bubbleRefineMenu.children("#and").click(function(){
         bubble.And();
+        bubble.resetAllResult();
     });
     $bubbleRefineMenu.children("#delete").click(function(){
         bubble.Delete();

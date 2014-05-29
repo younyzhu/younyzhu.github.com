@@ -91,7 +91,7 @@ Bubble.prototype = {
         light.position.set(0, 1, 1);
         this.scene.add(light);
         this.scene.add(light);
-        this.fiberSelector = new FiberSelector(this.selectors);
+        this.fiberSelector = new FiberSelector(this.id, this.selectors);
 
         var manager = new THREE.LoadingManager();
         manager.onProgress = function (item, loaded, total) {

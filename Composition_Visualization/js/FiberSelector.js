@@ -1,8 +1,9 @@
 /**
  * Created by Yongnanzhu on 5/24/2014.
  */
-function FiberSelector(selectors)//manage the selectors
+function FiberSelector(id, selectors)//manage the selectors
 {
+    this.id = id;
     //this.state = state||1;  //{ AND: 0, OR: 1}
     this.selectors = selectors;
     this.selectedFibers = [];
@@ -19,9 +20,18 @@ FiberSelector.prototype = {
         {
             selectedFibersId.push(parseInt( this.selectedFibers[i].object.name));
         }
+
         for(i=0; i< this.deletedFibers.length; ++i)
         {
             deletedFibersId.push(parseInt( this.deletedFibers[i].object.name));
+        }
+        //we need to consider the input deleted fibers
+        if(Bubbles[this.id].deletedFibers !== null )
+        {
+            for(i=0; i< Bubbles[this.id].deletedFibers.length; ++i)
+            {
+                deletedFibersId.push( Bubbles[this.id].deletedFibers[i]);
+            }
         }
         return {selectedFibersId: selectedFibersId,deletedFibersId:deletedFibersId };
     },
