@@ -1,4 +1,24 @@
 #Composition Visualization
+
+##Current Introduction
+Composition visualization is attempted to create a web-based, convenient and scientific visualization Environment. We try to intergrate some great ideal in visBubble and codeBubble here......
+
+##Current Operation:
+1. On the top is a navigation bar which is to manage the virtual space.
+2. The big UI is the main current view space. You can move in the big square in the navigation bar to adjust the virtual space.
+3. Right click on the space to Open a bubble(menu).
+4. Right click on the space to delete all the bubble(menu).
+5. Right click on the dragging bar[top of a bubble] of a bubble to refine the brain model:
+	* After click the refine button, there will come a bar with [+], [-], [add],[delete],[or]
+	* [+],[-] is used to add or delete a selector sphere, you can use mouse to move the sphere.
+	* When you are moving the sphere, you can also click [up], [down] in your keyboard to adjust the size of you selector sphere.
+	* You could select the fiber with the combination of the bool logical operation: [add],[or].
+	* Before select you region of interest, you could also delete the fiber the occlude you, just by click [delete], which will make all the fibers delete when intersecting with the sphere.
+6. After you refine a bundle, you can right click in the dragging bar, to export a new bubble with the selected fibers.
+7. You could keep selecting in this application.
+8. And also with each bubble, there is a parameter bar, you can click [O] on the dragging bar:
+	* In the dragging bar, you can adjust the parameter, such as shape, size... for visualizing the model.
+	* 
 ##Study Event
 * before    
 basic UI design    
