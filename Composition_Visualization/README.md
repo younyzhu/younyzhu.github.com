@@ -20,7 +20,7 @@ When you open the website, you can click [f] on you keyboard to full screen mode
 7. You could keep selecting in this application.
 8. And also with each bubble, there is a parameter bar, you can click [O] on the dragging bar:
 	* In the dragging bar, you can adjust the parameter, such as shape, size... for visualizing the model.
-	* 
+	*     
 ##Study Event
 * before    
 basic UI design    
