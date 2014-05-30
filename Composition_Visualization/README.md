@@ -2,7 +2,8 @@
 
 ##Current Introduction
 Composition visualization is attempted to create a web-based, convenient and scientific visualization Environment. We try to intergrate some great ideal in visBubble and codeBubble here......
-
+##Project website
+**Current Project Files:**[Composition Visualization](http://younyzhu.github.io/Composition_Visualization/visualization.htm)
 ##Current Operation:
 1. On the top is a navigation bar which is to manage the virtual space.
 2. The big UI is the main current view space. You can move in the big square in the navigation bar to adjust the virtual space.
@@ -83,8 +84,6 @@ When loader a dataset, we need to know which is to select and which is to delete
  we should calculate with the camera and adjust the ribbon every frame in cpu, it is time consuming.
 3. Applying the Three.js library's cast shading (in shadowMap.html), we make the light source adjustable and look at the effect.
 Looking at the code and considering its implementation.
-
-**Current Project Files:**[Composition Visualization](http://younyzhu.github.io/Composition_Visualization/visualization.htm)
 
 **Till now incluse files**:     
     //jquery related lab   
