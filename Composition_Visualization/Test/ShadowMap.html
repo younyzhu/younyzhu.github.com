@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>three.js webgl - draggable cubes</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <style>
+        body {
+            font-family: Monospace;
+            background-color: #f0f0f0;
+            margin: 0px;
+            overflow: hidden;
+        }
+    </style>
+    <style>
+        .ui-progressbar {
+            position: relative;
+        }
+
+        .progress-label {
+            color: red;
+            font-size: 3em;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            font-weight: bold;
+            text-shadow: 1px 1px 0 #fff;
+        }
+    </style>
+
+</head>
+<body>
+
+<script src="three.js"></script>
+<script src="bubble.js"></script>
+<script src="ribbonGeometry.js" type="text/javascript"></script>
+<script src="jquery-1.10.2.js" type="text/javascript"></script>
+<script src="jquery-ui-1.10.4.js" type="text/javascript"></script>
+<script src="OrbitControls.js"></script>
+<script src="GeometryLoader.js"></script>
+<script src="Detector.js"></script>
+<script src="FiberSelector.js"></script>
+<script src="KeyboardState.js"></script>
+
+
+<script>
+
+    $(document).ready(function(){
+        var bubble = new Bubble();
+            bubble.init();
+            bubble.fillScene();
+            bubble.animate();
+    });
+
+</script>
+<div id="container">
+</div>
+</body>
+</html>

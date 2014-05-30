@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>three.js canvas - geometry - cube</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <style>
+        body {
+            font-family: Monospace;
+            background-color: #f0f0f0;
+            margin: 0px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<script src="three.min.js"></script>
+
+<script src="dat.gui.min.js"></script>
+<script src="stats.min.js"></script>
+<script src="ObjectTrackballControl.js"></script>
+<script>
+
+var container, stats;
+
+var camera, scene, renderer;
+
+var cube, plane;
+var control;
+
+
+var mouseDown = false;
+var rotateStartP = new THREE.Vector3(0,0,1);
+var rotateEndP = new THREE.Vector3(0,0,1);
+
+var lastPosX;
+var lastPosY;
+var targetRotationY = 0;
+var targetRotationX = 0;
+var quater;
+//var rotateQuaternion = new THREE.Quaternion();
+var windowHalfX = window.innerWidth / 2;
+var windowHalfY = window.innerHeight / 2;
+
+init();
+animate();
+
+function init() {
+
+    container = document.createElement( 'div' );
+    document.body.appendChild( container );
+
+    var info = document.createElement( 'div' );
+    info.style.position = 'absolute';
+    info.style.top = '10px';
+    info.style.width = '100%';
+    info.style.textAlign = 'center';
+    info.innerHTML = 'Drag to spin the cube';
+    container.appendChild( info );
+
+    camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+    camera.position.y = 150;
+    camera.position.z = 500;
+
+    scene = new THREE.Scene();
+
+    // Cube
+
+    var geometry = new THREE.CubeGeometry( 200, 200, 200 );
+
+    for ( var i = 0; i < geometry.faces.length; i += 2 ) {
+
+        var hex = Math.random() * 0xffffff;
+        geometry.faces[ i ].color.setHex( hex );
+        geometry.faces[ i + 1 ].color.setHex( hex );
+
+    }
+
+    var material = new THREE.MeshBasicMaterial( { vertexColors: THREE.FaceColors, overdraw: 0.5 } );
+
+    cube = new THREE.Mesh( geometry, material );
+    cube.position.y = 150;
+    scene.add( cube );
+
+    control = new TrackballControls(cube);
+    // Plane
+
+    var geometry = new THREE.PlaneGeometry( 200, 200 );
+    geometry.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
+
+    var material = new THREE.MeshBasicMaterial( { color: 0xe0e0e0, overdraw: 0.5 } );
+
+    plane = new THREE.Mesh( geometry, material );
+    scene.add( plane );
+
+    renderer = new THREE.CanvasRenderer();
+    renderer.setClearColor( 0xf0f0f0 );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+
+    container.appendChild( renderer.domElement );
+    //GUI
+    var controls = new function () {
+
+        this.xx = false;
+        this.yy = 512;
+        this.zz = 512;
+        this.qq = 512;
+
+        this.onChange = function () {
+
+        }
+
+    };
+
+    var gui = new dat.GUI();
+    gui.add(controls, 'xx').onChange(controls.onChange);
+    gui.add(controls, 'yy', 1, 10).onChange(controls.onChange);
+    gui.add(controls, 'zz', 1, 10).onChange(controls.onChange);
+    gui.add(controls, 'qq', 1, 10).onChange(controls.onChange);
+
+    stats = new Stats();
+    stats.domElement.style.position = 'absolute';
+    stats.domElement.style.top = '0px';
+    container.appendChild( stats.domElement );
+
+    //
+
+    window.addEventListener( 'resize', onWindowResize, false );
+
+}
+
+function onWindowResize() {
+
+    windowHalfX = window.innerWidth / 2;
+    windowHalfY = window.innerHeight / 2;
+
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize( window.innerWidth, window.innerHeight );
+
+}
+
+
+//
+function animate() {
+
+    requestAnimationFrame( animate );
+    render();
+    stats.update();
+
+}
+
+function render() {
+
+    control.update();
+    renderer.render( scene, camera );
+
+}
+
+</script>
+
+</body>
+</html>
