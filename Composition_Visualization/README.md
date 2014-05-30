@@ -1,3 +1,5 @@
+#Composition Visualization
+##Study Event
 * before    
 basic UI design    
 * 5/16/2014    
@@ -62,7 +64,9 @@ When loader a dataset, we need to know which is to select and which is to delete
 3. Applying the Three.js library's cast shading (in shadowMap.html), we make the light source adjustable and look at the effect.
 Looking at the code and considering its implementation.
 
-**Till now incluse file**:     
+**Current Project Files:**[Composition Visualization](http://younyzhu.github.io/Composition_Visualization/visualization.htm)
+
+**Till now incluse files**:     
     //jquery related lab   
     <script src="./jqueryLib/jquery-1.10.2.js" type="text/javascript"></script>
     <script src="./jqueryLib/jquery-ui-1.10.4.js" type="text/javascript"></script>
