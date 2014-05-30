@@ -5,6 +5,7 @@ Composition visualization is attempted to create a web-based, convenient and sci
 ##Project website
 **Current Project Files:**[Composition Visualization](http://younyzhu.github.io/Composition_Visualization/visualization.htm)
 ##Current Operation:
+When you open the website, you can click [f] on you keyboard to full screen mode, and with a [Esc] to exit full screen.  
 1. On the top is a navigation bar which is to manage the virtual space.
 2. The big UI is the main current view space. You can move in the big square in the navigation bar to adjust the virtual space.
 3. Right click on the space to Open a bubble(menu).
