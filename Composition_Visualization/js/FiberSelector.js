@@ -194,12 +194,9 @@ SphereSelector.prototype = {
             //store the obj center in the load code (GeometryLoader)
             //spend a day to find this bug, I do not think this would be a problem at first.
             if (geometry instanceof THREE.Geometry) {
-
                 var vertices = geometry.vertices;
                 var nbVertices = vertices.length;
                 var step = object.type === THREE.LineStrip ? 1 : 2;
-
-
                 for (var i = 0; i < nbVertices - 1; i = i + step) {
                     var tmp = new THREE.Vector3();
                     tmp.subVectors(vertices[i], center);

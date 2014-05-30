@@ -187,6 +187,14 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
     $bubbleRefineMenu.children("#or").click(function(){
         bubble.Or();
     });
+    var $bubbleparaMenu = $("#bubble" + id).children().children().children();
+    $bubbleparaMenu.children('select').change(function(){
+        var optionSelected = $(this).find("option:selected");
+        var valueSelected  = optionSelected.val();
+        bubble.resetRenderShape(valueSelected);
+        //var textSelected   = optionSelected.text();
+        //alert(valueSelected + textSelected);
+    });
 }
 function bubble_div(id, name, mousePosX, mousePosY) {
     var tmp = '';
@@ -208,12 +216,16 @@ function bubble_div(id, name, mousePosX, mousePosY) {
     //
     tmp += '    <div id="paraMenu" class="widget shadow" style="position: absolute; left:385px; top:-17px; display: none">';
     tmp += '        <div class="para_header">Parameter';
-    //tmp += '<span class="close_para">X</span>';
     tmp += '        </div>';
     tmp += '        <ul id="para_items">';
+    tmp += '            <li class="para">Shape: ';
+    tmp += '                <select id="shape">';
+    tmp += '                    <option value="Line">Line</option>';
+    tmp += '                    <option value="Ribbon">Ribbon</option>';
+    tmp += '                </select>';
+    tmp += '            </li>';
     tmp += '            <li class="para">Size</li>';
-    tmp += '                <li class="para">Texture</li>';
-    tmp += '                <li class="para">Shape</li>';
+    tmp += '            <li class="para">Texture</li>';
     tmp += '        </ul>';
     tmp += '    </div>';
     //

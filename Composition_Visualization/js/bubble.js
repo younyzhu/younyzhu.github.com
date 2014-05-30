@@ -6,7 +6,7 @@ var __bind = function (fn, me) {
         return fn.apply(me, arguments);
     };
 };
-function Bubble(id, selectedFibers, deletedFibers, objectCenter) {
+function Bubble(id, selectedFibers, deletedFibers, objectCenter,shape) {
     this.connectionLinks = [];
 
     this.camera = null;
@@ -27,7 +27,7 @@ function Bubble(id, selectedFibers, deletedFibers, objectCenter) {
     this.objCenter = objectCenter||null;
     //For trackball control
     this.controls = null;
-
+    this.renderShape = shape||'Line';
     //For interactive line selection, ray caster
     this.projector = null;
     this.objects = [];
@@ -49,10 +49,12 @@ function Bubble(id, selectedFibers, deletedFibers, objectCenter) {
 
     this.init = __bind(this.init, this);
     this.fillScene = __bind(this.fillScene, this);
+    this.fillMainGroup = __bind(this.fillMainGroup, this);
     this.update = __bind(this.update, this);
     this.render = __bind(this.render, this);
     this.animate = __bind(this.animate, this);
 
+    this.resetRenderShape= __bind(this.resetRenderShape, this);
     this.removeSelector = __bind(this.removeSelector, this);
     this.addSelector = __bind(this.addSelector, this);
     this.resetAllResult = __bind(this.resetAllResult, this);
@@ -67,21 +69,53 @@ function Bubble(id, selectedFibers, deletedFibers, objectCenter) {
 }
 Bubble.prototype = {
     constructor: Bubble,
+
     getlinkNodes: function () {
         return this.connectionLinks;
     },
+
     spliceNodeLink: function (index) {
         if (index >= 0 && index < this.connectionLinks.length) {
             this.connectionLinks.splice(index, 1);
         }
     },
+
     addlinkNode: function (node) {
         this.connectionLinks.push(node);
     },
 
-    fillScene: function () {
-
+    resetRenderShape: function(shape){
+        if(shape !== this.renderShape)
+        {   /*
+            for(var i= 0, l=this.mainGroup.children.length; i < l; ++i )
+                this.scene.remove(this.mainGroup.children[i]);
+            */
+            this.renderShape = shape;
+            this.scene.remove(this.mainGroup);
+            this.mainGroup = new THREE.Object3D();
+            this.fillMainGroup();
+            this.render();
+        }
+    },
+    fillMainGroup: function(){
         var scope = this;
+        var manager = new THREE.LoadingManager();
+        manager.onProgress = function (item, loaded, total) {
+            console.log(item, loaded, total);
+        };
+        var loader = new GeometryLoader(manager, this.selectedFibers, this.deletedFibers, this.objCenter, this.renderShape);
+        loader.load('./data/whole_s4.data', function (object) {
+            if (loader.center !== null) {
+                object.position.x = -loader.center.x;
+                object.position.y = -loader.center.y;
+                object.position.z = -loader.center.z;
+                scope.mainCenter = object.center;
+                scope.mainGroup.add(object);
+            }
+        });
+        this.scene.add(this.mainGroup);
+    },
+    fillScene: function () {
         this.scene = new THREE.Scene();
         this.scene.add(new THREE.AmbientLight(0x505050));
         var light = new THREE.DirectionalLight(0xffffff);
@@ -92,24 +126,7 @@ Bubble.prototype = {
         this.scene.add(light);
         this.scene.add(light);
         this.fiberSelector = new FiberSelector(this.id, this.selectors);
-
-        var manager = new THREE.LoadingManager();
-        manager.onProgress = function (item, loaded, total) {
-            console.log(item, loaded, total);
-        };
-        var loader = new GeometryLoader(manager, this.selectedFibers, this.deletedFibers, this.objCenter);
-        loader.load('./data/s1_cc.data', function (object) {
-        //loader.load('./data/whole_s4.data', function (object) {
-            if (loader.center !== null) {
-                object.position.x = -loader.center.x;
-                object.position.y = -loader.center.y;
-                object.position.z = -loader.center.z;
-                scope.mainCenter = object.center;
-                scope.mainGroup.add(object);
-            }
-        });
-        this.scene.add(this.mainGroup);
-
+        this.fillMainGroup();
         this.plane = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000, 8, 8), new THREE.MeshBasicMaterial({ color: 0xFF0000, opacity: 0.25}));
         this.plane.visible = false;
         this.scene.add(this.plane);

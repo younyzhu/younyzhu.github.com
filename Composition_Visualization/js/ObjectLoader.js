@@ -2,43 +2,35 @@
  * Created by Yongnanzhu on 4/12/2014.
  */
 
-GeometryLoader = function (manager, selectFibers, deletedFibers, center) {
+GeometryLoader = function (manager, selectFibers, deletedFibers, center, shape) {
 
     this.manager = ( manager !== undefined ) ? manager : THREE.DefaultLoadingManager;
 
     this.center = center || null;
     this.selectedFiber = selectFibers;
     this.deletedFibers = deletedFibers;
+    this.renderShape = shape||'Line';
 };
 GeometryLoader.prototype = {
 
     constructor: GeometryLoader,
 
     load: function (url, onLoad, onProgress, onError) {
-
         var scope = this;
-
         var loader = new THREE.XHRLoader();
         loader.setCrossOrigin(this.crossOrigin);
         loader.load(url, function (text) {
-
             onLoad(scope.parse(text));
-
         });
-
     },
 
     parse: function (text) {
         var lines = text.split("\n");
         var totalFiberNum = lines[0];
         var startNum = 1;
-
         var object = new THREE.Object3D();
-
-        //-------------------------------
         var positionminx = 200, positionminy = 200, positionminz = 200;
         var positionmaxx = -200, positionmaxy = -200, positionmaxz = -200;
-        //------------------------------
         //  If...
         //  this.selectedFiber = null;
         //  this.deletedFibers = null;  //The model has not been refined
@@ -93,23 +85,23 @@ GeometryLoader.prototype = {
                     geometry.colors.push(new THREE.Vector3(parseFloat(vals[3]), parseFloat(vals[4]), parseFloat(vals[5])));
                     vertexColor.push(new THREE.Vector3(parseFloat(vals[3]), parseFloat(vals[4]), parseFloat(vals[5])));
                 }
-                //geometry = new LineGeometry(vertexPosition,vertexColor);  vertexColors: THREE.VertexColors
-                //geometry.uuid = i;
-                //geometry.name = i; //This is to recode which line is selected.
-                var grayness = Math.random() * 0.5 + 0.25;
-                var material = new THREE.LineBasicMaterial();
-                material.color.setRGB(grayness, grayness, grayness);
-                material.grayness = grayness; // *** NOTE THIS
-                var line = new THREE.Line(geometry, material, THREE.LineStrip);
-                //line.name = this.name; //No need
-                line.name = i; //This is to recode which line is selected.
-                object.add(line);
-                /*
-                 var ribbongeometry = new RibbonGeometry(vertexPosition, 1, vertexColor);
-                 var ribbonmaterial = new THREE.MeshPhongMaterial({vertexColors: THREE.VertexColors,side:THREE.DoubleSide});
-                 var mesh = new THREE.Mesh( ribbongeometry, ribbonmaterial );
-                 object.add( mesh );
-                 */
+                if(this.renderShape === 'Line')
+                {
+                    var grayness = Math.random() * 0.5 + 0.25;
+                    var material = new THREE.LineBasicMaterial();
+                    material.color.setRGB(grayness, grayness, grayness);
+                    material.grayness = grayness; // *** NOTE THIS
+                    var line = new THREE.Line(geometry, material, THREE.LineStrip);
+                    line.name = i; //This is to recode which line is selected.
+                    object.add(line);
+                }
+                else if(this.renderShape === 'Ribbon')
+                {
+                    var ribbongeometry = new RibbonGeometry(vertexPosition, 1, vertexColor);
+                    var ribbonmaterial = new THREE.MeshPhongMaterial({vertexColors: THREE.VertexColors,side:THREE.DoubleSide});
+                    var mesh = new THREE.Mesh( ribbongeometry, ribbonmaterial );
+                    object.add( mesh );
+                }
             }
             startNum += parseInt(totalVertexNum) + 1;
         }

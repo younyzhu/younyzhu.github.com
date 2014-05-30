@@ -36,6 +36,7 @@ $(document).ready(function(){
     if ( ! Detector.webgl )
         Detector.addGetWebGLMessage();
     Bubbles.push(0);//begin
+    THREEx.FullScreen.bindKey({ charCode : 'f'.charCodeAt(0) });
     var mousePosX, mousePosY;
     $('#bgCanvas').on('contextmenu', function(e) {
         var m = "x: " + e.clientX + "y" + e.clientY;
@@ -51,7 +52,7 @@ $(document).ready(function(){
             if(key === 'Open_Bubble')
             {
                 BUBBLE_COUNT++;
-                addBubble(BUBBLE_COUNT,'5 fiber bundles',mousePosX,mousePosY,null,null);
+                addBubble(BUBBLE_COUNT,'DMRI brain bundles',mousePosX,mousePosY,null,null);
                 //manageBubblePos(BUBBLE_COUNT);
                 /*$('#bubble'+BUBBLE_COUNT).css({
                  left : mousePosX,

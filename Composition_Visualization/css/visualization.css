@@ -35,12 +35,12 @@ body { font-family:"Helvetica Neue", Arial, Helvetica, sans-serif; background:#1
 
 .widget { margin:1em; padding:1em; float:left; background:#0a0a0a; }
 
-.para_header { background:transparent; color:#fff; font-weight:normal;letter-spacing:1px; font-size:0.9em;text-align: center;
+.para_header { background:transparent; color:#fff; font-weight:normal;letter-spacing:1px; font-size:1.1em;text-align: center;
     padding:5px 0 5px 0.5em; cursor:move; position:relative; bottom:0px; margin:0 0 0 0; }
 
 .widget .close { color:red; font-size:0.7em; text-align: center; position:relative; top:-1em; left:1em; margin:0 0 -1em 0; padding:0; }
 .widget .close:hover { color:red }
-.para { color:#fff; font-size:0.7em; text-align: center; position:relative; top:-0.5em; left:0.5em; margin:0 0 -0.5em 0; padding:1px 1px 1px 0.5em }
+.para { color:#fff; font-size:0.9em; text-align: left; position:relative; top:0.5em; left:0.5em; margin:0 0 0.5em 0; padding:1px 1px 1px 0.5em }
 
 .widget .close_para { color:#222; font-size:0.7em; text-align: center; position:relative; top:-1em; left:1em; margin:0 0 -1em 0; padding:0;cursor:pointer; }
 .widget .close_para:hover { color:red }

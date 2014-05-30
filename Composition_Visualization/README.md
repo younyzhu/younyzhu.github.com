@@ -55,6 +55,12 @@ When loader a dataset, we need to know which is to select and which is to delete
   * if the this.deletedFibers.length === 0, we just need to load the select fibers;
   * if this.selectedFibers.length === 0, we need to loader the model wipes out the deleted fibers;
   * if this.selectedFibers.length !== 0 && this.deletedFibers.length !== 0, we just need to load the selected fiber.
+* 5/29/2014
+1. Reading Dr Xu's paper considering his three lights: direct light, indirect light, ambient light.
+2. Considering view-dependent ribbons, As Webgl do not has Geometry shader, in order to generate the view-dependent ribbons,
+ we should calculate with the camera and adjust the ribbon every frame in cpu, it is time consuming.
+3. Applying the Three.js library's cast shading (in shadowMap.html), we make the light source adjustable and look at the effect.
+Looking at the code and considering its implementation.
 
 **Till now incluse file**:     
     //jquery related lab   
@@ -66,6 +72,7 @@ When loader a dataset, we need to know which is to select and which is to delete
     <script src="js/three.js"></script>
     <script src="js/Detector.js"></script>
     <script src="js/KeyboardState.js"></script>
+    <script src="js/THREEx.FullScreen.js"></script>  //Add full screen
     //Custom js code
     <script src="js/main.js" type="text/javascript"></script>              //main
     <script src="js/ObjectLoader.js"></script>      //model loader(line, also could include tube, ribbon js)
@@ -74,3 +81,5 @@ When loader a dataset, we need to know which is to select and which is to delete
     <script src="js/bubbleWidget.js" type="text/javascript"></script>      //Bubble widget on the main
     <script src="js/connections.js" type="text/javascript"></script>       //connection line between two wodgets which have relationship in some kinds.
     <script src="js/FiberSelector.js"></script>   // Sphere selector to refine fibers
+    <script src="js/ribbonGeometry.js" type="text/javascript"></script>
+    <script src="js/TubePointGeometry.js" type="text/javascript"></script>

@@ -1,9 +1,6 @@
 /**
  * Created by Yongnanzhu on 5/16/2014.
  */
-/**
- * Created by Yongnanzhu on 5/14/2014.
- */
 
 RibbonGeometry = function( path, width, vertexColor ) {
 
