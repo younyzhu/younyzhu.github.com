@@ -1,5 +1,6 @@
 #Composition Visualization
-
+**Screen Shot**:
+![./images/screen.png](./images/screen.png)
 ##Current Introduction
 Composition visualization is attempted to create a web-based, convenient and scientific visualization Environment. We try to intergrate some great ideal in visBubble and codeBubble here......
 ##Project website
