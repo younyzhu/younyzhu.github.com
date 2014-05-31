@@ -1,5 +1,6 @@
 #Composition Visualization
 **Screen Shot**:
+
 ![./images/screen.png](./images/screen.png)
 ##Current Introduction
 Composition visualization is attempted to create a web-based, convenient and scientific visualization Environment. We try to intergrate some great ideal in visBubble and codeBubble here......
@@ -105,8 +106,14 @@ Looking at the code and considering its implementation.
 2. It seems it is hard to use view-dependent ribbon of his ideal.
 An ideal: for SSAO, we should balance the trade-off between global structure and local detail.
 
+* 5/31/2014
+1. Since the view-dependent ribbon can not implement in three.js, so I changed to ribbon.
+2. First I would applied the Three.js cast shadow here, and then find a way to modified the shadow alogrithm.
+    * ShadowMapping: [introduction](http://www.nutty.ca/?page_id=352&link=shadow_map#tabs-4)
+    * SSAO: [http://www.nutty.ca/?page_id=352&link=ssao](http://www.nutty.ca/?page_id=352&link=ssao)
 
-**Till now incluse files**:     
+
+**Till now incluse files**:
     //jquery related lab   
     <script src="./jqueryLib/jquery-1.10.2.js" type="text/javascript"></script>
     <script src="./jqueryLib/jquery-ui-1.10.4.js" type="text/javascript"></script>

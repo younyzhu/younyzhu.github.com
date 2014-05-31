@@ -1,6 +1,8 @@
 /**
  * Created by Yongnanzhu on 4/13/2014.
- * Modified from Three.js
+ */
+
+/**
  * @author WestLangley / https://github.com/WestLangley
  * @author zz85 / https://github.com/zz85
  * @author miningold / https://github.com/miningold
@@ -13,7 +15,7 @@
  * http://www.cs.indiana.edu/pub/techreports/TR425.pdf
  */
 
-TubeGeometry = function( path, segments, radius, radialSegments, closed) {
+TubeGeometry = function( path, segments, radius, radialSegments, closed, vertexColor ) {
 
     THREE.Geometry.call( this );
 
@@ -32,6 +34,14 @@ TubeGeometry = function( path, segments, radius, radialSegments, closed) {
     var  binormal;
 
     var numpoints = this.segments + 1;
+
+    var x;
+    var y;
+    var z;
+    var tx;
+    var ty;
+    var tz;
+    var u;
     var v;
     var cx;
     var cy;
@@ -45,6 +55,7 @@ TubeGeometry = function( path, segments, radius, radialSegments, closed) {
         uva, uvb, uvc, uvd;
 
     var cap =[];
+
     var frames = new TubeGeometry.FrenetFrames( this.path, this.segments, this.closed ),
         tangents = frames.tangents,
         normals = frames.normals,
@@ -57,10 +68,10 @@ TubeGeometry = function( path, segments, radius, radialSegments, closed) {
 
     function vert( x, y, z ) {
         return scope.vertices.push( new THREE.Vector3( x,
-        y, z ) ) - 1;
+            y, z ) ) - 1;
     }
     function color(r,g,b){
-       scope.colors.push( new THREE.Color( r,g, b ) ) ;
+        scope.colors.push( new THREE.Color( r,g, b ) ) ;
     }
 
     // consruct the grid
@@ -88,12 +99,11 @@ TubeGeometry = function( path, segments, radius, radialSegments, closed) {
             pos2.x += cx * normal.x + cy * binormal.x;
             pos2.y += cx * normal.y + cy * binormal.y;
             pos2.z += cx * normal.z + cy * binormal.z;
+
             var pos3 = new THREE.Vector3();
             pos3.copy(pos2);
             this.grid[ i ][ j ] = vert( pos2.x, pos2.y, pos2.z );
-           //color(vertexColor[i].x,vertexColor[i].y,vertexColor[i].z);
-            color(this.tangents[i].x,this.tangents[i].y,this.tangents[i].z);
-
+            color(vertexColor[i].x,vertexColor[i].y,vertexColor[i].z);
             if(i===0 || i=== numpoints - 2)
             {
                 cap.push(pos3);
@@ -127,10 +137,10 @@ TubeGeometry = function( path, segments, radius, radialSegments, closed) {
             this.faces[ faceIdx ].vertexColors[0] = this.colors[a];
             this.faces[ faceIdx ].vertexColors[1] = this.colors[b];
             this.faces[ faceIdx ].vertexColors[2] = this.colors[d];
-            faceIdx++;
-
             this.faces.push( new THREE.Face3( b, c, d ) );
+            faceIdx++;
             this.faceVertexUvs[ 0 ].push( [ uvb.clone(), uvc, uvd.clone() ] );
+
             this.faces[ faceIdx ].vertexColors[0] = this.colors[b];
             this.faces[ faceIdx].vertexColors[1] = this.colors[c];
             this.faces[ faceIdx ].vertexColors[2] = this.colors[d];
@@ -152,8 +162,7 @@ TubeGeometry = function( path, segments, radius, radialSegments, closed) {
         {
 
             this.faces.push(new THREE.Face3( startp, startp+j+1,startp+j+2 ));
-            this.faces[ faceIdx ].vertexColors[0] = new THREE.Vector3(this.tangents[0].x, this.tangents[0].y, this.tangents[0].z);
-            //this.faces[ faceIdx ].vertexColors[0] = new THREE.Vector3(vertexColor[0].x, vertexColor[0].y, vertexColor[0].z);
+            this.faces[ faceIdx ].vertexColors[0] = new THREE.Vector3(vertexColor[0].x, vertexColor[0].y, vertexColor[0].z);
             faceIdx++;
         }
         //for the back cap
@@ -161,8 +170,7 @@ TubeGeometry = function( path, segments, radius, radialSegments, closed) {
         for( j = 0; j < this.radialSegments-2; j++)
         {
             this.faces.push(new THREE.Face3( this.vertices.length-1, this.vertices.length -j-2,  this.vertices.length -j-3 ));
-            this.faces[ faceIdx ].vertexColors[0] = new THREE.Vector3(this.tangents[this.tangents.length-1].x, this.tangents[this.tangents.length-1].y, this.tangents[this.tangents.length-1].z);
-            //this.faces[ faceIdx ].vertexColors[0] = new THREE.Vector3(vertexColor[vertexColor.length-1].x, vertexColor[vertexColor.length-1].y, vertexColor[vertexColor.length-1].z);
+            this.faces[ faceIdx ].vertexColors[0] = new THREE.Vector3(vertexColor[vertexColor.length-1].x, vertexColor[vertexColor.length-1].y, vertexColor[vertexColor.length-1].z);
             faceIdx++;
         }
     }
@@ -170,6 +178,7 @@ TubeGeometry = function( path, segments, radius, radialSegments, closed) {
     this.computeCentroids();
     this.computeFaceNormals();
     this.computeVertexNormals();
+    //this.computeBoundingBox();
 };
 
 TubeGeometry.prototype = Object.create( THREE.Geometry.prototype );
@@ -177,7 +186,9 @@ TubeGeometry.prototype = Object.create( THREE.Geometry.prototype );
 // For computing of Frenet frames, exposing the tangents, normals and binormals the spline
 TubeGeometry.FrenetFrames = function(path, segments, closed) {
 
-    var	normal = new THREE.Vector3(),
+    var	tangent = new THREE.Vector3(),
+        normal = new THREE.Vector3(),
+        binormal = new THREE.Vector3(),
 
         tangents = [],
         normals = [],
@@ -192,11 +203,24 @@ TubeGeometry.FrenetFrames = function(path, segments, closed) {
         smallest,
 
         tx, ty, tz,
-        i;
+        i, u, v;
+
+
     // expose internals
     this.tangents = tangents;
     this.normals = normals;
     this.binormals = binormals;
+
+    // compute the tangent vectors for each segment on the path
+    /*
+     for ( i = 0; i < numpoints; i++ ) {
+
+     u = i / ( numpoints - 1 );
+
+     tangents[ i ] = path.getTangentAt( u );
+     tangents[ i ].normalize();
+
+     } */
 
     // compute the tangent vectors for each segment on the path
     for ( i = 1; i < numpoints; i++ ) {
@@ -204,40 +228,14 @@ TubeGeometry.FrenetFrames = function(path, segments, closed) {
         //  i-2          i-1   |      i           i+1
         //--*------------*-----|------*-----------*----
         //  pos3         pos2  |     pos          pos0
-        /*
         var tmp = new THREE.Vector3();
         tmp.subVectors(path[i], path[i-1]);
         tmp.normalize();
         tangents.push(tmp);
-         */
-        var tmp = new THREE.Vector3();
-        if( i===1 )
-        {
-
-            tmp.subVectors(path[i], path[i-1]);
-            tmp.normalize();
-            tangents.push(tmp);
-        }
-        else if( i===numpoints-1)
-        {
-            tmp.subVectors(path[i], path[i-1]);
-            tmp.normalize();
-            tangents.push(tmp);
-        }
-        else
-        {
-            var tmp2 = new  THREE.Vector3();
-            var tmp3  = new  THREE.Vector3();
-            tmp.subVectors(path[i-1], path[i-2]);
-            tmp2.subVectors(path[i], path[i-1]);
-            tmp3.addVectors(tmp,tmp2).multiplyScalar(1/2);
-            tmp3.normalize();
-            tangents.push(tmp3);
-        }
-
     }
 
     initialNormal3();
+
     function initialNormal3() {
         // select an initial normal vector perpenicular to the first tangent vector,
         // and in the direction of the smallest tangent xyz component
@@ -291,6 +289,30 @@ TubeGeometry.FrenetFrames = function(path, segments, closed) {
         }
 
         binormals[ i ].crossVectors( tangents[ i ], normals[ i ] );
+
+    }
+
+
+    // if the curve is closed, postprocess the vectors so the first and last normal vectors are the same
+
+    if ( closed ) {
+
+        theta = Math.acos( THREE.Math.clamp( normals[ 0 ].dot( normals[ numpoints-1 ] ), -1, 1 ) );
+        theta /= ( numpoints - 1 );
+
+        if ( tangents[ 0 ].dot( vec.crossVectors( normals[ 0 ], normals[ numpoints-1 ] ) ) > 0 ) {
+
+            theta = -theta;
+
+        }
+
+        for ( i = 1; i < numpoints; i++ ) {
+
+            // twist a little...
+            normals[ i ].applyMatrix4( mat.makeRotationAxis( tangents[ i ], theta * i ) );
+            binormals[ i ].crossVectors( tangents[ i ], normals[ i ] );
+
+        }
 
     }
 };

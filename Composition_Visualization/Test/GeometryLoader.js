@@ -76,12 +76,24 @@ GeometryLoader.prototype = {
              line = new THREE.Line( geometry, material,THREE.LineStrip );
 
              object.add( line );*/
-
+            /*
             var ribbongeometry = new RibbonGeometry(vertexPosition, 1, vertexColor);
-            //var ribbonmaterial = new THREE.MeshPhongMaterial({vertexColors: THREE.VertexColors,side:THREE.DoubleSide});
-            var ribbonmaterial = new THREE.MeshPhongMaterial({vertexColors: THREE.VertexColors});
+            var ribbonmaterial = new THREE.MeshPhongMaterial({vertexColors: THREE.VertexColors,side:THREE.DoubleSide});
+            //var ribbonmaterial = new THREE.MeshPhongMaterial({vertexColors: THREE.VertexColors});
             var mesh = new THREE.Mesh( ribbongeometry, ribbonmaterial );
             object.add( mesh );
+             */
+            var tubegeometry = new TubeGeometry(
+                vertexPosition,
+                    vertexPosition.length -1,
+                0.5,
+                6,
+                false,
+                vertexColor
+            );
+            var tubematerial = new THREE.MeshPhongMaterial({vertexColors: THREE.VertexColors});
+            var tubemesh = new THREE.Mesh( tubegeometry, tubematerial );
+            object.add( tubemesh );
             startNum+=parseInt(totalVertexNum)+1;
         }
         object.center = this.center;

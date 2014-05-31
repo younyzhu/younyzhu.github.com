@@ -103,6 +103,7 @@
     </center>
 </div>
 <script src="three.js"></script>
+<script src="TubePointGeometry.js"></script>
 <script src="GeometryLoader.js"></script>
 <!-- <script src="LineGeometry.js"></script> -->
 <script src="Detector.js"></script>
@@ -230,9 +231,9 @@ function init() {
             mainGroup.add(object);
 
             loadedCount++;
-            setProgressBar(loadedCount, 5);
+            setProgressBar(loadedCount, 1);
         }
-    } );
+    } );/*
     var cg_loader = new GeometryLoader(manager);
     cg_loader.load( './s1_cg.data', function ( object ) {
         if(cg_loader.center!==null)
@@ -290,7 +291,7 @@ function init() {
             loadedCount++;
             setProgressBar(loadedCount, 5);
         }
-    } );
+    } );  */
     //scene.add(group);
     group.add(mainGroup);
 

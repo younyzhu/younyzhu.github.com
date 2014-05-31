@@ -69,7 +69,7 @@ Bubble.prototype = {
         };
         var cc_loader = new GeometryLoader(manager);
         cc_loader.load('./whole_s4.data', function (object)
-            //cc_loader.load('./whole_s4.data', function (object)
+        //cc_loader.load('./s1_cc.data', function (object)
         {
             if (cc_loader.center !== null)
             {
@@ -116,7 +116,7 @@ Bubble.prototype = {
 
         this.light.shadowCameraNear = 0.1;
         this.light.shadowCameraFar = this.camera.far/2;
-        this.light.shadowCameraFov = 45;
+        this.light.shadowCameraFov = 90;
 
         this.light.shadowCameraVisible = true;
 
