@@ -2,7 +2,7 @@
  * Created by Yongnanzhu on 4/12/2014.
  */
 
-GeometryLoader = function (manager, selectFibers, deletedFibers, center, shape) {
+ObjectLoader = function (manager, selectFibers, deletedFibers, center, shape) {
 
     this.manager = ( manager !== undefined ) ? manager : THREE.DefaultLoadingManager;
 
@@ -11,9 +11,9 @@ GeometryLoader = function (manager, selectFibers, deletedFibers, center, shape) 
     this.deletedFibers = deletedFibers;
     this.renderShape = shape||'Line';
 };
-GeometryLoader.prototype = {
+ObjectLoader.prototype = {
 
-    constructor: GeometryLoader,
+    constructor: ObjectLoader,
 
     load: function (url, onLoad, onProgress, onError) {
         var scope = this;

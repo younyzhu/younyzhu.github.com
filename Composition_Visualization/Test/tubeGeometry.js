@@ -35,13 +35,6 @@ TubeGeometry = function( path, segments, radius, radialSegments, closed, vertexC
 
     var numpoints = this.segments + 1;
 
-    var x;
-    var y;
-    var z;
-    var tx;
-    var ty;
-    var tz;
-    var u;
     var v;
     var cx;
     var cy;
@@ -178,7 +171,6 @@ TubeGeometry = function( path, segments, radius, radialSegments, closed, vertexC
     this.computeCentroids();
     this.computeFaceNormals();
     this.computeVertexNormals();
-    //this.computeBoundingBox();
 };
 
 TubeGeometry.prototype = Object.create( THREE.Geometry.prototype );
@@ -186,9 +178,7 @@ TubeGeometry.prototype = Object.create( THREE.Geometry.prototype );
 // For computing of Frenet frames, exposing the tangents, normals and binormals the spline
 TubeGeometry.FrenetFrames = function(path, segments, closed) {
 
-    var	tangent = new THREE.Vector3(),
-        normal = new THREE.Vector3(),
-        binormal = new THREE.Vector3(),
+    var	normal = new THREE.Vector3(),
 
         tangents = [],
         normals = [],
@@ -203,24 +193,13 @@ TubeGeometry.FrenetFrames = function(path, segments, closed) {
         smallest,
 
         tx, ty, tz,
-        i, u, v;
+        i;
 
 
     // expose internals
     this.tangents = tangents;
     this.normals = normals;
     this.binormals = binormals;
-
-    // compute the tangent vectors for each segment on the path
-    /*
-     for ( i = 0; i < numpoints; i++ ) {
-
-     u = i / ( numpoints - 1 );
-
-     tangents[ i ] = path.getTangentAt( u );
-     tangents[ i ].normalize();
-
-     } */
 
     // compute the tangent vectors for each segment on the path
     for ( i = 1; i < numpoints; i++ ) {

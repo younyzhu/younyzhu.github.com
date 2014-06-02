@@ -103,7 +103,7 @@ Bubble.prototype = {
         manager.onProgress = function (item, loaded, total) {
             console.log(item, loaded, total);
         };
-        var loader = new GeometryLoader(manager, this.selectedFibers, this.deletedFibers, this.objCenter, this.renderShape);
+        var loader = new ObjectLoader(manager, this.selectedFibers, this.deletedFibers, this.objCenter, this.renderShape);
         loader.load('./data/whole_s4.data', function (object) {
             if (loader.center !== null) {
                 object.position.x = -loader.center.x;

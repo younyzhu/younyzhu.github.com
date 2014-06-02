@@ -23,13 +23,12 @@ function Bubble() {
     this.INTERSECTED = null;
     this.SELECTED = null;
     this.axes = null;
-   // this.keyboard = new KeyboardState();
+    this.keyboard = new KeyboardState();
     this.SHADOW_MAP_WIDTH =2048;
     this.SHADOW_MAP_HEIGHT=2048;
     this.quadCamera = null;
     this.quadScene = null;
     this.quadMaterial = null;
-
 
     this.init = __bind(this.init, this);
     this.fillScene = __bind(this.fillScene, this);
@@ -58,7 +57,7 @@ Bubble.prototype = {
 
         this.quadCamera = new THREE.OrthographicCamera(this.SHADOW_MAP_WIDTH/-2, this.SHADOW_MAP_WIDTH/2,this.SHADOW_MAP_HEIGHT/2.0, this.SHADOW_MAP_HEIGHT/-2.0, 0.1,300 );
         this.quadCamera.position.z = 100;
-
+        this.showShadow = false;
 
         this.projector = new THREE.Projector();
 
@@ -69,7 +68,8 @@ Bubble.prototype = {
         this.renderer.shadowMapEnabled = true;
         //this.renderer.shadowMapCascade = true;
         this.renderer.shadowMapType = THREE.PCFSoftShadowMap;
-
+        //this.renderer.shadowMapType = THREE.VSMShadowMap;   //Try to apply VSMShadowMap
+        //this.renderer.shadowMapType = THREE.ESMShadowMap;   //Try to apply ESMShadowMap
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.container.appendChild(this.renderer.domElement);
         this.renderer.shadowMapCullFrontFaces = false;
@@ -88,8 +88,8 @@ Bubble.prototype = {
             console.log(item, loaded, total);
         };
         var cc_loader = new ObjectLoader(manager);
-        //cc_loader.load('./whole_s4.data', function (object)
-        cc_loader.load('./s1_cc.data', function (object)
+        cc_loader.load('./whole_s4.data', function (object)
+        //cc_loader.load('./s1_cc.data', function (object)
         {
             if (cc_loader.center !== null)
             {
@@ -121,27 +121,29 @@ Bubble.prototype = {
 
         var geometry = new THREE.SphereGeometry(10, 40, 40);
         var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }));
-        object.position.x = 0;
-        object.position.y = 100;
-        object.position.z = 0;
+        object.position.x = 42;
+        object.position.y = 111;
+        object.position.z = 6;
         object.receiveShadow = true;
         this.scene.add(object);
         this.objects.push(object);
+        /*
         var light = new THREE.DirectionalLight(0xffffff);
         light.position.set(0, 0, 1);
         this.scene.add(light);
+        */
         this.light = new THREE.DirectionalLight(0xffffff);
         this.light.position.copy(object.position);
         //light.target.position = mainGroup.position;
         this.light.castShadow = true;
 
         this.light.shadowCameraNear = 0.1;
-        this.light.shadowCameraFar = this.camera.far/4;
+        this.light.shadowCameraFar = this.camera.far/2;
         this.light.shadowCameraFov = 90;
 
         this.light.shadowCameraVisible = true;
 
-        this.light.shadowBias = 0.0022;
+        this.light.shadowBias = 0.0;
         this.light.shadowDarkness = 0.5;
         this.light.shadowMapWidth = this.SHADOW_MAP_WIDTH;
         this.light.shadowMapHeight = this.SHADOW_MAP_HEIGHT;
@@ -222,7 +224,7 @@ Bubble.prototype = {
             var intersects = raycaster.intersectObject(this.plane);
             this.SELECTED.position.copy(intersects[ 0 ].point.sub(this.offset));
             this.light.position.copy(this.SELECTED.position);
-
+            console.log("Light Position:" + this.light.position.x + " " + this.light.position.y + " " + this.light.position.z);
             return;
         }
 
@@ -287,11 +289,30 @@ Bubble.prototype = {
 
     render: function () {
         this.controls.update();
-        //this.renderer.clear();
+        this.renderer.clear();
         this.renderer.render(this.scene, this.camera);
-        // render a scene of one quad to see the shadowmap on your canvas
-        this.renderer.clearDepth();
-        this.quadMaterial.uniforms.tDiffuse.value = this.light.shadowmap;
-        this.renderer.render (this.quadScene, this.quadCamera);
+        this.keyboard.update();
+        if(this.keyboard.down("t"))
+        {
+            this.showShadow = !( this.showShadow);
+        }
+        if(this.keyboard.down("left"))
+        {
+            this.light.shadowBias -= 0.0001;
+            console.log(this.light.shadowBias);
+        }
+        if(this.keyboard.down("right"))
+        {
+            this.light.shadowBias += 0.0001;
+            console.log(this.light.shadowBias);
+        }
+        if(this.showShadow)
+        {
+            // render a scene of one quad to see the shadowmap on your canvas
+            this.renderer.clearDepth();
+            //this.quadMaterial.uniforms.tDiffuse.value = this.light.shadowmap;
+            this.renderer.render (this.quadScene, this.quadCamera);
+        }
+
     }
 };

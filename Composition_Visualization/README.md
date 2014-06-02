@@ -30,22 +30,27 @@ When you open the website, you can click [f] on you keyboard to full screen mode
 ##Study Event
 
 * before
+
 basic UI design    
 
 * 5/16/2014
+
 ribbons, visualization_backup    
 
 * 5/17/2014~ 5/18/2014
+
 add 2d canvas navigation bar(navigationBar.js), the relation between 2D canvas box component
 with the object on the big canvas(main webGL 3D canvas).
 finished the box dragging position coordinate
 
 * 5/19/2014
+
 split the visualization.js into bubbleWidget.js and main.js
 backup the bubbleWidget(bubbleWidget.js and main.js)
 construct a new class: bubbleWidget which contains: the container(canvas),the id, the connectionId    
 
 * 5/20/2014
+
  1. use the requestAnimFrame to control the 2D canvas draw;   (For the navigation bar, I have consider the svg method or 2D canvas, and finally I pick up 2D canvas)   
  2. finished simple connect line drawing between two widgets;   
  3. And make the operation coordinate.   
@@ -53,10 +58,12 @@ construct a new class: bubbleWidget which contains: the container(canvas),the id
  5. Add navigation Bar(Select the current viewpoint) move to control the current  viewpoint object move, this realize the virtual space screen
 
 * 5/21/2014
+
  1. modify the bugs in navigation bar, and the coordinate with the current view box;   
  2. make the drag, draging and operation on virtual space coordinate.    
 
 * 5/22/2014
+
  1. collision detection of the bubble widget   
  2. if two widget collision, they should automatic split.
 Modify: change from geometry.name to line.name so in Bubble we need to modify   
@@ -68,6 +75,7 @@ Modify: change from geometry.name to line.name so in Bubble we need to modify
 5.Start to convert to a single fiber bundle.
 
 * 5/23/2014----5/26/2014
+
  1. build ray caster to select and drag the sphere multi-shpere selectors
  2. build the intersection between the sphere and the fibers(line)
  3. finished fiber bundle: Logical operation: (AND OR), SELECT DELETE
@@ -75,6 +83,7 @@ Modify: change from geometry.name to line.name so in Bubble we need to modify
 Those are in the sphereSelector.html.
 
 * 5/27/2014
+
 1. Modify the bug in the delete function of multi-selection
 //Connect the selector in sphereSelector.html
 so change some files here: ObjectLoader.js
@@ -85,6 +94,7 @@ Today I find the program is in the Mousedown MouseMove event EventListener. It s
 I was so careless!!
 
 * 5/28/2014
+
  1. Split the file(bubbleWidget.js) -> bubble.js and bubbleWidget.js
  2. In FiberSelector.js, we has a global variable, which is to store the deleted fiber,so that we do not need to calculate the intersection of the deleted fibers.  
 **Illustruction:** I use this.SelectResults to store the fibers that are selected by current selectors,
@@ -93,26 +103,46 @@ I was so careless!!
 When loader a dataset, we need to know which is to select and which is to delete:   
   * if the this.deletedFibers.length === 0, we just need to load the select fibers;
   * if this.selectedFibers.length === 0, we need to loader the model wipes out the deleted fibers;
-  * if this.selectedFibers.length !== 0 && this.deletedFibers.length !== 0, we just need to load the selected fiber.
+  * if this.selectedFibers.length !== 0 && this.deletedFibers.length !== 0, we just need to load the selected fiber.         
 
-* 5/29/2014
-1. Reading Dr Xu's paper considering his three lights: direct light, indirect light, ambient light.
-2. Considering view-dependent ribbons, As Webgl do not has Geometry shader, in order to generate the view-dependent ribbons,
+     
+* 5/29/2014     
+
+ 1. Reading Dr Xu's paper considering his three lights: direct light, indirect light, ambient light.    
+ 2. Considering view-dependent ribbons, As Webgl do not has Geometry shader, in order to generate the view-dependent ribbons,
  we should calculate with the camera and adjust the ribbon every frame in cpu, it is time consuming.
-3. Applying the Three.js library's cast shading (in shadowMap.html), we make the light source adjustable and look at the effect.
-Looking at the code and considering its implementation.
+ 3. Applying the Three.js library's cast shading (in shadowMap.html), we make the light source adjustable and look at the effect.
+ Looking at the code and considering its implementation.    
 
-* 5/30/2014
-1. Reading Dr Xu's paper, and some SSAO, LineAO paper he refers
-2. It seems it is hard to use view-dependent ribbon of his ideal.
-An ideal: for SSAO, we should balance the trade-off between global structure and local detail.
+* 5/30/2014    
 
-* 5/31/2014
-1. Since the view-dependent ribbon can not implement in three.js, so I changed to ribbon.
-2. First I would applied the Three.js cast shadow here, and then find a way to modified the shadow alogrithm.
+ 1. Reading Dr Xu's paper, and some SSAO, LineAO paper he refers
+ 2. It seems it is hard to use view-dependent ribbon of his ideal.
+ An ideal: for SSAO, we should balance the trade-off between global structure and local detail.
+
+* 5/31/2014    
+
+ 1. Since the view-dependent ribbon can not implement in three.js, so I changed to ribbon.
+ 2. First I would applied the Three.js cast shadow here, and then find a way to modified the shadow alogrithm.
     * ShadowMapping: [introduction](http://www.nutty.ca/?page_id=352&link=shadow_map#tabs-4)
-    * SSAO: [http://www.nutty.ca/?page_id=352&link=ssao](http://www.nutty.ca/?page_id=352&link=ssao)
+    * SSAO: [http://www.nutty.ca/?page_id=352&link=ssao](http://www.nutty.ca/?page_id=352&link=ssao)    
 
+* 6/1/2014    
+ 
+ 1. read the ShadowMapping Code THREE.js has, and its ShadowMapping Plugin(PCF filter and soft PCF filter).
+ 2. modify the ShadowMapping Plugin with customShader, and try to apply the VSM, and ESM from
+[http://www.nutty.ca/?page_id=352&link=shadow_map#tabs-4](http://www.nutty.ca/?page_id=352&link=shadow_map#tabs-4)
+ 3. successfully applied the VSM alogrithm.
+
+* 6/2/2014
+
+ 1. [Test/ShadowMap.html](./Test/ShadowMap.html), you can adjust custombubble.js to adjust shadowType(PCF, PCFSoft, VSM,ESM)
+      this.renderer.shadowMapType = THREE.PCFShadowMap;
+      this.renderer.shadowMapType = THREE.PCFSoftShadowMap;
+      this.renderer.shadowMapType = THREE.VSMShadowMap;   //Try to apply VSMShadowMap
+      this.renderer.shadowMapType = THREE.ESMShadowMap;   //Try to apply ESMShadowMap
+ 2. Use mouse to pick up the light(ball) to deside the light position, press [t] to output the depth map
+ 3. CastShadow alogrithm encode depth map with phong shading and filter alogrithm    
 
 **Till now incluse files**:
     //jquery related lab   
