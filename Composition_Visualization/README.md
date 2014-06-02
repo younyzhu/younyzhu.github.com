@@ -136,7 +136,7 @@ When loader a dataset, we need to know which is to select and which is to delete
 
 * 6/2/2014
 
- 1. [Test/ShadowMap.html](younyzhu.github.com/Composition_Visualization/Test/ShadowMap.html), you can adjust custombubble.js to adjust shadowType(PCF, PCFSoft, VSM,ESM)
+ 1. [Test/ShadowMap.html](https://younyzhu.github.com/Composition_Visualization/Test/ShadowMap.html), you can adjust custombubble.js to adjust shadowType(PCF, PCFSoft, VSM,ESM)
       this.renderer.shadowMapType = THREE.PCFShadowMap;
       this.renderer.shadowMapType = THREE.PCFSoftShadowMap;
       this.renderer.shadowMapType = THREE.VSMShadowMap;   //Try to apply VSMShadowMap
