@@ -60,8 +60,8 @@ THREE.SSAOShader = {
 
 		"uniform float lumInfluence;",  // how much luminance affects occlusion
 
-		"uniform sampler2D tDiffuse;",
-		"uniform sampler2D tDepth;",
+		"uniform sampler2D tDiffuse;",      //render texture
+		"uniform sampler2D tDepth;",        //depth texture
 
 		"varying vec2 vUv;",
 
@@ -90,7 +90,7 @@ THREE.SSAOShader = {
 		"const float gDisplace = 0.4;",  // gauss bell center
 
 		"const vec3 onlyAOColor = vec3( 1.0, 0.7, 0.5 );",
-		// "const vec3 onlyAOColor = vec3( 1.0, 1.0, 1.0 );",
+		//"const vec3 onlyAOColor = vec3( 1.0, 1.0, 1.0 );",
 
 
 		// RGBA depth

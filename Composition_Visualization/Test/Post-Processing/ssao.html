@@ -331,7 +331,12 @@ function init() {
     SSAOShader.uniforms[ 'size' ].value.set( window.innerWidth, window.innerHeight );
     SSAOShader.uniforms[ 'cameraNear' ].value = camera.near;
     SSAOShader.uniforms[ 'cameraFar' ].value = camera.far;
-    SSAOShader.renderToScreen = true;
+    SSAOShader.uniforms[ 'aoClamp' ].value = 0.6;
+    SSAOShader.uniforms[ 'lumInfluence' ].value = 0.2;
+    //SSAOShader.renderToScreen = true;
+    var FXAAShader = new THREE.ShaderPass(THREE.FXAAShader);
+    FXAAShader.renderToScreen = true;
+    FXAAShader.uniforms[ 'resolution' ].value.set( 1 / window.innerWidth, 1 / window.innerHeight );
 
     var renderPass = new THREE.RenderPass(scene, camera);
    // var effectCopy = new THREE.ShaderPass(THREE.CopyShader);
@@ -342,7 +347,7 @@ function init() {
     composer = new THREE.EffectComposer(renderer);
     composer.addPass(renderPass);
     composer.addPass( SSAOShader );
-
+    composer.addPass(FXAAShader);
 
     /*composer.addPass(bleachFilter);
 

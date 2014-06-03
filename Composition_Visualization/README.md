@@ -143,6 +143,10 @@ When loader a dataset, we need to know which is to select and which is to delete
       this.renderer.shadowMapType = THREE.ESMShadowMap;   //Try to apply ESMShadowMap
  2. Use mouse to pick up the light(ball) to deside the light position, press [t] to output the depth map
  3. CastShadow alogrithm encode depth map with phong shading and filter alogrithm    
+ 4. Looking at the SSAO alogrithm Three.js has and some article he refers, looking at some other ssao alogrithms:
+ [http://www.nutty.ca/?page_id=352&link=ssao](http://www.nutty.ca/?page_id=352&link=ssao),
+ [http://codeflow.org/entries/2011/oct/25/webgl-screenspace-ambient-occlusion/](http://codeflow.org/entries/2011/oct/25/webgl-screenspace-ambient-occlusion/)
+  The latter one looks pretty good.
 
 **Till now incluse files**:
     //jquery related lab   
