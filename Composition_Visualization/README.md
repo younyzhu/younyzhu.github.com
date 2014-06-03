@@ -10,22 +10,24 @@ Composition visualization is attempted to create a web-based, convenient and sci
 
 ##Current Operation:
 
-When you open the website, you can click [f] on you keyboard to full screen mode, and with a [Esc] to exit full screen.
-1. On the top is a navigation bar which is to manage the virtual space.
-2. The big UI is the main current view space. You can move in the big square in the navigation bar to adjust the virtual space.
-3. Right click on the space to Open a bubble(menu).
-4. Right click on the space to delete all the bubble(menu).
-5. Right click on the dragging bar[top of a bubble] of a bubble to refine the brain model:
-	* After click the refine button, there will come a bar with [+], [-], [add],[delete],[or]
-	* [+],[-] is used to add or delete a selector sphere, you can use mouse to move the sphere.
-	* When you are moving the sphere, you can also click [up], [down] in your keyboard to adjust the size of you selector sphere.
-	* You could select the fiber with the combination of the bool logical operation: [add],[or].
-	* Before select you region of interest, you could also delete the fiber the occlude you, just by click [delete], which will make all the fibers delete when intersecting with the sphere.
+When you open the website, you can click [f] on you keyboard to full screen mode, and with a [Esc] to exit full screen.        
+1. On the top is a navigation bar which is to manage the virtual space.    
+2. The big UI is the main current view space. You can move in the big square in the navigation bar to adjust the virtual space.    
+3. Right click on the space to Open a bubble(menu).    
+4. Right click on the space to delete all the bubble(menu).    
+5. Right click on the dragging bar[top of a bubble] of a bubble to refine the brain model:   
+ 
+ * After click the refine button, there will come a bar with [+], [-], [add],[delete],[or]    
+ * [+],[-] is used to add or delete a selector sphere, you can use  mouse to move the sphere.    
+ * When you are moving the sphere, you can also click [up], [down] in your keyboard to adjust the size of you selector sphere.     
+ * You could select the fiber with the combination of the bool logical operation: [add],[or].
+ * Before select you region of interest, you could also delete the fiber the occlude you, just by click [delete], which will make all the fibers delete when intersecting with the sphere. 
+      
 6. After you refine a bundle, you can right click in the dragging bar, to export a new bubble with the selected fibers.
 7. You could keep selecting in this application.
 8. And also with each bubble, there is a parameter bar, you can click [O] on the dragging bar:
 	* In the dragging bar, you can adjust the parameter, such as shape, size... for visualizing the model.
-	*     
+      
 
 ##Study Event
 
@@ -149,8 +151,8 @@ When loader a dataset, we need to know which is to select and which is to delete
   The latter one looks pretty good.
 
 * 6/3/2014
-1. Comtinue try to code the SSAO, but I find it is hard to debug the shader, so I think I should modify the shader(SSAO) Three.js has, and then applied with the cast shadow before.
-2. So I try a lot of time to combine the SSAO with the casting shadow. Finally, it seems works.
+1. Continue trying to code the SSAO, but I find it is hard to debug the shader, so I think I should modify the shader(SSAO) Three.js has, and then applied with the cast shadow which is done before.
+2. So I spend a lot of time to combine the SSAO with the casting shadow. Finally, it seems works.
 3. [Test/ssao.html](https://younyzhu.github.com/Composition_Visualization/Test/ssao.html): SSAO + one light(top right) (phong shading with casting shadow) + Directional light(position:0, 0, 1)
 4. Parameters need to adjust.
 
