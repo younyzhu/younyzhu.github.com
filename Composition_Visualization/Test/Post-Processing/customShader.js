@@ -184,19 +184,15 @@ var fiberShader = {
 
 "custom_SSAOShader" : {
 //modified from THREE.js THREE.SSAOShader from @author alteredq / http://alteredqualia.com/
-
     uniforms: {
 
-        "tDiffuse":     { type: "t", value: null },
-        "tDepth":       { type: "t", value: null },
-        "size":         { type: "v2", value: new THREE.Vector2( 512, 512 ) },
-        "cameraNear":   { type: "f", value: 1 },
-        "cameraFar":    { type: "f", value: 100 },
-        //"fogNear":      { type: "f", value: 5 },
-        //"fogFar":       { type: "f", value: 100 },
-        //"fogEnabled":   { type: "i", value: 0 },
-        "onlyAO":       { type: "i", value: 0 },
-        "aoClamp":      { type: "f", value: 0.3 },
+        "tDiffuse": { type: "t", value: null },
+        "tDepth": { type: "t", value: null },
+        "size": { type: "v2", value: new THREE.Vector2(512, 512) },
+        "cameraNear": { type: "f", value: 1 },
+        "cameraFar": { type: "f", value: 100 },
+        "onlyAO": { type: "i", value: 0 },
+        "aoClamp": { type: "f", value: 0.3 },
         "lumInfluence": { type: "f", value: 0.9 }
 
     },
@@ -215,219 +211,199 @@ var fiberShader = {
 
     ].join("\n"),
 
-        fragmentShader: [
+    fragmentShader: [
 
-    "uniform float cameraNear;",
-    "uniform float cameraFar;",
+        "uniform float cameraNear;",
+        "uniform float cameraFar;",
 
-    //"uniform float fogNear;",
-    //"uniform float fogFar;",
+        "uniform bool onlyAO;",      // use only ambient occlusion pass?
 
-    //"uniform bool fogEnabled;",  // attenuate AO with linear fog
-    "uniform bool onlyAO;",      // use only ambient occlusion pass?
+        "uniform vec2 size;",        // texture width, height
+        "uniform float aoClamp;",    // depth clamp - reduces haloing at screen edges
 
-    "uniform vec2 size;",        // texture width, height
-    "uniform float aoClamp;",    // depth clamp - reduces haloing at screen edges
+        "uniform float lumInfluence;",  // how much luminance affects occlusion
 
-    "uniform float lumInfluence;",  // how much luminance affects occlusion
+        "uniform sampler2D tDiffuse;",
+        "uniform sampler2D tDepth;",
 
-    "uniform sampler2D tDiffuse;",      //render texture
-    "uniform sampler2D tDepth;",        //depth texture
+        "varying vec2 vUv;",
 
-    "varying vec2 vUv;",
+        // "#define PI 3.14159265",
+        "#define DL 2.399963229728653",  // PI * ( 3.0 - sqrt( 5.0 ) )
+        "#define EULER 2.718281828459045",
 
-    // "#define PI 3.14159265",
-    "#define DL 2.399963229728653",  // PI * ( 3.0 - sqrt( 5.0 ) )
-    "#define EULER 2.718281828459045",
+        // helpers
 
-    // helpers
+        "float width = size.x;",   // texture width
+        "float height = size.y;",  // texture height
 
-    "float width = size.x;",   // texture width
-    "float height = size.y;",  // texture height
+        "float cameraFarPlusNear = cameraFar + cameraNear;",
+        "float cameraFarMinusNear = cameraFar - cameraNear;",
+        "float cameraCoef = 2.0 * cameraNear;",
 
-    "float cameraFarPlusNear = cameraFar + cameraNear;",
-    "float cameraFarMinusNear = cameraFar - cameraNear;",
-    "float cameraCoef = 2.0 * cameraNear;",
+        // user variables
 
-    // user variables
+        "const int samples = 8;",     // ao sample count
+        "const float radius = 5.0;",  // ao radius
 
-    "const int samples = 8;",     // ao sample count
-    "const float radius = 5.0;",  // ao radius
+        "const bool useNoise = false;",      // use noise instead of pattern for sample dithering
+        "const float noiseAmount = 0.0003;", // dithering amount
 
-    "const bool useNoise = false;",      // use noise instead of pattern for sample dithering
-    "const float noiseAmount = 0.0003;", // dithering amount
+        "const float diffArea = 0.4;",   // self-shadowing reduction
+        "const float gDisplace = 0.4;",  // gauss bell center
 
-    "const float diffArea = 0.4;",   // self-shadowing reduction
-    "const float gDisplace = 0.4;",  // gauss bell center
+        "const vec3 onlyAOColor = vec3( 1.0, 0.7, 0.5 );",
+        // "const vec3 onlyAOColor = vec3( 1.0, 1.0, 1.0 );",
 
-    "const vec3 onlyAOColor = vec3( 1.0, 0.7, 0.5 );",
-    //"const vec3 onlyAOColor = vec3( 1.0, 1.0, 1.0 );",
 
+        // RGBA depth
 
-    // RGBA depth
+        "float unpackDepth( const in vec4 rgba_depth ) {",
 
-    "float unpackDepth( const in vec4 rgba_depth ) {",
+        "const vec4 bit_shift = vec4( 1.0 / ( 256.0 * 256.0 * 256.0 ), 1.0 / ( 256.0 * 256.0 ), 1.0 / 256.0, 1.0 );",
+        "float depth = dot( rgba_depth, bit_shift );",
+        "return depth;",
 
-    "const vec4 bit_shift = vec4( 1.0 / ( 256.0 * 256.0 * 256.0 ), 1.0 / ( 256.0 * 256.0 ), 1.0 / 256.0, 1.0 );",
-    "float depth = dot( rgba_depth, bit_shift );",
-    "return depth;",
+        "}",
 
-    "}",
+        // generating noise / pattern texture for dithering
 
-    // generating noise / pattern texture for dithering
+        "vec2 rand( const vec2 coord ) {",
 
-    "vec2 rand( const vec2 coord ) {",
+        "vec2 noise;",
 
-    "vec2 noise;",
+        "if ( useNoise ) {",
 
-    "if ( useNoise ) {",
+        "float nx = dot ( coord, vec2( 12.9898, 78.233 ) );",
+        "float ny = dot ( coord, vec2( 12.9898, 78.233 ) * 2.0 );",
 
-    "float nx = dot ( coord, vec2( 12.9898, 78.233 ) );",
-    "float ny = dot ( coord, vec2( 12.9898, 78.233 ) * 2.0 );",
+        "noise = clamp( fract ( 43758.5453 * sin( vec2( nx, ny ) ) ), 0.0, 1.0 );",
 
-    "noise = clamp( fract ( 43758.5453 * sin( vec2( nx, ny ) ) ), 0.0, 1.0 );",
+        "} else {",
 
-    "} else {",
+        "float ff = fract( 1.0 - coord.s * ( width / 2.0 ) );",
+        "float gg = fract( coord.t * ( height / 2.0 ) );",
 
-    "float ff = fract( 1.0 - coord.s * ( width / 2.0 ) );",
-    "float gg = fract( coord.t * ( height / 2.0 ) );",
+        "noise = vec2( 0.25, 0.75 ) * vec2( ff ) + vec2( 0.75, 0.25 ) * gg;",
 
-    "noise = vec2( 0.25, 0.75 ) * vec2( ff ) + vec2( 0.75, 0.25 ) * gg;",
+        "}",
 
-    "}",
+        "return ( noise * 2.0  - 1.0 ) * noiseAmount;",
 
-    "return ( noise * 2.0  - 1.0 ) * noiseAmount;",
+        "}",
 
-    "}",
-     /*
-    "float doFog() {",
 
-    "float zdepth = unpackDepth( texture2D( tDepth, vUv ) );",
-    "float depth = -cameraFar * cameraNear / ( zdepth * cameraFarMinusNear - cameraFar );",
+        "float readDepth( const in vec2 coord ) {",
 
-    "return smoothstep( fogNear, fogFar, depth );",
+        // "return ( 2.0 * cameraNear ) / ( cameraFar + cameraNear - unpackDepth( texture2D( tDepth, coord ) ) * ( cameraFar - cameraNear ) );",
+        "return cameraCoef / ( cameraFarPlusNear - unpackDepth( texture2D( tDepth, coord ) ) * cameraFarMinusNear );",
 
-    "}",
-     */
-    "float readDepth( const in vec2 coord ) {",
 
-    // "return ( 2.0 * cameraNear ) / ( cameraFar + cameraNear - unpackDepth( texture2D( tDepth, coord ) ) * ( cameraFar - cameraNear ) );",
-    "return cameraCoef / ( cameraFarPlusNear - unpackDepth( texture2D( tDepth, coord ) ) * cameraFarMinusNear );",
+        "}",
 
+        "float compareDepths( const in float depth1, const in float depth2, inout int far ) {",
 
-    "}",
+        "float garea = 2.0;",                         // gauss bell width
+        "float diff = ( depth1 - depth2 ) * 100.0;",  // depth difference (0-100)
 
-    "float compareDepths( const in float depth1, const in float depth2, inout int far ) {",
+        // reduce left bell width to avoid self-shadowing
 
-    "float garea = 2.0;",                         // gauss bell width
-    "float diff = ( depth1 - depth2 ) * 100.0;",  // depth difference (0-100)
+        "if ( diff < gDisplace ) {",
 
-    // reduce left bell width to avoid self-shadowing
+        "garea = diffArea;",
 
-    "if ( diff < gDisplace ) {",
+        "} else {",
 
-    "garea = diffArea;",
+        "far = 1;",
 
-    "} else {",
+        "}",
 
-    "far = 1;",
+        "float dd = diff - gDisplace;",
+        "float gauss = pow( EULER, -2.0 * dd * dd / ( garea * garea ) );",
+        "return gauss;",
 
-    "}",
+        "}",
 
-    "float dd = diff - gDisplace;",
-    "float gauss = pow( EULER, -2.0 * dd * dd / ( garea * garea ) );",
-    "return gauss;",
+        "float calcAO( float depth, float dw, float dh ) {",
 
-    "}",
+        "float dd = radius - depth * radius;",
+        "vec2 vv = vec2( dw, dh );",
 
-    "float calcAO( float depth, float dw, float dh ) {",
+        "vec2 coord1 = vUv + dd * vv;",
+        "vec2 coord2 = vUv - dd * vv;",
 
-    "float dd = radius - depth * radius;",
-    "vec2 vv = vec2( dw, dh );",
+        "float temp1 = 0.0;",
+        "float temp2 = 0.0;",
 
-    "vec2 coord1 = vUv + dd * vv;",
-    "vec2 coord2 = vUv - dd * vv;",
+        "int far = 0;",
+        "temp1 = compareDepths( depth, readDepth( coord1 ), far );",
 
-    "float temp1 = 0.0;",
-    "float temp2 = 0.0;",
+        // DEPTH EXTRAPOLATION
 
-    "int far = 0;",
-    "temp1 = compareDepths( depth, readDepth( coord1 ), far );",
+        "if ( far > 0 ) {",
 
-    // DEPTH EXTRAPOLATION
+        "temp2 = compareDepths( readDepth( coord2 ), depth, far );",
+        "temp1 += ( 1.0 - temp1 ) * temp2;",
 
-    "if ( far > 0 ) {",
+        "}",
 
-    "temp2 = compareDepths( readDepth( coord2 ), depth, far );",
-    "temp1 += ( 1.0 - temp1 ) * temp2;",
+        "return temp1;",
 
-    "}",
+        "}",
 
-    "return temp1;",
+        "void main() {",
 
-    "}",
+        "vec2 noise = rand( vUv );",
+        "float depth = readDepth( vUv );",
 
-    "void main() {",
+        "float tt = clamp( depth, aoClamp, 1.0 );",
 
-    "vec2 noise = rand( vUv );",
-    "float depth = readDepth( vUv );",
+        "float w = ( 1.0 / width )  / tt + ( noise.x * ( 1.0 - noise.x ) );",
+        "float h = ( 1.0 / height ) / tt + ( noise.y * ( 1.0 - noise.y ) );",
 
-    "float tt = clamp( depth, aoClamp, 1.0 );",
+        "float pw;",
+        "float ph;",
 
-    "float w = ( 1.0 / width )  / tt + ( noise.x * ( 1.0 - noise.x ) );",
-    "float h = ( 1.0 / height ) / tt + ( noise.y * ( 1.0 - noise.y ) );",
+        "float ao;",
 
-    "float pw;",
-    "float ph;",
+        "float dz = 1.0 / float( samples );",
+        "float z = 1.0 - dz / 2.0;",
+        "float l = 0.0;",
 
-    "float ao;",
+        "for ( int i = 0; i <= samples; i ++ ) {",
 
-    "float dz = 1.0 / float( samples );",
-    "float z = 1.0 - dz / 2.0;",
-    "float l = 0.0;",
+        "float r = sqrt( 1.0 - z );",
 
-    "for ( int i = 0; i <= samples; i ++ ) {",
+        "pw = cos( l ) * r;",
+        "ph = sin( l ) * r;",
+        "ao += calcAO( depth, pw * w, ph * h );",
+        "z = z - dz;",
+        "l = l + DL;",
 
-    "float r = sqrt( 1.0 - z );",
+        "}",
 
-    "pw = cos( l ) * r;",
-    "ph = sin( l ) * r;",
-    "ao += calcAO( depth, pw * w, ph * h );",
-    "z = z - dz;",
-    "l = l + DL;",
+        "ao /= float( samples );",
+        "ao = 1.0 - ao;",
 
-    "}",
+        "vec3 color = texture2D( tDiffuse, vUv ).rgb;",
 
-    "ao /= float( samples );",
-    "ao = 1.0 - ao;",
-    /*
-    "if ( fogEnabled ) {",
+        "vec3 lumcoeff = vec3( 0.299, 0.587, 0.114 );",
+        "float lum = dot( color.rgb, lumcoeff );",
+        "vec3 luminance = vec3( lum );",
 
-    "ao = mix( ao, 1.0, doFog() );",
+        "vec3 final = vec3( color * mix( vec3( ao ), vec3( 1.0 ), luminance * lumInfluence ) );",  // mix( color * ao, white, luminance )
 
-    "}",
-     */
-    "vec3 color = texture2D( tDiffuse, vUv ).rgb;",
+        "if ( onlyAO ) {",
 
-    "vec3 lumcoeff = vec3( 0.299, 0.587, 0.114 );",
-    "float lum = dot( color.rgb, lumcoeff );",
-    "vec3 luminance = vec3( lum );",
+        "final = onlyAOColor * vec3( mix( vec3( ao ), vec3( 1.0 ), luminance * lumInfluence ) );",  // ambient occlusion only
 
-    "vec3 final = vec3( color * mix( vec3( ao ), vec3( 1.0 ), luminance * lumInfluence ) );",  // mix( color * ao, white, luminance )
+        "}",
 
-    "if ( onlyAO ) {",
+        "gl_FragColor = vec4( final, 1.0 );",
 
-    "final = onlyAOColor * vec3( mix( vec3( ao ), vec3( 1.0 ), luminance * lumInfluence ) );",  // ambient occlusion only
+        "}"
 
-    "}",
-
-    "gl_FragColor = vec4( final, 1.0 );",
-
-    "}"
-
-].join("\n")
-
+    ].join("\n")
 }
-
 
 };

@@ -23,21 +23,29 @@ function Bubble() {
     this.INTERSECTED = null;
     this.SELECTED = null;
     this.axes = null;
-   // this.keyboard = new KeyboardState();
+    this.keyboard = new KeyboardState();
     this.SHADOW_MAP_WIDTH =2048;
     this.SHADOW_MAP_HEIGHT=2048;
-    this.quadCamera = null;
-    this.quadScene = null;
-    this.quadMaterial = null;
+    //this.quadCamera = null;
+    //this.quadScene = null;
+    //this.quadMaterial = null;
 
+    this.composer = null;
+    this.depthMaterial = null;
+    this.depthTarget = null;
+    this.SSAOShader = null;
+    this.FXAAShader = null;
 
     this.init = __bind(this.init, this);
+    this.createPostProcessing = __bind(this.createPostProcessing, this);
+
     this.fillScene = __bind(this.fillScene, this);
     this.render = __bind(this.render, this);
     this.animate = __bind(this.animate, this);
     this.onDocumentMouseDown = __bind(this.onDocumentMouseDown, this);
     this.onDocumentMouseMove = __bind(this.onDocumentMouseMove, this);
     this.onDocumentMouseUp = __bind(this.onDocumentMouseUp, this);
+    this.onWindowResize = __bind(this.onWindowResize, this);
 }
 
 Bubble.prototype = {
@@ -58,27 +66,62 @@ Bubble.prototype = {
 
         this.quadCamera = new THREE.OrthographicCamera(this.SHADOW_MAP_WIDTH/-2, this.SHADOW_MAP_WIDTH/2,this.SHADOW_MAP_HEIGHT/2.0, this.SHADOW_MAP_HEIGHT/-2.0, 0.1,300 );
         this.quadCamera.position.z = 100;
-
+        this.showShadow = false;
 
         this.projector = new THREE.Projector();
-
-        this.renderer = new THREE.WebGLRenderer({ antialias: true });
+        this.fillScene();
+        //render
+        this.renderer = new THREE.WebGLRenderer();
         this.renderer.gammaInput = true;
         this.renderer.gammaOutput = true;
         this.renderer.autoClear = false;
+
         this.renderer.shadowMapEnabled = true;
         //this.renderer.shadowMapCascade = true;
-        this.renderer.shadowMapType = THREE.PCFSoftShadowMap;
-
+        //this.renderer.shadowMapType = THREE.PCFSoftShadowMap;
+        //this.renderer.shadowMapType = THREE.VSMShadowMap;   //Try to apply VSMShadowMap
+        this.renderer.shadowMapType = THREE.ESMShadowMap;   //Try to apply ESMShadowMap
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.container.appendChild(this.renderer.domElement);
         this.renderer.shadowMapCullFrontFaces = false;
-        this.fillScene();
+        this.createPostProcessing();
+
         this.renderer.domElement.addEventListener('mousemove', this.onDocumentMouseMove, false);
         this.renderer.domElement.addEventListener('mousedown', this.onDocumentMouseDown, false);
         this.renderer.domElement.addEventListener('mouseup', this.onDocumentMouseUp, false);
         window.addEventListener('resize', this.onWindowResize, false);
     },
+    createPostProcessing:function(){
+        //postprocessing
+        //Depth
+        var depthShader = THREE.ShaderLib[ "depthRGBA" ];
+        var depthUniforms = THREE.UniformsUtils.clone( depthShader.uniforms );
+        this.depthMaterial = new THREE.ShaderMaterial( { fragmentShader: depthShader.fragmentShader, vertexShader: depthShader.vertexShader, uniforms: depthUniforms } );
+        this.depthMaterial.blending = THREE.NoBlending;
+
+        //this.SSAOShader = new THREE.ShaderPass(THREE.SSAOShader);
+        this.SSAOShader = new THREE.ShaderPass(fiberShader["custom_SSAOShader"]);
+        this.SSAOShader.enabled = true;
+        this.depthTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight,
+            { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, format: THREE.RGBAFormat });
+        this.SSAOShader.uniforms[ 'tDepth' ].value = this.depthTarget;
+        this.SSAOShader.uniforms[ 'size' ].value.set( window.innerWidth, window.innerHeight );
+        this.SSAOShader.uniforms[ 'cameraNear' ].value = this.camera.near;
+        this.SSAOShader.uniforms[ 'cameraFar' ].value = this.camera.far;
+        this.SSAOShader.uniforms[ 'aoClamp' ].value = 0.7;
+        this.SSAOShader.uniforms[ 'lumInfluence' ].value = 0.1;
+        this.FXAAShader = new THREE.ShaderPass(THREE.FXAAShader);
+        this.FXAAShader.renderToScreen = true;
+        this.FXAAShader.uniforms[ 'resolution' ].value.set( 1 / window.innerWidth, 1 / window.innerHeight );
+
+        var renderPass = new THREE.RenderPass(this.scene, this.camera);
+
+        this.composer = new THREE.EffectComposer(this.renderer);
+        this.composer.addPass(renderPass);
+        this.composer.addPass( this.SSAOShader );
+        this.composer.addPass( this.FXAAShader );
+    },
+
     fillScene: function () {
         this.scene = new THREE.Scene();
         var _this = this;
@@ -88,8 +131,8 @@ Bubble.prototype = {
             console.log(item, loaded, total);
         };
         var cc_loader = new ObjectLoader(manager);
-        //cc_loader.load('./whole_s4.data', function (object)
-        cc_loader.load('./s1_cc.data', function (object)
+        cc_loader.load('./whole_s4.data', function (object)
+            //cc_loader.load('./s1_cc.data', function (object)
         {
             if (cc_loader.center !== null)
             {
@@ -116,57 +159,33 @@ Bubble.prototype = {
                 _this.scene.add(ground);
             }
         });
-        //this.controls = new TrackballControls(this.mainGroup);
-        this.scene.add(this.mainGroup);
+       this.scene.add(this.mainGroup);
         var geometry = new THREE.SphereGeometry(10, 40, 40);
         var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }));
-        object.position.x = 0;
-        object.position.y = 100;
-        object.position.z = 0;
+        object.position.x = 42;
+        object.position.y = 111;
+        object.position.z = 6;
         object.receiveShadow = true;
         this.scene.add(object);
         this.objects.push(object);
-        var light = new THREE.DirectionalLight(0xffffff);
-        light.position.set(0, 0, 1);
-        this.scene.add(light);
+
+         var light = new THREE.DirectionalLight(0xffffff);
+         light.position.set(0, 0, 1);
+         this.scene.add(light);
+
         this.light = new THREE.DirectionalLight(0xffffff);
         this.light.position.copy(object.position);
-        //light.target.position = mainGroup.position;
         this.light.castShadow = true;
-
         this.light.shadowCameraNear = 0.1;
-        this.light.shadowCameraFar = this.camera.far/4;
+        this.light.shadowCameraFar = this.camera.far/2;
         this.light.shadowCameraFov = 90;
-
-        this.light.shadowCameraVisible = true;
-
-        this.light.shadowBias = 0.0022;
+        this.light.shadowCameraVisible = false;
+        this.light.shadowBias = 0.0;
         this.light.shadowDarkness = 0.5;
         this.light.shadowMapWidth = this.SHADOW_MAP_WIDTH;
         this.light.shadowMapHeight = this.SHADOW_MAP_HEIGHT;
-
-        function setShadowDarkness(light, r, g, b)
-        {
-            r /= 255;
-            g /= 255;
-            b /= 255;
-            var avg = (r + g + b) / 3;
-
-            light.shadowDarkness = avg * 0.5;
-        }
         this.scene.add( this.light );
 
-        this.quadScene = new THREE.Scene ();
-
-        var shader = THREE.UnpackDepthRGBAShader;
-        var uniforms = new THREE.UniformsUtils.clone( shader.uniforms );
-        uniforms.tDiffuse.value = this.light.shadowMap;
-        this.quadMaterial  = new THREE.ShaderMaterial( { vertexShader: shader.vertexShader, fragmentShader: shader.fragmentShader, uniforms: uniforms } );
-
-        var mesh = new THREE.Mesh ( new THREE.PlaneGeometry (window.innerWidth/4, window.innerHeight/4), this.quadMaterial);
-        mesh.position.x = this.quadCamera.left + window.innerWidth/8+10;
-        mesh.position.y = this.quadCamera.top- window.innerHeight/8-10;
-        this.quadScene.add (mesh);
         //plane for select sphere selector
         this.plane = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000, 8, 8), new THREE.MeshBasicMaterial({ color: 0xFF0000, opacity: 0.25}));
         this.plane.visible = false;
@@ -209,6 +228,9 @@ Bubble.prototype = {
         this.camera.aspect = window.innerWidth / window.innerHeight;
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.depthTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight);
+        this.SSAOShader.uniforms[ 'size' ].value.set( window.innerWidth, window.innerHeight );
+        this.FXAAShader.uniforms[ 'resolution' ].value.set( 1 / window.innerWidth, 1 / window.innerHeight );
     },
     onDocumentMouseMove: function (event) {
         event.preventDefault();
@@ -221,7 +243,7 @@ Bubble.prototype = {
             var intersects = raycaster.intersectObject(this.plane);
             this.SELECTED.position.copy(intersects[ 0 ].point.sub(this.offset));
             this.light.position.copy(this.SELECTED.position);
-
+            //console.log("Light Position:" + this.light.position.x + " " + this.light.position.y + " " + this.light.position.z);
             return;
         }
 
@@ -286,11 +308,17 @@ Bubble.prototype = {
 
     render: function () {
         this.controls.update();
-        //this.renderer.clear();
-        //this.renderer.render(this.scene, this.camera);
+        this.keyboard.update();
+
+        this.renderer.autoClear = false;
+        this.renderer.autoUpdateObjects = true;
         this.scene.overrideMaterial = this.depthMaterial;
         this.renderer.render( this.scene, this.camera, this.depthTarget );
         this.scene.overrideMaterial = null;
+        this.renderer.clearDepth();
         this.composer.render();
+
+
+
     }
 };

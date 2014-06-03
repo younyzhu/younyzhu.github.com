@@ -148,6 +148,12 @@ When loader a dataset, we need to know which is to select and which is to delete
  [http://codeflow.org/entries/2011/oct/25/webgl-screenspace-ambient-occlusion/](http://codeflow.org/entries/2011/oct/25/webgl-screenspace-ambient-occlusion/)
   The latter one looks pretty good.
 
+* 6/3/2014
+1. Comtinue try to code the SSAO, but I find it is hard to debug the shader, so I think I should modify the shader(SSAO) Three.js has, and then applied with the cast shadow before.
+2. So I try a lot of time to combine the SSAO with the casting shadow. Finally, it seems works.
+3. [Test/ssao.html](https://younyzhu.github.com/Composition_Visualization/Test/ssao.html): SSAO + one light(top right) (phong shading with casting shadow) + Directional light(position:0, 0, 1)
+4. Parameters need to adjust.
+
 **Till now incluse files**:
     //jquery related lab   
     <script src="./jqueryLib/jquery-1.10.2.js" type="text/javascript"></script>

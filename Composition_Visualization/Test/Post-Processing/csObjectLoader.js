@@ -91,15 +91,15 @@ ObjectLoader.prototype = {
                 false,
                 vertexColor
             );
-            //var tubematerial = new THREE.MeshPhongMaterial({vertexColors: THREE.VertexColors});
-            /*var shader = THREE.ShaderLib[ "phong" ];
+            //tubematerial = new THREE.MeshPhongMaterial({vertexColors: THREE.VertexColors});
+            var shader = THREE.ShaderLib[ "phong" ];
             var uniforms = THREE.UniformsUtils.clone( shader.uniforms );
             var tubematerial = new THREE.ShaderMaterial( { vertexShader: shader.vertexShader, fragmentShader: shader.fragmentShader, uniforms:uniforms,vertexColors: THREE.VertexColors,lights: true } );
-             */
+           /*
             var tubematerial = new THREE.ShaderMaterial( { vertexShader: fiberShader["custom_phong"].vertexShader,
                 fragmentShader: fiberShader["custom_phong"].fragmentShader,
                 uniforms: fiberShader["custom_phong"].uniforms,vertexColors: THREE.VertexColors,lights: true } );
-
+            */
             var tubemesh = new THREE.Mesh( tubegeometry, tubematerial );
             object.add( tubemesh );
             startNum+=parseInt(totalVertexNum)+1;
