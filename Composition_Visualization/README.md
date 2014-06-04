@@ -156,7 +156,11 @@ When loader a dataset, we need to know which is to select and which is to delete
 3. [Test/ssao.html](https://younyzhu.github.com/Composition_Visualization/Test/ssao.html): SSAO + one light(top right) (phong shading with casting shadow) + Directional light(position:0, 0, 1)
 4. Parameters need to adjust.
 
-**Till now incluse files**:
+* 6/4/2014
+1. intergrate the SSAO + casting shadow to the UI
+2.fix a bug when resizing the window and zoom in and out define a depthPassShader
+
+**Till now incluse files**
     //jquery related lab   
     <script src="./jqueryLib/jquery-1.10.2.js" type="text/javascript"></script>
     <script src="./jqueryLib/jquery-ui-1.10.4.js" type="text/javascript"></script>

@@ -98,9 +98,11 @@ ObjectLoader.prototype = {
              */
             var tubematerial = new THREE.ShaderMaterial( { vertexShader: fiberShader["custom_phong"].vertexShader,
                 fragmentShader: fiberShader["custom_phong"].fragmentShader,
-                uniforms: fiberShader["custom_phong"].uniforms,vertexColors: THREE.VertexColors,lights: true } );
+                uniforms: fiberShader["custom_phong"].uniforms, vertexColors: THREE.VertexColors,lights: true } );
 
             var tubemesh = new THREE.Mesh( tubegeometry, tubematerial );
+            tubemesh.castShadow = true;
+            tubemesh.receiveShadow = true;
             object.add( tubemesh );
             startNum+=parseInt(totalVertexNum)+1;
         }

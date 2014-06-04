@@ -195,7 +195,7 @@ var fiberShader = {
         //"fogNear":      { type: "f", value: 5 },
         //"fogFar":       { type: "f", value: 100 },
         //"fogEnabled":   { type: "i", value: 0 },
-        "onlyAO":       { type: "i", value: 1 },
+        "onlyAO":       { type: "i", value: 0 },
         "aoClamp":      { type: "f", value: 0.3 },
         "lumInfluence": { type: "f", value: 0.9 }
 

@@ -24,11 +24,13 @@ function Bubble() {
     this.SELECTED = null;
     this.axes = null;
     this.keyboard = new KeyboardState();
+
     this.SHADOW_MAP_WIDTH =2048;
     this.SHADOW_MAP_HEIGHT=2048;
     //this.quadCamera = null;
     //this.quadScene = null;
     //this.quadMaterial = null;
+    this.depthPassPlugin = null;
 
     this.composer = null;
     this.depthMaterial = null;
@@ -63,11 +65,11 @@ Bubble.prototype = {
         this.controls.noPan = false;
         this.controls.staticMoving = true;
         this.controls.dynamicDampingFactor = 0.3;
-
+        /*
         this.quadCamera = new THREE.OrthographicCamera(this.SHADOW_MAP_WIDTH/-2, this.SHADOW_MAP_WIDTH/2,this.SHADOW_MAP_HEIGHT/2.0, this.SHADOW_MAP_HEIGHT/-2.0, 0.1,300 );
         this.quadCamera.position.z = 100;
         this.showShadow = false;
-
+         */
         this.projector = new THREE.Projector();
         this.fillScene();
         //render
@@ -110,6 +112,7 @@ Bubble.prototype = {
         this.SSAOShader.uniforms[ 'cameraFar' ].value = this.camera.far;
         this.SSAOShader.uniforms[ 'aoClamp' ].value = 0.7;
         this.SSAOShader.uniforms[ 'lumInfluence' ].value = 0.1;
+        //this.SSAOShader.renderToScreen = true;
         this.FXAAShader = new THREE.ShaderPass(THREE.FXAAShader);
         this.FXAAShader.renderToScreen = true;
         this.FXAAShader.uniforms[ 'resolution' ].value.set( 1 / window.innerWidth, 1 / window.innerHeight );
@@ -120,6 +123,10 @@ Bubble.prototype = {
         this.composer.addPass(renderPass);
         this.composer.addPass( this.SSAOShader );
         this.composer.addPass( this.FXAAShader );
+
+        this.depthPassPlugin = new THREE.DepthPassPlugin();
+        this.depthPassPlugin.renderTarget = this.depthTarget;
+        this.renderer.addPrePlugin(  this.depthPassPlugin );
     },
 
     fillScene: function () {
@@ -139,13 +146,15 @@ Bubble.prototype = {
                 object.position.x = -cc_loader.center.x;
                 object.position.y = -cc_loader.center.y;
                 object.position.z = -cc_loader.center.z;
-                object.traverse(function(ribbon){
+                /*
+                object.traverse(function(ribbon){   //Moved to the loader
                     if(ribbon instanceof THREE.Mesh)
                     {
                         ribbon.castShadow = true;
                         ribbon.receiveShadow = true;
                     }
                 });
+                */
                 _this.mainGroup.add(object);
                 var groundMaterial = new THREE.MeshPhongMaterial({
                     color: 0x6C6C6C
@@ -228,10 +237,15 @@ Bubble.prototype = {
     onWindowResize: function () {
         this.camera.aspect = window.innerWidth / window.innerHeight;
         this.camera.updateProjectionMatrix();
+
         this.renderer.setSize(window.innerWidth, window.innerHeight);
+
         this.depthTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight);
+        this.depthPassPlugin.renderTarget = this.depthTarget;
+        this.SSAOShader.uniforms[ 'tDepth' ].value = this.depthTarget;
         this.SSAOShader.uniforms[ 'size' ].value.set( window.innerWidth, window.innerHeight );
         this.FXAAShader.uniforms[ 'resolution' ].value.set( 1 / window.innerWidth, 1 / window.innerHeight );
+
     },
     onDocumentMouseMove: function (event) {
         event.preventDefault();
@@ -310,12 +324,17 @@ Bubble.prototype = {
     render: function () {
         this.controls.update();
         this.keyboard.update();
+
         this.renderer.shadowMapEnabled = false;
-        this.renderer.autoClear = false;
+        //this.renderer.autoClear = false;
         this.renderer.autoUpdateObjects = true;
+        this.depthPassPlugin.enabled = true;
+
         this.scene.overrideMaterial = this.depthMaterial;
         this.renderer.render( this.scene, this.camera, this.depthTarget );
         this.scene.overrideMaterial = null;
+
+        this.depthPassPlugin.enabled = false;
         this.renderer.clearDepth();
         this.renderer.shadowMapEnabled = true;
         this.composer.render();

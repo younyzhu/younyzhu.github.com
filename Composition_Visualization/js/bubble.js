@@ -33,6 +33,9 @@ function Bubble(id, selectedFibers, deletedFibers, objectCenter,shape) {
     this.objects = [];
     this.plane = null;
 
+    // Axes
+    this.axes = null;
+
     this.mouse = new THREE.Vector2();
     this.offset = new THREE.Vector3();
 
@@ -45,9 +48,21 @@ function Bubble(id, selectedFibers, deletedFibers, objectCenter,shape) {
     this.ANDOR = "OR";
     //Keyboard
     this.keyboard = new KeyboardState();
-    this.radius = 10;
+    this.radius = 10;//Select Ball radius
+    //Shadow Mapping
+    this.SHADOW_MAP_WIDTH =2048;
+    this.SHADOW_MAP_HEIGHT=2048;
+    //Post processing
+    this.composer = null;
+    this.depthMaterial = null; //depth
+    this.depthPassPlugin = null; //render depth
+    this.depthTarget = null;
+    this.SSAOShader = null;   //ssao
+    this.FXAAShader = null;   //fxaa
+
 
     this.init = __bind(this.init, this);
+    this.createPostProcessing = __bind(this.createPostProcessing, this);
     this.fillScene = __bind(this.fillScene, this);
     this.fillMainGroup = __bind(this.fillMainGroup, this);
     this.update = __bind(this.update, this);
@@ -65,7 +80,7 @@ function Bubble(id, selectedFibers, deletedFibers, objectCenter,shape) {
     this.onDocumentMouseDown = __bind(this.onDocumentMouseDown, this);
     this.onDocumentMouseMove = __bind(this.onDocumentMouseMove, this);
     this.onDocumentMouseUp = __bind(this.onDocumentMouseUp, this);
-
+    this.onDivResize = __bind(this.onDivResize, this);
 }
 Bubble.prototype = {
     constructor: Bubble,
@@ -97,7 +112,144 @@ Bubble.prototype = {
             this.render();
         }
     },
+
+    init: function () {
+        this.cWidth = 400;
+        this.cHeight = 400;
+        var canvasRatio = this.cWidth / this.cHeight;
+        var scope = this;
+        // CAMERA
+        this.camera = new THREE.PerspectiveCamera(60, canvasRatio, 1, 4000);
+        this.camera.position.set(0, 0, 220);
+
+        this.controls = new THREE.TrackballControls(this.camera, this.container);
+        this.controls.rotateSpeed = 1.0;
+        this.controls.zoomSpeed = 1.2;
+        this.controls.panSpeed = 0.8;
+        this.controls.noZoom = false;
+        this.controls.noPan = false;
+        this.controls.staticMoving = true;
+        this.controls.dynamicDampingFactor = 0.3;
+
+        this.projector = new THREE.Projector();
+
+        // RENDERER
+        this.renderer = new THREE.WebGLRenderer();
+        this.renderer.gammaInput = true;
+        this.renderer.gammaOutput = true;
+        this.renderer.setSize(this.cWidth, this.cHeight);
+        this.container.appendChild(this.renderer.domElement);
+        this.fillScene();
+
+        $('#container' + this.id).resize(function onWindowResize() {
+            var $containerId = $('#container' + scope.id);
+            scope.cWidth = $containerId.width();
+            scope.cHeight = $containerId.height();
+            scope.camera.aspect = scope.cWidth / scope.cHeight;
+            scope.camera.updateProjectionMatrix();
+            scope.renderer.autoClear = true;
+            scope.renderer.setSize(scope.cWidth, scope.cHeight);
+            if(scope.renderShape === 'Tube')
+            {
+                scope.depthTarget = new THREE.WebGLRenderTarget( scope.cWidth, scope.cHeight);
+                scope.depthPassPlugin.renderTarget = scope.depthTarget;
+                scope.SSAOShader.uniforms[ 'tDepth' ].value = scope.depthTarget;
+                scope.SSAOShader.uniforms[ 'size' ].value.set( scope.cWidth, scope.cHeight );
+                scope.FXAAShader.uniforms[ 'resolution' ].value.set( 1 / scope.cWidth, 1 / scope.cHeight );
+
+            }
+         $('#bubble' + scope.id).children('#paraMenu').css({left: scope.cWidth - 15});
+        });
+
+        this.renderer.domElement.addEventListener('mousemove', this.onDocumentMouseMove, false);
+        this.renderer.domElement.addEventListener('mousedown', this.onDocumentMouseDown, false);
+        this.renderer.domElement.addEventListener('mouseup', this.onDocumentMouseUp, false);
+        //this.renderer.domElement.addEventListener('resize', this.onDivResize, false);
+    },
+    onDivResize:function(){
+        var scope = this;
+        var $containerId = $('#container' + scope.id);
+        scope.cWidth = $containerId.width();
+        scope.cHeight = $containerId.height();
+        scope.camera.aspect = scope.cWidth / scope.cHeight;
+        scope.camera.updateProjectionMatrix();
+
+        scope.renderer.setSize(scope.cWidth, scope.cHeight);
+        if(scope.renderShape === 'Tube')
+        {
+            scope.depthTarget = new THREE.WebGLRenderTarget( scope.cWidth, scope.cHeight);
+            scope.depthPassPlugin.renderTarget = scope.depthTarget;
+            scope.SSAOShader.uniforms[ 'tDepth' ].value = scope.depthTarget;
+            scope.SSAOShader.uniforms[ 'size' ].value.set( scope.cWidth, scope.cHeight );
+            scope.FXAAShader.uniforms[ 'resolution' ].value.set( 1 / scope.cWidth, 1 / scope.cHeight );
+
+        }
+        $('#bubble' + scope.id).children('#paraMenu').css({left: scope.cWidth - 15});
+    },
+    createPostProcessing:function(){
+        this.renderer.shadowMapEnabled = true;
+        //this.renderer.shadowMapCascade = true;
+        //this.renderer.shadowMapType = THREE.PCFSoftShadowMap;
+        //this.renderer.shadowMapType = THREE.VSMShadowMap;   //Try to apply VSMShadowMap
+        this.renderer.shadowMapType = THREE.ESMShadowMap;   //Try to apply ESMShadowMap
+        this.renderer.shadowMapCullFrontFaces = false;
+        //postprocessing
+        //Depth
+        var depthShader = THREE.ShaderLib[ "depthRGBA" ];
+        var depthUniforms = THREE.UniformsUtils.clone( depthShader.uniforms );
+        this.depthMaterial = new THREE.ShaderMaterial( { fragmentShader: depthShader.fragmentShader, vertexShader: depthShader.vertexShader, uniforms: depthUniforms } );
+        this.depthMaterial.blending = THREE.NoBlending;
+
+        //this.SSAOShader = new THREE.ShaderPass(THREE.SSAOShader);
+        this.SSAOShader = new THREE.ShaderPass(fiberShader["custom_SSAOShader"]);
+        this.SSAOShader.enabled = true;
+        var $containerId = $('#container' + this.id);
+        this.cWidth = $containerId.width();
+        this.cHeight = $containerId.height();
+        this.depthTarget = new THREE.WebGLRenderTarget( this.cWidth, this.cHeight,
+            { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, format: THREE.RGBAFormat });
+        this.SSAOShader.uniforms[ 'tDepth' ].value = this.depthTarget;
+        this.SSAOShader.uniforms[ 'size' ].value.set( this.cWidth, this.cHeight );
+        this.SSAOShader.uniforms[ 'cameraNear' ].value = this.camera.near;
+        this.SSAOShader.uniforms[ 'cameraFar' ].value = this.camera.far;
+        this.SSAOShader.uniforms[ 'aoClamp' ].value = 0.7;
+        this.SSAOShader.uniforms[ 'lumInfluence' ].value = 0.1;
+        //this.SSAOShader.renderToScreen = true;
+        this.FXAAShader = new THREE.ShaderPass(THREE.FXAAShader);
+        this.FXAAShader.renderToScreen = true;
+        this.FXAAShader.uniforms[ 'resolution' ].value.set( 1 / this.cWidth, 1 / this.cHeight );
+
+        var renderPass = new THREE.RenderPass(this.scene, this.camera);
+
+        this.composer = new THREE.EffectComposer(this.renderer);
+        this.composer.addPass(renderPass);
+        this.composer.addPass( this.SSAOShader );
+        this.composer.addPass( this.FXAAShader );
+
+        this.depthPassPlugin = new THREE.DepthPassPlugin();
+        this.depthPassPlugin.renderTarget = this.depthTarget;
+        this.renderer.addPrePlugin(  this.depthPassPlugin );
+    },
+
     fillMainGroup: function(){
+        if(this.renderShape !== "Tube")
+        {
+            // Axes
+            this.axes = new THREE.Object3D();
+            this.axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(100, 0, 0), 0xFF0000, false)); // +X
+            this.axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(-100, 0, 0), 0x800000, true)); // -X
+            this.axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 100, 0), 0x00FF00, false)); // +Y
+            this.axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, -100, 0), 0x008000, true)); // -Y
+            this.axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, 100), 0x0000FF, false)); // +Z
+            this.axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, -100), 0x000080, true)); // -Z
+            this.mainGroup.add(this.axes);
+        }
+        else
+        {
+            this.createPostProcessing();
+        }
+
+
         var scope = this;
         var manager = new THREE.LoadingManager();
         manager.onProgress = function (item, loaded, total) {
@@ -105,6 +257,7 @@ Bubble.prototype = {
         };
         var loader = new ObjectLoader(manager, this.selectedFibers, this.deletedFibers, this.objCenter, this.renderShape);
         loader.load('./data/whole_s4.data', function (object) {
+        //loader.load('./data/s1_cc.data', function (object){
             if (loader.center !== null) {
                 object.position.x = -loader.center.x;
                 object.position.y = -loader.center.y;
@@ -114,36 +267,21 @@ Bubble.prototype = {
             }
         });
         this.scene.add(this.mainGroup);
-    },
-    fillScene: function () {
-        this.scene = new THREE.Scene();
-        this.scene.add(new THREE.AmbientLight(0x505050));
-        var light = new THREE.DirectionalLight(0xffffff);
-        light.position.set(0, 0, 1);
-        this.scene.add(light);
-        light = new THREE.DirectionalLight(0xffffff);
-        light.position.set(0, 1, 1);
-        this.scene.add(light);
-        this.scene.add(light);
-        this.fiberSelector = new FiberSelector(this.id, this.selectors);
-        this.fillMainGroup();
-        this.plane = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000, 8, 8), new THREE.MeshBasicMaterial({ color: 0xFF0000, opacity: 0.25}));
-        this.plane.visible = false;
-        this.scene.add(this.plane);
-        // Axes
-        this.axes = buildAxes();
-        this.scene.add(this.axes);
 
-        function buildAxes() {       //just for help
-            var axes = new THREE.Object3D();
-            axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(100, 0, 0), 0xFF0000, false)); // +X
-            axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(-100, 0, 0), 0x800000, true)); // -X
-            axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 100, 0), 0x00FF00, false)); // +Y
-            axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, -100, 0), 0x008000, true)); // -Y
-            axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, 100), 0x0000FF, false)); // +Z
-            axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, -100), 0x000080, true)); // -Z
-            return axes;
-
+        if(this.renderShape ==='Tube')
+        {
+            var light = new THREE.DirectionalLight(0xffffff);
+            light.castShadow = true;
+            light.position.set(42, 111, 6 );
+            light.shadowCameraNear = 0.1;
+            light.shadowCameraFar = this.camera.far/2;
+            light.shadowCameraFov = 90;
+            light.shadowCameraVisible = false;
+            light.shadowBias = 0.0;
+            light.shadowDarkness = 1.8;
+            light.shadowMapWidth = this.SHADOW_MAP_WIDTH;
+            light.shadowMapHeight = this.SHADOW_MAP_HEIGHT;
+            this.scene.add( light );
         }
 
         function buildAxis(src, dst, colorHex, dashed) {
@@ -166,47 +304,22 @@ Bubble.prototype = {
         }
     },
 
-    init: function () {
-        this.cWidth = 400;
-        this.cHeight = 400;
-        var canvasRatio = this.cWidth / this.cHeight;
-        var scope = this;
+    fillScene: function () {
+        this.scene = new THREE.Scene();
 
-        this.projector = new THREE.Projector();
-        // RENDERER
-        this.renderer = new THREE.WebGLRenderer();
-        this.renderer.gammaInput = true;
-        this.renderer.gammaOutput = true;
-        this.renderer.setSize(this.cWidth, this.cHeight);
-        this.container.appendChild(this.renderer.domElement);
-        // CAMERA
-        this.camera = new THREE.PerspectiveCamera(60, canvasRatio, 1, 4000);
-        this.camera.position.set(0, 0, 220);
+        this.fiberSelector = new FiberSelector(this.id, this.selectors);
+        this.fillMainGroup();
+        //this.scene.add(new THREE.AmbientLight(0x505050));   No ambient light, AO instead
+        var dlight = new THREE.DirectionalLight(0xffffff);  //Keep a light
+        dlight.position.set(0, 0, 1);
+        this.scene.add(dlight);
+        this.plane = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000, 8, 8), new THREE.MeshBasicMaterial({ color: 0xFF0000, opacity: 0.25}));
+        this.plane.visible = false;
+        this.scene.add(this.plane);
 
-        this.controls = new THREE.TrackballControls(this.camera, this.container);
-        this.controls.rotateSpeed = 1.0;
-        this.controls.zoomSpeed = 1.2;
-        this.controls.panSpeed = 0.8;
-        this.controls.noZoom = false;
-        this.controls.noPan = false;
-        this.controls.staticMoving = true;
-        this.controls.dynamicDampingFactor = 0.3;
 
-        $('#container' + this.id).resize(function onWindowResize() {
-            var $containerId = $('#container' + scope.id);
-            scope.cWidth = $containerId.width();
-            scope.cHeight = $containerId.height();
-            scope.camera.aspect = scope.cWidth / scope.cHeight;
-            scope.camera.updateProjectionMatrix();
-
-            scope.renderer.setSize(scope.cWidth, scope.cHeight);
-            $('#bubble' + scope.id).children('#paraMenu').css({left: scope.cWidth - 15});
-        });
-
-        this.renderer.domElement.addEventListener('mousemove', this.onDocumentMouseMove, false);
-        this.renderer.domElement.addEventListener('mousedown', this.onDocumentMouseDown, false);
-        this.renderer.domElement.addEventListener('mouseup', this.onDocumentMouseUp, false);
     },
+
     resetAllResult: function () {
         //Should not put this pice of code here, The logic is when we add a new sphere,
         //we should calculate the set result(intersect, union), so when we add a new selectors, we should do this
@@ -255,7 +368,11 @@ Bubble.prototype = {
     onDocumentMouseMove: function (event) {
 
         event.preventDefault();
-        var offset = $('#container'+ this.id).offset();
+
+        var $containerId = $('#container' + this.id);
+        var offset = $containerId.offset();
+        this.cWidth = $containerId.width();
+        this.cHeight = $containerId.height();
         this.mouse.x = ( (event.clientX - offset.left) / this.cWidth ) * 2 - 1;
         this.mouse.y = -( (event.clientY - offset.top) / this.cHeight ) * 2 + 1;
         var vector = new THREE.Vector3(this.mouse.x, this.mouse.y, 1);
@@ -287,7 +404,10 @@ Bubble.prototype = {
     onDocumentMouseDown: function (event) {
 
         event.preventDefault();
-        var offset = $('#container'+ this.id).offset();
+        var $containerId = $('#container' + this.id);
+        var offset = $containerId.offset();
+        this.cWidth = $containerId.width();
+        this.cHeight = $containerId.height();
         this.mouse.x = ( (event.clientX - offset.left) / this.cWidth ) * 2 - 1;
         this.mouse.y = -( (event.clientY - offset.top) / this.cHeight ) * 2 + 1;
         var vector = new THREE.Vector3(this.mouse.x, this.mouse.y, 1);
@@ -382,6 +502,27 @@ Bubble.prototype = {
     },
 
     render: function () {
-        this.renderer.render(this.scene, this.camera);
+        if(this.renderShape === 'Tube')
+        {
+            this.renderer.shadowMapEnabled = false;
+            //this.renderer.autoClear = false;
+            this.renderer.autoUpdateObjects = true;
+            this.depthPassPlugin.enabled = true;
+
+            this.scene.overrideMaterial = this.depthMaterial;
+            this.renderer.render( this.scene, this.camera, this.depthTarget );
+            this.scene.overrideMaterial = null;
+
+            this.depthPassPlugin.enabled = false;
+            this.renderer.clearDepth();
+            this.renderer.shadowMapEnabled = true;
+            this.composer.render();
+        }
+        else
+        {
+            this.renderer.clear();
+            this.renderer.render(this.scene, this.camera);
+        }
+
     }
 };

@@ -42,7 +42,7 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
     Bubbles.push(bubble);
     try {
         bubble.init();
-        bubble.fillScene();
+        //bubble.fillScene(); //add to the init();
         bubble.animate();
     }
     catch (e) {
@@ -218,10 +218,11 @@ function bubble_div(id, name, mousePosX, mousePosY) {
     tmp += '        <div class="para_header">Parameter';
     tmp += '        </div>';
     tmp += '        <ul id="para_items">';
-    tmp += '            <li class="para">Shape: ';
+    tmp += '            <li class="para">Shape:';
     tmp += '                <select id="shape">';
     tmp += '                    <option value="Line">Line</option>';
     tmp += '                    <option value="Ribbon">Ribbon</option>';
+    tmp += '                    <option value="Tube">Tube</option>';
     tmp += '                </select>';
     tmp += '            </li>';
     tmp += '            <li class="para">Size</li>';

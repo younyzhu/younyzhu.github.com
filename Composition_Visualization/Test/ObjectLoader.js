@@ -93,6 +93,7 @@ ObjectLoader.prototype = {
             );
             var tubematerial = new THREE.MeshPhongMaterial({vertexColors: THREE.VertexColors});
             var tubemesh = new THREE.Mesh( tubegeometry, tubematerial );
+
             object.add( tubemesh );
             startNum+=parseInt(totalVertexNum)+1;
         }

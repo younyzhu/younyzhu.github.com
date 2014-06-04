@@ -102,6 +102,25 @@ ObjectLoader.prototype = {
                     var mesh = new THREE.Mesh( ribbongeometry, ribbonmaterial );
                     object.add( mesh );
                 }
+                else if(this.renderShape === 'Tube')
+                {
+                    var tubegeometry = new TubeGeometry(
+                        vertexPosition,
+                            vertexPosition.length -1,
+                        0.5,
+                        6,
+                        false,
+                        vertexColor
+                    );
+                    var tubematerial = new THREE.ShaderMaterial( { vertexShader: fiberShader["custom_phong"].vertexShader,
+                        fragmentShader: fiberShader["custom_phong"].fragmentShader,
+                        uniforms: fiberShader["custom_phong"].uniforms,vertexColors: THREE.VertexColors,lights: true } );
+
+                    var tubemesh = new THREE.Mesh( tubegeometry, tubematerial );
+                    tubemesh.castShadow = true;
+                    tubemesh.receiveShadow = true;
+                    object.add( tubemesh );
+                }
             }
             startNum += parseInt(totalVertexNum) + 1;
         }
