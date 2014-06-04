@@ -157,27 +157,45 @@ When loader a dataset, we need to know which is to select and which is to delete
 4. Parameters need to adjust.
 
 * 6/4/2014
-1. intergrate the SSAO + casting shadow to the UI
-2.fix a bug when resizing the window and zoom in and out define a depthPassShader
+1. intergrate the SSAO + casting shadow to the UI    
+2. fix a bug when resizing the window and zoom in and out define a depthPassShader    
 
 **Till now incluse files**
-    //jquery related lab   
-    <script src="./jqueryLib/jquery-1.10.2.js" type="text/javascript"></script>
-    <script src="./jqueryLib/jquery-ui-1.10.4.js" type="text/javascript"></script>
-    <script src="./jqueryLib/jquery.ui.position.js" type="text/javascript"></script>
-    <script src="./jqueryLib/jquery.contextMenu.js" type="text/javascript"></script>
-    //Three.js related lab
-    <script src="js/three.js"></script>
-    <script src="js/Detector.js"></script>
-    <script src="js/KeyboardState.js"></script>
-    <script src="js/THREEx.FullScreen.js"></script>  //Add full screen
-    //Custom js code
-    <script src="js/main.js" type="text/javascript"></script>              //main
-    <script src="js/ObjectLoader.js"></script>      //model loader(line, also could include tube, ribbon js)
-    <script src="js/navigationBar.js" type="text/javascript"></script>     //Draw 2D canvas on navigation bar
-    <script src="js/bubble.js" type="text/javascript"></script>      //Render the objects
-    <script src="js/bubbleWidget.js" type="text/javascript"></script>      //Bubble widget on the main
-    <script src="js/connections.js" type="text/javascript"></script>       //connection line between two wodgets which have relationship in some kinds.
-    <script src="js/FiberSelector.js"></script>   // Sphere selector to refine fibers
-    <script src="js/ribbonGeometry.js" type="text/javascript"></script>
-    <script src="js/TubePointGeometry.js" type="text/javascript"></script>
+
+      <!--Css style-->
+      <link href="css/visualization.css" rel="stylesheet" type="text/css">
+      <link href="./jqueryLib/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
+      <link href="./jqueryLib/jquery-ui-1.10.4.css" rel="stylesheet" type="text/css" />
+      <!--Jquery Lib-->
+      <script src="./jqueryLib/jquery-1.10.2.js" type="text/javascript"></script>
+      <script src="./jqueryLib/jquery-ui-1.10.4.js" type="text/javascript"></script>
+      <script src="./jqueryLib/jquery.ui.position.js" type="text/javascript"></script>
+      <script src="./jqueryLib/jquery.contextMenu.js" type="text/javascript"></script>
+      <!--Three.js lib(modified part R66)-->
+      <script src="js/threer66.js"></script> <!-- modified part-->
+      <!--Shader:postprocessing_basic-->
+      <script type="text/javascript" src="./js/postprocessing/EffectComposer.js"></script>
+      <script type="text/javascript" src="./js/postprocessing/ShaderPass.js"></script>
+      <script type="text/javascript" src="./js/postprocessing/RenderPass.js"></script>
+      <script type="text/javascript" src="./js/postprocessing/MaskPass.js"></script>
+      <!--Shader-->
+      <script type="text/javascript" src="./js/shaders/CopyShader.js"></script>
+      <script type="text/javascript" src="./js/shaders/FXAAShader.js"></script>
+      <script type="text/javascript" src="./js/shaders/DepthPassPlugin.js"></script>
+      <script src="js/customShader.js"></script>
+      <!--Tool-->
+      <script src="js/Detector.js"></script>
+      <script src="js/TrackballControls.js"></script>
+      <script src="js/THREEx.FullScreen.js"></script>
+      <script src="js/KeyboardState.js"></script>
+      <!--Main display-->
+      <script src="js/main.js" type="text/javascript"></script>
+      <script src="js/navigationBar.js" type="text/javascript"></script>
+      <script src="js/bubbleWidget.js" type="text/javascript"></script>
+      <script src="js/connections.js" type="text/javascript"></script>
+      <script src="js/bubble.js" type="text/javascript"></script>
+      <script src="js/FiberSelector.js"></script>
+      <!--Shape-->
+      <script src="js/ObjectLoader.js"></script>
+      <script src="js/ribbonGeometry.js" type="text/javascript"></script>
+      <script src="js/tubeGeometry.js" type="text/javascript"></script>
