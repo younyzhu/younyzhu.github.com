@@ -23,31 +23,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ssao.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ssao.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Test/ssao.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.586206" vertical-offset="349" max-vertical-offset="1464">
-              <caret line="37" column="48" selection-start-line="37" selection-start-column="48" selection-end-line="37" selection-end-column="48" />
+            <state vertical-scroll-proportion="0.15057471" vertical-offset="349" max-vertical-offset="1464">
+              <caret line="20" column="44" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FXAAShader.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Test/shaders/FXAAShader.js">
+      <file leaf-file-name="ssaocustombubble.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Test/ssaocustombubble.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.721219" vertical-offset="1645" max-vertical-offset="2544">
-              <caret line="5" column="4" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="71" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="customShader.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Test/customShader.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4309" max-vertical-offset="10536">
-              <caret line="194" column="10" selection-start-line="194" selection-start-column="10" selection-end-line="194" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3949" max-vertical-offset="7968">
+              <caret line="175" column="65" selection-start-line="175" selection-start-column="58" selection-end-line="175" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -96,17 +86,17 @@
         <option value="$PROJECT_DIR$/Test/bubble.js" />
         <option value="$PROJECT_DIR$/Test/Post-Processing/ssao.html" />
         <option value="$PROJECT_DIR$/Test/csObjectLoader.js" />
-        <option value="$PROJECT_DIR$/Test/customShader.js" />
-        <option value="$PROJECT_DIR$/Test/ssaocustombubble.js" />
         <option value="$PROJECT_DIR$/Test/ssao.html" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/Test/customShader.js" />
+        <option value="$PROJECT_DIR$/Test/ssaocustombubble.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="841" />
-    <option name="y" value="7" />
-    <option name="width" value="1033" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -334,14 +324,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="841" y="7" width="1033" height="1056" extended-state="0" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3634538" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19062665" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32216215" sideWeight="0.4997367" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24432433" sideWeight="0.5002633" order="7" side_tool="true" content_ui="tabs" />
@@ -523,6 +513,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33259177" vertical-offset="1045" max-vertical-offset="22992">
           <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -572,6 +563,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.1455224" vertical-offset="486758" max-vertical-offset="907728">
           <caret line="20256" column="14" selection-start-line="20256" selection-start-column="5" selection-end-line="20256" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -601,6 +593,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360264">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -636,6 +629,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="460392" max-vertical-offset="860376">
           <caret line="19560" column="18" selection-start-line="19560" selection-start-column="18" selection-end-line="19560" selection-end-column="18" />
+          <folding>
+            <element signature="e#392680#394780#0" expanded="false" />
+            <element signature="e#392722#392830#0" expanded="false" />
+            <element signature="e#392851#393837#0" expanded="false" />
+            <element signature="e#394795#397788#0" expanded="false" />
+            <element signature="e#400917#402271#0" expanded="false" />
+            <element signature="e#402285#403497#0" expanded="false" />
+            <element signature="e#403510#404125#0" expanded="false" />
+            <element signature="e#404139#404696#0" expanded="false" />
+            <element signature="e#404154#404202#0" expanded="false" />
+            <element signature="e#405115#406587#0" expanded="false" />
+            <element signature="e#406610#418899#0" expanded="false" />
+            <element signature="e#418929#421674#0" expanded="false" />
+            <element signature="e#421879#422531#0" expanded="false" />
+            <element signature="e#422909#423983#0" expanded="false" />
+            <element signature="e#806610#819606#0" expanded="false" />
+            <element signature="e#819804#828218#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -685,6 +696,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334" vertical-offset="1988" max-vertical-offset="234792">
           <caret line="103" column="20" selection-start-line="103" selection-start-column="20" selection-end-line="103" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -699,6 +711,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7330367" vertical-offset="397" max-vertical-offset="5736">
           <caret line="44" column="4" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="4" />
+          <folding>
+            <element signature="e#8664#9902#0" expanded="false" />
+            <element signature="e#9946#10779#0" expanded="false" />
+            <element signature="e#10821#11086#0" expanded="false" />
+            <element signature="e#11117#11529#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -706,6 +724,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.4471636" vertical-offset="6865" max-vertical-offset="7776">
           <caret line="82" column="34" selection-start-line="82" selection-start-column="34" selection-end-line="82" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -738,34 +757,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Test/ssaocustombubble.js">
+    <entry file="file://$PROJECT_DIR$/Test/shaders/FXAAShader.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2669633" vertical-offset="3888" max-vertical-offset="7920">
-          <caret line="172" column="29" selection-start-line="172" selection-start-column="28" selection-end-line="172" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.37668163" vertical-offset="0" max-vertical-offset="2544">
+          <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Test/customShader.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4309" max-vertical-offset="10536">
-          <caret line="194" column="10" selection-start-line="194" selection-start-column="10" selection-end-line="194" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.50398177" vertical-offset="5749" max-vertical-offset="10536">
+          <caret line="258" column="53" selection-start-line="258" selection-start-column="0" selection-end-line="258" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/ssaocustombubble.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3949" max-vertical-offset="7968">
+          <caret line="175" column="65" selection-start-line="175" selection-start-column="58" selection-end-line="175" selection-end-column="58" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Test/ssao.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.586206" vertical-offset="349" max-vertical-offset="1464">
-          <caret line="37" column="48" selection-start-line="37" selection-start-column="48" selection-end-line="37" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Test/shaders/FXAAShader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.721219" vertical-offset="1645" max-vertical-offset="2544">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="71" />
+        <state vertical-scroll-proportion="0.15057471" vertical-offset="349" max-vertical-offset="1464">
+          <caret line="20" column="44" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
           <folding />
         </state>
       </provider>

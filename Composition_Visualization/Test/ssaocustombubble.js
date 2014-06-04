@@ -168,11 +168,11 @@ Bubble.prototype = {
         object.receiveShadow = true;
         this.scene.add(object);
         this.objects.push(object);
-
+        /*
          var light = new THREE.DirectionalLight(0xffffff);
          light.position.set(0, 0, 1);
          this.scene.add(light);
-
+        */
         this.light = new THREE.DirectionalLight(0xffffff);
         this.light.position.copy(object.position);
         this.light.castShadow = true;
@@ -181,7 +181,7 @@ Bubble.prototype = {
         this.light.shadowCameraFov = 90;
         this.light.shadowCameraVisible = false;
         this.light.shadowBias = 0.0;
-        this.light.shadowDarkness = 0.5;
+        this.light.shadowDarkness = 1.8;
         this.light.shadowMapWidth = this.SHADOW_MAP_WIDTH;
         this.light.shadowMapHeight = this.SHADOW_MAP_HEIGHT;
         this.scene.add( this.light );
@@ -190,6 +190,7 @@ Bubble.prototype = {
         this.plane = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000, 8, 8), new THREE.MeshBasicMaterial({ color: 0xFF0000, opacity: 0.25}));
         this.plane.visible = false;
         this.scene.add(this.plane);
+        /*
         // Axes
         this.axes = buildAxes();
         this.scene.add(this.axes);
@@ -221,8 +222,8 @@ Bubble.prototype = {
             var axis = new THREE.Line(geom, mat);
 
             return axis;
-
         }
+        */
     },
     onWindowResize: function () {
         this.camera.aspect = window.innerWidth / window.innerHeight;
@@ -309,13 +310,14 @@ Bubble.prototype = {
     render: function () {
         this.controls.update();
         this.keyboard.update();
-
+        this.renderer.shadowMapEnabled = false;
         this.renderer.autoClear = false;
         this.renderer.autoUpdateObjects = true;
         this.scene.overrideMaterial = this.depthMaterial;
         this.renderer.render( this.scene, this.camera, this.depthTarget );
         this.scene.overrideMaterial = null;
         this.renderer.clearDepth();
+        this.renderer.shadowMapEnabled = true;
         this.composer.render();
 
 
