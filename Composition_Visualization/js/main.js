@@ -83,6 +83,11 @@ $(document).ready(function(){
                     {
                         $("#bubble"+BUBBLE_COUNT).remove();
                         var le = Bubbles[BUBBLE_COUNT].getlinkNodes().length;
+
+                        if(Bubbles[BUBBLE_COUNT].selectors.length)
+                        {
+                            Bubbles[BUBBLE_COUNT].removeAllSelectors();
+                        }
                         for(var i= 0; i<le; ++i)
                         {
                             var next = Bubbles[BUBBLE_COUNT].getlinkNodes()[i].connectTo;

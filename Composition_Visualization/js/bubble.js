@@ -232,23 +232,20 @@ Bubble.prototype = {
     },
 
     fillMainGroup: function(){
-        if(this.renderShape !== "Tube")
-        {
-            // Axes
-            this.axes = new THREE.Object3D();
-            this.axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(100, 0, 0), 0xFF0000, false)); // +X
-            this.axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(-100, 0, 0), 0x800000, true)); // -X
-            this.axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 100, 0), 0x00FF00, false)); // +Y
-            this.axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, -100, 0), 0x008000, true)); // -Y
-            this.axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, 100), 0x0000FF, false)); // +Z
-            this.axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, -100), 0x000080, true)); // -Z
-            this.mainGroup.add(this.axes);
-        }
-        else
+        if(this.renderShape === "Tube")
         {
             this.createPostProcessing();
         }
-
+        // Axes
+        this.axes = new THREE.Object3D();
+        this.axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(100, 0, 0), 0xFF0000, false)); // +X
+        this.axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(-100, 0, 0), 0x800000, true)); // -X
+        this.axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 100, 0), 0x00FF00, false)); // +Y
+        this.axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, -100, 0), 0x008000, true)); // -Y
+        this.axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, 100), 0x0000FF, false)); // +Z
+        this.axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, -100), 0x000080, true)); // -Z
+        this.axes.name = "axes";
+        this.scene.add(this.axes);
 
         var scope = this;
         var manager = new THREE.LoadingManager();
@@ -336,9 +333,9 @@ Bubble.prototype = {
         var geometry = new THREE.SphereGeometry(10, 40, 40);
         var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }));
 
-        object.position.x = Math.random() * 20 - 50;
-        object.position.y = Math.random() * 20 - 50;
-        object.position.z = Math.random() * 10 - 20;
+        object.position.x = Math.random() * 200 - 50;
+        object.position.y = Math.random() * 200 - 50;
+        object.position.z = Math.random() * 100- 20;
         this.scene.add(object);
         this.objects.push(object);
         var sphereSelector = new SphereSelector(this.id, object,true);
@@ -346,6 +343,14 @@ Bubble.prototype = {
         object.selectId = this.selectors.length - 1;
         this.selectors[ object.selectId ].setUpdateState(true);
 
+    },
+    removeAllSelectors: function()
+    {
+        for (var i = 0, l = this.selectors.length; i < l; ++i)
+        {
+            this.selectors.pop();
+            this.scene.remove(this.objects.pop());
+        }
     },
     removeSelector: function () {
         this.resetAllResult();

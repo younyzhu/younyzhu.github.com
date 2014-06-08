@@ -129,6 +129,7 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
                     pathConnection.remove(Bubbles[id].getlinkNodes()[i].connectionId);
                 }
                 delete bubble;
+                Bubbles[id].removeAllSelectors();
                 Bubbles[id] = null;
             }
             else if (key === "refine") {
@@ -261,7 +262,7 @@ function getWidgetInformation(index) {
     return {w: width, h: height, left: posx, top: posy, center: center};
 }
 function manageBubblePos(index) {
-    /*
+ /*
      var childs = $('#bubble').children('.bubble');
      for(var i=0; i<childs.length; ++i)
      {

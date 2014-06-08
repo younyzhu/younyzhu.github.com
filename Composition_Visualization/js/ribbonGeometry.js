@@ -132,13 +132,13 @@ RibbonGeometry = function( path, width, vertexColor ) {
         rotMatrix = makeRotationAxis(rotAxis,rotAngle);
 
         p1.applyMatrix3(rotMatrix);
-        p1.add(p1, path[i]);
+        p1.addVectors(p1, path[i]);
 
         vert(p1.x, p1.y, p1.z);
         color(vertexColor[i].x, vertexColor[i].y, vertexColor[i].z);
 
         p2.applyMatrix3(rotMatrix);
-        p2.add(p2, path[i]);
+        p2.addVectors(p2, path[i]);
         vert(p2.x, p2.y, p2.z);
         color(vertexColor[i].x, vertexColor[i].y, vertexColor[i].z);
     }

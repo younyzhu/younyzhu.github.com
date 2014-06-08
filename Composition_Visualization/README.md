@@ -122,21 +122,21 @@ When loader a dataset, we need to know which is to select and which is to delete
  2. It seems it is hard to use view-dependent ribbon of his ideal.
  An ideal: for SSAO, we should balance the trade-off between global structure and local detail.
 
-* 5/31/2014    
+* 6/1/2014
 
  1. Since the view-dependent ribbon can not implement in three.js, so I changed to ribbon.
  2. First I would applied the Three.js cast shadow here, and then find a way to modified the shadow alogrithm.
     * ShadowMapping: [introduction](http://www.nutty.ca/?page_id=352&link=shadow_map#tabs-4)
     * SSAO: [http://www.nutty.ca/?page_id=352&link=ssao](http://www.nutty.ca/?page_id=352&link=ssao)    
 
-* 6/1/2014    
+* 6/2/2014
  
  1. read the ShadowMapping Code THREE.js has, and its ShadowMapping Plugin(PCF filter and soft PCF filter).
  2. modify the ShadowMapping Plugin with customShader, and try to apply the VSM, and ESM from
 [http://www.nutty.ca/?page_id=352&link=shadow_map#tabs-4](http://www.nutty.ca/?page_id=352&link=shadow_map#tabs-4)
  3. successfully applied the VSM alogrithm.
 
-* 6/2/2014
+* 6/3/2014
 
  1. [Test/ShadowMap.html](https://younyzhu.github.com/Composition_Visualization/Test/ShadowMap.html), you can adjust custombubble.js to adjust shadowType(PCF, PCFSoft, VSM,ESM)
       this.renderer.shadowMapType = THREE.PCFShadowMap;
@@ -150,15 +150,27 @@ When loader a dataset, we need to know which is to select and which is to delete
  [http://codeflow.org/entries/2011/oct/25/webgl-screenspace-ambient-occlusion/](http://codeflow.org/entries/2011/oct/25/webgl-screenspace-ambient-occlusion/)
   The latter one looks pretty good.
 
-* 6/3/2014
+* 6/4/2014
 1. Continue trying to code the SSAO, but I find it is hard to debug the shader, so I think I should modify the shader(SSAO) Three.js has, and then applied with the cast shadow which is done before.
 2. So I spend a lot of time to combine the SSAO with the casting shadow. Finally, it seems works.
 3. [Test/ssao.html](https://younyzhu.github.com/Composition_Visualization/Test/ssao.html): SSAO + one light(top right) (phong shading with casting shadow) + Directional light(position:0, 0, 1)
 4. Parameters need to adjust.
 
-* 6/4/2014
+* 6/5/2014
 1. intergrate the SSAO + casting shadow to the UI    
 2. fix a bug when resizing the window and zoom in and out define a depthPassShader    
+3. begin writing another SSAO shader
+
+* 6/6/2014
+1. It seems the shader has the problem and can not find it.
+2. I spend almost a day to inspect the shader and can not find where is the problem.
+3. I output the view-space position, normal, depth, origin color and the result seems right. I caluate the Ao use another method, the problem still exist.
+4. Maybe it is not my shader problem, it is just the normal.
+
+* 6/7/2014
+1. still stuck in the new ssao shader, do not find where is wrong.
+2. try to fix the composition visualization problem and fix.
+2. It seems ssao do not work, so I just put it down first.
 
 **Till now incluse files**
 
