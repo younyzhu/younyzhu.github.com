@@ -334,11 +334,22 @@ Bubble.prototype = {
         var childs = this.mainGroup.children;
         for (var i = 0; i < childs.length; ++i) {
             for (var j = 0; j < childs[i].children.length; ++j) {
-                var grayness = childs[i].children[j].material.grayness;
-                childs[i].children[j].material.color.setRGB(grayness, grayness, grayness);
+                //var grayness = childs[i].children[j].material.grayness;
+                var origColor = childs[i].children[j].material.ColorKeeper;
+                childs[i].children[j].material.color.setRGB(origColor.r, origColor.g, origColor.b);
             }
         }
     },
+    resetAllColors: function (color) {
+        var childs = this.mainGroup.children;
+        for (var i = 0; i < childs.length; ++i) {
+            for (var j = 0; j < childs[i].children.length; ++j) {
+                childs[i].children[j].material.ColorKeeper = new THREE.Color(color.r /255.0, color.g /255.0, color.b /255.0);
+                childs[i].children[j].material.color.setRGB(color.r /255.0, color.g /255.0, color.b /255.0);
+            }
+        }
+    },
+
     addSelector: function () {
         this.resetAllResult();
         var geometry = new THREE.SphereGeometry(10, 40, 40);

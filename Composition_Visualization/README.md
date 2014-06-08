@@ -172,6 +172,9 @@ When loader a dataset, we need to know which is to select and which is to delete
 2. try to fix the composition visualization problem and fix.
 2. It seems ssao do not work, so I just put it down first.
 
+* 6/8/2014
+1. add color picker to changed the model color
+
 **Till now incluse files**
 
       <!--Css style-->

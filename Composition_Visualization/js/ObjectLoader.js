@@ -90,7 +90,7 @@ ObjectLoader.prototype = {
                     var grayness = Math.random() * 0.5 + 0.25;
                     var material = new THREE.LineBasicMaterial();
                     material.color.setRGB(grayness, grayness, grayness);
-                    material.grayness = grayness; // *** NOTE THIS
+                    material.ColorKeeper = new THREE.Color(grayness, grayness, grayness);
                     var line = new THREE.Line(geometry, material, THREE.LineStrip);
                     line.name = i; //This is to recode which line is selected.
                     object.add(line);

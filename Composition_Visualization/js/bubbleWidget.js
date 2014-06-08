@@ -209,6 +209,20 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
         //var textSelected   = optionSelected.text();
         //alert(valueSelected + textSelected);
     });
+    $('#colorpickerField').ColorPicker({
+        onSubmit: function(hsb, hex, rgb, el) {
+            $(el).val(hex);
+
+            $(el).ColorPickerHide();
+        },
+        onBeforeShow: function () {
+            $(this).ColorPickerSetColor(this.value);
+        },
+        onChange: function (hsb, hex, rgb) {
+            $('#colorpickerField').val(hex);
+            bubble.resetAllColors(rgb);
+        }
+    });
 }
 function bubble_div(id, name, mousePosX, mousePosY) {
     var tmp = '';
@@ -238,6 +252,9 @@ function bubble_div(id, name, mousePosX, mousePosY) {
     tmp += '                    <option value="Ribbon">Ribbon</option>';
     tmp += '                    <option value="Tube">Tube</option>';
     tmp += '                </select>';
+    tmp += '            </li>';
+    tmp += '            <li class="para">Color:';
+    tmp += '                <input type="text" maxlength="6" size="6" id="colorpickerField" value="00ff00">';
     tmp += '            </li>';
     tmp += '            <li class="para">Size</li>';
     tmp += '            <li class="para">Texture</li>';
