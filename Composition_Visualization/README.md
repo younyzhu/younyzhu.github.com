@@ -151,66 +151,72 @@ When loader a dataset, we need to know which is to select and which is to delete
   The latter one looks pretty good.
 
 * 6/4/2014
-1. Continue trying to code the SSAO, but I find it is hard to debug the shader, so I think I should modify the shader(SSAO) Three.js has, and then applied with the cast shadow which is done before.
-2. So I spend a lot of time to combine the SSAO with the casting shadow. Finally, it seems works.
-3. [Test/ssao.html](https://younyzhu.github.com/Composition_Visualization/Test/ssao.html): SSAO + one light(top right) (phong shading with casting shadow) + Directional light(position:0, 0, 1)
-4. Parameters need to adjust.
+ 1. Continue trying to code the SSAO, but I find it is hard to debug the shader, so I think I should modify the shader(SSAO) Three.js has, and then applied with the cast shadow which is done before.
+ 2. So I spend a lot of time to combine the SSAO with the casting shadow. Finally, it seems works.
+ 3. [Test/ssao.html](https://younyzhu.github.com/Composition_Visualization/Test/ssao.html): SSAO + one light(top right) (phong shading with casting shadow) + Directional light(position:0, 0, 1)
+ 4. Parameters need to adjust.
 
 * 6/5/2014
-1. intergrate the SSAO + casting shadow to the UI    
-2. fix a bug when resizing the window and zoom in and out define a depthPassShader    
-3. begin writing another SSAO shader
+
+ 1. intergrate the SSAO + casting shadow to the UI    
+ 2. fix a bug when resizing the window and zoom in and out define a depthPassShader    
+ 3. begin writing another SSAO shader
 
 * 6/6/2014
-1. It seems the shader has the problem and can not find it.
-2. I spend almost a day to inspect the shader and can not find where is the problem.
-3. I output the view-space position, normal, depth, origin color and the result seems right. I caluate the Ao use another method, the problem still exist.
-4. Maybe it is not my shader problem, it is just the normal.
+
+ 1. It seems the shader has the problem and can not find it.
+ 2. I spend almost a day to inspect the shader and can not find where is the problem.
+ 3. I output the view-space position, normal, depth, origin color and the result seems right. I caluate the Ao use another method, the problem still exist.
+ 4. Maybe it is not my shader problem, it is just the normal.
 
 * 6/7/2014
-1. still stuck in the new ssao shader, do not find where is wrong.
-2. try to fix the composition visualization problem and fix.
-2. It seems ssao do not work, so I just put it down first.
+ 
+ 1. still stuck in the new ssao shader, do not find where is wrong.
+ 2. try to fix the composition visualization problem and fix.  
+ 3. It seems ssao do not work, so I just put it down first.
 
-* 6/8/2014
-1. add color picker to changed the model color
+* 6/8/2014    
+ 1. add color picker to changed the model color
 
 **Till now incluse files**
 
-      <!--Css style-->
-      <link href="css/visualization.css" rel="stylesheet" type="text/css">
-      <link href="./jqueryLib/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
-      <link href="./jqueryLib/jquery-ui-1.10.4.css" rel="stylesheet" type="text/css" />
-      <!--Jquery Lib-->
-      <script src="./jqueryLib/jquery-1.10.2.js" type="text/javascript"></script>
-      <script src="./jqueryLib/jquery-ui-1.10.4.js" type="text/javascript"></script>
-      <script src="./jqueryLib/jquery.ui.position.js" type="text/javascript"></script>
-      <script src="./jqueryLib/jquery.contextMenu.js" type="text/javascript"></script>
-      <!--Three.js lib(modified part R66)-->
-      <script src="js/threer66.js"></script> <!-- modified part-->
-      <!--Shader:postprocessing_basic-->
-      <script type="text/javascript" src="./js/postprocessing/EffectComposer.js"></script>
-      <script type="text/javascript" src="./js/postprocessing/ShaderPass.js"></script>
-      <script type="text/javascript" src="./js/postprocessing/RenderPass.js"></script>
-      <script type="text/javascript" src="./js/postprocessing/MaskPass.js"></script>
-      <!--Shader-->
-      <script type="text/javascript" src="./js/shaders/CopyShader.js"></script>
-      <script type="text/javascript" src="./js/shaders/FXAAShader.js"></script>
-      <script type="text/javascript" src="./js/shaders/DepthPassPlugin.js"></script>
-      <script src="js/customShader.js"></script>
-      <!--Tool-->
-      <script src="js/Detector.js"></script>
-      <script src="js/TrackballControls.js"></script>
-      <script src="js/THREEx.FullScreen.js"></script>
-      <script src="js/KeyboardState.js"></script>
-      <!--Main display-->
-      <script src="js/main.js" type="text/javascript"></script>
-      <script src="js/navigationBar.js" type="text/javascript"></script>
-      <script src="js/bubbleWidget.js" type="text/javascript"></script>
-      <script src="js/connections.js" type="text/javascript"></script>
-      <script src="js/bubble.js" type="text/javascript"></script>
-      <script src="js/FiberSelector.js"></script>
-      <!--Shape-->
-      <script src="js/ObjectLoader.js"></script>
-      <script src="js/ribbonGeometry.js" type="text/javascript"></script>
-      <script src="js/tubeGeometry.js" type="text/javascript"></script>
+    <!--Css style-->
+    <link href="css/visualization.css" rel="stylesheet" type="text/css">
+    <link href="./jqueryLib/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
+    <link href="./jqueryLib/jquery-ui-1.10.4.css" rel="stylesheet" type="text/css" />
+    <!--Jquery Lib-->
+    <script src="./jqueryLib/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="./jqueryLib/jquery-ui-1.10.4.js" type="text/javascript"></script>
+    <script src="./jqueryLib/jquery.ui.position.js" type="text/javascript"></script>
+    <script src="./jqueryLib/jquery.contextMenu.js" type="text/javascript"></script>
+    <!--Color Picker-->
+    <link rel="stylesheet" media="screen" type="text/css" href="css/colorpicker.css" />
+    <script type="text/javascript" src="js/colorpicker.js"></script>
+    <!--Three.js lib(modified part R66)-->
+    <script src="js/threer66.js"></script> <!-- modified part-->
+    <!--Shader:postprocessing_basic-->
+    <script type="text/javascript" src="js/postprocessing/EffectComposer.js"></script>
+    <script type="text/javascript" src="js/postprocessing/ShaderPass.js"></script>
+    <script type="text/javascript" src="js/postprocessing/RenderPass.js"></script>
+    <script type="text/javascript" src="js/postprocessing/MaskPass.js"></script>
+    <!--Shader-->
+    <script type="text/javascript" src="js/shaders/CopyShader.js"></script>
+    <script type="text/javascript" src="js/shaders/FXAAShader.js"></script>
+    <script type="text/javascript" src="js/shaders/DepthPassPlugin.js"></script>
+    <script src="js/customShader.js"></script>
+    <!--Tool-->
+    <script src="js/Detector.js"></script>
+    <script src="js/TrackballControls.js"></script>
+    <script src="js/THREEx.FullScreen.js"></script>
+    <script src="js/KeyboardState.js"></script>
+    <!--Main display-->
+    <script src="js/main.js" type="text/javascript"></script>
+    <script src="js/navigationBar.js" type="text/javascript"></script>
+    <script src="js/bubbleWidget.js" type="text/javascript"></script>
+    <script src="js/connections.js" type="text/javascript"></script>
+    <script src="js/bubble.js" type="text/javascript"></script>
+    <script src="js/FiberSelector.js"></script>
+    <!--Shape-->
+    <script src="js/ObjectLoader.js"></script>
+    <script src="js/ribbonGeometry.js" type="text/javascript"></script>
+    <script src="js/tubeGeometry.js" type="text/javascript"></script>
