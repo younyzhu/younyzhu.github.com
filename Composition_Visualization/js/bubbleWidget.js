@@ -111,10 +111,11 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
             }
         }
     });
-
+    var flag = true;
     var parent = $bubbleId.contextMenu({
         selector: '.dragheader',
         callback: function (key) {
+
             if (key === "delete") {
                 parent.remove();
                 navigationCanvas.remove(id);
@@ -125,12 +126,23 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
                         if (Bubbles[id].getlinkNodes()[i].connectionId === Bubbles[next].getlinkNodes()[j].connectionId)
                             Bubbles[next].spliceNodeLink(j);
                     }
-
                     pathConnection.remove(Bubbles[id].getlinkNodes()[i].connectionId);
                 }
-                delete bubble;
                 Bubbles[id].removeAllSelectors();
+                delete bubble;
                 Bubbles[id] = null;
+            }
+            else if (key === "axes") {
+                if(flag)
+                {
+                    Bubbles[id].showAxesHelper();
+                    flag = false;
+                }
+                else
+                {
+                    Bubbles[id].hideAxesHelper();
+                    flag = true;
+                }
             }
             else if (key === "refine") {
                 $("#bubble" + id).children().children("#select_menu").show();
@@ -163,6 +175,7 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
         },
         items: {
             "delete": {name: "Delete"},
+            "axes": {name: "Axes"},
             "refine": {name: "Refine fibers"},
             "export": {name: "Export"}
         }

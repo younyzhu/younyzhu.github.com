@@ -35,7 +35,7 @@ body { font-family:"Helvetica Neue", Arial, Helvetica, sans-serif; background:#1
 
 .widget { margin:1em; padding:1em; float:left; background:#0a0a0a; z-index:120;}
 
-.para_header { background:transparent; color:#fff; font-weight:normal;letter-spacing:1px; font-size:1.1em;text-align: center;
+.para_header { background:transparent; color:#fff; font-weight:normal; font-size:0.9em;text-align: center;
     padding:5px 0 5px 0.5em; cursor:move; position:relative; bottom:0px; margin:0 0 0 0; }
 
 .widget .close { color:red; font-size:0.7em; text-align: center; position:relative; top:-1em; left:1em; margin:0 0 -1em 0; padding:0; }

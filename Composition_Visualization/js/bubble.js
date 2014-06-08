@@ -231,11 +231,7 @@ Bubble.prototype = {
         this.renderer.addPrePlugin(  this.depthPassPlugin );
     },
 
-    fillMainGroup: function(){
-        if(this.renderShape === "Tube")
-        {
-            this.createPostProcessing();
-        }
+    addAxes: function(){
         // Axes
         this.axes = new THREE.Object3D();
         this.axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(100, 0, 0), 0xFF0000, false)); // +X
@@ -246,7 +242,43 @@ Bubble.prototype = {
         this.axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, -100), 0x000080, true)); // -Z
         this.axes.name = "axes";
         this.scene.add(this.axes);
+        function buildAxis(src, dst, colorHex, dashed) {
+            var geom = new THREE.Geometry(),
+                mat;
 
+            if (dashed) {
+                mat = new THREE.LineDashedMaterial({ linewidth: 1, color: colorHex, dashSize: 5, gapSize: 5 });
+            } else {
+                mat = new THREE.LineBasicMaterial({ linewidth: 1, color: colorHex });
+            }
+            geom.vertices.push(src.clone());
+            geom.vertices.push(dst.clone());
+            var axis = new THREE.Line(geom, mat);
+            axis.visible = false;
+            return axis;
+        }
+    },
+    showAxesHelper: function(){
+        this.axes.traverse(function(axis){   //Moved to the loader
+            if(axis instanceof THREE.Line)
+            {
+                axis.visible = true;
+            }
+        });
+    },
+    hideAxesHelper: function(){
+        this.axes.traverse(function(axis){   //Moved to the loader
+            if(axis instanceof THREE.Line)
+            {
+                axis.visible = false;
+            }
+        });
+    },
+    fillMainGroup: function(){
+        if(this.renderShape === "Tube")
+        {
+            this.createPostProcessing();
+        }
         var scope = this;
         var manager = new THREE.LoadingManager();
         manager.onProgress = function (item, loaded, total) {
@@ -280,30 +312,11 @@ Bubble.prototype = {
             light.shadowMapHeight = this.SHADOW_MAP_HEIGHT;
             this.scene.add( light );
         }
-
-        function buildAxis(src, dst, colorHex, dashed) {
-            var geom = new THREE.Geometry(),
-                mat;
-
-            if (dashed) {
-                mat = new THREE.LineDashedMaterial({ linewidth: 1, color: colorHex, dashSize: 5, gapSize: 5 });
-            } else {
-                mat = new THREE.LineBasicMaterial({ linewidth: 1, color: colorHex });
-            }
-
-            geom.vertices.push(src.clone());
-            geom.vertices.push(dst.clone());
-
-            var axis = new THREE.Line(geom, mat);
-
-            return axis;
-
-        }
+        this.addAxes();
     },
 
     fillScene: function () {
         this.scene = new THREE.Scene();
-
         this.fiberSelector = new FiberSelector(this.id, this.selectors);
         this.fillMainGroup();
         //this.scene.add(new THREE.AmbientLight(0x505050));   No ambient light, AO instead
@@ -313,8 +326,6 @@ Bubble.prototype = {
         this.plane = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000, 8, 8), new THREE.MeshBasicMaterial({ color: 0xFF0000, opacity: 0.25}));
         this.plane.visible = false;
         this.scene.add(this.plane);
-
-
     },
 
     resetAllResult: function () {
