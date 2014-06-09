@@ -13,6 +13,8 @@ function Bubble(id, selectedFibers, deletedFibers, objectCenter,shape) {
     this.scene = null;
     this.renderer = null;
 
+    this.FA = [];//store the FA value
+
     this.id = id;
 
     this.mainGroup = new THREE.Object3D();
@@ -293,6 +295,7 @@ Bubble.prototype = {
                 object.position.z = -loader.center.z;
                 scope.mainCenter = object.center;
                 scope.mainGroup.add(object);
+                this.FA = object.FA;
             }
         });
         this.scene.add(this.mainGroup);

@@ -177,6 +177,7 @@ When loader a dataset, we need to know which is to select and which is to delete
 
 * 6/8/2014    
  1. add color picker to changed the model color
+ 2. write a line chart part, so that we can visualize the FA value
 
 **Till now incluse files**
 
@@ -216,6 +217,7 @@ When loader a dataset, we need to know which is to select and which is to delete
     <script src="js/connections.js" type="text/javascript"></script>
     <script src="js/bubble.js" type="text/javascript"></script>
     <script src="js/FiberSelector.js"></script>
+    <script src="js/chart.js"></script>
     <!--Shape-->
     <script src="js/ObjectLoader.js"></script>
     <script src="js/ribbonGeometry.js" type="text/javascript"></script>

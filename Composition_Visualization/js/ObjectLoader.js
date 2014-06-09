@@ -37,7 +37,7 @@ ObjectLoader.prototype = {
         //  Or
         //  this.selectedFiber = [];
         //  this.deletedFibers = []; //The model has been refined, and one of the array.length > 0;
-
+        var FA = [];
         for (var i = 0; i < totalFiberNum; i++) {
             var flag = true;
             if (this.selectedFiber === null && this.deletedFibers === null) {
@@ -70,6 +70,7 @@ ObjectLoader.prototype = {
                 var geometry = new THREE.Geometry();
                 var vertexPosition = [];
                 var vertexColor = [];
+                var sum =0.0;
                 for (var j = 1; j <= totalVertexNum; j += 2) {
                     var vals = lines[startNum + j].split(/\s+/);
                     geometry.vertices.push(new THREE.Vector3(parseFloat(vals[0]), parseFloat(vals[1]), parseFloat(vals[2])));
@@ -84,7 +85,10 @@ ObjectLoader.prototype = {
 
                     geometry.colors.push(new THREE.Vector3(parseFloat(vals[3]), parseFloat(vals[4]), parseFloat(vals[5])));
                     vertexColor.push(new THREE.Vector3(parseFloat(vals[3]), parseFloat(vals[4]), parseFloat(vals[5])));
+                    sum +=parseFloat(vals[4]); //color (1,FA,FA)
                 }
+                sum /= vertexPosition.length;
+                FA.push( sum );
                 if(this.renderShape === 'Line')
                 {
                     var grayness = Math.random() * 0.5 + 0.25;
@@ -128,6 +132,10 @@ ObjectLoader.prototype = {
             this.center = new THREE.Vector3((positionminx + positionmaxx) / 2.0,
                     (positionminy + positionmaxy) / 2.0, (positionminz + positionmaxz) / 2.0);
         object.center = this.center;//Need remember the center of object
+        if(FA.length !== 0)
+        {
+            object.FA = FA;
+        }
         return object;
     }
 

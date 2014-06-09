@@ -133,13 +133,11 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
                 Bubbles[id] = null;
             }
             else if (key === "axes") {
-                if(flag)
-                {
+                if (flag) {
                     Bubbles[id].showAxesHelper();
                     flag = false;
                 }
-                else
-                {
+                else {
                     Bubbles[id].hideAxesHelper();
                     flag = true;
                 }
@@ -147,14 +145,17 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
             else if (key === "refine") {
                 $("#bubble" + id).children().children("#select_menu").show();
             }
+            else if (key === "faChart") {
+                addChart(id, $bubbleId);
+            }
             else if (key === "export") {
-                if (bubble.fiberSelector.selectedFibers.length !==0 || bubble.fiberSelector.deletedFibers.length !==0 ) {
+                if (bubble.fiberSelector.selectedFibers.length !== 0 || bubble.fiberSelector.deletedFibers.length !== 0) {
                     BUBBLE_COUNT++;
                     var posx = $bubbleId.offset().left;//offset() or position()
                     var posy = $bubbleId.offset().top;
                     var refinefiber = bubble.fiberSelector.getRefineFiberId();
 
-                    addBubble(BUBBLE_COUNT, 'Refined fiber bundles', posx + $bubbleId.width() + 30, posy,refinefiber.selectedFibersId, refinefiber.deletedFibersId, bubble.mainCenter );
+                    addBubble(BUBBLE_COUNT, 'Refined fiber bundles', posx + $bubbleId.width() + 30, posy, refinefiber.selectedFibersId, refinefiber.deletedFibersId, bubble.mainCenter);
 
                     var connection = new Connection(getWidgetCenter(id), getWidgetCenter(BUBBLE_COUNT));
                     pathConnection.addConnection(connection);
@@ -177,7 +178,8 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
             "delete": {name: "Delete"},
             "axes": {name: "Axes"},
             "refine": {name: "Refine fibers"},
-            "export": {name: "Export"}
+            "export": {name: "Export"},
+            "faChart": {name: "FA Chart"}
         }
     });
 
@@ -185,32 +187,33 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
         parent.children("#paraMenu").toggle();
     });
     var $bubbleRefineMenu = $("#bubble" + id).children().children();
-    $bubbleRefineMenu.children('#add').click(function(){
+    $bubbleRefineMenu.children('#add').click(function () {
         bubble.addSelector();
     });
-    $bubbleRefineMenu.children("#remove").click(function(){
+    $bubbleRefineMenu.children("#remove").click(function () {
         bubble.removeSelector();
     });
-    $bubbleRefineMenu.children("#and").click(function(){
+    $bubbleRefineMenu.children("#and").click(function () {
         bubble.And();
         bubble.resetAllResult();
     });
-    $bubbleRefineMenu.children("#delete").click(function(){
+    $bubbleRefineMenu.children("#delete").click(function () {
         bubble.Delete();
     });
-    $bubbleRefineMenu.children("#or").click(function(){
+    $bubbleRefineMenu.children("#or").click(function () {
         bubble.Or();
     });
     var $bubbleparaMenu = $("#bubble" + id).children().children().children();
-    $bubbleparaMenu.children('select').change(function(){
+    $bubbleparaMenu.children('select').change(function () {
         var optionSelected = $(this).find("option:selected");
-        var valueSelected  = optionSelected.val();
+        var valueSelected = optionSelected.val();
         bubble.resetRenderShape(valueSelected);
         //var textSelected   = optionSelected.text();
         //alert(valueSelected + textSelected);
     });
-    $('#colorpickerField').ColorPicker({
-        onSubmit: function(hsb, hex, rgb, el) {
+    var $colorpickerField = $("#bubble" + id).children().children().children().children('#colorpickerField');
+    $colorpickerField.ColorPicker({
+        onSubmit: function (hsb, hex, rgb, el) {
             $(el).val(hex);
 
             $(el).ColorPickerHide();
@@ -219,7 +222,7 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
             $(this).ColorPickerSetColor(this.value);
         },
         onChange: function (hsb, hex, rgb) {
-            $('#colorpickerField').val(hex);
+            $colorpickerField.val(hex);
             bubble.resetAllColors(rgb);
         }
     });
@@ -292,7 +295,7 @@ function getWidgetInformation(index) {
     return {w: width, h: height, left: posx, top: posy, center: center};
 }
 function manageBubblePos(index) {
- /*
+    /*
      var childs = $('#bubble').children('.bubble');
      for(var i=0; i<childs.length; ++i)
      {
@@ -424,4 +427,43 @@ function addVisualCueMenu() {
         parent.remove();
         vcMenu_status = false
     });
+}
+function addChart(id, $bubbleId) {
+    var posx = $bubbleId.offset().left;//offset() or position()
+    var posy = $bubbleId.offset().top;
+    var chartdiv = $(chart_div(id, "FA Line Chart", posx + $bubbleId.width() + 30, posy));
+    $("#bubble").append(chartdiv);
+
+    var linechartCanvas = document.getElementById('chartCanvas' + id);
+    var lineChart = new LineChart(linechartCanvas);
+    var FA = Bubbles[id].mainGroup.children[0].FA;
+    for (var i = 0; i < FA.length; ++i) {
+        lineChart.addItem(i, FA[i]);
+    }
+    var parent = $('#chart' + id);
+    $(".drag").draggable();
+    $('#chartCanvas'+id).resizable({
+        resize: function () {
+            var $canvas = $('#chartCanvas'+id);
+            var width_ = $canvas.width();
+            var height_ = $canvas.height();
+            $canvas.attr({width:width_, height:height_});
+            lineChart.resize(width_,height_);
+        }
+    });
+
+    parent.children(".dragheader").children(".close").click(function () {
+        parent.remove();
+    });
+}
+function chart_div(id, name, mousePosX, mousePosY) {   //Every Bubble has a char to show FA value.
+    var tmp = '';
+    tmp += '<div id ="chart' + id + '" class="chart shadow drag" style="position: absolute; left:' + mousePosX + 'px; top:' + mousePosY + 'px; ">';
+    tmp += '    <div id ="drag' + id + '" class="dragheader">' + name;
+    tmp += '        <span class="close">X</span>';
+    tmp += '    </div>';
+    tmp += '    <canvas id ="chartCanvas' + id + '"width="250" height="250" >';
+    tmp += '    </canvas>';
+    tmp += '</div>';
+    return tmp;
 }
