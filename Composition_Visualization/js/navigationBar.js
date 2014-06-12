@@ -397,7 +397,7 @@ NavCanvas.prototype={
                 }
             }
             // draw the viewpoint in the navigation bar
-            for( var j=0; j< this.reserveView.length; j++)
+            for( var i=0; i< this.reserveView.length; i++)
             {
                 if(this.reserveView[i]!== null)
                 {

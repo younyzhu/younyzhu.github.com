@@ -176,8 +176,20 @@ When loader a dataset, we need to know which is to select and which is to delete
  3. It seems ssao do not work, so I just put it down first.
 
 * 6/8/2014    
+
  1. add color picker to changed the model color
  2. write a line chart part, so that we can visualize the FA value
+
+* 6/9/2014
+
+ still trying the shader, but now find the bug
+
+* 6/10/2014
+
+  1. Learning the data processing
+  2. Installing the software and operation system(almost spend a night installing the OS, as some not compaitable with the software)
+  3. Fix a bug of the navigation bar, you can double click the current bar, then it will draw the current bar in the navigation bar.
+
 
 **Till now incluse files**
 
