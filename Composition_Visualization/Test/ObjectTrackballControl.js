@@ -12,15 +12,19 @@ TrackballControls = function (object, domElement) {
     this.rotateSpeed = 1.0;
     this.screen = { left: 0, top: 0, width: 0, height: 0 };
 
-    _this.quater = object.quaternion;
     _this.object = object;
+    _this.quater = object.quaternion;
+
     _this.domElement = ( domElement !== undefined ) ? domElement : document;
 
     _this.zoomValue = 0;
 
     _this.rotateStartP = new THREE.Vector3();
     _this.rotateEndP = new THREE.Vector3();
-
+    this.setObject = function(object){
+        this.object = object;
+        this.quater = object.quaternion;
+    };
     // methods
     this.handleResize = function () {
 
@@ -41,6 +45,7 @@ TrackballControls = function (object, domElement) {
         }
 
     };
+
     this.update = function () {
         this.handleResize();//When we change the container div, we could move it.
         var rotateQuaternion = rotateMatrix(_this.rotateStartP, _this.rotateEndP);
@@ -134,6 +139,7 @@ TrackballControls = function (object, domElement) {
         }
         _this.zoomValue += delta * _this.zoomSpeed;
     }
+    this.domElement.addEventListener( 'contextmenu', function ( event ) { event.preventDefault(); }, false );
     this.domElement.addEventListener('mousedown', mousedown, false);
     this.domElement.addEventListener('mousewheel', mousewheel, false);
     this.domElement.addEventListener('DOMMouseScroll', mousewheel, false); // firefox

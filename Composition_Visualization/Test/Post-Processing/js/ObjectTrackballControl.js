@@ -10,8 +10,9 @@ TrackballControls = function ( object, domElement ) {
 
     var _this = this;
 
-    _this.quater = object.quaternion;
     _this.object = object;
+    _this.quater = object.quaternion;
+
     _this.domElement = ( domElement !== undefined ) ? domElement : document;
 
     _this.zoomValue = 0;
@@ -24,7 +25,9 @@ TrackballControls = function ( object, domElement ) {
     var changeEvent = { type: 'change' };
 
     // methods
-
+    this.setObject = function(object) {
+        _this.object = object;
+    };
     this.handleEvent = function ( event ) {
 
         if ( typeof this[ event.type ] == 'function' ) {

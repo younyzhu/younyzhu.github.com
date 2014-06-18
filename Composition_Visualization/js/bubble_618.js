@@ -6,7 +6,7 @@ var __bind = function (fn, me) {
         return fn.apply(me, arguments);
     };
 };
-function Bubble(id, selectedFibers, deletedFibers, objectCenter, shape) {
+function Bubble(id, selectedFibers, deletedFibers, objectCenter,shape) {
     this.connectionLinks = [];
 
     this.camera = null;
@@ -24,14 +24,12 @@ function Bubble(id, selectedFibers, deletedFibers, objectCenter, shape) {
     this.cWidth = 400;
     this.cHeight = 400;
 
-    this.selectedFibers = selectedFibers || null;   //if selectFiber = null, there is no selected fibers
-    this.deletedFibers = deletedFibers || null;   //if deletedFibers = null, there is no deleted fibers
-    this.objCenter = objectCenter || null;
+    this.selectedFibers = selectedFibers||null;   //if selectFiber = null, there is no selected fibers
+    this.deletedFibers = deletedFibers||null;   //if deletedFibers = null, there is no deleted fibers
+    this.objCenter = objectCenter||null;
     //For trackball control
     this.controls = null;
-    this.objControls = null;
-    this.activeControls = null;
-    this.renderShape = shape || 'Line';
+    this.renderShape = shape||'Line';
     //For interactive line selection, ray caster
     this.projector = null;
     this.objects = [];
@@ -54,8 +52,8 @@ function Bubble(id, selectedFibers, deletedFibers, objectCenter, shape) {
     this.keyboard = new KeyboardState();
     this.radius = 10;//Select Ball radius
     //Shadow Mapping
-    this.SHADOW_MAP_WIDTH = 2048;
-    this.SHADOW_MAP_HEIGHT = 2048;
+    this.SHADOW_MAP_WIDTH =2048;
+    this.SHADOW_MAP_HEIGHT=2048;
     //Post processing
     this.composer = null;
     this.depthMaterial = null; //depth
@@ -73,7 +71,7 @@ function Bubble(id, selectedFibers, deletedFibers, objectCenter, shape) {
     this.render = __bind(this.render, this);
     this.animate = __bind(this.animate, this);
 
-    this.resetRenderShape = __bind(this.resetRenderShape, this);
+    this.resetRenderShape= __bind(this.resetRenderShape, this);
     this.removeSelector = __bind(this.removeSelector, this);
     this.addSelector = __bind(this.addSelector, this);
     this.resetAllResult = __bind(this.resetAllResult, this);
@@ -103,11 +101,12 @@ Bubble.prototype = {
         this.connectionLinks.push(node);
     },
 
-    resetRenderShape: function (shape) {
-        if (shape !== this.renderShape) {   /*
-         for(var i= 0, l=this.mainGroup.children.length; i < l; ++i )
-         this.scene.remove(this.mainGroup.children[i]);
-         */
+    resetRenderShape: function(shape){
+        if(shape !== this.renderShape)
+        {   /*
+            for(var i= 0, l=this.mainGroup.children.length; i < l; ++i )
+                this.scene.remove(this.mainGroup.children[i]);
+            */
             this.renderShape = shape;
             this.scene.remove(this.mainGroup);
             this.mainGroup = new THREE.Object3D();
@@ -133,7 +132,6 @@ Bubble.prototype = {
         this.controls.noPan = false;
         this.controls.staticMoving = true;
         this.controls.dynamicDampingFactor = 0.3;
-        this.controls.enabled = false;
 
         this.projector = new THREE.Projector();
 
@@ -153,15 +151,16 @@ Bubble.prototype = {
             scope.camera.updateProjectionMatrix();
             scope.renderer.autoClear = true;
             scope.renderer.setSize(scope.cWidth, scope.cHeight);
-            if (scope.renderShape === 'Tube') {
-                scope.depthTarget = new THREE.WebGLRenderTarget(scope.cWidth, scope.cHeight);
+            if(scope.renderShape === 'Tube')
+            {
+                scope.depthTarget = new THREE.WebGLRenderTarget( scope.cWidth, scope.cHeight);
                 scope.depthPassPlugin.renderTarget = scope.depthTarget;
                 scope.SSAOShader.uniforms[ 'tDepth' ].value = scope.depthTarget;
-                scope.SSAOShader.uniforms[ 'size' ].value.set(scope.cWidth, scope.cHeight);
-                scope.FXAAShader.uniforms[ 'resolution' ].value.set(1 / scope.cWidth, 1 / scope.cHeight);
+                scope.SSAOShader.uniforms[ 'size' ].value.set( scope.cWidth, scope.cHeight );
+                scope.FXAAShader.uniforms[ 'resolution' ].value.set( 1 / scope.cWidth, 1 / scope.cHeight );
 
             }
-            $('#bubble' + scope.id).children('#paraMenu').css({left: scope.cWidth - 15});
+         $('#bubble' + scope.id).children('#paraMenu').css({left: scope.cWidth - 15});
         });
 
         this.renderer.domElement.addEventListener('mousemove', this.onDocumentMouseMove, false);
@@ -169,25 +168,27 @@ Bubble.prototype = {
         this.renderer.domElement.addEventListener('mouseup', this.onDocumentMouseUp, false);
         //this.renderer.domElement.addEventListener('resize', this.onDivResize, false);
     },
-    onDivResize: function (cWidth, cHeight) {
+    onDivResize:function(){
+        var scope = this;
+        var $containerId = $('#container' + scope.id);
+        scope.cWidth = $containerId.width();
+        scope.cHeight = $containerId.height();
+        scope.camera.aspect = scope.cWidth / scope.cHeight;
+        scope.camera.updateProjectionMatrix();
 
-        this.cWidth = cWidth;
-        this.cHeight = cHeight;
-        this.camera.aspect = cWidth / cHeight;
-        this.camera.updateProjectionMatrix();
-
-        this.renderer.setSize(cWidth, cHeight);
-        if (this.renderShape === 'Tube') {
-            this.depthTarget = new THREE.WebGLRenderTarget(cWidth, cHeight);
-            this.depthPassPlugin.renderTarget = this.depthTarget;
-            this.SSAOShader.uniforms[ 'tDepth' ].value = this.depthTarget;
-            this.SSAOShader.uniforms[ 'size' ].value.set(cWidth, cHeight);
-            this.FXAAShader.uniforms[ 'resolution' ].value.set(1 / cWidth, 1 / cHeight);
+        scope.renderer.setSize(scope.cWidth, scope.cHeight);
+        if(scope.renderShape === 'Tube')
+        {
+            scope.depthTarget = new THREE.WebGLRenderTarget( scope.cWidth, scope.cHeight);
+            scope.depthPassPlugin.renderTarget = scope.depthTarget;
+            scope.SSAOShader.uniforms[ 'tDepth' ].value = scope.depthTarget;
+            scope.SSAOShader.uniforms[ 'size' ].value.set( scope.cWidth, scope.cHeight );
+            scope.FXAAShader.uniforms[ 'resolution' ].value.set( 1 / scope.cWidth, 1 / scope.cHeight );
 
         }
-        $('#bubble' + this.id).children('#paraMenu').css({left: cWidth - 15});
+        $('#bubble' + scope.id).children('#paraMenu').css({left: scope.cWidth - 15});
     },
-    createPostProcessing: function () {
+    createPostProcessing:function(){
         this.renderer.shadowMapEnabled = true;
         //this.renderer.shadowMapCascade = true;
         //this.renderer.shadowMapType = THREE.PCFSoftShadowMap;
@@ -197,8 +198,8 @@ Bubble.prototype = {
         //postprocessing
         //Depth
         var depthShader = THREE.ShaderLib[ "depthRGBA" ];
-        var depthUniforms = THREE.UniformsUtils.clone(depthShader.uniforms);
-        this.depthMaterial = new THREE.ShaderMaterial({ fragmentShader: depthShader.fragmentShader, vertexShader: depthShader.vertexShader, uniforms: depthUniforms });
+        var depthUniforms = THREE.UniformsUtils.clone( depthShader.uniforms );
+        this.depthMaterial = new THREE.ShaderMaterial( { fragmentShader: depthShader.fragmentShader, vertexShader: depthShader.vertexShader, uniforms: depthUniforms } );
         this.depthMaterial.blending = THREE.NoBlending;
 
         //this.SSAOShader = new THREE.ShaderPass(THREE.SSAOShader);
@@ -207,10 +208,10 @@ Bubble.prototype = {
         var $containerId = $('#container' + this.id);
         this.cWidth = $containerId.width();
         this.cHeight = $containerId.height();
-        this.depthTarget = new THREE.WebGLRenderTarget(this.cWidth, this.cHeight,
+        this.depthTarget = new THREE.WebGLRenderTarget( this.cWidth, this.cHeight,
             { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, format: THREE.RGBAFormat });
         this.SSAOShader.uniforms[ 'tDepth' ].value = this.depthTarget;
-        this.SSAOShader.uniforms[ 'size' ].value.set(this.cWidth, this.cHeight);
+        this.SSAOShader.uniforms[ 'size' ].value.set( this.cWidth, this.cHeight );
         this.SSAOShader.uniforms[ 'cameraNear' ].value = this.camera.near;
         this.SSAOShader.uniforms[ 'cameraFar' ].value = this.camera.far;
         this.SSAOShader.uniforms[ 'aoClamp' ].value = 0.7;
@@ -218,21 +219,21 @@ Bubble.prototype = {
         //this.SSAOShader.renderToScreen = true;
         this.FXAAShader = new THREE.ShaderPass(THREE.FXAAShader);
         this.FXAAShader.renderToScreen = true;
-        this.FXAAShader.uniforms[ 'resolution' ].value.set(1 / this.cWidth, 1 / this.cHeight);
+        this.FXAAShader.uniforms[ 'resolution' ].value.set( 1 / this.cWidth, 1 / this.cHeight );
 
         var renderPass = new THREE.RenderPass(this.scene, this.camera);
 
         this.composer = new THREE.EffectComposer(this.renderer);
         this.composer.addPass(renderPass);
-        this.composer.addPass(this.SSAOShader);
-        this.composer.addPass(this.FXAAShader);
+        this.composer.addPass( this.SSAOShader );
+        this.composer.addPass( this.FXAAShader );
 
         this.depthPassPlugin = new THREE.DepthPassPlugin();
         this.depthPassPlugin.renderTarget = this.depthTarget;
-        this.renderer.addPrePlugin(this.depthPassPlugin);
+        this.renderer.addPrePlugin(  this.depthPassPlugin );
     },
 
-    addAxes: function () {
+    addAxes: function(){
         // Axes
         this.axes = new THREE.Object3D();
         this.axes.add(buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(100, 0, 0), 0xFF0000, false)); // +X
@@ -259,23 +260,25 @@ Bubble.prototype = {
             return axis;
         }
     },
-    showAxesHelper: function () {
-        this.axes.traverse(function (axis) {   //Moved to the loader
-            if (axis instanceof THREE.Line) {
+    showAxesHelper: function(){
+        this.axes.traverse(function(axis){   //Moved to the loader
+            if(axis instanceof THREE.Line)
+            {
                 axis.visible = true;
             }
         });
     },
-    hideAxesHelper: function () {
-        this.axes.traverse(function (axis) {   //Moved to the loader
-            if (axis instanceof THREE.Line) {
+    hideAxesHelper: function(){
+        this.axes.traverse(function(axis){   //Moved to the loader
+            if(axis instanceof THREE.Line)
+            {
                 axis.visible = false;
             }
         });
     },
-    fillMainGroup: function () {
-
-        if (this.renderShape === "Tube") {
+    fillMainGroup: function(){
+        if(this.renderShape === "Tube")
+        {
             this.createPostProcessing();
         }
         var scope = this;
@@ -285,7 +288,7 @@ Bubble.prototype = {
         };
         var loader = new ObjectLoader(manager, this.selectedFibers, this.deletedFibers, this.objCenter, this.renderShape);
         loader.load('./data/whole_s4.data', function (object) {
-            //loader.load('./data/s1_cc.data', function (object){
+        //loader.load('./data/s1_cc.data', function (object){
             if (loader.center !== null) {
                 object.position.x = -loader.center.x;
                 object.position.y = -loader.center.y;
@@ -296,42 +299,21 @@ Bubble.prototype = {
             }
         });
         this.scene.add(this.mainGroup);
-        if(this.objControls === null)
-        {
-            this.objControls = new TrackballControls(this.mainGroup, this.container);
-            this.objControls.enabled = false;
-        }
-       else
-        {
-            this.objControls.setObject(this.mainGroup);
-            this.objControls.enabled = false;
-        }
 
-        if (this.renderShape === 'Line') {
-            this.controls.enabled = true;
-            this.objControls.enabled = false;
-            this.activeControls = this.controls;
-        }
-        else {
-            this.controls.reset();
-            this.objControls.enabled = true;
-            this.controls.enabled = false;
-            this.activeControls = this.objControls;
-        }
-
-        if (this.renderShape === 'Tube') {
+        if(this.renderShape ==='Tube')
+        {
             var light = new THREE.DirectionalLight(0xffffff);
             light.castShadow = true;
-            light.position.set(42, 111, 6);
+            light.position.set(42, 111, 6 );
             light.shadowCameraNear = 0.1;
-            light.shadowCameraFar = this.camera.far / 2;
+            light.shadowCameraFar = this.camera.far/2;
             light.shadowCameraFov = 90;
             light.shadowCameraVisible = false;
             light.shadowBias = 0.0;
             light.shadowDarkness = 1.8;
             light.shadowMapWidth = this.SHADOW_MAP_WIDTH;
             light.shadowMapHeight = this.SHADOW_MAP_HEIGHT;
-            this.scene.add(light);
+            this.scene.add( light );
         }
         this.addAxes();
     },
@@ -365,27 +347,28 @@ Bubble.prototype = {
         var childs = this.mainGroup.children;
         for (var i = 0; i < childs.length; ++i) {
             for (var j = 0; j < childs[i].children.length; ++j) {
-                childs[i].children[j].material.ColorKeeper = new THREE.Color(color.r / 255.0, color.g / 255.0, color.b / 255.0);
-                childs[i].children[j].material.color.setRGB(color.r / 255.0, color.g / 255.0, color.b / 255.0);
+                childs[i].children[j].material.ColorKeeper = new THREE.Color(color.r /255.0, color.g /255.0, color.b /255.0);
+                childs[i].children[j].material.color.setRGB(color.r /255.0, color.g /255.0, color.b /255.0);
             }
         }
     },
-    setSelectFAColor: function (id)   //this is according to its unique id;
+    setSelectFAColor: function(id)   //this is according to its unique id;
     {
         var childs = this.mainGroup.children;
         for (var i = 0; i < childs.length; ++i) {
             for (var j = 0; j < childs[i].children.length; ++j) {
-                if (childs[i].children[j].id === id)
+                if( childs[i].children[j].id ===id)
                     childs[i].children[j].material.color.setRGB(1.0, 1.0, 0.0);
             }
         }
     },
-    resetSelectFAColor: function (id)   //this is according to its unique id;
+    resetSelectFAColor: function(id)   //this is according to its unique id;
     {
         var childs = this.mainGroup.children;
         for (var i = 0; i < childs.length; ++i) {
             for (var j = 0; j < childs[i].children.length; ++j) {
-                if (childs[i].children[j].id === id) {
+                if( childs[i].children[j].id ===id)
+                {
                     var origColor = childs[i].children[j].material.ColorKeeper;
                     childs[i].children[j].material.color.setRGB(origColor.r, origColor.g, origColor.b);
                 }
@@ -399,17 +382,19 @@ Bubble.prototype = {
 
         object.position.x = Math.random() * 100 - 25;
         object.position.y = Math.random() * 100 - 25;
-        object.position.z = Math.random() * 100 - 25;
+        object.position.z = Math.random() * 100- 25;
         this.scene.add(object);
         this.objects.push(object);
-        var sphereSelector = new SphereSelector(this.id, object, true);
+        var sphereSelector = new SphereSelector(this.id, object,true);
         this.selectors.push(sphereSelector);  //When add a sphere, we should build a selector;
         object.selectId = this.selectors.length - 1;
         this.selectors[ object.selectId ].setUpdateState(true);
 
     },
-    removeAllSelectors: function () {
-        for (var i = 0, l = this.selectors.length; i < l; ++i) {
+    removeAllSelectors: function()
+    {
+        for (var i = 0, l = this.selectors.length; i < l; ++i)
+        {
             this.selectors.pop();
             this.scene.remove(this.objects.pop());
         }
@@ -433,79 +418,74 @@ Bubble.prototype = {
         this.ANDOR = "DELETE";
     },
     onDocumentMouseMove: function (event) {
-        if (this.renderShape === 'Line') {
-            event.preventDefault();
 
-            var $containerId = $('#container' + this.id);
-            var offset = $containerId.offset();
-            this.cWidth = $containerId.width();
-            this.cHeight = $containerId.height();
-            this.mouse.x = ( (event.clientX - offset.left) / this.cWidth ) * 2 - 1;
-            this.mouse.y = -( (event.clientY - offset.top) / this.cHeight ) * 2 + 1;
-            var vector = new THREE.Vector3(this.mouse.x, this.mouse.y, 1);
-            this.projector.unprojectVector(vector, this.camera);
-            var raycaster = new THREE.Raycaster(this.camera.position, vector.sub(this.camera.position).normalize());
-            if (this.SELECTED) {
-                var intersects = raycaster.intersectObject(this.plane);
-                this.SELECTED.position.copy(intersects[ 0 ].point.sub(this.offset));
-                this.selectors[ this.SELECTED.selectId ].setUpdateState(true);
-                this.resetAllResult();
-                return;
-            }
+        event.preventDefault();
 
-            var intersects = raycaster.intersectObjects(this.objects);
-            if (intersects.length > 0) {
-                if (this.INTERSECTED != intersects[ 0 ].object) {
-                    this.INTERSECTED = intersects[ 0 ].object;
-                    this.plane.position.copy(this.INTERSECTED.position);
-                    this.plane.lookAt(this.camera.position);
-                }
-                this.container.style.cursor = 'pointer';
+        var $containerId = $('#container' + this.id);
+        var offset = $containerId.offset();
+        this.cWidth = $containerId.width();
+        this.cHeight = $containerId.height();
+        this.mouse.x = ( (event.clientX - offset.left) / this.cWidth ) * 2 - 1;
+        this.mouse.y = -( (event.clientY - offset.top) / this.cHeight ) * 2 + 1;
+        var vector = new THREE.Vector3(this.mouse.x, this.mouse.y, 1);
+        this.projector.unprojectVector(vector, this.camera);
+        var raycaster = new THREE.Raycaster(this.camera.position, vector.sub(this.camera.position).normalize());
+        if (this.SELECTED) {
+            var intersects = raycaster.intersectObject(this.plane);
+            this.SELECTED.position.copy(intersects[ 0 ].point.sub(this.offset));
+            this.selectors[ this.SELECTED.selectId ].setUpdateState(true);
+            this.resetAllResult();
+            return;
+        }
+
+        var intersects = raycaster.intersectObjects(this.objects);
+        if (intersects.length > 0) {
+            if (this.INTERSECTED != intersects[ 0 ].object) {
+                this.INTERSECTED = intersects[ 0 ].object;
+                this.plane.position.copy(this.INTERSECTED.position);
+                this.plane.lookAt(this.camera.position);
             }
-            else {
-                this.INTERSECTED = null;
-                this.container.style.cursor = 'auto';
-            }
+            this.container.style.cursor = 'pointer';
+        }
+        else {
+            this.INTERSECTED = null;
+            this.container.style.cursor = 'auto';
         }
     },
 
     onDocumentMouseDown: function (event) {
-        if (this.renderShape === 'Line') {
-            event.preventDefault();
 
-            var $containerId = $('#container' + this.id);
-            var offset = $containerId.offset();
-            this.cWidth = $containerId.width();
-            this.cHeight = $containerId.height();
-            this.mouse.x = ( (event.clientX - offset.left) / this.cWidth ) * 2 - 1;
-            this.mouse.y = -( (event.clientY - offset.top) / this.cHeight ) * 2 + 1;
-            var vector = new THREE.Vector3(this.mouse.x, this.mouse.y, 1);
-            this.projector.unprojectVector(vector, this.camera);
-            var raycaster = new THREE.Raycaster(this.camera.position, vector.sub(this.camera.position).normalize());
-            var intersects = raycaster.intersectObjects(this.objects);
-            if (intersects.length > 0) {
-                this.activeControls.enabled = false;
-                this.SELECTED = intersects[ 0 ].object;
+        event.preventDefault();
+        var $containerId = $('#container' + this.id);
+        var offset = $containerId.offset();
+        this.cWidth = $containerId.width();
+        this.cHeight = $containerId.height();
+        this.mouse.x = ( (event.clientX - offset.left) / this.cWidth ) * 2 - 1;
+        this.mouse.y = -( (event.clientY - offset.top) / this.cHeight ) * 2 + 1;
+        var vector = new THREE.Vector3(this.mouse.x, this.mouse.y, 1);
+        this.projector.unprojectVector(vector, this.camera);
+        var raycaster = new THREE.Raycaster(this.camera.position, vector.sub(this.camera.position).normalize());
+        var intersects = raycaster.intersectObjects(this.objects);
+        if (intersects.length > 0) {
+            this.controls.enabled = false;
+            this.SELECTED = intersects[ 0 ].object;
 
-                this.radius = this.SELECTED.geometry.radius;
-                var intersects = raycaster.intersectObject(this.plane);
-                this.offset.copy(intersects[ 0 ].point).sub(this.plane.position);
-                this.container.style.cursor = 'move';
-            }
+            this.radius = this.SELECTED.geometry.radius;
+            var intersects = raycaster.intersectObject(this.plane);
+            this.offset.copy(intersects[ 0 ].point).sub(this.plane.position);
+            this.container.style.cursor = 'move';
         }
     },
 
     onDocumentMouseUp: function (event) {
-        if (this.renderShape === 'Line') {
-            event.preventDefault();
 
-            this.activeControls.enabled = true;
-            if (this.INTERSECTED) {
-                this.plane.position.copy(this.INTERSECTED.position);
-                this.SELECTED = null;
-            }
-            this.container.style.cursor = 'auto';
+        event.preventDefault();
+        this.controls.enabled = true;
+        if (this.INTERSECTED) {
+            this.plane.position.copy(this.INTERSECTED.position);
+            this.SELECTED = null;
         }
+        this.container.style.cursor = 'auto';
     },
 
     animate: function () {
@@ -515,60 +495,58 @@ Bubble.prototype = {
     },
 
     update: function () {
-        this.activeControls.update();
-        if (this.renderShape === 'Line') {
-            if (this.SELECTED) {
-                this.keyboard.update();
-                var select_Id = this.SELECTED.selectId;
-                var position = this.SELECTED.position;
+        this.controls.update();
+        if (this.SELECTED) {
+            this.keyboard.update();
+            var select_Id = this.SELECTED.selectId;
+            var position = this.SELECTED.position;
 
-                if (this.keyboard.down("up")) {
-                    this.radius += 1;
-                }
-                if (this.keyboard.down("down")) {
-                    this.radius -= 1;
-                    if (this.radius == 0) {
-                        this.radius = 1;
-                        alert("1 is the smallest radius!")
-                    }
-                }
-                if (this.radius !== this.SELECTED.geometry.radius) {
-                    if (this.radius < this.SELECTED.geometry.radius)   //when the radius of sphere becomes much smaller, we should reset the selected fibers.
-                        this.resetAllResult();
-                    var geometry = new THREE.SphereGeometry(this.radius, 40, 40);
-                    var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: this.SELECTED.material.color }));
-                    object.position = position;
-                    object.selectId = select_Id;
-                    this.scene.remove(this.objects[select_Id]);
-                    this.scene.add(object);
-                    this.objects[select_Id] = object;
-                    this.selectors[select_Id].setSphere(object);
-                    this.selectors[ select_Id ].setUpdateState(true);
+            if (this.keyboard.down("up")) {
+                this.radius += 1;
+            }
+            if (this.keyboard.down("down")) {
+                this.radius -= 1;
+                if (this.radius == 0) {
+                    this.radius = 1;
+                    alert("1 is the smallest radius!")
                 }
             }
-            for (var i = 0; i < this.selectors.length; i++)
-                this.selectors[i].intersectObjects(this.mainGroup.children, true);
-            if (this.ANDOR === "DELETE") {
-                this.fiberSelector.updateSelectResult("DELETE");   //{ AND: 0, OR: 1}
-                var delete_Fibers = this.fiberSelector.deletedFibers;
-                if (delete_Fibers.length > 0) {
-                    for (i = 0; i < delete_Fibers.length; ++i) {
-                        var delete_object = delete_Fibers[i].object;
-                        if (delete_object !== undefined) {
-                            delete_object.visible = false;
-                        }
+            if (this.radius !== this.SELECTED.geometry.radius) {
+                if (this.radius < this.SELECTED.geometry.radius)   //when the radius of sphere becomes much smaller, we should reset the selected fibers.
+                    this.resetAllResult();
+                var geometry = new THREE.SphereGeometry(this.radius, 40, 40);
+                var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: this.SELECTED.material.color }));
+                object.position = position;
+                object.selectId = select_Id;
+                this.scene.remove(this.objects[select_Id]);
+                this.scene.add(object);
+                this.objects[select_Id] = object;
+                this.selectors[select_Id].setSphere(object);
+                this.selectors[ select_Id ].setUpdateState(true);
+            }
+        }
+        for (var i = 0; i < this.selectors.length; i++)
+            this.selectors[i].intersectObjects(this.mainGroup.children, true);
+        if (this.ANDOR === "DELETE") {
+            this.fiberSelector.updateSelectResult("DELETE");   //{ AND: 0, OR: 1}
+            var delete_Fibers = this.fiberSelector.deletedFibers;
+            if (delete_Fibers.length > 0) {
+                for (i = 0; i < delete_Fibers.length; ++i) {
+                    var delete_object = delete_Fibers[i].object;
+                    if (delete_object !== undefined) {
+                        delete_object.visible = false;
                     }
                 }
             }
-            else {
-                this.fiberSelector.updateSelectResult(this.ANDOR);   //{ AND: 0, OR: 1}
-                var select_Fibers = this.fiberSelector.selectedFibers;
-                if (select_Fibers.length > 0) {
-                    for (i = 0; i < select_Fibers.length; ++i) {
-                        var select_object = select_Fibers[i].object;
-                        if (select_object !== undefined) {
-                            select_object.material.color.setRGB(1, 1, 0);
-                        }
+        }
+        else {
+            this.fiberSelector.updateSelectResult(this.ANDOR);   //{ AND: 0, OR: 1}
+            var select_Fibers = this.fiberSelector.selectedFibers;
+            if (select_Fibers.length > 0) {
+                for (i = 0; i < select_Fibers.length; ++i) {
+                    var select_object = select_Fibers[i].object;
+                    if (select_object !== undefined) {
+                        select_object.material.color.setRGB(1, 1, 0);
                     }
                 }
             }
@@ -576,14 +554,15 @@ Bubble.prototype = {
     },
 
     render: function () {
-        if (this.renderShape === 'Tube') {
+        if(this.renderShape === 'Tube')
+        {
             this.renderer.shadowMapEnabled = false;
             //this.renderer.autoClear = false;
             this.renderer.autoUpdateObjects = true;
             this.depthPassPlugin.enabled = true;
 
             this.scene.overrideMaterial = this.depthMaterial;
-            this.renderer.render(this.scene, this.camera, this.depthTarget);
+            this.renderer.render( this.scene, this.camera, this.depthTarget );
             this.scene.overrideMaterial = null;
 
             this.depthPassPlugin.enabled = false;
@@ -591,7 +570,8 @@ Bubble.prototype = {
             this.renderer.shadowMapEnabled = true;
             this.composer.render();
         }
-        else {
+        else
+        {
             this.renderer.clear();
             this.renderer.render(this.scene, this.camera);
         }

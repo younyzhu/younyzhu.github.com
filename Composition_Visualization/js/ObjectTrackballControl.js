@@ -8,20 +8,25 @@ TrackballControls = function (object, domElement) {
 
     var _this = this;
     this.enabled = true;
-    this.zoomSpeed = 2;
+    this.zoomSpeed = 1.5;
     this.rotateSpeed = 2.5;
     this.screen = { left: 0, top: 0, width: 0, height: 0 };
 
-    _this.quater = object.quaternion;
     _this.object = object;
+    _this.quater = object.quaternion;
+
     _this.domElement = ( domElement !== undefined ) ? domElement : document;
 
     _this.zoomValue = 0;
-    _this.mouseDown = true;
 
     _this.rotateStartP = new THREE.Vector3();
     _this.rotateEndP = new THREE.Vector3();
 
+    this.setObject = function(object){
+
+        this.object = object;
+        this.quater = object.quaternion;
+    };
     // methods
     this.handleResize = function () {
 
@@ -53,10 +58,13 @@ TrackballControls = function (object, domElement) {
         _this.zoomValue = 0;
 
     };
+    this.reset = function () {
+
+    };
     function mousedown(event) {
         if (_this.enabled === false) return;
-        event.preventDefault();
-        event.stopPropagation();
+        //event.preventDefault();
+        //event.stopPropagation();
 
         _this.rotateStartP = _this.rotateEndP = projectOnTrackball(event.clientX, event.clientY);
 
@@ -102,16 +110,16 @@ TrackballControls = function (object, domElement) {
 
     function mousemove(event) {
         if (_this.enabled === false) return;
-        event.preventDefault();
-        event.stopPropagation();
+        //event.preventDefault();
+        //event.stopPropagation();
         _this.rotateEndP = projectOnTrackball(event.clientX, event.clientY);
     }
 
     function mouseup(event) {
         if (_this.enabled === false)
             return;
-        event.preventDefault();
-        event.stopPropagation();
+        //event.preventDefault();
+        //event.stopPropagation();
         _this.rotateStartP = _this.rotateEndP;
         _this.domElement.removeEventListener('mousemove', mousemove);
         _this.domElement.removeEventListener('mouseup', mouseup);
@@ -121,8 +129,8 @@ TrackballControls = function (object, domElement) {
     function mousewheel(event) {
         if (_this.enabled === false)
             return;
-        event.preventDefault();
-        event.stopPropagation();
+        //event.preventDefault();
+        //event.stopPropagation();
         var delta = 0;
         if (event.wheelDelta)
         { // WebKit / Opera / Explorer 9
@@ -135,6 +143,7 @@ TrackballControls = function (object, domElement) {
         }
         _this.zoomValue += delta * _this.zoomSpeed;
     }
+    this.domElement.addEventListener( 'contextmenu', function ( event ) { event.preventDefault(); }, false );
     this.domElement.addEventListener('mousedown', mousedown, false);
     this.domElement.addEventListener('mousewheel', mousewheel, false);
     this.domElement.addEventListener('DOMMouseScroll', mousewheel, false); // firefox

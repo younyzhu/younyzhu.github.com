@@ -66,22 +66,8 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
     var currentView = new Rectangle(navigationCanvas, pos.x, pos.y, boxWidth, boxHeight, color, true);
     navigationCanvas.addShape(currentView);
 
-    $(".bubble").draggable({ containment: '#bgCanvas', scroll: false,
+    $(".bubble").draggable({ containment: '#bgCanvas', scroll: false,  //just dragable, do not need to move
         drag: function (ev, ui) {
-            var position = ui.position;  //drag stop position
-            var currentPos = currentToBoxPos(position.left, position.top);
-            var currentId = parseInt($(this).attr('id').replace(/bubble/, ''));
-            navigationCanvas.updateRectPos(currentId, currentPos.x, currentPos.y);
-
-            var le = Bubbles[id].getlinkNodes().length;
-            for (var i = 0; i < le; ++i) {
-                var next = Bubbles[currentId].getlinkNodes()[i].connectTo;
-                if (Bubbles[currentId].getlinkNodes()[i].connectionId !== null && Bubbles[currentId] !== null && Bubbles[next] !== null) {
-                    pathConnection.update(Bubbles[currentId].getlinkNodes()[i].connectionId, getWidgetCenter(currentId), getWidgetCenter(next));
-                }
-            }
-        },
-        stop: function (ev, ui) {
             var position = ui.position;  //drag stop position
             var currentPos = currentToBoxPos(position.left, position.top);
             var currentId = parseInt($(this).attr('id').replace(/bubble/, ''));
@@ -96,12 +82,14 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
             }
         }
     });
-    $("canvas").draggable({ containment: '#bgCanvas', scroll: false}).resizable({
-        resize: function () {
-            var width = $bubbleId.width() / window.innerWidth * nvWidth;
-            var height = $bubbleId.height() / (window.innerHeight - 50) * 50;
+    //To do:  here has a bug, when we adjust the canvas //This is fixed by adjust the trackball
+    $('canvas').draggable({ containment: '#bgCanvas', scroll: false}).resizable({
+        resize: function (ev, ui) {
+            var size = ui.size;
+            var width = size.width / window.innerWidth * nvWidth;
+            var height = size.height / (window.innerHeight - 50) * 50;
             navigationCanvas.updateRectResize(id, width, height);
-
+            bubble.onDivResize(size.width, size.height);
             var le = Bubbles[id].getlinkNodes().length;
             for (var i = 0; i < le; ++i) {
                 var next = Bubbles[id].getlinkNodes()[i].connectTo;

@@ -199,6 +199,10 @@ When loader a dataset, we need to know which is to select and which is to delete
  3. The function describe ad fellow:
      when we click(mouse down) the dots in line chart, this clicked dot will be highlight, and also the corresponding line in the bubble will also be highlight.
      when we mouse up, the highlight dot and line will get back to its origin color.
+ 4.Split the trackball control with
+     1. View-dependent trackball(just move the camera position) when use the line rendering (line rendering do not need the light, and will not be affected by the light position)
+     2. Object trackball, we just control the rotation and apply to the object, this will not affect the light position.
+     3. Fixed a bug in trackball.
 
 
 **Till now incluse files**
