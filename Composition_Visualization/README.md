@@ -86,7 +86,7 @@ Those are in the sphereSelector.html.
 
 * 5/27/2014
 
-1. Modify the bug in the delete function of multi-selection
+ 1. Modify the bug in the delete function of multi-selection
 //Connect the selector in sphereSelector.html
 so change some files here: ObjectLoader.js
 I was very angry about me, I spend a day to find another bug: the program goes well when I write in sphereSelector.html,
@@ -127,7 +127,7 @@ When loader a dataset, we need to know which is to select and which is to delete
  1. Since the view-dependent ribbon can not implement in three.js, so I changed to ribbon.
  2. First I would applied the Three.js cast shadow here, and then find a way to modified the shadow alogrithm.
     * ShadowMapping: [introduction](http://www.nutty.ca/?page_id=352&link=shadow_map#tabs-4)
-    * SSAO: [http://www.nutty.ca/?page_id=352&link=ssao](http://www.nutty.ca/?page_id=352&link=ssao)    
+    * SSAO: [http://www.nutty.ca/?page_id=352&link=ssao](http://www.nutty.ca/?page_id=352&link=ssao)      
 
 * 6/2/2014
  
@@ -194,16 +194,16 @@ When loader a dataset, we need to know which is to select and which is to delete
  spend a week processing the DTI raw data(DICOM), and generate the track file and fa.nii
 
 * 6/18/2014
- 1. add error bar, but find no space.
- 2. add select dot point, so re-write the line.chart, when click the dots, the clicked dots will heightlighted, and also the fiber.
- 3. The function describe ad fellow:
-     when we click(mouse down) the dots in line chart, this clicked dot will be highlight, and also the corresponding line in the bubble will also be highlight.
-     when we mouse up, the highlight dot and line will get back to its origin color.
- 4.Split the trackball control with
-     1. View-dependent trackball(just move the camera position) when use the line rendering (line rendering do not need the light, and will not be affected by the light position)
-     2. Object trackball, we just control the rotation and apply to the object, this will not affect the light position.
-     3. Fixed a bug in trackball.
-
+ 1. Add error bar, but find no space.
+ 2. Add select dot point, so re-write the line.chart, when click the dots, the clicked dots will heightlighted, and also the fiber.
+ 3. The function describe ad fellow:    
+     (1) when we click(mouse down) the dots in line chart, this clicked dot will be highlight, and also the corresponding line in the bubble will also be highlight.
+     (2) when we mouse up, the highlight dot and line will get back to its origin color.   
+ 4.Split the trackball control with     
+     (1). View-dependent trackball(just move the camera position) when use the line rendering (line rendering do not need the light, and will not be affected by the light position)
+     (2). Object trackball, we just control the rotation and apply to the object, this will not affect the light position.
+     (3). Fixed a bug in trackball.
+     (4). As we need to connect bar chart: this is the different type. And I find my designed framework is bigger and bigger, which would mass up, so redesigning the framework is hugely needed.
 
 **Till now incluse files**
 
