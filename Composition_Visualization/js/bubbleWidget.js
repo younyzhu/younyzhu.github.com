@@ -435,11 +435,28 @@ function addChart(id, $bubbleId) {
     $("#bubble").append(chartdiv);
 
     var linechartCanvas = document.getElementById('chartCanvas' + id);
-    var lineChart = new LineChart(linechartCanvas);
-    var FA = Bubbles[id].mainGroup.children[0].FA;
-    for (var i = 0; i < FA.length; ++i) {
+    var lineChart = new LineChart(id, linechartCanvas);
+
+    var childs = Bubbles[id].mainGroup.children;
+    for (var i = 0; i < childs.length; ++i) {
+        for (var j = 0; j < childs[i].children.length; ++j) {
+            lineChart.addItem(childs[i].children[j].id, childs[i].children[j].FA);
+        }
+    }
+    /*
+    var lines =  Bubbles[id].mainGroup.children[0].children;
+    for(var i=0; i< lines.length; ++i)
+    {
+        lineChart.addItem(lines[i].id, lines[i].FA);
+    }
+    */
+     /*
+     var FA = Bubbles[id].mainGroup.children[0].FA;
+     for (var i = 0; i < FA.length; ++i) {
         lineChart.addItem(i, FA[i]);
     }
+    */
+
     var parent = $('#chart' + id);
     $(".drag").draggable();
     $('#chartCanvas'+id).resizable({

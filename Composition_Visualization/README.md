@@ -190,7 +190,15 @@ When loader a dataset, we need to know which is to select and which is to delete
   2. Installing the software and operation system(almost spend a night installing the OS, as some not compaitable with the software)
   3. Fix a bug of the navigation bar, you can double click the current bar, then it will draw the current bar in the navigation bar.
 
+* 6/11/2014 - 6/17/2014
+ spend a week processing the DTI raw data(DICOM), and generate the track file and fa.nii
 
+* 6/18/2014
+ 1. add error bar, but find no space.
+ 2. add select dot point, so re-write the line.chart, when click the dots, the clicked dots will heightlighted, and also the fiber.
+ 3. The function describe ad fellow:
+     when we click(mouse down) the dots in line chart, this clicked dot will be highlight, and also the corresponding line in the bubble will also be highlight.
+     when we mouse up, the highlight dot and line will get back to its origin color.
 **Till now incluse files**
 
     <!--Css style-->

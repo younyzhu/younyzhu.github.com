@@ -88,7 +88,7 @@ ObjectLoader.prototype = {
                     sum +=parseFloat(vals[4]); //color (1,FA,FA)
                 }
                 sum /= vertexPosition.length;
-                FA.push( sum );
+                //FA.push( sum );
                 if(this.renderShape === 'Line')
                 {
                     var grayness = Math.random() * 0.5 + 0.25;
@@ -97,6 +97,7 @@ ObjectLoader.prototype = {
                     material.ColorKeeper = new THREE.Color(grayness, grayness, grayness);
                     var line = new THREE.Line(geometry, material, THREE.LineStrip);
                     line.name = i; //This is to recode which line is selected.
+                    line.FA = sum;
                     object.add(line);
                 }
                 else if(this.renderShape === 'Ribbon')
@@ -104,6 +105,7 @@ ObjectLoader.prototype = {
                     var ribbongeometry = new RibbonGeometry(vertexPosition, 1, vertexColor);
                     var ribbonmaterial = new THREE.MeshPhongMaterial({vertexColors: THREE.VertexColors,side:THREE.DoubleSide});
                     var mesh = new THREE.Mesh( ribbongeometry, ribbonmaterial );
+                    mesh.FA = sum;
                     object.add( mesh );
                 }
                 else if(this.renderShape === 'Tube')
@@ -123,6 +125,7 @@ ObjectLoader.prototype = {
                     var tubemesh = new THREE.Mesh( tubegeometry, tubematerial );
                     tubemesh.castShadow = true;
                     tubemesh.receiveShadow = true;
+                    tubemesh.FA = sum;
                     object.add( tubemesh );
                 }
             }
@@ -132,10 +135,11 @@ ObjectLoader.prototype = {
             this.center = new THREE.Vector3((positionminx + positionmaxx) / 2.0,
                     (positionminy + positionmaxy) / 2.0, (positionminz + positionmaxz) / 2.0);
         object.center = this.center;//Need remember the center of object
+        /*
         if(FA.length !== 0)
         {
             object.FA = FA;
-        }
+        } */
         return object;
     }
 

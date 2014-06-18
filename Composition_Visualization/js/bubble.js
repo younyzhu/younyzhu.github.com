@@ -13,7 +13,7 @@ function Bubble(id, selectedFibers, deletedFibers, objectCenter,shape) {
     this.scene = null;
     this.renderer = null;
 
-    this.FA = [];//store the FA value
+    //this.FA = [];//store the FA value
 
     this.id = id;
 
@@ -295,7 +295,7 @@ Bubble.prototype = {
                 object.position.z = -loader.center.z;
                 scope.mainCenter = object.center;
                 scope.mainGroup.add(object);
-                this.FA = object.FA;
+                //this.FA = object.FA;
             }
         });
         this.scene.add(this.mainGroup);
@@ -352,15 +352,37 @@ Bubble.prototype = {
             }
         }
     },
-
+    setSelectFAColor: function(id)   //this is according to its unique id;
+    {
+        var childs = this.mainGroup.children;
+        for (var i = 0; i < childs.length; ++i) {
+            for (var j = 0; j < childs[i].children.length; ++j) {
+                if( childs[i].children[j].id ===id)
+                    childs[i].children[j].material.color.setRGB(1.0, 1.0, 0.0);
+            }
+        }
+    },
+    resetSelectFAColor: function(id)   //this is according to its unique id;
+    {
+        var childs = this.mainGroup.children;
+        for (var i = 0; i < childs.length; ++i) {
+            for (var j = 0; j < childs[i].children.length; ++j) {
+                if( childs[i].children[j].id ===id)
+                {
+                    var origColor = childs[i].children[j].material.ColorKeeper;
+                    childs[i].children[j].material.color.setRGB(origColor.r, origColor.g, origColor.b);
+                }
+            }
+        }
+    },
     addSelector: function () {
         this.resetAllResult();
         var geometry = new THREE.SphereGeometry(10, 40, 40);
         var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }));
 
-        object.position.x = Math.random() * 200 - 50;
-        object.position.y = Math.random() * 200 - 50;
-        object.position.z = Math.random() * 100- 20;
+        object.position.x = Math.random() * 100 - 25;
+        object.position.y = Math.random() * 100 - 25;
+        object.position.z = Math.random() * 100- 25;
         this.scene.add(object);
         this.objects.push(object);
         var sphereSelector = new SphereSelector(this.id, object,true);
