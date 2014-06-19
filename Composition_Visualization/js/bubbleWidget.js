@@ -50,10 +50,10 @@ function currentToBoxPos(mousePosX, mousePosY) {
     var top = 50 * heightPercent; //50 is the height of the navigation bar;
     return {x: left, y: top};
 }
-function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers, objectCenter) {
+function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers, objectCenter, localFileName) {
     var bubblediv = $(bubble_div(id, name, mousePosX, mousePosY));
     $("#bubble").append(bubblediv);
-    var bubble = new Bubble(id, selectedFibers, deletedFibers, objectCenter);//just Id
+    var bubble = new Bubble(id, selectedFibers, deletedFibers, objectCenter, null, localFileName);//just Id
     Bubbles.push(bubble);
     try {
         bubble.init();
@@ -192,7 +192,7 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
                     var posy = $bubbleId.offset().top;
                     var refinefiber = bubble.fiberSelector.getRefineFiberId();
 
-                    addBubble(BUBBLE_COUNT, 'Refined fiber bundles', posx + $bubbleId.width() + 30, posy, refinefiber.selectedFibersId, refinefiber.deletedFibersId, bubble.mainCenter);
+                    addBubble(BUBBLE_COUNT, 'Refined fiber bundles', posx + $bubbleId.width() + 30, posy, refinefiber.selectedFibersId, refinefiber.deletedFibersId, bubble.mainCenter,bubble.localFileName);
 
                     var connection = new Connection(getWidgetCenter(id), getWidgetCenter(BUBBLE_COUNT));
                     pathConnection.addConnection(connection);
@@ -303,10 +303,10 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
     });
 
 
-    function toggle(id) {
-        var $sectionId = $("#section_" + id);
+    function toggle(i) {
+        var $sectionId = $("#bubble" + id).children().children().children("#section_" + i);
         var scn = $sectionId.css('display');
-        var btn = $("#plus_" + id).children("#tog")[0];
+        var btn = $("#bubble" + id).children().children().children("#plus_" + i).children("#tog")[0];
         if (scn == "block") {
             $sectionId.hide();
             btn.innerHTML = "[+]";
@@ -318,15 +318,15 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
 
     }
 
-    function createToggle(id) {
+    function createToggle(i) {
         return function () {
-            toggle(id);
+            toggle(i);
         };
     }
 
     for (var i = 1; i <= 5; i++) {
         //$( "plus_" + i).addEventListener( 'click', createToggle( i ), false );
-        $("#plus_" + i).click(createToggle(i));
+        $("#bubble" + id).children().children().children("#plus_" + i).click(createToggle(i));
     }
 }
 function bubble_div(id, name, mousePosX, mousePosY) {

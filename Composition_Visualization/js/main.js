@@ -52,7 +52,7 @@ $(document).ready(function(){
             if(key === 'Open_Bubble')
             {
                 BUBBLE_COUNT++;
-                addBubble(BUBBLE_COUNT,'DMRI brain bundles',mousePosX,mousePosY,null,null,null);
+                addBubble(BUBBLE_COUNT,'DMRI brain bundles',mousePosX,mousePosY,null,null,null,null);
                 //manageBubblePos(BUBBLE_COUNT);
                 /*$('#bubble'+BUBBLE_COUNT).css({
                  left : mousePosX,

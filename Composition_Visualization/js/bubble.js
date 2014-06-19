@@ -6,7 +6,7 @@ var __bind = function (fn, me) {
         return fn.apply(me, arguments);
     };
 };
-function Bubble(id, selectedFibers, deletedFibers, objectCenter, shape) {
+function Bubble(id, selectedFibers, deletedFibers, objectCenter, shape, localFileName) {
     this.connectionLinks = [];
 
     this.camera = null;
@@ -28,7 +28,7 @@ function Bubble(id, selectedFibers, deletedFibers, objectCenter, shape) {
     this.deletedFibers = deletedFibers || null;   //if deletedFibers = null, there is no deleted fibers
     this.objCenter = objectCenter || null;
 
-    this.localFileName = null;
+    this.localFileName = localFileName || null;
 
     //For trackball control
     this.controls = null;
@@ -320,10 +320,10 @@ Bubble.prototype = {
         manager.onProgress = function (item, loaded, total) {
             console.log(item, loaded, total);
         };
-        if (this.localFileName === null)
+        if (this.localFileName === null)  //This is a type of FileReader
             this.loadModel(manager, './data/whole_s4.data');
         else
-            this.loadLocalModel(this.localFileName);
+            this.loadLocalModel(this.localFileName);  //This is a type of FileReader
 
         /*
          var loader = new ObjectLoader(manager, this.selectedFibers, this.deletedFibers, this.objCenter, this.renderShape);
