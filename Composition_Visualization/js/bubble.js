@@ -27,6 +27,9 @@ function Bubble(id, selectedFibers, deletedFibers, objectCenter, shape) {
     this.selectedFibers = selectedFibers || null;   //if selectFiber = null, there is no selected fibers
     this.deletedFibers = deletedFibers || null;   //if deletedFibers = null, there is no deleted fibers
     this.objCenter = objectCenter || null;
+
+    this.localFileName = null;
+
     //For trackball control
     this.controls = null;
     this.objControls = null;
@@ -115,7 +118,12 @@ Bubble.prototype = {
             this.render();
         }
     },
-
+    localRender: function () {
+        this.scene.remove(this.mainGroup);
+        this.mainGroup = new THREE.Object3D();
+        this.fillMainGroup();
+        this.render();
+    },
     init: function () {
         this.cWidth = 400;
         this.cHeight = 400;
@@ -273,18 +281,10 @@ Bubble.prototype = {
             }
         });
     },
-    fillMainGroup: function () {
-
-        if (this.renderShape === "Tube") {
-            this.createPostProcessing();
-        }
+    loadModel: function (manager, file) {
         var scope = this;
-        var manager = new THREE.LoadingManager();
-        manager.onProgress = function (item, loaded, total) {
-            console.log(item, loaded, total);
-        };
         var loader = new ObjectLoader(manager, this.selectedFibers, this.deletedFibers, this.objCenter, this.renderShape);
-        loader.load('./data/whole_s4.data', function (object) {
+        loader.load(file, function (object) {
             //loader.load('./data/s1_cc.data', function (object){
             if (loader.center !== null) {
                 object.position.x = -loader.center.x;
@@ -295,14 +295,56 @@ Bubble.prototype = {
                 //this.FA = object.FA;
             }
         });
+    },
+    loadLocalModel: function (file) {
+        var scope = this;
+        var loader = new LocalObjectLoader(this.selectedFibers, this.deletedFibers, this.objCenter, this.renderShape);
+        loader.load(file, function (object) {
+            //loader.load('./data/s1_cc.data', function (object){
+            if (loader.center !== null) {
+                object.position.x = -loader.center.x;
+                object.position.y = -loader.center.y;
+                object.position.z = -loader.center.z;
+                scope.mainCenter = object.center;
+                scope.mainGroup.add(object);
+                //this.FA = object.FA;
+            }
+        });
+    },
+    fillMainGroup: function () {
+
+        if (this.renderShape === "Tube") {
+            this.createPostProcessing();
+        }
+        var manager = new THREE.LoadingManager();
+        manager.onProgress = function (item, loaded, total) {
+            console.log(item, loaded, total);
+        };
+        if (this.localFileName === null)
+            this.loadModel(manager, './data/whole_s4.data');
+        else
+            this.loadLocalModel(this.localFileName);
+
+        /*
+         var loader = new ObjectLoader(manager, this.selectedFibers, this.deletedFibers, this.objCenter, this.renderShape);
+         loader.load('./data/whole_s4.data', function (object) {
+         //loader.load('./data/s1_cc.data', function (object){
+         if (loader.center !== null) {
+         object.position.x = -loader.center.x;
+         object.position.y = -loader.center.y;
+         object.position.z = -loader.center.z;
+         scope.mainCenter = object.center;
+         scope.mainGroup.add(object);
+         //this.FA = object.FA;
+         }
+         });
+         */
         this.scene.add(this.mainGroup);
-        if(this.objControls === null)
-        {
+        if (this.objControls === null) {
             this.objControls = new TrackballControls(this.mainGroup, this.container);
             this.objControls.enabled = false;
         }
-       else
-        {
+        else {
             this.objControls.setObject(this.mainGroup);
             this.objControls.enabled = false;
         }

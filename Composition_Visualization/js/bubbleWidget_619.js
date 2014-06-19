@@ -33,7 +33,8 @@ function updateBubblePos(index, x, y) {
         left: posx + x,
         top: posy + y
     });
-    if (Bubbles[index] !== null) {
+    if(Bubbles[index]!== null)
+    {
         var le = Bubbles[index].getlinkNodes().length;
         for (var i = 0; i < le; ++i) {
             var next = Bubbles[index].getlinkNodes()[i].connectTo;
@@ -83,7 +84,8 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
                 if (navigationCanvas.shapes[i].type === "BUBBLE" && navigationCanvas.shapes[i].Id === currentId)
                     navigationCanvas.updateRectPos(i, currentPos.x, currentPos.y);
             }
-            if (Bubbles[currentId] !== null) {
+            if(Bubbles[currentId] !== null)
+            {
                 var le = Bubbles[currentId].getlinkNodes().length;
                 for (var i = 0; i < le; ++i) {
                     var type = Bubbles[currentId].getlinkNodes()[i].type;
@@ -114,7 +116,8 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
                     navigationCanvas.updateRectResize(i, width, height);
             }
             bubble.onDivResize(size.width, size.height);
-            if (Bubbles[id] !== null) {
+            if(Bubbles[id] !== null)
+            {
                 var le = Bubbles[id].getlinkNodes().length;
                 for (var i = 0; i < le; ++i) {
                     var type = Bubbles[id].getlinkNodes()[i].type;
@@ -145,7 +148,8 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
                     if (navigationCanvas.shapes[i].type === "BUBBLE" && navigationCanvas.shapes[i].Id === id)
                         navigationCanvas.remove(i);
                 }
-                if (Bubbles[id] !== null) {
+                if(Bubbles[id] !== null)
+                {
                     var le = Bubbles[id].getlinkNodes().length;
                     for (var i = 0; i < le; ++i) {
                         var type = Bubbles[id].getlinkNodes()[i].type;
@@ -248,40 +252,39 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
         //var textSelected   = optionSelected.text();
         //alert(valueSelected + textSelected);
     });
-    $bubbleparaMenu.children('#load').click(function () {
+    $bubbleparaMenu.children('#load').click(function(){
         var selected_file = $('#input').get(0).files[0];
-        if (selected_file === null) {
-            alert("Please select a file!");
+        if(selected_file === null)
+        {
+            alert( "Please select a file!" );
         }
-        else {
-            bubble.localFileName = selected_file;
-            bubble.localRender();
-            /*
+        else
+        { /*
             var reader = new FileReader();
-            var progress = $("#progress")[0];
-
-            progress.textContent = "";
-            reader.readAsText(selected_file);
-            reader.onerror = function () {
+            reader.readAsText( selected_file );
+            reader.onerror = function()
+            {
                 progress.innerHTML = "Could not read file, error code is " + reader.error.code;
             };
-            var load = 0;
-            var total = 0;
-            reader.onprogress = function (event) {
-                if (event.lengthComputable) {
+
+            reader.onprogress = function(event)
+            {
+                if (event.lengthComputable){
                     load = event.loaded;
                     total = event.total;
-                    progress.innerHTML = event.loaded / event.total;
+                    progress.innerHTML = event.loaded + "/" + event.total;
                 }
             };
 
-            reader.onload = function () {
+            reader.onload = function()
+            {
                 var tempdata = "";
                 tempdata = reader.result;
-                if (tempdata != null && load == total) {
+                if(tempdata!=null && load == total)
+                {
 
                 }
-            }; */
+            };  */
         }
     });
 
@@ -301,33 +304,6 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
             bubble.resetAllColors(rgb);
         }
     });
-
-
-    function toggle(id) {
-        var $sectionId = $("#section_" + id);
-        var scn = $sectionId.css('display');
-        var btn = $("#plus_" + id).children("#tog")[0];
-        if (scn == "block") {
-            $sectionId.hide();
-            btn.innerHTML = "[+]";
-        }
-        else {
-            $sectionId.show();
-            btn.innerHTML = "[-]";
-        }
-
-    }
-
-    function createToggle(id) {
-        return function () {
-            toggle(id);
-        };
-    }
-
-    for (var i = 1; i <= 5; i++) {
-        //$( "plus_" + i).addEventListener( 'click', createToggle( i ), false );
-        $("#plus_" + i).click(createToggle(i));
-    }
 }
 function bubble_div(id, name, mousePosX, mousePosY) {
     var tmp = '';
@@ -339,7 +315,7 @@ function bubble_div(id, name, mousePosX, mousePosY) {
     tmp += '            <button class="selectItem" id = "remove" > - </button>';
     tmp += '            <button class="selectItem" id = "and" > and </button>';
     tmp += '            <button class="selectItem" id = "delete" > delete </button>';
-    tmp += '            <button class="selectItem" id  = "or"  > or </button>';
+    tmp += '            <button class="selectItem" id = "or"  > or </button>';
     tmp += '        </div>';
     tmp += '    </div>';
 
@@ -349,33 +325,25 @@ function bubble_div(id, name, mousePosX, mousePosY) {
     tmp += '    <div id="paraMenu" class="widget shadow" style="position: absolute; left:385px; top:-17px; display: none">';
     tmp += '        <div class="para_header">Parameter';
     tmp += '        </div>';
-    tmp += '        <ul id="para_items">';
-    tmp += "            <li id='plus_1'> <span id='tog'>[+] </span> Input file </li> ";
-    tmp += '            <div id= "section_1" style="display: none">';
-    tmp += '                <input type="file" id="input" class="para">';
-    tmp += '                <div id="progress" class="para"></div>';
-    tmp += '                <button type="button" id="load" class="para">Load</button>';
+    tmp += '        <div id="para_items">';
+    tmp += '            <div class="para">Input file:';
+    tmp += '                <input type="file" id="input">';
+    tmp += '                <button type="button" id="load">Load</button>';
     tmp += '            </div>';
-    tmp += "            <li id='plus_2'> <span id='tog'>[+] </span> Shape </li> ";
-    tmp += '            <div id= "section_2" style="display: none" class="para">';
-    tmp += '                <select id="shape" class="para">';
-    tmp += '                    <option value="Line" class="para">Line</option>';
-    tmp += '                    <option value="Ribbon" class="para">Ribbon</option>';
-    tmp += '                    <option value="Tube" class="para">Tube</option>';
+    tmp += '            <div class="para">Shape:';
+    tmp += '                <select id="shape">';
+    tmp += '                    <option value="Line">Line</option>';
+    tmp += '                    <option value="Ribbon">Ribbon</option>';
+    tmp += '                    <option value="Tube">Tube</option>';
     tmp += '                </select>';
     tmp += '            </div>';
-    tmp += "            <li id='plus_3' > <span id='tog'>[+] </span> Color </li> ";
-    tmp += '            <div id= "section_3" style="display: none" class="para">';
-    tmp += '                <input type="text" maxlength="6" size="6" id="colorpickerField" value="00ff00" class="para">';
+    tmp += '            <div class="para">Color:';
+    tmp += '                <input type="text" maxlength="6" size="6" id="colorpickerField" value="00ff00">';
     tmp += '            </div>';
-    tmp += "            <li id='plus_4' > <span id='tog'>[+] </span> Size </li> ";
-    tmp += '            <div id= "section_4" style="display: none" class="para">';
-    tmp += '            </div>';
-    tmp += "            <li id='plus_5' > <span id='tog'>[+] </span> Texture </li> ";
-    tmp += '            <div id= "section_5" style="display: none" class="para">';
-    tmp += '            </div>';
+    tmp += '            <div class="para">Size</div>';
+    tmp += '            <div class="para">Texture</div>';
     tmp += '        </div>';
-    tmp += '    </ul>';
+    tmp += '    </div>';
     //
     tmp += '</div>';
     return tmp;
@@ -388,7 +356,8 @@ function resetAllBubblesPos(xChange) {
         var offLeft = $(this).position().left;
         $(this).css({left: offLeft - xChange});
         var id = parseInt($(this).attr('id').replace(/bubble/, ''));
-        if (Bubbles[id] !== null) {
+        if(Bubbles[id] !== null)
+        {
             var le = Bubbles[id].getlinkNodes().length;
             for (var i = 0; i < le; ++i) {
                 var next = Bubbles[id].getlinkNodes()[i].connectTo;
@@ -592,7 +561,8 @@ function addChart(id, $bubbleId) {
                 if (navigationCanvas.shapes[i].type === "CHART" && navigationCanvas.shapes[i].Id === currentId)
                     navigationCanvas.updateRectPos(i, currentPos.x, currentPos.y);
             }
-            if (Bubbles[currentId] !== null) {
+            if(Bubbles[currentId] !== null)
+            {
                 var le = Bubbles[currentId].getlinkNodes().length;
                 for (var i = 0; i < le; ++i) {
                     var type = Bubbles[currentId].getlinkNodes()[i].type;
@@ -629,7 +599,8 @@ function addChart(id, $bubbleId) {
                 navigationCanvas.remove(i);
         }
         parent.remove();
-        if (Bubbles[id] !== null) {
+        if(Bubbles[id] !== null)
+        {
             var le = Bubbles[id].getlinkNodes().length;
             for (var i = 0; i < le; ++i) {
                 var type = Bubbles[id].getlinkNodes()[i].type;

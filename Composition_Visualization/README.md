@@ -27,7 +27,8 @@ When you open the website, you can click [f] on you keyboard to full screen mode
 7. You could keep selecting in this application.
 8. And also with each bubble, there is a parameter bar, you can click [O] on the dragging bar:
 	* In the dragging bar, you can adjust the parameter, such as shape, size... for visualizing the model.
-      
+9. Every selected bubble or the origin bubble, you can generate its own fa line chart, when you click each dot of the line chart, each fiber and the clicked dot will be highlighted.
+10. By selecting your own file. you can load your custom model.
 
 ##Study Event
 
@@ -207,6 +208,12 @@ When loader a dataset, we need to know which is to select and which is to delete
           and firt I just fixed some bugs of the origin program, and let all the box synchronize.
      //This version maybe much better. But framework needs to modify.
 
+* 6/19/2014
+ 1. Reform the parameter menu,when you click the item of the menu, it will stretch, and show the detail function, fixed some bugs.
+ 2. Add local file loader, write a new local file loader **LocalObjectLoader.js** .
+
+
+
 
 **Till now incluse files**
 
@@ -237,6 +244,7 @@ When loader a dataset, we need to know which is to select and which is to delete
     <!--Tool-->
     <script src="js/Detector.js"></script>
     <script src="js/TrackballControls.js"></script>
+    <script src="js/ObjectTrackballControl.js"></script>
     <script src="js/THREEx.FullScreen.js"></script>
     <script src="js/KeyboardState.js"></script>
     <!--Main display-->
@@ -249,5 +257,6 @@ When loader a dataset, we need to know which is to select and which is to delete
     <script src="js/chart.js"></script>
     <!--Shape-->
     <script src="js/ObjectLoader.js"></script>
+    <script src="js/LocalObjectLoader.js"></script>
     <script src="js/ribbonGeometry.js" type="text/javascript"></script>
     <script src="js/tubeGeometry.js" type="text/javascript"></script>
