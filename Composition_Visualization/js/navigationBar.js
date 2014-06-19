@@ -2,8 +2,10 @@
  * Created by Yongnanzhu on 5/12/2014.
  */
 //part code modify from https://github.com/amclark
-function Rectangle(state, x, y, w ,h, color, fillState)
+function Rectangle(state, x, y, w ,h, color, fillState, id, type)
 {
+    this.type = type || "BUBBLE"; //
+    this.Id = id || 0;     //this rectangle belongs to which bubble or chart
     this.state = state;
     this.x = x + currentViewpointPosx || 0;
     this.y = y + currentViewpointPosy || 0;

@@ -9,7 +9,7 @@ TrackballControls = function (object, domElement) {
     var _this = this;
     this.enabled = true;
     this.zoomSpeed = 1.5;
-    this.rotateSpeed = 2.5;
+    this.rotateSpeed = 3.5;
     this.screen = { left: 0, top: 0, width: 0, height: 0 };
 
     _this.object = object;

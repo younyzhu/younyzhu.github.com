@@ -203,7 +203,10 @@ When loader a dataset, we need to know which is to select and which is to delete
      (1). View-dependent trackball(just move the camera position) when use the line rendering (line rendering do not need the light, and will not be affected by the light position)
      (2). Object trackball, we just control the rotation and apply to the object, this will not affect the light position.
      (3). Fixed a bug in trackball.
-     (4). As we need to connect bar chart: this is the different type. And I find my designed framework is bigger and bigger, which would mass up, so redesigning the framework is hugely needed.
+     (4). As we need to connect bar chart: this is the different type. And I find my designed framework is bigger and bigger, which would mass up, so redesigning the framework is hugely needed. (It needs time to do this)
+          and firt I just fixed some bugs of the origin program, and let all the box synchronize.
+     //This version maybe much better. But framework needs to modify.
+
 
 **Till now incluse files**
 
