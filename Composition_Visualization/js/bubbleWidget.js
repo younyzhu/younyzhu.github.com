@@ -285,7 +285,6 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
         }
     });
 
-
     var $colorpickerField = $("#bubble" + id).children().children().children().children('#colorpickerField');
     $colorpickerField.ColorPicker({
         onSubmit: function (hsb, hex, rgb, el) {
@@ -302,7 +301,6 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
         }
     });
 
-
     function toggle(i) {
         var $sectionId = $("#bubble" + id).children().children().children("#section_" + i);
         var scn = $sectionId.css('display');
@@ -315,7 +313,6 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
             $sectionId.show();
             btn.innerHTML = "[-]";
         }
-
     }
 
     function createToggle(i) {

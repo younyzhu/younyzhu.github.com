@@ -212,6 +212,24 @@ When loader a dataset, we need to know which is to select and which is to delete
  1. Reform the parameter menu,when you click the item of the menu, it will stretch, and show the detail function, fixed some bugs.
  2. Add local file loader, write a new local file loader **LocalObjectLoader.js** .
 
+* 6/20/2014
+
+ 1. try to load raw data in the visualization
+ 2. compared the DICOM and the nii format, I decide to choose the nii which is one file and maybe compressed
+ (we could use [gzip or gunzip](https://github.com/imaya/zlib.js) to decompress it)
+ 3. try to write a NiiLoader, load the binary data.
+ 4. As DICOM has to load lots of images, so I deside to load the nii image and again to learn to parse the nifti format in javascript
+
+* 6/21/2014
+
+ 1. Actually, stuck in a bug of the program.
+ 2. A note from Programing:
+     What the image store the data is just inverse with the array what we know in c, this is store according to its column,
+     In order to figure this, I almost a day to figure, why my fa is different, and I also checked the C transform file wrote a few days ago, I doubt It is also wrong,
+     Actually, It is wrong, because of the different way of array data storage policy
+ 3. And finally, I know what's the problem of extracting the FA in My c++ program, I can fixed.
+ 4. The basci program: [Test/TestNii/nii.html](https://younyzhu.github.com/Composition_Visualization/Test//TestNii/nii.html)
+ 5. Need TO: need to store the loaded data, so that we can adjust the picture in the program, need to add interaction, need to syschronmize with the track model.
 
 
 
