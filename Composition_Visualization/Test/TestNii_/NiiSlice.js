@@ -11,7 +11,6 @@ function NiiSlice(scene){
     this.XYPlane = null;
     this.YZPlane = null;
     this.XZPlane = null;
-    this.init();
 }
 NiiSlice.prototype = {
     init: function(){

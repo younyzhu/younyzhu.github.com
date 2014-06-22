@@ -228,9 +228,9 @@ When loader a dataset, we need to know which is to select and which is to delete
      In order to figure this, I almost a day to figure, why my fa is different, and I also checked the C transform file wrote a few days ago, I doubt It is also wrong,
      Actually, It is wrong, because of the different way of array data storage policy
  3. And finally, I know what's the problem of extracting the FA in My c++ program, I can fixed.
- 4. The basci program: [Test/TestNii/nii.html](https://younyzhu.github.com/Composition_Visualization/Test//TestNii/nii.html)
- 5. Need TO: need to store the loaded data, so that we can adjust the picture in the program, need to add interaction, need to syschronmize with the track model, need to add decompress the nii.gz file
-    
+ 4. The basci program: [Test/TestNii_/nii.html](https://younyzhu.github.com/Composition_Visualization/Test//TestNii_/nii.html)
+ 5. Need TO do: need to store the loaded data, so that we can adjust the picture in the program, need to add interaction, need to syschronmize with the track model, need to add decompress the nii.gz file
+ 6. Add update texture, when we change the texture.
 `NiiLoader.js` Loader nitfi file into header and do some preprocess    
 `NiiSlice.js`  Build the slice and add to the scene    
 `PlaneGeometry.js`   Create a square geometry for put the texture of the nitfi image
