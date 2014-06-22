@@ -229,8 +229,11 @@ When loader a dataset, we need to know which is to select and which is to delete
      Actually, It is wrong, because of the different way of array data storage policy
  3. And finally, I know what's the problem of extracting the FA in My c++ program, I can fixed.
  4. The basci program: [Test/TestNii/nii.html](https://younyzhu.github.com/Composition_Visualization/Test//TestNii/nii.html)
- 5. Need TO: need to store the loaded data, so that we can adjust the picture in the program, need to add interaction, need to syschronmize with the track model.
-
+ 5. Need TO: need to store the loaded data, so that we can adjust the picture in the program, need to add interaction, need to syschronmize with the track model, need to add decompress the nii.gz file
+    
+`NiiLoader.js` Loader nitfi file into header and do some preprocess    
+`NiiSlice.js`  Build the slice and add to the scene    
+`PlaneGeometry.js`   Create a square geometry for put the texture of the nitfi image
 
 
 **Till now incluse files**
