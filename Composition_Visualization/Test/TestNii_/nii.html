@@ -106,13 +106,15 @@
 <script src="PlaneGeometry.js"></script>
 <script src="NiiLoader.js"></script>
 <script src="NiiSlice.js"></script>
+<script src="gunzip.min.js"></script>
+<script src="gzip.min.js"></script>
 <script src="../Detector.js"></script>
 <script src="../stats.min.js"></script>
-
+<script src="../dat.gui.js"></script>
 <script>
 if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 var container, stats;
-
+var control;
 var camera, scene, renderer;
 var group;
 var mainGroup;
@@ -210,7 +212,6 @@ function init() {
 
     }
     slice = new NiiSlice(mainGroup);
-    slice.init();
     /*
     var loader = new NiiLoader();
     loader.load( './dti_fa.nii', function ( object ) {

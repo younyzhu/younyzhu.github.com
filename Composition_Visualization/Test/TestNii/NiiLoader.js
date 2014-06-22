@@ -10,6 +10,7 @@ NiiLoader.prototype = {
 
     constructor: NiiLoader,
     load: function (url, callback) {
+
         var scope = this;
         var xhr = new XMLHttpRequest();
 
@@ -37,8 +38,26 @@ NiiLoader.prototype = {
         xhr.send(null);
     },
     parse: function (data) {
+        //taken from https://github.com/xtk/X/blob/master/io/parserNII.js
+        var _data = data;
+        // check if this data is compressed, then this int != 348
+        var _compressionCheck = -1;
+        if (typeof DataView == 'undefined') {
+            _compressionCheck = new Int32Array(data, 0, 1)[0];
+        } else {
+            var dataview = new DataView(data, 0);
+            _compressionCheck = dataview.getInt32(0, true);
+        }
+        if (_compressionCheck != 348) {
+            // we need to decompress the datastream
+            // here we start the unzipping and get a typed Uint8Array back
+            var inflate = new Zlib.Gunzip(new Uint8Array(_data));
+            _data = inflate.decompress();
+            // .. and use the underlying array buffer
+            _data = _data.buffer;
+        }
         var current_offset = 0;
-        return this.parseHeader(data, current_offset);
+        return this.parseHeader(_data, current_offset);
 
     },
     parseHeader: function (data, offset) {
