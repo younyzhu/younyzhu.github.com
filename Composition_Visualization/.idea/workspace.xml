@@ -30,8 +30,8 @@
       <file leaf-file-name="visualization.htm" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/visualization.htm">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.67742" vertical-offset="897" max-vertical-offset="1924">
-              <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
+            <state vertical-scroll-proportion="-5.032258" vertical-offset="0" max-vertical-offset="1924">
+              <caret line="6" column="19" selection-start-line="5" selection-start-column="0" selection-end-line="55" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -727,18 +727,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/visualization.htm">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.279365" vertical-offset="4856" max-vertical-offset="7800">
-          <caret line="242" column="18" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
+        <state vertical-scroll-proportion="-5.032258" vertical-offset="0" max-vertical-offset="1924">
+          <caret line="6" column="19" selection-start-line="5" selection-start-column="0" selection-end-line="55" selection-end-column="69" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/visualization.htm">
+    <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.67742" vertical-offset="897" max-vertical-offset="1924">
-          <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
+        <state vertical-scroll-proportion="2.6507936" vertical-offset="6156" max-vertical-offset="8008">
+          <caret line="301" column="73" selection-start-line="301" selection-start-column="73" selection-end-line="301" selection-end-column="73" />
           <folding />
         </state>
       </provider>
