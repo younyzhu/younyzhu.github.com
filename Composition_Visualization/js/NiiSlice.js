@@ -7,7 +7,7 @@ function NiiSlice(id,scene,url) {
     this.metaData = null;
     this.vector1 = null;
     this.vector2 = null;
-    this.opacity = 0.5;
+    this.opacity = 0.9;
     this.transparent = false;
     this.XYPlane = null;
     this.YZPlane = null;

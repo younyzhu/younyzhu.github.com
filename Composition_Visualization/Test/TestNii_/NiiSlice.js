@@ -6,8 +6,8 @@ function NiiSlice(scene) {
     this.metaData = null;
     this.vector1 = null;
     this.vector2 = null;
-    this.opacity = 0.5;
-    this.transparent = false;
+    this.opacity = 0.9;
+    this.transparent = true;
     this.XYPlane = null;
     this.YZPlane = null;
     this.XZPlane = null;
