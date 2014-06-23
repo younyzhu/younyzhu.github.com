@@ -245,7 +245,9 @@ When loader a dataset, we need to know which is to select and which is to delete
  1. try a morning to find the transparent problem.
  2. At last, I find My texture is `THREE.RGBAFormat`, and When I set the intensity, I also set the `Alpha`, so that when I use the texture and set the `opacity =1.0` and the `transparent = true`, I do not
  get the same result as `set transparent = false`;
-
+ 3. Write a [Trk Format](http://trackvis.org/docs/?subsect=fileformat) Loader, right now, we can load the data, and using the line shape.
+ I use the data from [http://x.babymri.org/?cctracks.trk](http://x.babymri.org/?cctracks.trk) for test. Actually, our data is still too big.
+ The Link:[Trk File Loader](./Trk/trk.html)
 
 **Till now incluse files**
 
