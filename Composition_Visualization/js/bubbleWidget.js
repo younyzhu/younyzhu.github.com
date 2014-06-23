@@ -410,11 +410,16 @@ function bubble_div(id, name, mousePosX, mousePosY) {
     tmp += '                 <input type="file" id="inputNii" class="para">';
     tmp += '                 <button type="button" id="loadNii" class="para">Load</button>';
     tmp += '                 <div id= "plane" style="display: none" class="para">';//$("#bubble" + id).children().children().children().children();
-    tmp += '                    <span class="para">XY_Plane: </span><input type="checkbox" id="xyPlane" class="para"><span class="para">Position: </span><span class="para" id ="xypValue"> </span>';
+    tmp += '                    <span class="para">Transparent: </span><input type="checkbox" id="transparent" class="para">';
+    tmp += '                    <span class="para">Opacity: </span><input id ="opacity" name="value" >';
+    tmp += '                    <span class="para">XY_Plane: </span><input type="checkbox" id="xyPlane" class="para">';
+    tmp += '                    <span class="para">Position: </span><span class="para" id ="xypValue">0</span>';
     tmp += '                    <div id="xySlider"  style="display: none" class="para"></div>';
-    tmp += '                    <span class="para">YZ_Plane: </span><input type="checkbox" id="yzPlane" class="para"><span class="para">Position: </span><span class="para" id ="yzpValue"> </span>';
+
+    tmp += '                    <span class="para">YZ_Plane: </span><input type="checkbox" id="yzPlane" class="para"><span class="para">Position: </span><span class="para" id ="yzpValue">0</span>';
     tmp += '                    <div id="yzSlider"  style="display: none" class="para"></div>';
-    tmp += '                    <span class="para">XZ_Plane: </span><input type="checkbox" id="xzPlane" class="para"><span class="para">Position: </span><span class="para" id ="xzpValue"> </span>';
+
+    tmp += '                    <span class="para">XZ_Plane: </span><input type="checkbox" id="xzPlane" class="para"><span class="para">Position: </span><span class="para" id ="xzpValue">0 </span>';
     tmp += '                    <div id="xzSlider"  style="display: none" class="para"></div>';
     tmp += '                 </div>';
     tmp += '            </div>';

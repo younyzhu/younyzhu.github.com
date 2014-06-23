@@ -26,7 +26,25 @@ NiiSlice.prototype = {
             _this.addXZ_Plane(parseInt(_this.metaData.dim[2] / 2));
             var $plane = $("#bubble" + _this.id).children().children().children().children("#plane");
             $plane.show();
+//--------------------------------------------------------Transparent----------------------------------------------------//
+            $plane.children("#transparent")[0].checked = _this.transparent;
+            $plane.children('#transparent').change(function(){
+                _this.transparent = $(this).is(':checked');
+                Bubbles[_this.id].niiSlice.updateYZSliceI($plane.children('#yzSlider').slider("value"));
+                Bubbles[_this.id].niiSlice.updateXYSliceK($plane.children('#xySlider').slider("value"));
+                Bubbles[_this.id].niiSlice.updateXZSliceJ($plane.children('#xzSlider').slider("value"));
+            });
+            $plane.children('#opacity').spinner({
+                step: 0.1,
+                min:0.0,
+                max:1.0,
+                spin: function( event, ui ) {
+                    Bubbles[_this.id].niiSlice.opacity = parseFloat(ui.value);
+                }
+            }).val(parseFloat(_this.opacity));
+//--------------------------------------------------------XY-Plane----------------------------------------------------//
             $plane.children("#xyPlane")[0].checked = true;
+
             $plane.children('#xySlider').show().slider({
                 min: 0,
                 max: _this.metaData.dim[3],
@@ -37,8 +55,30 @@ NiiSlice.prototype = {
                 }
             });
             $plane.children( "#xypValue" ).text( $plane.children('#xySlider').slider("value") );
-
+            $plane.children('#xyPlane').change(function(){
+                $(this).val($(this).is(':checked'));
+                if( $(this).is(':checked') )
+                {
+                    $plane.children('#xySlider').show();
+                }
+                else
+                {
+                    $plane.children('#xySlider').hide();
+                }
+            });
+//--------------------------------------------------------YZ-Plane----------------------------------------------------//
             $plane.children("#yzPlane")[0].checked = true;
+            $plane.children('#yzPlane').change(function(){
+                $(this).val($(this).is(':checked'));
+                if( $(this).is(':checked') )
+                {
+                    $plane.children('#yzSlider').show();
+                }
+                else
+                {
+                    $plane.children('#yzSlider').hide();
+                }
+            });
             $plane.children('#yzSlider').show().slider({
                 min: 0,
                 max: _this.metaData.dim[1],
@@ -50,6 +90,19 @@ NiiSlice.prototype = {
             });
             $plane.children( "#yzpValue" ).text( $plane.children('#yzSlider').slider("value") );
 
+
+//--------------------------------------------------------XZ-Plane----------------------------------------------------//
+            $plane.children('#xzPlane').change(function(){
+                $(this).val($(this).is(':checked'));
+                if( $(this).is(':checked') )
+                {
+                    $plane.children('#xzSlider').show();
+                }
+                else
+                {
+                    $plane.children('#xzSlider').hide();
+                }
+            });
             $plane.children("#xzPlane")[0].checked = true;
             $plane.children('#xzSlider').show().slider({
                 min: 0,
@@ -62,39 +115,6 @@ NiiSlice.prototype = {
             });
             $plane.children( "#xzpValue" ).text( $plane.children('#xzSlider').slider("value") );
 
-            $plane.children('#xyPlane').change(function(){
-                $(this).val($(this).is(':checked'));
-                if( $(this).is(':checked') )
-                {
-                    $plane.children('#xySlider').show();
-                }
-                else
-                {
-                    $plane.children('#xySlider').hide();
-                }
-            });
-            $plane.children('#yzPlane').change(function(){
-                $(this).val($(this).is(':checked'));
-                if( $(this).is(':checked') )
-                {
-                    $plane.children('#yzSlider').show();
-                }
-                else
-                {
-                    $plane.children('#yzSlider').hide();
-                }
-            });
-            $plane.children('#xzPlane').change(function(){
-                $(this).val($(this).is(':checked'));
-                if( $(this).is(':checked') )
-                {
-                    $plane.children('#xzSlider').show();
-                }
-                else
-                {
-                    $plane.children('#xzSlider').hide();
-                }
-            });
         });
     },
     calculateRange: function (dim) {  //this bounding box is in the xyz plane
@@ -244,7 +264,7 @@ NiiSlice.prototype = {
             this.XZPlane.material.needsUpdate = true;
             var vector = new THREE.Vector4(0,j,0,1);
             vector.applyMatrix4(this.metaData.ijk_to_xyzMatrix);
-            //this.XZPlane.position.y = vector.y;
+            this.XZPlane.position.y = vector.y;
         }
     },
     updateYZSliceI: function (i) {
