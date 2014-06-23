@@ -17,6 +17,7 @@ ObjectLoader.prototype = {
 
     load: function (url, onLoad, onProgress, onError) {
         var scope = this;
+        checkFileFormat(url);
         var loader = new THREE.XHRLoader();
         loader.setCrossOrigin(this.crossOrigin);
         loader.load(url, function (text) {

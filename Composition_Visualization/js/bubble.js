@@ -41,6 +41,7 @@ function Bubble(id, selectedFibers, deletedFibers, objectCenter, shape, localFil
     this.plane = null;
 
     this.niiSlice = null;
+    this.niiSliceGroup = null;
     // Axes
     this.axes = null;
 
@@ -150,6 +151,7 @@ Bubble.prototype = {
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.gammaInput = true;
         this.renderer.gammaOutput = true;
+        this.renderer.sortObjects = false;
         this.renderer.setSize(this.cWidth, this.cHeight);
         this.container.appendChild(this.renderer.domElement);
         this.fillScene();
@@ -298,7 +300,13 @@ Bubble.prototype = {
         });
     },
     loadLocalNii: function() {
-        this.niiSlice = new NiiSlice(this.id, this.mainGroup, this.niiFileName);
+        if(this.niiSliceGroup)
+        {
+            this.scene.remove(this.niiSliceGroup);
+        }
+        this.niiSliceGroup = new THREE.Object3D();
+        this.scene.add(this.niiSliceGroup);
+        this.niiSlice = new NiiSlice(this.id, this.niiSliceGroup, this.niiFileName);
         this.render();
     },
     loadLocalModel: function (file) {

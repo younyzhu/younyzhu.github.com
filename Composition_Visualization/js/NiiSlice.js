@@ -7,7 +7,7 @@ function NiiSlice(id,scene,url) {
     this.metaData = null;
     this.vector1 = null;
     this.vector2 = null;
-    this.opacity = 0.9;
+    this.opacity = 0.5;
     this.transparent = false;
     this.XYPlane = null;
     this.YZPlane = null;
@@ -19,47 +19,59 @@ NiiSlice.prototype = {
         var _this = this;
         var niiLoader = new LocalNiiLoader();
         niiLoader.load(url, function (metaData) {
+            var $plane = $("#bubble" + _this.id).children().children().children().children("#plane");
+            if(metaData===null)
+            {
+                if($plane.css('display') !== 'none')
+                    $plane.css("display", "none");
+                return;
+            }
             _this.metaData = metaData;
             _this.calculateRange(_this.metaData.dim);
             _this.addXY_Plane(parseInt(_this.metaData.dim[3] / 2));
             _this.addYZ_Plane(parseInt(_this.metaData.dim[1] / 2));
             _this.addXZ_Plane(parseInt(_this.metaData.dim[2] / 2));
-            var $plane = $("#bubble" + _this.id).children().children().children().children("#plane");
             $plane.show();
 //--------------------------------------------------------Transparent----------------------------------------------------//
-            $plane.children("#transparent")[0].checked = _this.transparent;
-            $plane.children('#transparent').change(function(){
+            $plane.children().children("#transparent")[0].checked = _this.transparent;
+            $plane.children().children('#transparent').change(function(){
                 _this.transparent = $(this).is(':checked');
                 Bubbles[_this.id].niiSlice.updateYZSliceI($plane.children('#yzSlider').slider("value"));
                 Bubbles[_this.id].niiSlice.updateXYSliceK($plane.children('#xySlider').slider("value"));
                 Bubbles[_this.id].niiSlice.updateXZSliceJ($plane.children('#xzSlider').slider("value"));
             });
-            $plane.children('#opacity').spinner({
+            $plane.children().children('#opacity').spinner({
                 step: 0.1,
                 min:0.0,
                 max:1.0,
                 spin: function( event, ui ) {
                     Bubbles[_this.id].niiSlice.opacity = parseFloat(ui.value);
+
+                    Bubbles[_this.id].niiSlice.updateYZSliceI($plane.children('#yzSlider').slider("value"));
+                    Bubbles[_this.id].niiSlice.updateXYSliceK($plane.children('#xySlider').slider("value"));
+                    Bubbles[_this.id].niiSlice.updateXZSliceJ($plane.children('#xzSlider').slider("value"));
                 }
             }).val(parseFloat(_this.opacity));
 //--------------------------------------------------------XY-Plane----------------------------------------------------//
-            $plane.children("#xyPlane")[0].checked = true;
+            $plane.children().children("#xyPlane")[0].checked = true;
 
             $plane.children('#xySlider').show().slider({
                 min: 0,
                 max: _this.metaData.dim[3],
                 value: parseInt(_this.metaData.dim[3] / 2),
                 slide: function( event, ui ) {
-                    $( "#xypValue" ).text( ui.value );
+                    $plane.children().children( "#xypValue" ).children().text( ui.value );
                     Bubbles[_this.id].niiSlice.updateXYSliceK(ui.value);
                 }
             });
-            $plane.children( "#xypValue" ).text( $plane.children('#xySlider').slider("value") );
-            $plane.children('#xyPlane').change(function(){
+            $plane.children().children( "#xypValue" ).text( $plane.children('#xySlider').slider("value") );
+            $plane.children().children('#xyPlane').change(function(){
                 $(this).val($(this).is(':checked'));
+                Bubbles[_this.id].niiSlice.XYPlane.visible = $(this).is(':checked');
                 if( $(this).is(':checked') )
                 {
                     $plane.children('#xySlider').show();
+
                 }
                 else
                 {
@@ -67,9 +79,10 @@ NiiSlice.prototype = {
                 }
             });
 //--------------------------------------------------------YZ-Plane----------------------------------------------------//
-            $plane.children("#yzPlane")[0].checked = true;
-            $plane.children('#yzPlane').change(function(){
+            $plane.children().children("#yzPlane")[0].checked = true;
+            $plane.children().children('#yzPlane').change(function(){
                 $(this).val($(this).is(':checked'));
+                Bubbles[_this.id].niiSlice.YZPlane.visible = $(this).is(':checked');
                 if( $(this).is(':checked') )
                 {
                     $plane.children('#yzSlider').show();
@@ -84,16 +97,17 @@ NiiSlice.prototype = {
                 max: _this.metaData.dim[1],
                 value: parseInt(_this.metaData.dim[1] / 2),
                 slide: function( event, ui ) {
-                    $( "#yzpValue" ).text( ui.value );
+                    $plane.children().children( "#yzpValue" ).text( ui.value );
                     Bubbles[_this.id].niiSlice.updateYZSliceI(ui.value);
                 }
             });
-            $plane.children( "#yzpValue" ).text( $plane.children('#yzSlider').slider("value") );
+            $plane.children().children( "#yzpValue" ).text( $plane.children('#yzSlider').slider("value") );
 
 
 //--------------------------------------------------------XZ-Plane----------------------------------------------------//
-            $plane.children('#xzPlane').change(function(){
+            $plane.children().children('#xzPlane').change(function(){
                 $(this).val($(this).is(':checked'));
+                Bubbles[_this.id].niiSlice.XZPlane.visible = $(this).is(':checked');
                 if( $(this).is(':checked') )
                 {
                     $plane.children('#xzSlider').show();
@@ -103,17 +117,17 @@ NiiSlice.prototype = {
                     $plane.children('#xzSlider').hide();
                 }
             });
-            $plane.children("#xzPlane")[0].checked = true;
+            $plane.children().children("#xzPlane")[0].checked = true;
             $plane.children('#xzSlider').show().slider({
                 min: 0,
                 max: _this.metaData.dim[2],
                 value: parseInt(_this.metaData.dim[2] / 2),
                 slide: function( event, ui ) {
-                    $( "#xzpValue" ).text( ui.value );
+                    $plane.children().children( "#xzpValue" ).text( ui.value );
                     Bubbles[_this.id].niiSlice.updateXZSliceJ(ui.value);
                 }
             });
-            $plane.children( "#xzpValue" ).text( $plane.children('#xzSlider').slider("value") );
+            $plane.children().children( "#xzpValue" ).text( $plane.children('#xzSlider').slider("value") );
 
         });
     },
@@ -136,7 +150,7 @@ NiiSlice.prototype = {
         var geometry = new PlaneGeometry(this.vector1, this.vector2, "XY");
         var texture = this.generateDataTextureK(k);
         //var texture = THREE.ImageUtils.loadTexture( "disturb.jpg");
-        var material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide, transparent: this.transparent, opacity: this.opacity  });
+        var material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide, transparent: this.transparent, opacity: this.opacity});
         this.XYPlane = new THREE.Mesh(geometry, material);
         this.XYPlane.position.set(0, 0, 0);
         this.scene.add(this.XYPlane);
@@ -183,7 +197,7 @@ NiiSlice.prototype = {
                 data[ (j * dim[1] + i ) * 4] = value;
                 data[ (j * dim[1] + i) * 4 + 1 ] = value;
                 data[ (j * dim[1] + i) * 4 + 2 ] = value;
-                data[ (j * dim[1] + i) * 4 + 3 ] = value;
+                data[ (j * dim[1] + i) * 4 + 3 ] = 255;
                 /*  //just test for the result compare with the FSL view software
                  if(i===23 && j === 65 && k ===76)
                  console.log(value);
@@ -214,7 +228,7 @@ NiiSlice.prototype = {
                 data[ (j * dim[3] + k ) * 4] = value;
                 data[ (j * dim[3] + k) * 4 + 1 ] = value;
                 data[ (j * dim[3] + k) * 4 + 2 ] = value;
-                data[ (j * dim[3] + k) * 4 + 3 ] = value;
+                data[ (j * dim[3] + k) * 4 + 3 ] = 255;
                 /*
                 if (i === 23 && j === 65 && k === 76)
                     console.log(value);
@@ -237,7 +251,7 @@ NiiSlice.prototype = {
                 data[ (k * dim[1] + i ) * 4] = value;
                 data[ (k * dim[1] + i) * 4 + 1 ] = value;
                 data[ (k * dim[1] + i) * 4 + 2 ] = value;
-                data[ (k * dim[1] + i) * 4 + 3 ] = value;
+                data[ (k * dim[1] + i) * 4 + 3 ] = 255;
             }
         var texture = new THREE.DataTexture(data, dim[1], dim[3], THREE.RGBAFormat);
         texture.needsUpdate = true;

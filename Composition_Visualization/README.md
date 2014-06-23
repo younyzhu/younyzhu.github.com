@@ -192,10 +192,10 @@ When loader a dataset, we need to know which is to select and which is to delete
   2. Installing the software and operation system(almost spend a night installing the OS, as some not compaitable with the software)
   3. Fix a bug of the navigation bar, you can double click the current bar, then it will draw the current bar in the navigation bar.
 
-* 6/11/2014 - 6/17/2014
+* 6/11/2014 - 6/18/2014
  spend a week processing the DTI raw data(DICOM), and generate the track file and fa.nii
 
-* 6/18/2014
+* 6/19/2014
  1. Add error bar, but find no space.
  2. Add select dot point, so re-write the line.chart, when click the dots, the clicked dots will heightlighted, and also the fiber.
  3. The function describe ad fellow:    
@@ -209,11 +209,11 @@ When loader a dataset, we need to know which is to select and which is to delete
           and firt I just fixed some bugs of the origin program, and let all the box synchronize.
      //This version maybe much better. But framework needs to modify.
 
-* 6/19/2014
+* 6/20/2014
  1. Reform the parameter menu,when you click the item of the menu, it will stretch, and show the detail function, fixed some bugs.
  2. Add local file loader, write a new local file loader **LocalObjectLoader.js** .
 
-* 6/20/2014
+* 6/21/2014
 
  1. try to load raw data in the visualization
  2. compared the DICOM and the nii format, I decide to choose the nii which is one file and maybe compressed
@@ -221,7 +221,7 @@ When loader a dataset, we need to know which is to select and which is to delete
  3. try to write a NiiLoader, load the binary data.
  4. As DICOM has to load lots of images, so I deside to load the nii image and again to learn to parse the nifti format in javascript
 
-* 6/21/2014
+* 6/22/2014
 
  1. Actually, stuck in a bug of the program.
  2. A note from Programing:
@@ -240,6 +240,11 @@ When loader a dataset, we need to know which is to select and which is to delete
 `NiiLoader.js` Loader nitfi file into header and do some preprocess    
 `NiiSlice.js`  Build the slice and add to the scene    
 `PlaneGeometry.js`   Create a square geometry for put the texture of the nitfi image
+
+* 6/23/2014
+ 1. try a morning to find the transparent problem.
+ 2. At last, I find My texture is `THREE.RGBAFormat`, and When I set the intensity, I also set the `Alpha`, so that when I use the texture and set the `opacity =1.0` and the `transparent = true`, I do not
+ get the same result as `set transparent = false`;
 
 
 **Till now incluse files**

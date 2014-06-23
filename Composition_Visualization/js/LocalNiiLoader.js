@@ -11,7 +11,11 @@ LocalNiiLoader.prototype = {
     constructor: LocalNiiLoader,
     load: function (url, callback) {
         var scope = this;
-        checkFileFormat(url.name);
+        if(checkFileFormat(url.name) === "")
+        {
+            callback(null);
+            return;
+        }
         var reader = new FileReader();
         //var progress = $("#progress")[0];
         //progress.textContent = "";

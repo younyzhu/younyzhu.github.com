@@ -27,31 +27,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="nii.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Test/TestNii_/nii.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="13.419354" vertical-offset="3198" max-vertical-offset="10166">
-              <caret line="107" column="15" selection-start-line="107" selection-start-column="15" selection-end-line="107" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="visualization.htm" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="visualization.htm" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/visualization.htm">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3024" vertical-offset="617" max-vertical-offset="1924">
-              <caret line="31" column="63" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="51" />
+            <state vertical-scroll-proportion="-14.67742" vertical-offset="897" max-vertical-offset="1924">
+              <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NiiSlice.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Test/TestNii_/NiiSlice.js">
+      <file leaf-file-name="NiiSlice.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/NiiSlice.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4992">
-              <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+            <state vertical-scroll-proportion="5.6706586" vertical-offset="2972" max-vertical-offset="7852">
+              <caret line="260" column="86" selection-start-line="260" selection-start-column="86" selection-end-line="260" selection-end-column="86" />
               <folding />
             </state>
           </provider>
@@ -79,16 +69,19 @@
         <option value="$PROJECT_DIR$/Test/LocalNii/LocalNiiLoader.js" />
         <option value="$PROJECT_DIR$/Test/LocalNii/nii.html" />
         <option value="$PROJECT_DIR$/visualization.htm" />
-        <option value="$PROJECT_DIR$/js/LocalObjectLoader.js" />
-        <option value="$PROJECT_DIR$/js/LocalNiiLoader.js" />
-        <option value="$PROJECT_DIR$/js/bubble.js" />
         <option value="$PROJECT_DIR$/Test/TestNii_/PlaneGeometry.js" />
         <option value="$PROJECT_DIR$/js/PlaneGeometry.js" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/js/main.js" />
+        <option value="$PROJECT_DIR$/Test/TestNii_/nii.html" />
+        <option value="$PROJECT_DIR$/js/bubble.js" />
+        <option value="$PROJECT_DIR$/js/ObjectLoader.js" />
+        <option value="$PROJECT_DIR$/js/Check.js" />
+        <option value="$PROJECT_DIR$/js/LocalNiiLoader.js" />
+        <option value="$PROJECT_DIR$/js/LocalObjectLoader.js" />
         <option value="$PROJECT_DIR$/js/bubbleWidget.js" />
-        <option value="$PROJECT_DIR$/js/NiiSlice.js" />
         <option value="$PROJECT_DIR$/Test/TestNii_/NiiSlice.js" />
+        <option value="$PROJECT_DIR$/js/NiiSlice.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -203,7 +196,7 @@
       <recent name="C:\Users\Yongnan\Documents\GitHub\younyzhu.github.com\Composition_Visualization\js\522" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.nii.html (2)">
+  <component name="RunManager" selected="JavaScript Debug.visualization.htm">
     <configuration default="false" name="nii.html (1)" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" uri="http://localhost:63342/Composition_Visualization/Test/LocalNii/nii.html">
       <RunnerSettings RunnerId="JavascriptDebugRunner" />
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
@@ -212,6 +205,17 @@
     <configuration default="false" name="nii.html (2)" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" uri="http://localhost:63342/Composition_Visualization/Test/TestNii_/nii.html">
       <RunnerSettings RunnerId="JavascriptDebugRunner" />
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Check.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-js-file="Check.js" working-dir="$PROJECT_DIR$/js">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
       <method />
     </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -224,12 +228,14 @@
       <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
+    <configuration default="true" type="CucumberJavaScriptRunConfigurationType" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" />
+      <option name="executablePath" />
       <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
@@ -237,16 +243,6 @@
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="Chrome" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="CucumberJavaScriptRunConfigurationType" factoryName="Cucumber.js">
-      <option name="cucumberJsArguments" />
-      <option name="executablePath" />
-      <option name="filePath" />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -265,16 +261,18 @@
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
       <method />
     </configuration>
-    <list size="4">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.visualization.htm" />
       <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.nii.html" />
       <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.nii.html (1)" />
       <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.nii.html (2)" />
+      <item index="4" class="java.lang.String" itemvalue="Node.js.Check.js" />
     </list>
     <recent_temporary>
-      <list size="2">
+      <list size="3">
         <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.nii.html (2)" />
-        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.nii.html (1)" />
+        <item index="1" class="java.lang.String" itemvalue="Node.js.Check.js" />
+        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.nii.html (1)" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="JUnit" default="true" selected="false">
@@ -318,7 +316,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16482359" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2627027" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24972972" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -350,7 +348,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="196" />
+      <option name="time" value="198" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -489,14 +487,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/gunzip.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="832">
-          <caret line="0" column="38" selection-start-line="0" selection-start-column="36" selection-end-line="0" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Test/LocalNii/gunzip.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="832">
@@ -515,7 +505,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.4268292" vertical-offset="936" max-vertical-offset="9750">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -539,14 +528,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.7134146" vertical-offset="468" max-vertical-offset="9750">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/ObjectLoader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7759146" vertical-offset="141" max-vertical-offset="3978">
-          <caret line="25" column="36" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -579,13 +560,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4541213" vertical-offset="68556" max-vertical-offset="390286">
           <caret line="2651" column="83" selection-start-line="2651" selection-start-column="14" selection-end-line="2651" selection-end-column="14" />
-          <folding>
-            <marker date="1403062703795" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1403062703795" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1403062703795" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1403062703795" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1403062703795" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -593,23 +567,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.37195122" vertical-offset="2668" max-vertical-offset="56862">
           <caret line="112" column="32" selection-start-line="112" selection-start-column="21" selection-end-line="112" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/Check.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33231708" vertical-offset="68" max-vertical-offset="754">
-          <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/LocalObjectLoader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49085367" vertical-offset="120" max-vertical-offset="4394">
-          <caret line="17" column="10" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -625,7 +582,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7530488" vertical-offset="390" max-vertical-offset="2288">
           <caret line="34" column="39" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -637,14 +593,6 @@
     <entry file="file://$PROJECT_DIR$/images/screen2.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33656958" vertical-offset="0" max-vertical-offset="7670">
-          <caret line="8" column="45" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
@@ -671,53 +619,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/LocalNiiLoader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33231708" vertical-offset="744" max-vertical-offset="9828">
-          <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/bubbleWidget.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="9.017107" vertical-offset="4914" max-vertical-offset="18928">
-          <caret line="412" column="98" selection-start-line="412" selection-start-column="98" selection-end-line="412" selection-end-column="98" />
-          <folding>
-            <marker date="1403489257780" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1403489257780" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1403489257780" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1403489257780" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1403489257780" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1403489257780" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1403489257780" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1403489257780" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1403489257780" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1403489257780" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1403489257780" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1403489257780" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/bubble.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.496951" vertical-offset="5694" max-vertical-offset="10738">
-          <caret line="300" column="32" selection-start-line="300" selection-start-column="32" selection-end-line="300" selection-end-column="32" />
-          <folding>
-            <element signature="e#3903#6383#0" expanded="false" />
-            <element signature="e#6429#7156#0" expanded="false" />
-            <element signature="e#7196#9659#0" expanded="false" />
-            <element signature="e#9687#11102#0" expanded="false" />
-            <element signature="e#11136#11321#0" expanded="false" />
-            <element signature="e#13056#15529#0" expanded="false" />
-            <element signature="e#15559#16161#0" expanded="false" />
-            <element signature="e#16196#16841#0" expanded="false" />
-            <element signature="e#16880#17314#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/522/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.23780487" vertical-offset="0" max-vertical-offset="3510">
@@ -726,42 +627,126 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/three.js">
+    <entry file="file://$PROJECT_DIR$/js/ObjectLoader.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.04043546" vertical-offset="378820" max-vertical-offset="1000922">
-          <caret line="14571" column="0" selection-start-line="14571" selection-start-column="0" selection-end-line="14572" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="141" max-vertical-offset="4004">
+          <caret line="19" column="15" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/NiiSlice.js">
+    <entry file="file://$PROJECT_DIR$/js/gunzip.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7488">
-          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.6427481" vertical-offset="177" max-vertical-offset="832">
+          <caret line="23" column="221" selection-start-line="23" selection-start-column="221" selection-end-line="23" selection-end-column="221" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/LocalNiiLoader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33233532" vertical-offset="168" max-vertical-offset="9932">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/bubbleWidget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="9723" max-vertical-offset="19214">
+          <caret line="392" column="11" selection-start-line="392" selection-start-column="11" selection-end-line="392" selection-end-column="11" />
+          <folding>
+            <marker date="1403538836117" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1403538836117" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1403538836117" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1403538836117" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1403538836117" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1403538836117" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1403538836117" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1403538836117" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1403538836117" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1403538836117" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1403538836117" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1403538836117" expanded="false" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/bubble.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.497667" vertical-offset="6416" max-vertical-offset="14430">
+          <caret line="185" column="110" selection-start-line="185" selection-start-column="31" selection-end-line="185" selection-end-column="31" />
+          <folding>
+            <element signature="e#7270#9733#0" expanded="false" />
+            <element signature="e#9761#11176#0" expanded="false" />
+            <element signature="e#11210#11395#0" expanded="false" />
+            <element signature="e#15834#16436#0" expanded="false" />
+            <element signature="e#16471#17116#0" expanded="false" />
+            <element signature="e#17155#17589#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/Check.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8173653" vertical-offset="0" max-vertical-offset="806">
+          <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/LocalObjectLoader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.71556884" vertical-offset="42" max-vertical-offset="4550">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/three.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09465649" vertical-offset="884302" max-vertical-offset="1000922">
+          <caret line="34014" column="6" selection-start-line="34014" selection-start-column="6" selection-end-line="34014" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Test/TestNii_/NiiSlice.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4992">
-          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.31137726" vertical-offset="0" max-vertical-offset="5226">
+          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Test/TestNii_/nii.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="13.419354" vertical-offset="3198" max-vertical-offset="10166">
-          <caret line="107" column="15" selection-start-line="107" selection-start-column="15" selection-end-line="107" selection-end-column="15" />
+        <state vertical-scroll-proportion="-8.129032" vertical-offset="5286" max-vertical-offset="10166">
+          <caret line="213" column="18" selection-start-line="213" selection-start-column="18" selection-end-line="213" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.279365" vertical-offset="4856" max-vertical-offset="7800">
+          <caret line="242" column="18" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/visualization.htm">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3024" vertical-offset="617" max-vertical-offset="1924">
-          <caret line="31" column="63" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="51" />
+        <state vertical-scroll-proportion="-14.67742" vertical-offset="897" max-vertical-offset="1924">
+          <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/NiiSlice.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="5.6706586" vertical-offset="2972" max-vertical-offset="7852">
+          <caret line="260" column="86" selection-start-line="260" selection-start-column="86" selection-end-line="260" selection-end-column="86" />
           <folding />
         </state>
       </provider>

@@ -17,7 +17,9 @@ function checkFileFormat (filepath){
     }
     // check if the file format is supported
     if( extensions.indexOf(extension) === -1) {
-        throw new Error('The ' + extension + ' file format is not supported.');
+        //throw new Error('The ' + extension + ' file format is not supported.');
+        alert('The ' + extension + ' file format is not supported.');
+        extension = '';
     }
     return extension;
 }
