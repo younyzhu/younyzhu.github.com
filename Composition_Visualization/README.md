@@ -232,7 +232,10 @@ When loader a dataset, we need to know which is to select and which is to delete
  5. Need TO do: need to store the loaded data, so that we can adjust the picture in the program, need to add interaction, need to syschronmize with the track model, need to add decompress the nii.gz file
  6. Add update texture, when we change the texture.
  7. add [gzip or gunzip](https://github.com/imaya/zlib.js) supported and now we can load `.nii` or `.nii.gz` file
- 8. Try to integrate this nii mainpulation into the composition visualization.
+ 8. add FileFormat check supported `Check.js` when our input data format is not supported it will throw an error
+ 9. Try to integrate this nii mainpulation into the composition visualization.
+ 10. successfully added the plane in the composition visualization
+
 `NiiLoader.js` Loader nitfi file into header and do some preprocess    
 `NiiSlice.js`  Build the slice and add to the scene    
 `PlaneGeometry.js`   Create a square geometry for put the texture of the nitfi image

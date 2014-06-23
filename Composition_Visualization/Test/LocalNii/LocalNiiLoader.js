@@ -1,42 +1,44 @@
 /**
- * Created by Yongnan on 6/20/2014.
+ * Created by Yongnan on 6/22/2014.
  * This function is used for load nii formation file
  * Parted of the code is modified from https://github.com/xtk/X/blob/master/io/parserNII.js
  */
 
-NiiLoader = function () {
+LocalNiiLoader = function () {
 };
-NiiLoader.prototype = {
+LocalNiiLoader.prototype = {
 
-    constructor: NiiLoader,
+    constructor: LocalNiiLoader,
     load: function (url, callback) {
-
         var scope = this;
-        var xhr = new XMLHttpRequest();
-
-        function onloaded(event) {
-            if (event.target.status === 200 || event.target.status === 0) {
-                var geometry = scope.parse(event.target.response || event.target.responseText);
-                // scope.dispatchEvent({ type: 'load', content: geometry });
-                if (callback)
-                    callback(geometry);
-            } else {
-                //scope.dispatchEvent({ type: 'error', message: 'Couldn\'t load URL [' + url + ']', response: event.target.responseText });
+        var reader = new FileReader();
+        //var progress = $("#progress")[0];
+        //progress.textContent = "";
+        reader.readAsText(url);
+        reader.onerror = function () {
+            //progress.innerHTML = "Could not read file, error code is " + reader.error.code;
+            console.log("Could not read file, error code is " + reader.error.code);
+        };
+        var load = 0;
+        var total = 0;
+        reader.onprogress = function (event) {
+            if (event.lengthComputable) {
+                load = event.loaded;
+                total = event.total;
+                //progress.innerHTML = event.loaded + '/' + event.total;
+                console.log(event.loaded + '/' + event.total);
             }
-        }
+        };
 
-        xhr.addEventListener('load', onloaded, false);
-        xhr.addEventListener('progress', function (event) {
-            //scope.dispatchEvent({ type: 'progress', loaded: event.loaded, total: event.total });
-        }, false);
-        xhr.addEventListener('error', function () {
-            //scope.dispatchEvent({ type: 'error', message: 'Couldn\'t load URL [' + url + ']' });
-        }, false);
-        if (xhr.overrideMimeType) xhr.overrideMimeType('text/plain; charset=x-user-defined');
-        xhr.open('GET', url, true);
-        xhr.responseType = 'arraybuffer';
-        xhr.send(null);
+        reader.onload = function () {
+            var tempdata = "";
+            tempdata = reader.result;
+            if (tempdata != null && load == total) {
+                callback( scope.parse(tempdata) );
+            }
+        };
     },
+
     parse: function (data) {
         //taken from https://github.com/xtk/X/blob/master/io/parserNII.js
         var _data = data;

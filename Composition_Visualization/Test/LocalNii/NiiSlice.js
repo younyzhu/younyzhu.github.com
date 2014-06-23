@@ -7,7 +7,7 @@ function NiiSlice(scene) {
     this.vector1 = null;
     this.vector2 = null;
     this.opacity = 0.5;
-    this.transparent = false;
+    this.transparent = true;
     this.XYPlane = null;
     this.YZPlane = null;
     this.XZPlane = null;
@@ -17,7 +17,9 @@ NiiSlice.prototype = {
     init: function () {
         var _this = this;
         var niiLoader = new NiiLoader();
-        niiLoader.load('./dti_fa.nii.gz', function (metaData) {
+        var niiFile ='./dti_fa.nii.gz';
+        checkFileFormat(niiFile);
+        niiLoader.load(niiFile, function (metaData) {
             _this.metaData = metaData;
             _this.calculateRange(_this.metaData.dim);
             _this.addXY_Plane(parseInt(_this.metaData.dim[3] / 2));
@@ -72,7 +74,6 @@ NiiSlice.prototype = {
         var material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide, transparent: this.transparent, opacity: this.opacity });
         this.XZPlane = new THREE.Mesh(geometry, material);
         this.XZPlane.position.set(0, 0, 0);
-        this.scene.add(this.XZPlane);
         //mesh.rotation.x = -Math.PI / 2;
     },
     //generate the texture in voxel space

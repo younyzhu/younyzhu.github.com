@@ -29,7 +29,7 @@ function Bubble(id, selectedFibers, deletedFibers, objectCenter, shape, localFil
     this.objCenter = objectCenter || null;
 
     this.localFileName = localFileName || null;
-
+    this.niiFileName = null;
     //For trackball control
     this.controls = null;
     this.objControls = null;
@@ -40,6 +40,7 @@ function Bubble(id, selectedFibers, deletedFibers, objectCenter, shape, localFil
     this.objects = [];
     this.plane = null;
 
+    this.niiSlice = null;
     // Axes
     this.axes = null;
 
@@ -295,6 +296,10 @@ Bubble.prototype = {
                 //this.FA = object.FA;
             }
         });
+    },
+    loadLocalNii: function() {
+        this.niiSlice = new NiiSlice(this.id, this.mainGroup, this.niiFileName);
+        this.render();
     },
     loadLocalModel: function (file) {
         var scope = this;

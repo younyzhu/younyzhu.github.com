@@ -223,7 +223,7 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
     parent.children(".dragheader").children(".open_para").click(function () {
         parent.children("#paraMenu").toggle();
     });
-    var $bubbleRefineMenu = $("#bubble" + id).children().children();
+    var $bubbleRefineMenu = $("#bubble" + id).children().children().children();
     $bubbleRefineMenu.children('#add').click(function () {
         bubble.addSelector();
     });
@@ -245,8 +245,6 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
         var optionSelected = $(this).find("option:selected");
         var valueSelected = optionSelected.val();
         bubble.resetRenderShape(valueSelected);
-        //var textSelected   = optionSelected.text();
-        //alert(valueSelected + textSelected);
     });
     $bubbleparaMenu.children('#load').click(function () {
         var selected_file = $('#input').get(0).files[0];
@@ -256,40 +254,90 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
         else {
             bubble.localFileName = selected_file;
             bubble.localRender();
-            /*
-            var reader = new FileReader();
-            var progress = $("#progress")[0];
-
-            progress.textContent = "";
-            reader.readAsText(selected_file);
-            reader.onerror = function () {
-                progress.innerHTML = "Could not read file, error code is " + reader.error.code;
-            };
-            var load = 0;
-            var total = 0;
-            reader.onprogress = function (event) {
-                if (event.lengthComputable) {
-                    load = event.loaded;
-                    total = event.total;
-                    progress.innerHTML = event.loaded / event.total;
-                }
-            };
-
-            reader.onload = function () {
-                var tempdata = "";
-                tempdata = reader.result;
-                if (tempdata != null && load == total) {
-
-                }
-            }; */
         }
     });
-
+    //var $plane = $("#bubble" + id).children().children().children().children("#plane");
+    $bubbleparaMenu.children('#loadNii').click(function () {
+        var selected_file = $('#inputNii').get(0).files[0];
+        if (selected_file === null) {
+            alert("Please select a NII file!");
+        }
+        else
+        {
+            bubble.niiFileName = selected_file;
+            bubble.loadLocalNii();
+           /*  //Moved to NiiSlice, we need to make sure we have already loaded the data
+            $plane.show();
+            $plane.children("#xyPlane")[0].checked = true;
+            $plane.children('#xySlider').show().slider({
+                min: 0,
+                max: 100,
+                value: 75,
+                slide: function( event, ui ) {
+                    $( "#xypValue" ).text( ui.value );
+                }
+            });
+            $plane.children( "#xypValue" ).text( $plane.children('#xySlider').slider("value") );
+            $plane.children("#yzPlane")[0].checked = true;
+            $plane.children('#yzSlider').show().slider({
+                min: 0,
+                max: 100,
+                value: 75,
+                slide: function( event, ui ) {
+                    $( "#yzpValue" ).text( ui.value );
+                }
+            });
+            $plane.children( "#yzpValue" ).text( $plane.children('#yzSlider').slider("value") );
+            $plane.children("#xzPlane")[0].checked = true;
+            $plane.children('#xzSlider').show().slider({
+                min: 0,
+                max: 100,
+                value: 30,
+                slide: function( event, ui ) {
+                    $( "#xzpValue" ).text( ui.value );
+                }
+            });
+            $plane.children( "#xzpValue" ).text( $plane.children('#xzSlider').slider("value") );
+            $plane.children('#xyPlane').change(function(){
+                $(this).val($(this).is(':checked'));
+                if( $(this).is(':checked') )
+                {
+                    $plane.children('#xySlider').show();
+                }
+                else
+                {
+                    $plane.children('#xySlider').hide();
+                }
+            });
+            $plane.children('#yzPlane').change(function(){
+                $(this).val($(this).is(':checked'));
+                if( $(this).is(':checked') )
+                {
+                    $plane.children('#yzSlider').show();
+                }
+                else
+                {
+                    $plane.children('#yzSlider').hide();
+                }
+            });
+            $plane.children('#xzPlane').change(function(){
+                $(this).val($(this).is(':checked'));
+                if( $(this).is(':checked') )
+                {
+                    $plane.children('#xzSlider').show();
+                }
+                else
+                {
+                    $plane.children('#xzSlider').hide();
+                }
+            });
+            */
+        }
+    });
     var $colorpickerField = $("#bubble" + id).children().children().children().children('#colorpickerField');
     $colorpickerField.ColorPicker({
         onSubmit: function (hsb, hex, rgb, el) {
             $(el).val(hex);
-
             $(el).ColorPickerHide();
         },
         onBeforeShow: function () {
@@ -321,55 +369,72 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
         };
     }
 
-    for (var i = 1; i <= 5; i++) {
+    for (var i = 1; i <= 6; i++) {
         //$( "plus_" + i).addEventListener( 'click', createToggle( i ), false );
         $("#bubble" + id).children().children().children("#plus_" + i).click(createToggle(i));
     }
 }
 function bubble_div(id, name, mousePosX, mousePosY) {
     var tmp = '';
-    tmp += '<div id ="bubble' + id + '" class="bubble shadow drag" style="position: absolute; left:' + mousePosX + 'px; top:' + mousePosY + 'px; ">';
-    tmp += '    <div id ="drag' + id + '" class="dragheader">' + name;
-    tmp += '        <span class="open_para">O</span>';
-    tmp += '        <div id="select_menu">';
-    tmp += '            <button class="selectItem" id = "add" > + </button>';
-    tmp += '            <button class="selectItem" id = "remove" > - </button>';
-    tmp += '            <button class="selectItem" id = "and" > and </button>';
-    tmp += '            <button class="selectItem" id = "delete" > delete </button>';
-    tmp += '            <button class="selectItem" id  = "or"  > or </button>';
+    tmp += '<div id ="bubble' + id + '" class="bubble shadow drag" style="position: absolute; left:' + mousePosX + 'px; top:' + mousePosY + 'px; ">';    //$("#bubble" + id)
+    tmp += '    <div id ="drag' + id + '" class="dragheader">' + name;      //$("#bubble" + id).children();
+    tmp += '        <span class="open_para">O</span>'; //$("#bubble" + id).children().children();
+    tmp += '        <div id="select_menu">';//$("#bubble" + id).children().children().children();
+    tmp += '            <span id="selector">';//$("#bubble" + id).children().children().children().children();
+    tmp += '                <button class="selectItem" id = "add" > + </button>';
+    tmp += '                <button class="selectItem" id = "remove" > - </button>';
+    tmp += '            </span>';
+    tmp += '            <span id="selector_operation">';
+    tmp += '                <button class="selectItem" id = "and" > and </button>';
+    tmp += '                <button class="selectItem" id = "delete" > delete </button>';
+    tmp += '                <button class="selectItem" id  = "or"  > or </button>';
+    tmp += '            </span>';
     tmp += '        </div>';
     tmp += '    </div>';
 
-    tmp += '    <div id="container' + id + '" height="400" width="400">';
+    tmp += '    <div id="container' + id + '" height="400" width="400">';//$("#bubble" + id).children();
     tmp += '    </div>';
     //
-    tmp += '    <div id="paraMenu" class="widget shadow" style="position: absolute; left:385px; top:-17px; display: none">';
-    tmp += '        <div class="para_header">Parameter';
+    tmp += '    <div id="paraMenu" class="widget shadow" style="position: absolute; left:385px; top:-17px; display: none">';//$("#bubble" + id).children();
+    tmp += '        <div class="para_header"> Parameter ';   //$("#bubble" + id).children().children();
     tmp += '        </div>';
-    tmp += '        <ul id="para_items">';
-    tmp += "            <li id='plus_1'> <span id='tog'>[+] </span> Input file </li> ";
+    tmp += '        <ul id="para_items">';     //$("#bubble" + id).children().children();
+    tmp += "            <li id='plus_1'> <span id='tog'>[+] </span> Input Model </li> ";//$("#bubble" + id).children().children().children();
     tmp += '            <div id= "section_1" style="display: none">';
     tmp += '                <input type="file" id="input" class="para">';
     tmp += '                <div id="progress" class="para"></div>';
     tmp += '                <button type="button" id="load" class="para">Load</button>';
     tmp += '            </div>';
-    tmp += "            <li id='plus_2'> <span id='tog'>[+] </span> Shape </li> ";
-    tmp += '            <div id= "section_2" style="display: none" class="para">';
+    tmp += "            <li id='plus_2'> <span id='tog'>[+] </span> Input Image </li> ";
+    tmp += '            <div id= "section_2" style="display: none" class="para">';//$("#bubble" + id).children().children().children();
+    tmp += '                 <input type="file" id="inputNii" class="para">';
+    tmp += '                 <button type="button" id="loadNii" class="para">Load</button>';
+    tmp += '                 <div id= "plane" style="display: none" class="para">';//$("#bubble" + id).children().children().children().children();
+    tmp += '                    <span class="para">XY_Plane: </span><input type="checkbox" id="xyPlane" class="para"><span class="para">Position: </span><span class="para" id ="xypValue"> </span>';
+    tmp += '                    <div id="xySlider"  style="display: none" class="para"></div>';
+    tmp += '                    <span class="para">YZ_Plane: </span><input type="checkbox" id="yzPlane" class="para"><span class="para">Position: </span><span class="para" id ="yzpValue"> </span>';
+    tmp += '                    <div id="yzSlider"  style="display: none" class="para"></div>';
+    tmp += '                    <span class="para">XZ_Plane: </span><input type="checkbox" id="xzPlane" class="para"><span class="para">Position: </span><span class="para" id ="xzpValue"> </span>';
+    tmp += '                    <div id="xzSlider"  style="display: none" class="para"></div>';
+    tmp += '                 </div>';
+    tmp += '            </div>';
+    tmp += "            <li id='plus_3'> <span id='tog'>[+] </span> Shape </li> ";
+    tmp += '            <div id= "section_3" style="display: none" class="para">';
     tmp += '                <select id="shape" class="para">';
     tmp += '                    <option value="Line" class="para">Line</option>';
     tmp += '                    <option value="Ribbon" class="para">Ribbon</option>';
     tmp += '                    <option value="Tube" class="para">Tube</option>';
     tmp += '                </select>';
     tmp += '            </div>';
-    tmp += "            <li id='plus_3' > <span id='tog'>[+] </span> Color </li> ";
-    tmp += '            <div id= "section_3" style="display: none" class="para">';
+    tmp += "            <li id='plus_4' > <span id='tog'>[+] </span> Color </li> ";
+    tmp += '            <div id= "section_4" style="display: none" class="para">';
     tmp += '                <input type="text" maxlength="6" size="6" id="colorpickerField" value="00ff00" class="para">';
     tmp += '            </div>';
-    tmp += "            <li id='plus_4' > <span id='tog'>[+] </span> Size </li> ";
-    tmp += '            <div id= "section_4" style="display: none" class="para">';
-    tmp += '            </div>';
-    tmp += "            <li id='plus_5' > <span id='tog'>[+] </span> Texture </li> ";
+    tmp += "            <li id='plus_5' > <span id='tog'>[+] </span> Size </li> ";
     tmp += '            <div id= "section_5" style="display: none" class="para">';
+    tmp += '            </div>';
+    tmp += "            <li id='plus_6' > <span id='tog'>[+] </span> Texture </li> ";
+    tmp += '            <div id= "section_6" style="display: none" class="para">';
     tmp += '            </div>';
     tmp += '        </div>';
     tmp += '    </ul>';

@@ -15,6 +15,7 @@ LocalObjectLoader.prototype = {
 
     load: function (url, callback) {
         var scope = this;
+        checkFileFormat(url.name);
         var reader = new FileReader();
         var progress = $("#progress")[0];
         progress.textContent = "";
