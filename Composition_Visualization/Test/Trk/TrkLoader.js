@@ -47,13 +47,24 @@ TrkLoader.prototype = {
         var n_p = header.n_properties;
         var current_offset = header.hdr_size;
         var object = new THREE.Object3D();
-
+        var positionminx=Infinity,positionminy=Infinity,positionminz=Infinity;
+        var positionmaxx=-Infinity,positionmaxy=-Infinity,positionmaxz=-Infinity;
         for(var i=0; i<n; ++i)
         {
             var tmp = this.parseTrack(data, current_offset, object, n_s, n_p);
             current_offset = tmp.offset;
             object = tmp.object;
+            positionminx = Math.min(positionminx, parseFloat(tmp.center.x));
+            positionminy = Math.min(positionminy, parseFloat(tmp.center.y));
+            positionminz = Math.min(positionminz, parseFloat(tmp.center.z));
+
+            positionmaxx = Math.max(positionmaxx, parseFloat(tmp.center.x));
+            positionmaxy = Math.max(positionmaxy, parseFloat(tmp.center.y));
+            positionmaxz = Math.max(positionmaxz, parseFloat(tmp.center.z));
         }
+        var center = new THREE.Vector3((positionminx + positionmaxx)/2.0,
+                (positionminy + positionmaxy)/2.0, (positionminz + positionmaxz)/2.0);
+        object.center = center;
         return object;
     },
     parseTrack: function (data, offset, object, n_s, n_p) {
@@ -67,6 +78,8 @@ TrkLoader.prototype = {
         geometry.addAttribute( 'color', new Float32Array( m * 3 ), 3 );
         var positions = geometry.getAttribute( 'position' ).array;
         var colors = geometry.getAttribute( 'color' ).array;
+        var positionminx=Infinity,positionminy=Infinity,positionminz=Infinity;
+        var positionmaxx=-Infinity,positionmaxy=-Infinity,positionmaxz=-Infinity;
         for(var i=0; i<m; ++i)
         {
             // positions
@@ -75,6 +88,13 @@ TrkLoader.prototype = {
             positions[ i * 3 ] = pointGeo[0];
             positions[ i * 3 + 1 ] = pointGeo[1];
             positions[ i * 3 + 2 ] = pointGeo[2];
+            positionminx = Math.min(positionminx, parseFloat(pointGeo[0]));
+            positionminy = Math.min(positionminy, parseFloat(pointGeo[1]));
+            positionminz = Math.min(positionminz, parseFloat(pointGeo[2]));
+
+            positionmaxx = Math.max(positionmaxx, parseFloat(pointGeo[0]));
+            positionmaxy = Math.max(positionmaxy, parseFloat(pointGeo[1]));
+            positionmaxz = Math.max(positionmaxz, parseFloat(pointGeo[2]));
             n_s_skip = this.parseFloat32Array(data, offset, n_s);
             offset += 4 *n_s; //1 int
             // colors
@@ -83,12 +103,15 @@ TrkLoader.prototype = {
             colors[ i * 3 + 1 ] = grayness;
             colors[ i * 3 + 2 ] = grayness;
         }
+
         this.parseFloat32Array(data, offset, n_p);
         offset += 4 *n_p; //1 int
-        geometry.computeBoundingSphere();
+
         var lineMesh = new THREE.Line( geometry, material );
+        var center = new THREE.Vector3((positionminx + positionmaxx)/2.0,
+                (positionminy + positionmaxy)/2.0, (positionminz + positionmaxz)/2.0);
         object.add(lineMesh);
-        return {offset:offset, object:object};
+        return {offset:offset, object:object, center: center};
     },
     parseHeader: function (data, offset) {
         var metaData = {

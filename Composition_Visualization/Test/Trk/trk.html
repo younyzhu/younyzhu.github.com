@@ -149,8 +149,6 @@ function init() {
 
     //camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 0, 100 );
     camera.position.z = 400;
-    camera.position.z = 400;
-    camera.position.z = 400;
 
     // scene
     scene = new THREE.Scene();
@@ -214,6 +212,9 @@ function init() {
 
     var loader = new TrkLoader();
     loader.load( 'http://x.babymri.org/?cctracks.trk', function ( object ) {
+        object.position.x = -object.center.x;
+        object.position.y = -object.center.y;
+        object.position.z = -object.center.z;
         mainGroup.add(object);
     } );
 
@@ -311,7 +312,7 @@ function rotateMatrix(rotateStart, rotateEnd)
     if ( angle )
     {
         axis.crossVectors( rotateStart, rotateEnd ).normalize();
-        angle *= 0.01;            //Here we could define rotate speed
+        angle *= 0.02;            //Here we could define rotate speed
         quaternion.setFromAxisAngle( axis, angle );
     }
     return  quaternion;
@@ -348,7 +349,7 @@ function onMouseWheel( event ) {
 
     } else if ( event.detail ) { // Firefox
 
-        delta = - event.detail / 3;
+        delta = - event.detail / 3*2;
 
     }
 
