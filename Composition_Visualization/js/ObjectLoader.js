@@ -16,24 +16,46 @@ ObjectLoader.prototype = {
 
     constructor: ObjectLoader,
 
-    load: function (url, onLoad, onProgress, onError) {
+    load: function (url, callback) {
         var scope = this;
         var extensions = [
-            'DATA'
+            'DATA',
+            'TRK'
         ];
         var check = new Check(extensions);
-        check.checkFileFormat(url);
-        this.statusDomElement = this.addStatusElement();
-        $("#container"+ this.id)[0].appendChild(this.statusDomElement);
+        var currentFormat = check.checkFileFormat(url);
 
-        var loader = new THREE.XHRLoader();
-        loader.setCrossOrigin(this.crossOrigin);
-        loader.load(url, function (text) {
-            onLoad(scope.parse(text));
-        });
+        if(currentFormat === 'DATA')
+        {
+            var loader = new THREE.XHRLoader();
+            loader.setCrossOrigin(this.crossOrigin);
+            loader.load(url, function (text) {
+                callback(scope.parse(text));
+            });
+            this.statusDomElement = this.addStatusElement();
+            $("#container"+ this.id)[0].appendChild(this.statusDomElement);
+        }
+        else if(currentFormat === 'TRK')
+        {
+            var loader = new TrkLoader(this.id);
+            loader.load(url, function (object) {
+                callback(object);
+            });
+        }
+        else
+        {
+            callback(null);
+        }
     },
     addStatusElement: function () {
-        var e = document.createElement( "div" );
+        var e = document.getElementById('status');
+        if(e === null)
+        {
+            e = document.createElement( "div" );
+            e.id = 'status';
+        }
+        else
+            e.style.display = 'block';
         e.style.position = "absolute";
         e.style.fontWeight = 'bold';
         e.style.top = "50%";

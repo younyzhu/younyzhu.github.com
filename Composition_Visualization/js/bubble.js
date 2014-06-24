@@ -288,15 +288,12 @@ Bubble.prototype = {
         var scope = this;
         var loader = new ObjectLoader(this.id, manager, this.selectedFibers, this.deletedFibers, this.objCenter, this.renderShape);
         loader.load(file, function (object) {
-            //loader.load('./data/s1_cc.data', function (object){
-            if (loader.center !== null) {
-                object.position.x = -loader.center.x;
-                object.position.y = -loader.center.y;
-                object.position.z = -loader.center.z;
+                object.position.x = -object.center.x;
+                object.position.y = -object.center.y;
+                object.position.z = -object.center.z;
                 scope.mainCenter = object.center;
                 scope.mainGroup.add(object);
-                //this.FA = object.FA;
-            }
+
         });
     },
     loadLocalNii: function() {
@@ -305,7 +302,7 @@ Bubble.prototype = {
             this.scene.remove(this.niiSliceGroup);
         }
         this.niiSliceGroup = new THREE.Object3D();
-        this.scene.add(this.niiSliceGroup);
+        this.mainGroup.add(this.niiSliceGroup);
         this.niiSlice = new NiiSlice(this.id, this.niiSliceGroup, this.niiFileName);
         this.render();
     },
@@ -314,14 +311,13 @@ Bubble.prototype = {
         var loader = new LocalObjectLoader(this.id, this.selectedFibers, this.deletedFibers, this.objCenter, this.renderShape);
         loader.load(file, function (object) {
             //loader.load('./data/s1_cc.data', function (object){
-            if (loader.center !== null) {
-                object.position.x = -loader.center.x;
-                object.position.y = -loader.center.y;
-                object.position.z = -loader.center.z;
+                if(object === null)
+                    return;
+                object.position.x = -object.center.x;
+                object.position.y = -object.center.y;
+                object.position.z = -object.center.z;
                 scope.mainCenter = object.center;
                 scope.mainGroup.add(object);
-                //this.FA = object.FA;
-            }
         });
     },
     fillMainGroup: function () {
@@ -335,6 +331,7 @@ Bubble.prototype = {
         };
         if (this.localFileName === null)  //This is a type of FileReader
             this.loadModel(manager, './data/whole_s4.data');
+            //this.loadModel(manager, './data/cctracks.trk');
         else
             this.loadLocalModel(this.localFileName);  //This is a type of FileReader
 
@@ -411,8 +408,11 @@ Bubble.prototype = {
         for (var i = 0; i < childs.length; ++i) {
             for (var j = 0; j < childs[i].children.length; ++j) {
                 //var grayness = childs[i].children[j].material.grayness;
-                var origColor = childs[i].children[j].material.ColorKeeper;
-                childs[i].children[j].material.color.setRGB(origColor.r, origColor.g, origColor.b);
+                if(childs[i].children[j] instanceof THREE.Line)
+                {
+                    var origColor = childs[i].children[j].material.ColorKeeper;
+                    childs[i].children[j].material.color.setRGB(origColor.r, origColor.g, origColor.b);
+                }
             }
         }
     },
@@ -420,8 +420,10 @@ Bubble.prototype = {
         var childs = this.mainGroup.children;
         for (var i = 0; i < childs.length; ++i) {
             for (var j = 0; j < childs[i].children.length; ++j) {
-                childs[i].children[j].material.ColorKeeper = new THREE.Color(color.r / 255.0, color.g / 255.0, color.b / 255.0);
-                childs[i].children[j].material.color.setRGB(color.r / 255.0, color.g / 255.0, color.b / 255.0);
+                if(childs[i].children[j] instanceof THREE.Line) {
+                    childs[i].children[j].material.ColorKeeper = new THREE.Color(color.r / 255.0, color.g / 255.0, color.b / 255.0);
+                    childs[i].children[j].material.color.setRGB(color.r / 255.0, color.g / 255.0, color.b / 255.0);
+                }
             }
         }
     },
@@ -431,7 +433,9 @@ Bubble.prototype = {
         for (var i = 0; i < childs.length; ++i) {
             for (var j = 0; j < childs[i].children.length; ++j) {
                 if (childs[i].children[j].id === id)
-                    childs[i].children[j].material.color.setRGB(1.0, 1.0, 0.0);
+                    if(childs[i].children[j] instanceof THREE.Line) {
+                        childs[i].children[j].material.color.setRGB(1.0, 1.0, 0.0);
+                    }
             }
         }
     },
@@ -440,9 +444,11 @@ Bubble.prototype = {
         var childs = this.mainGroup.children;
         for (var i = 0; i < childs.length; ++i) {
             for (var j = 0; j < childs[i].children.length; ++j) {
-                if (childs[i].children[j].id === id) {
-                    var origColor = childs[i].children[j].material.ColorKeeper;
-                    childs[i].children[j].material.color.setRGB(origColor.r, origColor.g, origColor.b);
+                if(childs[i].children[j] instanceof THREE.Line) {
+                    if (childs[i].children[j].id === id) {
+                        var origColor = childs[i].children[j].material.ColorKeeper;
+                        childs[i].children[j].material.color.setRGB(origColor.r, origColor.g, origColor.b);
+                    }
                 }
             }
         }

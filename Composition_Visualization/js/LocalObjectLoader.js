@@ -17,37 +17,68 @@ LocalObjectLoader.prototype = {
     load: function (url, callback) {
         var _this = this;
         var extensions = [
-            'DATA'
+            'DATA',
+            'TRK'
         ];
         var check = new Check(extensions);
-        if(check.checkFileFormat(url.name) === "")
-        {
-            url ="";
-            return;
-        }
+        var currentFormat = check.checkFileFormat(url.name);
         this.statusDomElement = this.addStatusElement();
         $("#container"+ this.id)[0].appendChild(this.statusDomElement);
-
         var reader = new FileReader();
+        if(currentFormat === "DATA")
+        {
+            reader.readAsText(url);
+            reader.onerror = function () {
+                _this.statusDomElement.innerHTML = "Could not read file, error code is " + reader.error.code;
+            };
+            reader.onprogress = function (event) {
+                _this.updateProgress(event);
+            };
 
-        reader.readAsText(url);
-        reader.onerror = function () {
-            _this.statusDomElement.innerHTML = "Could not read file, error code is " + reader.error.code;
-        };
-        reader.onprogress = function (event) {
-              _this.updateProgress(event);
-        };
+            reader.onload = function () {
+                var tempdata = "";
+                tempdata = reader.result;
+                if (tempdata != null) {
+                    callback( _this.parse(tempdata) );
+                }
+            };
+        }
+        else if(currentFormat === "TRK")
+        {
+            reader.readAsArrayBuffer(url);
+            reader.onerror = function () {
+                _this.statusDomElement.innerHTML = "Could not read file, error code is " + reader.error.code;
+            };
+            reader.onprogress = function (event) {
+                _this.updateProgress(event);
+            };
 
-        reader.onload = function () {
-            var tempdata = "";
-            tempdata = reader.result;
-            if (tempdata != null) {
-                callback( _this.parse(tempdata) );
-            }
-        };
+            reader.onload = function () {
+                var tempdata = "";
+                tempdata = reader.result;
+                if (tempdata != null) {
+                    var loader = new TrkLoader(_this.id);
+                    loader.createStatus();
+                    //callback(loader.parse(tempdata));
+                    loader.parse( tempdata, function(object){
+                        callback( object );
+                    });
+                }
+            };
+
+        }
+        else
+            callback(null);
     },
     addStatusElement: function () {
-        var e = document.createElement( "div" );
+        var e = document.getElementById('status');
+        if(e === null)
+        {
+            e = document.createElement( "div" );
+            e.id = 'status';
+        }
+        else
+            e.style.display = 'block';
         e.style.position = "absolute";
         e.style.fontWeight = 'bold';
         e.style.top = "50%";

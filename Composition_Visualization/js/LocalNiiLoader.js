@@ -44,7 +44,14 @@ LocalNiiLoader.prototype = {
         };
     },
     addStatusElement: function () {
-        var e = document.createElement( "div" );
+        var e = document.getElementById('status');
+        if(e === null)
+        {
+            e = document.createElement( "div" );
+            e.id = 'status';
+        }
+        else
+            e.style.display = 'block';
         e.style.position = "absolute";
         e.style.fontWeight = 'bold';
         e.style.top = "50%";

@@ -254,8 +254,13 @@ When loader a dataset, we need to know which is to select and which is to delete
  1. And Loading status[Test/LocalNii/nii.html](https://younyzhu.github.com/Composition_Visualization/Test/LocalNii/nii.html) in the program,
   and it will be intergrated into the composition visualization. I load the data, which begins with loading status, and ends with Loaded 100% and then disappear(just set the style ="none")
  2. Integrate the loader status, to composition visualization, re-write the file format check, which is suitable for certin object loader, that is "DATA" for object loader, "NII, NII.GZ" for Nii Object loader
- 3. To do: integrate the trk file loader in the composition visualization(Model Loader)
-
+ 3. Bug fied when add the image with the fibers and selectors. [One thing needs to know, fiber selector only works for Line shape]
+ 4. To do: integrate the trk file loader in the composition visualization(Model Loader)
+ 5. As I use some features of buffer geometry in `three.js(r67)`, So I need to change the lib to r67. and modified some code.
+ 6. Right now, Input Model, it support `DATA` and `TRK` format, Input Image (DTI image), it supports `NII` and `.NII.GZ`. In this case, I just check the GZ format, actually, NII.GZ is compressed version of NII.
+    It is fine whether the suffix of the file name is low case or up case.
+ 
+ 
 **Till now incluse files**
 
         <!--Css style-->
