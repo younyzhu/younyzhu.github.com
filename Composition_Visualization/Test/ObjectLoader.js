@@ -30,7 +30,7 @@ ObjectLoader.prototype = {
 
     },
 
-    parse: function ( text ) {
+    parse: function ( text ) {        //parse our own data format
         var lines = text.split("\n");
         var totalFiberNum = lines[0];
         var startNum=1;

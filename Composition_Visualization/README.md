@@ -248,6 +248,13 @@ When loader a dataset, we need to know which is to select and which is to delete
  3. Write a [Trk Format](http://trackvis.org/docs/?subsect=fileformat) Loader, right now, we can load the data, and using the line shape.
  I use the data from [http://x.babymri.org/?cctracks.trk](http://x.babymri.org/?cctracks.trk) for test. Actually, our data is still too big.
  The Link:[Trk File Loader](https://younyzhu.github.com/Composition_Visualization/Test/Trk/trk.html)
+ 4. try to optimize the trk loader, but failed. It seems I use the best bufferloader in three.js
+
+* 6/24/2014
+ 1. And Loading status[Test/LocalNii/nii.html](https://younyzhu.github.com/Composition_Visualization/Test/LocalNii/nii.html) in the program,
+  and it will be intergrated into the composition visualization. I load the data, which begins with loading status, and ends with Loaded 100% and then disappear(just set the style ="none")
+ 2. Integrate the loader status, to composition visualization, re-write the file format check, which is suitable for certin object loader, that is "DATA" for object loader, "NII, NII.GZ" for Nii Object loader
+ 3. To do: integrate the trk file loader in the composition visualization(Model Loader)
 
 **Till now incluse files**
 

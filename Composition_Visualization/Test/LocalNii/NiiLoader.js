@@ -5,6 +5,7 @@
  */
 
 NiiLoader = function () {
+    this.statusDomElement = null;
 };
 NiiLoader.prototype = {
 
@@ -13,29 +14,53 @@ NiiLoader.prototype = {
 
         var scope = this;
         var xhr = new XMLHttpRequest();
-
+        this.statusDomElement =this.addStatusElement();
+        container.appendChild(this.statusDomElement);
         function onloaded(event) {
             if (event.target.status === 200 || event.target.status === 0) {
                 var geometry = scope.parse(event.target.response || event.target.responseText);
-                // scope.dispatchEvent({ type: 'load', content: geometry });
                 if (callback)
                     callback(geometry);
-            } else {
-                //scope.dispatchEvent({ type: 'error', message: 'Couldn\'t load URL [' + url + ']', response: event.target.responseText });
             }
         }
 
         xhr.addEventListener('load', onloaded, false);
         xhr.addEventListener('progress', function (event) {
-            //scope.dispatchEvent({ type: 'progress', loaded: event.loaded, total: event.total });
+            scope.updateProgress(event);
         }, false);
         xhr.addEventListener('error', function () {
-            //scope.dispatchEvent({ type: 'error', message: 'Couldn\'t load URL [' + url + ']' });
         }, false);
         if (xhr.overrideMimeType) xhr.overrideMimeType('text/plain; charset=x-user-defined');
         xhr.open('GET', url, true);
         xhr.responseType = 'arraybuffer';
         xhr.send(null);
+    },
+    addStatusElement: function () {
+        var e = document.createElement( "div" );
+        e.style.position = "absolute";
+        e.style.fontWeight = 'bold';
+        e.style.top = "50%";
+        e.style.fontSize = "1.2em";
+        e.style.textAlign = "center";
+        e.style.color = "#f00";
+        e.style.width = "100%";
+        e.style.zIndex = 1000;
+        e.innerHTML = "Loading ...";
+        return e;
+    },
+    updateProgress: function ( progress ) {
+        var message = "Loaded ";
+        if ( progress.total ) {
+            message += ( 100 * progress.loaded / progress.total ).toFixed(0) + "%";
+        } else {
+            message += ( progress.loaded / 1024 ).toFixed(2) + " KB";
+        }
+        this.statusDomElement.innerHTML = message;
+
+        if( progress.loaded === progress.total  )
+        {
+            this.statusDomElement.style.display = 'none';
+        }
     },
     parse: function (data) {
         //taken from https://github.com/xtk/X/blob/master/io/parserNII.js

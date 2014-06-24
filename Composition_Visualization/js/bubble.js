@@ -286,7 +286,7 @@ Bubble.prototype = {
     },
     loadModel: function (manager, file) {
         var scope = this;
-        var loader = new ObjectLoader(manager, this.selectedFibers, this.deletedFibers, this.objCenter, this.renderShape);
+        var loader = new ObjectLoader(this.id, manager, this.selectedFibers, this.deletedFibers, this.objCenter, this.renderShape);
         loader.load(file, function (object) {
             //loader.load('./data/s1_cc.data', function (object){
             if (loader.center !== null) {
@@ -311,7 +311,7 @@ Bubble.prototype = {
     },
     loadLocalModel: function (file) {
         var scope = this;
-        var loader = new LocalObjectLoader(this.selectedFibers, this.deletedFibers, this.objCenter, this.renderShape);
+        var loader = new LocalObjectLoader(this.id, this.selectedFibers, this.deletedFibers, this.objCenter, this.renderShape);
         loader.load(file, function (object) {
             //loader.load('./data/s1_cc.data', function (object){
             if (loader.center !== null) {

@@ -211,7 +211,8 @@ function init() {
 
 
     var loader = new TrkLoader();
-    loader.load( 'http://x.babymri.org/?cctracks.trk', function ( object ) {
+    loader.load( './fibers.trk', function ( object ) {
+    //loader.load( './dti.trk', function ( object ) {
         object.position.x = -object.center.x;
         object.position.y = -object.center.y;
         object.position.z = -object.center.z;

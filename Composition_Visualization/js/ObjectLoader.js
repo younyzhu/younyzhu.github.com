@@ -2,14 +2,15 @@
  * Created by Yongnanzhu on 4/12/2014.
  */
 
-ObjectLoader = function (manager, selectFibers, deletedFibers, center, shape) {
-
+ObjectLoader = function (id, manager, selectFibers, deletedFibers, center, shape) {
+    this.id = id;
     this.manager = ( manager !== undefined ) ? manager : THREE.DefaultLoadingManager;
 
     this.center = center || null;
     this.selectedFiber = selectFibers;
     this.deletedFibers = deletedFibers;
     this.renderShape = shape||'Line';
+    this.statusDomElement = null;
 };
 ObjectLoader.prototype = {
 
@@ -17,14 +18,49 @@ ObjectLoader.prototype = {
 
     load: function (url, onLoad, onProgress, onError) {
         var scope = this;
-        checkFileFormat(url);
+        var extensions = [
+            'DATA'
+        ];
+        var check = new Check(extensions);
+        check.checkFileFormat(url);
+        this.statusDomElement = this.addStatusElement();
+        $("#container"+ this.id)[0].appendChild(this.statusDomElement);
+
         var loader = new THREE.XHRLoader();
         loader.setCrossOrigin(this.crossOrigin);
         loader.load(url, function (text) {
             onLoad(scope.parse(text));
         });
     },
-
+    addStatusElement: function () {
+        var e = document.createElement( "div" );
+        e.style.position = "absolute";
+        e.style.fontWeight = 'bold';
+        e.style.top = "50%";
+        e.style.fontSize = "1.2em";
+        e.style.textAlign = "center";
+        e.style.color = "#f00";
+        e.style.width = "100%";
+        e.style.zIndex = 1000;
+        e.innerHTML = "Loading ...";
+        return e;
+    },
+    updateProgress: function ( current, total ) {
+        var message = "Complete ";
+        total = total -1;// index from 0 - total -1
+        if ( total>0 ) {
+            message += ( 100 * current / total ).toFixed(0) + "%";
+        }
+        else if( total === 0)
+        {
+            message += "1";
+        }
+        this.statusDomElement.innerHTML = message;
+        if( current === total  )
+        {
+            this.statusDomElement.style.display = 'none';
+        }
+    },
     parse: function (text) {
         var lines = text.split("\n");
         var totalFiberNum = lines[0];
@@ -131,6 +167,7 @@ ObjectLoader.prototype = {
                 }
             }
             startNum += parseInt(totalVertexNum) + 1;
+            this.updateProgress(i, totalFiberNum-1);  //update progress state
         }
         if (this.center === null)
             this.center = new THREE.Vector3((positionminx + positionmaxx) / 2.0,

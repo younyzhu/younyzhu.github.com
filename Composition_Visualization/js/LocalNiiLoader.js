@@ -4,46 +4,71 @@
  * Parted of the code is modified from https://github.com/xtk/X/blob/master/io/parserNII.js
  */
 
-LocalNiiLoader = function () {
+LocalNiiLoader = function (id) {
+    this.id = id;
+    this.statusDomElement = null;
 };
 LocalNiiLoader.prototype = {
 
     constructor: LocalNiiLoader,
     load: function (url, callback) {
-        var scope = this;
-        if(checkFileFormat(url.name) === "")
+        var _this = this;
+        var extensions = [
+            'GZ',
+            'NII'
+        ];
+        var check = new Check(extensions);
+        if(check.checkFileFormat(url.name) === "")
         {
             callback(null);
             return;
         }
         var reader = new FileReader();
-        //var progress = $("#progress")[0];
-        //progress.textContent = "";
+        this.statusDomElement = this.addStatusElement();
+        $("#container"+ this.id)[0].appendChild(this.statusDomElement);
+
         reader.readAsArrayBuffer(url); //binary file different from LocalObjectLoader.js
         reader.onerror = function () {
-            //progress.innerHTML = "Could not read file, error code is " + reader.error.code;
-            console.log("Could not read file, error code is " + reader.error.code);
+            _this.statusDomElement.innerHTML = "Could not read file, error code is " + reader.error.code;
         };
-        var load = 0;
-        var total = 0;
         reader.onprogress = function (event) {
-            if (event.lengthComputable) {
-                load = event.loaded;
-                total = event.total;
-                //progress.innerHTML = event.loaded + '/' + event.total;
-                console.log("Nii File Load:" + event.loaded + '/' + event.total);
-            }
+            _this.updateProgress(event);
         };
 
         reader.onload = function () {
             var tempdata = "";
             tempdata = reader.result;
-            if (tempdata != null && load == total) {
-                callback( scope.parse(tempdata) );
+            if (tempdata != null) {
+                callback( _this.parse(tempdata) );
             }
         };
     },
-
+    addStatusElement: function () {
+        var e = document.createElement( "div" );
+        e.style.position = "absolute";
+        e.style.fontWeight = 'bold';
+        e.style.top = "50%";
+        e.style.fontSize = "1.2em";
+        e.style.textAlign = "center";
+        e.style.color = "#f00";
+        e.style.width = "100%";
+        e.style.zIndex = 1000;
+        e.innerHTML = "Loading ...";
+        return e;
+    },
+    updateProgress: function ( progress ) {
+        var message = "Loaded ";
+        if ( progress.total ) {
+            message += ( 100 * progress.loaded / progress.total ).toFixed(0) + "%";
+        } else {
+            message += ( progress.loaded / 1024 ).toFixed(2) + " KB";
+        }
+        this.statusDomElement.innerHTML = message;
+        if( progress.loaded === progress.total  )
+        {
+            this.statusDomElement.style.display = 'none';
+        }
+    },
     parse: function (data) {
         //taken from https://github.com/xtk/X/blob/master/io/parserNII.js
         var _data = data;

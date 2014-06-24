@@ -17,7 +17,7 @@ function NiiSlice(id,scene,url) {
 NiiSlice.prototype = {
     init: function (url) {
         var _this = this;
-        var niiLoader = new LocalNiiLoader();
+        var niiLoader = new LocalNiiLoader(this.id);
         niiLoader.load(url, function (metaData) {
             var $plane = $("#bubble" + _this.id).children().children().children().children("#plane");
             if(metaData===null)

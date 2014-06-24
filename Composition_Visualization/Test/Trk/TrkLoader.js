@@ -74,8 +74,9 @@ TrkLoader.prototype = {
 
         var geometry = new THREE.BufferGeometry();
         var material = new THREE.LineBasicMaterial({ vertexColors: true });
-        geometry.addAttribute( 'position', new Float32Array( m * 3 ), 3 );
-        geometry.addAttribute( 'color', new Float32Array( m * 3 ), 3 );
+        geometry.attributes[ 'position' ] = {array: new Float32Array( m * 3 ), itemSize: 3};
+        geometry.attributes[ 'color' ] = {array: new Float32Array( m * 3 ), itemSize: 3};
+
         var positions = geometry.getAttribute( 'position' ).array;
         var colors = geometry.getAttribute( 'color' ).array;
         var positionminx=Infinity,positionminy=Infinity,positionminz=Infinity;

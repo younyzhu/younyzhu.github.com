@@ -2,52 +2,76 @@
  * Created by Yongnanzhu on 6/19/2014. Local object Loader
  */
 
-LocalObjectLoader = function (selectFibers, deletedFibers, center, shape) {
-
+LocalObjectLoader = function (id, selectFibers, deletedFibers, center, shape) {
+    this.id = id;
     this.center = center || null;
     this.selectedFiber = selectFibers;
     this.deletedFibers = deletedFibers;
     this.renderShape = shape || 'Line';
+    this.statusDomElement = null;
 };
 LocalObjectLoader.prototype = {
 
     constructor: LocalObjectLoader,
 
     load: function (url, callback) {
-        var scope = this;
-        if(checkFileFormat(url.name) === "")
+        var _this = this;
+        var extensions = [
+            'DATA'
+        ];
+        var check = new Check(extensions);
+        if(check.checkFileFormat(url.name) === "")
         {
             url ="";
-
             return;
         }
+        this.statusDomElement = this.addStatusElement();
+        $("#container"+ this.id)[0].appendChild(this.statusDomElement);
 
         var reader = new FileReader();
-        var progress = $("#progress")[0];
-        progress.textContent = "";
+
         reader.readAsText(url);
         reader.onerror = function () {
-            progress.innerHTML = "Could not read file, error code is " + reader.error.code;
+            _this.statusDomElement.innerHTML = "Could not read file, error code is " + reader.error.code;
         };
-        var load = 0;
-        var total = 0;
         reader.onprogress = function (event) {
-            if (event.lengthComputable) {
-                load = event.loaded;
-                total = event.total;
-                progress.innerHTML = event.loaded + '/' + event.total;
-            }
+              _this.updateProgress(event);
         };
 
         reader.onload = function () {
             var tempdata = "";
             tempdata = reader.result;
-            if (tempdata != null && load == total) {
-                callback( scope.parse(tempdata) );
+            if (tempdata != null) {
+                callback( _this.parse(tempdata) );
             }
         };
     },
-
+    addStatusElement: function () {
+        var e = document.createElement( "div" );
+        e.style.position = "absolute";
+        e.style.fontWeight = 'bold';
+        e.style.top = "50%";
+        e.style.fontSize = "1.2em";
+        e.style.textAlign = "center";
+        e.style.color = "#f00";
+        e.style.width = "100%";
+        e.style.zIndex = 1000;
+        e.innerHTML = "Loading ...";
+        return e;
+    },
+    updateProgress: function ( progress ) {
+        var message = "Loaded ";
+        if ( progress.total ) {
+            message += ( 100 * progress.loaded / progress.total ).toFixed(0) + "%";
+        } else {
+            message += ( progress.loaded / 1024 ).toFixed(2) + " KB";
+        }
+        this.statusDomElement.innerHTML = message;
+        if( progress.loaded === progress.total  )
+        {
+            this.statusDomElement.style.display = 'none';
+        }
+    },
     parse: function (text) {
         var lines = text.split("\n");
         var totalFiberNum = lines[0];

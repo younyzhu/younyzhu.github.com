@@ -402,7 +402,7 @@ function bubble_div(id, name, mousePosX, mousePosY) {
     tmp += "            <li id='plus_1'> <span id='tog'>[+] </span> Input Model </li> ";//$("#bubble" + id).children().children().children();
     tmp += '            <div id= "section_1" style="display: none">';
     tmp += '                <input type="file" id="input" class="para">';
-    tmp += '                <div id="progress" class="para"></div>';
+    //tmp += '                <div id="progress" class="para"></div>';
     tmp += '                <button type="button" id="load" class="para">Load</button>';
     tmp += '            </div>';
     tmp += "            <li id='plus_2'> <span id='tog'>[+] </span> Input Image </li> ";
