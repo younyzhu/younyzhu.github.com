@@ -9,7 +9,10 @@ Composition visualization is attempted to create a web-based, convenient and sci
 ##Project website
 **Current Project Files:**[Composition Visualization](http://younyzhu.github.io/Composition_Visualization/visualization.htm)
 
-##Current Operation:
+##Introduction 
+
+
+###Operation:
 
 When you open the website, you can click [f] on you keyboard to full screen mode, and with a [Esc] to exit full screen.        
 1. On the top is a navigation bar which is to manage the virtual space.    
@@ -30,6 +33,16 @@ When you open the website, you can click [f] on you keyboard to full screen mode
 	* In the dragging bar, you can adjust the parameter, such as shape, size... for visualizing the model.
 9. Every selected bubble or the origin bubble, you can generate its own fa line chart, when you click each dot of the line chart, each fiber and the clicked dot will be highlighted.
 10. By selecting your own file. you can load your custom model.
+
+### Support File Format
+
+  **Surffix**    
+   1.Fiber Tractography Model Format:     
+   `.DATA` : our custom data format. [ASCII]                
+    `.TRK` : [from Diffusion toolkit](http://trackvis.org/docs/?subsect=fileformat) [BINARY]    
+   2.Image data format:        
+   `.NII` : [from `NIFTI`](http://nifti.nimh.nih.gov/nifti-1)        
+    `.NII.GZ` : [from `NIFTI`](http://nifti.nimh.nih.gov/nifti-1)       
 
 ##Study Event
 
