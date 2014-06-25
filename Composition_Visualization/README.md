@@ -279,7 +279,11 @@ When loader a dataset, we need to know which is to select and which is to delete
      Two way can sloved this:
           (1). when re-loading the data model, we should re-set the data model and the 3 image model  
           (2). Just applying the transform matrix to the loaded image data plane    
- 
+          (3). THREE.js (r67) has problem in selection fiber, so I changed back to r66 
+  3. TODO : Need to changed the select fiber and exported the selected fibers.        
+       What I did is: when we do selection on the current model, we first recode the selected fibers and then re-load the model. 
+       But this will cause problem, when we load the local file, enough I could load it again.    
+  4. Try to re-write the framework.
  
 **Till now incluse files**
 
