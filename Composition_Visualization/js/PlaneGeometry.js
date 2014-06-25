@@ -32,7 +32,7 @@ PlaneGeometry = function ( p1, p2, planeName ) {
         this.faceVertexUvs[ 0 ].push( [uv3.clone(), uv4, uv1.clone()  ] );
     }
     else if(planeName === "YZ"){
-        var normal = new THREE.Vector4(1, 0, 0, 0 );
+        var normal = new THREE.Vector4(-1, 0, 0, 0 );
         var uv1 = new THREE.Vector2(0,0);
         var uv2 = new THREE.Vector2(1,0);
         var uv3 = new THREE.Vector2(1,1);

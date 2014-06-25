@@ -6,8 +6,8 @@ function NiiSlice(scene) {
     this.metaData = null;
     this.vector1 = null;
     this.vector2 = null;
-    this.opacity = 0.5;
-    this.transparent = true;
+    this.opacity = 1.0;
+    this.transparent = false;
     this.XYPlane = null;
     this.YZPlane = null;
     this.XZPlane = null;
@@ -17,7 +17,7 @@ NiiSlice.prototype = {
     init: function () {
         var _this = this;
         var niiLoader = new NiiLoader();
-        var niiFile ='./dti_fa.nii.gz';
+        var niiFile ='./3_2014_02_10.nii';
         checkFileFormat(niiFile);
         niiLoader.load(niiFile, function (metaData) {
             _this.metaData = metaData;
@@ -44,7 +44,10 @@ NiiSlice.prototype = {
          var height = this.yMax - this.yMin;
          var geometry = new THREE.PlaneGeometry( width, height );
          */
-        var geometry = new PlaneGeometry(this.vector1, this.vector2, "XY");
+        var width = Math.abs(this.vector2.x - this.vector1.x) /2.0;
+        var height = Math.abs(this.vector2.y - this.vector1.y) /2.0;
+        var geometry = new THREE.PlaneGeometry(width, height);
+        //var geometry = new PlaneGeometry(this.vector1, this.vector2, "XY");
         var texture = this.generateDataTextureK(k);
         //var texture = THREE.ImageUtils.loadTexture( "disturb.jpg");
         var material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide, transparent: this.transparent, opacity: this.opacity  });
@@ -53,13 +56,16 @@ NiiSlice.prototype = {
         this.scene.add(this.XYPlane);
     },
     addYZ_Plane: function (i) {
-        var geometry = new PlaneGeometry(this.vector1, this.vector2, "YZ");
+        var width = Math.abs(this.vector2.z - this.vector1.z) /2.0;
+        var height = Math.abs(this.vector2.y - this.vector1.y) /2.0;
+        var geometry = new THREE.PlaneGeometry(width, height);
+        //var geometry = new PlaneGeometry(this.vector1, this.vector2, "YZ");
         var texture = this.generateDataTextureI(i);
         //var texture = THREE.ImageUtils.loadTexture( "disturb.jpg");
         var material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide, transparent: this.transparent, opacity: this.opacity  });
         this.YZPlane = new THREE.Mesh(geometry, material);
         this.YZPlane.position.set(0, 0, 0);
-        //mesh.rotation.y = -Math.PI / 2;
+        this.YZPlane.rotation.y = -Math.PI/2;
         this.scene.add(this.YZPlane);
     },
     addXZ_Plane: function (j) {
@@ -68,13 +74,18 @@ NiiSlice.prototype = {
          var height = this.yMax - this.yMin;
          var geometry = new THREE.PlaneGeometry( width, height );
          */
-        var geometry = new PlaneGeometry(this.vector1, this.vector2, "XZ");
+        var width = Math.abs(this.vector2.x - this.vector1.x) /2.0;
+        var height = Math.abs(this.vector2.z - this.vector1.z) /2.0;
+        var geometry = new THREE.PlaneGeometry(width, height);
+        //var geometry = new PlaneGeometry(this.vector1, this.vector2, "XZ");
         var texture = this.generateDataTextureJ(j);
         //var texture = THREE.ImageUtils.loadTexture( "disturb.jpg");
         var material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide, transparent: this.transparent, opacity: this.opacity });
         this.XZPlane = new THREE.Mesh(geometry, material);
         this.XZPlane.position.set(0, 0, 0);
-        //mesh.rotation.x = -Math.PI / 2;
+        this.XZPlane.rotation.x = Math.PI*3/2 ;
+        this.scene.add(this.XZPlane);
+
     },
     //generate the texture in voxel space
     generateDataTextureK: function (k) {

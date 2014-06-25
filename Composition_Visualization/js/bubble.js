@@ -137,8 +137,8 @@ Bubble.prototype = {
 
         this.controls = new THREE.TrackballControls(this.camera, this.container);
         this.controls.rotateSpeed = 1.0;
-        this.controls.zoomSpeed = 1.2;
-        this.controls.panSpeed = 0.8;
+        this.controls.zoomSpeed = 3;
+        this.controls.panSpeed = 3;
         this.controls.noZoom = false;
         this.controls.noPan = false;
         this.controls.staticMoving = true;
@@ -293,7 +293,6 @@ Bubble.prototype = {
                 object.position.z = -object.center.z;
                 scope.mainCenter = object.center;
                 scope.mainGroup.add(object);
-
         });
     },
     loadLocalNii: function() {
@@ -302,8 +301,8 @@ Bubble.prototype = {
             this.scene.remove(this.niiSliceGroup);
         }
         this.niiSliceGroup = new THREE.Object3D();
-        this.mainGroup.add(this.niiSliceGroup);
         this.niiSlice = new NiiSlice(this.id, this.niiSliceGroup, this.niiFileName);
+        this.mainGroup.add(this.niiSliceGroup);
         this.render();
     },
     loadLocalModel: function (file) {

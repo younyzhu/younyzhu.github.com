@@ -63,7 +63,7 @@ NiiSlice.prototype = {
         var material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide, transparent: this.transparent, opacity: this.opacity });
         this.YZPlane = new THREE.Mesh(geometry, material);
         this.YZPlane.position.set(0, 0, 0);
-        this.YZPlane.rotation.y = -Math.PI / 2;
+        this.YZPlane.rotation.y = -Math.PI*3/2;
         this.scene.add(this.YZPlane);
     },
     addXZ_Plane: function (j) {
@@ -81,7 +81,7 @@ NiiSlice.prototype = {
         var material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide, transparent: this.transparent, opacity: this.opacity });
         this.XZPlane = new THREE.Mesh(geometry, material);
         this.XZPlane.position.set(0, 0, 0);
-        this.XZPlane.rotation.x = -Math.PI / 2;
+        this.XZPlane.rotation.x = Math.PI*3/2 ;
         this.scene.add(this.XZPlane);
     },
     //generate the texture in voxel space

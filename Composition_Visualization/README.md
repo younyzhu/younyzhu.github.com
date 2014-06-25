@@ -273,6 +273,13 @@ When loader a dataset, we need to know which is to select and which is to delete
  6. Right now, Input Model, it support `DATA` and `TRK` format, Input Image (DTI image), it supports `NII` and `.NII.GZ`. In this case, I just check the GZ format, actually, NII.GZ is compressed version of NII.
     It is fine whether the suffix of the file name is low case or up case.
  
+*6/25/2014
+ 1. When I load the data, and find My former Nii Loader has some problem, the first the position is not coordinate with each other. And I have already fixed it [Test/LocalNii/nii.html](https://younyzhu.github.com/Composition_Visualization/Test/LocalNii/nii.html)
+ 2. After Loading the data, the coordinate should be coordinate with the existing model.    
+     Two way can sloved this:
+          (1). when re-loading the data model, we should re-set the data model and the 3 image model  
+          (2). Just applying the transform matrix to the loaded image data plane    
+ 
  
 **Till now incluse files**
 
