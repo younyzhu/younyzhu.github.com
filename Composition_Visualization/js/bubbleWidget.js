@@ -226,19 +226,75 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
     var $bubbleRefineMenu = $("#bubble" + id).children().children().children();
     $bubbleRefineMenu.children('#add').click(function () {
         bubble.addSelector();
+        if(bubble.COMPARE_FLAG)
+        {
+            var compareGroup = Compares[bubble.compareId].group;
+            for(var i=0; i<compareGroup.length; ++i)
+            {
+                if( compareGroup[i] !== id)
+                {
+                    Bubbles[ compareGroup[i] ].addSelector();
+                }
+            }
+        }
     });
     $bubbleRefineMenu.children("#remove").click(function () {
         bubble.removeSelector();
+        if(bubble.COMPARE_FLAG)
+        {
+            var compareGroup = Compares[bubble.compareId].group;
+            for(var i=0; i<compareGroup.length; ++i)
+            {
+                if( compareGroup[i] !== id)
+                {
+                    Bubbles[ compareGroup[i] ].removeSelector();
+                }
+            }
+        }
     });
     $bubbleRefineMenu.children("#and").click(function () {
         bubble.And();
         bubble.resetAllResult();
+        if(bubble.COMPARE_FLAG)
+        {
+            var compareGroup = Compares[bubble.compareId].group;
+            for(var i=0; i<compareGroup.length; ++i)
+            {
+                if( compareGroup[i] !== id)
+                {
+                    Bubbles[ compareGroup[i] ].And();
+                    Bubbles[ compareGroup[i] ].resetAllResult();
+                }
+            }
+        }
     });
     $bubbleRefineMenu.children("#delete").click(function () {
         bubble.Delete();
+        if(bubble.COMPARE_FLAG)
+        {
+            var compareGroup = Compares[bubble.compareId].group;
+            for(var i=0; i<compareGroup.length; ++i)
+            {
+                if( compareGroup[i] !== id)
+                {
+                    Bubbles[ compareGroup[i] ].Delete();
+                }
+            }
+        }
     });
     $bubbleRefineMenu.children("#or").click(function () {
         bubble.Or();
+        if(bubble.COMPARE_FLAG)
+        {
+            var compareGroup = Compares[bubble.compareId].group;
+            for(var i=0; i<compareGroup.length; ++i)
+            {
+                if( compareGroup[i] !== id)
+                {
+                    Bubbles[ compareGroup[i] ].Or();
+                }
+            }
+        }
     });
     var $bubbleparaMenu = $("#bubble" + id).children().children().children();
     $bubbleparaMenu.children('select').change(function () {

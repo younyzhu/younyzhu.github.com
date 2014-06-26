@@ -460,11 +460,12 @@ Bubble.prototype = {
     addSelector: function () {
         this.resetAllResult();
         var geometry = new THREE.SphereGeometry(10, 40, 40);
-        var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }));
-
+        var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: 0x800080 }));
+        /*
         object.position.x = Math.random() * 100 - 25;
         object.position.y = Math.random() * 100 - 25;
         object.position.z = Math.random() * 100 - 25;
+        */
         this.scene.add(object);
         this.objects.push(object);
         var sphereSelector = new SphereSelector(this.id, object, true);
@@ -497,6 +498,13 @@ Bubble.prototype = {
     Delete: function () {
         this.ANDOR = "DELETE";
     },
+    setSelectorBall: function(position, id){
+
+        this.selectors[ id ].sphere.position = position;
+        this.selectors[ id ].setUpdateState(true);
+        this.resetAllResult();
+
+    },
     onDocumentMouseMove: function (event) {
         if (this.renderShape === 'Line') {
             event.preventDefault();
@@ -515,6 +523,18 @@ Bubble.prototype = {
                 this.SELECTED.position.copy(intersects[ 0 ].point.sub(this.offset));
                 this.selectors[ this.SELECTED.selectId ].setUpdateState(true);
                 this.resetAllResult();
+                if(this.COMPARE_FLAG)
+                {
+                    var compareGroup = Compares[this.compareId].group;
+                    for(var i=0; i<compareGroup.length; ++i)
+                    {
+                        if( compareGroup[i] !== this.id)
+                        {
+                            Bubbles[ compareGroup[i] ].setSelectorBall(intersects[ 0 ].point.sub(this.offset), this.SELECTED.selectId);
+                        }
+                    }
+                }
+
                 return;
             }
 
@@ -551,10 +571,10 @@ Bubble.prototype = {
             if (intersects.length > 0) {
                 this.activeControls.enabled = false;
                 this.SELECTED = intersects[ 0 ].object;
-
                 this.radius = this.SELECTED.geometry.radius;
                 var intersects = raycaster.intersectObject(this.plane);
-                this.offset.copy(intersects[ 0 ].point).sub(this.plane.position);
+                if(intersects[ 0 ].point !== undefined)
+                    this.offset.copy(intersects[ 0 ].point).sub(this.plane.position);
                 this.container.style.cursor = 'move';
             }
         }
@@ -604,6 +624,22 @@ Bubble.prototype = {
             }
         }
     },
+    setSelectorBallSize: function(position, select_Id,radius)
+    {
+        if (radius !== this.selectors[select_Id].sphere.geometry.radius) {
+            if (radius < this.selectors[select_Id].sphere.geometry.radius)   //when the radius of sphere becomes much smaller, we should reset the selected fibers.
+                this.resetAllResult();
+            var geometry = new THREE.SphereGeometry(radius, 40, 40);
+            var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: this.selectors[select_Id].sphere.material.color }));
+            object.position = position;
+            object.selectId = select_Id;
+            this.scene.remove(this.objects[select_Id]);
+            this.scene.add(object);
+            this.objects[select_Id] = object;
+            this.selectors[select_Id].setSphere(object);
+            this.selectors[ select_Id ].setUpdateState(true);
+        }
+    },
     update: function () {
 
         if (this.renderShape === 'Line') {
@@ -634,6 +670,17 @@ Bubble.prototype = {
                     this.objects[select_Id] = object;
                     this.selectors[select_Id].setSphere(object);
                     this.selectors[ select_Id ].setUpdateState(true);
+                }
+                if(this.COMPARE_FLAG)
+                {
+                    var compareGroup = Compares[this.compareId].group;
+                    for(var i=0; i<compareGroup.length; ++i)
+                    {
+                        if( compareGroup[i] !== this.id)
+                        {
+                            Bubbles[ compareGroup[i] ].setSelectorBallSize(position, select_Id,this.radius);
+                        }
+                    }
                 }
             }
             for (var i = 0; i < this.selectors.length; i++)
