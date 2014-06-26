@@ -286,7 +286,7 @@ When loader a dataset, we need to know which is to select and which is to delete
 *6/26/2014
  1. Redesign the layout of the two compare bubble
  2. Make the rotation coordinate by control the camera coordinate (Right now this is just works for trackball control, when finished will add the Object Control)   
- 3. Make coordinate selection. ![Compare Coordinate](./images/coordinate.png)   
+ 3. Make coordinate selection. ![Compare Coordinate](https://younyzhu.github.com/Composition_Visualization/images/coordinate.png)   
  
  
  
