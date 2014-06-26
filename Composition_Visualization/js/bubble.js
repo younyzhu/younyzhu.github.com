@@ -7,6 +7,10 @@ var __bind = function (fn, me) {
     };
 };
 function Bubble(id, selectedFibers, deletedFibers, objectCenter, shape, localFileName) {
+
+    this.COMPARE_FLAG = false; //Compare flag, with this flag, we can judge a bubble should be synchronize
+    this.compareId = null;
+
     this.connectionLinks = [];
 
     this.camera = null;
@@ -533,7 +537,7 @@ Bubble.prototype = {
     onDocumentMouseDown: function (event) {
         if (this.renderShape === 'Line') {
             event.preventDefault();
-
+            this.activeControls.enabled = true;
             var $containerId = $('#container' + this.id);
             var offset = $containerId.offset();
             this.cWidth = $containerId.width();
@@ -571,12 +575,37 @@ Bubble.prototype = {
 
     animate: function () {
         requestAnimationFrame(this.animate);
+        this.updateTrackball();
         this.update();
         this.render();
     },
+    updateCompareOperation: function(pos,up)
+    {
+        this.camera.position.copy( pos );
+        this.camera.up = up;
+        this.camera.position.sub( this.activeControls.target ); // added by @libe
 
-    update: function () {
+        this.camera.lookAt( this.scene.position );
+    },
+    updateTrackball: function(){
+
         this.activeControls.update();
+        if( this.activeControls.changeTrackball && this.COMPARE_FLAG)
+        {
+            var cameraPos = THREE.Vector3();
+            cameraPos = this.camera.position;
+            var compareGroup = Compares[this.compareId].group;
+            for(var i=0; i< compareGroup.length; ++i)
+            {
+                if( compareGroup[i] !== this.id)
+                {
+                    Bubbles[ compareGroup[i] ].updateCompareOperation(cameraPos, this.camera.up);
+                }
+            }
+        }
+    },
+    update: function () {
+
         if (this.renderShape === 'Line') {
             if (this.SELECTED) {
                 this.keyboard.update();

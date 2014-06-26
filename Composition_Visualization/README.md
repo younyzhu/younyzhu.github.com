@@ -283,6 +283,12 @@ When loader a dataset, we need to know which is to select and which is to delete
  3. Trying to find way to line up two div (if we compare two bubble) it seems the effect is not very, and I will keep trying.[image](./images/lineup.png). This method I just use one compared bubble canvas insert into another.
     It is hard to find the control canvas, sence in the program I alway use container. So I will build a new bubble div, and delete the old one.   
  
+*6/26/2014
+ 1. Redesign the layout of the two compare bubble
+ 2. Make the rotation coordinate by control the camera coordinate (Right now this is just works for trackball control, when finished will add the Object Control)   
+    
+ 
+ 
  
  TODO :     
        (1) Need to changed the select fiber and exported the selected fibers.        

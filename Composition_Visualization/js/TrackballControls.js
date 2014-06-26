@@ -13,6 +13,7 @@ THREE.TrackballControls = function ( object, domElement ) {
 	this.domElement = ( domElement !== undefined ) ? domElement : document;
 
 	// API
+    this.changeTrackball = {status:false, lookAt:null};
 
 	this.enabled = true;
 
@@ -287,6 +288,7 @@ THREE.TrackballControls = function ( object, domElement ) {
 
 	};
 
+
 	this.update = function () {
         this.handleResize();
         //when the div (domElement changed, we should update the top-left)
@@ -317,6 +319,8 @@ THREE.TrackballControls = function ( object, domElement ) {
 		_this.object.lookAt( _this.target );
 
 		if ( lastPosition.distanceToSquared( _this.object.position ) > 0 ) {
+
+            _this.changeTrackball = true;
 
 			_this.dispatchEvent( changeEvent );
 

@@ -266,72 +266,7 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
         {
             bubble.niiFileName = selected_file;
             bubble.loadLocalNii();
-           /*  //Moved to NiiSlice, we need to make sure we have already loaded the data
-            $plane.show();
-            $plane.children("#xyPlane")[0].checked = true;
-            $plane.children('#xySlider').show().slider({
-                min: 0,
-                max: 100,
-                value: 75,
-                slide: function( event, ui ) {
-                    $( "#xypValue" ).text( ui.value );
-                }
-            });
-            $plane.children( "#xypValue" ).text( $plane.children('#xySlider').slider("value") );
-            $plane.children("#yzPlane")[0].checked = true;
-            $plane.children('#yzSlider').show().slider({
-                min: 0,
-                max: 100,
-                value: 75,
-                slide: function( event, ui ) {
-                    $( "#yzpValue" ).text( ui.value );
-                }
-            });
-            $plane.children( "#yzpValue" ).text( $plane.children('#yzSlider').slider("value") );
-            $plane.children("#xzPlane")[0].checked = true;
-            $plane.children('#xzSlider').show().slider({
-                min: 0,
-                max: 100,
-                value: 30,
-                slide: function( event, ui ) {
-                    $( "#xzpValue" ).text( ui.value );
-                }
-            });
-            $plane.children( "#xzpValue" ).text( $plane.children('#xzSlider').slider("value") );
-            $plane.children('#xyPlane').change(function(){
-                $(this).val($(this).is(':checked'));
-                if( $(this).is(':checked') )
-                {
-                    $plane.children('#xySlider').show();
-                }
-                else
-                {
-                    $plane.children('#xySlider').hide();
-                }
-            });
-            $plane.children('#yzPlane').change(function(){
-                $(this).val($(this).is(':checked'));
-                if( $(this).is(':checked') )
-                {
-                    $plane.children('#yzSlider').show();
-                }
-                else
-                {
-                    $plane.children('#yzSlider').hide();
-                }
-            });
-            $plane.children('#xzPlane').change(function(){
-                $(this).val($(this).is(':checked'));
-                if( $(this).is(':checked') )
-                {
-                    $plane.children('#xzSlider').show();
-                }
-                else
-                {
-                    $plane.children('#xzSlider').hide();
-                }
-            });
-            */
+
         }
     });
     var $colorpickerField = $("#bubble" + id).children().children().children().children('#colorpickerField');

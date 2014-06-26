@@ -9,18 +9,24 @@ var vcMenu_status = false;
 var navigationCanvas = null;
 var pathConnection = null;
 var nvWidth = 0;
-
+var Compares =[];
 function getPositions(id) {
+
     var $bubble = $('#bubble'+id);
-    var pos = $bubble.position(); //offset()
+    var pos = $bubble.offset(); //offset()
     var width = $bubble.width();
     var height = $bubble.height();
     //Get the left, right, top, bottom boundary of the Box
     return [ [ pos.left, pos.left + width ], [ pos.top, pos.top + height ] ];
 }
 
+function checkElementExist(id){
+        return ($('bubble'+id).length >0);
+}
 
 function checkCollisions(Id1, Id2){
+    if(checkElementExist(Id1) && checkElementExist(Id2))
+        return false;
     var box1 = getPositions(Id1);
     var box2 = getPositions(Id2);
     return !((box2[0][0] > box1[0][1])//box2 left > box1 right
@@ -78,8 +84,10 @@ $(document).ready(function(){
             }
             else if(key == 'Compare')
             {
-                var comparedBubble = new Comparison(0);
+                var compareId = Compares.length;
+                var comparedBubble = new Comparison(compareId);
                 comparedBubble.groupComparedBubble();
+                Compares.push(comparedBubble);
             }
             else if(key === 'Delete_All') //buble numer camer from 1...n
             {

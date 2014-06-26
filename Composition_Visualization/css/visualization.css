@@ -9,7 +9,7 @@ body { font-family:"Helvetica Neue", Arial, Helvetica, sans-serif; background:#1
 #navigationBar canvas {margin:0 0 -5px 0; z-index:300;background:#666699}    /*background:#666699*/
 
 .bubble { border:solid 0 red; background:#5a5353; float:left; margin:0;}
-
+.compare { float:left;}
 #bubble canvas { margin:0 0 -5px 0; }
 #bgCanvas {cursor:auto;z-index:-10}
 #progressbar {
