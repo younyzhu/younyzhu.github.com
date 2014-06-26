@@ -219,7 +219,7 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
             "faChart": {name: "FA Chart"}
         }
     });
-
+    var id = parseInt(parent.attr('id').replace(/bubble/, ''));
     parent.children(".dragheader").children(".open_para").click(function () {
         parent.children("#paraMenu").toggle();
     });

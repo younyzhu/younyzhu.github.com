@@ -280,11 +280,18 @@ When loader a dataset, we need to know which is to select and which is to delete
           (1). when re-loading the data model, we should re-set the data model and the 3 image model  
           (2). Just applying the transform matrix to the loaded image data plane    
           (3). THREE.js (r67) has problem in selection fiber, so I changed back to r66 
-  3. TODO : Need to changed the select fiber and exported the selected fibers.        
+ 3. Trying to find way to line up two div (if we compare two bubble) it seems the effect is not very, and I will keep trying.[image](./images/lineup.png). This method I just use one compared bubble canvas insert into another.
+    It is hard to find the control canvas, sence in the program I alway use container. So I will build a new bubble div, and delete the old one.   
+ 
+ 
+ TODO :     
+       (1) Need to changed the select fiber and exported the selected fibers.        
        What I did is: when we do selection on the current model, we first recode the selected fibers and then re-load the model. 
        But this will cause problem, when we load the local file, enough I could load it again.    
-  4. Try to re-write the framework.
- 
+       (2) Try to re-write the framework.      
+       (3) write the compare program.
+       
+
 **Till now incluse files**
 
         <!--Css style-->

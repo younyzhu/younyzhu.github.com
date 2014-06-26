@@ -298,7 +298,8 @@ Bubble.prototype = {
     loadLocalNii: function() {
         if(this.niiSliceGroup)
         {
-            this.scene.remove(this.niiSliceGroup);
+            this.mainGroup.remove(this.niiSliceGroup);
+            this.niiSliceGroup = null
         }
         this.niiSliceGroup = new THREE.Object3D();
         this.niiSlice = new NiiSlice(this.id, this.niiSliceGroup, this.niiFileName);

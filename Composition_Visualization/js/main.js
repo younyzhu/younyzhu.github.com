@@ -76,6 +76,11 @@ $(document).ready(function(){
                     alert("You opened the menu!");
                 }
             }
+            else if(key == 'Compare')
+            {
+                var comparedBubble = new Comparison(0);
+                comparedBubble.groupComparedBubble();
+            }
             else if(key === 'Delete_All') //buble numer camer from 1...n
             {
                 while(BUBBLE_COUNT)
@@ -121,6 +126,7 @@ $(document).ready(function(){
         items: {
             "Open_Bubble": {name: "Open_bubble", disabled: false},
             "Open_VC_Menu": {name: "Open_vc_menu", disabled: false},
+            "Compare": {name: "Compare", disabled: false},
             "sep1": "---------",
             "Delete_All": {name: "Delete_all", disabled: false}
         }
