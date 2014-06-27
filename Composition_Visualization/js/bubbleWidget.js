@@ -219,7 +219,7 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
             "faChart": {name: "FA Chart"}
         }
     });
-    var id = parseInt(parent.attr('id').replace(/bubble/, ''));
+    //var id = parseInt(parent.attr('id').replace(/bubble/, ''));
     parent.children(".dragheader").children(".open_para").click(function () {
         parent.children("#paraMenu").toggle();
     });
@@ -303,7 +303,8 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
         bubble.resetRenderShape(valueSelected);
     });
     $bubbleparaMenu.children('#load').click(function () {
-        var selected_file = $('#input').get(0).files[0];
+
+        var selected_file = $bubbleparaMenu.children('#input').get(0).files[0];
         if (selected_file === null) {
             alert("Please select a file!");
         }
@@ -314,7 +315,7 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
     });
     //var $plane = $("#bubble" + id).children().children().children().children("#plane");
     $bubbleparaMenu.children('#loadNii').click(function () {
-        var selected_file = $('#inputNii').get(0).files[0];
+        var selected_file = $bubbleparaMenu.children('#inputNii').get(0).files[0];
         if (selected_file === null) {
             alert("Please select a NII file!");
         }

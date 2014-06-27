@@ -610,16 +610,16 @@ Bubble.prototype = {
     updateTrackball: function(){
 
         this.activeControls.update();
-        if( this.activeControls.changeTrackball && this.COMPARE_FLAG)
-        {
-            var cameraPos = THREE.Vector3();
-            cameraPos = this.camera.position;
-            var compareGroup = Compares[this.compareId].group;
-            for(var i=0; i< compareGroup.length; ++i)
-            {
-                if( compareGroup[i] !== this.id)
-                {
-                    Bubbles[ compareGroup[i] ].updateCompareOperation(cameraPos, this.camera.up);
+        if (this.renderShape === 'Line') {
+            if (this.activeControls.changeTrackball && this.COMPARE_FLAG) {
+                var cameraPos = THREE.Vector3();
+                cameraPos = this.camera.position;
+                var compareGroup = Compares[this.compareId].group;
+                for (var i = 0; i < compareGroup.length; ++i) {
+                    if (compareGroup[i] !== this.id) {
+                        if (Bubbles[ compareGroup[i] ].renderShape === 'Line')   //make sure we use line rendering
+                            Bubbles[ compareGroup[i] ].updateCompareOperation(cameraPos, this.camera.up);
+                    }
                 }
             }
         }

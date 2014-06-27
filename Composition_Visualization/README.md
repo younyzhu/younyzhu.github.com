@@ -287,7 +287,7 @@ When loader a dataset, we need to know which is to select and which is to delete
  1. Redesign the layout of the two compare bubble
  2. Make the rotation coordinate by control the camera coordinate (Right now this is just works for trackball control, when finished will add the Object Control)   
  3. Make coordinate selection. ![Compare Coordinate](https://younyzhu.github.com/Composition_Visualization/images/coordinate.png)   
- 
+ 4. Fix some bugs of the compare bubble and when group as compare bubble, the change of its own menu control.
  
  
  TODO :     
@@ -296,7 +296,10 @@ When loader a dataset, we need to know which is to select and which is to delete
        But this will cause problem, when we load the local file, enough I could load it again.    
        (2) Try to re-write the framework.      
        (3) write the compare program.
-       
+
+##DMRI Data Processing Pipeline Website
+ 1. [http://pipeline.loni.ucla.edu/?s=dat](http://pipeline.loni.ucla.edu/?s=dat)    
+ 2. [http://www.diffusion-imaging.com/](http://www.diffusion-imaging.com/ )    
 
 **Till now incluse files**
 

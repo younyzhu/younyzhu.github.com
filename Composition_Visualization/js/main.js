@@ -13,7 +13,7 @@ var Compares =[];
 function getPositions(id) {
 
     var $bubble = $('#bubble'+id);
-    var pos = $bubble.offset(); //offset()
+    var pos = $bubble.position(); //offset()
     var width = $bubble.width();
     var height = $bubble.height();
     //Get the left, right, top, bottom boundary of the Box

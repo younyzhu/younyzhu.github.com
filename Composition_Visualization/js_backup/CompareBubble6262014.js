@@ -39,31 +39,10 @@ Comparison.prototype = {
                                 $bubbleJ.removeAttr("style");
                                 $bubbleJ.removeClass("shadow drag ui-draggable");
                                 $bubbleJ.children('#paraMenu').css({left: pos1.w + pos2.w, top: '20px'});
-                                //move i position
-                                var currentPos = currentToBoxPos(pos1.left, pos1.top);
-                                for (var k = 0; k < navigationCanvas.shapes.length; ++k) {
-                                    if (navigationCanvas.shapes[k] === null)
-                                        continue;
-                                    if (navigationCanvas.shapes[k].type === "BUBBLE" && navigationCanvas.shapes[k].Id === i)
-                                        navigationCanvas.updateRectPos(k, currentPos.x, currentPos.y);
-                                }
-                                //move j position
-                                var currentPos = currentToBoxPos(pos1.w + pos1.left, pos1.top);
-                                for (var k = 0; k < navigationCanvas.shapes.length; ++k) {
-                                    if (navigationCanvas.shapes[k] === null)
-                                        continue;
-                                    if (navigationCanvas.shapes[k].type === "BUBBLE" && navigationCanvas.shapes[k].Id === j)
-                                        navigationCanvas.updateRectPos(k, currentPos.x, currentPos.y);
-                                }
 
                                 $("#compareContainer" + this.id).append($bubbleI[0]);
                                 $("#compareContainer" + this.id).append($bubbleJ[0]);
-                                $(".drag").draggable({ containment: '#bgCanvas', scroll: false,  //just dragable
-                                    drag: function (ev, ui) {
-                                        var position = ui.position;  //drag stop position
-                                    }
-                                });
-
+                                $(".drag").draggable({ containment: '#bgCanvas', scroll: false});
                                 var parent = $('#compare' + this.id);
                                 var _this = this;
                                 parent.children(".dragheader").css('text-align','center');
