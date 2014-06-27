@@ -520,6 +520,7 @@ Bubble.prototype = {
             var raycaster = new THREE.Raycaster(this.camera.position, vector.sub(this.camera.position).normalize());
             if (this.SELECTED) {
                 var intersects = raycaster.intersectObject(this.plane);
+
                 this.SELECTED.position.copy(intersects[ 0 ].point.sub(this.offset));
                 this.selectors[ this.SELECTED.selectId ].setUpdateState(true);
                 this.resetAllResult();
@@ -617,7 +618,7 @@ Bubble.prototype = {
                 var compareGroup = Compares[this.compareId].group;
                 for (var i = 0; i < compareGroup.length; ++i) {
                     if (compareGroup[i] !== this.id) {
-                        if (Bubbles[ compareGroup[i] ].renderShape === 'Line')   //make sure we use line rendering
+                        if (Bubbles[ compareGroup[i] ]!==null && Bubbles[ compareGroup[i] ].renderShape === 'Line')   //make sure we use line rendering
                             Bubbles[ compareGroup[i] ].updateCompareOperation(cameraPos, this.camera.up);
                     }
                 }

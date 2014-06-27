@@ -226,6 +226,8 @@ SphereSelector.prototype = {
          */
         //if we have already deleted some fibers, we should not calculate the intersection between the selectors and fibers
         var childs = object.children;
+        if(Bubbles[this.id] === null)
+            return;
         if(Bubbles[this.id].fiberSelector.deletedFibers.length === 0)
         {
             for (var i = 0; i < childs.length; ++i) {

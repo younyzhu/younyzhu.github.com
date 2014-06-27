@@ -11,7 +11,7 @@ Comparison.prototype = {
     constructor: Comparison,
     groupComparedBubble: function () {
         var _this = this;
-        if (Bubbles.length <= 1)
+        if (Bubbles.length <= 1)    //we get the Bubbles[0] =0;
             alert("There is not enough bubble in the space!");
         for (var i = 1; i < Bubbles.length - 1; ++i) // Bubbles begins with 1
             if (Bubbles[i] !== null)
@@ -34,12 +34,15 @@ Comparison.prototype = {
 
                                 var bubblediv = $(this.bubble_Compare_div(this.id, pos1.left, pos1.top));
                                 $("#bubble").append(bubblediv);
-                                $bubbleI.removeClass("shadow drag ui-draggable");
-                                $bubbleI.children('#paraMenu').css({left: pos1.w, top: '20px'});
+                                $bubbleI.removeClass("shadow drag bubble ui-draggable ");
+                                $bubbleI.addClass("compare");
+                                $bubbleI.children('#paraMenu').css({left: pos1.w - 17, top:'20px' });
                                 $bubbleI.removeAttr("style");
+
                                 $bubbleJ.removeAttr("style");
-                                $bubbleJ.removeClass("shadow drag ui-draggable");
-                                $bubbleJ.children('#paraMenu').css({left: pos1.w + pos2.w, top: '20px'});
+                                $bubbleJ.addClass("compare");
+                                $bubbleJ.removeClass("shadow drag bubble ui-draggable ");
+                                $bubbleJ.children('#paraMenu').css({left: pos1.w + pos2.w - 17, top: '20px'});
                                 //move i position
                                 var currentPos = currentToBoxPos(pos1.left, pos1.top);
                                 for (var k = 0; k < navigationCanvas.shapes.length; ++k) {
@@ -56,14 +59,14 @@ Comparison.prototype = {
                                     if (navigationCanvas.shapes[k].type === "BUBBLE" && navigationCanvas.shapes[k].Id === j)
                                         navigationCanvas.updateRectPos(k, currentPos.x, currentPos.y);
                                 }
-
-                                $("#compareContainer" + _this.id).append($bubbleI[0]);
-                                $("#compareContainer" + _this.id).append($bubbleJ[0]);
+                                var $compareContainer = $("#compareContainer" + _this.id);
+                                $compareContainer.append($bubbleI[0]);
+                                $compareContainer.append($bubbleJ[0]);
                                 $(".drag").draggable({ containment: '#bgCanvas', scroll: false,  //just dragable
                                     drag: function (ev, ui) {
 
                                         var position = ui.offset;  //drag stop position
-                                         var groups = Compares[_this.id].group;
+                                        var groups = Compares[_this.id].group;
                                         for(var t = 0; t<groups.length; t++)
                                         {
                                             //move i position
@@ -83,9 +86,28 @@ Comparison.prototype = {
                                 var parent = $('#compare' + this.id);
                                 parent.children(".dragheader").css('text-align','center');
                                 parent.children(".dragheader").children(".close").click(function () {
-                                    for (var i = 0; i < _this.group.length; ++i) {
-                                        Bubbles[_this.group[i]].COMPARE_FLAG = false;
-                                        Bubbles[_this.group[i]] = null;
+                                //When remove a compare bubble, we should remove all the bubbles in the group (compare bubble, and also skip the bubble that has already been deleted)
+                                    for (var m = 0; m < _this.group.length; ++m) {
+                                        if(Bubbles[_this.group[m]] !== null)
+                                        {
+                                            Bubbles[_this.group[m]].COMPARE_FLAG = false;
+                                            Bubbles[_this.group[m]].removeAllSelectors();
+                                            Bubbles[_this.group[m]] = null;
+
+                                            var groups = Compares[_this.id].group;
+                                            for(var t = 0; t<groups.length; t++)
+                                            {
+                                                //move i position
+                                                for (var k = 0; k < navigationCanvas.shapes.length; ++k) {
+                                                    if (navigationCanvas.shapes[k] === null)
+                                                        continue;
+                                                    if (navigationCanvas.shapes[k].type === "BUBBLE" && navigationCanvas.shapes[k].Id === groups[t])
+                                                    {
+                                                        navigationCanvas.remove(k);
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                     parent.remove();
                                 });
@@ -94,7 +116,7 @@ Comparison.prototype = {
     },
     bubble_Compare_div: function (id, positionX, positionY) {
         var tmp = '';
-        tmp += '<div id="compare' + id + '" class="bubble shadow drag" style="position: absolute; left:' + positionX + 'px; top:' + positionY + 'px; ">';
+        tmp += '<div id="compare' + id + '" class="compare shadow drag" style="position: absolute; left:' + positionX + 'px; top:' + positionY + 'px; ">';
         tmp += '    <div class="dragheader">Compare';
         tmp += '    <span class="close">X</span>';
         tmp += '    </div>';

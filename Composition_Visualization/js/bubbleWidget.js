@@ -77,36 +77,41 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
             var position = ui.position;  //drag stop position
             var currentPos = currentToBoxPos(position.left, position.top);
             var currentId = parseInt($(this).attr('id').replace(/bubble/, ''));
-            for (var i = 0; i < navigationCanvas.shapes.length; ++i) {
-                if (navigationCanvas.shapes[i] === null)
-                    continue;
-                if (navigationCanvas.shapes[i].type === "BUBBLE" && navigationCanvas.shapes[i].Id === currentId)
-                    navigationCanvas.updateRectPos(i, currentPos.x, currentPos.y);
-            }
-            if (Bubbles[currentId] !== null) {
-                var le = Bubbles[currentId].getlinkNodes().length;
-                for (var i = 0; i < le; ++i) {
-                    var type = Bubbles[currentId].getlinkNodes()[i].type;
-                    if (type === "BUBBLE") {
-                        var next = Bubbles[currentId].getlinkNodes()[i].connectTo;
-                        if (Bubbles[currentId].getlinkNodes()[i].connectionId !== null && Bubbles[currentId] !== null && Bubbles[next] !== null) {
-                            pathConnection.update(Bubbles[currentId].getlinkNodes()[i].connectionId, getWidgetCenter(currentId), getWidgetCenter(next));
+            var bubbleType = $(this).attr('class').split(' ')[0]; //or .attr('class').replace(/^(\S*).*/, '$1');
+            if(bubbleType === 'bubble')
+            {
+                for (var i = 0; i < navigationCanvas.shapes.length; ++i) {
+                    if (navigationCanvas.shapes[i] === null)
+                        continue;
+                    if (navigationCanvas.shapes[i].type === "BUBBLE" && navigationCanvas.shapes[i].Id === currentId)
+                        navigationCanvas.updateRectPos(i, currentPos.x, currentPos.y);
+                }
+                if (Bubbles[currentId] !== null) {
+                    var le = Bubbles[currentId].getlinkNodes().length;
+                    for (var i = 0; i < le; ++i) {
+                        var type = Bubbles[currentId].getlinkNodes()[i].type;
+                        if (type === "BUBBLE") {
+                            var next = Bubbles[currentId].getlinkNodes()[i].connectTo;
+                            if (Bubbles[currentId].getlinkNodes()[i].connectionId !== null && Bubbles[currentId] !== null && Bubbles[next] !== null) {
+                                pathConnection.update(Bubbles[currentId].getlinkNodes()[i].connectionId, getWidgetCenter(currentId), getWidgetCenter(next));
+                            }
                         }
-                    }
-                    else if (type === "CHART") {
-                        pathConnection.update(Bubbles[currentId].getlinkNodes()[i].connectionId, getWidgetCenter(currentId), getChartCenter(currentId));
+                        else if (type === "CHART") {
+                            pathConnection.update(Bubbles[currentId].getlinkNodes()[i].connectionId, getWidgetCenter(currentId), getChartCenter(currentId));
+                        }
                     }
                 }
             }
         }
     });
+
     //To do:  here has a bug, when we adjust the canvas //This is fixed by adjust the trackball
     $('canvas').draggable({ containment: '#bgCanvas', scroll: false}).resizable({
         resize: function (ev, ui) {
             var size = ui.size;
             var width = size.width / window.innerWidth * nvWidth;
             var height = size.height / (window.innerHeight - 50) * 50;
-            //navigationCanvas.updateRectResize(id, width, height);
+
             for (var i = 0; i < navigationCanvas.shapes.length; ++i) {
                 if (navigationCanvas.shapes[i] === null)
                     continue;
@@ -220,11 +225,17 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
         }
     });
     //var id = parseInt(parent.attr('id').replace(/bubble/, ''));
+    $bubbleId.find(".open_para").click(function () {
+        parent.children("#paraMenu").toggle();
+    });
+    /*
     parent.children(".dragheader").children(".open_para").click(function () {
         parent.children("#paraMenu").toggle();
     });
+    */
     var $bubbleRefineMenu = $("#bubble" + id).children().children().children();
-    $bubbleRefineMenu.children('#add').click(function () {
+    $bubbleId.find("#add").click(function () {
+    //$bubbleRefineMenu.children('#add').click(function () {
         bubble.addSelector();
         if(bubble.COMPARE_FLAG)
         {
@@ -238,7 +249,8 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
             }
         }
     });
-    $bubbleRefineMenu.children("#remove").click(function () {
+    $bubbleId.find("#remove").click(function () {
+    //$bubbleRefineMenu.children("#remove").click(function () {
         bubble.removeSelector();
         if(bubble.COMPARE_FLAG)
         {
@@ -252,7 +264,8 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
             }
         }
     });
-    $bubbleRefineMenu.children("#and").click(function () {
+    $bubbleId.find("#and").click(function () {
+    //$bubbleRefineMenu.children("#and").click(function () {
         bubble.And();
         bubble.resetAllResult();
         if(bubble.COMPARE_FLAG)
@@ -268,7 +281,8 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
             }
         }
     });
-    $bubbleRefineMenu.children("#delete").click(function () {
+    $bubbleId.find("#delete").click(function () {
+    //$bubbleRefineMenu.children("#delete").click(function () {
         bubble.Delete();
         if(bubble.COMPARE_FLAG)
         {
@@ -282,7 +296,8 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
             }
         }
     });
-    $bubbleRefineMenu.children("#or").click(function () {
+    $bubbleId.find("#or").click(function () {
+    //$bubbleRefineMenu.children("#or").click(function () {
         bubble.Or();
         if(bubble.COMPARE_FLAG)
         {
@@ -296,13 +311,16 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
             }
         }
     });
+
     var $bubbleparaMenu = $("#bubble" + id).children().children().children();
-    $bubbleparaMenu.children('select').change(function () {
+    $bubbleId.find("#select").click(function () {
+    //$bubbleparaMenu.children('select').change(function () {
         var optionSelected = $(this).find("option:selected");
         var valueSelected = optionSelected.val();
         bubble.resetRenderShape(valueSelected);
     });
-    $bubbleparaMenu.children('#load').click(function () {
+    $bubbleId.find("#load").click(function () {
+    //$bubbleparaMenu.children('#load').click(function () {
 
         var selected_file = $bubbleparaMenu.children('#input').get(0).files[0];
         if (selected_file === null) {
@@ -314,8 +332,10 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
         }
     });
     //var $plane = $("#bubble" + id).children().children().children().children("#plane");
-    $bubbleparaMenu.children('#loadNii').click(function () {
-        var selected_file = $bubbleparaMenu.children('#inputNii').get(0).files[0];
+    $bubbleId.find("#loadNii").click(function () {
+    //$bubbleparaMenu.children('#loadNii').click(function () {
+        //var selected_file = $bubbleparaMenu.children('#inputNii').get(0).files[0];
+        var selected_file = $bubbleId.find('#inputNii').get(0).files[0];
         if (selected_file === null) {
             alert("Please select a NII file!");
         }
@@ -326,7 +346,8 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
 
         }
     });
-    var $colorpickerField = $("#bubble" + id).children().children().children().children('#colorpickerField');
+    var $colorpickerField = $bubbleId.find("#colorpickerField");
+    //var $colorpickerField = $("#bubble" + id).children().children().children().children('#colorpickerField');
     $colorpickerField.ColorPicker({
         onSubmit: function (hsb, hex, rgb, el) {
             $(el).val(hex);
@@ -342,9 +363,11 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
     });
 
     function toggle(i) {
-        var $sectionId = $("#bubble" + id).children().children().children("#section_" + i);
+        //var $sectionId = $("#bubble" + id).children().children().children("#section_" + i);
+        var $sectionId = $bubbleId.find("#section_" + i);
         var scn = $sectionId.css('display');
-        var btn = $("#bubble" + id).children().children().children("#plus_" + i).children("#tog")[0];
+        //var btn = $("#bubble" + id).children().children().children("#plus_" + i).children("#tog")[0];
+        var btn = $bubbleId.find("#tog")[0];
         if (scn == "block") {
             $sectionId.hide();
             btn.innerHTML = "[+]";
@@ -363,7 +386,8 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
 
     for (var i = 1; i <= 6; i++) {
         //$( "plus_" + i).addEventListener( 'click', createToggle( i ), false );
-        $("#bubble" + id).children().children().children("#plus_" + i).click(createToggle(i));
+        $bubbleId.find("#plus_" + i).click(createToggle(i));
+        //$("#bubble" + id).children().children().children("#plus_" + i).click(createToggle(i));
     }
 }
 function bubble_div(id, name, mousePosX, mousePosY) {
@@ -454,7 +478,8 @@ function bubble_div(id, name, mousePosX, mousePosY) {
 //the navigation bar can move in horizontal direction
 //So the whole bubble in screen space is just need to change the x-pos
 function resetAllBubblesPos(xChange) {
-    $('#bubble').children('.bubble').each(function () {
+    var $bubble = $('#bubble');
+    $bubble.children('.bubble').each(function () {
         var offLeft = $(this).position().left;
         $(this).css({left: offLeft - xChange});
         var id = parseInt($(this).attr('id').replace(/bubble/, ''));
@@ -468,7 +493,18 @@ function resetAllBubblesPos(xChange) {
             }
         }
     });
+
+    $bubble.children('.compare').each(function () {
+        var offLeft = $(this).position().left;
+        $(this).css({left: offLeft - xChange});
+    });
+
+    $bubble.children('.chart').each(function () {
+        var offLeft = $(this).position().left;
+        $(this).css({left: offLeft - xChange});
+    });
 }
+
 function getWidgetInformation(index) {
     var $bubbleId = $('#bubble' + index);
     var width = $bubbleId.width();

@@ -273,7 +273,7 @@ When loader a dataset, we need to know which is to select and which is to delete
  6. Right now, Input Model, it support `DATA` and `TRK` format, Input Image (DTI image), it supports `NII` and `.NII.GZ`. In this case, I just check the GZ format, actually, NII.GZ is compressed version of NII.
     It is fine whether the suffix of the file name is low case or up case.
  
-*6/25/2014
+* 6/25/2014
  1. When I load the data, and find My former Nii Loader has some problem, the first the position is not coordinate with each other. And I have already fixed it [Test/LocalNii/nii.html](https://younyzhu.github.com/Composition_Visualization/Test/LocalNii/nii.html)
  2. After Loading the data, the coordinate should be coordinate with the existing model.    
      Two way can sloved this:
@@ -283,14 +283,25 @@ When loader a dataset, we need to know which is to select and which is to delete
  3. Trying to find way to line up two div (if we compare two bubble) it seems the effect is not very, and I will keep trying.[image](./images/lineup.png). This method I just use one compared bubble canvas insert into another.
     It is hard to find the control canvas, sence in the program I alway use container. So I will build a new bubble div, and delete the old one.   
  
-*6/26/2014
+* 6/26/2014
  1. Redesign the layout of the two compare bubble
  2. Make the rotation coordinate by control the camera coordinate (Right now this is just works for trackball control, when finished will add the Object Control)   
  3. Make coordinate selection. ![Compare Coordinate](https://younyzhu.github.com/Composition_Visualization/images/coordinate.png)   
- 4. Fix some bugs of the compare bubble and when group as compare bubble, the change of its own menu control.
+ 4. Fix some bugs of the compare bubble and when group as compare bubble, the change of its own menu control.    
  
+* 6/27/2014
+ 1. Change the navigation Bar design layout of the bubble                   
+      Right now, I will do like this, There are many type of bubble widget, with certain html css class wrapped.          
+      Space Management:        
+      [       
+        `.bubble` for the bubble class to show 3D model widget.        
+        `.compare` for the compare bubble widget, which contain certain bubbles, but such bubble has no `.bubble` class     
+        `.chart` for the chart bubble class to show the line chart.    
+        `.widget` is toolbox of the bubbles, so we do not need to split it from the `.bubble`      
+      ] 
+ 2. Change all the code `.children().children().children();` to `.find();`      
  
- TODO :     
+ TODO :        
        (1) Need to changed the select fiber and exported the selected fibers.        
        What I did is: when we do selection on the current model, we first recode the selected fibers and then re-load the model. 
        But this will cause problem, when we load the local file, enough I could load it again.    

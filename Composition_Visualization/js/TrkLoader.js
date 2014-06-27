@@ -110,11 +110,17 @@ TrkLoader.prototype = {
 
         var geometry = new THREE.BufferGeometry();
         var material = new THREE.LineBasicMaterial({ vertexColors: true });
-        geometry.attributes[ 'position' ] = {array: new Float32Array( m * 3 ), itemSize: 3};
+         //r67 r66 has some selection for Trk Loader
+        /*geometry.attributes[ 'position' ] = {array: new Float32Array( m * 3 ), itemSize: 3};
         geometry.attributes[ 'color' ] = {array: new Float32Array( m * 3 ), itemSize: 3};
-
         var positions = geometry.getAttribute( 'position' ).array;
         var colors = geometry.getAttribute( 'color' ).array;
+         *///r66
+        geometry.addAttribute( 'position', Float32Array, m , 3 );
+        geometry.addAttribute( 'color', Float32Array, m , 3 );
+        var positions = geometry.attributes.position.array;
+        var colors = geometry.attributes.color.array;
+
         var positionminx=Infinity,positionminy=Infinity,positionminz=Infinity;
         var positionmaxx=-Infinity,positionmaxy=-Infinity,positionmaxz=-Infinity;
         for(var i=0; i<m; ++i)

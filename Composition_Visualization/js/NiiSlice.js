@@ -19,7 +19,7 @@ NiiSlice.prototype = {
         var _this = this;
         var niiLoader = new LocalNiiLoader(this.id);
         niiLoader.load(url, function (metaData) {
-            var $plane = $("#bubble" + _this.id).children().children().children().children("#plane");
+            var $plane = $("#bubble" + _this.id).find("#plane");
             if(metaData===null)
             {
                 if($plane.css('display') !== 'none')
@@ -33,14 +33,14 @@ NiiSlice.prototype = {
             _this.addXZ_Plane(parseInt(_this.metaData.dim[2] / 2));
             $plane.show();
 //--------------------------------------------------------Transparent----------------------------------------------------//
-            $plane.children().children("#transparent")[0].checked = _this.transparent;
-            $plane.children().children('#transparent').change(function(){
+            $plane.find("#transparent")[0].checked = _this.transparent;
+            $plane.find('#transparent').change(function(){
                 _this.transparent = $(this).is(':checked');
                 Bubbles[_this.id].niiSlice.updateYZSliceI($plane.children('#yzSlider').slider("value"));
                 Bubbles[_this.id].niiSlice.updateXYSliceK($plane.children('#xySlider').slider("value"));
                 Bubbles[_this.id].niiSlice.updateXZSliceJ($plane.children('#xzSlider').slider("value"));
             });
-            $plane.children().children('#opacity').spinner({
+            $plane.find('#opacity').spinner({
                 step: 0.1,
                 min:0.0,
                 max:1.0,
@@ -53,19 +53,19 @@ NiiSlice.prototype = {
                 }
             }).val(parseFloat(_this.opacity));
 //--------------------------------------------------------XY-Plane----------------------------------------------------//
-            $plane.children().children("#xyPlane")[0].checked = true;
+            $plane.find("#xyPlane")[0].checked = true;
 
             $plane.children('#xySlider').show().slider({
                 min: 0,
                 max: _this.metaData.dim[3],
                 value: parseInt(_this.metaData.dim[3] / 2),
                 slide: function( event, ui ) {
-                    $plane.children().children( "#xypValue" ).children().text( ui.value );
+                    $plane.find( "#xypValue" ).children().text( ui.value );
                     Bubbles[_this.id].niiSlice.updateXYSliceK(ui.value);
                 }
             });
-            $plane.children().children( "#xypValue" ).text( $plane.children('#xySlider').slider("value") );
-            $plane.children().children('#xyPlane').change(function(){
+            $plane.find( "#xypValue" ).text( $plane.children('#xySlider').slider("value") );
+            $plane.find('#xyPlane').change(function(){
                 $(this).val($(this).is(':checked'));
                 Bubbles[_this.id].niiSlice.XYPlane.visible = $(this).is(':checked');
                 if( $(this).is(':checked') )
@@ -79,8 +79,8 @@ NiiSlice.prototype = {
                 }
             });
 //--------------------------------------------------------YZ-Plane----------------------------------------------------//
-            $plane.children().children("#yzPlane")[0].checked = true;
-            $plane.children().children('#yzPlane').change(function(){
+            $plane.find("#yzPlane")[0].checked = true;
+            $plane.find('#yzPlane').change(function(){
                 $(this).val($(this).is(':checked'));
                 Bubbles[_this.id].niiSlice.YZPlane.visible = $(this).is(':checked');
                 if( $(this).is(':checked') )
@@ -97,15 +97,15 @@ NiiSlice.prototype = {
                 max: _this.metaData.dim[1],
                 value: parseInt(_this.metaData.dim[1] / 2),
                 slide: function( event, ui ) {
-                    $plane.children().children( "#yzpValue" ).text( ui.value );
+                    $plane.find( "#yzpValue" ).text( ui.value );
                     Bubbles[_this.id].niiSlice.updateYZSliceI(ui.value);
                 }
             });
-            $plane.children().children( "#yzpValue" ).text( $plane.children('#yzSlider').slider("value") );
+            $plane.find( "#yzpValue" ).text( $plane.children('#yzSlider').slider("value") );
 
 
 //--------------------------------------------------------XZ-Plane----------------------------------------------------//
-            $plane.children().children('#xzPlane').change(function(){
+            $plane.find('#xzPlane').change(function(){
                 $(this).val($(this).is(':checked'));
                 Bubbles[_this.id].niiSlice.XZPlane.visible = $(this).is(':checked');
                 if( $(this).is(':checked') )
@@ -117,17 +117,17 @@ NiiSlice.prototype = {
                     $plane.children('#xzSlider').hide();
                 }
             });
-            $plane.children().children("#xzPlane")[0].checked = true;
+            $plane.find("#xzPlane")[0].checked = true;
             $plane.children('#xzSlider').show().slider({
                 min: 0,
                 max: _this.metaData.dim[2],
                 value: parseInt(_this.metaData.dim[2] / 2),
                 slide: function( event, ui ) {
-                    $plane.children().children( "#xzpValue" ).text( ui.value );
+                    $plane.find( "#xzpValue" ).text( ui.value );
                     Bubbles[_this.id].niiSlice.updateXZSliceJ(ui.value);
                 }
             });
-            $plane.children().children( "#xzpValue" ).text( $plane.children('#xzSlider').slider("value") );
+            $plane.find( "#xzpValue" ).text( $plane.children('#xzSlider').slider("value") );
 
         });
     },
@@ -161,7 +161,7 @@ NiiSlice.prototype = {
     addYZ_Plane: function (i) {
         var width = Math.abs(this.vector2.z - this.vector1.z) ;
         var height = Math.abs(this.vector2.y - this.vector1.y) ;
-        var geometry = new THREE.PlaneGeometry(height, width);
+        var geometry = new THREE.PlaneGeometry(width,height );
         //var geometry = new PlaneGeometry(this.vector1, this.vector2, "YZ");
         var texture = this.generateDataTextureI(i);
         //var texture = THREE.ImageUtils.loadTexture( "disturb.jpg");
