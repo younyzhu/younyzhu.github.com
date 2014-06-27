@@ -10,6 +10,7 @@ function Comparison(id) {
 Comparison.prototype = {
     constructor: Comparison,
     groupComparedBubble: function () {
+        var _this = this;
         if (Bubbles.length <= 1)
             alert("There is not enough bubble in the space!");
         for (var i = 1; i < Bubbles.length - 1; ++i) // Bubbles begins with 1
@@ -56,16 +57,30 @@ Comparison.prototype = {
                                         navigationCanvas.updateRectPos(k, currentPos.x, currentPos.y);
                                 }
 
-                                $("#compareContainer" + this.id).append($bubbleI[0]);
-                                $("#compareContainer" + this.id).append($bubbleJ[0]);
+                                $("#compareContainer" + _this.id).append($bubbleI[0]);
+                                $("#compareContainer" + _this.id).append($bubbleJ[0]);
                                 $(".drag").draggable({ containment: '#bgCanvas', scroll: false,  //just dragable
                                     drag: function (ev, ui) {
-                                        var position = ui.position;  //drag stop position
+
+                                        var position = ui.offset;  //drag stop position
+                                         var groups = Compares[_this.id].group;
+                                        for(var t = 0; t<groups.length; t++)
+                                        {
+                                            //move i position
+                                            for (var k = 0; k < navigationCanvas.shapes.length; ++k) {
+                                                if (navigationCanvas.shapes[k] === null)
+                                                    continue;
+                                                if (navigationCanvas.shapes[k].type === "BUBBLE" && navigationCanvas.shapes[k].Id === groups[t])
+                                                {
+                                                    var currentPos = currentToBoxPos(position.left + t * $("#bubble"+groups[t]).width(), position.top);
+                                                    navigationCanvas.updateRectPos(k, currentPos.x, currentPos.y);
+                                                }
+                                            }
+                                        }
                                     }
                                 });
 
                                 var parent = $('#compare' + this.id);
-                                var _this = this;
                                 parent.children(".dragheader").css('text-align','center');
                                 parent.children(".dragheader").children(".close").click(function () {
                                     for (var i = 0; i < _this.group.length; ++i) {
