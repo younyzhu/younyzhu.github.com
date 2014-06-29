@@ -109,17 +109,22 @@ TrkLoader.prototype = {
         var n_s_skip;
 
         var geometry = new THREE.BufferGeometry();
-        var material = new THREE.LineBasicMaterial({ vertexColors: true });
+        //var material = new THREE.LineBasicMaterial({ vertexColors: true });
+
+        var grayness = Math.random() * 0.5 + 0.25;
+        var material = new THREE.LineBasicMaterial();
+        material.color.setRGB(grayness, grayness, grayness);
+        material.ColorKeeper = new THREE.Color(grayness, grayness, grayness);
          //r67 r66 has some selection for Trk Loader
         /*geometry.attributes[ 'position' ] = {array: new Float32Array( m * 3 ), itemSize: 3};
-        geometry.attributes[ 'color' ] = {array: new Float32Array( m * 3 ), itemSize: 3};
         var positions = geometry.getAttribute( 'position' ).array;
+        geometry.attributes[ 'color' ] = {array: new Float32Array( m * 3 ), itemSize: 3};
         var colors = geometry.getAttribute( 'color' ).array;
          *///r66
         geometry.addAttribute( 'position', Float32Array, m , 3 );
-        geometry.addAttribute( 'color', Float32Array, m , 3 );
+        //geometry.addAttribute( 'color', Float32Array, m , 3 );
         var positions = geometry.attributes.position.array;
-        var colors = geometry.attributes.color.array;
+        //var colors = geometry.attributes.color.array;
 
         var positionminx=Infinity,positionminy=Infinity,positionminz=Infinity;
         var positionmaxx=-Infinity,positionmaxy=-Infinity,positionmaxz=-Infinity;
@@ -140,17 +145,19 @@ TrkLoader.prototype = {
             positionmaxz = Math.max(positionmaxz, parseFloat(pointGeo[2]));
             n_s_skip = this.parseFloat32Array(data, offset, n_s);
             offset += 4 *n_s; //1 int
+            /*
             // colors
             var grayness = Math.random() * 0.5 + 0.25;
             colors[ i * 3 ] = grayness;
             colors[ i * 3 + 1 ] = grayness;
             colors[ i * 3 + 2 ] = grayness;
+            */
         }
 
         this.parseFloat32Array(data, offset, n_p);
         offset += 4 *n_p; //1 int
 
-        var lineMesh = new THREE.Line( geometry, material );
+        var lineMesh = new THREE.Line( geometry, material, THREE.LineStrip );
         var center = new THREE.Vector3((positionminx + positionmaxx)/2.0,
                 (positionminy + positionmaxy)/2.0, (positionminz + positionmaxz)/2.0);
         object.add(lineMesh);

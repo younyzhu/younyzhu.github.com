@@ -79,6 +79,9 @@ Rectangle.prototype ={
     {
         return  (this.x <= mx) && (this.x + this.w >= mx) &&
             (this.y <= my) && (this.y + this.h >= my);
+    },
+    getColor: function(){
+        return this.strokeColor;
     }
 };
 

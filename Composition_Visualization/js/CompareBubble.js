@@ -44,12 +44,17 @@ Comparison.prototype = {
                                 $bubbleJ.removeClass("shadow drag bubble ui-draggable ");
                                 $bubbleJ.children('#paraMenu').css({left: pos1.w + pos2.w - 17, top: '20px'});
                                 //move i position
+                                var color;
                                 var currentPos = currentToBoxPos(pos1.left, pos1.top);
                                 for (var k = 0; k < navigationCanvas.shapes.length; ++k) {
                                     if (navigationCanvas.shapes[k] === null)
                                         continue;
                                     if (navigationCanvas.shapes[k].type === "BUBBLE" && navigationCanvas.shapes[k].Id === i)
+                                    {
                                         navigationCanvas.updateRectPos(k, currentPos.x, currentPos.y);
+                                        color = navigationCanvas.shapes[k].getColor();
+                                    }
+
                                 }
                                 //move j position
                                 var currentPos = currentToBoxPos(pos1.w + pos1.left, pos1.top);
@@ -57,19 +62,20 @@ Comparison.prototype = {
                                     if (navigationCanvas.shapes[k] === null)
                                         continue;
                                     if (navigationCanvas.shapes[k].type === "BUBBLE" && navigationCanvas.shapes[k].Id === j)
+                                    {
                                         navigationCanvas.updateRectPos(k, currentPos.x, currentPos.y);
+                                        navigationCanvas.shapes[k].strokeColor = color;
+                                    }
                                 }
                                 var $compareContainer = $("#compareContainer" + _this.id);
                                 $compareContainer.append($bubbleI[0]);
                                 $compareContainer.append($bubbleJ[0]);
                                 $(".drag").draggable({ containment: '#bgCanvas', scroll: false,  //just dragable
                                     drag: function (ev, ui) {
-
                                         var position = ui.offset;  //drag stop position
                                         var groups = Compares[_this.id].group;
                                         for(var t = 0; t<groups.length; t++)
                                         {
-                                            //move i position
                                             for (var k = 0; k < navigationCanvas.shapes.length; ++k) {
                                                 if (navigationCanvas.shapes[k] === null)
                                                     continue;

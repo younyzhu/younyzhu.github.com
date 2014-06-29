@@ -193,13 +193,28 @@ SphereSelector.prototype = {
             var center = object.parent.center;
             //store the obj center in the load code (GeometryLoader)
             //spend a day to find this bug, I do not think this would be a problem at first.
-            if (geometry instanceof THREE.Geometry) {
+            if (geometry instanceof THREE.Geometry ) {
                 var vertices = geometry.vertices;
                 var nbVertices = vertices.length;
                 var step = object.type === THREE.LineStrip ? 1 : 2;
                 for (var i = 0; i < nbVertices - 1; i = i + step) {
                     var tmp = new THREE.Vector3();
                     tmp.subVectors(vertices[i], center);
+                    if (this.pointInsideSelectorSphere(tmp)) {
+                        intersects.push({object: object});
+                        break;
+                    }
+                }
+            }
+            else  if (geometry instanceof THREE.BufferGeometry ) {
+                var position = geometry.attributes.position.array;  //r66
+                ///var position = geometry.getAttribute( 'position' ).array;
+                var nbVertices = position.length/3;
+                var step = object.type === THREE.LineStrip ? 1 : 2;
+                for (var i = 0; i < nbVertices - 1; i = i + step) {
+                    var vertice = new THREE.Vector3(position[3*i],position[3*i+1],position[3*i+2]);
+                    var tmp = new THREE.Vector3();
+                    tmp.subVectors(vertice, center);
                     if (this.pointInsideSelectorSphere(tmp)) {
                         intersects.push({object: object});
                         break;

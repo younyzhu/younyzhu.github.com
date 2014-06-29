@@ -44,8 +44,8 @@ NiiSlice.prototype = {
          var height = this.yMax - this.yMin;
          var geometry = new THREE.PlaneGeometry( width, height );
          */
-        var width = Math.abs(this.vector2.x - this.vector1.x) /2.0;
-        var height = Math.abs(this.vector2.y - this.vector1.y) /2.0;
+        var width = Math.abs(this.vector2.x - this.vector1.x) ;
+        var height = Math.abs(this.vector2.y - this.vector1.y) ;
         var geometry = new THREE.PlaneGeometry(width, height);
         //var geometry = new PlaneGeometry(this.vector1, this.vector2, "XY");
         var texture = this.generateDataTextureK(k);
@@ -56,8 +56,8 @@ NiiSlice.prototype = {
         this.scene.add(this.XYPlane);
     },
     addYZ_Plane: function (i) {
-        var width = Math.abs(this.vector2.z - this.vector1.z) /2.0;
-        var height = Math.abs(this.vector2.y - this.vector1.y) /2.0;
+        var width = Math.abs(this.vector2.z - this.vector1.z) ;
+        var height = Math.abs(this.vector2.y - this.vector1.y) ;
         var geometry = new THREE.PlaneGeometry(width, height);
         //var geometry = new PlaneGeometry(this.vector1, this.vector2, "YZ");
         var texture = this.generateDataTextureI(i);
@@ -74,8 +74,8 @@ NiiSlice.prototype = {
          var height = this.yMax - this.yMin;
          var geometry = new THREE.PlaneGeometry( width, height );
          */
-        var width = Math.abs(this.vector2.x - this.vector1.x) /2.0;
-        var height = Math.abs(this.vector2.z - this.vector1.z) /2.0;
+        var width = Math.abs(this.vector2.x - this.vector1.x) ;
+        var height = Math.abs(this.vector2.z - this.vector1.z) ;
         var geometry = new THREE.PlaneGeometry(width, height);
         //var geometry = new PlaneGeometry(this.vector1, this.vector2, "XZ");
         var texture = this.generateDataTextureJ(j);

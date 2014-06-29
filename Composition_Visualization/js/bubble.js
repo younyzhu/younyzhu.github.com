@@ -415,7 +415,13 @@ Bubble.prototype = {
                 if(childs[i].children[j] instanceof THREE.Line)
                 {
                     var origColor = childs[i].children[j].material.ColorKeeper;
-                    childs[i].children[j].material.color.setRGB(origColor.r, origColor.g, origColor.b);
+                    if(origColor !== undefined)
+                        childs[i].children[j].material.color.setRGB(origColor.r, origColor.g, origColor.b);
+                    else
+                    {
+                        origColor = childs[i].children[j].material.color;
+                        childs[i].children[j].material.color.setRGB(origColor.r, origColor.g, origColor.b);
+                    }
                 }
             }
         }

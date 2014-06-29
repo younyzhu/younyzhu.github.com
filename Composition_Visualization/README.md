@@ -301,6 +301,12 @@ When loader a dataset, we need to know which is to select and which is to delete
       ] 
  2. Change all the code `.children().children().children();` to `.find();`      
  
+ * 6/29/2014
+ 1. Add bufferGeometry judgement in the FiberSelector, when our file is trk, it will also judge the intersection 
+ 
+ 
+ 
+ 
  TODO :        
        (1) Need to changed the select fiber and exported the selected fibers.        
        What I did is: when we do selection on the current model, we first recode the selected fibers and then re-load the model. 
