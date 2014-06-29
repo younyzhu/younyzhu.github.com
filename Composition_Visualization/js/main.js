@@ -9,42 +9,64 @@ var vcMenu_status = false;
 var navigationCanvas = null;
 var pathConnection = null;
 var nvWidth = 0;
-var Compares =[];
+var Compares = [];
 function getPositions(id) {
 
-    var $bubble = $('#bubble'+id);
+    var $bubble = $('#bubble' + id);
     var pos = $bubble.position(); //offset()
     var width = $bubble.width();
     var height = $bubble.height();
     //Get the left, right, top, bottom boundary of the Box
-    return [ [ pos.left, pos.left + width ], [ pos.top, pos.top + height ] ];
+    return [
+        [ pos.left, pos.left + width ],
+        [ pos.top, pos.top + height ]
+    ];
 }
 
-function checkElementExist(id){
-        return ($('bubble'+id).length >0);
+function checkElementExist(id) {
+    return ($('bubble' + id).length > 0);
 }
 
-function checkCollisions(Id1, Id2){
-    if(checkElementExist(Id1) && checkElementExist(Id2))
+function checkCollisions(Id1, Id2) {
+    if (checkElementExist(Id1) && checkElementExist(Id2))
         return false;
     var box1 = getPositions(Id1);
     var box2 = getPositions(Id2);
     return !((box2[0][0] > box1[0][1])//box2 left > box1 right
-    || (box2[0][1] < box1[0][0])//box2 right < box1 left
-    || (box2[1][1] < box1[1][0])//box2 bottom < box1 top
-    || (box2[1][0] > box1[1][0])); //box2 top < box1 bottom
+        || (box2[0][1] < box1[0][0])//box2 right < box1 left
+        || (box2[1][1] < box1[1][0])//box2 bottom < box1 top
+        || (box2[1][0] > box1[1][0])); //box2 top < box1 bottom
+}
+function updateNavigationRect(i) {
+    var groups = Compares[i].group;
+    var position;
+    var color;
+    for (var t = 0; t < groups.length; t++) {
+        position = $("#bubble" + groups[t]).offset();
+        var currentPos = currentToBoxPos(position.left, position.top);
+        for (var k = 0; k < navigationCanvas.shapes.length; ++k) {
+            if (navigationCanvas.shapes[k] === null)
+                continue;
+            if (navigationCanvas.shapes[k].type === "BUBBLE" && navigationCanvas.shapes[k].Id === groups[t]) {
+                if (t === 0)
+                    color = navigationCanvas.shapes[k].getColor();
+                else
+                    navigationCanvas.shapes[k].strokeColor = color;
+                navigationCanvas.updateRectPos(k, currentPos.x, currentPos.y);
+            }
+        }
+    }
 }
 
 
+$(document).ready(function () {
 
-$(document).ready(function(){
-
-    if ( ! Detector.webgl )
+    if (!Detector.webgl)
         Detector.addGetWebGLMessage();
     Bubbles.push(0);//begin
-    THREEx.FullScreen.bindKey({ charCode : 'f'.charCodeAt(0) });
+    THREEx.FullScreen.bindKey({ charCode: 'f'.charCodeAt(0) });
     var mousePosX, mousePosY;
-    $('#bgCanvas').on('contextmenu', function(e) {
+    $('#bgCanvas').on('contextmenu', function (e) {
         var m = "x: " + e.clientX + "y" + e.clientY;
         mousePosX = e.clientX;
         mousePosY = e.clientY;
@@ -52,23 +74,20 @@ $(document).ready(function(){
     });
     $('#bubble').contextMenu({
         selector: '#bgCanvas',
-        callback: function(key) {
+        callback: function (key) {
             //var m = "clicked: " + key;
             //window.console && console.log(m) || alert(m);
-            if(key === 'Open_Bubble')
-            {
+            if (key === 'Open_Bubble') {
                 BUBBLE_COUNT++;
-                addBubble(BUBBLE_COUNT,'DMRI brain bundles',mousePosX,mousePosY,null,null,null,null);
+                addBubble(BUBBLE_COUNT, 'DMRI brain bundles', mousePosX, mousePosY, null, null, null, null);
                 //manageBubblePos(BUBBLE_COUNT);
                 /*$('#bubble'+BUBBLE_COUNT).css({
                  left : mousePosX,
                  top : mousePosY
                  }); */
             }
-            else if(key === 'Open_VC_Menu')
-            {
-                if(vcMenu_status===false)
-                {
+            else if (key === 'Open_VC_Menu') {
+                if (vcMenu_status === false) {
                     addVisualCueMenu();
                     var $vcMenu = $('#vcMenu');
                     $vcMenu.css({
@@ -77,56 +96,55 @@ $(document).ready(function(){
                     });
                     vcMenu_status = true;
                 }
-                else
-                {
+                else {
                     alert("You opened the menu!");
                 }
             }
-            else if(key == 'Compare')
-            {
+            else if (key == 'Compare') {
                 var compareId = Compares.length;
                 var comparedBubble = new Comparison(compareId);
+                comparedBubble.findCheckedBubbles();
                 comparedBubble.groupComparedBubble();
                 Compares.push(comparedBubble);
+                updateNavigationRect(compareId);
             }
-            else if(key === 'Delete_All') //buble numer camer from 1...n
+            else if (key === 'Delete_All') //buble numer camer from 1...n
             {
-                while(BUBBLE_COUNT)
-                {   if(Bubbles[BUBBLE_COUNT] !==null)
-                    {
-                        $("#bubble"+BUBBLE_COUNT).remove();
+                for(var i=0; i<Compares.length; ++i)
+                {
+                    Compares[i].removeCompareBubble();
+                }
+
+                while (BUBBLE_COUNT) {
+                    if (Bubbles[BUBBLE_COUNT] !== null) {
+                        $("#bubble" + BUBBLE_COUNT).remove();
                         var le = Bubbles[BUBBLE_COUNT].getlinkNodes().length;
 
-                        if(Bubbles[BUBBLE_COUNT].selectors.length)
-                        {
+                        if (Bubbles[BUBBLE_COUNT].selectors.length) {
                             Bubbles[BUBBLE_COUNT].removeAllSelectors();
                         }
-                        for(var i= 0; i<le; ++i)
-                        {
+                        for (var i = 0; i < le; ++i) {
                             var next = Bubbles[BUBBLE_COUNT].getlinkNodes()[i].connectTo;
-                            for(var j=0; j<Bubbles[next].getlinkNodes().length; ++j)
-                            {
-                                if(Bubbles[BUBBLE_COUNT].getlinkNodes()[i].connectionId === Bubbles[next].getlinkNodes()[j].connectionId)
+                            for (var j = 0; j < Bubbles[next].getlinkNodes().length; ++j) {
+                                if (Bubbles[BUBBLE_COUNT].getlinkNodes()[i].connectionId === Bubbles[next].getlinkNodes()[j].connectionId)
                                     Bubbles[next].spliceNodeLink(j);
                             }
-                            pathConnection.remove( Bubbles[BUBBLE_COUNT].getlinkNodes()[i].connectionId );
+                            pathConnection.remove(Bubbles[BUBBLE_COUNT].getlinkNodes()[i].connectionId);
                         }
                     }
                     BUBBLE_COUNT--;
                 }
                 BUBBLE_COUNT = 0;
-                Bubbles.length =1;
-                if($vcMenu!==undefined)
-                {
+                Bubbles.length = 1;
+                if ($vcMenu !== undefined) {
                     $vcMenu.remove();
                 }
-                if(navigationCanvas!==undefined)
-                {
+                if (navigationCanvas !== undefined) {
                     navigationCanvas.clear();
                     navigationCanvas.shapes.length = 0;
 
-                    navigationCanvas = new NavCanvas( document.getElementById('navCanvas'));
-                    var currentView = new Rectangle(navigationCanvas, 0, 0, nvWidth, 50, 'rgba(255,255,255,0.7)', false );
+                    navigationCanvas = new NavCanvas(document.getElementById('navCanvas'));
+                    var currentView = new Rectangle(navigationCanvas, 0, 0, nvWidth, 50, 'rgba(255,255,255,0.7)', false);
                     navigationCanvas.addShape(currentView);
                 }
             }
@@ -141,10 +159,10 @@ $(document).ready(function(){
     });
     $(".drag").draggable();
     //set navigation Bar
-    navigationCanvas = new NavCanvas( document.getElementById('navCanvas'));
-    nvWidth = 50 / (window.innerHeight -50)* window.innerWidth;
-    var currentView = new Rectangle(navigationCanvas, 0, 0, nvWidth, 50, 'rgba(255,255,255,0.7)', false );
+    navigationCanvas = new NavCanvas(document.getElementById('navCanvas'));
+    nvWidth = 50 / (window.innerHeight - 50) * window.innerWidth;
+    var currentView = new Rectangle(navigationCanvas, 0, 0, nvWidth, 50, 'rgba(255,255,255,0.7)', false);
     navigationCanvas.addShape(currentView);
-    pathConnection = new PathConnections( document.getElementById('bgCanvas'), window.innerWidth, window.innerHeight);
+    pathConnection = new PathConnections(document.getElementById('bgCanvas'), window.innerWidth, window.innerHeight);
 
 });

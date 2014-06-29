@@ -9,6 +9,107 @@ function Comparison(id) {
 
 Comparison.prototype = {
     constructor: Comparison,
+    findCheckedBubbles: function(){
+        var $bubble = $('#bubble');
+        var _this = this;
+        $bubble.children('.bubble').each(function () {
+                if( $(this).find('#compareCheck').is(':checked') && !$(this).find('#compareCheck').is(':disabled') )
+                {
+                    var currentId = parseInt($(this).attr('id').replace(/bubble/, ''));
+                    _this.group.push(currentId);
+
+                    $(this).find('#compareCheck').attr("disabled", true);
+                }
+        });
+    },
+    groupComparedBubble: function () {
+        var _this = this;
+        var color;
+        var bubblediv;
+        var pos;
+        for(var i=0; i<this.group.length; ++i)
+        {
+            var id=this.group[i];
+            var $bubbleId = $("#bubble" + id);
+            Bubbles[id].COMPARE_FLAG = true;
+            Bubbles[id].compareId = this.id;
+            pos = getWidgetInformation(id);
+            if(i===0)
+            {
+                bubblediv = $(this.bubble_Compare_div(this.id, pos.left, pos.top));
+                $("#bubble").append(bubblediv);
+            }
+
+            $bubbleId.removeClass("shadow drag ui-draggable");
+            $bubbleId.children('#paraMenu').css({left: pos.left, top: '20px'});
+            $bubbleId.removeAttr("style");
+
+            $("#compareContainer" + this.id).append($bubbleId[0]);
+            $(".drag").draggable({ containment: '#bgCanvas', scroll: false,  //just dragable
+                drag: function (ev, ui) {
+                    var position = ui.offset;  //drag stop position
+                    var currentId = parseInt($(this).attr('id').replace(/compare/, ''));
+                    var groups = Compares[currentId].group;
+                    for(var t = 0; t<groups.length; t++)
+                    {
+                        for (var k = 0; k < navigationCanvas.shapes.length; ++k) {
+                            if (navigationCanvas.shapes[k] === null)
+                                continue;
+                            if (navigationCanvas.shapes[k].type === "BUBBLE" && navigationCanvas.shapes[k].Id === groups[t])
+                            {
+                                var currentPos = currentToBoxPos(position.left + t * $("#bubble"+groups[t]).width(), position.top);
+                                navigationCanvas.updateRectPos(k, currentPos.x, currentPos.y);
+                            }
+                        }
+                    }
+                }
+            });
+            var parent = $('#compare' + this.id);
+            parent.children(".dragheader").css('text-align','center');
+            parent.children(".dragheader").children(".close").click(function () {
+                   _this.removeCompareBubble();
+            });
+            pos.left += pos.w;
+        }
+    },
+    removeCompareBubble: function(){
+        for (var j = 0; j < this.group.length; ++j) {
+            if(Bubbles[this.group[j]]!==null)
+            {
+                Bubbles[this.group[j]].COMPARE_FLAG = false;
+                Bubbles[this.group[j]].removeAllSelectors();
+                Bubbles[this.group[j]] = null;
+
+                var groups = Compares[this.id].group;
+                for(var t = 0; t<groups.length; t++)
+                {
+                    //move i position
+                    for (var k = 0; k < navigationCanvas.shapes.length; ++k) {
+                        if (navigationCanvas.shapes[k] === null)
+                            continue;
+                        if (navigationCanvas.shapes[k].type === "BUBBLE" && navigationCanvas.shapes[k].Id === groups[t])
+                        {
+                            navigationCanvas.remove(k);
+                        }
+                    }
+                }
+            }
+        }
+        $('#compare' + this.id).remove();
+    },
+    bubble_Compare_div: function (id, positionX, positionY) {
+        var tmp = '';
+        tmp += '<div id="compare' + id + '" class="compare shadow drag" style="position: absolute; left:' + positionX + 'px; top:' + positionY + 'px; ">';
+        tmp += '    <div class="dragheader">Compare';
+        tmp += '    <span class="close">X</span>';
+        tmp += '    </div>';
+        tmp += '    <div id="compareContainer' + id + '" >';//$("#bubble" + id).children();
+        tmp += '    </div>';
+        tmp += '</div>';
+        return tmp;
+    }
+};
+    /*
     groupComparedBubble: function () {
         var _this = this;
         if (Bubbles.length <= 1)    //we get the Bubbles[0] =0;
@@ -120,16 +221,6 @@ Comparison.prototype = {
                             }
                     }
     },
-    bubble_Compare_div: function (id, positionX, positionY) {
-        var tmp = '';
-        tmp += '<div id="compare' + id + '" class="compare shadow drag" style="position: absolute; left:' + positionX + 'px; top:' + positionY + 'px; ">';
-        tmp += '    <div class="dragheader">Compare';
-        tmp += '    <span class="close">X</span>';
-        tmp += '    </div>';
-        tmp += '    <div id="compareContainer' + id + '" >';//$("#bubble" + id).children();
-        tmp += '    </div>';
-        tmp += '</div>';
-        return tmp;
-    }
-};
+    */
+
 

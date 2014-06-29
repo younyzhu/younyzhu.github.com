@@ -303,7 +303,8 @@ When loader a dataset, we need to know which is to select and which is to delete
  
  * 6/29/2014
  1. Add bufferGeometry judgement in the FiberSelector, when our file is trk, it will also judge the intersection 
- 
+ 2. Add check box, we use checkbox to select the box we want to compare, if selected, we could compare those box.  
+ 3. fixed the bug, when delete all bubbles.
  
  
  
@@ -312,7 +313,7 @@ When loader a dataset, we need to know which is to select and which is to delete
        What I did is: when we do selection on the current model, we first recode the selected fibers and then re-load the model. 
        But this will cause problem, when we load the local file, enough I could load it again.    
        (2) Try to re-write the framework.      
-       (3) write the compare program.
+       (3) bugs in compare program.
 
 ##DMRI Data Processing Pipeline Website
  1. [http://pipeline.loni.ucla.edu/?s=dat](http://pipeline.loni.ucla.edu/?s=dat)    

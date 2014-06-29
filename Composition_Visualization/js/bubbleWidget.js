@@ -233,7 +233,7 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
         parent.children("#paraMenu").toggle();
     });
     */
-    var $bubbleRefineMenu = $("#bubble" + id).children().children().children();
+    //var $bubbleRefineMenu = $("#bubble" + id).children().children().children();
     $bubbleId.find("#add").click(function () {
     //$bubbleRefineMenu.children('#add').click(function () {
         bubble.addSelector();
@@ -312,7 +312,7 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
         }
     });
 
-    var $bubbleparaMenu = $("#bubble" + id).children().children().children();
+    //var $bubbleparaMenu = $("#bubble" + id).children().children().children();
     $bubbleId.find("#select").click(function () {
     //$bubbleparaMenu.children('select').change(function () {
         var optionSelected = $(this).find("option:selected");
@@ -321,8 +321,8 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
     });
     $bubbleId.find("#load").click(function () {
     //$bubbleparaMenu.children('#load').click(function () {
-
-        var selected_file = $bubbleparaMenu.children('#input').get(0).files[0];
+        var selected_file = $bubbleId.find('#input').get(0).files[0];
+        //var selected_file = $bubbleparaMenu.children('#input').get(0).files[0];
         if (selected_file === null) {
             alert("Please select a file!");
         }
@@ -389,11 +389,17 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
         $bubbleId.find("#plus_" + i).click(createToggle(i));
         //$("#bubble" + id).children().children().children("#plus_" + i).click(createToggle(i));
     }
+
+    $bubbleId.find('#compareCheck').change(function(){
+        $(this).val($(this).is(':checked'));
+    });
 }
 function bubble_div(id, name, mousePosX, mousePosY) {
     var tmp = '';
     tmp += '<div id ="bubble' + id + '" class="bubble shadow drag" style="position: absolute; left:' + mousePosX + 'px; top:' + mousePosY + 'px; ">';    //$("#bubble" + id)
-    tmp += '    <div id ="drag' + id + '" class="dragheader">' + name;      //$("#bubble" + id).children();
+    tmp += '    <div id ="drag' + id + '" class="dragheader">';
+    tmp += '        <input  type="checkbox" id ="compareCheck" title="Compare Check" name="value">';
+    tmp += name;      //$("#bubble" + id).children();
     tmp += '        <span class="open_para">O</span>'; //$("#bubble" + id).children().children();
     tmp += '        <div id="select_menu">';//$("#bubble" + id).children().children().children();
     tmp += '            <span id="selector">';//$("#bubble" + id).children().children().children().children();
