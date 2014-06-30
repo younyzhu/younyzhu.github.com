@@ -280,25 +280,25 @@ When loader a dataset, we need to know which is to select and which is to delete
           (1). when re-loading the data model, we should re-set the data model and the 3 image model  
           (2). Just applying the transform matrix to the loaded image data plane    
           (3). THREE.js (r67) has problem in selection fiber, so I changed back to r66 
- 3. Trying to find way to line up two div (if we compare two bubble) it seems the effect is not very, and I will keep trying.[image](./images/lineup.png). This method I just use one compared bubble canvas insert into another.
+ 3. Trying to find way to line up two div (if we compare two bubble) it seems the effect is not very, and I will keep trying.![image](https://raw.githubusercontent.com/younyzhu/younyzhu.github.com/master/Composition_Visualization/images/lineup.PNG). This method I just use one compared bubble canvas insert into another.
     It is hard to find the control canvas, sence in the program I alway use container. So I will build a new bubble div, and delete the old one.   
  
 * 6/26/2014
  1. Redesign the layout of the two compare bubble
  2. Make the rotation coordinate by control the camera coordinate (Right now this is just works for trackball control, when finished will add the Object Control)   
- 3. Make coordinate selection. ![Compare Coordinate](https://younyzhu.github.com/Composition_Visualization/images/coordinate.png)   
+ 3. Make coordinate selection. ![Compare Coordinate](https://raw.githubusercontent.com/younyzhu/younyzhu.github.com/master/Composition_Visualization/images/coordinate.PNG)   
  4. Fix some bugs of the compare bubble and when group as compare bubble, the change of its own menu control.    
  
 * 6/27/2014
  1. Change the navigation Bar design layout of the bubble                   
       Right now, I will do like this, There are many type of bubble widget, with certain html css class wrapped.          
-      Space Management:        
-      [       
+      Space Management:             
+      [           
         `.bubble` for the bubble class to show 3D model widget. ====>  Navigation Bar `BUBBLE` type.        
         `.compare` for the compare bubble widget, which contain certain bubbles, but such bubble has no `.bubble` class ====>  Navigation Bar `COMPARE` type.             
         `.chart` for the chart bubble class to show the line chart.  ====>  Navigation Bar `CHART` type.     
         `.widget` is toolbox of the bubbles, so we do not need to split it from the `.bubble`          
-      ] 
+      ]      
  2. Change all the code `.children().children().children();` to `.find();`      
  
  * 6/29/2014
@@ -306,8 +306,16 @@ When loader a dataset, we need to know which is to select and which is to delete
  2. Add check box, we use checkbox to select the box we want to compare, if selected, we could compare those box.  
  3. Fixed the bug, when delete all bubbles.
  4. Fixed the coordinate between the bubble and navigation bar.[This comply the principle of Space Management]    
- 
- 
+
+  * 6/30/2014
+  1. Management BubbleCount Index:     
+          [            
+            `Bubble counts management:`  This is global variable. Bubbles store the bubble in the global space. Since we use index to identify, 
+            so we increase the index when add bubble, and when delte bubble, we just set Bubbles[index] = null; //Maybe this need to modify          
+             `Navigation Rect management:`  This is local variable. we use shapes to store the Rect in the navigation bar. As we use Type to identify
+              diffenent types of Widget, and we use Id to find the bubble in this type, so Index is no so important. We use this.shape.splice(index,1) to delete the bubble.       
+         ]      
+  
  TODO :        
        (1) Need to changed the select fiber and exported the selected fibers.        
        What I did is: when we do selection on the current model, we first recode the selected fibers and then re-load the model. 

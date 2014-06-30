@@ -141,6 +141,25 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
                     }
                 }
             }
+            /*  //There is no need to add this.
+            else if(bubbleType === "compare")
+            {
+                for (var i = 0; i < navigationCanvas.shapes.length; ++i) {
+                    if (navigationCanvas.shapes[i] === null)
+                        continue;
+                    if (navigationCanvas.shapes[i].type === "COMPARE" && navigationCanvas.shapes[i].Id === currentId)
+                        navigationCanvas.updateRectPos(i, currentPos.x, currentPos.y);
+                }
+            }
+            else if(bubbleType === "chart")
+            {
+                for (var i = 0; i < navigationCanvas.shapes.length; ++i) {
+                    if (navigationCanvas.shapes[i] === null)
+                        continue;
+                    if (navigationCanvas.shapes[i].type === "CHART" && navigationCanvas.shapes[i].Id === currentId)
+                        navigationCanvas.updateRectPos(i, currentPos.x, currentPos.y);
+                }
+            } */
         }
     });
 
@@ -181,15 +200,49 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
         callback: function (key) {
 
             if (key === "delete") {
-                parent.remove();
-
-                for (var i = 0; i < navigationCanvas.shapes.length; ++i) {
-                    if (navigationCanvas.shapes[i] === null)
-                        continue;
-                    if (navigationCanvas.shapes[i].type === "BUBBLE" && navigationCanvas.shapes[i].Id === id)
-                        navigationCanvas.remove(i);
-                }
                 if (Bubbles[id] !== null) {
+                    if(Bubbles[id].compareId !== null)
+                    {
+                        var compareId =Bubbles[id].compareId;
+                        var x, y, w, h, color;
+                        for (var i = 0; i < navigationCanvas.shapes.length; ++i) {
+                            if (navigationCanvas.shapes[i] === null)
+                                continue;
+                            if (navigationCanvas.shapes[i].type === "COMPARE" && navigationCanvas.shapes[i].Id === compareId)
+                            {
+
+                                x= navigationCanvas.shapes[i].x;
+                                y= navigationCanvas.shapes[i].y;
+                                w= navigationCanvas.shapes[i].w;
+                                h= navigationCanvas.shapes[i].h;
+                                color = navigationCanvas.shapes[i].strokeColor;
+
+                                navigationCanvas.remove(i);
+
+                                var groups = Compares[compareId].group;
+                                for(var j=0; j<groups.length; ++j)
+                                {
+                                    if(groups[j] === id)
+                                    {
+                                        groups.splice(j,1);
+                                    }
+                                }
+                                var boxWidth = $("#bubble" + id).width() / window.innerWidth * nvWidth;
+                                if( (w - boxWidth)>0)
+                                {
+                                    var compareView = new Rectangle(navigationCanvas, x, y, w - boxWidth, h, null, true, compareId, "COMPARE");
+                                    navigationCanvas.addShape(compareView);
+                                }
+                                else
+                                {
+                                    $('#compare' + compareId).remove();
+                                }
+                                break;
+                            }
+                        }
+
+                    }
+
                     var le = Bubbles[id].getlinkNodes().length;
                     for (var i = 0; i < le; ++i) {
                         var type = Bubbles[id].getlinkNodes()[i].type;
@@ -206,6 +259,7 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
                     delete bubble;
                     Bubbles[id] = null;
                 }
+                parent.remove();
             }
             else if (key === "axes") {
                 if (flag) {

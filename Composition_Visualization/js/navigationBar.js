@@ -365,8 +365,11 @@ NavCanvas.prototype={
     remove : function(value)
     {
         var l = this.shapes.length;
+        //if(value >0 && value <l)
+        //    this.shapes[value] = null;
+        //As the index is not as important as before, so we can splice it.
         if(value >0 && value <l)
-            this.shapes[value] = null;
+            this.shapes.splice(value,1);
         this.valid = false;
     },
     updateRectPos : function(id, x, y)
