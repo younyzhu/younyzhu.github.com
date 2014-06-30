@@ -133,8 +133,10 @@ function NavCanvas(canvas)
         var mx = mouse.x;
         var my = mouse.y;
         for (var i = _this.shapes.length-1; i >= 0; i -= 1) {
+            if(_this.shapes[i] === null)
+                continue;
             if (_this.shapes[i].contains(mx, my)) {
-                _this.selectId = i;
+                _this.selectId = i;        //We have three types of bubbles: CHART, BUBBLE, COMPARE, so we need to choose the bubble according to this type
 
                 // Keep track of where in the object we clicked
                 // so we can move it smoothly (see mousemove)
@@ -203,10 +205,12 @@ function NavCanvas(canvas)
                 resetAllBubblesPos( (mx- _this.oldPosx)* window.innerWidth /nvWidth );
             }
 
-            if(_this.selectId > 0)
+            if(_this.selectId > 0) //_this.selectId We have three types of bubbles: CHART, BUBBLE, COMPARE, so we need to choose the bubble according to this type
             {
                 var offsetpos = boxToViewPointPos(( _this.selection.x - _this.boxoldPosx), ( _this.selection.y - _this.boxoldPosy));
-                updateBubblePos(_this.selectId, offsetpos.x, offsetpos.y);
+                var rectId = _this.shapes[_this.selectId].Id;
+                var rectType = _this.shapes[_this.selectId].type;
+                updateBubblePos(rectId, rectType, offsetpos.x, offsetpos.y);
             }
             _this.oldPosx = mx;
             _this.boxoldPosx = _this.selection.x;

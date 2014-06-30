@@ -294,18 +294,18 @@ When loader a dataset, we need to know which is to select and which is to delete
       Right now, I will do like this, There are many type of bubble widget, with certain html css class wrapped.          
       Space Management:        
       [       
-        `.bubble` for the bubble class to show 3D model widget.        
-        `.compare` for the compare bubble widget, which contain certain bubbles, but such bubble has no `.bubble` class     
-        `.chart` for the chart bubble class to show the line chart.    
-        `.widget` is toolbox of the bubbles, so we do not need to split it from the `.bubble`      
+        `.bubble` for the bubble class to show 3D model widget. ====>  Navigation Bar `BUBBLE` type.        
+        `.compare` for the compare bubble widget, which contain certain bubbles, but such bubble has no `.bubble` class ====>  Navigation Bar `COMPARE` type.             
+        `.chart` for the chart bubble class to show the line chart.  ====>  Navigation Bar `CHART` type.     
+        `.widget` is toolbox of the bubbles, so we do not need to split it from the `.bubble`          
       ] 
  2. Change all the code `.children().children().children();` to `.find();`      
  
  * 6/29/2014
  1. Add bufferGeometry judgement in the FiberSelector, when our file is trk, it will also judge the intersection 
  2. Add check box, we use checkbox to select the box we want to compare, if selected, we could compare those box.  
- 3. fixed the bug, when delete all bubbles.
- 
+ 3. Fixed the bug, when delete all bubbles.
+ 4. Fixed the coordinate between the bubble and navigation bar.[This comply the principle of Space Management]    
  
  
  TODO :        
@@ -313,7 +313,7 @@ When loader a dataset, we need to know which is to select and which is to delete
        What I did is: when we do selection on the current model, we first recode the selected fibers and then re-load the model. 
        But this will cause problem, when we load the local file, enough I could load it again.    
        (2) Try to re-write the framework.      
-       (3) bugs in compare program.
+       (3) Multi-2d image coordinate comparison. [For longitudinal(time varying dataset)comparison]     
 
 ##DMRI Data Processing Pipeline Website
  1. [http://pipeline.loni.ucla.edu/?s=dat](http://pipeline.loni.ucla.edu/?s=dat)    

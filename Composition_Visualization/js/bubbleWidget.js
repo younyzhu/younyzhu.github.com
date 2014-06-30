@@ -25,23 +25,62 @@ function getChartCenter(index) {
     return {x: posx + $chartId.width() / 2, y: posy + $chartId.height() / 2};
 }
 
-function updateBubblePos(index, x, y) {
-    var $bubbleId = $('#bubble' + index);
-    var posx = $bubbleId.offset().left;//offset() or position()
-    var posy = $bubbleId.offset().top;
-    $bubbleId.css({
-        left: posx + x,
-        top: posy + y
-    });
-    if (Bubbles[index] !== null) {
-        var le = Bubbles[index].getlinkNodes().length;
-        for (var i = 0; i < le; ++i) {
-            var next = Bubbles[index].getlinkNodes()[i].connectTo;
-            if (Bubbles[index].getlinkNodes()[i].connectionId !== null && Bubbles[index] !== null && Bubbles[next] !== null) {
-                pathConnection.update(Bubbles[index].getlinkNodes()[i].connectionId, getWidgetCenter(index), getWidgetCenter(next));
+function updateBubblePos(index, type, x, y) {
+    if(type === "BUBBLE")
+    {
+        var $bubbleId = $('#bubble' + index);
+        var posx = $bubbleId.offset().left;//offset() or position()
+        var posy = $bubbleId.offset().top;
+        $bubbleId.css({
+            left: posx + x,
+            top: posy + y
+        });
+        if (Bubbles[index] !== null) {
+            var le = Bubbles[index].getlinkNodes().length;
+            for (var i = 0; i < le; ++i) {
+                var next = Bubbles[index].getlinkNodes()[i].connectTo;
+                if (Bubbles[index].getlinkNodes()[i].connectionId !== null && Bubbles[index] !== null && Bubbles[next] !== null) {
+                    pathConnection.update(Bubbles[index].getlinkNodes()[i].connectionId, getWidgetCenter(index), getWidgetCenter(next));
+                }
             }
         }
     }
+    else if(type === "CHART")
+    {
+        var $bubbleId = $('#chart' + index);
+        var posx = $bubbleId.offset().left;//offset() or position()
+        var posy = $bubbleId.offset().top;
+        $bubbleId.css({
+            left: posx + x,
+            top: posy + y
+        });
+    }
+    else if(type === "COMPARE")
+    {
+        var $bubbleId = $('#compare' + index);
+        var posx = $bubbleId.offset().left;//offset() or position()
+        var posy = $bubbleId.offset().top;
+        $bubbleId.css({
+            left: posx + x,
+            top: posy + y
+        });
+
+        if (Compares[index] !== null) {
+            var groups =Compares[index].group;
+            for(var j=0; j< groups.length; ++j)
+            {
+                var le = Bubbles[ groups[j] ].getlinkNodes().length;
+                for (var i = 0; i < le; ++i) {
+                    var next = Bubbles[groups[j]].getlinkNodes()[i].connectTo;
+                    if (Bubbles[groups[j]].getlinkNodes()[i].connectionId !== null && Bubbles[groups[j]] !== null && Bubbles[next] !== null) {
+                        pathConnection.update(Bubbles[groups[j]].getlinkNodes()[i].connectionId, getWidgetCenter(groups[j]), getWidgetCenter(next));
+                    }
+                }
+            }
+
+        }
+    }
+
 }
 function currentToBoxPos(mousePosX, mousePosY) {
     var widthPercent = mousePosX / window.innerWidth;
@@ -665,8 +704,8 @@ function addChart(id, $bubbleId) {
     var boxHeight = $chartId.height() / (window.innerHeight - 50) * 50;
     var pos = currentToBoxPos(posx + $bubbleId.width() + 30, posy);
     var color = '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
-    var currentView = new Rectangle(navigationCanvas, pos.x, pos.y, boxWidth, boxHeight, color, true, id, "CHART");
-    navigationCanvas.addShape(currentView);
+    var chartView = new Rectangle(navigationCanvas, pos.x, pos.y, boxWidth, boxHeight, color, true, id, "CHART");
+    navigationCanvas.addShape(chartView);
 
     var linechartCanvas = document.getElementById('chartCanvas' + id);
     var lineChart = new LineChart(id, linechartCanvas);
