@@ -750,8 +750,10 @@ function bubble_visual_cue() {
     tmp += '</div>';
     return tmp;
 }
+
 function addVisualCueMenu() {
     var vcdiv = $(bubble_visual_cue());
+
     $('body').append(vcdiv);
     $(".drag").draggable();
     var parent = $('#vcMenu');

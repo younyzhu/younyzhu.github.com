@@ -683,8 +683,9 @@ Model3d.prototype = {
             }
             for (var i = 0; i < this.selectors.length; i++) {
                 this.selectors[i].intersectObjects(this.mainGroup.children, true);
-                //if(this.niiSlice!==null)
-                //this.selectors[i].intersectVoxel(this.niiSlice.metaData);
+                if(this.niiSlice!==null)
+                    if(this.niiSlice.metaData)
+                        this.selectors[i].intersectVoxel(this.niiSlice.metaData);      //Every select ball has it own FA value
             }
             if (this.ANDOR === "DELETE") {
                 this.fiberSelector.updateSelectResult("DELETE");   //{ AND: 0, OR: 1}

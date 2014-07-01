@@ -315,7 +315,12 @@ When loader a dataset, we need to know which is to select and which is to delete
              `Navigation Rect management:`  This is local variable. we use shapes to store the Rect in the navigation bar. As we use Type to identify
               diffenent types of Widget, and we use Id to find the bubble in this type, so Index is no so important. We use this.shape.splice(index,1) to delete the bubble.       
          ]      
+   2. re-arrange some design of the framework    
   
+   * 7/1/2014       
+   1. Add FA value for select ball. When we load the `FA.nii` image we can get the fa value from voxel space.   
+   2.
+   
  TODO :        
        (1) Need to changed the select fiber and exported the selected fibers.        
        What I did is: when we do selection on the current model, we first recode the selected fibers and then re-load the model. 

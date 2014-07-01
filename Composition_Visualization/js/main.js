@@ -68,11 +68,12 @@ $(document).ready(function () {
     THREEx.FullScreen.bindKey({ charCode: 'f'.charCodeAt(0) });
     var mousePosX, mousePosY;
     $('#bgCanvas').on('contextmenu', function (e) {
-        var m = "x: " + e.clientX + "y" + e.clientY;
         mousePosX = e.clientX;
         mousePosY = e.clientY;
-        window.console && console.log(m);
+        //var m = "x: " + e.clientX + "y" + e.clientY;
+        //window.console && console.log(m);
     });
+
     $('#bubble').contextMenu({
         selector: '#bgCanvas',
         callback: function (key) {
@@ -105,9 +106,16 @@ $(document).ready(function () {
                 var compareId = Compares.length;
                 var comparedBubble = new Comparison(compareId);
                 comparedBubble.findCheckedBubbles();
-                comparedBubble.groupComparedBubble();
-                Compares.push(comparedBubble);
-                updateNavigationRect(compareId);
+                if(comparedBubble.group.length>0)
+                {
+                    comparedBubble.groupComparedBubble();
+                    Compares.push(comparedBubble);
+                    updateNavigationRect(compareId);
+                }
+                else
+                {
+                      alert("You do not select any bubble! Please select the bubble you want to compare!");
+                }
             }
             else if (key === 'Delete_All') //buble numer camer from 1...n
             {

@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d1292aaa-0d28-4223-ac06-125fbceb5c2d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/FiberSelector.js" afterPath="$PROJECT_DIR$/js/FiberSelector.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Test/FiberSelector____.js" afterPath="$PROJECT_DIR$/Test/FiberSelector____.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/Model3d.js" afterPath="$PROJECT_DIR$/js/Model3d.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/NiiSlice.js" afterPath="$PROJECT_DIR$/js/NiiSlice.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/bubbleWidget.js" afterPath="$PROJECT_DIR$/js/bubbleWidget.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/visualization.css" afterPath="$PROJECT_DIR$/css/visualization.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Composition_Visualization.iws" />
@@ -21,80 +26,12 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="DockManager">
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="NiiSlice.js" pinned="false" current="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/../../younyzhu.github.com2014629/Composition_Visualization/js/NiiSlice.js">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.603871" vertical-offset="2028" max-vertical-offset="8112">
-                    <caret line="96" column="31" selection-start-line="96" selection-start-column="31" selection-end-line="96" selection-end-column="31" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="Composition_Visualization" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="visualization.htm" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/visualization.htm">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.774194" vertical-offset="601" max-vertical-offset="2028">
-              <caret line="30" column="86" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
-              <folding>
-                <element signature="n#style#0;n#canvas#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Model3d.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/Model3d.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="19318">
-              <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FiberSelector.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/FiberSelector.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="5605" max-vertical-offset="7254">
-              <caret line="225" column="8" selection-start-line="225" selection-start-column="6" selection-end-line="225" selection-end-column="6" />
-              <folding>
-                <element signature="e#6335#8072#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NiiSlice.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/NiiSlice.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.12210526" vertical-offset="1398" max-vertical-offset="7696">
-              <caret line="72" column="69" selection-start-line="72" selection-start-column="59" selection-end-line="72" selection-end-column="59" />
-              <folding>
-                <element signature="e#1356#1746#0" expanded="false" />
-                <element signature="e#1793#2356#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -108,7 +45,6 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/js/TrackballControls.js" />
-        <option value="$PROJECT_DIR$/css/visualization.css" />
         <option value="$PROJECT_DIR$/Test/LocalNii/NiiSlice.js" />
         <option value="$PROJECT_DIR$/js/TrkLoader.js" />
         <option value="$PROJECT_DIR$/js/navigationBar.js" />
@@ -116,24 +52,28 @@
         <option value="$PROJECT_DIR$/js/ImageSlice.js" />
         <option value="$PROJECT_DIR$/js/bubble.js" />
         <option value="$PROJECT_DIR$/js/ImageViewer.js" />
-        <option value="$PROJECT_DIR$/js/FiberSelector.js" />
         <option value="$PROJECT_DIR$/js/Chart.js" />
-        <option value="$PROJECT_DIR$/js/main.js" />
-        <option value="$PROJECT_DIR$/js/CompareBubble.js" />
         <option value="$PROJECT_DIR$/visualization.htm" />
         <option value="$PROJECT_DIR$/js/3dModel.js" />
-        <option value="$PROJECT_DIR$/js/bubbleWidget.js" />
         <option value="$PROJECT_DIR$/js/Bubble.js" />
-        <option value="$PROJECT_DIR$/js/Model3d.js" />
+        <option value="$PROJECT_DIR$/css/visualization.css" />
+        <option value="$PROJECT_DIR$/js/bubbleWidget.js" />
         <option value="$PROJECT_DIR$/js/NiiSlice.js" />
+        <option value="$PROJECT_DIR$/js/ImageSlice2d.js" />
+        <option value="$PROJECT_DIR$/js/Slice2d.js" />
+        <option value="$PROJECT_DIR$/Test/FiberSelector____.js" />
+        <option value="$PROJECT_DIR$/js/Model3d.js" />
+        <option value="$PROJECT_DIR$/js/CompareBubble.js" />
+        <option value="$PROJECT_DIR$/js/main.js" />
+        <option value="$PROJECT_DIR$/js/FiberSelector.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="394" />
-    <option name="y" value="102" />
-    <option name="width" value="1418" />
-    <option name="height" value="946" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -161,7 +101,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -194,8 +133,23 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Composition_Visualization" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Composition_Visualization" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -208,12 +162,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/jqueryLib/jquery.ui.position.js" />
     <property name="FullScreen" value="false" />
-    <property name="options.lastSelected" value="preferences.keymap" />
+    <property name="options.lastSelected" value="settings.xslt" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
     <property name="recentsLimit" value="5" />
-    <property name="restartRequiresConfirmation" value="true" />
+    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -324,16 +278,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="394" y="102" width="1418" height="946" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13621622" sideWeight="0.5581885" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32864866" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13619632" sideWeight="0.5581885" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18320058" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36932516" sideWeight="0.578199" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13322802" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3189189" sideWeight="0.578199" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30810812" sideWeight="0.42180094" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -341,6 +294,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -364,44 +318,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="174" />
+      <option name="time" value="217" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/visualization.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2028">
-          <caret line="33" column="23" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
-          <folding>
-            <element signature="n#style#0;n#canvas#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/THREEx.FullScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="780" max-vertical-offset="2964">
-          <caret line="30" column="41" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="578" max-vertical-offset="3822">
-          <caret line="38" column="10" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/visualization.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2028">
-          <caret line="50" column="27" selection-start-line="50" selection-start-column="27" selection-end-line="50" selection-end-column="27" />
-          <folding>
-            <element signature="n#style#0;n#canvas#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jqueryLib/jquery-1.10.2.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="132444" max-vertical-offset="254670">
@@ -427,9 +347,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="1976">
           <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
-          <folding>
-            <element signature="n#style#0;n#canvas#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -484,13 +402,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.15" vertical-offset="1638" max-vertical-offset="4966">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/visualization.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5" max-vertical-offset="2496">
-          <caret line="1" column="44" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -593,9 +504,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="16406">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -614,20 +522,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29659864" vertical-offset="7920" max-vertical-offset="10088">
           <caret line="313" column="146" selection-start-line="313" selection-start-column="146" selection-end-line="313" selection-end-column="146" />
           <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/navigationBar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21802002" vertical-offset="9268" max-vertical-offset="11726">
-          <caret line="364" column="10" selection-start-line="364" selection-start-column="4" selection-end-line="364" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -642,7 +543,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.47217235" vertical-offset="18691" max-vertical-offset="43680">
           <caret line="741" column="42" selection-start-line="741" selection-start-column="42" selection-end-line="741" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -659,16 +559,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/CompareBubble.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2389" max-vertical-offset="6292">
-          <caret line="95" column="101" selection-start-line="95" selection-start-column="77" selection-end-line="95" selection-end-column="77" />
-          <folding>
-            <element signature="e#5426#5910#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/connections.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.47217235" vertical-offset="1479" max-vertical-offset="2886">
@@ -681,15 +571,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="3.5475762" vertical-offset="390" max-vertical-offset="3172">
           <caret line="91" column="59" selection-start-line="91" selection-start-column="35" selection-end-line="91" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1454219" vertical-offset="2623" max-vertical-offset="4628">
-          <caret line="104" column="108" selection-start-line="104" selection-start-column="48" selection-end-line="104" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -697,7 +578,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33213645" vertical-offset="36059" max-vertical-offset="56862">
           <caret line="1394" column="17" selection-start-line="1394" selection-start-column="17" selection-end-line="1394" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -705,25 +585,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.5832257" vertical-offset="0" max-vertical-offset="5304">
           <caret line="77" column="63" selection-start-line="77" selection-start-column="63" selection-end-line="77" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/visualization.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.774194" vertical-offset="601" max-vertical-offset="2028">
-          <caret line="30" column="86" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
-          <folding>
-            <element signature="n#style#0;n#canvas#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../younyzhu.github.com2014629/Composition_Visualization/js/NiiSlice.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.603871" vertical-offset="2028" max-vertical-offset="8112">
-          <caret line="96" column="31" selection-start-line="96" selection-start-column="31" selection-end-line="96" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -731,74 +592,122 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-19.526316" vertical-offset="9275" max-vertical-offset="9750">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../younyzhu.github.com2014629/Composition_Visualization/js/NiiSlice.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.603871" vertical-offset="2028" max-vertical-offset="8112">
+          <caret line="96" column="31" selection-start-line="96" selection-start-column="31" selection-end-line="96" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/THREEx.WindowResize.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.4749722" vertical-offset="427" max-vertical-offset="1326">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/visualization.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1352" max-vertical-offset="2080">
+          <caret line="91" column="5" selection-start-line="91" selection-start-column="1" selection-end-line="91" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/bubbleWidget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9413093" vertical-offset="18770" max-vertical-offset="22542">
+          <caret line="754" column="0" selection-start-line="754" selection-start-column="0" selection-end-line="755" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/NiiSlice.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49943504" vertical-offset="0" max-vertical-offset="7852">
+          <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/Slice2d.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.4469565" vertical-offset="0" max-vertical-offset="1066">
+          <caret line="32" column="130" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/Image3Slice2d.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0434783" vertical-offset="492" max-vertical-offset="1534">
+          <caret line="42" column="73" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/navigationBar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="12.635761" vertical-offset="2092" max-vertical-offset="11726">
+          <caret line="374" column="49" selection-start-line="374" selection-start-column="38" selection-end-line="374" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/FiberSelector____.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3166" max-vertical-offset="3770">
+          <caret line="126" column="24" selection-start-line="126" selection-start-column="24" selection-end-line="126" selection-end-column="24" />
+          <folding>
+            <element signature="e#4388#4773#0" expanded="false" />
+            <element signature="e#4834#5418#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1593" max-vertical-offset="4836">
+          <caret line="74" column="37" selection-start-line="74" selection-start-column="7" selection-end-line="74" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/CompareBubble.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37582782" vertical-offset="241" max-vertical-offset="6552">
+          <caret line="18" column="51" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/visualization.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.903226" vertical-offset="676" max-vertical-offset="2002">
+          <caret line="39" column="24" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/FiberSelector.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5605" max-vertical-offset="7254">
-          <caret line="225" column="8" selection-start-line="225" selection-start-column="6" selection-end-line="225" selection-end-column="6" />
+        <state vertical-scroll-proportion="0.14853196" vertical-offset="1708" max-vertical-offset="5174">
+          <caret line="69" column="28" selection-start-line="69" selection-start-column="28" selection-end-line="69" selection-end-column="28" />
           <folding>
-            <element signature="e#6335#8072#0" expanded="false" />
+            <element signature="e#2755#3795#0" expanded="false" />
+            <element signature="e#3831#4860#0" expanded="false" />
+            <element signature="e#6336#8073#0" expanded="false" />
+            <element signature="e#8131#9529#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/Model3d.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="19318">
-          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/bubbleWidget.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3537" max-vertical-offset="7800">
-          <caret line="560" column="59" selection-start-line="560" selection-start-column="59" selection-end-line="560" selection-end-column="59" />
+        <state vertical-scroll-proportion="-0.69948184" vertical-offset="18293" max-vertical-offset="19136">
+          <caret line="696" column="56" selection-start-line="696" selection-start-column="56" selection-end-line="696" selection-end-column="56" />
           <folding>
-            <element signature="n#!!block;n#addBubble#0" expanded="false" />
-            <element signature="e#7517#9038#0" expanded="false" />
-            <element signature="e#9370#11374#0" expanded="false" />
-            <element signature="e#9562#11351#0" expanded="false" />
-            <element signature="e#15795#15849#0" expanded="false" />
-            <element signature="e#16126#16564#0" expanded="false" />
-            <element signature="e#16615#17062#0" expanded="false" />
-            <element signature="e#17110#17630#0" expanded="false" />
-            <element signature="e#17681#18112#0" expanded="false" />
-            <element signature="e#18159#18578#0" expanded="false" />
-            <element signature="n#!!block;n#toggle#0;n#!!block;n#addBubble#0" expanded="false" />
-            <element signature="n#!!block;n#createToggle#0;n#!!block;n#addBubble#0" expanded="false" />
-            <element signature="e#21285#21531#0" expanded="false" />
-            <element signature="e#21586#21638#0" expanded="false" />
-            <element signature="n#!!block;n#resetAllBubblesPos#0" expanded="false" />
-            <element signature="n#!!block;n#getWidgetInformation#0" expanded="false" />
-            <element signature="n#!!block;n#manageBubblePos#0" expanded="false" />
-            <element signature="n#!!block;n#bubble_visual_cue#0" expanded="false" />
-            <marker date="1404223807857" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1404223807857" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1404223807857" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1404223807857" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1404223807857" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1404223807857" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1404223807857" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1404223807857" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1404223807857" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1404223807857" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1404223807857" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1404223807857" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/NiiSlice.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12210526" vertical-offset="1398" max-vertical-offset="7696">
-          <caret line="72" column="69" selection-start-line="72" selection-start-column="59" selection-end-line="72" selection-end-column="59" />
-          <folding>
-            <element signature="e#1356#1746#0" expanded="false" />
-            <element signature="e#1793#2356#0" expanded="false" />
+            <element signature="e#27380#27437#0" expanded="false" />
+            <element signature="e#27486#27709#0" expanded="false" />
           </folding>
         </state>
       </provider>

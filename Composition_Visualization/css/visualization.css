@@ -88,3 +88,19 @@ body { font-family:"Helvetica Neue", Arial, Helvetica, sans-serif; background:#1
     color:rgba(50,0,0,1);
 }
 
+
+.sliceContainer {
+    margin-left: auto;
+    margin-right: auto;
+    width: 606px;  /* 200*3 + border;*/
+}
+.sliceContainer div {
+    float: left;
+}
+.sliceXY, .sliceYZ, .sliceXZ{
+    width: 200px;
+    height: 200px;
+    position: relative;
+    border: 1px solid red;
+    float:left;
+}

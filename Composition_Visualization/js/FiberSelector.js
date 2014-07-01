@@ -71,13 +71,13 @@ FiberSelector.prototype = {
                 if (this.selectors[i].length === 0)
                     continue;
                 var intersects = this.selectors[i].intersects;
+                this.selectors[i].setUpdateState(false);
                 if (flag) {
                     tmp = intersects;
                     flag = false;
                     continue;
                 }
                 tmp = this.Logic_AND(tmp, intersects);
-                this.selectors[i].setUpdateState(false);
             }
             this.selectedFibers = tmp;
             this.UPDATE = false;
@@ -99,6 +99,7 @@ FiberSelector.prototype = {
                 if (this.selectors[i].length === 0)
                     continue;
                 var intersects = this.selectors[i].intersects;
+                this.selectors[i].setUpdateState(false);
                 if (flag) {
                     this.selectedFibers = intersects;
                     flag = false;
@@ -107,7 +108,6 @@ FiberSelector.prototype = {
                 for (var k = 0, l2 = intersects.length; k < l2; k++) {
                     this.selectedFibers.push(intersects[k]);
                 }
-                this.selectors[i].setUpdateState(false);
             }
             this.UPDATE = false;
             if (this.selectedFibers.length >1)
@@ -130,6 +130,7 @@ FiberSelector.prototype = {
                 if (this.selectors[i].length === 0)
                     continue;
                 var intersects = this.selectors[i].intersects;
+                this.selectors[i].setUpdateState(false);
                 if (flag && this.deletedFibers.length === 0) {
                     this.deletedFibers = intersects;
                     flag = false;
@@ -138,7 +139,6 @@ FiberSelector.prototype = {
                 for (var k = 0, l2 = intersects.length; k < l2; k++) {
                     this.deletedFibers.push(intersects[k]);
                 }
-                this.selectors[i].setUpdateState(false);
             }
             this.UPDATE = false;
             if (this.deletedFibers.length >1)
@@ -167,10 +167,11 @@ SphereSelector = function (id, sphere, needupdate) {
     this.id = id;
     this.sphere = sphere;//This is a sphere selector
     this.needsUpdate = needupdate || true; // If we change the position of selector, we need to update the selector
-
+    this.updateVoxelSelection = true;
     this.intersects = []; // This is just to save the intersected fibers
-    //this.selectFromNii=[]; //This trys use sphere to select data from the image space
+    this.averageFA = null;
 
+    //this.debug = true;
 };
 SphereSelector.prototype = {
     constructor: SphereSelector,
@@ -278,31 +279,49 @@ SphereSelector.prototype = {
                 }
             }
             this.intersects = intersects;
+            this.updateVoxelSelection = true;
             //return intersects;
             var flag = false;
             if (this.intersects.length > 0)
                 flag = true;
             return flag;
         }
-    }
-    /*,
+    },
     intersectVoxel: function(metadata){    // Collect the data, if we want to
-        this.selectFromNii.length =0;
-        var center = this.sphere.position;
-        var radius = this.sphere.geometry.radius;
-        var tmp=new THREE.Vector4(center.x, center.y, center.z, 1.0);
-        tmp.applyMatrix4(metadata.xyz_to_ijkMatrix);
-        var selectCenter = new THREE.Vector3(tmp.x, tmp.t, tmp.z);
-
-        for(var i=0; i<metadata.dim[1]; ++i)
-            for(var j=0; j<metadata.dim[2]; j++)
-                for(var k=0; k<metadata.dim[3]; k++)
-                {
-                    var pos = new THREE.Vector3(i,j,k);
-                    if( pos.distanceTo(selectCenter) <=  radius )
+        if(this.updateVoxelSelection)
+        {
+            var center = this.sphere.position;
+            var radius = this.sphere.geometry.radius;
+            var tmp=new THREE.Vector4(center.x, center.y, center.z, 1.0);
+            tmp.applyMatrix4(metadata.xyz_to_ijkMatrix);
+            var selectCenter = new THREE.Vector3(tmp.x, tmp.y, tmp.z);
+            var sum = 0;
+            var count =0;
+            for(var i=0; i<metadata.dim[1]; ++i)
+                for(var j=0; j<metadata.dim[2]; j++)
+                    for(var k=0; k<metadata.dim[3]; k++)
                     {
-                        this.selectFromNii.push(metadata.data[ k * metadata.dim[2] * metadata.dim[3] + j * metadata.dim[3] + i ]);
+                        var pos = new THREE.Vector3(i,j,k);
+                        if( pos.distanceTo(selectCenter) <=  radius )
+                        {
+                            //this.selectFromNii.push(metadata.data[ k * metadata.dim[2] * metadata.dim[3] + j * metadata.dim[3] + i ]);
+                            var value = metadata.data[ k * metadata.dim[2] * metadata.dim[3] + j * metadata.dim[3] + i ];
+                            //console.log("i:"+ i + " j:" + j + " k: " + k);
+                            if(value >0.2)  //As we focus on the white matter, we just throw away gray matter
+                            {   /*
+                                if(this.debug)
+                                {
+                                    console.log("i:"+ i + " j:" + j + " k: " + k +" value:"+value);
+                                    this.debug = false;
+                                }
+                                */
+                                sum += value;
+                                count++;
+                            }
+                        }
                     }
-                }
-    }*/
+            this.averageFA = sum /count;
+            this.updateVoxelSelection = false;
+        }
+    }
 };

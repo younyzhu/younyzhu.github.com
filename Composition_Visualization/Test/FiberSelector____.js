@@ -124,6 +124,7 @@ SphereSelector.prototype = {
                     if (this.pointInsideSelectorSphere( tmp ))
                     {
                         intersects.push( {object: object} );
+
                         break;
                     }
                 }
