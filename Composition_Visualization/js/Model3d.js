@@ -292,16 +292,15 @@ Model3d.prototype = {
         var scope = this;
         var loader = new ObjectLoader(this.id, manager, this.selectedFibers, this.deletedFibers, this.objCenter, this.renderShape);
         loader.load(file, function (object) {
-                object.position.x = -object.center.x;
-                object.position.y = -object.center.y;
-                object.position.z = -object.center.z;
-                scope.mainCenter = object.center;
-                scope.mainGroup.add(object);
+            object.position.x = -object.center.x;
+            object.position.y = -object.center.y;
+            object.position.z = -object.center.z;
+            scope.mainCenter = object.center;
+            scope.mainGroup.add(object);
         });
     },
-    loadLocalNii: function() {
-        if(this.niiSliceGroup)
-        {
+    loadLocalNii: function () {
+        if (this.niiSliceGroup) {
             this.mainGroup.remove(this.niiSliceGroup);
             this.niiSliceGroup = null
         }
@@ -315,13 +314,13 @@ Model3d.prototype = {
         var loader = new LocalObjectLoader(this.id, this.selectedFibers, this.deletedFibers, this.objCenter, this.renderShape);
         loader.load(file, function (object) {
             //loader.load('./data/s1_cc.data', function (object){
-                if(object === null)
-                    return;
-                object.position.x = -object.center.x;
-                object.position.y = -object.center.y;
-                object.position.z = -object.center.z;
-                scope.mainCenter = object.center;
-                scope.mainGroup.add(object);
+            if (object === null)
+                return;
+            object.position.x = -object.center.x;
+            object.position.y = -object.center.y;
+            object.position.z = -object.center.z;
+            scope.mainCenter = object.center;
+            scope.mainGroup.add(object);
         });
     },
     fillMainGroup: function () {
@@ -335,7 +334,7 @@ Model3d.prototype = {
         };
         if (this.localFileName === null)  //This is a type of FileReader
             this.loadModel(manager, './data/whole_s4.data');
-            //this.loadModel(manager, './data/cctracks.trk');
+        //this.loadModel(manager, './data/cctracks.trk');
         else
             this.loadLocalModel(this.localFileName);  //This is a type of FileReader
 
@@ -412,13 +411,11 @@ Model3d.prototype = {
         for (var i = 0; i < childs.length; ++i) {
             for (var j = 0; j < childs[i].children.length; ++j) {
                 //var grayness = childs[i].children[j].material.grayness;
-                if(childs[i].children[j] instanceof THREE.Line)
-                {
+                if (childs[i].children[j] instanceof THREE.Line) {
                     var origColor = childs[i].children[j].material.ColorKeeper;
-                    if(origColor !== undefined)
+                    if (origColor !== undefined)
                         childs[i].children[j].material.color.setRGB(origColor.r, origColor.g, origColor.b);
-                    else
-                    {
+                    else {
                         origColor = childs[i].children[j].material.color;
                         childs[i].children[j].material.color.setRGB(origColor.r, origColor.g, origColor.b);
                     }
@@ -430,7 +427,7 @@ Model3d.prototype = {
         var childs = this.mainGroup.children;
         for (var i = 0; i < childs.length; ++i) {
             for (var j = 0; j < childs[i].children.length; ++j) {
-                if(childs[i].children[j] instanceof THREE.Line) {
+                if (childs[i].children[j] instanceof THREE.Line) {
                     childs[i].children[j].material.ColorKeeper = new THREE.Color(color.r / 255.0, color.g / 255.0, color.b / 255.0);
                     childs[i].children[j].material.color.setRGB(color.r / 255.0, color.g / 255.0, color.b / 255.0);
                 }
@@ -443,7 +440,7 @@ Model3d.prototype = {
         for (var i = 0; i < childs.length; ++i) {
             for (var j = 0; j < childs[i].children.length; ++j) {
                 if (childs[i].children[j].id === id)
-                    if(childs[i].children[j] instanceof THREE.Line) {
+                    if (childs[i].children[j] instanceof THREE.Line) {
                         childs[i].children[j].material.color.setRGB(1.0, 1.0, 0.0);
                     }
             }
@@ -454,7 +451,7 @@ Model3d.prototype = {
         var childs = this.mainGroup.children;
         for (var i = 0; i < childs.length; ++i) {
             for (var j = 0; j < childs[i].children.length; ++j) {
-                if(childs[i].children[j] instanceof THREE.Line) {
+                if (childs[i].children[j] instanceof THREE.Line) {
                     if (childs[i].children[j].id === id) {
                         var origColor = childs[i].children[j].material.ColorKeeper;
                         childs[i].children[j].material.color.setRGB(origColor.r, origColor.g, origColor.b);
@@ -468,10 +465,10 @@ Model3d.prototype = {
         var geometry = new THREE.SphereGeometry(10, 40, 40);
         var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: 0x800080 }));
         /*
-        object.position.x = Math.random() * 100 - 25;
-        object.position.y = Math.random() * 100 - 25;
-        object.position.z = Math.random() * 100 - 25;
-        */
+         object.position.x = Math.random() * 100 - 25;
+         object.position.y = Math.random() * 100 - 25;
+         object.position.z = Math.random() * 100 - 25;
+         */
         this.scene.add(object);
         this.objects.push(object);
         var sphereSelector = new SphereSelector(this.id, object, true);
@@ -504,7 +501,7 @@ Model3d.prototype = {
     Delete: function () {
         this.ANDOR = "DELETE";
     },
-    setSelectorBall: function(position, id){
+    setSelectorBall: function (position, id) {
 
         this.selectors[ id ].sphere.position = position;
         this.selectors[ id ].setUpdateState(true);
@@ -530,13 +527,10 @@ Model3d.prototype = {
                 this.SELECTED.position.copy(intersects[ 0 ].point.sub(this.offset));
                 this.selectors[ this.SELECTED.selectId ].setUpdateState(true);
                 this.resetAllResult();
-                if(this.COMPARE_FLAG)
-                {
+                if (this.COMPARE_FLAG) {
                     var compareGroup = Compares[this.compareId].group;
-                    for(var i=0; i<compareGroup.length; ++i)
-                    {
-                        if( compareGroup[i] !== this.id)
-                        {
+                    for (var i = 0; i < compareGroup.length; ++i) {
+                        if (compareGroup[i] !== this.id) {
                             Bubbles[ compareGroup[i] ].setSelectorBall(intersects[ 0 ].point.sub(this.offset), this.SELECTED.selectId);
                         }
                     }
@@ -580,7 +574,7 @@ Model3d.prototype = {
                 this.SELECTED = intersects[ 0 ].object;
                 this.radius = this.SELECTED.geometry.radius;
                 var intersects = raycaster.intersectObject(this.plane);
-                if(intersects[ 0 ].point !== undefined)
+                if (intersects[ 0 ].point !== undefined)
                     this.offset.copy(intersects[ 0 ].point).sub(this.plane.position);
                 this.container.style.cursor = 'move';
             }
@@ -606,28 +600,25 @@ Model3d.prototype = {
         this.update();
         this.render();
     },
-    updateCompareOperation: function(pos,up)
-    {
-        this.camera.position.copy( pos );
+    updateCompareOperation: function (pos, up) {
+        this.camera.position.copy(pos);
         this.camera.up = up;
-        this.camera.position.sub( this.activeControls.target ); // added by @libe
-
-        this.camera.lookAt( this.scene.position );
+        this.camera.position.sub(this.activeControls.target);
+        this.camera.lookAt(this.scene.position);
     },
-    updateTrackball: function(){
+    updateTrackball: function () {
 
         this.activeControls.update();
         if (this.renderShape === 'Line') {
             if (this.activeControls.changeTrackball && this.COMPARE_FLAG) {
                 var cameraPos = THREE.Vector3();
                 cameraPos = this.camera.position;
-                if(Compares[this.compareId] !== null ||Compares[this.compareId] !== undefined)
-                {
+                if (Compares[this.compareId] !== null || Compares[this.compareId] !== undefined) {
                     var compareGroup = Compares[this.compareId].group;
                     for (var i = 0; i < compareGroup.length; ++i) {
                         if (compareGroup[i] !== this.id) {
-                            if(Bubbles[ compareGroup[i] ]!==null)
-                                if ( Bubbles[ compareGroup[i] ].renderShape === 'Line')   //make sure we use line rendering
+                            if (Bubbles[ compareGroup[i] ] !== null)
+                                if (Bubbles[ compareGroup[i] ].renderShape === 'Line')   //make sure we use line rendering
                                     Bubbles[ compareGroup[i] ].updateCompareOperation(cameraPos, this.camera.up);
                         }
                     }
@@ -636,8 +627,7 @@ Model3d.prototype = {
             }
         }
     },
-    setSelectorBallSize: function(position, select_Id,radius)
-    {
+    setSelectorBallSize: function (position, select_Id, radius) {
         if (radius !== this.selectors[select_Id].sphere.geometry.radius) {
             if (radius < this.selectors[select_Id].sphere.geometry.radius)   //when the radius of sphere becomes much smaller, we should reset the selected fibers.
                 this.resetAllResult();
@@ -682,23 +672,19 @@ Model3d.prototype = {
                     this.selectors[select_Id].setSphere(object);
                     this.selectors[ select_Id ].setUpdateState(true);
                 }
-                if(this.COMPARE_FLAG)
-                {
+                if (this.COMPARE_FLAG) {
                     var compareGroup = Compares[this.compareId].group;
-                    for(var i=0; i<compareGroup.length; ++i)
-                    {
-                        if( compareGroup[i] !== this.id)
-                        {
-                            Bubbles[ compareGroup[i] ].setSelectorBallSize(position, select_Id,this.radius);
+                    for (var i = 0; i < compareGroup.length; ++i) {
+                        if (compareGroup[i] !== this.id) {
+                            Bubbles[ compareGroup[i] ].setSelectorBallSize(position, select_Id, this.radius);
                         }
                     }
                 }
             }
-            for (var i = 0; i < this.selectors.length; i++)
-            {
+            for (var i = 0; i < this.selectors.length; i++) {
                 this.selectors[i].intersectObjects(this.mainGroup.children, true);
                 //if(this.niiSlice!==null)
-                    //this.selectors[i].intersectVoxel(this.niiSlice.metaData);
+                //this.selectors[i].intersectVoxel(this.niiSlice.metaData);
             }
             if (this.ANDOR === "DELETE") {
                 this.fiberSelector.updateSelectResult("DELETE");   //{ AND: 0, OR: 1}

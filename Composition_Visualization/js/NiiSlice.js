@@ -54,17 +54,6 @@ NiiSlice.prototype = {
             }).val(parseFloat(_this.opacity));
 //--------------------------------------------------------XY-Plane----------------------------------------------------//
             $plane.find("#xyPlane")[0].checked = true;
-
-            $plane.children('#xySlider').show().slider({
-                min: 0,
-                max: _this.metaData.dim[3],
-                value: parseInt(_this.metaData.dim[3] / 2),
-                slide: function( event, ui ) {
-                    $plane.find( "#xypValue" ).children().text( ui.value );
-                    Bubbles[_this.id].niiSlice.updateXYSliceK(ui.value);
-                }
-            });
-            $plane.find( "#xypValue" ).text( $plane.children('#xySlider').slider("value") );
             $plane.find('#xyPlane').change(function(){
                 $(this).val($(this).is(':checked'));
                 Bubbles[_this.id].niiSlice.XYPlane.visible = $(this).is(':checked');
@@ -78,6 +67,17 @@ NiiSlice.prototype = {
                     $plane.children('#xySlider').hide();
                 }
             });
+            $plane.children('#xySlider').show().slider({
+                min: 0,
+                max: _this.metaData.dim[3],
+                value: parseInt(_this.metaData.dim[3] / 2),
+                slide: function( event, ui ) {
+                    $plane.find( "#xypValue" ).text( ui.value );
+                    Bubbles[_this.id].niiSlice.updateXYSliceK(ui.value);
+                }
+            });
+            $plane.find( "#xypValue" ).text( $plane.children('#xySlider').slider("value") );
+
 //--------------------------------------------------------YZ-Plane----------------------------------------------------//
             $plane.find("#yzPlane")[0].checked = true;
             $plane.find('#yzPlane').change(function(){

@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d1292aaa-0d28-4223-ac06-125fbceb5c2d" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Yongnan\Documents\GitHub\younyzhu.github.com\Composition_Visualization\js\ImageSlice.js" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Yongnan\Documents\GitHub\younyzhu.github.com\Composition_Visualization\js\bubble.js" afterPath="$PROJECT_DIR$/js/Model3d.js" />
-      <change type="MOVED" beforePath="C:\Users\Yongnan\Documents\GitHub\younyzhu.github.com\Composition_Visualization\js\chart.js" afterPath="$PROJECT_DIR$/js/lineChart.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/CompareBubble.js" afterPath="$PROJECT_DIR$/js/CompareBubble.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/FiberSelector.js" afterPath="$PROJECT_DIR$/js/FiberSelector.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/bubbleWidget.js" afterPath="$PROJECT_DIR$/js/bubbleWidget.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/visualization.htm" afterPath="$PROJECT_DIR$/visualization.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/Model3d.js" afterPath="$PROJECT_DIR$/js/Model3d.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/NiiSlice.js" afterPath="$PROJECT_DIR$/js/NiiSlice.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Composition_Visualization.iws" />
@@ -28,6 +21,26 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
+  <component name="DockManager">
+    <window id="2">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="NiiSlice.js" pinned="false" current="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/../../younyzhu.github.com2014629/Composition_Visualization/js/NiiSlice.js">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state vertical-scroll-proportion="0.603871" vertical-offset="2028" max-vertical-offset="8112">
+                    <caret line="96" column="31" selection-start-line="96" selection-start-column="31" selection-end-line="96" selection-end-column="31" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="Composition_Visualization" />
@@ -37,95 +50,10 @@
       <file leaf-file-name="visualization.htm" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/visualization.htm">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.32258" vertical-offset="601" max-vertical-offset="2028">
-              <caret line="39" column="103" selection-start-line="39" selection-start-column="103" selection-end-line="39" selection-end-column="103" />
+            <state vertical-scroll-proportion="-5.774194" vertical-offset="601" max-vertical-offset="2028">
+              <caret line="30" column="86" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
               <folding>
                 <element signature="n#style#0;n#canvas#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FiberSelector.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/FiberSelector.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="5081" max-vertical-offset="7046">
-              <caret line="190" column="51" selection-start-line="190" selection-start-column="51" selection-end-line="190" selection-end-column="51" />
-              <folding>
-                <element signature="e#6128#6282#0" expanded="false" />
-                <element signature="e#8130#9528#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2623" max-vertical-offset="4628">
-              <caret line="104" column="108" selection-start-line="104" selection-start-column="48" selection-end-line="104" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Chart.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/Chart.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="3172">
-              <caret line="91" column="59" selection-start-line="91" selection-start-column="35" selection-end-line="91" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="connections.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/connections.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1557" max-vertical-offset="2886">
-              <caret line="67" column="4" selection-start-line="67" selection-start-column="4" selection-end-line="67" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bubbleWidget.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/bubbleWidget.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.53571427" vertical-offset="2055" max-vertical-offset="5590">
-              <caret line="90" column="54" selection-start-line="90" selection-start-column="1" selection-end-line="90" selection-end-column="1" />
-              <folding>
-                <element signature="n#!!block;n#addBubble#0" expanded="false" />
-                <element signature="e#7517#9038#0" expanded="false" />
-                <element signature="e#9370#11374#0" expanded="false" />
-                <element signature="e#9562#11351#0" expanded="false" />
-                <element signature="e#15795#15849#0" expanded="false" />
-                <element signature="e#16126#16564#0" expanded="false" />
-                <element signature="e#16615#17062#0" expanded="false" />
-                <element signature="e#17110#17630#0" expanded="false" />
-                <element signature="e#17681#18112#0" expanded="false" />
-                <element signature="e#18159#18578#0" expanded="false" />
-                <element signature="n#!!block;n#toggle#0;n#!!block;n#addBubble#0" expanded="false" />
-                <element signature="n#!!block;n#createToggle#0;n#!!block;n#addBubble#0" expanded="false" />
-                <element signature="e#21285#21531#0" expanded="false" />
-                <element signature="e#21586#21638#0" expanded="false" />
-                <element signature="n#!!block;n#bubble_div#0" expanded="false" />
-                <element signature="n#!!block;n#resetAllBubblesPos#0" expanded="false" />
-                <element signature="n#!!block;n#getWidgetInformation#0" expanded="false" />
-                <element signature="n#!!block;n#manageBubblePos#0" expanded="false" />
-                <element signature="n#!!block;n#bubble_visual_cue#0" expanded="false" />
-                <marker date="1404223807857" expanded="true" signature="23220:23276" placeholder="..." />
-                <marker date="1404223807857" expanded="true" signature="23727:23740" placeholder="..." />
-                <marker date="1404223807857" expanded="true" signature="24153:24166" placeholder="..." />
-                <marker date="1404223807857" expanded="true" signature="24461:24474" placeholder="..." />
-                <marker date="1404223807857" expanded="true" signature="25258:25271" placeholder="..." />
-                <marker date="1404223807857" expanded="true" signature="25677:25690" placeholder="..." />
-                <marker date="1404223807857" expanded="true" signature="26096:26109" placeholder="..." />
-                <marker date="1404223807857" expanded="true" signature="26340:26353" placeholder="..." />
-                <marker date="1404223807857" expanded="true" signature="26893:26906" placeholder="..." />
-                <marker date="1404223807857" expanded="true" signature="27215:27228" placeholder="..." />
-                <marker date="1404223807857" expanded="true" signature="27417:27430" placeholder="..." />
-                <marker date="1404223807857" expanded="true" signature="33522:33562" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -134,9 +62,34 @@
       <file leaf-file-name="Model3d.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/Model3d.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.48" vertical-offset="2235" max-vertical-offset="19682">
-              <caret line="97" column="4" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="7" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="19318">
+              <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FiberSelector.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/FiberSelector.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="5605" max-vertical-offset="7254">
+              <caret line="225" column="8" selection-start-line="225" selection-start-column="6" selection-end-line="225" selection-end-column="6" />
+              <folding>
+                <element signature="e#6335#8072#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NiiSlice.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/NiiSlice.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.12210526" vertical-offset="1398" max-vertical-offset="7696">
+              <caret line="72" column="69" selection-start-line="72" selection-start-column="59" selection-end-line="72" selection-end-column="59" />
+              <folding>
+                <element signature="e#1356#1746#0" expanded="false" />
+                <element signature="e#1793#2356#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -156,7 +109,6 @@
       <list>
         <option value="$PROJECT_DIR$/js/TrackballControls.js" />
         <option value="$PROJECT_DIR$/css/visualization.css" />
-        <option value="$PROJECT_DIR$/js/NiiSlice.js" />
         <option value="$PROJECT_DIR$/Test/LocalNii/NiiSlice.js" />
         <option value="$PROJECT_DIR$/js/TrkLoader.js" />
         <option value="$PROJECT_DIR$/js/navigationBar.js" />
@@ -172,14 +124,16 @@
         <option value="$PROJECT_DIR$/js/3dModel.js" />
         <option value="$PROJECT_DIR$/js/bubbleWidget.js" />
         <option value="$PROJECT_DIR$/js/Bubble.js" />
+        <option value="$PROJECT_DIR$/js/Model3d.js" />
+        <option value="$PROJECT_DIR$/js/NiiSlice.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="394" />
+    <option name="y" value="102" />
+    <option name="width" value="1418" />
+    <option name="height" value="946" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -370,7 +324,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="394" y="102" width="1418" height="946" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -378,8 +332,8 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13322802" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36972973" sideWeight="0.578199" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18320058" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36932516" sideWeight="0.578199" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30810812" sideWeight="0.42180094" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -414,13 +368,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="578" max-vertical-offset="3822">
-          <caret line="38" column="10" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/visualization.htm">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2028">
@@ -568,13 +515,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Test/LocalNii/NiiSlice.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1727" max-vertical-offset="5304">
-          <caret line="77" column="63" selection-start-line="77" selection-start-column="63" selection-end-line="77" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/threer67.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3327787" vertical-offset="238844" max-vertical-offset="1000922">
@@ -684,25 +624,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/NiiLoader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9750">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/navigationBar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.21802002" vertical-offset="9268" max-vertical-offset="11726">
           <caret line="364" column="10" selection-start-line="364" selection-start-column="4" selection-end-line="364" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/NiiSlice.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.5475762" vertical-offset="3276" max-vertical-offset="8112">
-          <caret line="202" column="81" selection-start-line="202" selection-start-column="47" selection-end-line="202" selection-end-column="85" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -721,17 +646,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/FiberSelector.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5081" max-vertical-offset="7046">
-          <caret line="190" column="51" selection-start-line="190" selection-start-column="51" selection-end-line="190" selection-end-column="51" />
-          <folding>
-            <element signature="e#6128#6282#0" expanded="false" />
-            <element signature="e#8130#9528#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/lineChart.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.23339318" vertical-offset="0" max-vertical-offset="557">
@@ -741,32 +655,6 @@
             <element signature="e#220#685#0" expanded="false" />
             <element signature="n#!!block;n#LineChart#0" expanded="false" />
             <element signature="e#2330#7850#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/connections.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1557" max-vertical-offset="2886">
-          <caret line="67" column="4" selection-start-line="67" selection-start-column="4" selection-end-line="67" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2623" max-vertical-offset="4628">
-          <caret line="104" column="108" selection-start-line="104" selection-start-column="48" selection-end-line="104" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/visualization.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.32258" vertical-offset="601" max-vertical-offset="2028">
-          <caret line="39" column="103" selection-start-line="39" selection-start-column="103" selection-end-line="39" selection-end-column="103" />
-          <folding>
-            <element signature="n#style#0;n#canvas#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -781,26 +669,94 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/Model3d.js">
+    <entry file="file://$PROJECT_DIR$/js/connections.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.48" vertical-offset="2235" max-vertical-offset="19682">
-          <caret line="97" column="4" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="7" />
+        <state vertical-scroll-proportion="0.47217235" vertical-offset="1479" max-vertical-offset="2886">
+          <caret line="67" column="4" selection-start-line="67" selection-start-column="4" selection-end-line="67" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/Chart.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="231" max-vertical-offset="3172">
+        <state vertical-scroll-proportion="3.5475762" vertical-offset="390" max-vertical-offset="3172">
           <caret line="91" column="59" selection-start-line="91" selection-start-column="35" selection-end-line="91" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1454219" vertical-offset="2623" max-vertical-offset="4628">
+          <caret line="104" column="108" selection-start-line="104" selection-start-column="48" selection-end-line="104" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/HTML5.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33213645" vertical-offset="36059" max-vertical-offset="56862">
+          <caret line="1394" column="17" selection-start-line="1394" selection-start-column="17" selection-end-line="1394" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/LocalNii/NiiSlice.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.5832257" vertical-offset="0" max-vertical-offset="5304">
+          <caret line="77" column="63" selection-start-line="77" selection-start-column="63" selection-end-line="77" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/visualization.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.774194" vertical-offset="601" max-vertical-offset="2028">
+          <caret line="30" column="86" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
+          <folding>
+            <element signature="n#style#0;n#canvas#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../younyzhu.github.com2014629/Composition_Visualization/js/NiiSlice.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.603871" vertical-offset="2028" max-vertical-offset="8112">
+          <caret line="96" column="31" selection-start-line="96" selection-start-column="31" selection-end-line="96" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/NiiLoader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.526316" vertical-offset="9275" max-vertical-offset="9750">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/FiberSelector.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5605" max-vertical-offset="7254">
+          <caret line="225" column="8" selection-start-line="225" selection-start-column="6" selection-end-line="225" selection-end-column="6" />
+          <folding>
+            <element signature="e#6335#8072#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/Model3d.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="19318">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/bubbleWidget.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53571427" vertical-offset="2055" max-vertical-offset="5590">
-          <caret line="90" column="54" selection-start-line="90" selection-start-column="1" selection-end-line="90" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="3537" max-vertical-offset="7800">
+          <caret line="560" column="59" selection-start-line="560" selection-start-column="59" selection-end-line="560" selection-end-column="59" />
           <folding>
             <element signature="n#!!block;n#addBubble#0" expanded="false" />
             <element signature="e#7517#9038#0" expanded="false" />
@@ -816,23 +772,33 @@
             <element signature="n#!!block;n#createToggle#0;n#!!block;n#addBubble#0" expanded="false" />
             <element signature="e#21285#21531#0" expanded="false" />
             <element signature="e#21586#21638#0" expanded="false" />
-            <element signature="n#!!block;n#bubble_div#0" expanded="false" />
             <element signature="n#!!block;n#resetAllBubblesPos#0" expanded="false" />
             <element signature="n#!!block;n#getWidgetInformation#0" expanded="false" />
             <element signature="n#!!block;n#manageBubblePos#0" expanded="false" />
             <element signature="n#!!block;n#bubble_visual_cue#0" expanded="false" />
-            <marker date="1404223807857" expanded="true" signature="23220:23276" placeholder="..." />
-            <marker date="1404223807857" expanded="true" signature="23727:23740" placeholder="..." />
-            <marker date="1404223807857" expanded="true" signature="24153:24166" placeholder="..." />
-            <marker date="1404223807857" expanded="true" signature="24461:24474" placeholder="..." />
-            <marker date="1404223807857" expanded="true" signature="25258:25271" placeholder="..." />
-            <marker date="1404223807857" expanded="true" signature="25677:25690" placeholder="..." />
-            <marker date="1404223807857" expanded="true" signature="26096:26109" placeholder="..." />
-            <marker date="1404223807857" expanded="true" signature="26340:26353" placeholder="..." />
-            <marker date="1404223807857" expanded="true" signature="26893:26906" placeholder="..." />
-            <marker date="1404223807857" expanded="true" signature="27215:27228" placeholder="..." />
-            <marker date="1404223807857" expanded="true" signature="27417:27430" placeholder="..." />
-            <marker date="1404223807857" expanded="true" signature="33522:33562" placeholder="..." />
+            <marker date="1404223807857" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1404223807857" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1404223807857" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1404223807857" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1404223807857" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1404223807857" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1404223807857" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1404223807857" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1404223807857" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1404223807857" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1404223807857" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1404223807857" expanded="false" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/NiiSlice.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12210526" vertical-offset="1398" max-vertical-offset="7696">
+          <caret line="72" column="69" selection-start-line="72" selection-start-column="59" selection-end-line="72" selection-end-column="59" />
+          <folding>
+            <element signature="e#1356#1746#0" expanded="false" />
+            <element signature="e#1793#2356#0" expanded="false" />
           </folding>
         </state>
       </provider>
