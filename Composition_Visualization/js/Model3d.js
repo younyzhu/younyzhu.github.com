@@ -6,7 +6,7 @@ var __bind = function (fn, me) {
         return fn.apply(me, arguments);
     };
 };
-function Bubble(id, selectedFibers, deletedFibers, objectCenter, shape, localFileName) {
+function Model3d(id, selectedFibers, deletedFibers, objectCenter, shape, localFileName) {
 
     this.COMPARE_FLAG = false; //Compare flag, with this flag, we can judge a bubble should be synchronize
     this.compareId = null;
@@ -95,8 +95,8 @@ function Bubble(id, selectedFibers, deletedFibers, objectCenter, shape, localFil
     this.onDocumentMouseUp = __bind(this.onDocumentMouseUp, this);
     this.onDivResize = __bind(this.onDivResize, this);
 }
-Bubble.prototype = {
-    constructor: Bubble,
+Model3d.prototype = {
+    constructor: Model3d,
 
     getlinkNodes: function () {
         return this.connectionLinks;
@@ -653,7 +653,6 @@ Bubble.prototype = {
         }
     },
     update: function () {
-
         if (this.renderShape === 'Line') {
             if (this.SELECTED) {
                 this.keyboard.update();
@@ -696,7 +695,11 @@ Bubble.prototype = {
                 }
             }
             for (var i = 0; i < this.selectors.length; i++)
+            {
                 this.selectors[i].intersectObjects(this.mainGroup.children, true);
+                //if(this.niiSlice!==null)
+                    //this.selectors[i].intersectVoxel(this.niiSlice.metaData);
+            }
             if (this.ANDOR === "DELETE") {
                 this.fiberSelector.updateSelectResult("DELETE");   //{ AND: 0, OR: 1}
                 var delete_Fibers = this.fiberSelector.deletedFibers;

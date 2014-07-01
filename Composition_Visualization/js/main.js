@@ -10,6 +10,7 @@ var navigationCanvas = null;
 var pathConnection = null;
 var nvWidth = 0;
 var Compares = [];
+var Charts = [];
 function getPositions(id) {
 
     var $bubble = $('#bubble' + id);
@@ -114,9 +115,13 @@ $(document).ready(function () {
                 {
                     Compares[i].removeCompareBubble();
                 }
-
+                for(var i=0; i<Charts.length; ++i)
+                {
+                    Charts[i].removeChart();
+                }
                 while (BUBBLE_COUNT) {
                     if (Bubbles[BUBBLE_COUNT] !== null) {
+
                         $("#bubble" + BUBBLE_COUNT).remove();
                         var le = Bubbles[BUBBLE_COUNT].getlinkNodes().length;
 

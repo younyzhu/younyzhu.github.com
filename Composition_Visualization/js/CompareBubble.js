@@ -16,7 +16,6 @@ Comparison.prototype = {
             if ($(this).find('#compareCheck').is(':checked') && !$(this).find('#compareCheck').is(':disabled')) {
                 var currentId = parseInt($(this).attr('id').replace(/bubble/, ''));
                 _this.group.push(currentId);
-
                 $(this).find('#compareCheck').attr("disabled", true);
             }
         });
@@ -91,6 +90,20 @@ Comparison.prototype = {
         for (var j = 0; j < this.group.length; ++j) {
             if (Bubbles[this.group[j]] !== null) {
                 Bubbles[this.group[j]].COMPARE_FLAG = false;
+
+                var le = Bubbles[this.group[j]].getlinkNodes().length;      //If the bubble has Node link
+                for (var i = 0; i < le; ++i) {
+                    var type = Bubbles[this.group[j]].getlinkNodes()[i].type;
+                    if (type === "BUBBLE") {
+                        var next = Bubbles[this.group[j]].getlinkNodes()[i].connectTo;
+                        for (var k = 0; k < Bubbles[next].getlinkNodes().length; ++k) {
+                            if (Bubbles[this.group[j]].getlinkNodes()[i].connectionId === Bubbles[next].getlinkNodes()[k].connectionId)
+                                Bubbles[next].spliceNodeLink(k);
+                        }
+                    }
+                    pathConnection.remove(Bubbles[this.group[j]].getlinkNodes()[i].connectionId);
+                }
+
                 Bubbles[this.group[j]].removeAllSelectors();
                 Bubbles[this.group[j]] = null;
             }

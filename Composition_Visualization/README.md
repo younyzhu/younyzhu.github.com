@@ -112,7 +112,7 @@ I was so careless!!
 
 * 5/28/2014
 
- 1. Split the file(bubbleWidget.js) -> bubble.js and bubbleWidget.js
+ 1. Split the file(bubbleWidget.js) -> Model3d.js and bubbleWidget.js
  2. In FiberSelector.js, we has a global variable, which is to store the deleted fiber,so that we do not need to calculate the intersection of the deleted fibers.  
 **Illustruction:** I use this.SelectResults to store the fibers that are selected by current selectors,
                    and I use this.deletedFibers to store all the fibers that have been deleted from the current model.
@@ -364,9 +364,9 @@ When loader a dataset, we need to know which is to select and which is to delete
         <script src="js/navigationBar.js" type="text/javascript"></script>
         <script src="js/bubbleWidget.js" type="text/javascript"></script>
         <script src="js/connections.js" type="text/javascript"></script>
-        <script src="js/bubble.js" type="text/javascript"></script>
+        <script src="js/Model3d.js" type="text/javascript"></script>
         <script src="js/FiberSelector.js"></script>
-        <script src="js/chart.js"></script>
+        <script src="js/lineChart.js"></script>
         <!-- Zip Lib-->
         <script src="js/gunzip.min.js"></script>
         <script src="js/gzip.min.js"></script>

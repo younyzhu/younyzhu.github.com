@@ -92,7 +92,7 @@ function currentToBoxPos(mousePosX, mousePosY) {
 function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers, objectCenter, localFileName) {
     var bubblediv = $(bubble_div(id, name, mousePosX, mousePosY));
     $("#bubble").append(bubblediv);
-    var bubble = new Bubble(id, selectedFibers, deletedFibers, objectCenter, null, localFileName);//just Id
+    var bubble = new Model3d(id, selectedFibers, deletedFibers, objectCenter, null, localFileName);//just Id
     Bubbles.push(bubble);
     try {
         bubble.init();
@@ -198,9 +198,8 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
     var parent = $bubbleId.contextMenu({
         selector: '.dragheader',
         callback: function (key) {
-
             if (key === "delete") {
-                if (Bubbles[id] !== null) {
+                if (Bubbles[id] !== null) {  //This bubble is from the comparison group
                     if(Bubbles[id].compareId !== null)
                     {
                         var compareId =Bubbles[id].compareId;
@@ -242,8 +241,18 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
                         }
 
                     }
+                    else
+                    {     //This bubble is just the bubble
+                        for (var k = 0; k < navigationCanvas.shapes.length; ++k) {
+                            if (navigationCanvas.shapes[k] === null)
+                                continue;
+                            if (navigationCanvas.shapes[k].type === "BUBBLE" && navigationCanvas.shapes[k].Id === id) {
+                                navigationCanvas.remove(k);
+                            }
+                        }
+                    }
 
-                    var le = Bubbles[id].getlinkNodes().length;
+                    var le = Bubbles[id].getlinkNodes().length;      //If the bubble has Node link
                     for (var i = 0; i < le; ++i) {
                         var type = Bubbles[id].getlinkNodes()[i].type;
                         if (type === "BUBBLE") {
@@ -275,7 +284,11 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
                 $("#bubble" + id).children().children("#select_menu").show();
             }
             else if (key === "faChart") {
-                addChart(id, $bubbleId);
+                //addChart(id, $bubbleId);
+                var chart = new Chart(id);
+                chart.initChart();
+                Charts.push(chart);
+
                 var connection = new Connection(getWidgetCenter(id), getChartCenter(id));
                 pathConnection.addConnection(connection);
                 var connectId = pathConnection.connections.length - 1;
@@ -746,7 +759,7 @@ function addVisualCueMenu() {
         parent.remove();
         vcMenu_status = false
     });
-}
+}/*
 function addChart(id, $bubbleId) {
     var posx = $bubbleId.offset().left;//offset() or position()
     var posy = $bubbleId.offset().top;
@@ -770,20 +783,6 @@ function addChart(id, $bubbleId) {
             lineChart.addItem(childs[i].children[j].id, childs[i].children[j].FA);
         }
     }
-    /*
-     var lines =  Bubbles[id].mainGroup.children[0].children;
-     for(var i=0; i< lines.length; ++i)
-     {
-     lineChart.addItem(lines[i].id, lines[i].FA);
-     }
-     */
-    /*
-     var FA = Bubbles[id].mainGroup.children[0].FA;
-     for (var i = 0; i < FA.length; ++i) {
-     lineChart.addItem(i, FA[i]);
-     }
-     */
-
     var parent = $('#chart' + id).draggable({ containment: '#bgCanvas', scroll: false,  //just dragable, do not need to move
         drag: function (ev, ui) {
             var position = ui.position;  //drag stop position
@@ -858,4 +857,4 @@ function chart_div(id, name, mousePosX, mousePosY) {   //Every Bubble has a char
     tmp += '    </canvas>';
     tmp += '</div>';
     return tmp;
-}
+}  */

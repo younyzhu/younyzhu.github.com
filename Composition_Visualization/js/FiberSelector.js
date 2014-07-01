@@ -168,8 +168,9 @@ SphereSelector = function (id, sphere, needupdate) {
     this.sphere = sphere;//This is a sphere selector
     this.needsUpdate = needupdate || true; // If we change the position of selector, we need to update the selector
 
-    this.intersects = [];
-    //this.deletedFibers = [];// This parameter is from class FiberSelector, if we have already deleted some fibers, we should not calculate the intersection between the selectors and fibers
+    this.intersects = []; // This is just to save the intersected fibers
+    //this.selectFromNii=[]; //This trys use sphere to select data from the image space
+
 };
 SphereSelector.prototype = {
     constructor: SphereSelector,
@@ -223,7 +224,6 @@ SphereSelector.prototype = {
             }
         }
     },
-
     intersectDescendants: function (object, intersects) {
         /*
          var descendants = object.getDescendants();
@@ -285,4 +285,24 @@ SphereSelector.prototype = {
             return flag;
         }
     }
+    /*,
+    intersectVoxel: function(metadata){    // Collect the data, if we want to
+        this.selectFromNii.length =0;
+        var center = this.sphere.position;
+        var radius = this.sphere.geometry.radius;
+        var tmp=new THREE.Vector4(center.x, center.y, center.z, 1.0);
+        tmp.applyMatrix4(metadata.xyz_to_ijkMatrix);
+        var selectCenter = new THREE.Vector3(tmp.x, tmp.t, tmp.z);
+
+        for(var i=0; i<metadata.dim[1]; ++i)
+            for(var j=0; j<metadata.dim[2]; j++)
+                for(var k=0; k<metadata.dim[3]; k++)
+                {
+                    var pos = new THREE.Vector3(i,j,k);
+                    if( pos.distanceTo(selectCenter) <=  radius )
+                    {
+                        this.selectFromNii.push(metadata.data[ k * metadata.dim[2] * metadata.dim[3] + j * metadata.dim[3] + i ]);
+                    }
+                }
+    }*/
 };
