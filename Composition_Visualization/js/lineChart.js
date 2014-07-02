@@ -44,7 +44,11 @@ function LineChart(id, canvas) {
         {
             if (_this.dots[i].contains(mx, my)) {
                 _this.dots[i].fillStyle = "#ffff00";
-                Bubbles[_this.id].setSelectFAColor(_this.dots[i].Id);
+                //Bubbles[_this.id].setSelectFAColor(_this.dots[i].Id);
+                var $chartip = $("#chart" + _this.id).find("#chartTip");
+                $chartip.show();
+                //$chartip.find("#value").text();
+                $chartip.css({left: mx, top: my+27});
                 break;
             }
         }
@@ -60,7 +64,9 @@ function LineChart(id, canvas) {
             if ( _this.dots[i].fillStyle ===  "#ffff00")
             {
                 _this.dots[i].fillStyle = "#333";
-                Bubbles[_this.id].resetSelectFAColor(_this.dots[i].Id);
+                var $chartip = $("#chart" + _this.id).find("#chartTip");
+                $chartip.hide();
+                //Bubbles[_this.id].resetSelectFAColor(_this.dots[i].Id);
                 break;
             }
         }
@@ -71,7 +77,6 @@ function LineChart(id, canvas) {
         requestAnimationFrame(animate);
         _this.draw();
     }
-
     animate();
 }
 LineChart.prototype = {
@@ -108,7 +113,7 @@ LineChart.prototype = {
     },
     // Return the y pixel for a graph point
     getYPixel: function (val) {
-        return this.height - this.yPadding - (( (this.height - 2 * this.yPadding) / this.getMaxY() ) * val);  // Y value range[0,1]
+        return this.height - this.yPadding - (( (this.height - 2 * this.yPadding) ) * val);  // Y value range[0,1]
     },
     clear: function () {
         //this.ctx.clearRect(0, 0, this.width, this.height);

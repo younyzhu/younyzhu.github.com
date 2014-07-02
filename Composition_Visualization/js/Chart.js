@@ -5,6 +5,7 @@
 function Chart(id)//every chart belongs to specific bubble
 {
     this.id = id;
+    this.lineChart = null;
 }
 
 Chart.prototype = {
@@ -26,14 +27,24 @@ Chart.prototype = {
         navigationCanvas.addShape(chartView);
 
         var linechartCanvas = document.getElementById('chartCanvas' + id);
-        var lineChart = new LineChart(id, linechartCanvas);
+        this.lineChart = new LineChart(id, linechartCanvas);
 
+        var selectedFibers = Bubbles[id].fiberSelector.selectedFibers;
+        for(var i=0; i< selectedFibers.length; ++i)
+        {
+            if(selectedFibers[i].object.FA)
+            {
+                this.lineChart.addItem(i, selectedFibers[i].object.FA);
+            }
+        }
+       /*
         var childs = Bubbles[id].mainGroup.children;
         for (var i = 0; i < childs.length; ++i) {
             for (var j = 0; j < childs[i].children.length; ++j) {
                 lineChart.addItem(childs[i].children[j].id, childs[i].children[j].FA);
             }
         }
+        */
         var parent = $('#chart' + id).draggable({ containment: '#bgCanvas', scroll: false,  //just dragable, do not need to move
             drag: function (ev, ui) {
                 var position = ui.position;  //drag stop position
@@ -64,7 +75,7 @@ Chart.prototype = {
                 var width_ = $canvas.width();
                 var height_ = $canvas.height();
                 $canvas.attr({width: width_, height: height_});
-                lineChart.resize(width_, height_);
+                _this.lineChart.resize(width_, height_);
                 var width = width_ / window.innerWidth * nvWidth;
                 var height = height_ / (window.innerHeight - 50) * 50;
                 for (var i = 0; i < navigationCanvas.shapes.length; ++i) {
@@ -110,6 +121,10 @@ Chart.prototype = {
         tmp += '    </div>';
         tmp += '    <canvas id ="chartCanvas' + id + '"width="250" height="250" >';
         tmp += '    </canvas>';
+        //tmp += '    <div id ="chartTip" class="chartTooltip" style="position: absolute; display: = none; left:0; top:0">';
+        tmp += '    <div id ="chartTip" class="chartTooltip">';
+        tmp += '        <span >Value: <span id="value"></span></span>';
+        tmp += '    </div>';
         tmp += '</div>';
         return tmp;
     }

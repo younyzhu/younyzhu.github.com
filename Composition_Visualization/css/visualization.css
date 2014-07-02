@@ -87,12 +87,27 @@ body { font-family:"Helvetica Neue", Arial, Helvetica, sans-serif; background:#1
     background:#555;
     color:rgba(50,0,0,1);
 }
-
-
+.chartTooltip
+{
+    z-index: 1500;
+    top: 0px;
+    left: 0px;
+    display: none;
+    border-color: #666;
+    background-color: #fff;
+    color: #666;
+    position: absolute;
+    border: 1px solid #ff0000;
+    padding: 15px 9px 5px 9px;
+    text-align: left;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+/*
 .sliceContainer {
     margin-left: auto;
     margin-right: auto;
-    width: 606px;  /* 200*3 + border;*/
+    width: 606px;
 }
 .sliceContainer div {
     float: left;
@@ -104,3 +119,4 @@ body { font-family:"Helvetica Neue", Arial, Helvetica, sans-serif; background:#1
     border: 1px solid red;
     float:left;
 }
+*/
