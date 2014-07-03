@@ -1,70 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c7e6a216-82a3-4cf0-ade1-a5ba1a283c89" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/animated-overlay.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/images/cut.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/images/door.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/images/page_white_add.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/images/page_white_copy.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/images/page_white_delete.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/images/page_white_edit.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/images/page_white_paste.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-bg_diagonals-thick_18_b81900_40x40.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-bg_diagonals-thick_20_666666_40x40.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-bg_flat_10_000000_40x100.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-bg_glass_100_f6f6f6_1x400.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-bg_glass_100_fdf5ce_1x400.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-bg_glass_65_ffffff_1x400.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-bg_gloss-wave_35_f6a828_500x100.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-bg_highlight-soft_100_eeeeee_1x100.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-bg_highlight-soft_75_ffe45c_1x100.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-icons_222222_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-icons_228ef1_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-icons_ef8c08_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-icons_ffd27a_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-icons_ffffff_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/js/BubbleWidget.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/js/KeyboardState.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/js/Protein.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/js/Rectangle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/js/THREEx.FullScreen.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/js/THREEx.KeyboardState.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/jquery-1.10.2.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/jquery-ui-1.10.4.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/jquery-ui-1.10.4.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/jquery-ui-1.10.4.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/jquery-ui-1.10.4.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/jquery.contextMenu.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/jquery.contextMenu.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/jquery.ui.position.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/js/main.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/pathBubble.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/visualization.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/dat.gui.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/dat.gui.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/Post-Processing/js/dat.gui.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/Post-Processing/js/dat.gui.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/jquery-1.10.2.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/jquery-1.10.2.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/Post-Processing/jquery-1.10.2.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/Post-Processing/jquery-1.10.2.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/jqueryLib/jquery-1.10.2.js" afterPath="$PROJECT_DIR$/Composition_Visualization/jqueryLib/jquery-1.10.2.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/jquery-ui-1.10.4.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/jquery-ui-1.10.4.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/Post-Processing/jquery-ui-1.10.4.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/Post-Processing/jquery-ui-1.10.4.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/jqueryLib/jquery-ui-1.10.4.js" afterPath="$PROJECT_DIR$/Composition_Visualization/jqueryLib/jquery-ui-1.10.4.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/three.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/three.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/LocalNii/three.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/LocalNii/three.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/Post-Processing/js/three.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/Post-Processing/js/three.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/TestNii_/three.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/TestNii_/three.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/Trk/three.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/Trk/three.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/js/522/three.js" afterPath="$PROJECT_DIR$/Composition_Visualization/js/522/three.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/js_backup/522/three.js" afterPath="$PROJECT_DIR$/Composition_Visualization/js_backup/522/three.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/three.js" afterPath="$PROJECT_DIR$/js/three.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/threer66.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/threer66.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/js/threer66.js" afterPath="$PROJECT_DIR$/Composition_Visualization/js/threer66.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/threer67.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/threer67.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/js/threer67.js" afterPath="$PROJECT_DIR$/Composition_Visualization/js/threer67.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/js/threer671.js" afterPath="$PROJECT_DIR$/Composition_Visualization/js/threer671.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="c7e6a216-82a3-4cf0-ade1-a5ba1a283c89" name="Default" comment="" />
     <ignored path="younyzhu.github.com.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />

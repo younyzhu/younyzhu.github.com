@@ -11,7 +11,9 @@ BubbleWidget.prototype = {
     initHtml: function () {
         var bubblediv = $(this.bubble_div(this.id, this.name, this.mousePosX, this.mousePosY));
         $("#bubble").append(bubblediv);
+        var _this = this;
         var $bubbleId = $("#bubble" +this.id);
+        $bubbleId.find("canvas").css({width:400,height:400});
         $bubbleId.draggable({ containment: '#bgCanvas', scroll: false,  //just dragable, do not need to move
             drag: function (ev, ui) {
                 var position = ui.position;
@@ -20,6 +22,8 @@ BubbleWidget.prototype = {
         $('canvas').draggable({ containment: '#bgCanvas', scroll: false}).resizable({
             resize: function (ev, ui) {
                 var size = ui.size;
+
+                $('#bubble' + _this.id).children('#paraMenu').css({left: size.width - 15});
             }
         });
         $bubbleId.find(".open_para").click(function () {
@@ -66,8 +70,8 @@ BubbleWidget.prototype = {
         tmp += '        <span class="open_para">O</span>';
         tmp += '    </div>';
         //
-        tmp += '    <div id="container' + id + '" height="400" width="400">';//$("#bubble" + id).children();
-        tmp += '    <canvas id="canvas" width = "400" height = "400" style="position: absolute;">';
+        tmp += '    <div id="container">';//$("#bubble" + id).children();
+        tmp += '    <canvas id="canvas" >';
         tmp += '    </canvas>';
         tmp += '    </div>';
         //
