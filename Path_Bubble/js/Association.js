@@ -1,8 +1,8 @@
 /**
  * Created by Yongnan on 7/3/2014.
  */
-function Association(id, x, y) {
-    this.type = "ASSOCIATION";
+function Dissociation(id, x, y) {
+    this.type = "DISSOCIATION";
     this.id = id || 0;
     this.x = x;
     this.y = y;
@@ -11,7 +11,7 @@ function Association(id, x, y) {
     this.lineWidth = 2;
     this.fillColor = "#ffffff";
 }
-Association.prototype = {
+Dissociation.prototype = {
     draw: function (ctx) {
         ctx.fillStyle = this.fillColor;
         ctx.strokeStyle = this.strokeColor;

@@ -42,6 +42,25 @@ Small_Molecule.prototype = {
             this.textObj.draw(this.x + this.w/2, this.y + this.h-10, ctx );
         }
     },
+    drawStroke: function(ctx){
+        var mx1 = this.x + this.w / 4;
+        var mx2 = this.x + this.w * 3 / 4;
+        var my1 = this.y + this.h / 3;
+        var my2 = this.y + this.h * 2 / 3;
+        ctx.beginPath();
+        ctx.moveTo(this.x, my1);
+        ctx.lineTo(this.x, my2);
+        ctx.lineTo(mx1, this.y +this.h);
+        ctx.lineTo(mx2, this.y+this.h);
+        ctx.lineTo(this.x + this.w, my2);
+        ctx.lineTo(this.x + this.w, my1);
+        ctx.lineTo(mx2, this.y);
+        ctx.lineTo(mx1, this.y);
+        ctx.lineTo(this.x, my1);
+        ctx.stroke();
+        ctx.closePath();
+        ctx.save();
+    },
     contains: function (mx, my) {
         return  (this.x <= mx) && (this.x + this.w >= mx) &&
             (this.y <= my) && (this.y + this.h >= my);

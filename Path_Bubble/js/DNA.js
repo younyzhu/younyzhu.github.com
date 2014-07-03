@@ -36,6 +36,19 @@ DNA.prototype = {
             this.textObj.draw(this.x + this.w/2, this.y + this.h-10, ctx );
         }
     },
+    drawStroke: function(ctx) {
+        var mx = this.x + this.w / 2;
+        var my = this.y + this.h / 2;
+        ctx.beginPath();
+        ctx.moveTo(this.x, my);
+        ctx.quadraticCurveTo(this.x, this.y, mx, this.y);
+        ctx.quadraticCurveTo(this.x + this.w, this.y, this.x + this.w, my);
+        ctx.quadraticCurveTo(this.x + this.w, this.y + this.h, mx, this.y + this.h);
+        ctx.quadraticCurveTo(this.x, this.y + this.h, this.x, my);
+        ctx.stroke();
+        ctx.closePath();
+        ctx.save();
+    },
     contains: function (mx, my) {
         return  (this.x <= mx) && (this.x + this.w >= mx) &&
             (this.y <= my) && (this.y + this.h >= my);

@@ -21,6 +21,9 @@ Complex.prototype = {
         ctx.lineWidth = this.lineWidth;
         ctx.strokeRect(this.x, this.y, this.w, this.h);
     },
+    drawStroke: function(ctx) {
+        ctx.strokeRect(this.x, this.y, this.w, this.h);
+    },
     contains : function(mx, my)
     {
         return  (this.x <= mx) && (this.x + this.w >= mx) &&

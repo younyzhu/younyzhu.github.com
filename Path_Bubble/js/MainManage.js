@@ -288,13 +288,13 @@ MainManage.prototype={
             if (this.selection !== null) {
                 this.ctx.strokeStyle = this.selectionColor;
                 this.ctx.lineWidth = this.selectionWidth;
-                if(this.selection.type ==="ASSOCIATION" ||this.selection.type ==="DISSOCIATION"  ||this.selection.type ==="TRANSITION")
+                if(this.selection.type ==="COMPARTMENT")
                 {
-                    this.selection.drawStroke(this.ctx);
+                    this.ctx.strokeRect(this.selection.x, this.selection.y, this.selection.w, this.selection.h);
                 }
                 else
                 {
-                    this.ctx.strokeRect(this.selection.x, this.selection.y, this.selection.w, this.selection.h);
+                    this.selection.drawStroke(this.ctx);
                 }
 
             }

@@ -38,8 +38,6 @@ Compartment.prototype ={
             var r = this.x + this.w;
             var b = this.y + this.h;
             ctx.beginPath();
-            //ctx.strokeStyle="green";
-            //ctx.lineWidth="4";
             ctx.moveTo(this.x + this.radius, this.y);
             ctx.lineTo(r - this.radius, this.y);
             ctx.quadraticCurveTo(r, this.y, r, this.y + this.radius);

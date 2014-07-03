@@ -1,9 +1,9 @@
 /**
  * Created by Yongnan on 7/3/2014.
  */
-function Dissociation(id, x, y) {
+function Association(id, x, y) {
 
-    this.type = "DISSOCIATION";
+    this.type = "ASSOCIATION";
     this.id = id || 0;
     this.x = x;
     this.y = y;
@@ -12,7 +12,7 @@ function Dissociation(id, x, y) {
     this.lineWidth = 2;
     this.fillColor = "#ffffff";
 }
-Dissociation.prototype = {
+Association.prototype = {
     draw: function (ctx) {
         ctx.fillStyle = this.fillColor;
         ctx.strokeStyle = this.strokeColor;
