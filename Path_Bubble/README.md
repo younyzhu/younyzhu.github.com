@@ -8,8 +8,6 @@
   
   1. Click `f` on your keyboard for full screen, Click `ESC` for exiting `Full Screen` mode.    
   2. Right Click open a bubble.
-  3. When Open a bubble, please click red `O` in the drag pannel to open the box.
-  4. Click select your file and Click `Load` to load your local `XML` file.
   
 ##Study Event
 
