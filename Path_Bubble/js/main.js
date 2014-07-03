@@ -22,8 +22,8 @@ $(document).ready(function () {
     navigationCanvas.addShape(arrow);
     var trans = new Transition(8,100,100);
     navigationCanvas.addShape(trans);
-    var ass = new Assosiation(10,200,100);
+    var ass = new Association(10,200,100);
     navigationCanvas.addShape(ass);
-    var diss = new Dissosiation(10,300,100);
+    var diss = new Dissociation(10,300,100);
     navigationCanvas.addShape(diss);
 });

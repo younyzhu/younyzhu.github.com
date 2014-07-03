@@ -7,7 +7,7 @@ function Transition(id, x, y) {
     this.x = x;
     this.y = y;
     this.w = 20;
-
+    this.h = 20;
     this.strokeColor = "#666666";
     this.lineWidth = 2;
     this.fillColor = "#ffffff";
@@ -20,9 +20,12 @@ Transition.prototype = {
         ctx.lineWidth = this.lineWidth;
         ctx.strokeRect(this.x, this.y, this.w, this.w);
     },
+    drawStroke: function (ctx) {
+        ctx.strokeRect(this.x, this.y, this.w, this.w);
+    },
     contains : function(mx, my)
     {
         return  (this.x <= mx) && (this.x + this.w >= mx) &&
-            (this.y <= my) && (this.y + this.w >= my);
+            (this.y <= my) && (this.y + this.h >= my);
     }
 };

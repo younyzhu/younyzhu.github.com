@@ -288,9 +288,16 @@ MainManage.prototype={
             if (this.selection !== null) {
                 this.ctx.strokeStyle = this.selectionColor;
                 this.ctx.lineWidth = this.selectionWidth;
-                this.ctx.strokeRect(this.selection.x, this.selection.y, this.selection.w, this.selection.h);
-            }
+                if(this.selection.type ==="ASSOCIATION" ||this.selection.type ==="DISSOCIATION"  ||this.selection.type ==="TRANSITION")
+                {
+                    this.selection.drawStroke(this.ctx);
+                }
+                else
+                {
+                    this.ctx.strokeRect(this.selection.x, this.selection.y, this.selection.w, this.selection.h);
+                }
 
+            }
             this.valid = true;
         }
     },
