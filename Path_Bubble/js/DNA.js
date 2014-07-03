@@ -1,20 +1,20 @@
 /**
  * Created by Yongnan on 7/3/2014.
  */
-function Protein(id, x, y, w, h, text) {
-    this.type = "PROTEIN";
+function DNA(id, x, y, w, h, text) {
+    this.type = "DNA";
     this.id = id || 0;
     this.x = x;
     this.y = y;
     this.w = w || 1;
     this.h = h || 1;
     this.text = text;
-    this.textObj = new Text("Protein");
+    this.textObj = new Text("DNA");
     this.strokeColor = "#666666";
     this.lineWidth = 2;
-    this.fillColor = "#FFFFCC";
+    this.fillColor = "#D6EAAC";
 }
-Protein.prototype = {
+DNA.prototype = {
     draw: function (ctx) {
         ctx.fillStyle = this.fillColor;
         ctx.strokeStyle = this.strokeColor;

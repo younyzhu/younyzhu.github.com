@@ -1,22 +1,25 @@
 /**
  * Created by Yongnan on 7/2/2014.
  */
-function Rectangle(state, x, y, w ,h, color, fillState, id, type)
+function Compartment(state, x, y, w ,h, color, fillState, id, text)
 {
-    this.type = type || "BUBBLE"; //
-    this.Id = id || 0;     //this rectangle belongs to which bubble or chart
+    this.type = "COMPARTMENT";
+    this.id = id || 0;     //this rectangle belongs to which bubble or chart
     this.state = state;
-    this.x = x + currentViewpointPosx || 0;
-    this.y = y + currentViewpointPosy || 0;
+    this.x = x ;
+    this.y = y ;
     this.w = w || 1;
     this.h = h || 1;
+    this.radius =10;
+    this.text = text;
+    this.textObj = new Text("Compartment");
 
     this.strokeColor = color || "#0000ff";
     this.lineWidth   = 2;
     this.fillState = fillState ||false;
 }
 
-Rectangle.prototype ={
+Compartment.prototype ={
     draw : function(ctx)
     {
         var i, cur, half;
@@ -24,12 +27,29 @@ Rectangle.prototype ={
         {
             ctx.fillStyle = this.strokeColor;
             ctx.fillRect(this.x, this.y, this.w, this.h);
+
         }
         else
         {
             ctx.strokeStyle = this.strokeColor;
             ctx.lineWidth = this.lineWidth;
-            ctx.strokeRect(this.x,this.y,this.w,this.h);
+            //ctx.strokeRect(this.x,this.y,this.w,this.h);
+
+            var r = this.x + this.w;
+            var b = this.y + this.h;
+            ctx.beginPath();
+            //ctx.strokeStyle="green";
+            //ctx.lineWidth="4";
+            ctx.moveTo(this.x + this.radius, this.y);
+            ctx.lineTo(r - this.radius, this.y);
+            ctx.quadraticCurveTo(r, this.y, r, this.y + this.radius);
+            ctx.lineTo(r, this.y + this.h - this.radius);
+            ctx.quadraticCurveTo(r, b, r -this.radius, b);
+            ctx.lineTo(this.x + this.radius, b);
+            ctx.quadraticCurveTo(this.x, b, this.x, b - this.radius);
+            ctx.lineTo(this.x, this.y + this.radius);
+            ctx.quadraticCurveTo(this.x, this.y, this.x + this.radius, this.y);
+            ctx.stroke();
         }
 
         if (this.state.selection === this)
@@ -72,6 +92,10 @@ Rectangle.prototype ={
                 cur = this.state.selectionHandles[i];
                 ctx.fillRect(cur.x, cur.y, this.state.selectionBoxSize, this.state.selectionBoxSize);
             }
+        }
+        if(this.textObj)
+        {
+            this.textObj.draw(this.x + this.w/2, this.y + this.h-10, ctx );
         }
     },
     contains : function(mx, my)

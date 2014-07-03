@@ -1,32 +1,38 @@
 /**
  * Created by Yongnan on 7/3/2014.
  */
-function Protein(id, x, y, w, h, text) {
-    this.type = "PROTEIN";
+function Small_Molecule(id, x, y, w, h, text) {
+    this.type = "MOLECULE";
     this.id = id || 0;
     this.x = x;
     this.y = y;
     this.w = w || 1;
     this.h = h || 1;
     this.text = text;
-    this.textObj = new Text("Protein");
+    this.textObj = new Text("Small_Molecule");
     this.strokeColor = "#666666";
     this.lineWidth = 2;
-    this.fillColor = "#FFFFCC";
+    this.fillColor = "#D6D7CA";
 }
-Protein.prototype = {
+Small_Molecule.prototype = {
     draw: function (ctx) {
         ctx.fillStyle = this.fillColor;
         ctx.strokeStyle = this.strokeColor;
         ctx.lineWidth = this.lineWidth;
-        var mx = this.x + this.w / 2;
-        var my = this.y + this.h / 2;
+        var mx1 = this.x + this.w / 4;
+        var mx2 = this.x + this.w * 3 / 4;
+        var my1 = this.y + this.h / 3;
+        var my2 = this.y + this.h * 2 / 3;
         ctx.beginPath();
-        ctx.moveTo(this.x, my);
-        ctx.quadraticCurveTo(this.x, this.y, mx, this.y);
-        ctx.quadraticCurveTo(this.x + this.w, this.y, this.x + this.w, my);
-        ctx.quadraticCurveTo(this.x + this.w, this.y + this.h, mx, this.y + this.h);
-        ctx.quadraticCurveTo(this.x, this.y + this.h, this.x, my);
+        ctx.moveTo(this.x, my1);
+        ctx.lineTo(this.x, my2);
+        ctx.lineTo(mx1, this.y +this.h);
+        ctx.lineTo(mx2, this.y+this.h);
+        ctx.lineTo(this.x + this.w, my2);
+        ctx.lineTo(this.x + this.w, my1);
+        ctx.lineTo(mx2, this.y);
+        ctx.lineTo(mx1, this.y);
+        ctx.lineTo(this.x, my1);
         ctx.fill();
         ctx.stroke();
         ctx.closePath();

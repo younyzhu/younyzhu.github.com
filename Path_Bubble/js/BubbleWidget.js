@@ -22,7 +22,8 @@ BubbleWidget.prototype = {
         $('canvas').draggable({ containment: '#bgCanvas', scroll: false}).resizable({
             resize: function (ev, ui) {
                 var size = ui.size;
-
+                block.width = size.width;
+                block.height = size.height;
                 $('#bubble' + _this.id).children('#paraMenu').css({left: size.width - 15});
             }
         });
@@ -58,9 +59,27 @@ BubbleWidget.prototype = {
             };
         }
 
-        for (var i = 1; i <= 6; i++) {
+        for (var i = 1; i <= 1; i++) {
             $bubbleId.find("#plus_" + i).click(createToggle(i));
         }
+
+        block = new Compartment($bubbleId.find("#canvas")[0]);
+        var currentView = new Rectangle(block, 20, 20, 200, 200, 'rgba(255,0,0,0.7)',0);
+        block.addShape(currentView);
+        //var str = "./data/SMAD23_Phosphorylation_Motif_Mutants_in_Cancer_19_new.xml";
+        //var xmlLoader = new XMLLoader();
+        //xmlLoader.load(str);
+        /*
+        $.ajax({
+            type: "GET",
+            url: str,
+            dataType: "xml",
+            success: function (xml) {
+                $(xml).find("Pathway").each(function () {
+                    alert($(this).text());
+                });
+            }
+        }); */
     },
     bubble_div: function (id, name, mousePosX, mousePosY) {
         var tmp = '';
