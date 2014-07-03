@@ -2,9 +2,68 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c7e6a216-82a3-4cf0-ade1-a5ba1a283c89" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/index.css" afterPath="$PROJECT_DIR$/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/.idea/workspace.xml" afterPath="$PROJECT_DIR$/Composition_Visualization/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/animated-overlay.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/images/cut.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/images/door.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/images/page_white_add.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/images/page_white_copy.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/images/page_white_delete.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/images/page_white_edit.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/images/page_white_paste.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-bg_diagonals-thick_18_b81900_40x40.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-bg_diagonals-thick_20_666666_40x40.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-bg_flat_10_000000_40x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-bg_glass_100_f6f6f6_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-bg_glass_100_fdf5ce_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-bg_glass_65_ffffff_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-bg_gloss-wave_35_f6a828_500x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-icons_222222_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-icons_228ef1_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-icons_ef8c08_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-icons_ffd27a_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/images/ui-icons_ffffff_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/js/BubbleWidget.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/js/KeyboardState.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/js/Protein.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/js/Rectangle.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/js/THREEx.FullScreen.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/js/THREEx.KeyboardState.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/jquery-1.10.2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/jquery-ui-1.10.4.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/jquery-ui-1.10.4.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/ui-lightness/jquery-ui-1.10.4.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/jquery-ui-1.10.4.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/jquery.contextMenu.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/jquery.contextMenu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/jqueryLib/jquery.ui.position.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/js/main.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/pathBubble.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Path_Bubble/css/visualization.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/dat.gui.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/dat.gui.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/Post-Processing/js/dat.gui.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/Post-Processing/js/dat.gui.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/jquery-1.10.2.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/jquery-1.10.2.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/Post-Processing/jquery-1.10.2.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/Post-Processing/jquery-1.10.2.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/jqueryLib/jquery-1.10.2.js" afterPath="$PROJECT_DIR$/Composition_Visualization/jqueryLib/jquery-1.10.2.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/jquery-ui-1.10.4.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/jquery-ui-1.10.4.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/Post-Processing/jquery-ui-1.10.4.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/Post-Processing/jquery-ui-1.10.4.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/jqueryLib/jquery-ui-1.10.4.js" afterPath="$PROJECT_DIR$/Composition_Visualization/jqueryLib/jquery-ui-1.10.4.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/three.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/three.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/LocalNii/three.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/LocalNii/three.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/Post-Processing/js/three.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/Post-Processing/js/three.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/TestNii_/three.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/TestNii_/three.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/Trk/three.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/Trk/three.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/js/522/three.js" afterPath="$PROJECT_DIR$/Composition_Visualization/js/522/three.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/js_backup/522/three.js" afterPath="$PROJECT_DIR$/Composition_Visualization/js_backup/522/three.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/three.js" afterPath="$PROJECT_DIR$/js/three.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/threer66.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/threer66.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/js/threer66.js" afterPath="$PROJECT_DIR$/Composition_Visualization/js/threer66.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/Test/threer67.js" afterPath="$PROJECT_DIR$/Composition_Visualization/Test/threer67.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/js/threer67.js" afterPath="$PROJECT_DIR$/Composition_Visualization/js/threer67.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Composition_Visualization/js/threer671.js" afterPath="$PROJECT_DIR$/Composition_Visualization/js/threer671.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="younyzhu.github.com.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,11 +86,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/index.html">
+      <file leaf-file-name="pathBubble.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Path_Bubble/pathBubble.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.14885496" vertical-offset="0" max-vertical-offset="3640">
-              <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
+            <state vertical-scroll-proportion="-10.193548" vertical-offset="308" max-vertical-offset="832">
+              <caret line="24" column="33" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
+              <folding>
+                <element signature="n#style#0;n#canvas#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Path_Bubble/js/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="624" max-vertical-offset="1664">
+              <caret line="49" column="34" selection-start-line="49" selection-start-column="34" selection-end-line="49" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BubbleWidget.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Path_Bubble/js/BubbleWidget.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.41919193" vertical-offset="1571" max-vertical-offset="2470">
+              <caret line="70" column="103" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
+              <folding>
+                <marker date="1404354171137" expanded="true" signature="2546:2565" placeholder="..." />
+                <marker date="1404354171137" expanded="true" signature="2710:2766" placeholder="..." />
+                <marker date="1404354171137" expanded="true" signature="3061:3074" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="visualization.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Path_Bubble/css/visualization.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2912">
+              <caret line="14" column="30" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -65,6 +160,13 @@
         <option value="$PROJECT_DIR$/Composition_Visualization/README.md" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/css/index.css" />
+        <option value="$PROJECT_DIR$/Path_Bubble/README.md" />
+        <option value="$PROJECT_DIR$/Path_Bubble/js/Rectangle.js" />
+        <option value="$PROJECT_DIR$/Path_Bubble/js/Protein.js" />
+        <option value="$PROJECT_DIR$/Path_Bubble/js/main.js" />
+        <option value="$PROJECT_DIR$/Path_Bubble/js/BubbleWidget.js" />
+        <option value="$PROJECT_DIR$/Path_Bubble/pathBubble.html" />
+        <option value="$PROJECT_DIR$/Path_Bubble/css/visualization.css" />
       </list>
     </option>
   </component>
@@ -81,7 +183,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
@@ -119,6 +221,38 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="younyzhu.github.com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="younyzhu.github.com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Path_Bubble" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="younyzhu.github.com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="younyzhu.github.com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Path_Bubble" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -135,14 +269,22 @@
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="Html5" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Yongnan\Documents\GitHub\younyzhu.github.com\Path_Bubble\js" />
+      <recent name="C:\Users\Yongnan\Documents\GitHub\younyzhu.github.com\Path_Bubble" />
       <recent name="C:\Users\Yongnan\Documents\GitHub\younyzhu.github.com\Composition_Visualization\js" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html">
+  <component name="RunManager" selected="JavaScript Debug.pathBubble.html">
     <configuration default="false" name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" uri="http://localhost:63342/younyzhu.github.com/index.html">
+      <RunnerSettings RunnerId="JavascriptDebugRunner" />
+      <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="pathBubble.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" uri="http://localhost:63342/younyzhu.github.com/Path_Bubble/pathBubble.html">
       <RunnerSettings RunnerId="JavascriptDebugRunner" />
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
       <method />
@@ -193,13 +335,15 @@
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
       <method />
     </configuration>
-    <list size="2">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.visualization.htm" />
       <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
+      <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.pathBubble.html" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.pathBubble.html" />
+        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="JUnit" default="true" selected="false">
@@ -236,21 +380,21 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32972974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25065824" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3718919" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1858873" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3718919" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -298,42 +442,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Composition_Visualization/visualization.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2028">
-          <caret line="36" column="29" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Composition_Visualization/jqueryLib/jquery-ui-1.10.4.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="20410" max-vertical-offset="390364">
-          <caret line="785" column="0" selection-start-line="785" selection-start-column="0" selection-end-line="785" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Composition_Visualization/js/connections.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1987" max-vertical-offset="2886">
-          <caret line="94" column="105" selection-start-line="94" selection-start-column="101" selection-end-line="94" selection-end-column="101" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Composition_Visualization/visualization.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="702" max-vertical-offset="1716">
-          <caret line="42" column="34" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Composition_Visualization/jqueryLib/jquery-ui-1.10.4.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="20410" max-vertical-offset="390364">
@@ -482,13 +590,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Composition_Visualization/js/Chart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1405" max-vertical-offset="5564">
-          <caret line="62" column="35" selection-start-line="62" selection-start-column="35" selection-end-line="62" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/TrackballControls.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33228347" vertical-offset="1713" max-vertical-offset="15548">
@@ -538,13 +639,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Composition_Visualization/js/navigationBar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3322091" vertical-offset="2221" max-vertical-offset="10452">
-          <caret line="132" column="32" selection-start-line="132" selection-start-column="32" selection-end-line="132" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Composition_Visualization/jqueryLib/jquery-1.10.2.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="131896" max-vertical-offset="254358">
@@ -556,30 +650,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.26657647" vertical-offset="2351" max-vertical-offset="3666">
           <caret line="98" column="91" selection-start-line="98" selection-start-column="91" selection-end-line="98" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Composition_Visualization/js/bubbleWidget.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3326886" vertical-offset="8096" max-vertical-offset="15392">
-          <caret line="318" column="19" selection-start-line="318" selection-start-column="11" selection-end-line="318" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Composition_Visualization/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74854934" vertical-offset="5021" max-vertical-offset="6734">
-          <caret line="208" column="5" selection-start-line="208" selection-start-column="5" selection-end-line="208" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Composition_Visualization/visualization.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32873562" vertical-offset="936" max-vertical-offset="2028">
-          <caret line="47" column="14" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="14" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -617,9 +687,175 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14885496" vertical-offset="0" max-vertical-offset="3640">
-          <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.36944938" vertical-offset="390" max-vertical-offset="3640">
+          <caret line="23" column="118" selection-start-line="23" selection-start-column="69" selection-end-line="23" selection-end-column="69" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Composition_Visualization/README.md">
+      <provider selected="true" editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="936" max-vertical-offset="10218">
+          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Path_Bubble/README.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5483304" vertical-offset="0" max-vertical-offset="569">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Composition_Visualization/visualization.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.580646" vertical-offset="468" max-vertical-offset="2054">
+          <caret line="33" column="22" selection-start-line="33" selection-start-column="0" selection-end-line="34" selection-end-column="47" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#canvas#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Path_Bubble/js/THREEx.KeyboardState.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.5906563" vertical-offset="531" max-vertical-offset="2522">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Path_Bubble/js/KeyboardState.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3042">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Composition_Visualization/js/Chart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.028921023" vertical-offset="1586" max-vertical-offset="3562">
+          <caret line="62" column="35" selection-start-line="62" selection-start-column="35" selection-end-line="62" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Composition_Visualization/js/Check.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26028922" vertical-offset="0" max-vertical-offset="899">
+          <caret line="9" column="51" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Path_Bubble/js/Rectangle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.4293659" vertical-offset="0" max-vertical-offset="2340">
+          <caret line="84" column="2" selection-start-line="84" selection-start-column="2" selection-end-line="84" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Path_Bubble/js/Protein.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9421579" vertical-offset="8461" max-vertical-offset="9464">
+          <caret line="358" column="2" selection-start-line="358" selection-start-column="2" selection-end-line="358" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Composition_Visualization/js/navigationBar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42157954" vertical-offset="10827" max-vertical-offset="11726">
+          <caret line="431" column="19" selection-start-line="89" selection-start-column="0" selection-end-line="444" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Composition_Visualization/js/NiiSlice.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.26028922" vertical-offset="234" max-vertical-offset="7852">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Composition_Visualization/js/CompareBubble.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="6552">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Composition_Visualization/js/bubbleWidget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.57117116" vertical-offset="8523" max-vertical-offset="17810">
+          <caret line="522" column="16" selection-start-line="522" selection-start-column="0" selection-end-line="523" selection-end-column="24" />
+          <folding>
+            <element signature="e#4522#7331#0" expanded="false" />
+            <element signature="e#9101#15675#0" expanded="false" />
+            <marker date="1404240530329" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1404240530329" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1404240530329" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1404240530329" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1404240530329" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1404240530329" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1404240530329" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1404240530329" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1404240530329" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1404240530329" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1404240530329" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1404240530329" expanded="false" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Path_Bubble/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="624" max-vertical-offset="1664">
+          <caret line="49" column="34" selection-start-line="49" selection-start-column="34" selection-end-line="49" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Path_Bubble/pathBubble.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.193548" vertical-offset="308" max-vertical-offset="832">
+          <caret line="24" column="33" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
+          <folding>
+            <element signature="n#style#0;n#canvas#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Path_Bubble/css/visualization.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2912">
+          <caret line="14" column="30" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Path_Bubble/js/BubbleWidget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41919193" vertical-offset="1571" max-vertical-offset="2470">
+          <caret line="70" column="103" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
+          <folding>
+            <marker date="1404354171137" expanded="true" signature="2546:2565" placeholder="..." />
+            <marker date="1404354171137" expanded="true" signature="2710:2766" placeholder="..." />
+            <marker date="1404354171137" expanded="true" signature="3061:3074" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

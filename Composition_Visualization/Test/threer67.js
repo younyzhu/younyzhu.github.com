@@ -25577,19 +25577,19 @@ THREE.WebGLRenderer = function ( parameters ) {
 
 				_gl.uniform3f( location, value.r, value.g, value.b );
 
-			} else if ( type === "iv1" ) { // flat array of integers (JS or typed array)
+			} else if ( type === "iv1" ) { // flat array of integers (js or typed array)
 
 				_gl.uniform1iv( location, value );
 
-			} else if ( type === "iv" ) { // flat array of integers with 3 x N size (JS or typed array)
+			} else if ( type === "iv" ) { // flat array of integers with 3 x N size (js or typed array)
 
 				_gl.uniform3iv( location, value );
 
-			} else if ( type === "fv1" ) { // flat array of floats (JS or typed array)
+			} else if ( type === "fv1" ) { // flat array of floats (js or typed array)
 
 				_gl.uniform1fv( location, value );
 
-			} else if ( type === "fv" ) { // flat array of floats with 3 x N size (JS or typed array)
+			} else if ( type === "fv" ) { // flat array of floats with 3 x N size (js or typed array)
 
 				_gl.uniform3fv( location, value );
 
@@ -29182,7 +29182,7 @@ THREE.Curve.prototype.getUtoTmapping = function ( u, distance ) {
 
 	while ( low <= high ) {
 
-		i = Math.floor( low + ( high - low ) / 2 ); // less likely to overflow, though probably not issue here, JS doesn't really have integers, all numbers are floats
+		i = Math.floor( low + ( high - low ) / 2 ); // less likely to overflow, though probably not issue here, js doesn't really have integers, all numbers are floats
 
 		comparison = arcLengths[ i ] - targetArcLength;
 

@@ -1535,7 +1535,7 @@ dat.GUI = dat.gui.GUI = (function (css, saveDialogueContents, styleSheet, contro
 
   var HIDE_KEY_CODE = 72;
 
-  /** The only value shared between the JS and SCSS. Use caution. */
+  /** The only value shared between the js and SCSS. Use caution. */
   var CLOSE_BUTTON_HEIGHT = 20;
 
   var DEFAULT_DEFAULT_PRESET_NAME = 'Default';

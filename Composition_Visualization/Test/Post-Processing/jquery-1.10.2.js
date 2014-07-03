@@ -3573,15 +3573,15 @@ function internalData( elem, name, data, pvt /* Internal Use Only */ ){
 	var ret, thisCache,
 		internalKey = jQuery.expando,
 
-		// We have to handle DOM nodes and JS objects differently because IE6-7
-		// can't GC object references properly across the DOM-JS boundary
+		// We have to handle DOM nodes and js objects differently because IE6-7
+		// can't GC object references properly across the DOM-js boundary
 		isNode = elem.nodeType,
 
-		// Only DOM nodes need the global jQuery cache; JS object data is
+		// Only DOM nodes need the global jQuery cache; js object data is
 		// attached directly to the object so GC can occur automatically
 		cache = isNode ? jQuery.cache : elem,
 
-		// Only defining an ID for JS objects if its cache already exists allows
+		// Only defining an ID for js objects if its cache already exists allows
 		// the code to shortcut on the same path as a DOM node with no cache
 		id = isNode ? elem[ internalKey ] : elem[ internalKey ] && internalKey;
 
@@ -3602,7 +3602,7 @@ function internalData( elem, name, data, pvt /* Internal Use Only */ ){
 	}
 
 	if ( !cache[ id ] ) {
-		// Avoid exposing jQuery metadata on plain JS objects when the object
+		// Avoid exposing jQuery metadata on plain js objects when the object
 		// is serialized using JSON.stringify
 		cache[ id ] = isNode ? {} : { toJSON: jQuery.noop };
 	}
