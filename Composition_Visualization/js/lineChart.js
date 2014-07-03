@@ -46,9 +46,17 @@ function LineChart(id, canvas) {
                 _this.dots[i].fillStyle = "#ffff00";
                 //Bubbles[_this.id].setSelectFAColor(_this.dots[i].Id);
                 var $chartip = $("#chart" + _this.id).find("#chartTip");
-                $chartip.show();
-                //$chartip.find("#value").text();
-                $chartip.css({left: mx, top: my+27});
+
+                for(var j=0; j<_this.data.values.length; ++j)
+                {
+                    if(_this.data.values[j].Id === _this.dots[i].Id)
+                    {
+                        $chartip.find("#value").text(parseFloat(_this.data.values[j].Y).toFixed(7));
+                        $chartip.css({left: mx, top: my+27});
+                        $chartip.show();
+                        break;
+                    }
+                }
                 break;
             }
         }

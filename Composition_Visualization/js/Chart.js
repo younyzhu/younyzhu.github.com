@@ -34,7 +34,7 @@ Chart.prototype = {
         {
             if(selectedFibers[i].object.FA)
             {
-                this.lineChart.addItem(i, selectedFibers[i].object.FA);
+                this.lineChart.addItem(selectedFibers[i].object.id, selectedFibers[i].object.FA);
             }
         }
        /*
