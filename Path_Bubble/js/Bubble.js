@@ -16,18 +16,81 @@ function Bubble(id, state, x, y, w, h) {
     this.offsetX =0;
     this.offsetY =0;
     this.compartments = [];
-    this.arrows = [];//Because arrow can draw out of the compartment, so arrow is contained in the Bubble
+    //this.arrows = [];//Because arrow can draw out of the compartment, so arrow is contained in the Bubble
+    //Arrow is divide into three type, Black Arrow, green Activation, yellow Inhibition.
+    this.arrows = [];
+    this.inhibitions =[];
+    this.activations =[];
 }
 
 Bubble.prototype = {
     draw: function (ctx) {
         this.drawBubble(ctx);
-
         if(this.compartments.length > 0){
             this.drawCompartment(ctx);
         }
+        if(this.arrows.length > 0){
+            this.drawArrow(ctx);
+        }
+        if(this.activations.length > 0){
+            this.drawActivation(ctx);
+        }
+        if(this.inhibitions.length > 0){
+            this.drawInhibition(ctx);
+        }
         if (this.state.selection === this) {
             this.drawSelection(ctx);
+        }
+    },
+    addArrow: function(id,beginX,beginY,endX,endY ){
+        var arrow = new Arrow(id,beginX*this.w,beginY*this.h,endX*this.w,endY*this.h);
+        mainManagement.addShape(arrow);
+        this.arrows.push(id);
+    },
+    drawArrow: function(ctx){
+        for(var i=0; i<this.arrows.length; i++)
+        {
+            for(var j=0; j< mainManagement.shapes.length; j++)
+            {
+                if(mainManagement.shapes[j].id === this.arrows[i] && mainManagement.shapes[j].type === "ARROW")
+                {
+                    mainManagement.shapes[j].draw(ctx, this.x, this.y);
+                }
+            }
+        }
+    },
+    addInhibition: function(id,beginX,beginY,endX,endY ){
+        var inhibition = new Inhibition(id,beginX*this.w,beginY*this.h,endX*this.w,endY*this.h);
+        mainManagement.addShape(inhibition);
+        this.inhibitions.push(id);
+    },
+    drawInhibition: function(ctx){
+        for(var i=0; i<this.inhibitions.length; i++)
+        {
+            for(var j=0; j< mainManagement.shapes.length; j++)
+            {
+                if(mainManagement.shapes[j].id === this.inhibitions[i] && mainManagement.shapes[j].type === "INHIBITION")
+                {
+                    mainManagement.shapes[j].draw(ctx, this.x, this.y);
+                }
+            }
+        }
+    },
+    addActivation: function(id,beginX,beginY,endX,endY ){
+        var inhibition = new Activation(id,beginX*this.w,beginY*this.h,endX*this.w,endY*this.h);
+        mainManagement.addShape(inhibition);
+        this.activations.push(id);
+    },
+    drawActivation: function(ctx){
+        for(var i=0; i<this.activations.length; i++)
+        {
+            for(var j=0; j< mainManagement.shapes.length; j++)
+            {
+                if(mainManagement.shapes[j].id === this.activations[i] && mainManagement.shapes[j].type === "ACTIVATION")
+                {
+                    mainManagement.shapes[j].draw(ctx, this.x, this.y);
+                }
+            }
         }
     },
     drawSelection: function(ctx){

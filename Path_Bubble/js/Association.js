@@ -11,10 +11,7 @@ function Association(id, x, y) {
     this.strokeColor = "#666666";
     this.lineWidth = 2;
     this.fillColor = "#ffffff";
-    //Complex is contained in the Compartment and the Compartment is contained in the Bubble
-    //So Offset = offsetBubble + offsetCompartment
-    this.offsetX =0;
-    this.offsetY =0;
+
 }
 Association.prototype = {
     draw: function (ctx, offsetX, offsetY) {

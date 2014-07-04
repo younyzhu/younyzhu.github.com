@@ -61,6 +61,7 @@ XMLLoader.prototype = {
         }
 
         Bubbles.addCompartment(1, 0.1, 0.2, 0.6, 0.6, "Compartment");
+
         mainManagement.shapes[1].addProtein(2,0.4,0.2,0.2,0.1,"Protein");
         mainManagement.shapes[1].addComplex(3,0.1,0.2,0.2,0.1);
         mainManagement.shapes[1].addDNA(4,0.6,0.2,0.2,0.1,"DNA");
@@ -68,5 +69,8 @@ XMLLoader.prototype = {
         mainManagement.shapes[1].addDissociation(6,0.4,0.4);
         mainManagement.shapes[1].addAssociation(7,0.3,0.3);
         mainManagement.shapes[1].addTransition(8,0.5,0.5);
+        Bubbles.addActivation(11, 0.1, 0.2, 0.6, 0.6);
+        Bubbles.addInhibition(12, 0.4, 0.2, 0.6, 0.6);
+        Bubbles.addArrow(13, 0.4, 0.7, 0.5, 0.6);
     }
 };

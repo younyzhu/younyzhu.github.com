@@ -11,23 +11,33 @@ function Inhibition(id, beginX, beginY , endX, endY) {
     this.dotRadius = 10;
     this.dotLimitRadius = 2;
     this.fillColor = "#FF8000";
+    //Complex is contained in the Compartment and the Compartment is contained in the Bubble
+    //So Offset = offsetBubble + offsetCompartment
+    this.offsetX =0;
+    this.offsetY =0;
 }
 Inhibition.prototype = {
-    draw: function (ctx) {
+    draw: function (ctx, offsetX, offsetY) {
+        this.offsetX =offsetX;
+        this.offsetY =offsetY;
+        var x1 = this.x1+this.offsetX;
+        var y1 = this.y1+this.offsetY;
+        var x2 = this.x2+this.offsetX;
+        var y2 = this.y2+this.offsetY;
         var dotCount = Math.ceil((this.dotRadius - this.dotLimitRadius ) / 0.5);
-        var dx = this.x2 - this.x1;
-        var dy = this.y2 - this.y1;
+        var dx = x2 - x1;
+        var dy = y2 - y1;
         var spaceX = dx / (dotCount - 1);
         var spaceY = dy / (dotCount - 1);
-        var newX = this.x1;
-        var newY = this.y1;
+        var newX = x1;
+        var newY = y1;
         for (var i = 0; i < dotCount; i++) {
             this.drawDot(newX, newY, (this.dotRadius - this.dotLimitRadius ) * (1-i / dotCount) + this.dotLimitRadius , this.fillColor, ctx);
             newX += spaceX;
             newY += spaceY;
         }
-        this.drawDot(this.x1, this.y1, 3, "red", ctx);
-        this.drawDot(this.x2, this.y2, 3, "red", ctx);
+        this.drawDot(x1, y1, 3, "red", ctx);
+        this.drawDot(x2, y2, 3, "red", ctx);
     },
     drawDot: function (x, y, dotRadius, dotColor, ctx) {
         ctx.save();	// save the context so we don't mess up others

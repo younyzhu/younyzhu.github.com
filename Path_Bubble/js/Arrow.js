@@ -11,16 +11,26 @@ function Arrow(id,beginX,beginY,endX,endY )
     this.x2 = endX;
     this.y2 = endY;
     this.fillColor = "black";
+    //Complex is contained in the Compartment and the Compartment is contained in the Bubble
+    //So Offset = offsetBubble + offsetCompartment
+    this.offsetX =0;
+    this.offsetY =0;
 }
 Arrow.prototype ={
 
-    draw: function (ctx) {
+    draw: function (ctx, offsetX, offsetY) {
+        this.offsetX =offsetX;
+        this.offsetY =offsetY;
+        var x1 = this.x1 + this.offsetX;
+        var x2 = this.x2 + this.offsetX;
+        var y1 = this.y1 + this.offsetY;
+        var y2 = this.y2 + this.offsetY;
         ctx.save();	// save the context so we don't mess up others
         ctx.fillStyle = this.fillColor;
         ctx.beginPath();
-        ctx.moveTo(this.x1-5, this.y1 );
-        ctx.lineTo(this.x1+5, this.y1 );
-        ctx.lineTo(this.x2, this.y2);
+        ctx.moveTo(x1-5, y1 );
+        ctx.lineTo(x1+5, y1 );
+        ctx.lineTo(x2, y2);
         ctx.fill();
         ctx.closePath();
         ctx.restore();	// restore context to what it was on entry
