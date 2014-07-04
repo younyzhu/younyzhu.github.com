@@ -28,7 +28,8 @@
      * Finish drawing  `Transition.js`: which is used to draw the transition reaction with the combination of the `Arrow`  
      * Finished drawing `Association.js`: which is used to draw the association reaction with the combination of the `Arrow`
      * Finished drawing `Dissociation.js`: which is used to draw the dissociation reaction with the combination of the `Arrow`
-     
+     * Finished drawing `Inhibition.js`: which is used to draw the reaction attributes with the varying radius to show the direction.    
+     * Finished drawing `Activation.js`: which is used to draw the reaction attributes with the varying radius to show the direction.    
      ![Image](./images/basicShape.PNG)    
      
  3. Fixed a bug, when select a shape, it will be highlight with red color.    

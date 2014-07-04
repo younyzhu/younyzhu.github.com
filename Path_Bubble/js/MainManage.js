@@ -43,7 +43,7 @@ function MainManage(canvas)
         var mx = mouse.x;
         var my = mouse.y;
         for (var i = _this.shapes.length-1; i >= 0; i -= 1) {
-            if(_this.shapes[i] === null || _this.shapes[i].type === "ARROW")
+            if(_this.shapes[i] === null || _this.shapes[i].type === "ARROW" ||_this.shapes[i].type === "INHIBITION"||_this.shapes[i].type === "ACTIVATION")
                 continue;
             if (_this.shapes[i].contains(mx, my)) {
                 _this.selectId = i;        //We have three types of bubbles: CHART, BUBBLE, COMPARE, so we need to choose the bubble according to this type
@@ -268,16 +268,16 @@ MainManage.prototype={
             for (var i = 0; i < this.shapes.length; i += 1) {
                 if(this.shapes[i]!==null)
                 {
-                    if(this.shapes[i].type === "ARROW")
+                    if(this.shapes[i].type === "ARROW"||this.shapes[i].type === "INHIBITION"||this.shapes[i].type === "ACTIVATION")
                     {
-                        this.shapes[i].draw(20,20,100,100,this.ctx);
+                        this.shapes[i].draw(this.ctx);
                     }
                 }
             }
             for (var i = 0; i < this.shapes.length; i += 1) {
                 if(this.shapes[i]!==null)
                 {
-                    if(this.shapes[i].type !== "ARROW")
+                    if(this.shapes[i].type !== "ARROW"&&this.shapes[i].type !== "INHIBITION"&&this.shapes[i].type !== "ACTIVATION")
                     {
                         this.shapes[i].draw(this.ctx);
                     }
