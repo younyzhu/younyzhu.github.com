@@ -32,4 +32,6 @@
      * Finished drawing `Activation.js`: which is used to draw the reaction attributes with the varying radius to show the direction.    
      ![Image](./images/basicShape.PNG)    
      
- 3. Fixed a bug, when select a shape, it will be highlight with red color.    
+ 3. Fixed a bug, when select a shape, it will be highlight with red color.   
+ 4. Try a night to draw a bubble widget, It seems not very well.[http://jsfiddle.net/younyzhU/a25Jt/2/](http://jsfiddle.net/younyzhU/a25Jt/2/)  
+ 

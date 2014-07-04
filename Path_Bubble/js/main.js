@@ -30,4 +30,7 @@ $(document).ready(function () {
     navigationCanvas.addShape(inhibition);
     var activation = new Activation(16, 100,100,100,400);
     navigationCanvas.addShape(activation);
+
+    var bubble = new Bubble(0,navigationCanvas, 400, 400, 200, 200, 'rgba(255,0,0,0.7)');
+    navigationCanvas.addShape(bubble);
 });

@@ -30,9 +30,11 @@ Inhibition.prototype = {
         this.drawDot(this.x2, this.y2, 3, "red", ctx);
     },
     drawDot: function (x, y, dotRadius, dotColor, ctx) {
+        ctx.save();	// save the context so we don't mess up others
         ctx.beginPath();
         ctx.arc(x, y, dotRadius, 0, 2 * Math.PI, false);
         ctx.fillStyle = dotColor;
         ctx.fill();
+        ctx.restore();	// restore context to what it was on entry
     }
 };

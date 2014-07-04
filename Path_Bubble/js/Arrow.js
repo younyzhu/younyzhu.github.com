@@ -15,6 +15,7 @@ function Arrow(id,beginX,beginY,endX,endY )
 Arrow.prototype ={
 
     draw: function (ctx) {
+        ctx.save();	// save the context so we don't mess up others
         ctx.fillStyle = this.fillColor;
         ctx.beginPath();
         ctx.moveTo(this.x1-5, this.y1 );
@@ -22,6 +23,6 @@ Arrow.prototype ={
         ctx.lineTo(this.x2, this.y2);
         ctx.fill();
         ctx.closePath();
-        ctx.save();
+        ctx.restore();	// restore context to what it was on entry
     }
 };

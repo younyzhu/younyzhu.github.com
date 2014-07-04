@@ -17,7 +17,7 @@ Dissociation.prototype = {
         ctx.strokeStyle = this.strokeColor;
         ctx.lineWidth = this.lineWidth;
         var h = this.l * (Math.sqrt(3) / 2);
-        ctx.save();
+        ctx.save();	// save the context so we don't mess up others
         ctx.beginPath();
         ctx.moveTo(this.x, this.y - h / 2);
         ctx.lineTo(this.x - this.l / 2, this.y + h / 2);
@@ -26,7 +26,7 @@ Dissociation.prototype = {
         ctx.fill();
         ctx.stroke();
         ctx.closePath();
-        ctx.save();
+        ctx.restore();	// restore context to what it was on entry
     },
     drawStroke: function(ctx){
         var h = this.l * (Math.sqrt(3) / 2);

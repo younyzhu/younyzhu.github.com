@@ -16,10 +16,12 @@ function Complex(id, x, y, w, h) {
 Complex.prototype = {
     draw: function (ctx) {
         ctx.fillStyle = this.fillColor;
-        ctx.fillRect(this.x, this.y, this.w, this.h);
         ctx.strokeStyle = this.strokeColor;
         ctx.lineWidth = this.lineWidth;
+        ctx.save();	// save the context so we don't mess up others
+        ctx.fillRect(this.x, this.y, this.w, this.h);
         ctx.strokeRect(this.x, this.y, this.w, this.h);
+        ctx.restore();	// restore context to what it was on entry
     },
     drawStroke: function(ctx) {
         ctx.strokeRect(this.x, this.y, this.w, this.h);

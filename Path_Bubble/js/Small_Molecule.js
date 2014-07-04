@@ -23,6 +23,7 @@ Small_Molecule.prototype = {
         var mx2 = this.x + this.w * 3 / 4;
         var my1 = this.y + this.h / 3;
         var my2 = this.y + this.h * 2 / 3;
+        ctx.save();	// save the context so we don't mess up others
         ctx.beginPath();
         ctx.moveTo(this.x, my1);
         ctx.lineTo(this.x, my2);
@@ -33,10 +34,10 @@ Small_Molecule.prototype = {
         ctx.lineTo(mx2, this.y);
         ctx.lineTo(mx1, this.y);
         ctx.lineTo(this.x, my1);
+        ctx.closePath();
         ctx.fill();
         ctx.stroke();
-        ctx.closePath();
-        ctx.save();
+        ctx.restore();	// restore context to what it was on entry
         if(this.textObj)
         {
             this.textObj.draw(this.x + this.w/2, this.y + this.h/2, ctx );
@@ -47,6 +48,7 @@ Small_Molecule.prototype = {
         var mx2 = this.x + this.w * 3 / 4;
         var my1 = this.y + this.h / 3;
         var my2 = this.y + this.h * 2 / 3;
+        ctx.save();	// save the context so we don't mess up others
         ctx.beginPath();
         ctx.moveTo(this.x, my1);
         ctx.lineTo(this.x, my2);
@@ -57,9 +59,9 @@ Small_Molecule.prototype = {
         ctx.lineTo(mx2, this.y);
         ctx.lineTo(mx1, this.y);
         ctx.lineTo(this.x, my1);
-        ctx.stroke();
         ctx.closePath();
-        ctx.save();
+        ctx.stroke();
+        ctx.restore();	// restore context to what it was on entry
     },
     contains: function (mx, my) {
         return  (this.x <= mx) && (this.x + this.w >= mx) &&

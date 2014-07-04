@@ -1,8 +1,8 @@
 /**
  * Created by Yongnan on 7/2/2014.
  */
-function Compartment(id, state, x, y, w, h, text) {
-    this.type = "COMPARTMENT";
+function Bubble(id, state, x, y, w, h, text) {
+    this.type = "BUBBLE";
     this.id = id || 0;     //this rectangle belongs to which bubble or chart
     this.state = state;
     this.x = x;
@@ -13,34 +13,62 @@ function Compartment(id, state, x, y, w, h, text) {
     this.text = text;
     this.textObj = new Text("Compartment");
     this.strokeColor = "#000000";
-    this.fillColor = "#ffffff";
+    this.fillColor = "#2F968B";
     this.lineWidth = 2;
 }
 
-Compartment.prototype = {
+Bubble.prototype = {
     draw: function (ctx) {
-        var i, cur, half;
-
+        var i, cur, half, r, thea;
         ctx.fillStyle = this.fillColor;
         ctx.strokeStyle = this.strokeColor;
         ctx.lineWidth = this.lineWidth;
-        var r = this.x + this.w;
-        var b = this.y + this.h;
+
         ctx.save();	// save the context so we don't mess up others
         ctx.beginPath();
-        ctx.moveTo(this.x + this.radius, this.y);
-        ctx.lineTo(r - this.radius, this.y);
-        ctx.quadraticCurveTo(r, this.y, r, this.y + this.radius);
-        ctx.lineTo(r, this.y + this.h - this.radius);
-        ctx.quadraticCurveTo(r, b, r - this.radius, b);
-        ctx.lineTo(this.x + this.radius, b);
-        ctx.quadraticCurveTo(this.x, b, this.x, b - this.radius);
-        ctx.lineTo(this.x, this.y + this.radius);
-        ctx.quadraticCurveTo(this.x, this.y, this.x + this.radius, this.y);
-        ctx.fill();
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(this.x, this.y, this.w, this.h);
         ctx.stroke();
-        ctx.closePath();
         ctx.restore();	// restore context to what it was on entry
+
+        ctx.save();	// save the context so we don't mess up others
+        ctx.beginPath();
+        r = Math.sqrt((this.h/2)*(this.h/2) + 16 *this.w * this.w);
+        thea = Math.atan(this.h/this.w/8);
+        ctx.arc(this.x + this.w*4, this.y + this.h/2, r , Math.PI - thea,  Math.PI+thea, false);
+        ctx.closePath();
+        ctx.fill();
+        //ctx.stroke();
+        ctx.restore();	// restore context to what it was on entry
+
+        ctx.save();	// save the context so we don't mess up others
+        ctx.beginPath();
+        r = Math.sqrt((this.h/2)*(this.h/2) + 16 *this.w * this.w);
+        thea = Math.atan(this.h/this.w/8);
+        ctx.arc(this.x- this.w*3, this.y + this.h/2, r , -thea,  thea, false);
+        ctx.closePath();
+        ctx.fill();
+        //ctx.stroke();
+        ctx.restore();	// restore context to what it was on entry
+
+        ctx.save();	// save the context so we don't mess up others
+        ctx.beginPath();
+        r = Math.sqrt((this.w/2)*(this.w/2) + 16 * this.h * this.h);
+        thea = Math.atan(this.w/this.h/8);
+        ctx.arc(this.x + this.w/2, this.y + 4 * this.h, r , Math.PI*3/2-thea,  Math.PI*3/2 + thea, false);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();	// restore context to what it was on entry
+        ctx.save();	// save the context so we don't mess up others
+        ctx.beginPath();
+
+        r = Math.sqrt((this.w/2)*(this.w/2) + 16*this.h*this.h);
+        thea = Math.atan(this.w/this.h/8);
+        ctx.arc(this.x + this.w/2, this.y-3*this.h , r , Math.PI/2-thea,  Math.PI/2 + thea, false);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();	// restore context to what it was on entry
+        ctx.save();
 
         if (this.state.selection === this) {
             // draw the boxes
@@ -82,15 +110,13 @@ Compartment.prototype = {
                 ctx.fillRect(cur.x, cur.y, this.state.selectionBoxSize, this.state.selectionBoxSize);
             }
         }
+        /*
         if (this.textObj) {
             this.textObj.draw(this.x + this.w / 2, this.y + this.h - 10, ctx);
-        }
+        } */
     },
     contains: function (mx, my) {
         return  (this.x <= mx) && (this.x + this.w >= mx) &&
             (this.y <= my) && (this.y + this.h >= my);
-    },
-    getColor: function () {
-        return this.strokeColor;
     }
 };

@@ -288,7 +288,7 @@ MainManage.prototype={
             if (this.selection !== null) {
                 this.ctx.strokeStyle = this.selectionColor;
                   this.ctx.lineWidth = this.selectionWidth;
-                if(this.selection.type ==="COMPARTMENT")
+                if(this.selection.type ==="COMPARTMENT"||this.selection.type ==="BUBBLE")
                 {
                     this.ctx.strokeRect(this.selection.x, this.selection.y, this.selection.w, this.selection.h);
                 }

@@ -17,19 +17,21 @@ Association.prototype = {
         ctx.fillStyle = this.fillColor;
         ctx.strokeStyle = this.strokeColor;
         ctx.lineWidth = this.lineWidth;
+        ctx.save();	// save the context so we don't mess up others
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false);
         ctx.fill();
         ctx.stroke();
         ctx.closePath();
-        ctx.save();
+        ctx.restore();	// restore context to what it was on entry
     },
     drawStroke: function(ctx){
+        ctx.save();	// save the context so we don't mess up others
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false);
         ctx.stroke();
         ctx.closePath();
-        ctx.save();
+        ctx.restore();	// restore context to what it was on entry
     },
     contains: function (mx, my) {
         return  (this.x - mx ) * (this.x - mx) + (this.y - my ) * (this.y - my) <= this.r * this.r;
