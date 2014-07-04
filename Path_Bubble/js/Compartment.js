@@ -11,86 +11,260 @@ function Compartment(id, state, x, y, w, h, text) {
     this.h = h || 1;
     this.radius = 10;
     this.text = text;
-    this.textObj = new Text("Compartment");
+    this.textObj = new Text(text);
     this.strokeColor = "#000000";
     this.fillColor = "#ffffff";
     this.lineWidth = 2;
+    this.offsetX =0;
+    this.offsetY =0;
+    //Complex, DNA, Protein, Reaction are inside the compartment
+    this.complexs = [];
+    this.dnas = [];
+    this.proteins = [];
+    this.molecules =[];
+    //this.reactions = []; //reaction is divided into 3 parts association, dissociation, inhibition
+    this.associations = [];
+    this.dissociations = [];
+    this.transitions = [];
 }
 
 Compartment.prototype = {
-    draw: function (ctx) {
-        var i, cur, half;
-
+    addComplex:function(id, x, y, w, h){
+        var complex = new Complex(id, x *this.w, y*this.h, w*this.w, h*this.h);
+        mainManagement.addShape(complex);
+        this.complexs.push(id);
+    },
+    drawComplex:function(ctx){
+        for(var i=0; i<this.complexs.length; ++i)
+        {
+            for(var j=0; j< mainManagement.shapes.length; j++)
+            {
+                if(mainManagement.shapes[j].id === this.complexs[i] && mainManagement.shapes[j].type === "COMPLEX")
+                {
+                    mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
+                }
+            }
+        }
+    },
+    addProtein: function(id, x, y, w, h,text){
+        var protein = new Protein(id, x *this.w, y*this.h, w*this.w, h*this.h, text);
+        mainManagement.addShape(protein);
+        this.proteins.push(id);
+    },
+    drawProtein:function(ctx){
+        for(var i=0; i<this.proteins.length; ++i)
+        {
+            for(var j=0; j< mainManagement.shapes.length; j++)
+            {
+                if(mainManagement.shapes[j].id === this.proteins[i] && mainManagement.shapes[j].type === "PROTEIN")
+                {
+                    mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
+                }
+            }
+        }
+    },
+    addDNA: function(id, x, y, w, h, text){
+        var dna = new DNA(id, x *this.w, y*this.h, w*this.w, h*this.h,text);
+        mainManagement.addShape(dna);
+        this.dnas.push(id);
+    },
+    drawDNA:function(ctx){
+        for(var i=0; i<this.dnas.length; ++i)
+        {
+            for(var j=0; j< mainManagement.shapes.length; j++)
+            {
+                if(mainManagement.shapes[j].id === this.dnas[i] && mainManagement.shapes[j].type === "DNA")
+                {
+                    mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
+                }
+            }
+        }
+    },
+    addSmall_Molecule: function(id, x, y, w, h,text){
+        var molecule = new Small_Molecule(id, x *this.w, y*this.h, w*this.w, h*this.h,text);
+        mainManagement.addShape(molecule);
+        this.molecules.push(id);
+    },
+    drawSmall_Molecule:function(ctx){
+        for(var i=0; i<this.molecules.length; ++i)
+        {
+            for(var j=0; j< mainManagement.shapes.length; j++)
+            {
+                if(mainManagement.shapes[j].id === this.molecules[i] && mainManagement.shapes[j].type === "MOLECULE")
+                {
+                    mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
+                }
+            }
+        }
+    },
+    addDissociation: function(id, x, y){
+        var dissociation = new Dissociation(id, x * this.w, y * this.h);
+        mainManagement.addShape(dissociation);
+        this.dissociations.push(id);
+    },
+    drawDissociation:function(ctx){
+        for(var i=0; i<this.dissociations.length; ++i)
+        {
+            for(var j=0; j< mainManagement.shapes.length; j++)
+            {
+                if(mainManagement.shapes[j].id === this.dissociations[i] && mainManagement.shapes[j].type === "DISSOCIATION")
+                {
+                    mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
+                }
+            }
+        }
+    },
+    addAssociation: function(id, x, y){
+        var association = new Association(id, x * this.w, y * this.h);
+        mainManagement.addShape(association);
+        this.associations.push(id);
+    },
+    drawAssociation:function(ctx){
+        for(var i=0; i<this.associations.length; ++i)
+        {
+            for(var j=0; j< mainManagement.shapes.length; j++)
+            {
+                if(mainManagement.shapes[j].id === this.associations[i] && mainManagement.shapes[j].type === "ASSOCIATION")
+                {
+                    mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
+                }
+            }
+        }
+    },
+    addTransition: function(id, x, y){
+        var transition = new Transition(id, x * this.w, y * this.h);
+        mainManagement.addShape(transition);
+        this.transitions.push(id);
+    },
+    drawTransition:function(ctx){
+        for(var i=0; i<this.transitions.length; ++i)
+        {
+            for(var j=0; j< mainManagement.shapes.length; j++)
+            {
+                if(mainManagement.shapes[j].id === this.transitions[i] && mainManagement.shapes[j].type === "TRANSITION")
+                {
+                    mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
+                }
+            }
+        }
+    },
+    draw: function (ctx, offsetX, offsetY) {
+        this.offsetX =offsetX;
+        this.offsetY =offsetY;
+        this.drawCompartment(ctx);
+        if(this.dissociations.length>0)
+        {
+            this.drawDissociation(ctx);
+        }
+        if(this.associations.length>0)
+        {
+            this.drawAssociation(ctx);
+        }
+        if(this.transitions.length>0)
+        {
+            this.drawTransition(ctx);
+        }
+        if(this.complexs.length>0)
+        {
+            this.drawComplex(ctx);
+        }
+        if(this.proteins.length>0)
+        {
+            this.drawProtein(ctx);
+        }
+        if(this.dnas.length>0)
+        {
+            this.drawDNA(ctx);
+        }
+        if(this.molecules.length>0)
+        {
+            this.drawSmall_Molecule(ctx);
+        }
+        if (this.state.selection === this) {
+             this.drawSelection(ctx);
+        }
+        if (this.textObj) {
+            var x = this.x+this.offsetX;
+            var y = this.y+this.offsetY;
+            var w = this.w;
+            var h = this.h;
+            this.textObj.draw(x + w / 2, y + h - 10, ctx);
+        }
+    },
+    drawCompartment: function(ctx){
+        var x = this.x+ this.offsetX;
+        var y = this.y+ this.offsetY;
+        var w = this.w;
+        var h = this.h;
         ctx.fillStyle = this.fillColor;
         ctx.strokeStyle = this.strokeColor;
         ctx.lineWidth = this.lineWidth;
-        var r = this.x + this.w;
-        var b = this.y + this.h;
+
+        var r = x + w;
+        var b = y + h;
         ctx.save();	// save the context so we don't mess up others
         ctx.beginPath();
-        ctx.moveTo(this.x + this.radius, this.y);
-        ctx.lineTo(r - this.radius, this.y);
-        ctx.quadraticCurveTo(r, this.y, r, this.y + this.radius);
-        ctx.lineTo(r, this.y + this.h - this.radius);
+        ctx.moveTo(x + this.radius, y);
+        ctx.lineTo(r - this.radius, y);
+        ctx.quadraticCurveTo(r, y, r, y + this.radius);
+        ctx.lineTo(r, y + h - this.radius);
         ctx.quadraticCurveTo(r, b, r - this.radius, b);
-        ctx.lineTo(this.x + this.radius, b);
-        ctx.quadraticCurveTo(this.x, b, this.x, b - this.radius);
-        ctx.lineTo(this.x, this.y + this.radius);
-        ctx.quadraticCurveTo(this.x, this.y, this.x + this.radius, this.y);
+        ctx.lineTo(x + this.radius, b);
+        ctx.quadraticCurveTo(x, b, x, b - this.radius);
+        ctx.lineTo(x, y + this.radius);
+        ctx.quadraticCurveTo(x, y, x + this.radius, y);
         ctx.fill();
         ctx.stroke();
         ctx.closePath();
-        ctx.restore();	// restore context to what it was on entry
+    },
+    drawSelection: function(ctx){
+        var i, cur, half;
+        var x = this.x+this.offsetX;
+        var y = this.y+this.offsetY;
+        var w = this.w;
+        var h = this.h;
+        // draw the boxes
+        half = this.state.selectionBoxSize / 2;
+        // 0  1  2
+        // 3     4
+        // 5  6  7
+        // top left, middle, right
+        this.state.selectionHandles[0].x = x - half;
+        this.state.selectionHandles[0].y = y - half;
 
-        if (this.state.selection === this) {
-            // draw the boxes
-            half = this.state.selectionBoxSize / 2;
-            // 0  1  2
-            // 3     4
-            // 5  6  7
-            // top left, middle, right
-            this.state.selectionHandles[0].x = this.x - half;
-            this.state.selectionHandles[0].y = this.y - half;
+        this.state.selectionHandles[1].x = x + w / 2 - half;
+        this.state.selectionHandles[1].y = y - half;
 
-            this.state.selectionHandles[1].x = this.x + this.w / 2 - half;
-            this.state.selectionHandles[1].y = this.y - half;
+        this.state.selectionHandles[2].x = x + w - half;
+        this.state.selectionHandles[2].y = y - half;
 
-            this.state.selectionHandles[2].x = this.x + this.w - half;
-            this.state.selectionHandles[2].y = this.y - half;
+        //middle left
+        this.state.selectionHandles[3].x = x - half;
+        this.state.selectionHandles[3].y = y + h / 2 - half;
 
-            //middle left
-            this.state.selectionHandles[3].x = this.x - half;
-            this.state.selectionHandles[3].y = this.y + this.h / 2 - half;
+        //middle right
+        this.state.selectionHandles[4].x = x + w - half;
+        this.state.selectionHandles[4].y = y + h / 2 - half;
 
-            //middle right
-            this.state.selectionHandles[4].x = this.x + this.w - half;
-            this.state.selectionHandles[4].y = this.y + this.h / 2 - half;
+        //bottom left, middle, right
+        this.state.selectionHandles[6].x = x + w / 2 - half;
+        this.state.selectionHandles[6].y = y + h - half;
 
-            //bottom left, middle, right
-            this.state.selectionHandles[6].x = this.x + this.w / 2 - half;
-            this.state.selectionHandles[6].y = this.y + this.h - half;
+        this.state.selectionHandles[5].x = x - half;
+        this.state.selectionHandles[5].y = y + h - half;
 
-            this.state.selectionHandles[5].x = this.x - half;
-            this.state.selectionHandles[5].y = this.y + this.h - half;
+        this.state.selectionHandles[7].x = x + w - half;
+        this.state.selectionHandles[7].y = y + h - half;
 
-            this.state.selectionHandles[7].x = this.x + this.w - half;
-            this.state.selectionHandles[7].y = this.y + this.h - half;
-
-            for (i = 0; i < 8; i += 1) {
-                cur = this.state.selectionHandles[i];
-                ctx.fillStyle = "#ffff00";
-                ctx.fillRect(cur.x, cur.y, this.state.selectionBoxSize, this.state.selectionBoxSize);
-            }
-        }
-        if (this.textObj) {
-            this.textObj.draw(this.x + this.w / 2, this.y + this.h - 10, ctx);
+        for (i = 0; i < 8; i += 1) {
+            cur = this.state.selectionHandles[i];
+            ctx.fillStyle = "#ffff00";
+            ctx.fillRect(cur.x, cur.y, this.state.selectionBoxSize, this.state.selectionBoxSize);
         }
     },
     contains: function (mx, my) {
-        return  (this.x <= mx) && (this.x + this.w >= mx) &&
-            (this.y <= my) && (this.y + this.h >= my);
-    },
-    getColor: function () {
-        return this.strokeColor;
+        var x = this.x + this.offsetX;
+        var y = this.y + this.offsetY;
+        return  (x<= mx) && (x + this.w >= mx) && (y <= my) && (y + this.h >= my);
     }
 };

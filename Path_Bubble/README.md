@@ -26,12 +26,23 @@
      * Finish drawing `Complex.js`: which is used to draw the complex.
      * Finish drawing `Arrow.js`: which is used to draw the arrow.    
      * Finish drawing  `Transition.js`: which is used to draw the transition reaction with the combination of the `Arrow`  
-     * Finished drawing `Association.js`: which is used to draw the association reaction with the combination of the `Arrow`
-     * Finished drawing `Dissociation.js`: which is used to draw the dissociation reaction with the combination of the `Arrow`
+     * Finished drawing `Dissociation.js`: which is used to draw the association reaction with the combination of the `Arrow`
+     * Finished drawing `Association.js`: which is used to draw the dissociation reaction with the combination of the `Arrow`
      * Finished drawing `Inhibition.js`: which is used to draw the reaction attributes with the varying radius to show the direction.    
      * Finished drawing `Activation.js`: which is used to draw the reaction attributes with the varying radius to show the direction.    
      ![Image](./images/basicShape.PNG)    
      
  3. Fixed a bug, when select a shape, it will be highlight with red color.   
- 4. Try a night to draw a bubble widget, It seems not very well.[http://jsfiddle.net/younyzhU/a25Jt/2/](http://jsfiddle.net/younyzhU/a25Jt/2/)  
+ 4. Try a night to draw a bubble widget, It seems not very well.[http://jsfiddle.net/younyzhU/a25Jt/2/](http://jsfiddle.net/younyzhU/a25Jt/2/) 
+ 
+ * 7/4/2014   
+ 
+ 1. Try to write a XML loader to parse the data.
+ 2. Design the relationship of all the object inside the scene. Here is the **Father---Children** relationship    
+     `Father`:Bubble.    
+        ====>`Child`: Compartment.    
+        ====> ====>`Child`: Protein, Complex, Small Molecule, DNA, ... 
+ 3. Add cascade relation with the compoments, when you move the extener container, all the thing inside the container will move.
+    Here, you can draw bubble, compartment and things in the compartment.
+      ![Image](./images/cascadeRelation.PNG)        
  

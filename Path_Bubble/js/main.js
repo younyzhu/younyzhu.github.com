@@ -3,11 +3,17 @@
  */
 
 //Global variable for counting the bubble number
-var Bubbles = [];
-
+var Bubbles =null;
+var mainManagement=null;
 $(document).ready(function () {
     THREEx.FullScreen.bindKey({ charCode: 'f'.charCodeAt(0) });
-    var navigationCanvas = new MainManage($("#bgCanvas")[0]);
+
+    var str = "./data/SMAD23_Phosphorylation_Motif_Mutants_in_Cancer_19_new.xml";
+    var xmlLoader = new XMLLoader();
+    xmlLoader.load(str);
+
+
+   /*
     var currentView = new Compartment(0,navigationCanvas, 200, 200, 200, 200, 'rgba(255,0,0,0.7)');
     navigationCanvas.addShape(currentView);
     var complex = new Complex(1, 30, 70, 70, 30);
@@ -30,7 +36,6 @@ $(document).ready(function () {
     navigationCanvas.addShape(inhibition);
     var activation = new Activation(16, 100,100,100,400);
     navigationCanvas.addShape(activation);
+    */
 
-    var bubble = new Bubble(0,navigationCanvas, 400, 400, 200, 200, 'rgba(255,0,0,0.7)');
-    navigationCanvas.addShape(bubble);
 });

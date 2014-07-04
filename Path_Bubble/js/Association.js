@@ -1,52 +1,53 @@
 /**
  * Created by Yongnan on 7/3/2014.
  */
-function Dissociation(id, x, y) {
-    this.type = "DISSOCIATION";
+function Association(id, x, y) {
+
+    this.type = "ASSOCIATION";
     this.id = id || 0;
     this.x = x;
     this.y = y;
-    this.l = 20;
+    this.r = 10;
     this.strokeColor = "#666666";
     this.lineWidth = 2;
     this.fillColor = "#ffffff";
+    //Complex is contained in the Compartment and the Compartment is contained in the Bubble
+    //So Offset = offsetBubble + offsetCompartment
+    this.offsetX =0;
+    this.offsetY =0;
 }
-Dissociation.prototype = {
-    draw: function (ctx) {
+Association.prototype = {
+    draw: function (ctx, offsetX, offsetY) {
+        this.offsetX =offsetX;
+        this.offsetY =offsetY;
+        var x = this.x + this.offsetX;
+        var y = this.y + this.offsetY;
+
         ctx.fillStyle = this.fillColor;
         ctx.strokeStyle = this.strokeColor;
         ctx.lineWidth = this.lineWidth;
-        var h = this.l * (Math.sqrt(3) / 2);
         ctx.save();	// save the context so we don't mess up others
         ctx.beginPath();
-        ctx.moveTo(this.x, this.y - h / 2);
-        ctx.lineTo(this.x - this.l / 2, this.y + h / 2);
-        ctx.lineTo(this.x + this.l / 2, this.y + h / 2);
-        ctx.lineTo(this.x, this.y - h / 2);
+        ctx.arc(x, y, this.r, 0, 2 * Math.PI, false);
         ctx.fill();
         ctx.stroke();
         ctx.closePath();
         ctx.restore();	// restore context to what it was on entry
     },
     drawStroke: function(ctx){
-        var h = this.l * (Math.sqrt(3) / 2);
-        ctx.save();
+        var x = this.x + this.offsetX;
+        var y = this.y + this.offsetY;
+        ctx.save();	// save the context so we don't mess up others
         ctx.beginPath();
-        ctx.moveTo(this.x, this.y - h / 2);
-        ctx.lineTo(this.x - this.l / 2, this.y + h / 2);
-        ctx.lineTo(this.x + this.l / 2, this.y + h / 2);
-        ctx.lineTo(this.x, this.y - h / 2);
+        ctx.arc(x, y, this.r, 0, 2 * Math.PI, false);
         ctx.stroke();
         ctx.closePath();
-        ctx.save();
+        ctx.restore();	// restore context to what it was on entry
     },
     contains: function (mx, my) {
-        var h = this.l * (Math.sqrt(3) / 2);
-        var minX = this.x - this.l / 2;
-        var maxX = this.x + this.l / 2;
-        var minY = this.y - h / 2;
-        var maxY = this.y + h / 2;
-        return  (minX <= mx) && (maxX >= mx) &&
-            (minY <= my) && (maxY >= my);
+        var x = this.x + this.offsetX;
+        var y = this.y + this.offsetY;
+        return  (x - mx ) * (x - mx) + (y - my ) * (y - my) <= this.r * this.r;
     }
+
 };

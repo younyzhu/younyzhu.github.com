@@ -13,58 +13,73 @@ function Small_Molecule(id, x, y, w, h, text) {
     this.strokeColor = "#666666";
     this.lineWidth = 2;
     this.fillColor = "#D6D7CA";
+    //Complex is contained in the Compartment and the Compartment is contained in the Bubble
+    //So Offset = offsetBubble + offsetCompartment
+    this.offsetX =0;
+    this.offsetY =0;
 }
 Small_Molecule.prototype = {
-    draw: function (ctx) {
+    draw: function (ctx, offsetX, offsetY) {
+        this.offsetX =offsetX;
+        this.offsetY =offsetY;
+        var x = this.x + this.offsetX;
+        var y = this.y + this.offsetY;
+        var w = this.w;
+        var h = this.h;
         ctx.fillStyle = this.fillColor;
         ctx.strokeStyle = this.strokeColor;
         ctx.lineWidth = this.lineWidth;
-        var mx1 = this.x + this.w / 4;
-        var mx2 = this.x + this.w * 3 / 4;
-        var my1 = this.y + this.h / 3;
-        var my2 = this.y + this.h * 2 / 3;
+        var mx1 = x + w / 4;
+        var mx2 = x + w * 3 / 4;
+        var my1 = y + h / 3;
+        var my2 = y + h * 2 / 3;
         ctx.save();	// save the context so we don't mess up others
         ctx.beginPath();
-        ctx.moveTo(this.x, my1);
-        ctx.lineTo(this.x, my2);
-        ctx.lineTo(mx1, this.y +this.h);
-        ctx.lineTo(mx2, this.y+this.h);
-        ctx.lineTo(this.x + this.w, my2);
-        ctx.lineTo(this.x + this.w, my1);
-        ctx.lineTo(mx2, this.y);
-        ctx.lineTo(mx1, this.y);
-        ctx.lineTo(this.x, my1);
+        ctx.moveTo(x, my1);
+        ctx.lineTo(x, my2);
+        ctx.lineTo(mx1, y + h);
+        ctx.lineTo(mx2, y+ h);
+        ctx.lineTo(x + w, my2);
+        ctx.lineTo(x + w, my1);
+        ctx.lineTo(mx2, y);
+        ctx.lineTo(mx1, y);
+        ctx.lineTo(x, my1);
         ctx.closePath();
         ctx.fill();
         ctx.stroke();
         ctx.restore();	// restore context to what it was on entry
         if(this.textObj)
         {
-            this.textObj.draw(this.x + this.w/2, this.y + this.h/2, ctx );
+            this.textObj.draw(x + w/2, y + h/2, ctx );
         }
     },
     drawStroke: function(ctx){
-        var mx1 = this.x + this.w / 4;
-        var mx2 = this.x + this.w * 3 / 4;
-        var my1 = this.y + this.h / 3;
-        var my2 = this.y + this.h * 2 / 3;
+        var x = this.x + this.offsetX;
+        var y = this.y + this.offsetY;
+        var w = this.w;
+        var h = this.h;
+        var mx1 = x + w / 4;
+        var mx2 = x + w * 3 / 4;
+        var my1 = y + h / 3;
+        var my2 = y + h * 2 / 3;
         ctx.save();	// save the context so we don't mess up others
         ctx.beginPath();
-        ctx.moveTo(this.x, my1);
-        ctx.lineTo(this.x, my2);
-        ctx.lineTo(mx1, this.y +this.h);
-        ctx.lineTo(mx2, this.y+this.h);
-        ctx.lineTo(this.x + this.w, my2);
-        ctx.lineTo(this.x + this.w, my1);
-        ctx.lineTo(mx2, this.y);
-        ctx.lineTo(mx1, this.y);
-        ctx.lineTo(this.x, my1);
+        ctx.moveTo(x, my1);
+        ctx.lineTo(x, my2);
+        ctx.lineTo(mx1, y + h);
+        ctx.lineTo(mx2, y + h);
+        ctx.lineTo(x + w, my2);
+        ctx.lineTo(x + w, my1);
+        ctx.lineTo(mx2, y);
+        ctx.lineTo(mx1, y);
+        ctx.lineTo(x, my1);
         ctx.closePath();
         ctx.stroke();
         ctx.restore();	// restore context to what it was on entry
     },
     contains: function (mx, my) {
-        return  (this.x <= mx) && (this.x + this.w >= mx) &&
-            (this.y <= my) && (this.y + this.h >= my);
+        var x = this.x + this.offsetX;
+        var y = this.y + this.offsetY;
+        return  (x<= mx) && (x + this.w >= mx) && (y <= my) && (y + this.h >= my);
     }
 };

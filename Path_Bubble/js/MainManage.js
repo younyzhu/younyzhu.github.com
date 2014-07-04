@@ -26,7 +26,7 @@ function MainManage(canvas)
     // 5  6  7
     this.selectionHandles = [];
     for (var i = 0; i < 8; i += 1) {
-        this.selectionHandles.push(new Compartment(this));
+        this.selectionHandles.push(new Complex(this));   //here we just keep 8 rectangle for resizing
     }
 
     var _this = this;
@@ -46,16 +46,9 @@ function MainManage(canvas)
             if(_this.shapes[i] === null || _this.shapes[i].type === "ARROW" ||_this.shapes[i].type === "INHIBITION"||_this.shapes[i].type === "ACTIVATION")
                 continue;
             if (_this.shapes[i].contains(mx, my)) {
-                _this.selectId = i;        //We have three types of bubbles: CHART, BUBBLE, COMPARE, so we need to choose the bubble according to this type
-
-                _this.oldPosx = mx;
-                _this.navViewSelected = true;
 
                 _this.dragoffx = mx - _this.shapes[i].x;
                 _this.dragoffy = my - _this.shapes[i].y;
-
-                _this.boxoldPosx = _this.shapes[i].x;
-                _this.boxoldPosy = _this.shapes[i].y;
 
                 _this.dragging = true;
                 _this.selection = _this.shapes[i];
@@ -71,12 +64,7 @@ function MainManage(canvas)
             _this.valid = false; // Need to clear the old selection border
         }
     }, true);
-    // double click for making new shapes
-    canvas.addEventListener('dblclick', function(e) {
-        var mouse = _this.getMouse(e);
-        var mx = mouse.x;
-        var my = mouse.y;
-    }, true);
+
 
     canvas.addEventListener('mousemove', function(e) {
         var mouse = _this.getMouse(e),
@@ -89,29 +77,14 @@ function MainManage(canvas)
             // from where we clicked. Thats why we saved the offset and use it here
             _this.selection.x = mouse.x - _this.dragoffx;  //mouse move relative to the navigation viewpoint
             _this.selection.y = mouse.y - _this.dragoffy;
-            /*
-            if(_this.navViewSelected)
-            {
-                resetAllBubblesPos( (mx- _this.oldPosx)* window.innerWidth /nvWidth );
-            }
 
-            if(_this.selectId > 0) //_this.selectId We have three types of bubbles: CHART, BUBBLE, COMPARE, so we need to choose the bubble according to this type
-            {
-                var offsetpos = boxToViewPointPos(( _this.selection.x - _this.boxoldPosx), ( _this.selection.y - _this.boxoldPosy));
-                var rectId = _this.shapes[_this.selectId].Id;
-                var rectType = _this.shapes[_this.selectId].type;
-                updateBubblePos(rectId, rectType, offsetpos.x, offsetpos.y);
-            }
-            */
-            _this.oldPosx = mx;
-            _this.boxoldPosx = _this.selection.x;
-            _this.boxoldPosy = _this.selection.y;
             _this.valid = false; // Something's dragging so we must redraw
         }
         else if (_this.resizeDragging) {
             // time ro resize!
-            oldx = _this.selection.x;
-            oldy = _this.selection.y;
+            oldx = _this.selection.x + _this.selection.offsetX; //OffsetX is just used for test the contain relatonship
+            oldy = _this.selection.y + _this.selection.offsetY;
+            //Father:Bubble. ====>Child: Compartment. ====> ====>Child: Protein, Complex, Small Molecule, DNA, ...
 
             // 0  1  2
             // 3     4
@@ -213,14 +186,6 @@ function MainManage(canvas)
         _this.dragging = false;
         _this.resizeDragging = false;
         _this.expectResize = -1;
-        _this.selectId = -1;
-        /*
-        if(_this.navViewSelected)
-        {
-            currentViewpointPosx = _this.selection.x;
-            currentViewpointPosy = _this.selection.y;
-            _this.navViewSelected = false;
-        } */
 
         if (_this.selection !== null) {
             if (_this.selection.w < 0) {
@@ -234,8 +199,6 @@ function MainManage(canvas)
         }
     }, true);
 
-    this.selectionColor = '#CC0000';
-    this.selectionWidth = 2;
     this.selectionBoxSize = 6;
 
     function animate(){
@@ -265,7 +228,7 @@ MainManage.prototype={
         if (!this.valid) {
             this.clear();
             // draw all the arrow
-            for (var i = 0; i < this.shapes.length; i += 1) {
+            for (var i = 0; i < this.shapes.length; i ++) {
                 if(this.shapes[i]!==null)
                 {
                     if(this.shapes[i].type === "ARROW"||this.shapes[i].type === "INHIBITION"||this.shapes[i].type === "ACTIVATION")
@@ -274,20 +237,20 @@ MainManage.prototype={
                     }
                 }
             }
-            for (var i = 0; i < this.shapes.length; i += 1) {
+            for (var i = 0; i < this.shapes.length; i ++) {
                 if(this.shapes[i]!==null)
                 {
-                    if(this.shapes[i].type !== "ARROW"&&this.shapes[i].type !== "INHIBITION"&&this.shapes[i].type !== "ACTIVATION")
+                    if(this.shapes[i].type !== "ARROW"&&this.shapes[i].type !== "INHIBITION"&&this.shapes[i].type !== "ACTIVATION" &&this.shapes[i].type === "BUBBLE" )
                     {
                         this.shapes[i].draw(this.ctx);
                     }
-
                 }
             }
             // draw selection
-            if (this.selection !== null) {
+            /*if (this.selection !== null) {
                 this.ctx.strokeStyle = this.selectionColor;
                   this.ctx.lineWidth = this.selectionWidth;
+
                 if(this.selection.type ==="COMPARTMENT"||this.selection.type ==="BUBBLE")
                 {
                     this.ctx.strokeRect(this.selection.x, this.selection.y, this.selection.w, this.selection.h);
@@ -297,7 +260,7 @@ MainManage.prototype={
                     this.selection.drawStroke(this.ctx);
                 }
 
-            }
+            }*/
             this.valid = true;
         }
     },
