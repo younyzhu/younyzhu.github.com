@@ -39,7 +39,7 @@ Small_Molecule.prototype = {
         ctx.save();
         if(this.textObj)
         {
-            this.textObj.draw(this.x + this.w/2, this.y + this.h-10, ctx );
+            this.textObj.draw(this.x + this.w/2, this.y + this.h/2, ctx );
         }
     },
     drawStroke: function(ctx){

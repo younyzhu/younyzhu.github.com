@@ -287,7 +287,7 @@ MainManage.prototype={
             // draw selection
             if (this.selection !== null) {
                 this.ctx.strokeStyle = this.selectionColor;
-                this.ctx.lineWidth = this.selectionWidth;
+                  this.ctx.lineWidth = this.selectionWidth;
                 if(this.selection.type ==="COMPARTMENT")
                 {
                     this.ctx.strokeRect(this.selection.x, this.selection.y, this.selection.w, this.selection.h);

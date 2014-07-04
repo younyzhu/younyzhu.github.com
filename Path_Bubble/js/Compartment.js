@@ -13,7 +13,6 @@ function Compartment(state, x, y, w ,h, color, fillState, id, text)
     this.radius =10;
     this.text = text;
     this.textObj = new Text("Compartment");
-
     this.strokeColor = color || "#0000ff";
     this.lineWidth   = 2;
     this.fillState = fillState ||false;
@@ -27,7 +26,6 @@ Compartment.prototype ={
         {
             ctx.fillStyle = this.strokeColor;
             ctx.fillRect(this.x, this.y, this.w, this.h);
-
         }
         else
         {
@@ -49,7 +47,6 @@ Compartment.prototype ={
             ctx.quadraticCurveTo(this.x, this.y, this.x + this.radius, this.y);
             ctx.stroke();
         }
-
         if (this.state.selection === this)
         {
             // draw the boxes
