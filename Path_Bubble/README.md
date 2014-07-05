@@ -45,4 +45,7 @@
  3. Add cascade relation with the compoments, when you move the extener container, all the thing inside the container will move.
     Here, you can draw bubble, compartment and things in the compartment.
       ![Image](./images/cascadeRelation.PNG)        
+ 4. Make three types of arrows moveable.     
+      ![Image](./images/arrowMoveable.PNG)  
+     
  

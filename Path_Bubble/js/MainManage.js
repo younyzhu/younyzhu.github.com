@@ -30,7 +30,7 @@ function MainManage(canvas)
     }
 
     var _this = this;
-
+    var flag = null;
     //canvas.addEventListener('selectstart', function(e) { e.preventDefault(); return false; }, false);
     // Up, down, and move are for dragging
     canvas.addEventListener('mousedown', function(e) {
@@ -43,12 +43,25 @@ function MainManage(canvas)
         var mx = mouse.x;
         var my = mouse.y;
         for (var i = _this.shapes.length-1; i >= 0; i -= 1) {
-            if(_this.shapes[i] === null || _this.shapes[i].type === "ARROW" ||_this.shapes[i].type === "INHIBITION"||_this.shapes[i].type === "ACTIVATION")
+            if(_this.shapes[i] === null )
+            //if(_this.shapes[i] === null || _this.shapes[i].type === "ARROW" ||_this.shapes[i].type === "INHIBITION"||_this.shapes[i].type === "ACTIVATION")
                 continue;
             if (_this.shapes[i].contains(mx, my)) {
 
                 _this.dragoffx = mx - _this.shapes[i].x;
                 _this.dragoffy = my - _this.shapes[i].y;
+                 if(_this.shapes[i].contains(mx, my) === "START")
+                 {
+                     _this.dragoffx = mx - _this.shapes[i].x1;
+                     _this.dragoffy = my - _this.shapes[i].y1;
+                     flag = "START";
+                 }
+                else if(_this.shapes[i].contains(mx, my) === "END")
+                {
+                    _this.dragoffx = mx - _this.shapes[i].x2;
+                    _this.dragoffy = my - _this.shapes[i].y2;
+                    flag = "END";
+                }
 
                 _this.dragging = true;
                 _this.selection = _this.shapes[i];
@@ -77,7 +90,17 @@ function MainManage(canvas)
             // from where we clicked. Thats why we saved the offset and use it here
             _this.selection.x = mouse.x - _this.dragoffx;  //mouse move relative to the navigation viewpoint
             _this.selection.y = mouse.y - _this.dragoffy;
+            if(flag === "START")
+            {
+                _this.selection.x1 = mouse.x - _this.dragoffx;  //mouse move relative to the navigation viewpoint
+                _this.selection.y1 = mouse.y - _this.dragoffy;
 
+            }
+            else if(flag === "END")
+            {
+                _this.selection.x2 = mouse.x - _this.dragoffx;  //mouse move relative to the navigation viewpoint
+                _this.selection.y2 = mouse.y - _this.dragoffy;
+            }
             _this.valid = false; // Something's dragging so we must redraw
         }
         else if (_this.resizeDragging) {
@@ -186,7 +209,7 @@ function MainManage(canvas)
         _this.dragging = false;
         _this.resizeDragging = false;
         _this.expectResize = -1;
-
+        flag = null;
         if (_this.selection !== null) {
             if (_this.selection.w < 0) {
                 _this.selection.w = -_this.selection.w;
@@ -227,7 +250,7 @@ MainManage.prototype={
         // if our state is invalid, redraw and validate!
         if (!this.valid) {
             this.clear();
-            // draw all the arrow
+            /*// draw all the arrow
             for (var i = 0; i < this.shapes.length; i ++) {
                 if(this.shapes[i]!==null)
                 {
@@ -236,11 +259,11 @@ MainManage.prototype={
                         this.shapes[i].draw(this.ctx);
                     }
                 }
-            }
+            } */
             for (var i = 0; i < this.shapes.length; i ++) {
                 if(this.shapes[i]!==null)
                 {
-                    if(this.shapes[i].type !== "ARROW"&&this.shapes[i].type !== "INHIBITION"&&this.shapes[i].type !== "ACTIVATION" &&this.shapes[i].type === "BUBBLE" )
+                    if(this.shapes[i].type === "BUBBLE" )
                     {
                         this.shapes[i].draw(this.ctx);
                     }
