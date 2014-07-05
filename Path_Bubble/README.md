@@ -2,8 +2,12 @@
 
 ##Introduction   
 
+  Path bubble Project from  [https://sites.google.com/a/umbc.edu/pathbubbles/home](https://sites.google.com/a/umbc.edu/pathbubbles/home)     
+  You can get detailed informaiton from [https://sites.google.com/a/umbc.edu/pathbubbles/pathbubbles-1-0](https://sites.google.com/a/umbc.edu/pathbubbles/pathbubbles-1-0)   
+  This part of project is trying to let human adjust the layout of the bubble, and find the best and beautiful layout.   
 ##Current ProjectWebsite
-  Please visit [website](http://younyzhu.github.io/Path_Bubble/pathBubble.html)     
+  Please visit [website](http://younyzhu.github.io/Path_Bubble/pathBubble.html) 
+
 ##Operation
   
   1. Click `f` on your keyboard for full screen, Click `ESC` for exiting `Full Screen` mode.    
@@ -47,5 +51,8 @@
       ![Image](./images/cascadeRelation.PNG)        
  4. Make three types of arrows moveable.     
       ![Image](./images/arrowMoveable.PNG)  
- 5. As Arrows should be draw on the lowest layer, so I first draw the arrow and then draw the other elements by dividing the drawCompartment function into two parts:  drawCompartment and  drawCompartmentElements   
+ 5. As `Arrows` should be draw on the lowest layer, so I first draw the arrow and then draw the other elements by dividing 
+ the drawCompartment function into two parts:  drawCompartment and  drawCompartmentElements     
+ 6. Information from Keqin `Arrow` is bind with the `Node`, so I need to change the code of the `Arrow.js`, `Activation.js` and `Inhibition.js`.    
+ 
  

@@ -21,6 +21,8 @@ XMLLoader.prototype = {
     parse: function($this){
         mainManagement = new MainManage($("#bgCanvas")[0]);
         Bubbles = new Bubble(0,mainManagement, 400, 20, 850, 850);
+        Bubbles.offsetX = 400;
+        Bubbles.offsetY = 20;
         mainManagement.addShape(Bubbles);
 
         var compartmentBlock = $this.find("compartmentBlock");
@@ -69,8 +71,10 @@ XMLLoader.prototype = {
         mainManagement.shapes[1].addDissociation(6,0.4,0.4);
         mainManagement.shapes[1].addAssociation(7,0.3,0.3);
         mainManagement.shapes[1].addTransition(8,0.5,0.5);
-        Bubbles.addActivation(11, 0.1, 0.2, 0.6, 0.6);
-        Bubbles.addInhibition(12, 0.4, 0.2, 0.6, 0.6);
-        Bubbles.addArrow(13, 0.4, 0.7, 0.5, 0.6);
+        Bubbles.addActivation(11, "PROTEIN", 2, "ASSOCIATION", 7);
+        Bubbles.addInhibition(12, "DNA", 4, "MOLECULE", 5);
+        Bubbles.addArrow(13, "MOLECULE", 5, "PROTEIN", 2);
+        Bubbles.addArrow(14, "MOLECULE", 5, "DISSOCIATION", 6);
+        Bubbles.addInhibition(15, "DISSOCIATION", 6, "TRANSITION", 8);
     }
 };

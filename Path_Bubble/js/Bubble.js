@@ -45,8 +45,10 @@ Bubble.prototype = {
             this.drawCompartmentElements(ctx);
         }
     },
-    addArrow: function(id,beginX,beginY,endX,endY ){
-        var arrow = new Arrow(id,beginX*this.w,beginY*this.h,endX*this.w,endY*this.h);
+    addArrow: function(id, beginType, beginNodeId, endType, endNodeId  ){
+        var arrow = new Arrow(id, beginType, beginNodeId, endType, endNodeId );
+        arrow.offsetX = this.offsetX;
+        arrow.offsetY = this.offsetY;
         mainManagement.addShape(arrow);
         this.arrows.push(id);
     },
@@ -62,8 +64,10 @@ Bubble.prototype = {
             }
         }
     },
-    addInhibition: function(id,beginX,beginY,endX,endY ){
-        var inhibition = new Inhibition(id,beginX*this.w,beginY*this.h,endX*this.w,endY*this.h);
+    addInhibition: function(id, beginType, beginNodeId, endType, endNodeId){
+        var inhibition = new Inhibition(id, beginType, beginNodeId, endType, endNodeId);
+        inhibition.offsetX = this.offsetX;
+        inhibition.offsetY = this.offsetY;
         mainManagement.addShape(inhibition);
         this.inhibitions.push(id);
     },
@@ -79,9 +83,11 @@ Bubble.prototype = {
             }
         }
     },
-    addActivation: function(id,beginX,beginY,endX,endY ){
-        var inhibition = new Activation(id,beginX*this.w,beginY*this.h,endX*this.w,endY*this.h);
-        mainManagement.addShape(inhibition);
+    addActivation: function(id, beginType, beginNodeId, endType, endNodeId ){
+        var activation = new Activation(id, beginType, beginNodeId, endType, endNodeId);
+        activation.offsetX = this.offsetX;
+        activation.offsetY = this.offsetY;
+        mainManagement.addShape(activation);
         this.activations.push(id);
     },
     drawActivation: function(ctx){
@@ -192,6 +198,8 @@ Bubble.prototype = {
     },
     addCompartment: function(i, x, y, w, h, name){
         var compartment = new Compartment(i, this.state, x *this.w, y*this.h, w*this.w, h*this.h, name);
+        compartment.offsetX = this.offsetX;
+        compartment.offsetY = this.offsetY;
         mainManagement.addShape(compartment);
         this.compartments.push(i);
     },

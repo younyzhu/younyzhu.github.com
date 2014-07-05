@@ -48,6 +48,8 @@ Compartment.prototype = {
     },
     addProtein: function(id, x, y, w, h,text){
         var protein = new Protein(id, x *this.w, y*this.h, w*this.w, h*this.h, text);
+        protein.offsetX = this.offsetX;
+        protein.offsetY = this.offsetY;
         mainManagement.addShape(protein);
         this.proteins.push(id);
     },
@@ -65,6 +67,8 @@ Compartment.prototype = {
     },
     addDNA: function(id, x, y, w, h, text){
         var dna = new DNA(id, x *this.w, y*this.h, w*this.w, h*this.h,text);
+        dna.offsetX = this.offsetX;
+        dna.offsetY = this.offsetY;
         mainManagement.addShape(dna);
         this.dnas.push(id);
     },
@@ -82,6 +86,8 @@ Compartment.prototype = {
     },
     addSmall_Molecule: function(id, x, y, w, h,text){
         var molecule = new Small_Molecule(id, x *this.w, y*this.h, w*this.w, h*this.h,text);
+        molecule.offsetX = this.offsetX;
+        molecule.offsetY = this.offsetY;
         mainManagement.addShape(molecule);
         this.molecules.push(id);
     },
@@ -99,6 +105,8 @@ Compartment.prototype = {
     },
     addDissociation: function(id, x, y){
         var dissociation = new Dissociation(id, x * this.w, y * this.h);
+        dissociation.offsetX = this.offsetX;
+        dissociation.offsetY = this.offsetY;
         mainManagement.addShape(dissociation);
         this.dissociations.push(id);
     },
@@ -116,6 +124,8 @@ Compartment.prototype = {
     },
     addAssociation: function(id, x, y){
         var association = new Association(id, x * this.w, y * this.h);
+        association.offsetX = this.offsetX;
+        association.offsetY = this.offsetY;
         mainManagement.addShape(association);
         this.associations.push(id);
     },
@@ -133,6 +143,8 @@ Compartment.prototype = {
     },
     addTransition: function(id, x, y){
         var transition = new Transition(id, x * this.w, y * this.h);
+        transition.offsetX = this.offsetX;
+        transition.offsetY = this.offsetY;
         mainManagement.addShape(transition);
         this.transitions.push(id);
     },
@@ -152,7 +164,7 @@ Compartment.prototype = {
         this.offsetX =offsetX;
         this.offsetY =offsetY;
         this.drawCompartment(ctx);
-
+        this.drawElements(ctx);
         if (this.state.selection === this) {
              this.drawSelection(ctx);
         }

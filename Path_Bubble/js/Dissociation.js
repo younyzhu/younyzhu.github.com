@@ -6,6 +6,8 @@ function Dissociation(id, x, y) {
     this.id = id || 0;
     this.x = x;
     this.y = y;
+    this.w = 20;
+    this.h = 20;
     this.l = 20;
     this.strokeColor = "#666666";
     this.lineWidth = 2;

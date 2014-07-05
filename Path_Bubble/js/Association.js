@@ -7,6 +7,8 @@ function Association(id, x, y) {
     this.id = id || 0;
     this.x = x;
     this.y = y;
+    this.w = 10;
+    this.h = 10;
     this.r = 10;
     this.strokeColor = "#666666";
     this.lineWidth = 2;

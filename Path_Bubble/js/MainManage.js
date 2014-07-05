@@ -42,15 +42,14 @@ function MainManage(canvas)
         var mouse = _this.getMouse(e);
         var mx = mouse.x;
         var my = mouse.y;
-        for (var i = _this.shapes.length-1; i >= 0; i -= 1) {
-            if(_this.shapes[i] === null )
-            //if(_this.shapes[i] === null || _this.shapes[i].type === "ARROW" ||_this.shapes[i].type === "INHIBITION"||_this.shapes[i].type === "ACTIVATION")
+        for (var i = _this.shapes.length-1; i >= 0; i --) {
+            if(_this.shapes[i] === null || _this.shapes[i].type === "ARROW" ||_this.shapes[i].type === "INHIBITION"||_this.shapes[i].type === "ACTIVATION")
                 continue;
             if (_this.shapes[i].contains(mx, my)) {
 
                 _this.dragoffx = mx - _this.shapes[i].x;
                 _this.dragoffy = my - _this.shapes[i].y;
-                 if(_this.shapes[i].contains(mx, my) === "START")
+                 /*if(_this.shapes[i].contains(mx, my) === "START")
                  {
                      _this.dragoffx = mx - _this.shapes[i].x1;
                      _this.dragoffy = my - _this.shapes[i].y1;
@@ -61,7 +60,7 @@ function MainManage(canvas)
                     _this.dragoffx = mx - _this.shapes[i].x2;
                     _this.dragoffy = my - _this.shapes[i].y2;
                     flag = "END";
-                }
+                } */
 
                 _this.dragging = true;
                 _this.selection = _this.shapes[i];
@@ -90,7 +89,7 @@ function MainManage(canvas)
             // from where we clicked. Thats why we saved the offset and use it here
             _this.selection.x = mouse.x - _this.dragoffx;  //mouse move relative to the navigation viewpoint
             _this.selection.y = mouse.y - _this.dragoffy;
-            if(flag === "START")
+            /*if(flag === "START")
             {
                 _this.selection.x1 = mouse.x - _this.dragoffx;  //mouse move relative to the navigation viewpoint
                 _this.selection.y1 = mouse.y - _this.dragoffy;
@@ -100,7 +99,7 @@ function MainManage(canvas)
             {
                 _this.selection.x2 = mouse.x - _this.dragoffx;  //mouse move relative to the navigation viewpoint
                 _this.selection.y2 = mouse.y - _this.dragoffy;
-            }
+            } */
             _this.valid = false; // Something's dragging so we must redraw
         }
         else if (_this.resizeDragging) {
