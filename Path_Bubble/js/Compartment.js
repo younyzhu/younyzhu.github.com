@@ -152,6 +152,19 @@ Compartment.prototype = {
         this.offsetX =offsetX;
         this.offsetY =offsetY;
         this.drawCompartment(ctx);
+
+        if (this.state.selection === this) {
+             this.drawSelection(ctx);
+        }
+        if (this.textObj) {
+            var x = this.x+this.offsetX;
+            var y = this.y+this.offsetY;
+            var w = this.w;
+            var h = this.h;
+            this.textObj.draw(x + w / 2, y + h - 10, ctx);
+        }
+    },
+    drawElements: function(ctx){
         if(this.dissociations.length>0)
         {
             this.drawDissociation(ctx);
@@ -179,16 +192,6 @@ Compartment.prototype = {
         if(this.molecules.length>0)
         {
             this.drawSmall_Molecule(ctx);
-        }
-        if (this.state.selection === this) {
-             this.drawSelection(ctx);
-        }
-        if (this.textObj) {
-            var x = this.x+this.offsetX;
-            var y = this.y+this.offsetY;
-            var w = this.w;
-            var h = this.h;
-            this.textObj.draw(x + w / 2, y + h - 10, ctx);
         }
     },
     drawCompartment: function(ctx){

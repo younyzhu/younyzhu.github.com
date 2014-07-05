@@ -41,6 +41,9 @@ Bubble.prototype = {
         if (this.state.selection === this) {
             this.drawSelection(ctx);
         }
+        if(this.compartments.length > 0){
+            this.drawCompartmentElements(ctx);
+        }
     },
     addArrow: function(id,beginX,beginY,endX,endY ){
         var arrow = new Arrow(id,beginX*this.w,beginY*this.h,endX*this.w,endY*this.h);
@@ -208,6 +211,23 @@ Bubble.prototype = {
              }
              //this.compartments[i].draw(ctx, this.x, this.y);    //This is the relative position (this.x, this.y) for all the compartment inside the bubble
          }
+    },  //As Arrows should be draw on the lowest layer, so I first draw the arrow and then draw the other elements by dividing the drawCompartment function into two parts:  drawCompartment and  drawCompartmentElements
+    drawCompartmentElements: function(ctx){
+        for(var i=0; i<this.compartments.length; i++)
+        {
+            // We can skip the drawing of elements that have moved off the screen:
+            /*if (this.compartments[i].x <= this.width && this.compartments[i].y <= this.height &&
+             this.compartments[i].x + this.compartments[i].w >= 0 && this.compartments[i].y + this.compartments[i].h >= 0) {
+             }*/
+            for(var j=0; j< mainManagement.shapes.length; j++)
+            {
+                if(mainManagement.shapes[j].id === this.compartments[i] && mainManagement.shapes[j].type === "COMPARTMENT")
+                {
+                    mainManagement.shapes[j].drawElements(ctx, this.x, this.y);
+                }
+            }
+            //this.compartments[i].draw(ctx, this.x, this.y);    //This is the relative position (this.x, this.y) for all the compartment inside the bubble
+        }
     },
     contains: function (mx, my) {
         return  (this.x <= mx) && (this.x + this.w >= mx) &&

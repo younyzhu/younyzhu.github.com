@@ -59,8 +59,8 @@
       <file leaf-file-name="MainManage.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/MainManage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="5271" max-vertical-offset="7696">
-              <caret line="211" column="20" selection-start-line="211" selection-start-column="20" selection-end-line="211" selection-end-column="20" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="6597" max-vertical-offset="7696">
+              <caret line="267" column="41" selection-start-line="267" selection-start-column="41" selection-end-line="267" selection-end-column="41" />
               <folding>
                 <element signature="e#10691#11111#0" expanded="false" />
               </folding>
@@ -68,34 +68,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Association.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/Association.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="731" max-vertical-offset="1456">
-              <caret line="43" column="43" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Arrow.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/Arrow.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.5224111" vertical-offset="185" max-vertical-offset="1534">
-              <caret line="45" column="30" selection-start-line="43" selection-start-column="0" selection-end-line="50" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Bubble.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Bubble.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/Bubble.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="383" max-vertical-offset="3354">
-              <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.54416406" vertical-offset="2723" max-vertical-offset="3874">
+              <caret line="210" column="26" selection-start-line="210" selection-start-column="14" selection-end-line="210" selection-end-column="14" />
               <folding>
-                <element signature="e#3287#4812#0" expanded="false" />
-                <element signature="e#4843#6954#0" expanded="false" />
+                <element signature="e#3386#4911#0" expanded="false" />
+                <element signature="e#4942#7053#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Compartment.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/Compartment.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1761" max-vertical-offset="3744">
+              <caret line="168" column="56" selection-start-line="168" selection-start-column="9" selection-end-line="168" selection-end-column="9" />
+              <folding>
+                <element signature="e#921#1082#0" expanded="false" />
+                <element signature="e#1113#1535#0" expanded="false" />
+                <element signature="e#1582#1749#0" expanded="false" />
+                <element signature="e#1780#2202#0" expanded="false" />
+                <element signature="e#2246#2396#0" expanded="false" />
+                <element signature="e#2423#2833#0" expanded="false" />
+                <element signature="e#2887#3063#0" expanded="false" />
+                <element signature="e#3101#3526#0" expanded="false" />
+                <element signature="e#3567#3731#0" expanded="false" />
+                <element signature="e#3767#4204#0" expanded="false" />
+                <element signature="e#4244#4404#0" expanded="false" />
+                <element signature="e#4439#4873#0" expanded="false" />
+                <element signature="e#7664#9213#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -172,15 +176,15 @@
         <option value="$PROJECT_DIR$/js/DNA.js" />
         <option value="$PROJECT_DIR$/js/Small_Molecule.js" />
         <option value="$PROJECT_DIR$/js/Transition.js" />
-        <option value="$PROJECT_DIR$/js/Compartment.js" />
         <option value="$PROJECT_DIR$/js/Association.js" />
-        <option value="$PROJECT_DIR$/js/Bubble.js" />
         <option value="$PROJECT_DIR$/js/XMLLoader.js" />
         <option value="$PROJECT_DIR$/js/Arrow.js" />
         <option value="$PROJECT_DIR$/js/Inhibition.js" />
         <option value="$PROJECT_DIR$/js/Activation.js" />
         <option value="$PROJECT_DIR$/js/MainManage.js" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/js/Compartment.js" />
+        <option value="$PROJECT_DIR$/js/Bubble.js" />
       </list>
     </option>
   </component>
@@ -386,7 +390,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -395,7 +399,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32864866" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26329648" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27243245" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27243245" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -470,8 +474,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="3380" max-vertical-offset="3822">
           <caret line="130" column="64" selection-start-line="130" selection-start-column="64" selection-end-line="130" selection-end-column="64" />
           <folding>
-            <element signature="e#3287#4812#0" expanded="false" />
-            <element signature="e#4843#6954#0" expanded="false" />
+            <element signature="e#3386#4911#0" expanded="false" />
+            <element signature="e#4942#7053#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -590,27 +594,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/Compartment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.179289" vertical-offset="0" max-vertical-offset="4810">
-          <caret line="194" column="78" selection-start-line="194" selection-start-column="37" selection-end-line="194" selection-end-column="37" />
-          <folding>
-            <element signature="e#921#1082#0" expanded="false" />
-            <element signature="e#1113#1535#0" expanded="false" />
-            <element signature="e#1582#1749#0" expanded="false" />
-            <element signature="e#1780#2202#0" expanded="false" />
-            <element signature="e#2246#2396#0" expanded="false" />
-            <element signature="e#2423#2833#0" expanded="false" />
-            <element signature="e#2887#3063#0" expanded="false" />
-            <element signature="e#3101#3526#0" expanded="false" />
-            <element signature="e#3567#3731#0" expanded="false" />
-            <element signature="e#3767#4204#0" expanded="false" />
-            <element signature="e#4244#4404#0" expanded="false" />
-            <element signature="e#4439#4873#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/Complex.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="338" max-vertical-offset="1404">
@@ -640,17 +623,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="1129" max-vertical-offset="2132">
           <caret line="62" column="21" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/Bubble.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1007" max-vertical-offset="3354">
-          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-          <folding>
-            <element signature="e#3287#4812#0" expanded="false" />
-            <element signature="e#4843#6954#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -689,29 +661,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/Arrow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23647605" vertical-offset="185" max-vertical-offset="1534">
+          <caret line="13" column="75" selection-start-line="13" selection-start-column="75" selection-end-line="13" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/Association.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5981453" vertical-offset="731" max-vertical-offset="1456">
+          <caret line="43" column="43" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/Compartment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1761" max-vertical-offset="3744">
+          <caret line="168" column="56" selection-start-line="168" selection-start-column="9" selection-end-line="168" selection-end-column="9" />
+          <folding>
+            <element signature="e#921#1082#0" expanded="false" />
+            <element signature="e#1113#1535#0" expanded="false" />
+            <element signature="e#1582#1749#0" expanded="false" />
+            <element signature="e#1780#2202#0" expanded="false" />
+            <element signature="e#2246#2396#0" expanded="false" />
+            <element signature="e#2423#2833#0" expanded="false" />
+            <element signature="e#2887#3063#0" expanded="false" />
+            <element signature="e#3101#3526#0" expanded="false" />
+            <element signature="e#3567#3731#0" expanded="false" />
+            <element signature="e#3767#4204#0" expanded="false" />
+            <element signature="e#4244#4404#0" expanded="false" />
+            <element signature="e#4439#4873#0" expanded="false" />
+            <element signature="e#7664#9213#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/MainManage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5271" max-vertical-offset="7696">
-          <caret line="211" column="20" selection-start-line="211" selection-start-column="20" selection-end-line="211" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="6597" max-vertical-offset="7696">
+          <caret line="267" column="41" selection-start-line="267" selection-start-column="41" selection-end-line="267" selection-end-column="41" />
           <folding>
             <element signature="e#10691#11111#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/Association.js">
+    <entry file="file://$PROJECT_DIR$/js/Bubble.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="809" max-vertical-offset="1456">
-          <caret line="43" column="43" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/Arrow.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5224111" vertical-offset="185" max-vertical-offset="1534">
-          <caret line="45" column="30" selection-start-line="43" selection-start-column="0" selection-end-line="50" selection-end-column="9" />
-          <folding />
+        <state vertical-scroll-proportion="0.54416406" vertical-offset="2723" max-vertical-offset="3874">
+          <caret line="210" column="26" selection-start-line="210" selection-start-column="14" selection-end-line="210" selection-end-column="14" />
+          <folding>
+            <element signature="e#3386#4911#0" expanded="false" />
+            <element signature="e#4942#7053#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

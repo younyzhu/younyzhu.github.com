@@ -47,5 +47,5 @@
       ![Image](./images/cascadeRelation.PNG)        
  4. Make three types of arrows moveable.     
       ![Image](./images/arrowMoveable.PNG)  
-     
+ 5. As Arrows should be draw on the lowest layer, so I first draw the arrow and then draw the other elements by dividing the drawCompartment function into two parts:  drawCompartment and  drawCompartmentElements   
  
