@@ -103,11 +103,18 @@ function MainManage(canvas)
             _this.valid = false; // Something's dragging so we must redraw
         }
         else if (_this.resizeDragging) {
-            // time ro resize!
-            oldx = _this.selection.x + _this.selection.offsetX; //OffsetX is just used for test the contain relatonship
-            oldy = _this.selection.y + _this.selection.offsetY;
-            //Father:Bubble. ====>Child: Compartment. ====> ====>Child: Protein, Complex, Small Molecule, DNA, ...
 
+            //Father:Bubble. ====>Child: Compartment. ====> ====>Child: Protein, Complex, Small Molecule, DNA, ...
+            if(_this.selection.type === "BUBBLE")  //Fixed a bug: Bubble object do not need to add offsetX;
+            {
+                oldx = _this.selection.x; //OffsetX is just used for test the contain relatonship
+                oldy = _this.selection.y;
+            }
+            else
+            {
+                oldx = _this.selection.x + _this.selection.offsetX; //OffsetX is just used for test the contain relatonship
+                oldy = _this.selection.y + _this.selection.offsetY;
+            }
             // 0  1  2
             // 3     4
             // 5  6  7
@@ -249,16 +256,7 @@ MainManage.prototype={
         // if our state is invalid, redraw and validate!
         if (!this.valid) {
             this.clear();
-            /*// draw all the arrow
-            for (var i = 0; i < this.shapes.length; i ++) {
-                if(this.shapes[i]!==null)
-                {
-                    if(this.shapes[i].type === "ARROW"||this.shapes[i].type === "INHIBITION"||this.shapes[i].type === "ACTIVATION")
-                    {
-                        this.shapes[i].draw(this.ctx);
-                    }
-                }
-            } */
+
             for (var i = 0; i < this.shapes.length; i ++) {
                 if(this.shapes[i]!==null)
                 {

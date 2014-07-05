@@ -56,6 +56,12 @@
  6. Information from Keqin `Arrow` is bind with the `Node`, so I need to change the code of the `Arrow.js`, `Activation.js` and `Inhibition.js`. 
     ![Image](./images/bindNodeArrow.PNG)  
     
+ * 7/5/2014
+ 
+ 1. Try add [data.gui.js](http://workshop.chromeexperiments.com/examples/gui/#1--Basic-Usage) to the program for file loader control.
+ 2. Try to use clipping technique to clip a bubble region
+ 
+    
     
     
  

@@ -150,19 +150,23 @@ Bubble.prototype = {
         ctx.fillStyle = this.fillColor;
         ctx.strokeStyle = this.strokeColor;
         ctx.lineWidth = this.lineWidth;
+        var x = this.x;
+        var y = this.y;
+        var w = this.w;
+        var h = this.h;
 
         ctx.save();	// save the context so we don't mess up others
         ctx.beginPath();
         ctx.fillStyle = "#ffffff";
-        ctx.fillRect(this.x, this.y, this.w, this.h);
+        ctx.fillRect(x, y, w, h);
         ctx.stroke();
         ctx.restore();	// restore context to what it was on entry
 
         ctx.save();	// save the context so we don't mess up others
         ctx.beginPath();
-        r = Math.sqrt((this.h/2)*(this.h/2) + 16 *this.w * this.w);
-        thea = Math.atan(this.h/this.w/8);
-        ctx.arc(this.x + this.w*4, this.y + this.h/2, r , Math.PI - thea,  Math.PI+thea, false);
+        r = Math.sqrt((h/2)*(h/2) + 16 *w * w);
+        thea = Math.atan(h/w/8);
+        ctx.arc(x + w*4, y + h/2, r , Math.PI - thea,  Math.PI+thea, false);
         ctx.closePath();
         ctx.fill();
         //ctx.stroke();
@@ -170,9 +174,9 @@ Bubble.prototype = {
 
         ctx.save();	// save the context so we don't mess up others
         ctx.beginPath();
-        r = Math.sqrt((this.h/2)*(this.h/2) + 16 *this.w * this.w);
-        thea = Math.atan(this.h/this.w/8);
-        ctx.arc(this.x- this.w*3, this.y + this.h/2, r , -thea,  thea, false);
+        r = Math.sqrt((h/2)*(h/2) + 16 *w * w);
+        thea = Math.atan(h/w/8);
+        ctx.arc(x- w*3, y + h/2, r , -thea,  thea, false);
         ctx.closePath();
         ctx.fill();
         //ctx.stroke();
@@ -180,21 +184,54 @@ Bubble.prototype = {
 
         ctx.save();	// save the context so we don't mess up others
         ctx.beginPath();
-        r = Math.sqrt((this.w/2)*(this.w/2) + 16 * this.h * this.h);
-        thea = Math.atan(this.w/this.h/8);
-        ctx.arc(this.x + this.w/2, this.y + 4 * this.h, r , Math.PI*3/2-thea,  Math.PI*3/2 + thea, false);
+        r = Math.sqrt((w/2)*(w/2) + 16 * h * h);
+        thea = Math.atan(w/h/8);
+        ctx.arc(x + w/2, y + 4 * h, r , Math.PI*3/2-thea,  Math.PI*3/2 + thea, false);
         ctx.closePath();
         ctx.fill();
         ctx.restore();	// restore context to what it was on entry
 
         ctx.save();	// save the context so we don't mess up others
         ctx.beginPath();
-        r = Math.sqrt((this.w/2)*(this.w/2) + 16*this.h*this.h);
-        thea = Math.atan(this.w/this.h/8);
-        ctx.arc(this.x + this.w/2, this.y-3*this.h , r , Math.PI/2-thea,  Math.PI/2 + thea, false);
+        r = Math.sqrt((w/2)*(w/2) + 16*h*h);
+        thea = Math.atan(w/h/8);
+        ctx.arc(x + w/2, y-3*h , r , Math.PI/2-thea,  Math.PI/2 + thea, false);
         ctx.closePath();
         ctx.fill();
         ctx.restore();	// restore context to what it was on entry
+        /*
+
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        ctx.save();
+        ctx.beginPath();
+        r = Math.sqrt((h / 2) * (h / 2) + 16 * w * w);
+        thea = Math.atan(h / w / 8);
+        ctx.arc(x + w * 4, y + h / 2, r, Math.PI - thea, Math.PI + thea, false);
+        ctx.closePath();
+        r = Math.sqrt((h / 2) * (h / 2) + 16 * w * w);
+        thea = Math.atan(h / w / 8);
+        ctx.arc(x - w * 3, y + h / 2, r, -thea, thea, false);
+        ctx.closePath();
+        r = Math.sqrt((w / 2) * (w / 2) + 16 * h * h);
+        thea = Math.atan(w / h / 8);
+        ctx.arc(x + w / 2, y + 4 * h, r, Math.PI * 3 / 2 - thea, Math.PI * 3 / 2 + thea, false);
+        ctx.closePath();
+        r = Math.sqrt((w / 2) * (w / 2) + 16 * h * h);
+        thea = Math.atan(w / h / 8);
+        ctx.arc(x + w / 2, y - 3 * h, r, Math.PI / 2 - thea, Math.PI / 2 + thea, false);
+        ctx.closePath();
+        ctx.clip();
+        ctx.fill();
+        //ctx.restore();	// restore context to what it was on entry
+
+        ctx.save();	// save the context so we don't mess up others
+        ctx.beginPath();
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(x, y, w, h);
+        ctx.stroke();
+        ctx.restore();	// restore context to what it was on entry
+        //ctx.restore();	// restore context to what it was on entry
+        */
     },
     addCompartment: function(i, x, y, w, h, name){
         var compartment = new Compartment(i, this.state, x *this.w, y*this.h, w*this.w, h*this.h, name);
@@ -238,7 +275,11 @@ Bubble.prototype = {
         }
     },
     contains: function (mx, my) {
-        return  (this.x <= mx) && (this.x + this.w >= mx) &&
-            (this.y <= my) && (this.y + this.h >= my);
+        var x = this.x;
+        var y = this.y;
+        var w = this.w;
+        var h = this.h;
+        return  (x <= mx) && (x + w >= mx) &&
+            (y <= my) && (y + h >= my);
     }
 };

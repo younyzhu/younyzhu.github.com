@@ -3,10 +3,31 @@
  */
 
 //Global variable for counting the bubble number
-var Bubbles =null;
-var mainManagement=null;
+var Bubbles = null;
+var mainManagement = null;
 $(document).ready(function () {
     THREEx.FullScreen.bindKey({ charCode: 'f'.charCodeAt(0) });
+    var params = {
+        loadFile : function() {
+           $('#myInput').click();
+        },
+        button : function(){
+            var selected_file = $('#myInput').get(0).files[0];
+            if (selected_file === null) {
+                alert("Please select data file!");
+            }
+            else
+            {
+
+                alert(selected_file.name);
+            }
+        }
+    };
+    var gui = new dat.GUI();
+    var f1 = gui.addFolder('Load data');
+    f1.add(params, 'loadFile').name('Choose Data File');
+    f1.add(params, 'button').name('Load');
+
 
     var str = "./data/SMAD23_Phosphorylation_Motif_Mutants_in_Cancer_19_new.xml";
     var xmlLoader = new XMLLoader();
