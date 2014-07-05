@@ -27,15 +27,31 @@ Arrow.prototype ={
                 break;
             if(mainManagement.shapes[j].type === this.beginType && mainManagement.shapes[j].id === this.beginNodeId)
             {
-                var x1 = mainManagement.shapes[j].offsetX + mainManagement.shapes[j].w /2 + mainManagement.shapes[j].x;
-                var y1 = mainManagement.shapes[j].offsetY + mainManagement.shapes[j].h /2 + mainManagement.shapes[j].y;
+                if(this.beginType === "ASSOCIATION" ||this.beginType === "DISSOCIATION" )
+                {           //because those two has already fixed to center
+                    var x1 = mainManagement.shapes[j].offsetX + mainManagement.shapes[j].x;
+                    var y1 = mainManagement.shapes[j].offsetY + mainManagement.shapes[j].y;
+                }
+                else
+                {
+                    var x1 = mainManagement.shapes[j].offsetX + mainManagement.shapes[j].w /2 + mainManagement.shapes[j].x;
+                    var y1 = mainManagement.shapes[j].offsetY + mainManagement.shapes[j].h /2 + mainManagement.shapes[j].y;
+                }
+
                 flag++;
                 continue;
             }
             if(mainManagement.shapes[j].type === this.endType && mainManagement.shapes[j].id === this.endNodeId)
             {
-                var x2 = mainManagement.shapes[j].offsetX + mainManagement.shapes[j].w /2 +  mainManagement.shapes[j].x;
-                var y2 = mainManagement.shapes[j].offsetY + mainManagement.shapes[j].h /2 +  mainManagement.shapes[j].y;
+                if(this.endType === "ASSOCIATION" ||this.endType === "DISSOCIATION" ) {
+                    var x2 = mainManagement.shapes[j].offsetX + mainManagement.shapes[j].x;
+                    var y2 = mainManagement.shapes[j].offsetY + mainManagement.shapes[j].y;
+                }
+                else
+                {
+                    var x2 = mainManagement.shapes[j].offsetX + mainManagement.shapes[j].w / 2 + mainManagement.shapes[j].x;
+                    var y2 = mainManagement.shapes[j].offsetY + mainManagement.shapes[j].h / 2 + mainManagement.shapes[j].y;
+                }
                  flag++;
             }
         }
