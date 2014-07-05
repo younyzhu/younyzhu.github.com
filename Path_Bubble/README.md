@@ -53,6 +53,10 @@
       ![Image](./images/arrowMoveable.PNG)  
  5. As `Arrows` should be draw on the lowest layer, so I first draw the arrow and then draw the other elements by dividing 
  the drawCompartment function into two parts:  drawCompartment and  drawCompartmentElements     
- 6. Information from Keqin `Arrow` is bind with the `Node`, so I need to change the code of the `Arrow.js`, `Activation.js` and `Inhibition.js`.    
+ 6. Information from Keqin `Arrow` is bind with the `Node`, so I need to change the code of the `Arrow.js`, `Activation.js` and `Inhibition.js`. 
+    ![Image](./images/bindNodeArrow.PNG)  
+    
+    
+    
  
  
