@@ -26,6 +26,7 @@ function Compartment(id, state, x, y, w, h, text) {
     this.associations = [];
     this.dissociations = [];
     this.transitions = [];
+    this.entitys = [];
 }
 
 Compartment.prototype = {
@@ -97,6 +98,25 @@ Compartment.prototype = {
             for(var j=0; j< mainManagement.shapes.length; j++)
             {
                 if(mainManagement.shapes[j].id === this.molecules[i] && mainManagement.shapes[j].type === "MOLECULE")
+                {
+                    mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
+                }
+            }
+        }
+    },
+    addPhysical_Entity: function(id, x, y, w, h,text){
+        var entity = new Physical_Entity(id, x *this.w, y*this.h, w*this.w, h*this.h,text);
+        entity.offsetX = this.offsetX;
+        entity.offsetY = this.offsetY;
+        mainManagement.addShape(entity);
+        this.entitys.push(id);
+    },
+    drawPhysical_Entity:function(ctx){
+        for(var i=0; i<this.entitys.length; ++i)
+        {
+            for(var j=0; j< mainManagement.shapes.length; j++)
+            {
+                if(mainManagement.shapes[j].id === this.entitys[i] && mainManagement.shapes[j].type === "ENTITY")
                 {
                     mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
                 }
@@ -204,6 +224,10 @@ Compartment.prototype = {
         if(this.molecules.length>0)
         {
             this.drawSmall_Molecule(ctx);
+        }
+        if(this.entitys.length>0)
+        {
+            this.drawPhysical_Entity(ctx);
         }
     },
     drawCompartment: function(ctx){

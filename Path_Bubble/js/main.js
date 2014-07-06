@@ -18,8 +18,10 @@ $(document).ready(function () {
             }
             else
             {
-
-                alert(selected_file.name);
+                mainManagement.shapes.length = 0;
+                mainManagement.clear();
+                var localFileLoader = new LocalXMLLoader();
+                localFileLoader.load(selected_file);
             }
         }
     };

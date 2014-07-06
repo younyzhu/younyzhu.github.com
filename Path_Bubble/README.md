@@ -63,7 +63,10 @@
     But when I add the the program, when I move the bubble, the region becoms smaller and smaller.    
  3. Fixed a bug: Bubble object do not need to add offsetX;  
  4. Add `Complex` and `Protein` to the scene. load the original `error` dataset.
- 
+
+  * 7/6/2014
+  
+  1.Add Load local File, when load local file we will clear the canvas, and all the object and then draw the data we want.
  
     
     
