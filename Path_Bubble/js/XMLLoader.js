@@ -20,9 +20,10 @@ XMLLoader.prototype = {
     },
     parse: function ($this) {
         mainManagement = new MainManage($("#bgCanvas")[0]);
-        Bubbles = new Bubble(0, mainManagement, 400, 20, 850, 850);
-        Bubbles.offsetX = 400;
-        Bubbles.offsetY = 20;
+        Bubbles = new Visualization();
+        //Bubbles = new Bubble(0, mainManagement, 400, 20, 850, 850);
+        //Bubbles.offsetX = 400;
+        //Bubbles.offsetY = 20;
         mainManagement.addShape(Bubbles);
 
         var compartmentBlock = $this.find("compartmentBlock");

@@ -49,18 +49,6 @@ function MainManage(canvas)
 
                 _this.dragoffx = mx - _this.shapes[i].x;
                 _this.dragoffy = my - _this.shapes[i].y;
-                 /*if(_this.shapes[i].contains(mx, my) === "START")
-                 {
-                     _this.dragoffx = mx - _this.shapes[i].x1;
-                     _this.dragoffy = my - _this.shapes[i].y1;
-                     flag = "START";
-                 }
-                else if(_this.shapes[i].contains(mx, my) === "END")
-                {
-                    _this.dragoffx = mx - _this.shapes[i].x2;
-                    _this.dragoffy = my - _this.shapes[i].y2;
-                    flag = "END";
-                } */
 
                 _this.dragging = true;
                 _this.selection = _this.shapes[i];
@@ -77,7 +65,6 @@ function MainManage(canvas)
         }
     }, true);
 
-
     canvas.addEventListener('mousemove', function(e) {
         var mouse = _this.getMouse(e),
             mx = mouse.x,
@@ -87,25 +74,16 @@ function MainManage(canvas)
             mouse = _this.getMouse(e);
             // We don't want to drag the object by its top-left corner, we want to drag it
             // from where we clicked. Thats why we saved the offset and use it here
+
             _this.selection.x = mouse.x - _this.dragoffx;  //mouse move relative to the navigation viewpoint
             _this.selection.y = mouse.y - _this.dragoffy;
-            /*if(flag === "START")
-            {
-                _this.selection.x1 = mouse.x - _this.dragoffx;  //mouse move relative to the navigation viewpoint
-                _this.selection.y1 = mouse.y - _this.dragoffy;
 
-            }
-            else if(flag === "END")
-            {
-                _this.selection.x2 = mouse.x - _this.dragoffx;  //mouse move relative to the navigation viewpoint
-                _this.selection.y2 = mouse.y - _this.dragoffy;
-            } */
             _this.valid = false; // Something's dragging so we must redraw
         }
         else if (_this.resizeDragging) {
 
             //Father:Bubble. ====>Child: Compartment. ====> ====>Child: Protein, Complex, Small Molecule, DNA, ...
-            if(_this.selection.type === "BUBBLE")  //Fixed a bug: Bubble object do not need to add offsetX;
+            if(_this.selection.type === "VISUALIZATION")  //Fixed a bug: Bubble object do not need to add offsetX;
             {
                 oldx = _this.selection.x; //OffsetX is just used for test the contain relatonship
                 oldy = _this.selection.y;
@@ -258,7 +236,7 @@ MainManage.prototype={
         // if our state is invalid, redraw and validate!
         if (!this.valid) {
             this.clear();
-
+            /*
             for (var i = 0; i < this.shapes.length; i ++) {
                 if(this.shapes[i]!==null)
                 {
@@ -267,7 +245,9 @@ MainManage.prototype={
                         this.shapes[i].draw(this.ctx);
                     }
                 }
-            }
+            } */
+            if(Bubbles)
+                Bubbles.draw(this.ctx);
             // draw selection
             /*if (this.selection !== null) {
                 this.ctx.strokeStyle = this.selectionColor;

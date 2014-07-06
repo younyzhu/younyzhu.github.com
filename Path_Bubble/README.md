@@ -60,14 +60,16 @@
  
  1. Try add [data.gui.js](http://workshop.chromeexperiments.com/examples/gui/#1--Basic-Usage) to the program for file loader control.
  2. Try to use clipping technique to clip a bubble region [http://jsfiddle.net/younyzhU/xjC9r/1/](http://jsfiddle.net/younyzhU/xjC9r/1/),
-    But when I add the the program, when I move the bubble, the region becoms smaller and smaller.    
+    But when I add the the program, when I move the bubble, the region becomes smaller and smaller.    
  3. Fixed a bug: Bubble object do not need to add offsetX;  
  4. Add `Complex` and `Protein` to the scene. load the original `error` dataset.
 
   * 7/6/2014
   
-  1.Add Load local File, when load local file we will clear the canvas, and all the object and then draw the data we want.
- 
+  1. Add Load local File, when load local file we will clear the canvas, and all the object and then draw the data we want.
+  2. We do not need to put the  `Bubble` here, so we need to delete the bubble object(Bubble.js).
+  3. Changed the (Bubble.js) to (Visualization.js), which can control all the object in the scene. 
+  you can span the view with mouse dragging, and will show you the select region when you select to span.
     
     
  
