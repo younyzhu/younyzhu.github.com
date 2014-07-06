@@ -61,8 +61,10 @@
  1. Try add [data.gui.js](http://workshop.chromeexperiments.com/examples/gui/#1--Basic-Usage) to the program for file loader control.
  2. Try to use clipping technique to clip a bubble region [http://jsfiddle.net/younyzhU/xjC9r/1/](http://jsfiddle.net/younyzhU/xjC9r/1/),
     But when I add the the program, when I move the bubble, the region becoms smaller and smaller.    
- 3. Fixed a bug: Bubble object do not need to add offsetX;
-    
+ 3. Fixed a bug: Bubble object do not need to add offsetX;  
+ 4. Add `Complex` and `Protein` to the scene. load the original `error` dataset.
+ 
+ 
     
     
  

@@ -26,15 +26,16 @@ XMLLoader.prototype = {
         mainManagement.addShape(Bubbles);
 
         var compartmentBlock = $this.find("compartmentBlock");
+        this.complexBlock = $this.find("complexBlock");
+        this.proteinBlock = $this.find("proteinBlock");
+        this.physicalEntityBlock = $this.find("physicalEntityBlock");
+        this.smallMoleculeBlock = $this.find("smallMoleculeBlock");
+        this.DnaBlock = $this.find("DnaBlock");
+        this.reactionBlock = $this.find("reactionBlock");
+        this.edgeBlock = $this.find("edgeBlock");
         this.parseCompartmentBlock(compartmentBlock);
 
-        var complexBlock = $this.find("complexBlock");
-        var proteinBlock = $this.find("proteinBlock");
-        var physicalEntityBlock = $this.find("physicalEntityBlock");
-        var smallMoleculeBlock = $this.find("smallMoleculeBlock");
-        var DnaBlock = $this.find("DnaBlock");
-        var reactionBlock = $this.find("reactionBlock");
-        var edgeBlock = $this.find("edgeBlock");
+
     },
     parseCompartmentBlock: function(compartmentBlock){
         var length = compartmentBlock.children().length;
@@ -49,21 +50,25 @@ XMLLoader.prototype = {
             var contain = currentCompartment.find("Contain").text()//when contain = "()"
                 .replace("(", "")   //remove the right bracket
                 .replace(")", "") //remove the left bracket;
-                .split(",");
+                .replace(/[_\s]/g, '').split(",");
             if(contain.length>1) //when length =1  just = "" //contain = "()"
             {
                 var x = parseFloat(position[0]);
                 var y = parseFloat(position[1]);
                 var w = parseFloat(position[2]);
                 var h = parseFloat(position[3]);
-                //Bubbles.addCompartment(i, x, y, w, h, name);
-                //var currentView = new Compartment(i,this.canvas, this.initX + x * 500, this.initY + y * 500, w * 500, h * 500, name);
-                //this.canvas.addShape(currentView);
+                Bubbles.addCompartment(i, x, y, w, h, name);
+                var len = contain.length / 2;
+                for(var j =0; j<len; ++j)
+                {
+                    var type = contain[2*j];
+                    var index = parseInt(contain[2*j+1]);
+                    this.addElement(i, type, index);
+                }
             }
         }
-
+         /*
         Bubbles.addCompartment(1, 0.1, 0.2, 0.6, 0.6, "Compartment");
-
         mainManagement.shapes[1].addProtein(2,0.4,0.2,0.2,0.1,"Protein");
         mainManagement.shapes[1].addComplex(3,0.1,0.2,0.2,0.1);
         mainManagement.shapes[1].addDNA(4,0.6,0.2,0.2,0.1,"DNA");
@@ -76,5 +81,57 @@ XMLLoader.prototype = {
         Bubbles.addArrow(13, "MOLECULE", 5, "PROTEIN", 2);
         Bubbles.addArrow(14, "MOLECULE", 5, "DISSOCIATION", 6);
         Bubbles.addInhibition(15, "DISSOCIATION", 6, "TRANSITION", 8);
+        */
+    },
+    addElement: function(comparmentId, type, index){
+        switch (type) {
+            case "C":  //COMPLEX
+            {
+                if(comparmentId<mainManagement.shapes.length)
+                {
+                    var complexE = this.complexBlock.find('complex[j="' + index + '"]'); //Complex we do not need to use the name
+                    var position = complexE.find("Position").text()
+                        .replace("(", "")   //remove the right bracket
+                        .replace(")", "") //remove the left bracket;
+                        .split(",");
+                    for(var i=0; i<mainManagement.shapes.length; i++)
+                    {
+                        if(mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "COMPARTMENT")
+                        {
+                            mainManagement.shapes[i].addComplex(index,position[0],position[1],position[2],position[3]);
+                        }
+                    }
+                }
+                break;
+            }
+            case "E":
+            {
+                break;
+            }
+            case "P":     //PROTEIN
+            {
+                if(comparmentId<mainManagement.shapes.length)
+                {
+                    var proteinE = this.proteinBlock.find('protein[j="' + index + '"]'); //Complex we do not need to use the name
+                    var position = proteinE.find("Position").text()
+                        .replace("(", "")   //remove the right bracket
+                        .replace(")", "") //remove the left bracket;
+                        .split(",");
+                    var name = proteinE.find("Name").text();
+                    for(var i=0; i<mainManagement.shapes.length; i++)
+                    {
+                        if(mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "COMPARTMENT")
+                        {
+                            mainManagement.shapes[i].addProtein(index,position[0],position[1],position[2],position[3],name);
+                        }
+                    }
+                }
+                break;
+            }
+            case "R":   //Reaction
+            {
+                break;
+            }
+        }
     }
 };

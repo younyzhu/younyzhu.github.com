@@ -21,6 +21,7 @@ function Bubble(id, state, x, y, w, h) {
     this.arrows = [];
     this.inhibitions =[];
     this.activations =[];
+
 }
 
 Bubble.prototype = {
@@ -154,7 +155,7 @@ Bubble.prototype = {
         var y = this.y;
         var w = this.w;
         var h = this.h;
-
+        /*
         ctx.save();	// save the context so we don't mess up others
         ctx.beginPath();
         ctx.fillStyle = "#ffffff";
@@ -179,7 +180,6 @@ Bubble.prototype = {
         ctx.arc(x- w*3, y + h/2, r , -thea,  thea, false);
         ctx.closePath();
         ctx.fill();
-        //ctx.stroke();
         ctx.restore();	// restore context to what it was on entry
 
         ctx.save();	// save the context so we don't mess up others
@@ -199,9 +199,8 @@ Bubble.prototype = {
         ctx.closePath();
         ctx.fill();
         ctx.restore();	// restore context to what it was on entry
-        /*
+         */
 
-        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
         ctx.save();
         ctx.beginPath();
         r = Math.sqrt((h / 2) * (h / 2) + 16 * w * w);
@@ -222,16 +221,18 @@ Bubble.prototype = {
         ctx.closePath();
         ctx.clip();
         ctx.fill();
-        //ctx.restore();	// restore context to what it was on entry
+        ctx.restore();	// restore context to what it was on entry
 
         ctx.save();	// save the context so we don't mess up others
         ctx.beginPath();
         ctx.fillStyle = "#ffffff";
-        ctx.fillRect(x, y, w, h);
-        ctx.stroke();
+        ctx.rect(x, y, w, h);
+        ctx.clip();
+        ctx.closePath();
+        ctx.fill();
         ctx.restore();	// restore context to what it was on entry
-        //ctx.restore();	// restore context to what it was on entry
-        */
+
+
     },
     addCompartment: function(i, x, y, w, h, name){
         var compartment = new Compartment(i, this.state, x *this.w, y*this.h, w*this.w, h*this.h, name);
