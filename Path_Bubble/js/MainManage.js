@@ -112,8 +112,10 @@ function MainManage(canvas)
             }
             else
             {
-                oldx = _this.selection.x + _this.selection.offsetX; //OffsetX is just used for test the contain relatonship
-                oldy = _this.selection.y + _this.selection.offsetY;
+                oldx =_this.selection.x; //resize is just the relative position,, not absolute position
+                oldy =_this.selection.y;
+                mx -= _this.selection.offsetX;
+                my -= _this.selection.offsetY;
             }
             // 0  1  2
             // 3     4
