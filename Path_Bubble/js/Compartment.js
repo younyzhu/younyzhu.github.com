@@ -252,9 +252,10 @@ Compartment.prototype = {
         ctx.quadraticCurveTo(x, b, x, b - this.radius);
         ctx.lineTo(x, y + this.radius);
         ctx.quadraticCurveTo(x, y, x + this.radius, y);
+        ctx.closePath();
         ctx.fill();
         ctx.stroke();
-        ctx.closePath();
+        ctx.restore();
     },
     drawSelection: function(ctx){
         var i, cur, half;
@@ -297,8 +298,10 @@ Compartment.prototype = {
 
         for (i = 0; i < 8; i += 1) {
             cur = this.state.selectionHandles[i];
+            ctx.save();	// save the context so we don't mess up others
             ctx.fillStyle = "#ffff00";
             ctx.fillRect(cur.x, cur.y, this.state.selectionBoxSize, this.state.selectionBoxSize);
+            ctx.restore();
         }
     },
     contains: function (mx, my) {

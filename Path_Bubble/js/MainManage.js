@@ -1,8 +1,7 @@
 /**
  * Created by Yongnan on 7/2/2014.
  */
-function MainManage(canvas)
-{
+function MainManage(canvas) {
     this.canvas = canvas;
     this.width = canvas.clientWidth;
     this.height = canvas.clientHeight;
@@ -18,7 +17,7 @@ function MainManage(canvas)
     this.selection = null;// the current selected object. In the future we could turn this into an array for multiple selection
     this.dragoffx = 0; // See mousedown and mousemove events for explanation
     this.dragoffy = 0;
-
+    this.scale = 0;
     // New, holds the 8 tiny boxes that will be our selection handles
     // the selection handles will be in this order:
     // 0  1  2
@@ -33,7 +32,7 @@ function MainManage(canvas)
     var flag = null;
     //canvas.addEventListener('selectstart', function(e) { e.preventDefault(); return false; }, false);
     // Up, down, and move are for dragging
-    canvas.addEventListener('mousedown', function(e) {
+    canvas.addEventListener('mousedown', function (e) {
 
         if (_this.expectResize !== -1) {
             _this.resizeDragging = true;
@@ -42,8 +41,8 @@ function MainManage(canvas)
         var mouse = _this.getMouse(e);
         var mx = mouse.x;
         var my = mouse.y;
-        for (var i = _this.shapes.length-1; i >= 0; i --) {
-            if(_this.shapes[i] === null || _this.shapes[i].type === "ARROW" ||_this.shapes[i].type === "INHIBITION"||_this.shapes[i].type === "ACTIVATION")
+        for (var i = _this.shapes.length - 1; i >= 0; i--) {
+            if (_this.shapes[i] === null || _this.shapes[i].type === "ARROW" || _this.shapes[i].type === "INHIBITION" || _this.shapes[i].type === "ACTIVATION")
                 continue;
             if (_this.shapes[i].contains(mx, my)) {
 
@@ -64,34 +63,30 @@ function MainManage(canvas)
             _this.valid = false; // Need to clear the old selection border
         }
     }, true);
-
-    canvas.addEventListener('mousemove', function(e) {
+    canvas.addEventListener('mousemove', function (e) {
         var mouse = _this.getMouse(e),
             mx = mouse.x,
             my = mouse.y,
             oldx, oldy, i, cur;
-        if (_this.dragging){
+        if (_this.dragging) {
             mouse = _this.getMouse(e);
             // We don't want to drag the object by its top-left corner, we want to drag it
             // from where we clicked. Thats why we saved the offset and use it here
-
             _this.selection.x = mouse.x - _this.dragoffx;  //mouse move relative to the navigation viewpoint
             _this.selection.y = mouse.y - _this.dragoffy;
-
             _this.valid = false; // Something's dragging so we must redraw
         }
         else if (_this.resizeDragging) {
 
             //Father:Bubble. ====>Child: Compartment. ====> ====>Child: Protein, Complex, Small Molecule, DNA, ...
-            if(_this.selection.type === "VISUALIZATION")  //Fixed a bug: Bubble object do not need to add offsetX;
+            if (_this.selection.type === "VISUALIZATION")  //Fixed a bug: Bubble object do not need to add offsetX;
             {
                 oldx = _this.selection.x; //OffsetX is just used for test the contain relatonship
                 oldy = _this.selection.y;
             }
-            else
-            {
-                oldx =_this.selection.x; //resize is just the relative position,, not absolute position
-                oldy =_this.selection.y;
+            else {
+                oldx = _this.selection.x; //resize is just the relative position,, not absolute position
+                oldy = _this.selection.y;
                 mx -= _this.selection.offsetX;
                 my -= _this.selection.offsetY;
             }
@@ -157,28 +152,28 @@ function MainManage(canvas)
 
                     switch (i) {
                         case 0:
-                            this.style.cursor='nw-resize';
+                            this.style.cursor = 'nw-resize';
                             break;
                         case 1:
-                            this.style.cursor='n-resize';
+                            this.style.cursor = 'n-resize';
                             break;
                         case 2:
-                            this.style.cursor='ne-resize';
+                            this.style.cursor = 'ne-resize';
                             break;
                         case 3:
-                            this.style.cursor='w-resize';
+                            this.style.cursor = 'w-resize';
                             break;
                         case 4:
-                            this.style.cursor='e-resize';
+                            this.style.cursor = 'e-resize';
                             break;
                         case 5:
-                            this.style.cursor='sw-resize';
+                            this.style.cursor = 'sw-resize';
                             break;
                         case 6:
-                            this.style.cursor='s-resize';
+                            this.style.cursor = 's-resize';
                             break;
                         case 7:
-                            this.style.cursor='se-resize';
+                            this.style.cursor = 'se-resize';
                             break;
                     }
                     return;
@@ -191,7 +186,7 @@ function MainManage(canvas)
             this.style.cursor = 'auto';
         }
     }, true);
-    canvas.addEventListener('mouseup', function(e) {
+    canvas.addEventListener('mouseup', function (e) {
         _this.dragging = false;
         _this.resizeDragging = false;
         _this.expectResize = -1;
@@ -207,66 +202,57 @@ function MainManage(canvas)
             }
         }
     }, true);
+    canvas.addEventListener('mousewheel', mousewheel, false);
+    canvas.addEventListener('DOMMouseScroll', mousewheel, false); // firefox
+
+    function mousewheel() {
+        var delta = 0;
+        if (event.wheelDelta) { // WebKit / Opera / Explorer 9
+            delta = -(event.wheelDelta / 120);
+        }
+        else if (event.detail) { // Firefox
+            delta = event.detail / 3;
+        }
+        _this.scale += delta/20;
+
+        _this.valid = false;
+    }
 
     this.selectionBoxSize = 6;
 
-    function animate(){
+    function animate() {
         requestAnimationFrame(animate);
         _this.draw();
     }
+
     animate();
 }
 
-MainManage.prototype={
-    addShape : function(shape) {
+MainManage.prototype = {
+    addShape: function (shape) {
         this.shapes.push(shape);
         this.valid = false;
     },
-    remove : function(value)
-    {
+    remove: function (value) {
         var l = this.shapes.length;
-        if(value >0 && value <l)
-            this.shapes.splice(value,1);
+        if (value > 0 && value < l)
+            this.shapes.splice(value, 1);
         this.valid = false;
     },
-    clear : function() {
+    clear: function () {
         this.ctx.clearRect(0, 0, this.width, this.height);
     },
-    draw : function() {
+    draw: function () {
         // if our state is invalid, redraw and validate!
         if (!this.valid) {
             this.clear();
-            /*
-            for (var i = 0; i < this.shapes.length; i ++) {
-                if(this.shapes[i]!==null)
-                {
-                    if(this.shapes[i].type === "BUBBLE" )
-                    {
-                        this.shapes[i].draw(this.ctx);
-                    }
-                }
-            } */
-            if(Bubbles)
+            if (Bubbles)
                 Bubbles.draw(this.ctx);
-            // draw selection
-            /*if (this.selection !== null) {
-                this.ctx.strokeStyle = this.selectionColor;
-                  this.ctx.lineWidth = this.selectionWidth;
 
-                if(this.selection.type ==="COMPARTMENT"||this.selection.type ==="BUBBLE")
-                {
-                    this.ctx.strokeRect(this.selection.x, this.selection.y, this.selection.w, this.selection.h);
-                }
-                else
-                {
-                    this.selection.drawStroke(this.ctx);
-                }
-
-            }*/
             this.valid = true;
         }
     },
-    getMouse : function(e) {
+    getMouse: function (e) {
         var element = this.canvas, offsetX = 0, offsetY = 0, mx, my;
         if (element.offsetParent !== undefined) {
             do {

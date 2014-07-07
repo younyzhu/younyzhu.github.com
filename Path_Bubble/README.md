@@ -70,7 +70,7 @@
   2. We do not need to put the  `Bubble` here, so we need to delete the bubble object(Bubble.js).
   3. Changed the (Bubble.js) to (Visualization.js), which can control all the object in the scene. 
   you can span the view with mouse dragging, and will show you the select region when you select to span.
-    
+  4. Trying to add  mouse scroll event 
     
  
  

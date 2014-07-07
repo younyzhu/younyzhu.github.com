@@ -12,6 +12,7 @@ function Visualization(){
 
     this.w = window.innerWidth;
     this.h = window.innerHeight;
+
     //this.arrows = [];//Because arrow can draw out of the compartment, so arrow is contained in the Bubble
     //Arrow is divide into three type, Black Arrow, green Activation, yellow Inhibition.
     this.arrows = [];
@@ -20,6 +21,7 @@ function Visualization(){
 }
 Visualization.prototype ={
     draw: function (ctx) {
+
         if(this.compartments.length > 0){
             this.drawCompartment(ctx);
         }
@@ -32,13 +34,14 @@ Visualization.prototype ={
         if(this.inhibitions.length > 0){
             this.drawInhibition(ctx);
         }
-        if (mainManagement.selection === this) {
+       /* if (mainManagement.selection === this) {
            this.drawSelection(ctx);
-        }
+        }*/
         if(this.compartments.length > 0){
             this.drawCompartmentElements(ctx);
         }
     },
+       /*
     drawSelection: function(ctx){
 
         ctx.save();
@@ -47,7 +50,7 @@ Visualization.prototype ={
         ctx.rect(this.selectRegionX, this.selectRegionY, window.innerWidth, window.innerHeight);
         ctx.stroke();
         ctx.restore();
-    },
+    },  */
     addArrow: function(id, beginType, beginNodeId, endType, endNodeId  ){
         var arrow = new Arrow(id, beginType, beginNodeId, endType, endNodeId );
         //arrow.offsetX = this.offsetX;
