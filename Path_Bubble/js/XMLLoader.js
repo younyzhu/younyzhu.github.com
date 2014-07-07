@@ -36,6 +36,7 @@ XMLLoader.prototype = {
         this.edgeBlock = $this.find("edgeBlock");
         this.parseCompartmentBlock(compartmentBlock);
         this.parseEdges();
+        var t;
     },
     parseEdges: function () {
         var length = this.edgeBlock.children().length;
@@ -63,36 +64,32 @@ XMLLoader.prototype = {
                     if(beginType === "R")
                     {
                         if (mainManagement.shapes[i].id === beginIndex ) {
-                            beginId = i;
+                            beginId = beginIndex;
                             beginT = mainManagement.shapes[i].type;
                             flag ++;
-                            continue;
                         }
                     }
                     else
                     {
                         if (mainManagement.shapes[i].id === beginIndex && mainManagement.shapes[i].type === beginType) {
-                            beginId = i;
+                            beginId = beginIndex;
                             beginT = mainManagement.shapes[i].type;
                             flag ++;
-                            continue;
                         }
                     }
                     if(endType === "R") {
                         if (mainManagement.shapes[i].id === endIndex) {
-                            endId = i;
+                            endId = endIndex;
                             endT = mainManagement.shapes[i].type;
                             flag ++;
-                            continue;
                         }
                     }
                     else
                     {
                         if (mainManagement.shapes[i].id === endIndex && mainManagement.shapes[i].type === endType) {
-                            endId = i;
+                            endId = endIndex;
                             endT = mainManagement.shapes[i].type;
                             flag ++;
-                            continue;
                         }
                     }
 
@@ -111,36 +108,32 @@ XMLLoader.prototype = {
                     if(beginType === "R")
                     {
                         if (mainManagement.shapes[i].id === beginIndex ) {
-                            beginId = i;
+                            beginId = beginIndex;
                             beginT = mainManagement.shapes[i].type;
                             flag ++;
-                            continue;
                         }
                     }
                     else
                     {
                         if (mainManagement.shapes[i].id === beginIndex && mainManagement.shapes[i].type === beginType) {
-                            beginId = i;
+                            beginId = beginIndex;
                             beginT = mainManagement.shapes[i].type;
                             flag ++;
-                            continue;
                         }
                     }
                     if(endType === "R") {
                         if (mainManagement.shapes[i].id === endIndex) {
-                            endId = i;
+                            endId = endIndex;
                             endT = mainManagement.shapes[i].type;
                             flag ++;
-                            continue;
                         }
                     }
                     else
                     {
                         if (mainManagement.shapes[i].id === endIndex && mainManagement.shapes[i].type === endType) {
-                            endId = i;
+                            endId = endIndex;
                             endT = mainManagement.shapes[i].type;
                             flag ++;
-                            continue;
                         }
                     }
                     if(flag ===2)
@@ -158,36 +151,32 @@ XMLLoader.prototype = {
                     if(beginType === "R")
                     {
                         if (mainManagement.shapes[i].id === beginIndex ) {
-                            beginId = i;
+                            beginId = beginIndex;
                             beginT = mainManagement.shapes[i].type;
                             flag ++;
-                            continue;
                         }
                     }
                     else
                     {
                         if (mainManagement.shapes[i].id === beginIndex && mainManagement.shapes[i].type === beginType) {
-                            beginId = i;
+                            beginId = beginIndex;
                             beginT = mainManagement.shapes[i].type;
                             flag ++;
-                            continue;
                         }
                     }
                     if(endType === "R") {
                         if (mainManagement.shapes[i].id === endIndex) {
-                            endId = i;
+                            endId = endIndex;
                             endT = mainManagement.shapes[i].type;
                             flag ++;
-                            continue;
                         }
                     }
                     else
                     {
                         if (mainManagement.shapes[i].id === endIndex && mainManagement.shapes[i].type === endType) {
-                            endId = i;
+                            endId = endIndex;
                             endT = mainManagement.shapes[i].type;
                             flag ++;
-                            continue;
                         }
                     }
                     if(flag ===2)

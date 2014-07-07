@@ -54,7 +54,7 @@ Activation.prototype = {
             }
         }
         if(flag ==2) {
-            var dotCount = Math.ceil((this.dotRadius - this.dotLimitRadius ) / 0.5);
+            var dotCount = Math.ceil((this.dotRadius - this.dotLimitRadius ) / 0.2);
             var dx = x2 - x1;
             var dy = y2 - y1;
             var spaceX = dx / (dotCount - 1);

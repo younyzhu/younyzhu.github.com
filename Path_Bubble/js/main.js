@@ -75,7 +75,6 @@ $(document).ready(function () {
     var xmlLoader = new XMLLoader();
     xmlLoader.load(str);
 
-
    /*
     var currentView = new Compartment(0,navigationCanvas, 200, 200, 200, 200, 'rgba(255,0,0,0.7)');
     navigationCanvas.addShape(currentView);
