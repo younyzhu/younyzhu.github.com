@@ -9,7 +9,7 @@ function Activation(id, beginType, beginNodeId, endType, endNodeId ) {
     this.endType = endType;
     this.endNodeId = endNodeId;
 
-    this.dotRadius = 10;
+    this.dotRadius = 7;
     this.dotLimitRadius = 2;
     this.fillColor = "#00FF00";
     //Complex is contained in the Compartment and the Compartment is contained in the Bubble
@@ -54,9 +54,11 @@ Activation.prototype = {
             }
         }
         if(flag ==2) {
-            var dotCount = Math.ceil((this.dotRadius - this.dotLimitRadius ) / 0.2);
+            //var dotCount = Math.ceil((this.dotRadius - this.dotLimitRadius ) / 0.2);
             var dx = x2 - x1;
             var dy = y2 - y1;
+            var distance = Math.sqrt(dx * dx + dy * dy);
+            var dotCount = Math.ceil(distance /100 * (this.dotRadius - this.dotLimitRadius ));
             var spaceX = dx / (dotCount - 1);
             var spaceY = dy / (dotCount - 1);
             var newX = x1;
@@ -66,8 +68,8 @@ Activation.prototype = {
                 newX += spaceX;
                 newY += spaceY;
             }
-            this.drawDot(x1, y1, 3, "red", ctx);
-            this.drawDot(x2, y2, 3, "red", ctx);
+            this.drawDot(x1, y1, 2, "red", ctx);
+            this.drawDot(x2, y2, 2, "red", ctx);
         }
     },
     drawDot: function (x, y, dotRadius, dotColor, ctx) {
