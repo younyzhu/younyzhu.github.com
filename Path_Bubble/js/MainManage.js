@@ -17,7 +17,7 @@ function MainManage(canvas) {
     this.selection = null;// the current selected object. In the future we could turn this into an array for multiple selection
     this.dragoffx = 0; // See mousedown and mousemove events for explanation
     this.dragoffy = 0;
-    this.scale = 0;
+
     // New, holds the 8 tiny boxes that will be our selection handles
     // the selection handles will be in this order:
     // 0  1  2
@@ -213,7 +213,7 @@ function MainManage(canvas) {
         else if (event.detail) { // Firefox
             delta = event.detail / 3;
         }
-        _this.scale += delta/20;
+
 
         _this.valid = false;
     }

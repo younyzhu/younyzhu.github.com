@@ -11,7 +11,7 @@ $(document).ready(function () {
         loadFile : function() {
            $('#myInput').click();
         },
-        button : function(){
+        load : function(){
             var selected_file = $('#myInput').get(0).files[0];
             if (selected_file === null) {
                 alert("Please select data file!");
@@ -23,14 +23,54 @@ $(document).ready(function () {
                 var localFileLoader = new LocalXMLLoader();
                 localFileLoader.load(selected_file);
             }
+        },
+        send: function(){
+            var xml = '<?xml version='+1.0+' encoding="UTF-8"?> <methodCall>'+
+            '<methodName>ContactService.add</methodName>'+
+            '<params>'+
+            '  <param>' +
+            '    <value><string>privateKey</string></value>' +
+            '  </param>' +
+            '  <param>' +
+            '    <value><struct>' +
+            '      <member><name>FirstName</name>' +
+            '        <value><string>John</string></value>' +
+            '      </member>' +
+            '      <member><name>LastName</name>' +
+            '        <value><string>Doe</string></value>' +
+            '      </member>' +
+            '      <member><name>Email</name>' +
+            '        <value><string>there_he_go@itsjohndoe.com</string></value>' +
+            '      </member>' +
+            '    </struct></value>' +
+            '  </param>' +
+            '</params>' +
+            '</methodCall>';
+ /*
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("POST","http://localhost:63342",true);
+            xmlhttp.send(escape(xml));
+*/
+            $.ajax({
+                url: 'http://localhost:63342',
+                processData: false,
+                type: "POST",  // type should be POST
+                data: xml, // send the string directly
+                success: function(response){
+                    alert(response);
+                },
+                error: function(response) {
+                    alert(response);
+                }
+            });
         }
     };
     var gui = new dat.GUI();
     var f1 = gui.addFolder('Load data');
     f1.add(params, 'loadFile').name('Choose Data File');
-    f1.add(params, 'button').name('Load');
-
-
+    f1.add(params, 'load').name('Load');
+    var f2 = gui.addFolder('Send data');
+    f2.add(params, 'send').name('Send');
     var str = "./data/SMAD23_Phosphorylation_Motif_Mutants_in_Cancer_19_new.xml";
     var xmlLoader = new XMLLoader();
     xmlLoader.load(str);

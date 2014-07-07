@@ -71,6 +71,7 @@
   3. Changed the (Bubble.js) to (Visualization.js), which can control all the object in the scene. 
   you can span the view with mouse dragging, and will show you the select region when you select to span.
   4. Trying to add  mouse scroll event 
-    
+  5. I googled and tried to find how to send the xml to the sever, and the sever must write in php, jsp... 
+  But I do not know those language, so I need time to learn it And write the program.        
  
  
