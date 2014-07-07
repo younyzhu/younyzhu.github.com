@@ -1,14 +1,14 @@
 /**
  * Created by Yongnan on 7/3/2014.
  */
-function Dissociation(id, x, y) {
-    this.type = "DISSOCIATION";
+function Dissociation(id, x, y, w ,h) {
+    this.type = "K";      //DISSOCIATION  ===> D
     this.id = id || 0;
     this.x = x;
     this.y = y;
-    this.w = 25;
-    this.h = 25;
-    this.l = 25;
+    this.w = w;
+    this.h = h;
+    this.l = w;
     this.strokeColor = "#666666";
     this.lineWidth = 2;
     this.fillColor = "#ffffff";

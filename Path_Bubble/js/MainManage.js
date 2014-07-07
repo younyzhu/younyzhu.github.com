@@ -42,7 +42,7 @@ function MainManage(canvas) {
         var mx = mouse.x;
         var my = mouse.y;
         for (var i = _this.shapes.length - 1; i >= 0; i--) {
-            if (_this.shapes[i] === null || _this.shapes[i].type === "ARROW" || _this.shapes[i].type === "INHIBITION" || _this.shapes[i].type === "ACTIVATION")
+            if (_this.shapes[i] === null || _this.shapes[i].type === "J" || _this.shapes[i].type === "I" || _this.shapes[i].type === "A")
                 continue;
             if (_this.shapes[i].contains(mx, my)) {
 

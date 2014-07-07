@@ -63,7 +63,7 @@ Visualization.prototype ={
         {
             for(var j=0; j< mainManagement.shapes.length; j++)
             {
-                if(mainManagement.shapes[j].id === this.arrows[i] && mainManagement.shapes[j].type === "ARROW")
+                if(mainManagement.shapes[j].id === this.arrows[i] && mainManagement.shapes[j].type === "J")
                 {
                     mainManagement.shapes[j].draw(ctx, this.x, this.y);
                 }
@@ -82,7 +82,7 @@ Visualization.prototype ={
         {
             for(var j=0; j< mainManagement.shapes.length; j++)
             {
-                if(mainManagement.shapes[j].id === this.inhibitions[i] && mainManagement.shapes[j].type === "INHIBITION")
+                if(mainManagement.shapes[j].id === this.inhibitions[i] && mainManagement.shapes[j].type === "I")
                 {
                     mainManagement.shapes[j].draw(ctx, this.x, this.y);
                 }
@@ -101,7 +101,7 @@ Visualization.prototype ={
         {
             for(var j=0; j< mainManagement.shapes.length; j++)
             {
-                if(mainManagement.shapes[j].id === this.activations[i] && mainManagement.shapes[j].type === "ACTIVATION")
+                if(mainManagement.shapes[j].id === this.activations[i] && mainManagement.shapes[j].type === "A")
                 {
                     mainManagement.shapes[j].draw(ctx, this.x, this.y);
                 }
@@ -125,7 +125,7 @@ Visualization.prototype ={
              }*/
             for(var j=0; j< mainManagement.shapes.length; j++)
             {
-                if(mainManagement.shapes[j].id === this.compartments[i] && mainManagement.shapes[j].type === "COMPARTMENT")
+                if(mainManagement.shapes[j].id === this.compartments[i] && mainManagement.shapes[j].type === "M")
                 {
                     mainManagement.shapes[j].draw(ctx, this.x, this.y);
                 }
@@ -142,7 +142,7 @@ Visualization.prototype ={
              }*/
             for(var j=0; j< mainManagement.shapes.length; j++)
             {
-                if(mainManagement.shapes[j].id === this.compartments[i] && mainManagement.shapes[j].type === "COMPARTMENT")
+                if(mainManagement.shapes[j].id === this.compartments[i] && mainManagement.shapes[j].type === "M")
                 {
                     mainManagement.shapes[j].drawElements(ctx, this.x, this.y);
                 }

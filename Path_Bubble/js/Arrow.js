@@ -4,7 +4,7 @@
 
 function Arrow(id, beginType, beginNodeId, endType, endNodeId )
 {
-    this.type = "ARROW";
+    this.type = "J";  //ARROW     ===>   J
     this.id = id;
     this.beginType = beginType;
     this.beginNodeId = beginNodeId;
@@ -27,7 +27,7 @@ Arrow.prototype ={
                 break;
             if(mainManagement.shapes[j].type === this.beginType && mainManagement.shapes[j].id === this.beginNodeId)
             {
-                if(this.beginType === "ASSOCIATION" ||this.beginType === "DISSOCIATION" )
+                if(this.beginType === "B" ||this.beginType === "K" )
                 {           //because those two has already fixed to center
                     var x1 = mainManagement.shapes[j].offsetX + mainManagement.shapes[j].x;
                     var y1 = mainManagement.shapes[j].offsetY + mainManagement.shapes[j].y;
@@ -43,7 +43,7 @@ Arrow.prototype ={
             }
             if(mainManagement.shapes[j].type === this.endType && mainManagement.shapes[j].id === this.endNodeId)
             {
-                if(this.endType === "ASSOCIATION" ||this.endType === "DISSOCIATION" ) {
+                if(this.endType === "B" ||this.endType === "D" ) {
                     var x2 = mainManagement.shapes[j].offsetX + mainManagement.shapes[j].x;
                     var y2 = mainManagement.shapes[j].offsetY + mainManagement.shapes[j].y;
                 }

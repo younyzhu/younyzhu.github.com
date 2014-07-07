@@ -2,7 +2,7 @@
  * Created by Yongnan on 7/3/2014.
  */
 function Inhibition(id, beginType, beginNodeId, endType, endNodeId ) {
-    this.type = "INHIBITION";
+    this.type = "I";          //INHIBITION    ===>   I
     this.id = id || 0;
     this.beginType = beginType;
     this.beginNodeId = beginNodeId;
@@ -26,7 +26,7 @@ Inhibition.prototype = {
                 break;
             if(mainManagement.shapes[j].type === this.beginType && mainManagement.shapes[j].id === this.beginNodeId)
             {
-                if(this.beginType === "ASSOCIATION" ||this.beginType === "DISSOCIATION" ) {           //because those two has already fixed to center
+                if(this.beginType === "B" ||this.beginType === "K" ) {           //because those two has already fixed to center
                     var x1 = mainManagement.shapes[j].offsetX + mainManagement.shapes[j].x;
                     var y1 = mainManagement.shapes[j].offsetY + mainManagement.shapes[j].y;
                 }
@@ -40,7 +40,7 @@ Inhibition.prototype = {
             }
             if(mainManagement.shapes[j].type === this.endType && mainManagement.shapes[j].id === this.endNodeId)
             {
-                if(this.endType === "ASSOCIATION" ||this.endType === "DISSOCIATION" ) {           //because those two has already fixed to center
+                if(this.endType === "B" ||this.endType === "K" ) {           //because those two has already fixed to center
                     var x2 = mainManagement.shapes[j].offsetX  + mainManagement.shapes[j].x;
                     var y2 = mainManagement.shapes[j].offsetY  + mainManagement.shapes[j].y;
                 }

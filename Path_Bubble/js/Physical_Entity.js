@@ -2,7 +2,7 @@
  * Created by Yongnan on 7/6/2014.
  */
 function Physical_Entity(id, x, y, w, h, text) {
-    this.type = "ENTITY";
+    this.type = "E";    //ENTITY    ===>  E
     this.id = id || 0;
     this.x = x;
     this.y = y;

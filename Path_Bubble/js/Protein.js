@@ -2,7 +2,7 @@
  * Created by Yongnan on 7/3/2014.
  */
 function Protein(id, x, y, w, h, text) {
-    this.type = "PROTEIN";
+    this.type = "P";       //PROTEIN    ===>   P
     this.id = id || 0;
     this.x = x;
     this.y = y;

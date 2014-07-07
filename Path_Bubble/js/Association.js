@@ -1,15 +1,15 @@
 /**
  * Created by Yongnan on 7/3/2014.
  */
-function Association(id, x, y) {
+function Association(id, x, y, w, h) {
 
-    this.type = "ASSOCIATION";
+    this.type = "B";  //ASSOCIATION     ====>    B
     this.id = id || 0;
     this.x = x;
     this.y = y;
-    this.w = 10;
-    this.h = 10;
-    this.r = 10;
+    this.w = w;
+    this.h = h;
+    this.r = w;
     this.strokeColor = "#666666";
     this.lineWidth = 2;
     this.fillColor = "#ffffff";

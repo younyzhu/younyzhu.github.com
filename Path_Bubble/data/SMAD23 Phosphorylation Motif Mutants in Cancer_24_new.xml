@@ -1,0 +1,1922 @@
+<?xml  version="1.0" encoding="UTF-8" ?>
+<Pathway>
+    <ANodeBlock Num="0"/>
+    <compartmentBlock Num="40">
+        <compartment j="0">
+            <Name>cytosol</Name>
+            <Position>(0.0727624, 0.144641, 0.645761, 0.396079)</Position>
+            <Contain>(C, 8, C, 9, C, 11, C, 14, C, 16, C, 17, C, 18, C, 19, C, 20, C, 21, C, 22, C, 28, C, 42, C, 43, E, 0, P, 1, P, 2, P, 3, P, 4, P, 5, P, 6, P, 7, P, 8, P, 11, P, 14, P, 15, P, 17, P, 18, P, 19, P, 20, P, 21, P, 22, P, 25, P, 32, P, 39, R, 0, R, 4, R, 6, R, 8, R, 9, R, 10, R, 11, R, 12, R, 13, R, 14, R, 15, R, 17, R, 20, R, 22, R, 23, R, 24, R, 25, R, 26, R, 27, R, 28, R, 29, R, 30, R, 31, R, 32, R, 33, R, 34, R, 35, R, 36, R, 38, R, 40, R, 41, R, 42, R, 44, R, 45, R, 53, R, 61, R, 62, R, 63, R, 73)</Contain>
+        </compartment>
+        <compartment j="1">
+            <Name>Golgi lumen</Name>
+            <Position>(0.154894, 0.00158058, 0.144019, 0.0955687)</Position>
+            <Contain>(C, 1, C, 2, R, 1, R, 2)</Contain>
+        </compartment>
+        <compartment j="2">
+            <Name>Golgi membrane</Name>
+            <Position>(-1000, 0.231823, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="3">
+            <Name>early endosome</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="4">
+            <Name></Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="5">
+            <Name>early endosome membrane</Name>
+            <Position>(0.757955, 0.220162, 0.134727, 0.117868)</Position>
+            <Contain>(C, 6, C, 7, R, 7)</Contain>
+        </compartment>
+        <compartment j="6">
+            <Name>mitochondrial inner membrane</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="7">
+            <Name>mitochondrial outer membrane</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="8">
+            <Name>photoreceptor disc membrane</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="9">
+            <Name>lysosomal membrane</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="10">
+            <Name>endoplasmic reticulum membrane</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="11">
+            <Name>plasma membrane</Name>
+            <Position>(0.318202, 0, 0.308943, 0.123885)</Position>
+            <Contain>(C, 0, C, 3, C, 4, C, 5, P, 0, R, 3, R, 5, R, 37)</Contain>
+        </compartment>
+        <compartment j="12">
+            <Name>endosome membrane</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="13">
+            <Name>Golgi-associated vesicle membrane</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="14">
+            <Name>cytoplasmic vesicle membrane</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="15">
+            <Name>nuclear envelope</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="16">
+            <Name>chromosome, centromeric region</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="17">
+            <Name>chromosome</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="18">
+            <Name>endosome</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="19">
+            <Name>nucleoplasm</Name>
+            <Position>(0, 0.552528, 1, 0.447472)</Position>
+            <Contain>(C, 10, C, 12, C, 13, C, 15, C, 25, C, 26, C, 27, C, 29, C, 30, C, 31, C, 32, C, 33, C, 34, C, 35, C, 36, C, 37, C, 38, C, 39, C, 40, C, 41, C, 44, C, 45, C, 46, C, 47, C, 48, C, 49, C, 50, D, 0, D, 1, D, 2, D, 3, P, 9, P, 10, P, 12, P, 13, P, 16, P, 23, P, 24, P, 26, P, 27, P, 28, P, 29, P, 30, P, 31, P, 33, P, 34, P, 35, P, 36, P, 37, P, 38, P, 40, P, 41, P, 42, R, 16, R, 18, R, 19, R, 21, R, 43, R, 46, R, 47, R, 48, R, 49, R, 50, R, 51, R, 52, R, 54, R, 55, R, 56, R, 57, R, 58, R, 59, R, 60, R, 64, R, 65, R, 66, R, 67, R, 68, R, 69, R, 70, R, 71, R, 72)</Contain>
+        </compartment>
+        <compartment j="20">
+            <Name>extracellular region</Name>
+            <Position>(-1000, 0.312911, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="21">
+            <Name>cell junction</Name>
+            <Position>(0.757184, 0.068137, 0.131437, 0.136274)</Position>
+            <Contain>(C, 23, C, 24, R, 39)</Contain>
+        </compartment>
+        <compartment j="22">
+            <Name>peroxisomal matrix</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="23">
+            <Name>mitochondrial matrix</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="24">
+            <Name>endosome lumen</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="25">
+            <Name>endocytic vesicle membrane</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="26">
+            <Name>phagocytic vesicle membrane</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="27">
+            <Name>phagocytic vesicle lumen</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="28">
+            <Name>lysosomal lumen</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="29">
+            <Name>photoreceptor outer segment membrane</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="30">
+            <Name>photoreceptor inner segment membrane</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="31">
+            <Name>mitochondrial intermembrane space</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="32">
+            <Name>secretory granule membrane</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="33">
+            <Name>secretory granule lumen</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="34">
+            <Name>endoplasmic reticulum lumen</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="35">
+            <Name>endoplasmic reticulum quality control compartment</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="36">
+            <Name>ER to Golgi transport vesicle membrane</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="37">
+            <Name>clathrin-coated endocytic vesicle</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="38">
+            <Name>platelet dense tubular network membrane</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="39">
+            <Name>whole</Name>
+            <Position>(-1000, -445.791, 0.0487805, 0.0445987)</Position>
+            <Contain>()</Contain>
+        </compartment>
+    </compartmentBlock>
+    <complexBlock Num="51">
+        <complex j="0">
+            <Name>TGFB1:TGFBR2:p-TGFBR1</Name>
+            <Position>(0.470524, 0.0791836, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="1">
+            <Name>Pre-TGFB1 complex</Name>
+            <Position>(0.187689, 0.00746894, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="2">
+            <Name>Large latent complex of TGFB1</Name>
+            <Position>(0.188497, 0.0533039, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="3">
+            <Name>Dimeric TGFB1:TGFBR2 homodimer</Name>
+            <Position>(0.594691, 0.0248986, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="4">
+            <Name>TGFBR1:FKBP1A</Name>
+            <Position>(0.575099, 0.0484261, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="5">
+            <Name>TGFB1:TGFBR2:TGFBR1</Name>
+            <Position>(0.515534, 0.0452917, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="6">
+            <Name>TGFB1:p-TGFBR:SARA:SMAD2/3</Name>
+            <Position>(0.778038, 0.243711, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="7">
+            <Name>TGFB1:p-TGFBR:SARA:p-2S-SMAD2/3</Name>
+            <Position>(0.812101, 0.301747, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="8">
+            <Name>p-2S-SMAD2/3:SMAD4</Name>
+            <Position>(0.360114, 0.356091, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="9">
+            <Name>GADD34:PP1</Name>
+            <Position>(0.323998, 0.220537, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="10">
+            <Name>SMAD7:SMURF2</Name>
+            <Position>(0.15723, 0.81674, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="11">
+            <Name>SMAD7:SMURF2</Name>
+            <Position>(0.19303, 0.475623, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="12">
+            <Name>SMAD7:SMURF1</Name>
+            <Position>(0.239447, 0.758895, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="13">
+            <Name>SMAD7:SMURF1:XPO1</Name>
+            <Position>(0.477568, 0.694816, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="14">
+            <Name>SMAD7:SMURF1</Name>
+            <Position>(0.413671, 0.472553, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="15">
+            <Name>SMAD7:NEDD4L</Name>
+            <Position>(0.338559, 0.707294, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="16">
+            <Name>SMAD7:NEDD4L</Name>
+            <Position>(0.326408, 0.511613, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="17">
+            <Name>SMAD7:SMURF/NEDD4L</Name>
+            <Position>(0.514062, 0.179992, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="18">
+            <Name>SMAD2:SMURF2</Name>
+            <Position>(0.57433, 0.306183, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="19">
+            <Name>Ub-SMAD2</Name>
+            <Position>(0.638699, 0.341765, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="20">
+            <Name>SMAD3:STUB1</Name>
+            <Position>(0.478927, 0.375986, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="21">
+            <Name>Ub-SMAD3</Name>
+            <Position>(0.448738, 0.355067, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="22">
+            <Name>NEDD8:UBE2M</Name>
+            <Position>(0.18218, 0.147901, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="23">
+            <Name>Tight Junction Complex:TGFB1:TGFBR2:TGFBR1:PARD6A:RHOA</Name>
+            <Position>(0.78633, 0.112104, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="24">
+            <Name>Tight Junction Complex:TGFB1:TGFBR2:p-TGFBR1:p-PARD6A:RHOA</Name>
+            <Position>(0.815452, 0.158169, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="25">
+            <Name>p-2S-SMAD2/3:SMAD4</Name>
+            <Position>(0.580348, 0.64055, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="26">
+            <Name>p-T,2S-SMAD2/3:SMAD4</Name>
+            <Position>(0.558186, 0.561497, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="27">
+            <Name>P-TEFb complex</Name>
+            <Position>(0.908116, 0.760724, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="28">
+            <Name>WWTR1:p-2S-SMAD2/3:SMAD4</Name>
+            <Position>(0.253325, 0.416525, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="29">
+            <Name>WWTR1:p-2S-SMAD2/3:SMAD4</Name>
+            <Position>(0.186097, 0.724171, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="30">
+            <Name>p-2S-SMAD2/3:SMAD4:TGIF:HDAC1</Name>
+            <Position>(0.237064, 0.86339, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="31">
+            <Name>SMAD7:RNF111</Name>
+            <Position>(0.257915, 0.915307, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="32">
+            <Name>Ub-SMAD7</Name>
+            <Position>(0.589343, 0.822769, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="33">
+            <Name>RBL1:E2F4/5:DP1/2</Name>
+            <Position>(0.60653, 0.878718, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="34">
+            <Name>p-SMAD2/3:SMAD4:RBL1:E2F4/5:DP1/2</Name>
+            <Position>(0.72292, 0.896174, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="35">
+            <Name>p-2S-SMAD2/3:SMAD4:SP1</Name>
+            <Position>(0.710564, 0.639369, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="36">
+            <Name>p-2S-SMAD2/3:SMAD4:MEN1</Name>
+            <Position>(0.909028, 0.863675, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="37">
+            <Name>p-2S-SMAD2/3:SMAD4:SKI/SKIL:NCOR</Name>
+            <Position>(0.530907, 0.888414, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="38">
+            <Name>p-2S-SMAD2/3:SMAD4:SKI/SKIL:NCOR:RNF111/SMURF2</Name>
+            <Position>(0.380222, 0.643866, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="39">
+            <Name>Ub-SKI/Ub-SKIL</Name>
+            <Position>(0.507432, 0.69305, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="40">
+            <Name>p-SMAD2/3:SMAD4:TRIM33</Name>
+            <Position>(0.131582, 0.727221, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="41">
+            <Name>Ub-SMAD4</Name>
+            <Position>(0.0852483, 0.744445, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="42">
+            <Name>Ub-SMAD4</Name>
+            <Position>(0.140838, 0.355902, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="43">
+            <Name>Ub-SMAD4:USP9X</Name>
+            <Position>(0.182032, 0.413267, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="44">
+            <Name>p-T-2S-SMAD2/3:SMAD4:NEDDL4</Name>
+            <Position>(0.524141, 0.81674, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="45">
+            <Name>Ub-p-T-2S-SMAD2/3:SMAD4</Name>
+            <Position>(0.313279, 0.662054, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="46">
+            <Name>p-T-2S-SMAD2/3:SMAD4:SMURF2</Name>
+            <Position>(0.469216, 0.604964, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="47">
+            <Name>Ub-p-T-2S-SMAD2/3</Name>
+            <Position>(0.480299, 0.720032, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="48">
+            <Name>p-2S-SMAD2/3:SMAD4:PARP1</Name>
+            <Position>(0.585108, 0.718069, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="49">
+            <Name>PAR-SMAD2/3:PAR-SMAD4</Name>
+            <Position>(0.377531, 0.934801, 0.00641932, 0.0150963)</Position>
+        </complex>
+        <complex j="50">
+            <Name>p-2S-SMAD2/3:SMAD4:PPM1A</Name>
+            <Position>(0.745291, 0.823862, 0.00641932, 0.0150963)</Position>
+        </complex>
+    </complexBlock>
+    <proteinBlock Num="43">
+        <protein j="0">
+            <Name>TGFBR2</Name>
+            <Position>(0.374623, 0.00179242, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="1">
+            <Name>FKBP1A</Name>
+            <Position>(0.643295, 0.200317, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="2">
+            <Name>SMAD3</Name>
+            <Position>(0.673755, 0.275586, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="3">
+            <Name>SMAD2</Name>
+            <Position>(0.518699, 0.255165, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="4">
+            <Name>SMAD3</Name>
+            <Position>(0.527922, 0.332461, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="5">
+            <Name>p-2S-SMAD3</Name>
+            <Position>(0.537459, 0.435032, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="6">
+            <Name>SMAD4</Name>
+            <Position>(0.402252, 0.353992, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="7">
+            <Name>SMAD7</Name>
+            <Position>(0.193626, 0.250473, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="8">
+            <Name>STRAP</Name>
+            <Position>(0.428379, 0.152083, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="9">
+            <Name>SMAD7</Name>
+            <Position>(0.302616, 0.775455, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="10">
+            <Name>SMURF2</Name>
+            <Position>(0.445952, 0.569802, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="11">
+            <Name>SMURF2</Name>
+            <Position>(0.596528, 0.394299, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="12">
+            <Name>SMURF1</Name>
+            <Position>(0.254868, 0.660163, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="13">
+            <Name>XPO1</Name>
+            <Position>(0.508251, 0.703941, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="14">
+            <Name>SMURF1</Name>
+            <Position>(0.676681, 0.160406, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="15">
+            <Name>XPO1</Name>
+            <Position>(0.491231, 0.462448, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="16">
+            <Name>NEDD4L</Name>
+            <Position>(0.384212, 0.670197, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="17">
+            <Name>NEDD4L</Name>
+            <Position>(0.497621, 0.306986, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="18">
+            <Name>UBC(609-684)</Name>
+            <Position>(0.442739, 0.211926, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="19">
+            <Name>USP15</Name>
+            <Position>(0.0896507, 0.154217, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="20">
+            <Name>STUB1</Name>
+            <Position>(0.475358, 0.33666, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="21">
+            <Name>CBL</Name>
+            <Position>(0.139649, 0.205817, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="22">
+            <Name>UBE2M</Name>
+            <Position>(0.188472, 0.167871, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="23">
+            <Name>SMAD4</Name>
+            <Position>(0.393345, 0.7058, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="24">
+            <Name>p-2S-SMAD3</Name>
+            <Position>(0.511303, 0.759711, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="25">
+            <Name>TAZ</Name>
+            <Position>(0.304493, 0.350985, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="26">
+            <Name>HDAC1</Name>
+            <Position>(0.101728, 0.759711, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="27">
+            <Name>TGIF2</Name>
+            <Position>(0.144392, 0.759711, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="28">
+            <Name>RNF111</Name>
+            <Position>(0.366333, 0.859907, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="29">
+            <Name>UBC(609-684)</Name>
+            <Position>(0.314961, 0.580883, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="30">
+            <Name>MYC</Name>
+            <Position>(0.725974, 0.97015, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="31">
+            <Name>SP1</Name>
+            <Position>(0.640051, 0.769041, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="32">
+            <Name>MTS2</Name>
+            <Position>(0.456093, 0.517014, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="33">
+            <Name>MEN1</Name>
+            <Position>(0.789984, 0.783456, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="34">
+            <Name>JUNB</Name>
+            <Position>(0.960569, 0.779888, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="35">
+            <Name>NCOR2</Name>
+            <Position>(0.536538, 0.701537, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="36">
+            <Name>SNO</Name>
+            <Position>(0.623991, 0.853623, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="37">
+            <Name>RNF111</Name>
+            <Position>(0.260218, 0.620353, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="38">
+            <Name>TRIM33</Name>
+            <Position>(0.177007, 0.662058, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="39">
+            <Name>FAM</Name>
+            <Position>(0.180568, 0.355525, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="40">
+            <Name>PARP1</Name>
+            <Position>(0.612326, 0.79461, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="41">
+            <Name>PPM1A</Name>
+            <Position>(0.682486, 0.724898, 0.0320966, 0.0171202)</Position>
+        </protein>
+        <protein j="42">
+            <Name>SMAD2</Name>
+            <Position>(0.814799, 0.699574, 0.0320966, 0.0171202)</Position>
+        </protein>
+    </proteinBlock>
+    <physicalEntityBlock Num="1">
+        <physicalEntity j="0">
+            <Name>SMAD3 S425C</Name>
+            <Position>(0.269079, 0.148162, 0.038516, 0.0257098)</Position>
+        </physicalEntity>
+    </physicalEntityBlock>
+    <smallMoleculeBlock Num="4">
+        <smallMolecule j="0">
+            <Name>Pi</Name>
+            <Position>(-1000, -445.791, 0.390244, 0.0133796)</Position>
+        </smallMolecule>
+        <smallMolecule j="1">
+            <Name>H2O</Name>
+            <Position>(-1000, -445.791, 0.390244, 0.0133796)</Position>
+        </smallMolecule>
+        <smallMolecule j="2">
+            <Name>ATP</Name>
+            <Position>(-1000, -445.791, 0.390244, 0.0133796)</Position>
+        </smallMolecule>
+        <smallMolecule j="3">
+            <Name>ADP</Name>
+            <Position>(-1000, -445.791, 0.390244, 0.0133796)</Position>
+        </smallMolecule>
+    </smallMoleculeBlock>
+    <DnaBlock Num="4">
+        <Dna j="0">
+            <Name>SMAD7 </Name>
+            <Position>(0.301769, 0.617664, 0.0388797, 0.0171399)</Position>
+        </Dna>
+        <Dna j="1">
+            <Name>SERPINE1 </Name>
+            <Position>(0.00531657, 0.629373, 0.0388797, 0.0171399)</Position>
+        </Dna>
+        <Dna j="2">
+            <Name>MYC Gen</Name>
+            <Position>(0.771564, 0.617664, 0.0388797, 0.0171399)</Position>
+        </Dna>
+        <Dna j="3">
+            <Name>JUNB </Name>
+            <Position>(0.814764, 0.578386, 0.0388797, 0.0171399)</Position>
+        </Dna>
+    </DnaBlock>
+    <reactionBlock Num="74">
+        <reaction j="0">
+            <Name>An anchoring protein, ZFYVE9 (SARA), recruits SMAD2/3 phosphorylation motif mutants</Name>
+            <Type>D</Type>
+            <Position>(0.255047, 0.20124, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="1">
+            <Name>Latent TGF-beta-1 is cleaved by furin</Name>
+            <Type>T</Type>
+            <Position>(0.212486, 0.0317694, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="2">
+            <Name>Secretion and activation of the latent large complex of TGF-beta-1</Name>
+            <Type>T</Type>
+            <Position>(0.262017, 0.0664159, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="3">
+            <Name>Dimeric TGFB1 binds to TGFBR2 homodimer</Name>
+            <Type>D</Type>
+            <Position>(0.469727, 0.0210591, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="4">
+            <Name>TGFBR2 recruits TGFBR1</Name>
+            <Type>T</Type>
+            <Position>(0.59077, 0.1721, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="5">
+            <Name>TGFBR2 phosphorylates TGFBR1</Name>
+            <Type>T</Type>
+            <Position>(0.509714, 0.0668289, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="6">
+            <Name>An anchoring protein, ZFYVE9 (SARA), recruits SMAD2/3</Name>
+            <Type>D</Type>
+            <Position>(0.576697, 0.216134, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="7">
+            <Name>Activated type I receptor phosphorylates SMAD2/3 directly</Name>
+            <Type>T</Type>
+            <Position>(0.846194, 0.274603, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="8">
+            <Name>Phosphorylated SMAD2/3 dissociates from TGFBR</Name>
+            <Type>B</Type>
+            <Position>(0.679862, 0.396192, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="9">
+            <Name>Phosphorylated SMAD2 and SMAD3 form a complex with SMAD4</Name>
+            <Type>D</Type>
+            <Position>(0.419317, 0.39564, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="10">
+            <Name>I-SMAD competes with SMAD2/3 for type I receptor (TGFBR1)</Name>
+            <Type>D</Type>
+            <Position>(0.304097, 0.189384, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="11">
+            <Name>STRAP binds phosphorylated TGF-beta receptor complex</Name>
+            <Type>D</Type>
+            <Position>(0.400311, 0.183549, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="12">
+            <Name>STRAP stabilizes interaction of activated TGF-beta receptor complex with SMAD7</Name>
+            <Type>D</Type>
+            <Position>(0.165048, 0.321189, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="13">
+            <Name>BAMBI interferes with the interaction of type I receptor with type II receptor</Name>
+            <Type>D</Type>
+            <Position>(0.350708, 0.287174, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="14">
+            <Name>SMAD7 recruits GADD34:PP1 to phosphorylated TGFBR</Name>
+            <Type>D</Type>
+            <Position>(0.346009, 0.267733, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="15">
+            <Name>PP1 dephosphorylates TGFBR1</Name>
+            <Type>T</Type>
+            <Position>(0.294556, 0.21683, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="16">
+            <Name>SMAD7 binds to SMURF2</Name>
+            <Type>D</Type>
+            <Position>(0.268928, 0.797406, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="17">
+            <Name>SMAD7:SMURF2 complex translocates to the cytosol</Name>
+            <Type>T</Type>
+            <Position>(0.197496, 0.455634, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="18">
+            <Name>SMAD7 binds to SMURF1</Name>
+            <Type>D</Type>
+            <Position>(0.259365, 0.709056, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="19">
+            <Name>SMAD7:SMURF1 complex binds XPO1 (CRM1)</Name>
+            <Type>D</Type>
+            <Position>(0.511933, 0.733679, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="20">
+            <Name>SMAD7:SMURF1 complex is exported to the cytosol</Name>
+            <Type>B</Type>
+            <Position>(0.463258, 0.440475, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="21">
+            <Name>NEDD4L ubiquitin ligase binds SMAD7</Name>
+            <Type>D</Type>
+            <Position>(0.388022, 0.696707, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="22">
+            <Name>SMAD7:NEDD4L complex translocates to the cytosol</Name>
+            <Type>T</Type>
+            <Position>(0.3071, 0.485715, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="23">
+            <Name>SMAD7:SMURF complex binds to phosphorylated TGFBR1</Name>
+            <Type>D</Type>
+            <Position>(0.485223, 0.204227, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="24">
+            <Name>SMURFs/NEDD4L ubiquitinate phosphorylated TGFBR1 and SMAD7</Name>
+            <Type>T</Type>
+            <Position>(0.487208, 0.269199, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="25">
+            <Name>UCHL5 binds SMAD7 in complex with ubiquitinated TGFBR1</Name>
+            <Type>D</Type>
+            <Position>(0.12801, 0.200041, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="26">
+            <Name>UCHL5 or USP15 deubiquitinates TGFBR1</Name>
+            <Type>T</Type>
+            <Position>(0.456771, 0.178646, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="27">
+            <Name>SMURF2 binds SMAD2</Name>
+            <Type>D</Type>
+            <Position>(0.535444, 0.28826, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="28">
+            <Name>SMURF2 ubiquitinates SMAD2</Name>
+            <Type>T</Type>
+            <Position>(0.606065, 0.257667, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="29">
+            <Name>SMAD3 binds STUB1 (CHIP)</Name>
+            <Type>D</Type>
+            <Position>(0.532541, 0.374438, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="30">
+            <Name>STUB1 (CHIP) ubiquitinates SMAD3</Name>
+            <Type>T</Type>
+            <Position>(0.437485, 0.287517, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="31">
+            <Name>PMEPA1 sequesters phosphorylated SMAD2/3</Name>
+            <Type>D</Type>
+            <Position>(0.588838, 0.480496, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="32">
+            <Name>PMEPA1 sequesters unphosphorylated SMAD2/3</Name>
+            <Type>D</Type>
+            <Position>(0.697462, 0.369837, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="33">
+            <Name>MTMR4 binds phosphorylated SMAD2/3</Name>
+            <Type>D</Type>
+            <Position>(0.602451, 0.453965, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="34">
+            <Name>MTMR4 dephosphorylates SMAD2/3</Name>
+            <Type>T</Type>
+            <Position>(0.698423, 0.238877, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="35">
+            <Name>CBL binds TGFBR2</Name>
+            <Type>D</Type>
+            <Position>(0.227772, 0.183509, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="36">
+            <Name>CBL neddylates TGFBR2</Name>
+            <Type>T</Type>
+            <Position>(0.160624, 0.162797, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="37">
+            <Name>TGFBR1 is recruited to tight junctions by PARD6A</Name>
+            <Type>D</Type>
+            <Position>(0.561428, 0.0751073, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="38">
+            <Name>TGFBR2 is recruited to tight junctions after TGF-beta stimulation</Name>
+            <Type>T</Type>
+            <Position>(0.623292, 0.158733, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="39">
+            <Name>TGFBR2 phosphorylates TGFBR1 and PARD6A</Name>
+            <Type>T</Type>
+            <Position>(0.857677, 0.122914, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="40">
+            <Name>SMURF1 binds phosphorylated PARD6A</Name>
+            <Type>D</Type>
+            <Position>(0.692081, 0.197124, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="41">
+            <Name>SMURF1 ubiquitinates RHOA</Name>
+            <Type>D</Type>
+            <Position>(0.40381, 0.295361, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="42">
+            <Name>The SMAD2/3:SMAD4 complex transfers to the nucleus</Name>
+            <Type>T</Type>
+            <Position>(0.372997, 0.409005, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="43">
+            <Name>Phosphorylation of SMAD2 and SMAD3 linker regions by CDK8 or CDK9</Name>
+            <Type>T</Type>
+            <Position>(0.853423, 0.797406, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="44">
+            <Name>WWTR1 binds SMAD2/3:SMAD4 heterotrimer</Name>
+            <Type>D</Type>
+            <Position>(0.289118, 0.384446, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="45">
+            <Name>WWTR1:SMAD translocates to the nucleus</Name>
+            <Type>T</Type>
+            <Position>(0.183431, 0.440788, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="46">
+            <Name>WWTR1:SMAD stimulates transcription of SMAD7</Name>
+            <Type>T</Type>
+            <Position>(0.305332, 0.872425, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="47">
+            <Name>WWTR1:SMAD stimulates transcription of SERPINE1 while TGIF:SMAD and SMAD7 inhibit it</Name>
+            <Type>T</Type>
+            <Position>(0.301421, 0.827996, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="48">
+            <Name>RNF111 binds SMAD7</Name>
+            <Type>D</Type>
+            <Position>(0.338498, 0.918505, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="49">
+            <Name>RNF111 ubiquitinates SMAD7</Name>
+            <Type>T</Type>
+            <Position>(0.341134, 0.632169, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="50">
+            <Name>SMAD2/3:SMAD4 heterotrimer forms a complex with RBL1, E2F4/5 and DP1/2</Name>
+            <Type>D</Type>
+            <Position>(0.746379, 0.867582, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="51">
+            <Name>MYC trancscription is negatively regulated by SMAD2/3:SMAD4:RBL1:E2F4/5:DP1/2 complex</Name>
+            <Type>T</Type>
+            <Position>(0.760945, 0.94637, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="52">
+            <Name>SMAD2/3:SMAD4 heterotrimer binds SP1</Name>
+            <Type>D</Type>
+            <Position>(0.640378, 0.752147, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="53">
+            <Name>SMAD2/3:SMAD4:SP1 complex stimulates transcription of CDKN2B</Name>
+            <Type>T</Type>
+            <Position>(0.477329, 0.49169, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="54">
+            <Name>MEN1 binds SMAD2/3:SMAD4 heterotrimer</Name>
+            <Type>D</Type>
+            <Position>(0.772364, 0.797406, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="55">
+            <Name>SMAD2/3:SMAD4 complex positively regulates JUNB transcription</Name>
+            <Type>T</Type>
+            <Position>(0.882877, 0.747679, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="56">
+            <Name>SKI/SKIL binds SMAD complex, suppressing TGF-beta signaling</Name>
+            <Type>D</Type>
+            <Position>(0.584678, 0.881836, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="57">
+            <Name>SMAD2/3 activation induces binding of RNF111/SMURF2 to SKI/SKIL</Name>
+            <Type>D</Type>
+            <Position>(0.287174, 0.653986, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="58">
+            <Name>Ubiquitination of SKI/SKIL by RNF111/SMURF2</Name>
+            <Type>T</Type>
+            <Position>(0.524383, 0.628483, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="59">
+            <Name>TRIM33 (Ectodermin) binds SMAD heterotrimer in the nucleus</Name>
+            <Type>D</Type>
+            <Position>(0.181425, 0.70688, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="60">
+            <Name>TRIM33 monoubiquitinates SMAD4</Name>
+            <Type>T</Type>
+            <Position>(0.182934, 0.638655, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="61">
+            <Name>Ubiquitinated SMAD4 translocates from the nucleus to the cytosol</Name>
+            <Type>T</Type>
+            <Position>(0.127887, 0.387265, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="62">
+            <Name>USP9X (FAM) binds to ubiquitinated SMAD4</Name>
+            <Type>D</Type>
+            <Position>(0.165762, 0.389374, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="63">
+            <Name>USP9X (FAM) deubiquitinates SMAD4</Name>
+            <Type>T</Type>
+            <Position>(0.34962, 0.311669, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="64">
+            <Name>NEDD4L binds phosphorylated linker region of SMAD2/3</Name>
+            <Type>D</Type>
+            <Position>(0.567576, 0.797406, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="65">
+            <Name>NEDD4L ubiquitinates SMAD2/3</Name>
+            <Type>T</Type>
+            <Position>(0.319217, 0.642724, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="66">
+            <Name>SMURF2 binds SMAD3 phosphorylated in the linker region</Name>
+            <Type>D</Type>
+            <Position>(0.495373, 0.596484, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="67">
+            <Name>SMURF2 monoubiquitinates SMAD3</Name>
+            <Type>T</Type>
+            <Position>(0.436266, 0.666527, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="68">
+            <Name>TGIF recruits HDAC1 to SMAD2/3:SMAD4 heterotrimer</Name>
+            <Type>D</Type>
+            <Position>(0.200665, 0.797406, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="69">
+            <Name>PARP1 binds SMAD2/3:SMAD4 heterotrimer</Name>
+            <Type>D</Type>
+            <Position>(0.614335, 0.752321, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="70">
+            <Name>PARP1 ADP-ribosylates SMAD3 and SMAD4</Name>
+            <Type>T</Type>
+            <Position>(0.586115, 0.747638, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="71">
+            <Name>PPM1A protein phosphatase binds phosphorylated SMAD2/3</Name>
+            <Type>D</Type>
+            <Position>(0.65176, 0.822341, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="72">
+            <Name>PPM1A dephosphorylates nuclear SMAD2/3</Name>
+            <Type>T</Type>
+            <Position>(0.739374, 0.797999, 0.00487804, 0.00445986)</Position>
+        </reaction>
+        <reaction j="73">
+            <Name>Dephosphorylated SMAD2/3 translocates to the cytosol</Name>
+            <Type>T</Type>
+            <Position>(0.648075, 0.39336, 0.00487804, 0.00445986)</Position>
+        </reaction>
+    </reactionBlock>
+    <edgeBlock Num="229">
+        <edge j="0">
+            <Name>T</Name>
+            <Ends>(R, 0, C, 0)</Ends>
+        </edge>
+        <edge j="1">
+            <Name>T</Name>
+            <Ends>(R, 0, E, 0)</Ends>
+        </edge>
+        <edge j="2">
+            <Name>T</Name>
+            <Ends>(R, 0, P, -1)</Ends>
+        </edge>
+        <edge j="3">
+            <Name>T</Name>
+            <Ends>(R, 1, C, 1)</Ends>
+        </edge>
+        <edge j="4">
+            <Name>T</Name>
+            <Ends>(C, 2, R, 1)</Ends>
+        </edge>
+        <edge j="5">
+            <Name>T</Name>
+            <Ends>(R, 2, C, 2)</Ends>
+        </edge>
+        <edge j="6">
+            <Name>T</Name>
+            <Ends>(R, 3, C, -1)</Ends>
+        </edge>
+        <edge j="7">
+            <Name>T</Name>
+            <Ends>(C, 3, R, 3)</Ends>
+        </edge>
+        <edge j="8">
+            <Name>T</Name>
+            <Ends>(R, 3, P, 0)</Ends>
+        </edge>
+        <edge j="9">
+            <Name>T</Name>
+            <Ends>(R, 4, C, 4)</Ends>
+        </edge>
+        <edge j="10">
+            <Name>T</Name>
+            <Ends>(C, 5, R, 4)</Ends>
+        </edge>
+        <edge j="11">
+            <Name>A</Name>
+            <Ends>(R, 4, C, 3)</Ends>
+        </edge>
+        <edge j="12">
+            <Name>T</Name>
+            <Ends>(P, 1, R, 4)</Ends>
+        </edge>
+        <edge j="13">
+            <Name>A</Name>
+            <Ends>(R, 5, C, 5)</Ends>
+        </edge>
+        <edge j="14">
+            <Name>T</Name>
+            <Ends>(C, 0, R, 5)</Ends>
+        </edge>
+        <edge j="15">
+            <Name>T</Name>
+            <Ends>(R, 5, S, 0)</Ends>
+        </edge>
+        <edge j="16">
+            <Name>T</Name>
+            <Ends>(S, 1, R, 5)</Ends>
+        </edge>
+        <edge j="17">
+            <Name>T</Name>
+            <Ends>(R, 6, C, 0)</Ends>
+        </edge>
+        <edge j="18">
+            <Name>T</Name>
+            <Ends>(C, 6, R, 6)</Ends>
+        </edge>
+        <edge j="19">
+            <Name>T</Name>
+            <Ends>(R, 6, P, 2)</Ends>
+        </edge>
+        <edge j="20">
+            <Name>T</Name>
+            <Ends>(R, 6, P, -1)</Ends>
+        </edge>
+        <edge j="21">
+            <Name>T</Name>
+            <Ends>(R, 7, S, 0)</Ends>
+        </edge>
+        <edge j="22">
+            <Name>T</Name>
+            <Ends>(S, 1, R, 7)</Ends>
+        </edge>
+        <edge j="23">
+            <Name>A</Name>
+            <Ends>(R, 7, C, 6)</Ends>
+        </edge>
+        <edge j="24">
+            <Name>T</Name>
+            <Ends>(C, 7, R, 7)</Ends>
+        </edge>
+        <edge j="25">
+            <Name>T</Name>
+            <Ends>(R, 8, C, 7)</Ends>
+        </edge>
+        <edge j="26">
+            <Name>T</Name>
+            <Ends>(P, 5, R, 8)</Ends>
+        </edge>
+        <edge j="27">
+            <Name>T</Name>
+            <Ends>(R, 9, P, 6)</Ends>
+        </edge>
+        <edge j="28">
+            <Name>T</Name>
+            <Ends>(C, 8, R, 9)</Ends>
+        </edge>
+        <edge j="29">
+            <Name>T</Name>
+            <Ends>(R, 9, P, 5)</Ends>
+        </edge>
+        <edge j="30">
+            <Name>T</Name>
+            <Ends>(R, 10, C, 0)</Ends>
+        </edge>
+        <edge j="31">
+            <Name>T</Name>
+            <Ends>(R, 10, P, 7)</Ends>
+        </edge>
+        <edge j="32">
+            <Name>T</Name>
+            <Ends>(R, 11, C, 0)</Ends>
+        </edge>
+        <edge j="33">
+            <Name>T</Name>
+            <Ends>(R, 11, P, 8)</Ends>
+        </edge>
+        <edge j="34">
+            <Name>T</Name>
+            <Ends>(R, 12, C, -1)</Ends>
+        </edge>
+        <edge j="35">
+            <Name>T</Name>
+            <Ends>(R, 12, P, 7)</Ends>
+        </edge>
+        <edge j="36">
+            <Name>T</Name>
+            <Ends>(R, 13, C, 0)</Ends>
+        </edge>
+        <edge j="37">
+            <Name>T</Name>
+            <Ends>(R, 13, P, 7)</Ends>
+        </edge>
+        <edge j="38">
+            <Name>T</Name>
+            <Ends>(R, 13, P, -1)</Ends>
+        </edge>
+        <edge j="39">
+            <Name>T</Name>
+            <Ends>(R, 14, C, 9)</Ends>
+        </edge>
+        <edge j="40">
+            <Name>T</Name>
+            <Ends>(R, 14, P, -1)</Ends>
+        </edge>
+        <edge j="41">
+            <Name>T</Name>
+            <Ends>(R, 14, C, -1)</Ends>
+        </edge>
+        <edge j="42">
+            <Name>T</Name>
+            <Ends>(R, 15, C, -1)</Ends>
+        </edge>
+        <edge j="43">
+            <Name>T</Name>
+            <Ends>(S, 3, R, 15)</Ends>
+        </edge>
+        <edge j="44">
+            <Name>T</Name>
+            <Ends>(R, 15, S, 2)</Ends>
+        </edge>
+        <edge j="45">
+            <Name>T</Name>
+            <Ends>(P, 7, R, 15)</Ends>
+        </edge>
+        <edge j="46">
+            <Name>T</Name>
+            <Ends>(C, 9, R, 15)</Ends>
+        </edge>
+        <edge j="47">
+            <Name>T</Name>
+            <Ends>(R, 16, P, 9)</Ends>
+        </edge>
+        <edge j="48">
+            <Name>T</Name>
+            <Ends>(C, 10, R, 16)</Ends>
+        </edge>
+        <edge j="49">
+            <Name>T</Name>
+            <Ends>(R, 16, P, 10)</Ends>
+        </edge>
+        <edge j="50">
+            <Name>T</Name>
+            <Ends>(R, 17, C, 10)</Ends>
+        </edge>
+        <edge j="51">
+            <Name>T</Name>
+            <Ends>(C, 11, R, 17)</Ends>
+        </edge>
+        <edge j="52">
+            <Name>T</Name>
+            <Ends>(R, 18, P, 9)</Ends>
+        </edge>
+        <edge j="53">
+            <Name>T</Name>
+            <Ends>(C, 12, R, 18)</Ends>
+        </edge>
+        <edge j="54">
+            <Name>T</Name>
+            <Ends>(R, 18, P, 12)</Ends>
+        </edge>
+        <edge j="55">
+            <Name>T</Name>
+            <Ends>(R, 19, P, 13)</Ends>
+        </edge>
+        <edge j="56">
+            <Name>T</Name>
+            <Ends>(C, 13, R, 19)</Ends>
+        </edge>
+        <edge j="57">
+            <Name>T</Name>
+            <Ends>(R, 19, C, 12)</Ends>
+        </edge>
+        <edge j="58">
+            <Name>A</Name>
+            <Ends>(R, 20, C, 13)</Ends>
+        </edge>
+        <edge j="59">
+            <Name>T</Name>
+            <Ends>(C, 14, R, 20)</Ends>
+        </edge>
+        <edge j="60">
+            <Name>T</Name>
+            <Ends>(P, 15, R, 20)</Ends>
+        </edge>
+        <edge j="61">
+            <Name>T</Name>
+            <Ends>(R, 21, P, 9)</Ends>
+        </edge>
+        <edge j="62">
+            <Name>T</Name>
+            <Ends>(C, 15, R, 21)</Ends>
+        </edge>
+        <edge j="63">
+            <Name>T</Name>
+            <Ends>(R, 21, P, 16)</Ends>
+        </edge>
+        <edge j="64">
+            <Name>T</Name>
+            <Ends>(R, 22, C, 15)</Ends>
+        </edge>
+        <edge j="65">
+            <Name>T</Name>
+            <Ends>(C, 16, R, 22)</Ends>
+        </edge>
+        <edge j="66">
+            <Name>T</Name>
+            <Ends>(R, 23, C, 0)</Ends>
+        </edge>
+        <edge j="67">
+            <Name>T</Name>
+            <Ends>(R, 23, C, 17)</Ends>
+        </edge>
+        <edge j="68">
+            <Name>T</Name>
+            <Ends>(R, 24, P, 18)</Ends>
+        </edge>
+        <edge j="69">
+            <Name>T</Name>
+            <Ends>(P, 17, R, 24)</Ends>
+        </edge>
+        <edge j="70">
+            <Name>T</Name>
+            <Ends>(R, 24, C, -1)</Ends>
+        </edge>
+        <edge j="71">
+            <Name>T</Name>
+            <Ends>(R, 25, P, 19)</Ends>
+        </edge>
+        <edge j="72">
+            <Name>T</Name>
+            <Ends>(R, 25, C, -1)</Ends>
+        </edge>
+        <edge j="73">
+            <Name>T</Name>
+            <Ends>(R, 26, C, -1)</Ends>
+        </edge>
+        <edge j="74">
+            <Name>T</Name>
+            <Ends>(P, 18, R, 26)</Ends>
+        </edge>
+        <edge j="75">
+            <Name>T</Name>
+            <Ends>(R, 26, S, 2)</Ends>
+        </edge>
+        <edge j="76">
+            <Name>T</Name>
+            <Ends>(R, 27, P, 11)</Ends>
+        </edge>
+        <edge j="77">
+            <Name>T</Name>
+            <Ends>(C, 18, R, 27)</Ends>
+        </edge>
+        <edge j="78">
+            <Name>T</Name>
+            <Ends>(R, 27, P, 3)</Ends>
+        </edge>
+        <edge j="79">
+            <Name>T</Name>
+            <Ends>(R, 28, P, 18)</Ends>
+        </edge>
+        <edge j="80">
+            <Name>T</Name>
+            <Ends>(P, 11, R, 28)</Ends>
+        </edge>
+        <edge j="81">
+            <Name>A</Name>
+            <Ends>(R, 28, C, 18)</Ends>
+        </edge>
+        <edge j="82">
+            <Name>T</Name>
+            <Ends>(C, 19, R, 28)</Ends>
+        </edge>
+        <edge j="83">
+            <Name>T</Name>
+            <Ends>(R, 29, P, 20)</Ends>
+        </edge>
+        <edge j="84">
+            <Name>T</Name>
+            <Ends>(C, 20, R, 29)</Ends>
+        </edge>
+        <edge j="85">
+            <Name>T</Name>
+            <Ends>(R, 29, P, 4)</Ends>
+        </edge>
+        <edge j="86">
+            <Name>T</Name>
+            <Ends>(R, 30, P, 18)</Ends>
+        </edge>
+        <edge j="87">
+            <Name>T</Name>
+            <Ends>(C, 21, R, 30)</Ends>
+        </edge>
+        <edge j="88">
+            <Name>A</Name>
+            <Ends>(R, 30, C, 20)</Ends>
+        </edge>
+        <edge j="89">
+            <Name>T</Name>
+            <Ends>(P, 20, R, 30)</Ends>
+        </edge>
+        <edge j="90">
+            <Name>T</Name>
+            <Ends>(R, 31, P, 5)</Ends>
+        </edge>
+        <edge j="91">
+            <Name>T</Name>
+            <Ends>(R, 31, P, -1)</Ends>
+        </edge>
+        <edge j="92">
+            <Name>T</Name>
+            <Ends>(R, 32, P, 2)</Ends>
+        </edge>
+        <edge j="93">
+            <Name>T</Name>
+            <Ends>(R, 32, P, -1)</Ends>
+        </edge>
+        <edge j="94">
+            <Name>T</Name>
+            <Ends>(R, 33, P, 5)</Ends>
+        </edge>
+        <edge j="95">
+            <Name>T</Name>
+            <Ends>(R, 33, P, -1)</Ends>
+        </edge>
+        <edge j="96">
+            <Name>T</Name>
+            <Ends>(R, 34, C, -1)</Ends>
+        </edge>
+        <edge j="97">
+            <Name>T</Name>
+            <Ends>(S, 3, R, 34)</Ends>
+        </edge>
+        <edge j="98">
+            <Name>T</Name>
+            <Ends>(R, 34, S, 2)</Ends>
+        </edge>
+        <edge j="99">
+            <Name>T</Name>
+            <Ends>(P, 2, R, 34)</Ends>
+        </edge>
+        <edge j="100">
+            <Name>T</Name>
+            <Ends>(R, 35, P, 21)</Ends>
+        </edge>
+        <edge j="101">
+            <Name>T</Name>
+            <Ends>(R, 35, P, 0)</Ends>
+        </edge>
+        <edge j="102">
+            <Name>T</Name>
+            <Ends>(R, 36, C, -1)</Ends>
+        </edge>
+        <edge j="103">
+            <Name>T</Name>
+            <Ends>(P, 21, R, 36)</Ends>
+        </edge>
+        <edge j="104">
+            <Name>T</Name>
+            <Ends>(R, 36, C, 22)</Ends>
+        </edge>
+        <edge j="105">
+            <Name>T</Name>
+            <Ends>(P, 22, R, 36)</Ends>
+        </edge>
+        <edge j="106">
+            <Name>T</Name>
+            <Ends>(R, 37, C, -1)</Ends>
+        </edge>
+        <edge j="107">
+            <Name>T</Name>
+            <Ends>(R, 37, C, 4)</Ends>
+        </edge>
+        <edge j="108">
+            <Name>T</Name>
+            <Ends>(R, 38, C, -1)</Ends>
+        </edge>
+        <edge j="109">
+            <Name>T</Name>
+            <Ends>(P, 1, R, 38)</Ends>
+        </edge>
+        <edge j="110">
+            <Name>T</Name>
+            <Ends>(R, 38, C, 3)</Ends>
+        </edge>
+        <edge j="111">
+            <Name>T</Name>
+            <Ends>(C, 23, R, 38)</Ends>
+        </edge>
+        <edge j="112">
+            <Name>T</Name>
+            <Ends>(R, 39, S, 0)</Ends>
+        </edge>
+        <edge j="113">
+            <Name>T</Name>
+            <Ends>(S, 1, R, 39)</Ends>
+        </edge>
+        <edge j="114">
+            <Name>T</Name>
+            <Ends>(R, 39, C, 23)</Ends>
+        </edge>
+        <edge j="115">
+            <Name>T</Name>
+            <Ends>(C, 24, R, 39)</Ends>
+        </edge>
+        <edge j="116">
+            <Name>T</Name>
+            <Ends>(R, 40, C, 24)</Ends>
+        </edge>
+        <edge j="117">
+            <Name>T</Name>
+            <Ends>(R, 40, P, 14)</Ends>
+        </edge>
+        <edge j="118">
+            <Name>T</Name>
+            <Ends>(R, 41, C, -1)</Ends>
+        </edge>
+        <edge j="119">
+            <Name>T</Name>
+            <Ends>(R, 41, P, 18)</Ends>
+        </edge>
+        <edge j="120">
+            <Name>T</Name>
+            <Ends>(R, 42, C, 8)</Ends>
+        </edge>
+        <edge j="121">
+            <Name>T</Name>
+            <Ends>(C, 25, R, 42)</Ends>
+        </edge>
+        <edge j="122">
+            <Name>T</Name>
+            <Ends>(R, 43, S, -1)</Ends>
+        </edge>
+        <edge j="123">
+            <Name>T</Name>
+            <Ends>(R, 43, C, 25)</Ends>
+        </edge>
+        <edge j="124">
+            <Name>T</Name>
+            <Ends>(C, 26, R, 43)</Ends>
+        </edge>
+        <edge j="125">
+            <Name>T</Name>
+            <Ends>(R, 44, C, 8)</Ends>
+        </edge>
+        <edge j="126">
+            <Name>T</Name>
+            <Ends>(C, 28, R, 44)</Ends>
+        </edge>
+        <edge j="127">
+            <Name>T</Name>
+            <Ends>(R, 44, P, 25)</Ends>
+        </edge>
+        <edge j="128">
+            <Name>T</Name>
+            <Ends>(R, 45, C, 28)</Ends>
+        </edge>
+        <edge j="129">
+            <Name>T</Name>
+            <Ends>(C, 29, R, 45)</Ends>
+        </edge>
+        <edge j="130">
+            <Name>T</Name>
+            <Ends>(R, 46, D, 0)</Ends>
+        </edge>
+        <edge j="131">
+            <Name>T</Name>
+            <Ends>(P, 9, R, 46)</Ends>
+        </edge>
+        <edge j="132">
+            <Name>T</Name>
+            <Ends>(R, 47, D, 1)</Ends>
+        </edge>
+        <edge j="133">
+            <Name>T</Name>
+            <Ends>(R, 48, P, 9)</Ends>
+        </edge>
+        <edge j="134">
+            <Name>T</Name>
+            <Ends>(C, 31, R, 48)</Ends>
+        </edge>
+        <edge j="135">
+            <Name>T</Name>
+            <Ends>(R, 48, P, 28)</Ends>
+        </edge>
+        <edge j="136">
+            <Name>A</Name>
+            <Ends>(R, 49, C, 31)</Ends>
+        </edge>
+        <edge j="137">
+            <Name>T</Name>
+            <Ends>(C, 32, R, 49)</Ends>
+        </edge>
+        <edge j="138">
+            <Name>T</Name>
+            <Ends>(R, 49, P, 29)</Ends>
+        </edge>
+        <edge j="139">
+            <Name>T</Name>
+            <Ends>(P, 28, R, 49)</Ends>
+        </edge>
+        <edge j="140">
+            <Name>T</Name>
+            <Ends>(R, 50, C, 33)</Ends>
+        </edge>
+        <edge j="141">
+            <Name>T</Name>
+            <Ends>(C, 34, R, 50)</Ends>
+        </edge>
+        <edge j="142">
+            <Name>T</Name>
+            <Ends>(R, 50, C, 25)</Ends>
+        </edge>
+        <edge j="143">
+            <Name>T</Name>
+            <Ends>(R, 51, D, 2)</Ends>
+        </edge>
+        <edge j="144">
+            <Name>T</Name>
+            <Ends>(P, 30, R, 51)</Ends>
+        </edge>
+        <edge j="145">
+            <Name>T</Name>
+            <Ends>(R, 52, C, 25)</Ends>
+        </edge>
+        <edge j="146">
+            <Name>T</Name>
+            <Ends>(C, 35, R, 52)</Ends>
+        </edge>
+        <edge j="147">
+            <Name>T</Name>
+            <Ends>(R, 52, P, 31)</Ends>
+        </edge>
+        <edge j="148">
+            <Name>T</Name>
+            <Ends>(R, 53, D, -1)</Ends>
+        </edge>
+        <edge j="149">
+            <Name>T</Name>
+            <Ends>(P, 32, R, 53)</Ends>
+        </edge>
+        <edge j="150">
+            <Name>T</Name>
+            <Ends>(R, 54, C, 25)</Ends>
+        </edge>
+        <edge j="151">
+            <Name>T</Name>
+            <Ends>(C, 36, R, 54)</Ends>
+        </edge>
+        <edge j="152">
+            <Name>T</Name>
+            <Ends>(R, 54, P, 33)</Ends>
+        </edge>
+        <edge j="153">
+            <Name>T</Name>
+            <Ends>(R, 55, D, 3)</Ends>
+        </edge>
+        <edge j="154">
+            <Name>T</Name>
+            <Ends>(P, 34, R, 55)</Ends>
+        </edge>
+        <edge j="155">
+            <Name>T</Name>
+            <Ends>(R, 56, P, 35)</Ends>
+        </edge>
+        <edge j="156">
+            <Name>T</Name>
+            <Ends>(C, 37, R, 56)</Ends>
+        </edge>
+        <edge j="157">
+            <Name>T</Name>
+            <Ends>(R, 56, C, 25)</Ends>
+        </edge>
+        <edge j="158">
+            <Name>T</Name>
+            <Ends>(R, 56, P, 36)</Ends>
+        </edge>
+        <edge j="159">
+            <Name>T</Name>
+            <Ends>(R, 57, C, 37)</Ends>
+        </edge>
+        <edge j="160">
+            <Name>T</Name>
+            <Ends>(C, 38, R, 57)</Ends>
+        </edge>
+        <edge j="161">
+            <Name>T</Name>
+            <Ends>(R, 57, P, 37)</Ends>
+        </edge>
+        <edge j="162">
+            <Name>A</Name>
+            <Ends>(R, 58, C, 38)</Ends>
+        </edge>
+        <edge j="163">
+            <Name>T</Name>
+            <Ends>(P, 35, R, 58)</Ends>
+        </edge>
+        <edge j="164">
+            <Name>T</Name>
+            <Ends>(R, 58, P, 29)</Ends>
+        </edge>
+        <edge j="165">
+            <Name>T</Name>
+            <Ends>(C, 39, R, 58)</Ends>
+        </edge>
+        <edge j="166">
+            <Name>T</Name>
+            <Ends>(C, 25, R, 58)</Ends>
+        </edge>
+        <edge j="167">
+            <Name>T</Name>
+            <Ends>(P, 37, R, 58)</Ends>
+        </edge>
+        <edge j="168">
+            <Name>T</Name>
+            <Ends>(R, 59, P, 38)</Ends>
+        </edge>
+        <edge j="169">
+            <Name>T</Name>
+            <Ends>(C, 40, R, 59)</Ends>
+        </edge>
+        <edge j="170">
+            <Name>T</Name>
+            <Ends>(R, 59, C, 25)</Ends>
+        </edge>
+        <edge j="171">
+            <Name>A</Name>
+            <Ends>(R, 60, C, 40)</Ends>
+        </edge>
+        <edge j="172">
+            <Name>T</Name>
+            <Ends>(P, 38, R, 60)</Ends>
+        </edge>
+        <edge j="173">
+            <Name>T</Name>
+            <Ends>(R, 60, P, 29)</Ends>
+        </edge>
+        <edge j="174">
+            <Name>T</Name>
+            <Ends>(C, 41, R, 60)</Ends>
+        </edge>
+        <edge j="175">
+            <Name>T</Name>
+            <Ends>(P, 24, R, 60)</Ends>
+        </edge>
+        <edge j="176">
+            <Name>T</Name>
+            <Ends>(R, 61, C, 41)</Ends>
+        </edge>
+        <edge j="177">
+            <Name>T</Name>
+            <Ends>(C, 42, R, 61)</Ends>
+        </edge>
+        <edge j="178">
+            <Name>T</Name>
+            <Ends>(R, 62, P, 39)</Ends>
+        </edge>
+        <edge j="179">
+            <Name>T</Name>
+            <Ends>(C, 43, R, 62)</Ends>
+        </edge>
+        <edge j="180">
+            <Name>T</Name>
+            <Ends>(R, 62, C, 42)</Ends>
+        </edge>
+        <edge j="181">
+            <Name>T</Name>
+            <Ends>(R, 63, S, 2)</Ends>
+        </edge>
+        <edge j="182">
+            <Name>T</Name>
+            <Ends>(P, 18, R, 63)</Ends>
+        </edge>
+        <edge j="183">
+            <Name>A</Name>
+            <Ends>(R, 63, C, 43)</Ends>
+        </edge>
+        <edge j="184">
+            <Name>T</Name>
+            <Ends>(P, 6, R, 63)</Ends>
+        </edge>
+        <edge j="185">
+            <Name>T</Name>
+            <Ends>(R, 64, P, 16)</Ends>
+        </edge>
+        <edge j="186">
+            <Name>T</Name>
+            <Ends>(C, 44, R, 64)</Ends>
+        </edge>
+        <edge j="187">
+            <Name>T</Name>
+            <Ends>(R, 64, C, 26)</Ends>
+        </edge>
+        <edge j="188">
+            <Name>T</Name>
+            <Ends>(R, 65, P, 29)</Ends>
+        </edge>
+        <edge j="189">
+            <Name>T</Name>
+            <Ends>(C, 45, R, 65)</Ends>
+        </edge>
+        <edge j="190">
+            <Name>T</Name>
+            <Ends>(R, 65, C, 44)</Ends>
+        </edge>
+        <edge j="191">
+            <Name>T</Name>
+            <Ends>(P, 16, R, 65)</Ends>
+        </edge>
+        <edge j="192">
+            <Name>T</Name>
+            <Ends>(R, 66, P, 10)</Ends>
+        </edge>
+        <edge j="193">
+            <Name>T</Name>
+            <Ends>(C, 46, R, 66)</Ends>
+        </edge>
+        <edge j="194">
+            <Name>T</Name>
+            <Ends>(R, 66, C, 26)</Ends>
+        </edge>
+        <edge j="195">
+            <Name>A</Name>
+            <Ends>(R, 67, C, 46)</Ends>
+        </edge>
+        <edge j="196">
+            <Name>T</Name>
+            <Ends>(P, 10, R, 67)</Ends>
+        </edge>
+        <edge j="197">
+            <Name>T</Name>
+            <Ends>(R, 67, P, 29)</Ends>
+        </edge>
+        <edge j="198">
+            <Name>T</Name>
+            <Ends>(P, 23, R, 67)</Ends>
+        </edge>
+        <edge j="199">
+            <Name>T</Name>
+            <Ends>(C, 47, R, 67)</Ends>
+        </edge>
+        <edge j="200">
+            <Name>T</Name>
+            <Ends>(R, 68, C, 25)</Ends>
+        </edge>
+        <edge j="201">
+            <Name>T</Name>
+            <Ends>(C, 30, R, 68)</Ends>
+        </edge>
+        <edge j="202">
+            <Name>T</Name>
+            <Ends>(R, 68, P, 26)</Ends>
+        </edge>
+        <edge j="203">
+            <Name>T</Name>
+            <Ends>(R, 68, P, 27)</Ends>
+        </edge>
+        <edge j="204">
+            <Name>T</Name>
+            <Ends>(R, 69, C, 25)</Ends>
+        </edge>
+        <edge j="205">
+            <Name>T</Name>
+            <Ends>(C, 48, R, 69)</Ends>
+        </edge>
+        <edge j="206">
+            <Name>T</Name>
+            <Ends>(R, 69, P, 40)</Ends>
+        </edge>
+        <edge j="207">
+            <Name>A</Name>
+            <Ends>(R, 70, C, 48)</Ends>
+        </edge>
+        <edge j="208">
+            <Name>T</Name>
+            <Ends>(R, 70, S, -1)</Ends>
+        </edge>
+        <edge j="209">
+            <Name>T</Name>
+            <Ends>(P, 40, R, 70)</Ends>
+        </edge>
+        <edge j="210">
+            <Name>T</Name>
+            <Ends>(C, 49, R, 70)</Ends>
+        </edge>
+        <edge j="211">
+            <Name>T</Name>
+            <Ends>(R, 71, C, 25)</Ends>
+        </edge>
+        <edge j="212">
+            <Name>T</Name>
+            <Ends>(C, 50, R, 71)</Ends>
+        </edge>
+        <edge j="213">
+            <Name>T</Name>
+            <Ends>(R, 71, P, 41)</Ends>
+        </edge>
+        <edge j="214">
+            <Name>A</Name>
+            <Ends>(R, 72, C, 50)</Ends>
+        </edge>
+        <edge j="215">
+            <Name>T</Name>
+            <Ends>(R, 72, S, -1)</Ends>
+        </edge>
+        <edge j="216">
+            <Name>T</Name>
+            <Ends>(P, 42, R, 72)</Ends>
+        </edge>
+        <edge j="217">
+            <Name>T</Name>
+            <Ends>(P, 23, R, 72)</Ends>
+        </edge>
+        <edge j="218">
+            <Name>T</Name>
+            <Ends>(P, 41, R, 72)</Ends>
+        </edge>
+        <edge j="219">
+            <Name>T</Name>
+            <Ends>(R, 73, P, 42)</Ends>
+        </edge>
+        <edge j="220">
+            <Name>T</Name>
+            <Ends>(P, 2, R, 73)</Ends>
+        </edge>
+        <edge j="221">
+            <Name>T</Name>
+            <Ends>(R, 1, P, -1)</Ends>
+        </edge>
+        <edge j="222">
+            <Name>A</Name>
+            <Ends>(R, 43, C, 27)</Ends>
+        </edge>
+        <edge j="223">
+            <Name>A</Name>
+            <Ends>(R, 46, C, 29)</Ends>
+        </edge>
+        <edge j="224">
+            <Name>I</Name>
+            <Ends>(R, 47, P, 9)</Ends>
+        </edge>
+        <edge j="225">
+            <Name>I</Name>
+            <Ends>(R, 47, C, 30)</Ends>
+        </edge>
+        <edge j="226">
+            <Name>A</Name>
+            <Ends>(R, 47, C, 29)</Ends>
+        </edge>
+        <edge j="227">
+            <Name>I</Name>
+            <Ends>(R, 51, C, 34)</Ends>
+        </edge>
+        <edge j="228">
+            <Name>A</Name>
+            <Ends>(R, 53, C, 35)</Ends>
+        </edge>
+        <edge j="229">
+            <Name>A</Name>
+            <Ends>(R, 55, C, 25)</Ends>
+        </edge>
+    </edgeBlock>
+</Pathway>

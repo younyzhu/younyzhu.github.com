@@ -2,7 +2,7 @@
  * Created by Yongnan on 7/2/2014.
  */
 function Compartment(id, state, x, y, w, h, text) {
-    this.type = "COMPARTMENT";
+    this.type = "M";        //COMPARTMENT   ===>   M
     this.id = id || 0;     //this rectangle belongs to which bubble or chart
     this.state = state;
     this.x = x;
@@ -40,7 +40,7 @@ Compartment.prototype = {
         {
             for(var j=0; j< mainManagement.shapes.length; j++)
             {
-                if(mainManagement.shapes[j].id === this.complexs[i] && mainManagement.shapes[j].type === "COMPLEX")
+                if(mainManagement.shapes[j].id === this.complexs[i] && mainManagement.shapes[j].type === "C")    //COMPLEX
                 {
                     mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
                 }
@@ -59,7 +59,7 @@ Compartment.prototype = {
         {
             for(var j=0; j< mainManagement.shapes.length; j++)
             {
-                if(mainManagement.shapes[j].id === this.proteins[i] && mainManagement.shapes[j].type === "PROTEIN")
+                if(mainManagement.shapes[j].id === this.proteins[i] && mainManagement.shapes[j].type === "P")
                 {
                     mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
                 }
@@ -78,7 +78,7 @@ Compartment.prototype = {
         {
             for(var j=0; j< mainManagement.shapes.length; j++)
             {
-                if(mainManagement.shapes[j].id === this.dnas[i] && mainManagement.shapes[j].type === "DNA")
+                if(mainManagement.shapes[j].id === this.dnas[i] && mainManagement.shapes[j].type === "D")
                 {
                     mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
                 }
@@ -97,7 +97,7 @@ Compartment.prototype = {
         {
             for(var j=0; j< mainManagement.shapes.length; j++)
             {
-                if(mainManagement.shapes[j].id === this.molecules[i] && mainManagement.shapes[j].type === "MOLECULE")
+                if(mainManagement.shapes[j].id === this.molecules[i] && mainManagement.shapes[j].type === "S")
                 {
                     mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
                 }
@@ -116,15 +116,15 @@ Compartment.prototype = {
         {
             for(var j=0; j< mainManagement.shapes.length; j++)
             {
-                if(mainManagement.shapes[j].id === this.entitys[i] && mainManagement.shapes[j].type === "ENTITY")
+                if(mainManagement.shapes[j].id === this.entitys[i] && mainManagement.shapes[j].type === "E")
                 {
                     mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
                 }
             }
         }
     },
-    addDissociation: function(id, x, y){
-        var dissociation = new Dissociation(id, x * this.w, y * this.h);
+    addDissociation: function(id, x, y, w, h){
+        var dissociation = new Dissociation(id, x * this.w, y * this.h, w*this.w, h*this.h);
         dissociation.offsetX = this.offsetX;
         dissociation.offsetY = this.offsetY;
         mainManagement.addShape(dissociation);
@@ -135,15 +135,15 @@ Compartment.prototype = {
         {
             for(var j=0; j< mainManagement.shapes.length; j++)
             {
-                if(mainManagement.shapes[j].id === this.dissociations[i] && mainManagement.shapes[j].type === "DISSOCIATION")
+                if(mainManagement.shapes[j].id === this.dissociations[i] && mainManagement.shapes[j].type === "K")
                 {
                     mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
                 }
             }
         }
     },
-    addAssociation: function(id, x, y){
-        var association = new Association(id, x * this.w, y * this.h);
+    addAssociation: function(id, x, y, w, h){
+        var association = new Association(id, x * this.w, y * this.h, w*this.w, h*this.h);
         association.offsetX = this.offsetX;
         association.offsetY = this.offsetY;
         mainManagement.addShape(association);
@@ -161,8 +161,8 @@ Compartment.prototype = {
             }
         }
     },
-    addTransition: function(id, x, y){
-        var transition = new Transition(id, x * this.w, y * this.h);
+    addTransition: function(id, x, y, w, h){
+        var transition = new Transition(id, x * this.w, y * this.h, w*this.w, h*this.h);
         transition.offsetX = this.offsetX;
         transition.offsetY = this.offsetY;
         mainManagement.addShape(transition);
@@ -173,7 +173,7 @@ Compartment.prototype = {
         {
             for(var j=0; j< mainManagement.shapes.length; j++)
             {
-                if(mainManagement.shapes[j].id === this.transitions[i] && mainManagement.shapes[j].type === "TRANSITION")
+                if(mainManagement.shapes[j].id === this.transitions[i] && mainManagement.shapes[j].type === "T")
                 {
                     mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
                 }

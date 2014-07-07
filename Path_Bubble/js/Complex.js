@@ -2,7 +2,7 @@
  * Created by Yongnan on 7/3/2014.
  */
 function Complex(id, x, y, w, h) {
-    this.type = "COMPLEX";
+    this.type = "C";     //COMPLEX
     this.id = id || 0;
     this.x = x;
     this.y = y;

@@ -2,14 +2,14 @@
  * Created by Yongnan on 7/3/2014.
  */
 function DNA(id, x, y, w, h, text) {
-    this.type = "DNA";
+    this.type = "D";      //DNA     ====>  D
     this.id = id || 0;
     this.x = x;
     this.y = y;
     this.w = w || 1;
     this.h = h || 1;
     this.text = text;
-    this.textObj = new Text("DNA");
+    this.textObj = new Text(text);
     this.strokeColor = "#666666";
     this.lineWidth = 2;
     this.fillColor = "#D6EAAC";

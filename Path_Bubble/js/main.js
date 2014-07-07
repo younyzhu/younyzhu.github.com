@@ -71,7 +71,7 @@ $(document).ready(function () {
     f1.add(params, 'load').name('Load');
     var f2 = gui.addFolder('Send data');
     f2.add(params, 'send').name('Send');
-    var str = "./data/SMAD23_Phosphorylation_Motif_Mutants_in_Cancer_19_new.xml";
+    var str = "./data/SMAD23 Phosphorylation Motif Mutants in Cancer_26_new.xml";
     var xmlLoader = new XMLLoader();
     xmlLoader.load(str);
 

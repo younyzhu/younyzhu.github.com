@@ -48,24 +48,156 @@ XMLLoader.prototype = {
                 .replace(/[_\s]/g, '').split(",");
             var beginType = ends[0];
             var beginIndex = parseInt(ends[1]);
-            var endType = ends[3];
-            var endIndex = parseInt(ends[4]);
-
-            //this.addEdges(type,i,beginType,beginIndex,endType,endIndex);
+            var endType = ends[2];
+            var endIndex = parseInt(ends[3]);
+            this.addEdges(type,i,beginType,beginIndex,endType,endIndex);
         }
     },
     addEdges: function (type, index, beginType, beginIndex, endType, endIndex) {
+        var beginId, beginT, endId, endT, flag =0;
         switch (type) {
-            case "B":  //Arrow (Black)
+            case "J":  //Arrow (Black)
             {
+                flag =0;
+                for (var i = 0; i < mainManagement.shapes.length; i++) {
+                    if(beginType === "R")
+                    {
+                        if (mainManagement.shapes[i].id === beginIndex ) {
+                            beginId = i;
+                            beginT = mainManagement.shapes[i].type;
+                            flag ++;
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        if (mainManagement.shapes[i].id === beginIndex && mainManagement.shapes[i].type === beginType) {
+                            beginId = i;
+                            beginT = mainManagement.shapes[i].type;
+                            flag ++;
+                            continue;
+                        }
+                    }
+                    if(endType === "R") {
+                        if (mainManagement.shapes[i].id === endIndex) {
+                            endId = i;
+                            endT = mainManagement.shapes[i].type;
+                            flag ++;
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        if (mainManagement.shapes[i].id === endIndex && mainManagement.shapes[i].type === endType) {
+                            endId = i;
+                            endT = mainManagement.shapes[i].type;
+                            flag ++;
+                            continue;
+                        }
+                    }
 
+                    if(flag ===2)
+                    {
+                        flag =0;
+                        Bubbles.addArrow(index, beginT, beginId, endT, endId);
+                    }
+                }
             }
-                break;
-            case "C":  //Inhibition (Cyan)
+            break;
+            case "I":  //Inhibition (Cyan)
             {
-
+                flag =0;
+                for (var i = 0; i < mainManagement.shapes.length; i++) {
+                    if(beginType === "R")
+                    {
+                        if (mainManagement.shapes[i].id === beginIndex ) {
+                            beginId = i;
+                            beginT = mainManagement.shapes[i].type;
+                            flag ++;
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        if (mainManagement.shapes[i].id === beginIndex && mainManagement.shapes[i].type === beginType) {
+                            beginId = i;
+                            beginT = mainManagement.shapes[i].type;
+                            flag ++;
+                            continue;
+                        }
+                    }
+                    if(endType === "R") {
+                        if (mainManagement.shapes[i].id === endIndex) {
+                            endId = i;
+                            endT = mainManagement.shapes[i].type;
+                            flag ++;
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        if (mainManagement.shapes[i].id === endIndex && mainManagement.shapes[i].type === endType) {
+                            endId = i;
+                            endT = mainManagement.shapes[i].type;
+                            flag ++;
+                            continue;
+                        }
+                    }
+                    if(flag ===2)
+                    {
+                        flag =0;
+                        Bubbles.addInhibition(index, beginT, beginId, endT, endId);
+                    }
+                }
             }
-                break; //Activation (Green)
+            break;
+            case "A":  //Activation (Green)
+            {
+                flag =0;
+                for (var i = 0; i < mainManagement.shapes.length; i++) {
+                    if(beginType === "R")
+                    {
+                        if (mainManagement.shapes[i].id === beginIndex ) {
+                            beginId = i;
+                            beginT = mainManagement.shapes[i].type;
+                            flag ++;
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        if (mainManagement.shapes[i].id === beginIndex && mainManagement.shapes[i].type === beginType) {
+                            beginId = i;
+                            beginT = mainManagement.shapes[i].type;
+                            flag ++;
+                            continue;
+                        }
+                    }
+                    if(endType === "R") {
+                        if (mainManagement.shapes[i].id === endIndex) {
+                            endId = i;
+                            endT = mainManagement.shapes[i].type;
+                            flag ++;
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        if (mainManagement.shapes[i].id === endIndex && mainManagement.shapes[i].type === endType) {
+                            endId = i;
+                            endT = mainManagement.shapes[i].type;
+                            flag ++;
+                            continue;
+                        }
+                    }
+                    if(flag ===2)
+                    {
+                        flag =0;
+                        Bubbles.addActivation(index, beginT, beginId, endT, endId);
+                    }
+                }
+            }
+            break;
         }
     },
     parseCompartmentBlock: function (compartmentBlock) {
@@ -124,14 +256,14 @@ XMLLoader.prototype = {
                         .replace(")", "") //remove the left bracket;
                         .split(",");
                     for (var i = 0; i < mainManagement.shapes.length; i++) {
-                        if (mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "COMPARTMENT") {
+                        if (mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "M") {
                             mainManagement.shapes[i].addComplex(index, position[0], position[1], position[2], position[3]);
                         }
                     }
                 }
                 break;
             }
-            case "E":
+            case "E": //Entity
             {
                 if (comparmentId < mainManagement.shapes.length) {
                     var entityE = this.physicalEntityBlock.find('physicalEntity[j="' + index + '"]'); //Complex we do not need to use the name
@@ -141,7 +273,7 @@ XMLLoader.prototype = {
                         .split(",");
                     var name = entityE.find("Name").text();
                     for (var i = 0; i < mainManagement.shapes.length; i++) {
-                        if (mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "COMPARTMENT") {
+                        if (mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "M") {
                             mainManagement.shapes[i].addPhysical_Entity(index, position[0], position[1], position[2], position[3], name);
                         }
                     }
@@ -158,7 +290,7 @@ XMLLoader.prototype = {
                         .split(",");
                     var name = moleculeE.find("Name").text();
                     for (var i = 0; i < mainManagement.shapes.length; i++) {
-                        if (mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "COMPARTMENT") {
+                        if (mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "M") {
                             mainManagement.shapes[i].addSmall_Molecule(index, position[0], position[1], position[2], position[3], name);
                         }
                     }
@@ -175,14 +307,14 @@ XMLLoader.prototype = {
                         .split(",");
                     var name = proteinE.find("Name").text();
                     for (var i = 0; i < mainManagement.shapes.length; i++) {
-                        if (mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "COMPARTMENT") {
+                        if (mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "M") {
                             mainManagement.shapes[i].addProtein(index, position[0], position[1], position[2], position[3], name);
                         }
                     }
                 }
                 break;
             }
-            case "D":     //PROTEIN
+            case "D":     //DNA
             {
                 if (comparmentId < mainManagement.shapes.length) {
                     var dnaE = this.dnaBlock.find('dna[j="' + index + '"]'); //Complex we do not need to use the name
@@ -192,7 +324,7 @@ XMLLoader.prototype = {
                         .split(",");
                     var name = dnaE.find("Name").text();
                     for (var i = 0; i < mainManagement.shapes.length; i++) {
-                        if (mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "COMPARTMENT") {
+                        if (mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "M") {
                             mainManagement.shapes[i].addDNA(index, position[0], position[1], position[2], position[3], name);
                         }
                     }
@@ -201,6 +333,25 @@ XMLLoader.prototype = {
             }
             case "R":   //Reaction
             {
+                if (comparmentId < mainManagement.shapes.length) {
+                    var reactionE = this.reactionBlock.find('reaction[j="' + index + '"]'); //Complex we do not need to use the name
+                    var position = reactionE.find("Position").text()
+                        .replace("(", "")   //remove the right bracket
+                        .replace(")", "") //remove the left bracket;
+                        .split(",");
+                    var name = reactionE.find("Name").text();
+                    var typeR = reactionE.find("Type").text();
+                    for (var i = 0; i < mainManagement.shapes.length; i++) {
+                        if (mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "M") {
+                            if(typeR === "K")
+                                mainManagement.shapes[i].addDissociation(index, position[0], position[1], position[2], position[3]);
+                            else if(typeR === "T")
+                                mainManagement.shapes[i].addTransition(index, position[0], position[1], position[2], position[3]);
+                            else if(typeR === "B")
+                                mainManagement.shapes[i].addAssociation(index, position[0], position[1], position[2], position[3]);
+                        }
+                    }
+                }
                 break;
             }
         }

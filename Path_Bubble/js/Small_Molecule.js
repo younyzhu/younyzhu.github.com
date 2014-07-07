@@ -2,7 +2,7 @@
  * Created by Yongnan on 7/3/2014.
  */
 function Small_Molecule(id, x, y, w, h, text) {
-    this.type = "MOLECULE";
+    this.type = "S";        //MOLECULE     ===>   S
     this.id = id || 0;
     this.x = x;
     this.y = y;
