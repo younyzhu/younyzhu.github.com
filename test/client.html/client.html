@@ -1,0 +1,105 @@
+   <html>
+     <head>
+       <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+       <title>FishinHole.com Web Service</title>           
+
+     <script type="text/javascript">
+	var httpRequest = null;
+	var valTimeout = null;
+	var url = "http://younyzhu.github.io/test/webservice.php";
+	var soapMessage = null;
+
+	function changeTypes() {
+		var el = document.getElementById("lureType");
+		invokeService(el.options[el.selectedIndex].value);
+	}
+
+	function invokeService(type) {
+   		soapMessage = '<?xml version="1.0" encoding="ISO-8859-1"?>';
+		soapMessage+='<SOAP-ENV:Envelope SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"';
+		soapMessage+=' xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"';
+		soapMessage+=' xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"';
+		soapMessage+=' xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:si="http://soapinterop.org/xsd">';
+		soapMessage+=' <SOAP-ENV:Body> <ns1:retrieveByType xmlns:ns1="http://fishinhole.com">';
+		soapMessage+=' <type xsi:type="xsd:string">' + type + '</type>';
+		soapMessage+=' </ns1:retrieveByType> </SOAP-ENV:Body> </SOAP-ENV:Envelope>';
+   
+   		if(window.XMLHttpRequest) {
+      		httpRequest=new XMLHttpRequest();
+   		} else if (window.ActiveXObject) { 
+      		httpRequest=new ActiveXObject("Microsoft.XMLHTTP"); 
+   		}
+                  
+   		httpRequest.open("POST",url,true);
+   		if (httpRequest.overrideMimeType) { 
+      		httpRequest.overrideMimeType("text/xml"); 
+   		}
+   		httpRequest.onreadystatechange=populateDiv;
+      
+   		httpRequest.setRequestHeader("Man", url + " HTTP/1.1")
+   		httpRequest.setRequestHeader("MessageType", "CALL");
+   		httpRequest.setRequestHeader("Content-Type", "text/xml");
+
+   		httpRequest.send(soapMessage);
+   		valTimeout=setTimeout("timeout(httpRequest);",120000);                                                
+	}            
+                              
+	function populateDiv(){
+   	try {
+      	if(httpRequest.readyState==4) {
+         		if(httpRequest.status==200) {
+            		clearTimeout(valTimeout);                                                             
+				var text = httpRequest.responseText;
+				if (window.DOMParser) {
+					parser=new DOMParser();
+					xmlDoc=parser.parseFromString(text,"text/xml");
+				} else {
+					xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+					xmlDoc.async="false";
+					xmlDoc.loadXML(text); 
+				} 
+				var html = "";
+				for (i=0;i<xmlDoc.getElementsByTagName("item").length;i++) {
+					html += "<br/>" + xmlDoc.getElementsByTagName("item")[i].childNodes[0].nodeValue;
+				}
+
+				var resultDiv=document.getElementById("resultDiv");
+				resultDiv.innerHTML = html;
+         		}
+      	} 
+   	 } catch(e) { 
+       alert("Error!"+e.description); 
+	 }      
+   	}
+  
+	function timeout(ajaxOBJ) {     
+   		ajaxOBJ.abort();
+	}
+	</script> 
+
+     </head>
+
+     <body>    
+       <div style="position:relative;left:0px;background-color:blue;margin:0px;">   
+       <h2 align="center"><font color="#ffffff">FishinHole.com Web Service</font></h2></div>
+       <table align="center" cellpadding="6px" cellspacing="6px" width="400" border="0">
+         <tr>
+           <td width="80" valign="center"><font color="black">
+             Lure Type:</font></td>
+           <td>
+			<select name="lureType" id="lureType" onchange="changeTypes()">
+				<option value="">-SELECT-</option>
+				<option value="trolling">Trolling</option>
+				<option value="casting">Casting</option>
+				<option value="other">Other</option>
+			</select>
+		</td>
+		<td width="150"> </td>
+         <tr>
+          <td colspan="3">
+            <div id="resultDiv"></div>
+          </td>
+         </tr> 
+       </table>    
+     </body>
+   </html>
