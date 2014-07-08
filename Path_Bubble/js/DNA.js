@@ -9,7 +9,7 @@ function DNA(id, x, y, w, h, text) {
     this.w = w || 1;
     this.h = h || 1;
     this.text = text;
-    this.textObj = new Text(text);
+    this.textObj = new Text( this.text );
     this.strokeColor = "#666666";
     this.lineWidth = 2;
     this.fillColor = "#D6EAAC";

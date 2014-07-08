@@ -314,7 +314,7 @@ XMLLoader.prototype = {
             case "D":     //DNA
             {
                 if (comparmentId < mainManagement.shapes.length) {
-                    var dnaE = this.dnaBlock.find('dna[j="' + index + '"]'); //Complex we do not need to use the name
+                    var dnaE = this.dnaBlock.find('Dna[j="' + index + '"]'); //Complex we do not need to use the name
                     var position = dnaE.find("Position").text()
                         .replace("(", "")   //remove the right bracket
                         .replace(")", "") //remove the left bracket;
