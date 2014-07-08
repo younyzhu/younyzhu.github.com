@@ -28,11 +28,11 @@ $(document).ready(function () {
             var objects = mainManagement.shapes;
             var w = mainManagement.shapes[0].w;
             var h = mainManagement.shapes[1].h;
-            var data = {};
-            data.compartments = [];
-            data.arrows = [];
-            data.inhibitions = [];
-            data.activations = [];
+            var jsonData = {};
+            jsonData.compartments = [];
+            jsonData.arrows = [];
+            jsonData.inhibitions = [];
+            jsonData.activations = [];
             for (var i = 0; i < objects.length; ++i) {
                 if (objects[i].type === "M") {
                     var compartment = {};
@@ -184,7 +184,7 @@ $(document).ready(function () {
                             }
                         }
                     }
-                    data.compartments.push(compartment);
+                    jsonData.compartments.push(compartment);
                 }
                 else if (objects[i].type === "J")//arrows
                 {
@@ -196,7 +196,7 @@ $(document).ready(function () {
                     arrow.endType = objects[i].endType;
                     arrow.endNodeId = objects[i].endNodeId;
 
-                    data.arrows.push(arrow);
+                    jsonData.arrows.push(arrow);
                 }
                 else if (objects[i].type === "I")//Inhibition
                 {
@@ -208,7 +208,7 @@ $(document).ready(function () {
                     inhibition.endType = objects[i].endType;
                     inhibition.endNodeId = objects[i].endNodeId;
 
-                    data.inhibitions.push(inhibition);
+                    jsonData.inhibitions.push(inhibition);
                 }
                 else if (objects[i].type === "A")//Activation
                 {
@@ -220,23 +220,25 @@ $(document).ready(function () {
                     activation.endType = objects[i].endType;
                     activation.endNodeId = objects[i].endNodeId;
 
-                    data.activations.push(activation);
+                    jsonData.activations.push(activation);
                 }
             }
 
-            /*
             $.ajax({
-                url: 'http://localhost:63342',
-                processData: false,
+                url: 'json.php',
                 type: "POST",  // type should be POST
-                data: xml, // send the string directly
+                data: {
+                    json: JSON.stringify(jsonData),
+                    name: "xxxx"+".json"
+                }, // send the string directly
+                dataType: "json",
                 success: function (response) {
-                    alert(response);
+                    alert(response['status']);
                 },
                 error: function (response) {
-                    alert(response);
+                    alert(response.status);
                 }
-            });  */
+            });
         }
     };
     var gui = new dat.GUI();

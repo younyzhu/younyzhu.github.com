@@ -81,4 +81,7 @@
  
   * 7/8/2014 
   1. Change the size of arrow, the direction of the arrow.
+  2. Trying to create a webserver, and finally use [WAMPSERVER](http://www.wampserver.com/en/)   
+  3. Write the file save function, so that when we click the `Send data`, we can send the current user's data to the server.
+  And keep as `json` file.
   
