@@ -55,6 +55,8 @@ XMLLoader.prototype = {
         }
     },
     addEdges: function (type, index, beginType, beginIndex, endType, endIndex) {
+        if(beginIndex<0 ||endIndex<0)
+            return ;
         var beginId, beginT, endId, endT, flag =0;
         switch (type) {
             case "J":  //Arrow (Black)
@@ -63,7 +65,8 @@ XMLLoader.prototype = {
                 for (var i = 0; i < mainManagement.shapes.length; i++) {
                     if(beginType === "R")
                     {
-                        if (mainManagement.shapes[i].id === beginIndex ) {
+                        if (mainManagement.shapes[i].id === beginIndex)
+                            if(mainManagement.shapes[i].type === "T"|| mainManagement.shapes[i].type === "B" || mainManagement.shapes[i].type === "K") {
                             beginId = beginIndex;
                             beginT = mainManagement.shapes[i].type;
                             flag ++;
@@ -78,7 +81,8 @@ XMLLoader.prototype = {
                         }
                     }
                     if(endType === "R") {
-                        if (mainManagement.shapes[i].id === endIndex) {
+                        if (mainManagement.shapes[i].id === endIndex)
+                            if(mainManagement.shapes[i].type === "T"|| mainManagement.shapes[i].type === "B" || mainManagement.shapes[i].type === "K") {
                             endId = endIndex;
                             endT = mainManagement.shapes[i].type;
                             flag ++;
@@ -92,7 +96,6 @@ XMLLoader.prototype = {
                             flag ++;
                         }
                     }
-
                     if(flag ===2)
                     {
                         flag =0;
@@ -107,11 +110,12 @@ XMLLoader.prototype = {
                 for (var i = 0; i < mainManagement.shapes.length; i++) {
                     if(beginType === "R")
                     {
-                        if (mainManagement.shapes[i].id === beginIndex ) {
-                            beginId = beginIndex;
-                            beginT = mainManagement.shapes[i].type;
-                            flag ++;
-                        }
+                        if (mainManagement.shapes[i].id === beginIndex)
+                            if(mainManagement.shapes[i].type === "T"|| mainManagement.shapes[i].type === "B" || mainManagement.shapes[i].type === "K") {
+                                beginId = beginIndex;
+                                beginT = mainManagement.shapes[i].type;
+                                flag ++;
+                            }
                     }
                     else
                     {
@@ -122,11 +126,12 @@ XMLLoader.prototype = {
                         }
                     }
                     if(endType === "R") {
-                        if (mainManagement.shapes[i].id === endIndex) {
-                            endId = endIndex;
-                            endT = mainManagement.shapes[i].type;
-                            flag ++;
-                        }
+                        if (mainManagement.shapes[i].id === endIndex)
+                            if(mainManagement.shapes[i].type === "T"|| mainManagement.shapes[i].type === "B" || mainManagement.shapes[i].type === "K") {
+                                endId = endIndex;
+                                endT = mainManagement.shapes[i].type;
+                                flag ++;
+                            }
                     }
                     else
                     {
@@ -136,6 +141,7 @@ XMLLoader.prototype = {
                             flag ++;
                         }
                     }
+
                     if(flag ===2)
                     {
                         flag =0;
@@ -150,11 +156,12 @@ XMLLoader.prototype = {
                 for (var i = 0; i < mainManagement.shapes.length; i++) {
                     if(beginType === "R")
                     {
-                        if (mainManagement.shapes[i].id === beginIndex ) {
-                            beginId = beginIndex;
-                            beginT = mainManagement.shapes[i].type;
-                            flag ++;
-                        }
+                        if (mainManagement.shapes[i].id === beginIndex)
+                            if(mainManagement.shapes[i].type === "T"|| mainManagement.shapes[i].type === "B" || mainManagement.shapes[i].type === "K") {
+                                beginId = beginIndex;
+                                beginT = mainManagement.shapes[i].type;
+                                flag ++;
+                            }
                     }
                     else
                     {
@@ -165,11 +172,12 @@ XMLLoader.prototype = {
                         }
                     }
                     if(endType === "R") {
-                        if (mainManagement.shapes[i].id === endIndex) {
-                            endId = endIndex;
-                            endT = mainManagement.shapes[i].type;
-                            flag ++;
-                        }
+                        if (mainManagement.shapes[i].id === endIndex)
+                            if(mainManagement.shapes[i].type === "T"|| mainManagement.shapes[i].type === "B" || mainManagement.shapes[i].type === "K") {
+                                endId = endIndex;
+                                endT = mainManagement.shapes[i].type;
+                                flag ++;
+                            }
                     }
                     else
                     {

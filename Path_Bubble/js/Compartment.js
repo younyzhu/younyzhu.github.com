@@ -154,7 +154,7 @@ Compartment.prototype = {
         {
             for(var j=0; j< mainManagement.shapes.length; j++)
             {
-                if(mainManagement.shapes[j].id === this.associations[i] && mainManagement.shapes[j].type === "ASSOCIATION")
+                if(mainManagement.shapes[j].id === this.associations[i] && mainManagement.shapes[j].type === "B")
                 {
                     mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
                 }
