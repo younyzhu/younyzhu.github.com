@@ -9,7 +9,7 @@ function Activation(id, beginType, beginNodeId, endType, endNodeId ) {
     this.endType = endType;
     this.endNodeId = endNodeId;
 
-    this.dotRadius = 7;
+    this.dotRadius = 5;
     this.dotLimitRadius = 2;
     this.fillColor = "#00FF00";
     //Complex is contained in the Compartment and the Compartment is contained in the Bubble
@@ -58,7 +58,7 @@ Activation.prototype = {
             var dx = x2 - x1;
             var dy = y2 - y1;
             var distance = Math.sqrt(dx * dx + dy * dy);
-            var dotCount = Math.ceil(distance /100 * (this.dotRadius - this.dotLimitRadius ));
+            var dotCount = Math.ceil(distance /100 * (this.dotRadius - this.dotLimitRadius )) + 3 ;
             var spaceX = dx / (dotCount - 1);
             var spaceY = dy / (dotCount - 1);
             var newX = x1;

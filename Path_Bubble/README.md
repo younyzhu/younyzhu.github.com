@@ -75,7 +75,10 @@
   But I do not know those language, so I need time to learn it And write the program.        
  
  
- * 7/6/2014 
+ * 7/7/2014 
  1. Add different types of arrows.
  2. Finally, It seems right.
  
+  * 7/8/2014 
+  1. Change the size of arrow, the direction of the arrow.
+  

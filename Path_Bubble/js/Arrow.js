@@ -60,9 +60,18 @@ Arrow.prototype ={
             ctx.save();	// save the context so we don't mess up others
             ctx.fillStyle = this.fillColor;
             ctx.beginPath();
-            ctx.moveTo(x1-5, y1 );
-            ctx.lineTo(x1+5, y1 );
-            ctx.lineTo(x2, y2);
+            if(Math.abs(y1 - y2) > Math.abs(x1 -x2))
+            {
+                ctx.moveTo(x1-2.5, y1 );
+                ctx.lineTo(x1+2.5, y1 );
+                ctx.lineTo(x2, y2);
+            }
+            else
+            {
+                ctx.moveTo(x1, y1-2.5 );
+                ctx.lineTo(x1, y1+2.5 );
+                ctx.lineTo(x2, y2);
+            }
             ctx.fill();
             ctx.closePath();
             ctx.restore();	// restore context to what it was on entry
