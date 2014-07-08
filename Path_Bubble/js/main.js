@@ -7,6 +7,7 @@ var Bubbles = null;
 var mainManagement = null;
 $(document).ready(function () {
     THREEx.FullScreen.bindKey({ charCode: 'f'.charCodeAt(0) });
+    var workerId ="";
     var params = {
         loadFile: function () {
             $('#myInput').click();
@@ -19,15 +20,20 @@ $(document).ready(function () {
             else {
                 mainManagement.shapes.length = 0;
                 mainManagement.clear();
-                var localFileLoader = new LocalXMLLoader();
+                var localFileLoader = new LocalFileLoader();
                 localFileLoader.load(selected_file);
             }
         },
+        text: "",
         send: function () {
-
+            if(workerId === "")
+            {
+                alert("Please input your amazon mechnical turk Worker Id.");
+                return;
+            }
             var objects = mainManagement.shapes;
             var w = mainManagement.shapes[0].w;
-            var h = mainManagement.shapes[1].h;
+            var h = mainManagement.shapes[0].h;
             var jsonData = {};
             jsonData.compartments = [];
             jsonData.arrows = [];
@@ -176,6 +182,7 @@ $(document).ready(function () {
                                 var entity = {};
                                 entity.id = objects[k].id;
                                 entity.type = objects[k].type;
+                                entity.name = objects[k].text;
                                 entity.x = objects[k].x / objects[i].w;
                                 entity.y = objects[k].y / objects[i].h;
                                 entity.w = objects[k].w / objects[i].w;
@@ -223,13 +230,14 @@ $(document).ready(function () {
                     jsonData.activations.push(activation);
                 }
             }
-
+             console.log(JSON.stringify(jsonData));
             $.ajax({
                 url: 'json.php',
                 type: "POST",  // type should be POST
                 data: {
                     json: JSON.stringify(jsonData),
-                    name: "xxxx"+".json"
+
+                    name: workerId+".json"
                 }, // send the string directly
                 dataType: "json",
                 success: function (response) {
@@ -246,6 +254,10 @@ $(document).ready(function () {
     f1.add(params, 'loadFile').name('Choose Data File');
     f1.add(params, 'load').name('Load');
     var f2 = gui.addFolder('Send data');
+    f2.add(params, 'text').name('Your Worker ID:').onFinishChange(function(value){
+        workerId = value;
+        alert("Please make sure " + workerId +" is your Worker Id");
+    });
     f2.add(params, 'send').name('Send');
     var str = "./data/SMAD23 Phosphorylation Motif Mutants in Cancer_26_new.xml";
     var xmlLoader = new XMLLoader();

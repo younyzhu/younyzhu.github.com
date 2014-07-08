@@ -7,12 +7,17 @@
   This part of project is trying to let human adjust the layout of the bubble, and find the best and beautiful layout.   
 ##Current ProjectWebsite
   Please visit [website](http://younyzhu.github.io/Path_Bubble/pathBubble.html) 
-
 ##Operation
   
   1. Click `f` on your keyboard for full screen, Click `ESC` for exiting `Full Screen` mode.    
-  2. Right Click open a bubble.
-  
+  ![Menu](./images/menu.PNG)   
+  2. Load File(Graph scene):
+     * Click: `Choose File` for searching the file you want to Load. Here, we support the `JSON` and `XML` format   
+     * After selecting a file, you can press `Load` to load your file.
+  3. Save File(Graph scene)
+     * Input: `Worker Id` for user to input the Amazon mechnical turk worker Id, so that we can identify which work belongs whom.   
+     * After input your worker Id, you can press `Send`, you `scene` result will be send to our server.
+     
 ##Study Event
 
 * 7/2/2014      
@@ -79,9 +84,11 @@
  1. Add different types of arrows.
  2. Finally, It seems right.
  
-  * 7/8/2014 
-  1. Change the size of arrow, the direction of the arrow.
-  2. Trying to create a webserver, and finally use [WAMPSERVER](http://www.wampserver.com/en/)   
-  3. Write the file save function, so that when we click the `Send data`, we can send the current user's data to the server.
+ * 7/8/2014 
+ 1. Change the size of arrow, the direction of the arrow.
+ 2. Trying to create a webserver, and finally use [WAMPSERVER](http://www.wampserver.com/en/)   
+ 3. Write the file save function, so that when we click the `Send data`, we can send the current user's data to the server.
   And keep as `json` file.
-  
+ 4. Fix a bug for save `json` file [http://stackoverflow.com/questions/24641366/save-json-object-to-string-has-some-unwanted-character/24641435#24641435](http://stackoverflow.com/questions/24641366/save-json-object-to-string-has-some-unwanted-character/24641435#24641435)
+ 5. Add `json File Loader` so that we can check the loaded result, and also we can save the result from the `server`
+ 6. I test the save and load, It is right.

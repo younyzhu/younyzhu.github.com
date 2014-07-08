@@ -7,21 +7,24 @@
  * Parted of the code is modified from https://github.com/xtk/X/blob/master/io/parserNII.js
  */
 
-LocalXMLLoader = function (id) {
+LocalFileLoader = function (id) {
     this.id = id;
     this.statusDomElement = null;
 };
-LocalXMLLoader.prototype = {
+LocalFileLoader.prototype = {
 
-    constructor: LocalXMLLoader,
+    constructor: LocalFileLoader,
     load: function (url) {
         var _this = this;
+
+        var check = new Check();
+        var format = check.checkFileFormat(url.name);
+        if(format ==="")
+            return;
 
         var reader = new FileReader();
         this.statusDomElement = this.addStatusElement();
         $("#bubble")[0].appendChild(this.statusDomElement);
-
-        //reader.readAsBinaryString(url);
         reader.readAsText(url,"UTF-8");
         reader.onerror = function () {
             _this.statusDomElement.innerHTML = "Could not read file, error code is " + reader.error.code;
@@ -34,13 +37,23 @@ LocalXMLLoader.prototype = {
             var tempdata = "";
             tempdata = reader.result;
             if (tempdata != null) {
-                var parser = new DOMParser(),
-                    xmlDom = parser.parseFromString(tempdata, "text/xml");
-                var xmlLoader = new XMLLoader();
+                if(format === "XML")
+                {
+                    var parser = new DOMParser(),
+                        xmlDom = parser.parseFromString(tempdata, "text/xml");
+                    var xmlLoader = new XMLLoader();
 
-                $(xmlDom).find("Pathway").each(function () {
-                    xmlLoader.parse($(this));
-                });
+                    $(xmlDom).find("Pathway").each(function () {
+                        xmlLoader.parse($(this));
+                    });
+                }
+                else if(format === "JSON")
+                {
+                    var json = JSON.parse(  tempdata  );
+                    var jsonLoader = new JsonLoader();
+                    jsonLoader.parse(json);
+                }
+
             }
         };
     },

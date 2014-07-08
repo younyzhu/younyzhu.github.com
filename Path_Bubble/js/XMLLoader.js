@@ -36,7 +36,7 @@ XMLLoader.prototype = {
         this.edgeBlock = $this.find("edgeBlock");
         this.parseCompartmentBlock(compartmentBlock);
         this.parseEdges();
-        var t;
+
     },
     parseEdges: function () {
         var length = this.edgeBlock.children().length;
