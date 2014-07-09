@@ -52,6 +52,9 @@ Physical_Entity.prototype = {
         {
             this.textObj.draw(x + w/2, y + h/2, ctx );
         }
+        if (mainManagement.selection === this) {
+            this.drawStroke(ctx);
+        }
     },
     drawStroke: function(ctx){
         var x = this.x + this.offsetX;
@@ -63,6 +66,8 @@ Physical_Entity.prototype = {
         var my1 = y + h / 3;
         var my2 = y + h * 2 / 3;
         ctx.save();	// save the context so we don't mess up others
+        ctx.strokeStyle = "#ffff00";
+        ctx.lineWidth = this.lineWidth;
         ctx.beginPath();
         ctx.moveTo(x, my1);
         ctx.lineTo(x, my2);

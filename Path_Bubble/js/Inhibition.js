@@ -8,8 +8,8 @@ function Inhibition(id, beginType, beginNodeId, endType, endNodeId ) {
     this.beginNodeId = beginNodeId;
     this.endType = endType;
     this.endNodeId = endNodeId;
-    this.dotRadius = 4;
-    this.dotLimitRadius = 2;
+    this.dotRadius = 3;
+    this.dotLimitRadius = 1;
     this.fillColor = "#FF8000";
     //Complex is contained in the Compartment and the Compartment is contained in the Bubble
     //So Offset = offsetBubble + offsetCompartment
@@ -57,7 +57,7 @@ Inhibition.prototype = {
             var dx = x2 - x1;
             var dy = y2 - y1;
             var distance = Math.sqrt(dx * dx + dy * dy);
-            var dotCount = Math.ceil(distance /100 * (this.dotRadius - this.dotLimitRadius ))+3;
+            var dotCount = Math.ceil(distance /20 * (this.dotRadius - this.dotLimitRadius ))+3;
             var spaceX = dx / (dotCount - 1);
             var spaceY = dy / (dotCount - 1);
             var newX = x1;
@@ -67,8 +67,8 @@ Inhibition.prototype = {
                 newX += spaceX;
                 newY += spaceY;
             }
-            this.drawDot(x1, y1, 2, "red", ctx);
-            this.drawDot(x2, y2, 2, "red", ctx);
+            this.drawDot(x1, y1, this.dotLimitRadius, "red", ctx);
+            this.drawDot(x2, y2, this.dotLimitRadius, "red", ctx);
         }
     },
     drawDot: function (x, y, dotRadius, dotColor, ctx) {

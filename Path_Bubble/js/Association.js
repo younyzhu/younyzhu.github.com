@@ -32,11 +32,16 @@ Association.prototype = {
         ctx.stroke();
         ctx.closePath();
         ctx.restore();	// restore context to what it was on entry
+        if (mainManagement.selection === this) {
+            this.drawStroke(ctx);
+        }
     },
     drawStroke: function(ctx){
         var x = this.x + this.offsetX;
         var y = this.y + this.offsetY;
         ctx.save();	// save the context so we don't mess up others
+        ctx.strokeStyle = "#ffff00";
+        ctx.lineWidth = this.lineWidth;
         ctx.beginPath();
         ctx.arc(x, y, this.r, 0, 2 * Math.PI, false);
         ctx.stroke();

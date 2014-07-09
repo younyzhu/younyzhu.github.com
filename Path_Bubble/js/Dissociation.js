@@ -38,12 +38,17 @@ Dissociation.prototype = {
         ctx.stroke();
         ctx.closePath();
         ctx.restore();	// restore context to what it was on entry
+        if (mainManagement.selection === this) {
+            this.drawStroke(ctx);
+        }
     },
     drawStroke: function(ctx){
         var x = this.x + this.offsetX;
         var y = this.y + this.offsetY;
         var h = this.l * (Math.sqrt(3) / 2);
         ctx.save();
+        ctx.strokeStyle = "#ffff00";
+        ctx.lineWidth = this.lineWidth;
         ctx.beginPath();
         ctx.moveTo(x, y - h / 2);
         ctx.lineTo(x - this.l / 2, y + h / 2);
@@ -51,7 +56,7 @@ Dissociation.prototype = {
         ctx.lineTo(x, y - h / 2);
         ctx.stroke();
         ctx.closePath();
-        ctx.save();
+        ctx.restore();
     },
     contains: function (mx, my) {
         var x = this.x + this.offsetX;

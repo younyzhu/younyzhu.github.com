@@ -92,3 +92,8 @@
  4. Fix a bug for save `json` file [http://stackoverflow.com/questions/24641366/save-json-object-to-string-has-some-unwanted-character/24641435#24641435](http://stackoverflow.com/questions/24641366/save-json-object-to-string-has-some-unwanted-character/24641435#24641435)
  5. Add `json File Loader` so that we can check the loaded result, and also we can save the result from the `server`
  6. I test the save and load, It is right.
+ 
+  * 7/9/2014 
+  1. Change the dots to become much denser and smaller.
+  2. Change the code, when resizing the corner of the compartment.
+  3. 

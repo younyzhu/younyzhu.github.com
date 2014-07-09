@@ -193,7 +193,7 @@ $(document).ready(function () {
                     }
                     jsonData.compartments.push(compartment);
                 }
-                else if (objects[i].type === "J")//arrows
+                else if (objects[i].type === "J")//Arrows
                 {
                     var arrow = {};
                     arrow.id = objects[i].id;
@@ -204,18 +204,6 @@ $(document).ready(function () {
                     arrow.endNodeId = objects[i].endNodeId;
 
                     jsonData.arrows.push(arrow);
-                }
-                else if (objects[i].type === "I")//Inhibition
-                {
-                    var inhibition = {};
-                    inhibition.id = objects[i].id;
-                    inhibition.type = objects[i].type;
-                    inhibition.beginType = objects[i].beginType;
-                    inhibition.beginNodeId = objects[i].beginNodeId;
-                    inhibition.endType = objects[i].endType;
-                    inhibition.endNodeId = objects[i].endNodeId;
-
-                    jsonData.inhibitions.push(inhibition);
                 }
                 else if (objects[i].type === "A")//Activation
                 {
@@ -229,8 +217,20 @@ $(document).ready(function () {
 
                     jsonData.activations.push(activation);
                 }
+                else if (objects[i].type === "I")//Inhibition
+                {
+                    var inhibition = {};
+                    inhibition.id = objects[i].id;
+                    inhibition.type = objects[i].type;
+                    inhibition.beginType = objects[i].beginType;
+                    inhibition.beginNodeId = objects[i].beginNodeId;
+                    inhibition.endType = objects[i].endType;
+                    inhibition.endNodeId = objects[i].endNodeId;
+
+                    jsonData.inhibitions.push(inhibition);
+                }
             }
-             console.log(JSON.stringify(jsonData));
+            console.log(JSON.stringify(jsonData));
             $.ajax({
                 url: 'json.php',
                 type: "POST",  // type should be POST
@@ -241,10 +241,8 @@ $(document).ready(function () {
                 }, // send the string directly
                 dataType: "json",
                 success: function (response) {
-                    alert(response['status']);
-                },
-                error: function (response) {
-                    alert(response.status);
+                    if(response['status'] === '200')
+                    alert("Success!");
                 }
             });
         }

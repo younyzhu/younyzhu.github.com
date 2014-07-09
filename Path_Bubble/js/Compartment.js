@@ -27,6 +27,9 @@ function Compartment(id, state, x, y, w, h, text) {
     this.dissociations = [];
     this.transitions = [];
     this.entitys = [];
+
+    this.childOffsetx = this.x;
+    this.childOffsety = this.y;
 }
 
 Compartment.prototype = {
@@ -42,7 +45,7 @@ Compartment.prototype = {
             {
                 if(mainManagement.shapes[j].id === this.complexs[i] && mainManagement.shapes[j].type === "C")    //COMPLEX
                 {
-                    mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
+                    mainManagement.shapes[j].draw(ctx, this.childOffsetx + this.offsetX, this.childOffsety + this.offsetY);
                 }
             }
         }
@@ -61,7 +64,7 @@ Compartment.prototype = {
             {
                 if(mainManagement.shapes[j].id === this.proteins[i] && mainManagement.shapes[j].type === "P")
                 {
-                    mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
+                    mainManagement.shapes[j].draw(ctx, this.childOffsetx + this.offsetX, this.childOffsety + this.offsetY);
                 }
             }
         }
@@ -80,7 +83,7 @@ Compartment.prototype = {
             {
                 if(mainManagement.shapes[j].id === this.dnas[i] && mainManagement.shapes[j].type === "D")
                 {
-                    mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
+                    mainManagement.shapes[j].draw(ctx, this.childOffsetx + this.offsetX, this.childOffsety + this.offsetY);
                 }
             }
         }
@@ -99,7 +102,7 @@ Compartment.prototype = {
             {
                 if(mainManagement.shapes[j].id === this.molecules[i] && mainManagement.shapes[j].type === "S")
                 {
-                    mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
+                    mainManagement.shapes[j].draw(ctx, this.childOffsetx + this.offsetX, this.childOffsety + this.offsetY);
                 }
             }
         }
@@ -118,7 +121,7 @@ Compartment.prototype = {
             {
                 if(mainManagement.shapes[j].id === this.entitys[i] && mainManagement.shapes[j].type === "E")
                 {
-                    mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
+                    mainManagement.shapes[j].draw(ctx, this.childOffsetx + this.offsetX, this.childOffsety + this.offsetY);
                 }
             }
         }
@@ -137,7 +140,7 @@ Compartment.prototype = {
             {
                 if(mainManagement.shapes[j].id === this.dissociations[i] && mainManagement.shapes[j].type === "K")
                 {
-                    mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
+                    mainManagement.shapes[j].draw(ctx, this.childOffsetx + this.offsetX, this.childOffsety + this.offsetY);
                 }
             }
         }
@@ -156,7 +159,7 @@ Compartment.prototype = {
             {
                 if(mainManagement.shapes[j].id === this.associations[i] && mainManagement.shapes[j].type === "B")
                 {
-                    mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
+                    mainManagement.shapes[j].draw(ctx, this.childOffsetx + this.offsetX, this.childOffsety + this.offsetY);
                 }
             }
         }
@@ -175,7 +178,7 @@ Compartment.prototype = {
             {
                 if(mainManagement.shapes[j].id === this.transitions[i] && mainManagement.shapes[j].type === "T")
                 {
-                    mainManagement.shapes[j].draw(ctx, this.x + this.offsetX, this.y + this.offsetY);
+                    mainManagement.shapes[j].draw(ctx, this.childOffsetx + this.offsetX, this.childOffsety + this.offsetY);
                 }
             }
         }
@@ -185,8 +188,9 @@ Compartment.prototype = {
         this.offsetY =offsetY;
         this.drawCompartment(ctx);
         this.drawElements(ctx);
-        if (this.state.selection === this) {
+        if (mainManagement.selection === this) {
              this.drawSelection(ctx);
+             this.drawStroke(ctx);
         }
         if (this.textObj) {
             var x = this.x+this.offsetX;
@@ -230,6 +234,31 @@ Compartment.prototype = {
             this.drawPhysical_Entity(ctx);
         }
     },
+    drawStroke: function(ctx){
+        var x = this.x+ this.offsetX;
+        var y = this.y+ this.offsetY;
+        var w = this.w;
+        var h = this.h;
+        ctx.strokeStyle = "#ffff00";
+        ctx.lineWidth = this.lineWidth;
+
+        var r = x + w;
+        var b = y + h;
+        ctx.save();	// save the context so we don't mess up others
+        ctx.beginPath();
+        ctx.moveTo(x + this.radius, y);
+        ctx.lineTo(r - this.radius, y);
+        ctx.quadraticCurveTo(r, y, r, y + this.radius);
+        ctx.lineTo(r, y + h - this.radius);
+        ctx.quadraticCurveTo(r, b, r - this.radius, b);
+        ctx.lineTo(x + this.radius, b);
+        ctx.quadraticCurveTo(x, b, x, b - this.radius);
+        ctx.lineTo(x, y + this.radius);
+        ctx.quadraticCurveTo(x, y, x + this.radius, y);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.restore();
+    },
     drawCompartment: function(ctx){
         var x = this.x+ this.offsetX;
         var y = this.y+ this.offsetY;
@@ -257,7 +286,7 @@ Compartment.prototype = {
         ctx.stroke();
         ctx.restore();
     },
-    drawSelection: function(ctx){
+    drawSelection: function(ctx) {
         var i, cur, half;
         var x = this.x+this.offsetX;
         var y = this.y+this.offsetY;
@@ -299,7 +328,7 @@ Compartment.prototype = {
         for (i = 0; i < 8; i += 1) {
             cur = this.state.selectionHandles[i];
             ctx.save();	// save the context so we don't mess up others
-            ctx.fillStyle = "#ffff00";
+            ctx.fillStyle = "#ff0000";
             ctx.fillRect(cur.x, cur.y, this.state.selectionBoxSize, this.state.selectionBoxSize);
             ctx.restore();
         }

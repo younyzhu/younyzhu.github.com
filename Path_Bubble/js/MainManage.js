@@ -10,11 +10,14 @@ function MainManage(canvas) {
     this.valid = false; // when set to false, the canvas will redraw everything
     this.shapes = [];  // the collection of things to be drawn on the 2d canvas
 
+    this.keyboard = new KeyboardState();
+    this.multiIds = [];
     this.dragging = false; // Keep track of when we are dragging
     this.resizeDragging = false; // Keep track of resize
     this.expectResize = -1; // save the # of the selection handle
 
     this.selection = null;// the current selected object. In the future we could turn this into an array for multiple selection
+
     this.dragoffx = 0; // See mousedown and mousemove events for explanation
     this.dragoffy = 0;
 
@@ -32,6 +35,7 @@ function MainManage(canvas) {
     var flag = null;
     //canvas.addEventListener('selectstart', function(e) { e.preventDefault(); return false; }, false);
     // Up, down, and move are for dragging
+    var mouseX, mouseY;
     canvas.addEventListener('mousedown', function (e) {
 
         if (_this.expectResize !== -1) {
@@ -41,13 +45,46 @@ function MainManage(canvas) {
         var mouse = _this.getMouse(e);
         var mx = mouse.x;
         var my = mouse.y;
+        _this.multiIds.length = 0;
         for (var i = _this.shapes.length - 1; i >= 0; i--) {
             if (_this.shapes[i] === null || _this.shapes[i].type === "J" || _this.shapes[i].type === "I" || _this.shapes[i].type === "A")
                 continue;
             if (_this.shapes[i].contains(mx, my)) {
 
-                _this.dragoffx = mx - _this.shapes[i].x;
-                _this.dragoffy = my - _this.shapes[i].y;
+               if(_this.shapes[i].type === "M") {
+                   if (_this.keyboard.down("ctrl")) {
+                       var select ={};
+                       select.index = i;
+                       select.type = "M";
+                       select.dragoffx = _this.dragoffx;
+                       select.dragoffx = _this.dragoffx;
+                       select.mouseX = mouseX;
+                       select.mouseY = mouseY;
+                       _this.multiIds.push(select);
+                   }
+                   else
+                   {
+                       _this.dragoffx = mx - _this.shapes[i].childOffsetx;
+                       _this.dragoffy = my - _this.shapes[i].childOffsety;
+                       mouseX = mx - _this.shapes[i].x;
+                       mouseY = my - _this.shapes[i].y;
+                   }
+                }
+               else
+               {
+                   if (_this.keyboard.down("ctrl")) {
+                       var select ={};
+                       select.index = i;
+                       select.dragoffx = _this.dragoffx;
+                       select.dragoffx = _this.dragoffx;
+                       _this.multiIds.push(select);
+                   }
+                   else
+                   {
+                       _this.dragoffx = mx - _this.shapes[i].x;
+                       _this.dragoffy = my - _this.shapes[i].y;
+                   }
+               }
 
                 _this.dragging = true;
                 _this.selection = _this.shapes[i];
@@ -72,8 +109,33 @@ function MainManage(canvas) {
             mouse = _this.getMouse(e);
             // We don't want to drag the object by its top-left corner, we want to drag it
             // from where we clicked. Thats why we saved the offset and use it here
-            _this.selection.x = mouse.x - _this.dragoffx;  //mouse move relative to the navigation viewpoint
-            _this.selection.y = mouse.y - _this.dragoffy;
+            if(_this.selection.type === "M") {
+                _this.selection.childOffsetx = mouse.x - _this.dragoffx;  //mouse move relative to the navigation viewpoint
+                _this.selection.childOffsety = mouse.y - _this.dragoffy;
+                _this.selection.x = mouse.x - mouseX;  //mouse move relative to the navigation viewpoint
+                _this.selection.y = mouse.y - mouseY;
+            }
+            else
+            {
+                _this.selection.x = mouse.x - _this.dragoffx;  //mouse move relative to the navigation viewpoint
+                _this.selection.y = mouse.y - _this.dragoffy;
+            }
+            for(var i=0; i< _this.multiIds.length; ++i)
+            {
+                if(_this.multiIds[i].type === "M") {
+                    _this.shapes[ _this.multiIds[i].index ].childOffsetx = mouse.x - _this.multiIds[i].dragoffx;  //mouse move relative to the navigation viewpoint
+                    _this.shapes[ _this.multiIds[i].index ].childOffsety = mouse.y - _this.multiIds[i].dragoffy;
+                    _this.shapes[ _this.multiIds[i].index ].x = mouse.x - _this.multiIds[i].mouseX;  //mouse move relative to the navigation viewpoint
+                    _this.shapes[ _this.multiIds[i].index ].y = mouse.y - _this.multiIds[i].mouseY;
+                }
+                else
+                {
+                    _this.shapes[ _this.multiIds[i].index ].x = mouse.x - _this.multiIds[i].dragoffx;  //mouse move relative to the navigation viewpoint
+                    _this.shapes[ _this.multiIds[i].index ].y = mouse.y - _this.multiIds[i].dragoffy;
+                }
+            }
+
+
             _this.valid = false; // Something's dragging so we must redraw
         }
         else if (_this.resizeDragging) {
@@ -84,7 +146,7 @@ function MainManage(canvas) {
                 oldx = _this.selection.x; //OffsetX is just used for test the contain relatonship
                 oldy = _this.selection.y;
             }
-            else {
+            else if(_this.selection.type === "M") {
                 oldx = _this.selection.x; //resize is just the relative position,, not absolute position
                 oldy = _this.selection.y;
                 mx -= _this.selection.offsetX;
@@ -222,6 +284,7 @@ function MainManage(canvas) {
 
     function animate() {
         requestAnimationFrame(animate);
+        _this.keyboard.update();
         _this.draw();
     }
 

@@ -99,7 +99,7 @@ JsonLoader.prototype = {
             if (activations[i].beginNodeId < 0 && activations[i].endNodeId < 0) {
                 continue;
             }
-            Bubbles.addArrow(activations[i].id, activations[i].beginType, activations[i].beginNodeId, activations[i].endType, activations[i].endNodeId);
+            Bubbles.addActivation(activations[i].id, activations[i].beginType, activations[i].beginNodeId, activations[i].endType, activations[i].endNodeId);
         }
     },
     parseArrows: function (arrows) {

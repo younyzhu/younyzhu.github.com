@@ -29,13 +29,20 @@ Transition.prototype = {
         ctx.strokeStyle = this.strokeColor;
         ctx.lineWidth = this.lineWidth;
         ctx.strokeRect(x, y, w, h);
+        if (mainManagement.selection === this) {
+            this.drawStroke(ctx);
+        }
     },
     drawStroke: function (ctx) {
         var x = this.x + this.offsetX;
         var y = this.y + this.offsetY;
         var w = this.w;
         var h = this.h;
+        ctx.save();
+        ctx.strokeStyle = "#ffff00";
+        ctx.lineWidth = this.lineWidth;
         ctx.strokeRect(x, y, w, h);
+        ctx.restore();	// restore context to what it was on entry
     },
     contains : function(mx, my)
     {

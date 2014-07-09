@@ -137,9 +137,6 @@ Visualization.prototype ={
         for(var i=0; i<this.compartments.length; i++)
         {
             // We can skip the drawing of elements that have moved off the screen:
-            /*if (this.compartments[i].x <= this.width && this.compartments[i].y <= this.height &&
-             this.compartments[i].x + this.compartments[i].w >= 0 && this.compartments[i].y + this.compartments[i].h >= 0) {
-             }*/
             for(var j=0; j< mainManagement.shapes.length; j++)
             {
                 if(mainManagement.shapes[j].id === this.compartments[i] && mainManagement.shapes[j].type === "M")
@@ -147,7 +144,6 @@ Visualization.prototype ={
                     mainManagement.shapes[j].drawElements(ctx, this.x, this.y);
                 }
             }
-            //this.compartments[i].draw(ctx, this.x, this.y);    //This is the relative position (this.x, this.y) for all the compartment inside the bubble
         }
     },
     contains: function (mx, my) {

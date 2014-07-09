@@ -46,6 +46,9 @@ Protein.prototype = {
         {
             this.textObj.draw(x + w/2, y + h-10, ctx );
         }
+        if (mainManagement.selection === this) {
+            this.drawStroke(ctx);
+        }
     },
     drawStroke: function(ctx) {
         var x = this.x + this.offsetX;
@@ -55,6 +58,8 @@ Protein.prototype = {
         var mx = x + w / 2;
         var my = y + h / 2;
         ctx.save();	// save the context so we don't mess up others
+        ctx.strokeStyle = "#ffff00";
+        ctx.lineWidth = this.lineWidth;
         ctx.beginPath();
         ctx.moveTo(x, my);
         ctx.quadraticCurveTo(x, y, mx, y);
