@@ -61,10 +61,10 @@ Physical_Entity.prototype = {
         var y = this.y + this.offsetY;
         var w = this.w;
         var h = this.h;
-        var mx1 = x + w / 4;
-        var mx2 = x + w * 3 / 4;
-        var my1 = y + h / 3;
-        var my2 = y + h * 2 / 3;
+        var mx1 = x + 10;
+        var mx2 = x + w -10;
+        var my1 = y + 10;
+        var my2 = y + h - 10;
         ctx.save();	// save the context so we don't mess up others
         ctx.strokeStyle = "#ffff00";
         ctx.lineWidth = this.lineWidth;
@@ -72,7 +72,7 @@ Physical_Entity.prototype = {
         ctx.moveTo(x, my1);
         ctx.lineTo(x, my2);
         ctx.lineTo(mx1, y + h);
-        ctx.lineTo(mx2, y + h);
+        ctx.lineTo(mx2, y+ h);
         ctx.lineTo(x + w, my2);
         ctx.lineTo(x + w, my1);
         ctx.lineTo(mx2, y);
