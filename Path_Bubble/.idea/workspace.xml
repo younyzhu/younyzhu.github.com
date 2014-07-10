@@ -58,8 +58,8 @@
       <file leaf-file-name="MainManage.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/MainManage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.48768473" vertical-offset="1601" max-vertical-offset="8216">
-              <caret line="73" column="70" selection-start-line="73" selection-start-column="30" selection-end-line="73" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.6584565" vertical-offset="2485" max-vertical-offset="8424">
+              <caret line="111" column="20" selection-start-line="111" selection-start-column="20" selection-end-line="112" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -124,7 +124,6 @@
         <option value="$PROJECT_DIR$/js/jsonLoader.js" />
         <option value="$PROJECT_DIR$/js/main.js" />
         <option value="$PROJECT_DIR$/js/Visualization.js" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/js/Association.js" />
         <option value="$PROJECT_DIR$/js/Complex.js" />
         <option value="$PROJECT_DIR$/js/Activation.js" />
@@ -138,6 +137,7 @@
         <option value="$PROJECT_DIR$/js/Compartment.js" />
         <option value="$PROJECT_DIR$/js/KeyboardState.js" />
         <option value="$PROJECT_DIR$/pathBubble.html" />
+        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/js/MainManage.js" />
       </list>
     </option>
@@ -832,8 +832,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7267951" vertical-offset="2133" max-vertical-offset="2704">
-          <caret line="98" column="5" selection-start-line="98" selection-start-column="5" selection-end-line="98" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.7440225" vertical-offset="2097" max-vertical-offset="2808">
+          <caret line="101" column="107" selection-start-line="101" selection-start-column="107" selection-end-line="101" selection-end-column="107" />
           <folding />
         </state>
       </provider>
@@ -843,8 +843,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/MainManage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48768473" vertical-offset="1601" max-vertical-offset="8216">
-          <caret line="73" column="70" selection-start-line="73" selection-start-column="30" selection-end-line="73" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.6584565" vertical-offset="2485" max-vertical-offset="8424">
+          <caret line="111" column="20" selection-start-line="111" selection-start-column="20" selection-end-line="112" selection-end-column="52" />
           <folding />
         </state>
       </provider>

@@ -34,14 +34,16 @@ function MainManage(canvas) {
             if(e.keyCode === 17)//Ctrl
             {
                 _this.Ctrl = true;
-
             }
     },true);
     document.addEventListener('keyup',function(e){
         if(e.keyCode === 17)//Ctrl
         {
             _this.Ctrl = false;
-
+            for(i=0; i< _this.selection.length; ++i)
+                _this.selection[i].flag = false;
+            _this.selection.length = 0;
+            _this.valid = false;
         }
     },true);
 
@@ -100,9 +102,16 @@ function MainManage(canvas) {
 
             for(i=0; i< _this.selection.length; ++i)
             {
-
-                _this.selection[i].x += offsetX;  //mouse move relative to the navigation viewpoint
-                _this.selection[i].y += offsetY;
+                if(_this.Ctrl && _this.selection[i].type !== "VISUALIZATION" )
+                {
+                    _this.selection[i].x += offsetX;  //mouse move relative to the navigation viewpoint
+                    _this.selection[i].y += offsetY;
+                }
+                else if(!_this.Ctrl)
+                {
+                    _this.selection[i].x += offsetX;  //mouse move relative to the navigation viewpoint
+                    _this.selection[i].y += offsetY;
+                }
                 console.log( "Length:" + _this.selection.length);
                 console.log(i + "offsetX:" + offsetX +", offsetY" + offsetY);
                 if(_this.selection[i].type === "M")
