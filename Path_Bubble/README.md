@@ -20,6 +20,40 @@
      
 ##Study Event
 
+-  -  -  -  -  -  -  -      
+
+Some Avrevations:
+
+`L`:`Set`  
+
+`C`:`Complex` 
+  
+`P`:`Protein` 
+ 
+`R`:`Reaction`
+
+`S`:`Small-molecule`
+
+`D`:`Dna`
+
+`Physical Entity`:`E`
+
+`M`:`Compartment`
+
+`J`:`Black Arrow`
+
+`A`:`Activation Green arrow`
+
+`I`:`Inhibition(yellow)`
+
+`T`:`Transition`
+
+`A`:`Association`
+
+`K`:`Dissociation`      
+
+-  -  -  -  -  -  -  -
+
 * 7/2/2014      
  1. Today, I begin to write the path bubble program. First, write the basic frame work, try to use html5 2d canvas to draw thing.
  
