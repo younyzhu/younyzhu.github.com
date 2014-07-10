@@ -30,6 +30,7 @@ function Compartment(id, state, x, y, w, h, text) {
 
     this.childOffsetx = this.x;
     this.childOffsety = this.y;
+    this.flag = false;
 }
 
 Compartment.prototype = {
@@ -188,7 +189,7 @@ Compartment.prototype = {
         this.offsetY =offsetY;
         this.drawCompartment(ctx);
         this.drawElements(ctx);
-        if (mainManagement.selection === this) {
+        if (this.flag) {
              this.drawSelection(ctx);
              this.drawStroke(ctx);
         }

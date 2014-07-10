@@ -17,6 +17,7 @@ function Small_Molecule(id, x, y, w, h, text) {
     //So Offset = offsetBubble + offsetCompartment
     this.offsetX =0;
     this.offsetY =0;
+    this.flag = false;
 }
 Small_Molecule.prototype = {
     draw: function (ctx, offsetX, offsetY) {
@@ -54,7 +55,7 @@ Small_Molecule.prototype = {
         {
             this.textObj.draw(x + w/2, y + h/2, ctx );
         }
-        if (mainManagement.selection === this) {
+        if (this.flag) {
             this.drawStroke(ctx);
         }
     },

@@ -15,6 +15,7 @@ function Transition(id, x, y, w, h) {
     //So Offset = offsetBubble + offsetCompartment
     this.offsetX =0;
     this.offsetY =0;
+    this.flag = false;
 }
 Transition.prototype = {
     draw: function (ctx, offsetX, offsetY) {
@@ -29,7 +30,7 @@ Transition.prototype = {
         ctx.strokeStyle = this.strokeColor;
         ctx.lineWidth = this.lineWidth;
         ctx.strokeRect(x, y, w, h);
-        if (mainManagement.selection === this) {
+        if (this.flag ) {
             this.drawStroke(ctx);
         }
     },

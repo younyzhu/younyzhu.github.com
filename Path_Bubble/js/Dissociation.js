@@ -16,6 +16,7 @@ function Dissociation(id, x, y, w ,h) {
     //So Offset = offsetBubble + offsetCompartment
     this.offsetX =0;
     this.offsetY =0;
+    this.flag = false;
 }
 Dissociation.prototype = {
     draw: function (ctx, offsetX, offsetY) {
@@ -38,7 +39,7 @@ Dissociation.prototype = {
         ctx.stroke();
         ctx.closePath();
         ctx.restore();	// restore context to what it was on entry
-        if (mainManagement.selection === this) {
+        if (this.flag ) {
             this.drawStroke(ctx);
         }
     },

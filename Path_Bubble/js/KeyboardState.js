@@ -15,11 +15,11 @@
  */
  
 // initialization
-KeyboardState = function()
+KeyboardState = function(canvas)
 {
 	// bind keyEvents
-    document.addEventListener("keydown", KeyboardState.onKeyDown, false);
-    document.addEventListener("keyup",   KeyboardState.onKeyUp,   false);
+    canvas.addEventListener("keydown", KeyboardState.onKeyDown, false);
+    canvas.addEventListener("keyup",   KeyboardState.onKeyUp,   false);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

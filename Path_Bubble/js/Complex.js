@@ -16,6 +16,7 @@ function Complex(id, x, y, w, h) {
     //So Offset = offsetBubble + offsetCompartment
     this.offsetX =0;
     this.offsetY =0;
+    this.flag = false;
 }
 Complex.prototype = {
     draw: function (ctx, offsetX, offsetY) {
@@ -32,7 +33,7 @@ Complex.prototype = {
         ctx.fillRect(x, y, w, h);
         ctx.strokeRect(x, y, w, h);
         ctx.restore();	// restore context to what it was on entry
-        if (mainManagement.selection === this) {
+        if (this.flag) {
             this.drawStroke(ctx);
         }
     },

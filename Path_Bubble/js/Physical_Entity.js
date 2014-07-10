@@ -17,6 +17,7 @@ function Physical_Entity(id, x, y, w, h, text) {
     //So Offset = offsetBubble + offsetCompartment
     this.offsetX =0;
     this.offsetY =0;
+    this.flag = false;
 }
 Physical_Entity.prototype = {
     draw: function (ctx, offsetX, offsetY) {
@@ -52,7 +53,7 @@ Physical_Entity.prototype = {
         {
             this.textObj.draw(x + w/2, y + h/2, ctx );
         }
-        if (mainManagement.selection === this) {
+        if (this.flag) {
             this.drawStroke(ctx);
         }
     },

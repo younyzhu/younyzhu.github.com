@@ -13,7 +13,7 @@ function Association(id, x, y, w, h) {
     this.strokeColor = "#666666";
     this.lineWidth = 2;
     this.fillColor = "#ffffff";
-
+    this.flag = false;
 }
 Association.prototype = {
     draw: function (ctx, offsetX, offsetY) {
@@ -32,7 +32,7 @@ Association.prototype = {
         ctx.stroke();
         ctx.closePath();
         ctx.restore();	// restore context to what it was on entry
-        if (mainManagement.selection === this) {
+        if (this.flag) {
             this.drawStroke(ctx);
         }
     },

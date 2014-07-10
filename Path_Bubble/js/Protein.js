@@ -17,6 +17,7 @@ function Protein(id, x, y, w, h, text) {
     //So Offset = offsetBubble + offsetCompartment
     this.offsetX =0;
     this.offsetY =0;
+    this.flag = false;
 }
 Protein.prototype = {
     draw: function (ctx, offsetX, offsetY) {
@@ -46,7 +47,7 @@ Protein.prototype = {
         {
             this.textObj.draw(x + w/2, y + h-10, ctx );
         }
-        if (mainManagement.selection === this) {
+        if (this.flag ) {
             this.drawStroke(ctx);
         }
     },

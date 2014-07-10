@@ -96,4 +96,8 @@
   * 7/9/2014 
   1. Change the dots to become much denser and smaller.
   2. Change the code, when resizing the corner of the compartment.
-  3. 
+  3. Multiple selection for the objects
+  
+  * 7/10/2014 
+  1. Multiple selection has a bug, try to spend a night to fix it, but failed, Luckily, fixed this morning!
+  
