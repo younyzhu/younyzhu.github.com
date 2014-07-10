@@ -94,12 +94,10 @@ function MainManage(canvas) {
         if (_this.dragging) {
             // We don't want to drag the object by its top-left corner, we want to drag it
             // from where we clicked. Thats why we saved the offset and use it here
-
             offsetX = mouse.x - oldMouseX;
             offsetY = mouse.y - oldMouseY;
             oldMouseX = mouse.x;
             oldMouseY = mouse.y;
-
             for(i=0; i< _this.selection.length; ++i)
             {
                 if(_this.Ctrl && _this.selection[i].type !== "VISUALIZATION" )
@@ -112,8 +110,8 @@ function MainManage(canvas) {
                     _this.selection[i].x += offsetX;  //mouse move relative to the navigation viewpoint
                     _this.selection[i].y += offsetY;
                 }
-                console.log( "Length:" + _this.selection.length);
-                console.log(i + "offsetX:" + offsetX +", offsetY" + offsetY);
+                //console.log( "Length:" + _this.selection.length);
+                //console.log(i + "offsetX:" + offsetX +", offsetY" + offsetY);
                 if(_this.selection[i].type === "M")
                 {
                     _this.selection[i].childOffsetx += offsetX;  //mouse move relative to the navigation viewpoint

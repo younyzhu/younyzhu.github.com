@@ -7,6 +7,9 @@ var Bubbles = null;
 var mainManagement = null;
 $(document).ready(function () {
     THREEx.FullScreen.bindKey({ charCode: 'f'.charCodeAt(0) });
+    var str = "./data/SMAD23 Phosphorylation Motif Mutants in Cancer_26_new.xml";
+    var xmlLoader = new XMLLoader();
+    xmlLoader.load(str);
     var workerId ="";
     var params = {
         loadFile: function () {
@@ -25,6 +28,23 @@ $(document).ready(function () {
             }
         },
         text: "",
+        planarity: function() {
+            if(xmlLoader.v >3)
+                if(xmlLoader.e <= 3* xmlLoader.v - 6)
+                {
+                    alert("This is a planner graph!");
+                }
+                else
+                {
+                    alert("This is a non-planner graph!");
+                }
+        },
+        leftCrossing: function(){
+
+            var detection = new Detection(mainManagement.shapes, xmlLoader.e);
+            var crossingNum = detection.findCrossing();
+            alert(crossingNum);
+        },
         send: function () {
             if(workerId === "")
             {
@@ -257,10 +277,10 @@ $(document).ready(function () {
         alert("Please make sure " + workerId +" is your Worker Id");
     });
     f2.add(params, 'send').name('Send');
-    var str = "./data/SMAD23 Phosphorylation Motif Mutants in Cancer_26_new.xml";
-    var xmlLoader = new XMLLoader();
-    xmlLoader.load(str);
 
+    var f3 = gui.addFolder('Planarity Detection');
+    f3.add(params, 'planarity').name('Is Planarity?');
+    f3.add(params, 'leftCrossing').name('Left Crossing?');
     /*
      var currentView = new Compartment(0,navigationCanvas, 200, 200, 200, 200, 'rgba(255,0,0,0.7)');
      navigationCanvas.addShape(currentView);

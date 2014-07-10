@@ -2,6 +2,8 @@
  * Created by Yongnan on 7/3/2014.
  */
 XMLLoader = function () {
+    this.e = 0;
+    this.v = 0;
 };
 XMLLoader.prototype = {
     constructor: XMLLoader,
@@ -25,7 +27,8 @@ XMLLoader.prototype = {
         //Bubbles.offsetX = 400;
         //Bubbles.offsetY = 20;
         mainManagement.addShape(Bubbles);
-
+        this.e = 0;
+        this.v = 0;
         var compartmentBlock = $this.find("compartmentBlock");
         this.complexBlock = $this.find("complexBlock");
         this.proteinBlock = $this.find("proteinBlock");
@@ -36,7 +39,6 @@ XMLLoader.prototype = {
         this.edgeBlock = $this.find("edgeBlock");
         this.parseCompartmentBlock(compartmentBlock);
         this.parseEdges();
-
     },
     parseEdges: function () {
         var length = this.edgeBlock.children().length;
@@ -57,6 +59,7 @@ XMLLoader.prototype = {
     addEdges: function (type, index, beginType, beginIndex, endType, endIndex) {
         if(beginIndex<0 ||endIndex<0)
             return ;
+        this.e ++;
         var beginId, beginT, endId, endT, flag =0;
         switch (type) {
             case "J":  //Arrow (Black)
@@ -243,6 +246,7 @@ XMLLoader.prototype = {
          */
     },
     addElement: function (comparmentId, type, index) {
+        this.v ++;
         switch (type) {
             case "C":  //COMPLEX
             {
@@ -254,7 +258,7 @@ XMLLoader.prototype = {
                         .split(",");
                     for (var i = 0; i < mainManagement.shapes.length; i++) {
                         if (mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "M") {
-                            mainManagement.shapes[i].addComplex(index, position[0], position[1], position[2], position[3]);
+                            mainManagement.shapes[i].addComplex(index, position[0], position[1], position[2], position[3],comparmentId);
                         }
                     }
                 }
@@ -271,7 +275,7 @@ XMLLoader.prototype = {
                     var name = entityE.find("Name").text();
                     for (var i = 0; i < mainManagement.shapes.length; i++) {
                         if (mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "M") {
-                            mainManagement.shapes[i].addPhysical_Entity(index, position[0], position[1], position[2], position[3], name);
+                            mainManagement.shapes[i].addPhysical_Entity(index, position[0], position[1], position[2], position[3], name,comparmentId);
                         }
                     }
                 }
@@ -288,7 +292,7 @@ XMLLoader.prototype = {
                     var name = moleculeE.find("Name").text();
                     for (var i = 0; i < mainManagement.shapes.length; i++) {
                         if (mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "M") {
-                            mainManagement.shapes[i].addSmall_Molecule(index, position[0], position[1], position[2], position[3], name);
+                            mainManagement.shapes[i].addSmall_Molecule(index, position[0], position[1], position[2], position[3], name,comparmentId);
                         }
                     }
                 }
@@ -305,7 +309,7 @@ XMLLoader.prototype = {
                     var name = proteinE.find("Name").text();
                     for (var i = 0; i < mainManagement.shapes.length; i++) {
                         if (mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "M") {
-                            mainManagement.shapes[i].addProtein(index, position[0], position[1], position[2], position[3], name);
+                            mainManagement.shapes[i].addProtein(index, position[0], position[1], position[2], position[3], name,comparmentId);
                         }
                     }
                 }
@@ -322,7 +326,7 @@ XMLLoader.prototype = {
                     var name = dnaE.find("Name").text();
                     for (var i = 0; i < mainManagement.shapes.length; i++) {
                         if (mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "M") {
-                            mainManagement.shapes[i].addDNA(index, position[0], position[1], position[2], position[3], name);
+                            mainManagement.shapes[i].addDNA(index, position[0], position[1], position[2], position[3], name,comparmentId);
                         }
                     }
                 }
@@ -341,7 +345,7 @@ XMLLoader.prototype = {
                     for (var i = 0; i < mainManagement.shapes.length; i++) {
                         if (mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "M") {
                             if(typeR === "K")
-                                mainManagement.shapes[i].addDissociation(index, position[0], position[1], position[2], position[3]);
+                                mainManagement.shapes[i].addDissociation(index, position[0], position[1], position[2], position[3],comparmentId);
                             else if(typeR === "T")
                                 mainManagement.shapes[i].addTransition(index, position[0], position[1], position[2], position[3]);
                             else if(typeR === "B")

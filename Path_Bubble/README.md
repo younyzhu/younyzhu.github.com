@@ -22,7 +22,7 @@
 
 -  -  -  -  -  -  -  -      
 
-Some Avrevations:
+Some Abbrevations:
 
 `L`:`Set`  
 
@@ -134,4 +134,5 @@ Some Avrevations:
   
   * 7/10/2014 
   1. Multiple selection has a bug, try to spend a night to fix it, but failed, Luckily, fixed this morning!
+  2. Calculate the number of crossing edges
   
