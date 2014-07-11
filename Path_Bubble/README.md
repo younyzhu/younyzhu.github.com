@@ -133,6 +133,10 @@ Some Abbrevations:
   3. Multiple selection for the objects
   
   * 7/10/2014 
-  1. Multiple selection has a bug, try to spend a night to fix it, but failed, Luckily, fixed this morning!
+  1. Multiple selection has a bug, try to spend a night to fix it, but failed, Luckily, fixed this mornin.
   2. Calculate the number of crossing edges
+  3. When multi-selecting, we should not select the compartment.    
+
+  * 7/11/2014  
+  1. write a d3 format json file for d3's force direct to generate the inial layout.
   

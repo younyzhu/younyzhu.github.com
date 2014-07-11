@@ -222,7 +222,6 @@ $(document).ready(function () {
                     arrow.beginNodeId = objects[i].beginNodeId;
                     arrow.endType = objects[i].endType;
                     arrow.endNodeId = objects[i].endNodeId;
-
                     jsonData.arrows.push(arrow);
                 }
                 else if (objects[i].type === "A")//Activation
@@ -234,7 +233,6 @@ $(document).ready(function () {
                     activation.beginNodeId = objects[i].beginNodeId;
                     activation.endType = objects[i].endType;
                     activation.endNodeId = objects[i].endNodeId;
-
                     jsonData.activations.push(activation);
                 }
                 else if (objects[i].type === "I")//Inhibition
@@ -246,11 +244,10 @@ $(document).ready(function () {
                     inhibition.beginNodeId = objects[i].beginNodeId;
                     inhibition.endType = objects[i].endType;
                     inhibition.endNodeId = objects[i].endNodeId;
-
                     jsonData.inhibitions.push(inhibition);
                 }
             }
-            console.log(JSON.stringify(jsonData));
+            //console.log(JSON.stringify(jsonData));
             $.ajax({
                 url: 'json.php',
                 type: "POST",  // type should be POST
@@ -277,33 +274,7 @@ $(document).ready(function () {
         alert("Please make sure " + workerId +" is your Worker Id");
     });
     f2.add(params, 'send').name('Send');
-
     var f3 = gui.addFolder('Planarity Detection');
     f3.add(params, 'planarity').name('Is Planarity?');
     f3.add(params, 'leftCrossing').name('Left Crossing?');
-    /*
-     var currentView = new Compartment(0,navigationCanvas, 200, 200, 200, 200, 'rgba(255,0,0,0.7)');
-     navigationCanvas.addShape(currentView);
-     var complex = new Complex(1, 30, 70, 70, 30);
-     navigationCanvas.addShape(complex);
-     var protein = new Protein(2, 80, 20, 60, 30);
-     navigationCanvas.addShape(protein);
-     var dna = new DNA(5, 150, 20, 60, 30);
-     navigationCanvas.addShape(dna);
-     var molecule = new Small_Molecule(10, 180, 20, 100, 50);
-     navigationCanvas.addShape(molecule);
-     var arrow = new Arrow(12, 0,0, 150,230);
-     navigationCanvas.addShape(arrow);
-     var trans = new Transition(8,100,100);
-     navigationCanvas.addShape(trans);
-     var ass = new Association(10,200,100);
-     navigationCanvas.addShape(ass);
-     var diss = new Dissociation(10,300,100);
-     navigationCanvas.addShape(diss);
-     var inhibition = new Inhibition(15, 100,100,300,400);
-     navigationCanvas.addShape(inhibition);
-     var activation = new Activation(16, 100,100,100,400);
-     navigationCanvas.addShape(activation);
-     */
-
 });

@@ -46,7 +46,6 @@ function MainManage(canvas) {
             _this.valid = false;
         }
     },true);
-
     var oldMouseX;
     var oldMouseY;
     canvas.addEventListener('mousedown', function (e) {
@@ -76,7 +75,16 @@ function MainManage(canvas) {
                         break;
                 }
                 if(j>= _this.selection.length)
-                    _this.selection.push(_this.shapes[i]);
+                    if(_this.Ctrl && _this.shapes[i].type !== "M")
+                    {
+                        _this.selection.push(_this.shapes[i]);
+                    }
+                    else if(_this.Ctrl && _this.shapes[i].type === "M")
+                    {
+                        _this.shapes[i].flag = false;
+                    }
+                    else if(!_this.Ctrl)
+                        _this.selection.push(_this.shapes[i]);
 
                 _this.dragging = true;
                 _this.valid = false;
