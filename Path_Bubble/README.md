@@ -139,4 +139,6 @@ Some Abbrevations:
 
   * 7/11/2014  
   1. write a d3 format json file for d3's force direct to generate the inial layout.
+  2. As the School server would add `\` to the data, when we load the json file we should remove the `\` character, `tempdata = tempdata.replace(/\\/g, "");`.
+  
   
