@@ -67,6 +67,8 @@ $(document).ready(function () {
                     compartment.name = objects[i].text;
                     compartment.x = objects[i].x / w;
                     compartment.y = objects[i].y / h;
+                    compartment.childOffsetx = objects[i].childOffsetx / w;
+                    compartment.childOffsety = objects[i].childOffsety / h;
                     compartment.w = objects[i].w / w;
                     compartment.h = objects[i].h / h;
 
@@ -79,6 +81,9 @@ $(document).ready(function () {
                     compartment.children.dissociations = [];
                     compartment.children.transitions = [];
                     compartment.children.entitys = [];
+
+                    var offsetX = objects[i].childOffsetx - objects[i].x;
+                    var offsetY = objects[i].childOffsety - objects[i].y;
                     for (var j = 0; j < objects[i].complexs.length; ++j) {
                         for(var k=0; k<objects.length; ++k)
                         {
@@ -87,8 +92,8 @@ $(document).ready(function () {
                                 var complex = {};
                                 complex.id = objects[k].id;
                                 complex.type = objects[k].type;
-                                complex.x = objects[k].x / objects[i].w;
-                                complex.y = objects[k].y / objects[i].h;
+                                complex.x = (objects[k].x+offsetX) / objects[i].w;
+                                complex.y = (objects[k].y+offsetY) / objects[i].h;
                                 complex.w = objects[k].w / objects[i].w;
                                 complex.h = objects[k].h / objects[i].h;
                                 compartment.children.complexs.push(complex);
@@ -104,8 +109,8 @@ $(document).ready(function () {
                                 dna.id = objects[k].id;
                                 dna.type = objects[k].type;
                                 dna.name = objects[k].text;
-                                dna.x = objects[k].x / objects[i].w;
-                                dna.y = objects[k].y / objects[i].h;
+                                dna.x = (objects[k].x + offsetX)/ objects[i].w;
+                                dna.y = (objects[k].y + offsetY)/ objects[i].h;
                                 dna.w = objects[k].w / objects[i].w;
                                 dna.h = objects[k].h / objects[i].h;
                                 compartment.children.dnas.push(dna);
@@ -121,8 +126,8 @@ $(document).ready(function () {
                                 protein.id = objects[k].id;
                                 protein.type = objects[k].type;
                                 protein.name = objects[k].text;
-                                protein.x = objects[k].x / objects[i].w;
-                                protein.y = objects[k].y / objects[i].h;
+                                protein.x = (objects[k].x + offsetX) / objects[i].w;
+                                protein.y = (objects[k].y + offsetY)/ objects[i].h;
                                 protein.w = objects[k].w / objects[i].w;
                                 protein.h = objects[k].h / objects[i].h;
                                 compartment.children.proteins.push(protein);
@@ -138,8 +143,8 @@ $(document).ready(function () {
                                 molecule.id = objects[k].id;
                                 molecule.type = objects[k].type;
                                 molecule.name = objects[k].text;
-                                molecule.x = objects[k].x / objects[i].w;
-                                molecule.y = objects[k].y / objects[i].h;
+                                molecule.x = (objects[k].x + offsetX)/ objects[i].w;
+                                molecule.y = (objects[k].y + offsetY)/ objects[i].h;
                                 molecule.w = objects[k].w / objects[i].w;
                                 molecule.h = objects[k].h / objects[i].h;
                                 compartment.children.molecules.push(molecule);
@@ -154,8 +159,8 @@ $(document).ready(function () {
                                 var association = {};
                                 association.id = objects[k].id;
                                 association.type = objects[k].type;
-                                association.x = objects[k].x / objects[i].w;
-                                association.y = objects[k].y / objects[i].h;
+                                association.x = (objects[k].x + offsetX) / objects[i].w;
+                                association.y = (objects[k].y + offsetY)/ objects[i].h;
                                 association.w = objects[k].w / objects[i].w;
                                 association.h = objects[k].h / objects[i].h;
                                 compartment.children.associations.push(association);
@@ -170,8 +175,8 @@ $(document).ready(function () {
                                 var dissociation = {};
                                 dissociation.id = objects[k].id;
                                 dissociation.type = objects[k].type;
-                                dissociation.x = objects[k].x / objects[i].w;
-                                dissociation.y = objects[k].y / objects[i].h;
+                                dissociation.x = (objects[k].x + offsetX)/ objects[i].w;
+                                dissociation.y = (objects[k].y + offsetY)/ objects[i].h;
                                 dissociation.w = objects[k].w / objects[i].w;
                                 dissociation.h = objects[k].h / objects[i].h;
                                 compartment.children.dissociations.push(dissociation);
@@ -186,8 +191,8 @@ $(document).ready(function () {
                                 var transition = {};
                                 transition.id = objects[k].id;
                                 transition.type = objects[k].type;
-                                transition.x = objects[k].x / objects[i].w;
-                                transition.y = objects[k].y / objects[i].h;
+                                transition.x = (objects[k].x + offsetX)/ objects[i].w;
+                                transition.y = (objects[k].y +offsetY)/ objects[i].h;
                                 transition.w = objects[k].w / objects[i].w;
                                 transition.h = objects[k].h / objects[i].h;
                                 compartment.children.transitions.push(transition);
@@ -203,8 +208,8 @@ $(document).ready(function () {
                                 entity.id = objects[k].id;
                                 entity.type = objects[k].type;
                                 entity.name = objects[k].text;
-                                entity.x = objects[k].x / objects[i].w;
-                                entity.y = objects[k].y / objects[i].h;
+                                entity.x = (objects[k].x +offsetX)/ objects[i].w;
+                                entity.y = (objects[k].y +offsetY)/ objects[i].h;
                                 entity.w = objects[k].w / objects[i].w;
                                 entity.h = objects[k].h / objects[i].h;
                                 compartment.children.entitys.push(entity);
@@ -259,7 +264,7 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function (response) {
                     if(response['status'] === '200')
-                    alert("Success!");
+                        alert("Success!");
                 }
             });
         }

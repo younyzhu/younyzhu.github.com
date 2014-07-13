@@ -141,4 +141,8 @@ Some Abbrevations:
   1. write a d3 format json file for d3's force direct to generate the inial layout.
   2. As the School server would add `\` to the data, when we load the json file we should remove the `\` character, `tempdata = tempdata.replace(/\\/g, "");`.
   
+  * 7/12/2014
+  1. write the d3 direct force layout.
+  2. Spend a night to find the output problem. Finally find the problem is the relative position coordinate.
+  
   

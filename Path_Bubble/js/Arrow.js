@@ -10,7 +10,7 @@ function Arrow(id, beginType, beginNodeId, endType, endNodeId )
     this.beginNodeId = beginNodeId;
     this.endType = endType;
     this.endNodeId = endNodeId;
-    this.fillColor = "black";
+    this.fillColor = "C2C2C2";
     //Complex is contained in the Compartment and the Compartment is contained in the Bubble
     //So Offset = offsetBubble + offsetCompartment
     this.offsetX =0;

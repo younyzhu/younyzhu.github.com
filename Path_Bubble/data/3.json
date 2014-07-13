@@ -1,0 +1,78 @@
+{
+    "nodes": [
+        {
+            "name": 0,
+            "id": 0,
+            "type": "C",
+            "group": 3
+        },
+        {
+            "name": 1,
+            "id": 3,
+            "type": "C",
+            "group": 3
+        },
+        {
+            "name": 2,
+            "id": 4,
+            "type": "C",
+            "group": 3
+        },
+        {
+            "name": 3,
+            "id": 5,
+            "type": "C",
+            "group": 3
+        },
+        {
+            "name": 4,
+            "id": 0,
+            "type": "P",
+            "group": 3
+        },
+        {
+            "name": 5,
+            "id": 3,
+            "type": "K",
+            "group": 3
+        },
+        {
+            "name": 6,
+            "id": 37,
+            "type": "K",
+            "group": 3
+        },
+        {
+            "name": 7,
+            "id": 5,
+            "type": "T",
+            "group": 3
+        }
+    ],
+    "links": [
+        {
+            "source": 7,
+            "target": 0
+        },
+        {
+            "source": 5,
+            "target": 1
+        },
+        {
+            "source": 4,
+            "target": 5
+        },
+        {
+            "source": 3,
+            "target": 7
+        },
+        {
+            "source": 2,
+            "target": 6
+        },
+        {
+            "source": 3,
+            "target": 7
+        }
+    ]
+}

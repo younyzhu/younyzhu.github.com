@@ -1,7 +1,7 @@
 /**
  * Created by Yongnan on 7/2/2014.
  */
-function Compartment(id, state, x, y, w, h, text) {
+function Compartment(id, state, x, y, w, h, text, Offsetx, Offsety) {
     this.type = "M";        //COMPARTMENT   ===>   M
     this.id = id || 0;     //this rectangle belongs to which bubble or chart
     this.state = state;
@@ -12,7 +12,7 @@ function Compartment(id, state, x, y, w, h, text) {
     this.radius = 10;
     this.text = text;
     this.textObj = new Text(text);
-    this.strokeColor = "#000000";
+    this.strokeColor = "#C2C2C2";
     this.fillColor = "#ffffff";
     this.lineWidth = 2;
     this.offsetX =0;
@@ -28,8 +28,8 @@ function Compartment(id, state, x, y, w, h, text) {
     this.transitions = [];
     this.entitys = [];
 
-    this.childOffsetx = this.x;
-    this.childOffsety = this.y;
+    this.childOffsetx = Offsetx||this.x;
+    this.childOffsety = Offsety||this.y;
     this.flag = false;
 }
 

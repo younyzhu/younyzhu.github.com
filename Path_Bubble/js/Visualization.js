@@ -108,9 +108,9 @@ Visualization.prototype ={
             }
         }
     },
-    addCompartment: function(i, x, y, w, h, name){
+    addCompartment: function(i, x, y, w, h, name,Offsetx, Offsety){
         //var compartment = new Compartment(i, mainManagement, x *window.innerWidth, y*window.innerHeight, w*window.innerWidth, h*window.innerHeight, name);
-        var compartment = new Compartment(i, mainManagement, x *this.w, y*this.h, w*this.w, h*this.h, name);
+        var compartment = new Compartment(i, mainManagement, x *this.w, y*this.h, w*this.w, h*this.h, name,Offsetx, Offsety);
         //compartment.offsetX = this.offsetX;
         //compartment.offsetY = this.offsetY;
         mainManagement.addShape(compartment);

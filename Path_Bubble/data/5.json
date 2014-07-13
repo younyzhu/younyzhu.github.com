@@ -1,0 +1,32 @@
+{
+    "nodes": [
+        {
+            "name": 0,
+            "id": 23,
+            "type": "C",
+            "group": 5
+        },
+        {
+            "name": 1,
+            "id": 24,
+            "type": "C",
+            "group": 5
+        },
+        {
+            "name": 2,
+            "id": 39,
+            "type": "T",
+            "group": 5
+        }
+    ],
+    "links": [
+        {
+            "source": 2,
+            "target": 1
+        },
+        {
+            "source": 0,
+            "target": 2
+        }
+    ]
+}
