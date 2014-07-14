@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>PathWay Graph adjusting Task-----Instructions</title>
     <link rel=stylesheet href="css/index.css"/>
+
 </head>
 <body>
 <div class="bigTitle">PathWay Graph adjusting Task-----Instructions </div>
@@ -12,17 +13,34 @@
 
     <br/>
     <p class="superText2"> Welcome and thank you for agreeing to participate in this study.</p>
+    <hr/>
     <h2>Attentation</h2>
     <p>
-        <b>If you bronswer does not support WebGL, Please do not accept the task<br/></b>
+        You should see a Rectangle with black stroke and yellow filled color. <br/>
+        If you do not, please visit the  <a href= https://support.google.com/chrome/answer/1220892" target = "_bank"> support site</a> for your browser.<br/>
+        If you bronswer does not support WebGL, Please do not accept the task.<br/>
     </p>
     <p></p>
+    <canvas id="myCanvas" ></canvas>
+    <script>
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+        context.beginPath();
+        context.rect(50, 20, 200, 100);
+        context.fillStyle = 'yellow';
+        context.fill();
+        context.lineWidth = 7;
+        context.strokeStyle = 'black';
+        context.stroke();
+    </script>
+    <!--
     <iframe src="http://www.csee.umbc.edu/~yongnan/Path_Bubble/pathBubble.html" width="1000" height="600" scrolling="no">
         Your browser doesn't support 'iframe'. Click here to see the referenced
         URL in a new browser instance: &lt;a class="link" href="http://www.csee.umbc.edu/~yongnan/Path_Bubble/pathBubble.html"
         target="_blank"&gt;link&lt;/a&gt;
     </iframe>
-    <p></p>
+    -->
+    <br/>
     <h2>Description</h2>
     <p>
         This is a supplement tool of PathBubble for manually adjusting biological pathways. If you want to know detail information, please visit our PathBubble website:
@@ -44,7 +62,8 @@
     <br/>
     <br/>
     <h3> Let's take some simple images for example: </h3>
-    <p>Example 1</p>
+
+    <h4>Example 1</h4>
     <p>
         <img alt="edge_crossing" width="380" height="380" src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing.PNG"/>
         <br/>
@@ -52,25 +71,28 @@
         <img alt="edge_crossing1" width="380" height="380" src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing1.PNG"/>
         <br/>After this, you will find there are too many horizonizal arrows, From <b> Rule 5 </b>, we should make the arrow go down.
         <img alt="edge_crossing2.PNG" width="380" height="380" src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing2.PNG"/>
+        <br/>
     </p>
-    <p>Example 2</p>
+    <h4>Example 2</h4>
     <p>
         <img alt="length" width="380" height="380" src="http://www.csee.umbc.edu/~yongnan/images/length.PNG"/>
         <br/>As you can see, two compartments in a graph, there is an edge <b>C F</b> that combines the compartments. However, CF is too long, we need to make it shorter, and also the direction of Arrow <b>C A </b> is not going down.  So we can exchange Node A and Node C.
         <img alt="length1" width="380" height="380" src="http://www.csee.umbc.edu/~yongnan/images/length1.PNG"/>
         <br/>Here you can see The length of the CF is almost the distance of the two compartments. Also you can exchanged the E F to make it shorter.
+        <br/>
     </p>
 
-    <p>Example 3</p>
+    <h4>Example 3</h4>
     <p>
         <img alt="overlap" width="380" height="380" src="http://www.csee.umbc.edu/~yongnan/images/overlap.PNG"/>
         <br/>Here you can see The Node D and node E are overlaped together. From <b>Rule Six </b> we should avoid node overlapping. So we need to split them.
         <img alt="overlap" width="380" height="380" src="http://www.csee.umbc.edu/~yongnan/images/overlap1.PNG"/>
+        <br/>
     </p>
 
     <h2>Note about Payment</h2>
     <p> We will rate each graph very carefully. We do try to be fairly lenient,
-        but if your work are terribly bad (like you randomly drage the graph or do not obey the rules),
+        but if your work are terribly bad (like you randomly drag the graph or do not obey the rules),
         we reserve the right to not accept it. All the data will be used in a scientific study,
         please do it carefully.<br/>
     </p>

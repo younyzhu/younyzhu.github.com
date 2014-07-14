@@ -4,8 +4,9 @@ body
 	background-repeat: repeat;      /* repeat, no-repeat */
 	background-attachment: fixed;   /* scroll, fixed */
 	background-position: top left;  /* for no-repeat setting: top/bottom, left/right */
-	margin: 2% 5% 0% 5%;            /* top, left, bottom, right or TRBL */
-	
+	margin: 0px;            /* top, left, bottom, right or TRBL */
+    padding: 0px;
+
 	font-family: Georgia, Serif;	/* list font names in order of preference */
 	font-weight: normal;            /* normal, bold */
 	font-style: normal;             /* normal, italic */
@@ -15,7 +16,20 @@ body
 	text-decoration: none;          /* none, underline, overline, line-through */
 	text-align: left;               /* left, right, center, justify */
 }
+img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
 
+canvas {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 800px;
+}
 .fancy
 {
 	min-height: 150px;
