@@ -19,13 +19,12 @@
         support site</a> for your browser.<br/>
         If you browser does not support WebGL, Please do not accept the task.<br/>
     </p>
-    <p></p>
     <canvas id="myCanvas" ></canvas>
     <script>
         var canvas = document.getElementById('myCanvas');
         var context = canvas.getContext('2d');
         context.beginPath();
-        context.rect(50, 20, 200, 100);
+        context.rect(100, 20, 100, 50);
         context.fillStyle = 'yellow';
         context.fill();
         context.lineWidth = 7;
@@ -68,36 +67,36 @@
     <b>A</b> and <b>B</b> are two nodes, Edges <b>C</b> connects those two nodes. And we call <b>D</b> as compartment,
     which is the container of those nodes and edges groups.
     <br/>
-    <img alt="simbols" width="380" height="380" src="http://www.csee.umbc.edu/~yongnan/images/simbols.PNG"/>
+    <img alt="simbols" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/simbols.PNG"/>
     <br/>
     <h4>Example 1</h4>
     <p>
-        <img alt="edge_crossing" width="380" height="380" src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing.PNG"/>
+        <img alt="edge_crossing" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing.PNG"/>
         <br/>
         As you can see from this image, there is a crossing, so you need to move the node to avoid this Edge crossing(Rule 1).
         You can move the node <b> C </b>,
         you can move the node <b> A </b> or you can move node <b> D</b>. It's up to you. Here I move the mode <b> C </b>.
-        <img alt="edge_crossing1" width="380" height="380" src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing1.PNG"/>
+        <img alt="edge_crossing1" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing1.PNG"/>
         <br/>After this, you will find there are too many horizonizal arrows, From <b> Rule 5 </b>, we should make the arrow go down.
-        <img alt="edge_crossing2.PNG" width="380" height="380" src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing2.PNG"/>
+        <img alt="edge_crossing2.PNG" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing2.PNG"/>
         <br/>
     </p>
     <h4>Example 2</h4>
     <p>
-        <img alt="length" width="380" height="380" src="http://www.csee.umbc.edu/~yongnan/images/length.PNG"/>
+        <img alt="length" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/length.PNG"/>
         <br/>As you can see, there are two compartments in a graph, there is an edge <b>C F</b> that combines nodes of those compartments.
         However, <b>C F</b> is too long, we need to make it shorter, and also the direction of Arrow <b>C A </b> is not going down.
         We can exchange Node<b> A </b>and Node <b> C </b>.
-        <img alt="length1" width="380" height="380" src="http://www.csee.umbc.edu/~yongnan/images/length1.PNG"/>
+        <img alt="length1" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/length1.PNG"/>
         <br/>Here you can see the length of the  <b>C F</b> is almost the distance of the two compartments. Also you can exchanged the  <b>E F</b> to make it shorter.
         <br/>
     </p>
 
     <h4>Example 3</h4>
     <p>
-        <img alt="overlap" width="380" height="380" src="http://www.csee.umbc.edu/~yongnan/images/overlap.PNG"/>
+        <img alt="overlap" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/overlap.PNG"/>
         <br/>Here you can see Node <b>D</b> and Node <b>E</b> are overlaped together. From <b>Rule Six </b> we should avoid node overlapping. So we need to split them.
-        <img alt="overlap" width="380" height="380" src="http://www.csee.umbc.edu/~yongnan/images/overlap1.PNG"/>
+        <img alt="overlap" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/overlap1.PNG"/>
         <br/>
     </p>
 
