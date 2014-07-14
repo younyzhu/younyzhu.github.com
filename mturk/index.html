@@ -17,8 +17,9 @@
     <h2>Attentation</h2>
     <p>
         You should see a Rectangle with black stroke and yellow filled color. <br/>
-        If you do not, please visit the  <a href= https://support.google.com/chrome/answer/1220892" target = "_bank"> support site</a> for your browser.<br/>
-        If you bronswer does not support WebGL, Please do not accept the task.<br/>
+        If you do not, please visit the  <a href= https://support.google.com/chrome/answer/1220892" target = "_bank">
+        support site</a> for your browser.<br/>
+        If you browser does not support WebGL, Please do not accept the task.<br/>
     </p>
     <p></p>
     <canvas id="myCanvas" ></canvas>
@@ -33,19 +34,14 @@
         context.strokeStyle = 'black';
         context.stroke();
     </script>
-    <!--
-    <iframe src="http://www.csee.umbc.edu/~yongnan/Path_Bubble/pathBubble.html" width="1000" height="600" scrolling="no">
-        Your browser doesn't support 'iframe'. Click here to see the referenced
-        URL in a new browser instance: &lt;a class="link" href="http://www.csee.umbc.edu/~yongnan/Path_Bubble/pathBubble.html"
-        target="_blank"&gt;link&lt;/a&gt;
-    </iframe>
-    -->
-    <br/>
     <h2>Description</h2>
     <p>
-        This is a supplement tool of PathBubble for manually adjusting biological pathways. If you want to know detail information, please visit our PathBubble website:
-        <a class="link" href="http://sites.google.com/a/umbc.edu/pathbubbles/pathbubbles-1-0/pathbubbles-wiki" target = "_bank"> PathBubble</a> <br/>
-        In these task, you will be show a <a href= "http://en.wikipedia.org/wiki/Metabolic_pathway" target = "_bank"> pathway graph</a>.
+        This is a supplement tool of PathBubble for manually adjusting biological pathways.
+        If you want to know detail information, please visit our PathBubble website:
+        <a class="link" href="http://sites.google.com/a/umbc.edu/pathbubbles/pathbubbles-1-0/pathbubbles-wiki"
+           target = "_bank"> PathBubble</a> <br/>
+        In these task, you will be show a <a href= "http://en.wikipedia.org/wiki/Metabolic_pathway" target = "_bank">
+        pathway graph</a>.
         You should carefully move the elements of the graph which should obey the following rules.
     </p>
     <h2>Rules</h2>
@@ -59,15 +55,21 @@
         <li><b> the nodes in a graph should not be overlaped </b></li>
         <li><b>You should balance the trade between the beauty of the graph and uniform distribution of the nodes.</b></li>
     </ol>
-    <br/>
-    <br/>
     <h3> Let's take some simple images for example: </h3>
-
+    <b>Simbol illustration:</b>
+    <br/><p>In the following example, we will show you some graph image, and guide you have to arrange it.
+    Here, We should make an agreement on some terms. A graph is consist of nodes, edges. As you can see the image below:
+    <b>A</b> and <b>B</b> are two nodes, Edges <b>C</b> connects those two nodes. And we call <b>D</b> as compartment,
+    which is the container of those nodes and edges groups.
+    <br/>
+    <img alt="simbols" width="380" height="380" src="http://www.csee.umbc.edu/~yongnan/images/simbols.PNG"/>
     <h4>Example 1</h4>
     <p>
         <img alt="edge_crossing" width="380" height="380" src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing.PNG"/>
         <br/>
-        As you can see from this images, there is a crossing here, so you need to move the node to avoid Edge crossing(Rule 1). You can move the <b> node C </b>, you can move the <b> node A </b> or you can <b> move node D</b>. It's up to you. Here I move the mode C.
+        As you can see from this image, there is a crossing, so you need to move the node to avoid this Edge crossing(Rule 1).
+        You can move the <b> node C </b>,
+        you can move the <b> node A </b> or you can <b> move node D</b>. It's up to you. Here I move the mode C.
         <img alt="edge_crossing1" width="380" height="380" src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing1.PNG"/>
         <br/>After this, you will find there are too many horizonizal arrows, From <b> Rule 5 </b>, we should make the arrow go down.
         <img alt="edge_crossing2.PNG" width="380" height="380" src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing2.PNG"/>
@@ -76,16 +78,18 @@
     <h4>Example 2</h4>
     <p>
         <img alt="length" width="380" height="380" src="http://www.csee.umbc.edu/~yongnan/images/length.PNG"/>
-        <br/>As you can see, two compartments in a graph, there is an edge <b>C F</b> that combines the compartments. However, CF is too long, we need to make it shorter, and also the direction of Arrow <b>C A </b> is not going down.  So we can exchange Node A and Node C.
+        <br/>As you can see, there are two compartments in a graph, there is an edge <b>C F</b> that combines the compartments.
+        However, <b>C F</b> is too long, we need to make it shorter, and also the direction of Arrow <b>C A </b> is not going down.
+        We can exchange Node A and Node C.
         <img alt="length1" width="380" height="380" src="http://www.csee.umbc.edu/~yongnan/images/length1.PNG"/>
-        <br/>Here you can see The length of the CF is almost the distance of the two compartments. Also you can exchanged the E F to make it shorter.
+        <br/>Here you can see the length of the  <b>C F</b> is almost the distance of the two compartments. Also you can exchanged the  <b>E F</b> to make it shorter.
         <br/>
     </p>
 
     <h4>Example 3</h4>
     <p>
         <img alt="overlap" width="380" height="380" src="http://www.csee.umbc.edu/~yongnan/images/overlap.PNG"/>
-        <br/>Here you can see The Node D and node E are overlaped together. From <b>Rule Six </b> we should avoid node overlapping. So we need to split them.
+        <br/>Here you can see Node <b>D</b> and Node <b>E</b> are overlaped together. From <b>Rule Six </b> we should avoid node overlapping. So we need to split them.
         <img alt="overlap" width="380" height="380" src="http://www.csee.umbc.edu/~yongnan/images/overlap1.PNG"/>
         <br/>
     </p>
@@ -93,7 +97,8 @@
     <h2>Note about Payment</h2>
     <p> We will rate each graph very carefully. We do try to be fairly lenient,
         but if your work are terribly bad (like you randomly drag the graph or do not obey the rules),
-        we reserve the right to not accept it. All the data will be used in a scientific study,
+        we reserve the right to not accept it.
+        <br/>All the data will be used in a scientific study,
         please do it carefully.<br/>
     </p>
     <hr/>
