@@ -157,5 +157,12 @@ Some Abbrevations:
   1. As convert to d3 to process the data takes too much time, so I deside to implement the force direct alogrithm in my bubble program.
   2. I just generate the initial position from force direct alogithm.
   3. Pick the alogrithm from [Springy](http://getspringy.com/), thanks to `Dennis Hotson`, I changed part of the code to adjust our dataset.
+  4. Simple view modified some code of the [Springy](http://getspringy.com/), With a demo of my dataset. [Demo](http://younyzhu.github.io/Path_Bubble/Test/demo.html)
   
+  * 7/16/2014
+  1. Finished intergrate the force direct alogrithm to my pathbubble program
+  2. Some bugs fixed, and some fonts adjusted.
+  3. Write a `xml, json loader` for pre-processing through force directed algorithm, And when we press the `Stop Force layout` button in the menu bar, 
+  the system will stop the automatic layout calculation. When you mouse click any where on the screen, the final layout would be generated. 
+  You can go further study for reducing the edge crossing, node crossing or some other task.
   
