@@ -1,0 +1,546 @@
+<?xml  version="1.0" encoding="UTF-8" ?>
+<Pathway>
+    <ANodeBlock Num="0"/>
+    <compartmentBlock Num="40">
+        <compartment j="0">
+            <Name>cytosol</Name>
+            <Position>(0, 0, 0.290503, 0.488024)</Position>
+            <Contain>(C, 1, C, 2, C, 3, R, 3, R, 4, R, 5)</Contain>
+        </compartment>
+        <compartment j="1">
+            <Name>Golgi lumen</Name>
+            <Position>(-1000, 0, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="2">
+            <Name>Golgi membrane</Name>
+            <Position>(-1000, 0, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="3">
+            <Name>early endosome</Name>
+            <Position>(-1000, 0, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="4">
+            <Name></Name>
+            <Position>(-1000, 0, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="5">
+            <Name>early endosome membrane</Name>
+            <Position>(-1000, 0, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="6">
+            <Name>mitochondrial inner membrane</Name>
+            <Position>(0.307263, 0, 0.692737, 0.488024)</Position>
+            <Contain>(P, 2, R, 7)</Contain>
+        </compartment>
+        <compartment j="7">
+            <Name>mitochondrial outer membrane</Name>
+            <Position>(-1000, 0, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="8">
+            <Name>photoreceptor disc membrane</Name>
+            <Position>(-1000, 0, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="9">
+            <Name>lysosomal membrane</Name>
+            <Position>(-1000, 0, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="10">
+            <Name>endoplasmic reticulum membrane</Name>
+            <Position>(-1000, 0, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="11">
+            <Name>plasma membrane</Name>
+            <Position>(-1000, 0, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="12">
+            <Name>endosome membrane</Name>
+            <Position>(-1000, 0, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="13">
+            <Name>Golgi-associated vesicle membrane</Name>
+            <Position>(-1000, 0, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="14">
+            <Name>cytoplasmic vesicle membrane</Name>
+            <Position>(-1000, 0, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="15">
+            <Name>nuclear envelope</Name>
+            <Position>(-1000, 0, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="16">
+            <Name>chromosome, centromeric region</Name>
+            <Position>(-1000, 0, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="17">
+            <Name>chromosome</Name>
+            <Position>(-1000, 0, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="18">
+            <Name>endosome</Name>
+            <Position>(-1000, 0, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="19">
+            <Name>nucleoplasm</Name>
+            <Position>(-1000, 0, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="20">
+            <Name>extracellular region</Name>
+            <Position>(-1000, 0, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="21">
+            <Name>cell junction</Name>
+            <Position>(-1000, 0, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="22">
+            <Name>peroxisomal matrix</Name>
+            <Position>(-1000, 0, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="23">
+            <Name>mitochondrial matrix</Name>
+            <Position>(0.273743, 0.511976, 0.465549, 0.488024)</Position>
+            <Contain>(C, 0, C, 4, P, 0, P, 1, R, 0, R, 1, R, 2, R, 6)</Contain>
+        </compartment>
+        <compartment j="24">
+            <Name>endosome lumen</Name>
+            <Position>(-1000, 0.511976, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="25">
+            <Name>endocytic vesicle membrane</Name>
+            <Position>(-1000, 0.511976, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="26">
+            <Name>phagocytic vesicle membrane</Name>
+            <Position>(-1000, 0.511976, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="27">
+            <Name>phagocytic vesicle lumen</Name>
+            <Position>(-1000, 0.511976, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="28">
+            <Name>lysosomal lumen</Name>
+            <Position>(-1000, 0.511976, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="29">
+            <Name>photoreceptor outer segment membrane</Name>
+            <Position>(-1000, 0.511976, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="30">
+            <Name>photoreceptor inner segment membrane</Name>
+            <Position>(-1000, 0.511976, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="31">
+            <Name>mitochondrial intermembrane space</Name>
+            <Position>(-1000, 0.511976, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="32">
+            <Name>secretory granule membrane</Name>
+            <Position>(-1000, 0.511976, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="33">
+            <Name>secretory granule lumen</Name>
+            <Position>(-1000, 0.511976, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="34">
+            <Name>endoplasmic reticulum lumen</Name>
+            <Position>(-1000, 0.511976, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="35">
+            <Name>endoplasmic reticulum quality control compartment</Name>
+            <Position>(-1000, 0.511976, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="36">
+            <Name>ER to Golgi transport vesicle membrane</Name>
+            <Position>(-1000, 0.511976, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="37">
+            <Name>clathrin-coated endocytic vesicle</Name>
+            <Position>(-1000, 0.511976, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="38">
+            <Name>platelet dense tubular network membrane</Name>
+            <Position>(-1000, 0.511976, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="39">
+            <Name>whole</Name>
+            <Position>(-1000, 0.511976, -1.8622, 0.488024)</Position>
+            <Contain>()</Contain>
+        </compartment>
+    </compartmentBlock>
+    <complexBlock Num="5">
+        <complex j="0">
+            <Name>OTC trimer</Name>
+            <Position>(0.372, 0.0674847, 0.088, 0.0674847)</Position>
+        </complex>
+        <complex j="1">
+            <Name>ASS1 tetramer</Name>
+            <Position>(0.25641, 0.0674847, 0.141026, 0.0674847)</Position>
+        </complex>
+        <complex j="2">
+            <Name>ASL tetramer</Name>
+            <Position>(0.0576923, 0.0674847, 0.141026, 0.0674847)</Position>
+        </complex>
+        <complex j="3">
+            <Name>ARG1 trimer</Name>
+            <Position>(0, 0.319018, 0.141026, 0.0674847)</Position>
+        </complex>
+        <complex j="4">
+            <Name>ARG2 trimer</Name>
+            <Position>(0.584, 0.0674847, 0.088, 0.0674847)</Position>
+        </complex>
+    </complexBlock>
+    <proteinBlock Num="3">
+        <protein j="0">
+            <Name>NAGS</Name>
+            <Position>(0.004, 0.288344, 0.156, 0.159509)</Position>
+        </protein>
+        <protein j="1">
+            <Name>CPS1</Name>
+            <Position>(0.288, 0.288344, 0.156, 0.159509)</Position>
+        </protein>
+        <protein j="2">
+            <Name>SLC25A2</Name>
+            <Position>(0.478495, 0.110429, 0.104839, 0.159509)</Position>
+        </protein>
+    </proteinBlock>
+    <physicalEntityBlock Num="0"/>
+    <smallMoleculeBlock Num="56">
+        <smallMolecule j="0">
+            <Name>Ac-CoA</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="1">
+            <Name>NAcGlu</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="2">
+            <Name>Glu</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="3">
+            <Name>NAcGlu</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="4">
+            <Name>Glu</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="5">
+            <Name>CoA</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="6">
+            <Name>Ac-CoA</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="7">
+            <Name>CoA</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="8">
+            <Name>HCO3-</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="9">
+            <Name>CAP</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="10">
+            <Name>ATP</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="11">
+            <Name>CAP</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="12">
+            <Name>NH4+</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="13">
+            <Name>CAP</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="14">
+            <Name>NH4+</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="15">
+            <Name>ADP</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="16">
+            <Name>HCO3-</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="17">
+            <Name>ADP</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="18">
+            <Name>NH4+</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="19">
+            <Name>Pi</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="20">
+            <Name>ATP</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="21">
+            <Name>HCO3-</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="22">
+            <Name>CAP</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="23">
+            <Name>L-Cit</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="24">
+            <Name>L-Orn</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="25">
+            <Name>L-Cit</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="26">
+            <Name>CAP</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="27">
+            <Name>L-Cit</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="28">
+            <Name>L-Argininosuccinate</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="29">
+            <Name>L-Asp</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="30">
+            <Name>ATP</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="31">
+            <Name>ATP</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="32">
+            <Name>AMP</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="33">
+            <Name>L-Asp</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="34">
+            <Name>AMP</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="35">
+            <Name>ATP</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="36">
+            <Name>PPi</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="37">
+            <Name>L-Asp</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="38">
+            <Name>PPi</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="39">
+            <Name>L-Cit</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="40">
+            <Name>PPi</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="41">
+            <Name>L-Arg</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="42">
+            <Name>Urea</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="43">
+            <Name>H2O</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="44">
+            <Name>Urea</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="45">
+            <Name>H2O</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="46">
+            <Name>L-Orn</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="47">
+            <Name>H2O</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="48">
+            <Name>L-Arg</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="49">
+            <Name>L-Arg</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="50">
+            <Name>H2O</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="51">
+            <Name>Urea</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="52">
+            <Name>L-Cit</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="53">
+            <Name>L-Cit</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="54">
+            <Name>L-Cit</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+        <smallMolecule j="55">
+            <Name>L-Cit</Name>
+            <Position>(-1000, 0.5, -1.8622, 0)</Position>
+        </smallMolecule>
+    </smallMoleculeBlock>
+    <DnaBlock Num="0"/>
+    <reactionBlock Num="8">
+        <reaction j="0">
+            <Name>glutamate + acetyl CoA => N-acetyl glutamate + CoA</Name>
+            <Type>T</Type>
+            <Position>(0.468, 0.484663, 0.032, 0.0490798)</Position>
+        </reaction>
+        <reaction j="1">
+            <Name>2 ATP + NH4+ + HCO3- => 2 ADP + orthophosphate + carbamoyl phosphate</Name>
+            <Type>T</Type>
+            <Position>(0.524, 0.484663, 0.032, 0.0490798)</Position>
+        </reaction>
+        <reaction j="2">
+            <Name>carbamoyl phosphate + ornithine => citrulline + orthophosphate</Name>
+            <Type>T</Type>
+            <Position>(0.468, 0.226994, 0.032, 0.0490798)</Position>
+        </reaction>
+        <reaction j="3">
+            <Name>ATP + aspartate + citrulline &lt;=> argininosuccinate + AMP + pyrophosphate</Name>
+            <Type>T</Type>
+            <Position>(0.442308, 0.226994, 0.0512821, 0.0490798)</Position>
+        </reaction>
+        <reaction j="4">
+            <Name>argininosuccinate &lt;=> fumarate + arginine</Name>
+            <Type>B</Type>
+            <Position>(0.346154, 0.226994, 0.0576923, 0.0552147)</Position>
+        </reaction>
+        <reaction j="5">
+            <Name>arginine + H2O => ornithine + urea [ARG1]</Name>
+            <Type>T</Type>
+            <Position>(0.442308, 0.484663, 0.0512821, 0.0490798)</Position>
+        </reaction>
+        <reaction j="6">
+            <Name>arginine + H2O => ornithine + urea [ARG2]</Name>
+            <Type>T</Type>
+            <Position>(0.524, 0.226994, 0.032, 0.0490798)</Position>
+        </reaction>
+        <reaction j="7">
+            <Name>ornithine (cytosolic) + citrulline (mitochondrial) => ornithine (mitochondrial) + citrulline (cytosolic)</Name>
+            <Type>T</Type>
+            <Position>(0.489247, 0.374233, 0.0215054, 0.0490798)</Position>
+        </reaction>
+    </reactionBlock>
+    <edgeBlock Num="41">
+        <edge j="0">
+            <Name>A</Name>
+            <Ends>(P, 0, R, 0)</Ends>
+        </edge>
+        <edge j="1">
+            <Name>A</Name>
+            <Ends>(P, 1, R, 1)</Ends>
+        </edge>
+        <edge j="2">
+            <Name>A</Name>
+            <Ends>(C, 0, R, 2)</Ends>
+        </edge>
+        <edge j="3">
+            <Name>A</Name>
+            <Ends>(C, 1, R, 3)</Ends>
+        </edge>
+        <edge j="4">
+            <Name>A</Name>
+            <Ends>(C, 2, R, 4)</Ends>
+        </edge>
+        <edge j="5">
+            <Name>A</Name>
+            <Ends>(C, 3, R, 5)</Ends>
+        </edge>
+        <edge j="6">
+            <Name>A</Name>
+            <Ends>(C, 4, R, 6)</Ends>
+        </edge>
+        <edge j="7">
+            <Name>A</Name>
+            <Ends>(P, 2, R, 7)</Ends>
+        </edge>
+    </edgeBlock>
+</Pathway>

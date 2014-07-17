@@ -6,12 +6,12 @@ function Physical_Entity(id, x, y, w, h, text) {
     this.id = id || 0;
     this.x = x;
     this.y = y;
-    this.w = w || 1;
-    this.h = h || 1;
+    this.w = 40;
+    this.h = 15;
     this.text = text;
     this.textObj = new Text(this.text);
     this.strokeColor = "#666666";
-    this.lineWidth = 2;
+    this.lineWidth = 1;
     this.fillColor = "#E6EAAC";
     //Complex is contained in the Compartment and the Compartment is contained in the Bubble
     //So Offset = offsetBubble + offsetCompartment
@@ -25,6 +25,11 @@ Physical_Entity.prototype = {
         this.offsetY =offsetY;
         var x = this.x + this.offsetX;
         var y = this.y + this.offsetY;
+        //this.w = this.textObj.getTextWidth(ctx)+2;
+        if(this.w >=40)
+        {
+            this.w = 40;
+        }
         var w = this.w;
         var h = this.h;
         ctx.fillStyle = this.fillColor;

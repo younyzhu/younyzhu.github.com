@@ -6,11 +6,11 @@ function Complex(id, x, y, w, h) {
     this.id = id || 0;
     this.x = x;
     this.y = y;
-    this.w = w || 1;
-    this.h = h || 1;
+    this.w = 20;    // Change to fixed size 7/14/2014
+    this.h = 6;
 
     this.strokeColor = "#666666";
-    this.lineWidth = 2;
+    this.lineWidth = 1;
     this.fillColor = "#FFE2B7";
     //Complex is contained in the Compartment and the Compartment is contained in the Bubble
     //So Offset = offsetBubble + offsetCompartment

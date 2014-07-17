@@ -1,0 +1,388 @@
+<?xml  version="1.0" encoding="UTF-8" ?>
+<Pathway>
+    <ANodeBlock Num="0"/>
+    <compartmentBlock Num="40">
+        <compartment j="0">
+            <Name>cytosol</Name>
+            <Position>(0.263473, 0, 0.5, 0.400491)</Position>
+            <Contain>(C, 0, C, 1, C, 2, P, 0, P, 1, R, 0, R, 1, R, 2)</Contain>
+        </compartment>
+        <compartment j="1">
+            <Name>Golgi lumen</Name>
+            <Position>(-1000, 0, -2.99401, 0.400491)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="2">
+            <Name>Golgi membrane</Name>
+            <Position>(-1000, 0, -2.99401, 0.400491)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="3">
+            <Name>early endosome</Name>
+            <Position>(-1000, 0, -2.99401, 0.400491)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="4">
+            <Name></Name>
+            <Position>(-1000, 0, -2.99401, 0.400491)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="5">
+            <Name>early endosome membrane</Name>
+            <Position>(-1000, 0, -2.99401, 0.400491)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="6">
+            <Name>mitochondrial inner membrane</Name>
+            <Position>(-1000, 0, -2.99401, 0.400491)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="7">
+            <Name>mitochondrial outer membrane</Name>
+            <Position>(-1000, 0, -2.99401, 0.400491)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="8">
+            <Name>photoreceptor disc membrane</Name>
+            <Position>(-1000, 0, -2.99401, 0.400491)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="9">
+            <Name>lysosomal membrane</Name>
+            <Position>(-1000, 0, -2.99401, 0.400491)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="10">
+            <Name>endoplasmic reticulum membrane</Name>
+            <Position>(-1000, 0, -2.99401, 0.400491)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="11">
+            <Name>plasma membrane</Name>
+            <Position>(-1000, 0, -2.99401, 0.400491)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="12">
+            <Name>endosome membrane</Name>
+            <Position>(-1000, 0, -2.99401, 0.400491)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="13">
+            <Name>Golgi-associated vesicle membrane</Name>
+            <Position>(-1000, 0, -2.99401, 0.400491)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="14">
+            <Name>cytoplasmic vesicle membrane</Name>
+            <Position>(-1000, 0, -2.99401, 0.400491)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="15">
+            <Name>nuclear envelope</Name>
+            <Position>(-1000, 0, -2.99401, 0.400491)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="16">
+            <Name>chromosome, centromeric region</Name>
+            <Position>(-1000, 0, -2.99401, 0.400491)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="17">
+            <Name>chromosome</Name>
+            <Position>(-1000, 0, -2.99401, 0.400491)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="18">
+            <Name>endosome</Name>
+            <Position>(-1000, 0, -2.99401, 0.400491)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="19">
+            <Name>nucleoplasm</Name>
+            <Position>(0, 0.425061, 1, 0.574939)</Position>
+            <Contain>(C, 3, C, 4, C, 5, C, 6, C, 7, P, 2, P, 3, P, 4, P, 5, R, 3, R, 4, R, 5, R, 6)</Contain>
+        </compartment>
+        <compartment j="20">
+            <Name>extracellular region</Name>
+            <Position>(-1000, 0.425061, -2.99401, 0.574939)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="21">
+            <Name>cell junction</Name>
+            <Position>(-1000, 0.425061, -2.99401, 0.574939)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="22">
+            <Name>peroxisomal matrix</Name>
+            <Position>(-1000, 0.425061, -2.99401, 0.574939)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="23">
+            <Name>mitochondrial matrix</Name>
+            <Position>(-1000, 0.425061, -2.99401, 0.574939)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="24">
+            <Name>endosome lumen</Name>
+            <Position>(-1000, 0.425061, -2.99401, 0.574939)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="25">
+            <Name>endocytic vesicle membrane</Name>
+            <Position>(-1000, 0.425061, -2.99401, 0.574939)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="26">
+            <Name>phagocytic vesicle membrane</Name>
+            <Position>(-1000, 0.425061, -2.99401, 0.574939)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="27">
+            <Name>phagocytic vesicle lumen</Name>
+            <Position>(-1000, 0.425061, -2.99401, 0.574939)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="28">
+            <Name>lysosomal lumen</Name>
+            <Position>(-1000, 0.425061, -2.99401, 0.574939)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="29">
+            <Name>photoreceptor outer segment membrane</Name>
+            <Position>(-1000, 0.425061, -2.99401, 0.574939)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="30">
+            <Name>photoreceptor inner segment membrane</Name>
+            <Position>(-1000, 0.425061, -2.99401, 0.574939)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="31">
+            <Name>mitochondrial intermembrane space</Name>
+            <Position>(-1000, 0.425061, -2.99401, 0.574939)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="32">
+            <Name>secretory granule membrane</Name>
+            <Position>(-1000, 0.425061, -2.99401, 0.574939)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="33">
+            <Name>secretory granule lumen</Name>
+            <Position>(-1000, 0.425061, -2.99401, 0.574939)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="34">
+            <Name>endoplasmic reticulum lumen</Name>
+            <Position>(-1000, 0.425061, -2.99401, 0.574939)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="35">
+            <Name>endoplasmic reticulum quality control compartment</Name>
+            <Position>(-1000, 0.425061, -2.99401, 0.574939)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="36">
+            <Name>ER to Golgi transport vesicle membrane</Name>
+            <Position>(-1000, 0.425061, -2.99401, 0.574939)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="37">
+            <Name>clathrin-coated endocytic vesicle</Name>
+            <Position>(-1000, 0.425061, -2.99401, 0.574939)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="38">
+            <Name>platelet dense tubular network membrane</Name>
+            <Position>(-1000, 0.425061, -2.99401, 0.574939)</Position>
+            <Contain>()</Contain>
+        </compartment>
+        <compartment j="39">
+            <Name>whole</Name>
+            <Position>(-1000, 0.425061, -2.99401, 0.574939)</Position>
+            <Contain>()</Contain>
+        </compartment>
+    </compartmentBlock>
+    <complexBlock Num="8">
+        <complex j="0">
+            <Name>DFFA:DFFB</Name>
+            <Position>(0.0239521, 0.294479, 0.137725, 0.0674847)</Position>
+        </complex>
+        <complex j="1">
+            <Name>importin-alpha:importin-beta</Name>
+            <Position>(0.520958, 0.294479, 0.137725, 0.0674847)</Position>
+        </complex>
+        <complex j="2">
+            <Name>DFF:associated with the importin-alpha:importin-beta complex</Name>
+            <Position>(0.520958, 0.533742, 0.137725, 0.0674847)</Position>
+        </complex>
+        <complex j="3">
+            <Name>DFF45:DFF40 complex</Name>
+            <Position>(0.263473, 0.034188, 0.0688623, 0.0470085)</Position>
+        </complex>
+        <complex j="4">
+            <Name>active caspase-3</Name>
+            <Position>(0.511976, 0.034188, 0.0688623, 0.0470085)</Position>
+        </complex>
+        <complex j="5">
+            <Name>Caspase cleaved DFF45 (117)</Name>
+            <Position>(0.263473, 0.205128, 0.0688623, 0.0470085)</Position>
+        </complex>
+        <complex j="6">
+            <Name>caspase-3-cleaved DFF45 (117,224):DFF40 complex</Name>
+            <Position>(0.511976, 0.384615, 0.0688623, 0.0470085)</Position>
+        </complex>
+        <complex j="7">
+            <Name>DFF40 homodimer</Name>
+            <Position>(0.511976, 0.735043, 0.0688623, 0.0470085)</Position>
+        </complex>
+    </complexBlock>
+    <proteinBlock Num="6">
+        <protein j="0">
+            <Name>DFFA</Name>
+            <Position>(0.0239521, 0.0552147, 0.449102, 0.110429)</Position>
+        </protein>
+        <protein j="1">
+            <Name>DFFB</Name>
+            <Position>(0.520958, 0.0552147, 0.449102, 0.110429)</Position>
+        </protein>
+        <protein j="2">
+            <Name>DFFB</Name>
+            <Position>(0.011976, 0.559829, 0.224551, 0.0769231)</Position>
+        </protein>
+        <protein j="3">
+            <Name>DFFA(1-117)</Name>
+            <Position>(0.263473, 0.559829, 0.224551, 0.0769231)</Position>
+        </protein>
+        <protein j="4">
+            <Name>DFFA(225-331)</Name>
+            <Position>(0.511976, 0.559829, 0.224551, 0.0769231)</Position>
+        </protein>
+        <protein j="5">
+            <Name>DFFA(118-224)</Name>
+            <Position>(0.760479, 0.559829, 0.224551, 0.0769231)</Position>
+        </protein>
+    </proteinBlock>
+    <physicalEntityBlock Num="0"/>
+    <smallMoleculeBlock Num="0"/>
+    <DnaBlock Num="0"/>
+    <reactionBlock Num="7">
+        <reaction j="0">
+            <Name>Association of DFF40 with DFF45</Name>
+            <Type>K</Type>
+            <Position>(0.712575, 0.208589, 0.112917, 0.115688)</Position>
+        </reaction>
+        <reaction j="1">
+            <Name>Association of DFF with alpha:beta importin</Name>
+            <Type>K</Type>
+            <Position>(0.712575, 0.447853, 0.112917, 0.115688)</Position>
+        </reaction>
+        <reaction j="2">
+            <Name>Translocation of DFF to the nucleus</Name>
+            <Type>T</Type>
+            <Position>(0.724551, 0.687117, 0.112917, 0.115688)</Position>
+        </reaction>
+        <reaction j="3">
+            <Name>Caspase 3-mediated cleavage of DFF45 (117)</Name>
+            <Type>T</Type>
+            <Position>(0.365269, 0.149573, 0.0564585, 0.0805861)</Position>
+        </reaction>
+        <reaction j="4">
+            <Name>Cleavage of DFF45 (224) by caspase-3</Name>
+            <Type>T</Type>
+            <Position>(0.613772, 0.32906, 0.0564585, 0.0805861)</Position>
+        </reaction>
+        <reaction j="5">
+            <Name>Cleaved fragments of DFF45 dissociate from  DFF40</Name>
+            <Type>B</Type>
+            <Position>(0.607784, 0.495726, 0.0564585, 0.0805861)</Position>
+        </reaction>
+        <reaction j="6">
+            <Name>Homodimerization  of DFF40</Name>
+            <Type>T</Type>
+            <Position>(0.613772, 0.679487, 0.0564585, 0.0805861)</Position>
+        </reaction>
+    </reactionBlock>
+    <edgeBlock Num="22">
+        <edge j="0">
+            <Name>J</Name>
+            <Ends>(R, 0, C, 0)</Ends>
+        </edge>
+        <edge j="1">
+            <Name>J</Name>
+            <Ends>(R, 1, C, 2)</Ends>
+        </edge>
+        <edge j="2">
+            <Name>J</Name>
+            <Ends>(R, 3, C, 5)</Ends>
+        </edge>
+        <edge j="3">
+            <Name>J</Name>
+            <Ends>(R, 4, C, 6)</Ends>
+        </edge>
+        <edge j="4">
+            <Name>J</Name>
+            <Ends>(R, 6, C, 7)</Ends>
+        </edge>
+        <edge j="5">
+            <Name>J</Name>
+            <Ends>(R, 5, P, 2)</Ends>
+        </edge>
+        <edge j="6">
+            <Name>J</Name>
+            <Ends>(R, 5, P, 3)</Ends>
+        </edge>
+        <edge j="7">
+            <Name>J</Name>
+            <Ends>(R, 5, P, 4)</Ends>
+        </edge>
+        <edge j="8">
+            <Name>J</Name>
+            <Ends>(R, 5, P, 5)</Ends>
+        </edge>
+        <edge j="9">
+            <Name>J</Name>
+            <Ends>(P, 0, R, 0)</Ends>
+        </edge>
+        <edge j="10">
+            <Name>J</Name>
+            <Ends>(P, 1, R, 0)</Ends>
+        </edge>
+        <edge j="11">
+            <Name>J</Name>
+            <Ends>(C, 0, R, 1)</Ends>
+        </edge>
+        <edge j="12">
+            <Name>J</Name>
+            <Ends>(C, 1, R, 1)</Ends>
+        </edge>
+        <edge j="13">
+            <Name>J</Name>
+            <Ends>(C, 2, R, 2)</Ends>
+        </edge>
+        <edge j="14">
+            <Name>J</Name>
+            <Ends>(C, 3, R, 3)</Ends>
+        </edge>
+        <edge j="15">
+            <Name>J</Name>
+            <Ends>(C, 5, R, 4)</Ends>
+        </edge>
+        <edge j="16">
+            <Name>J</Name>
+            <Ends>(C, 6, R, 5)</Ends>
+        </edge>
+        <edge j="17">
+            <Name>J</Name>
+            <Ends>(P, 2, R, 6)</Ends>
+        </edge>
+        <edge j="18">
+            <Name>A</Name>
+            <Ends>(C, 4, R, 3)</Ends>
+        </edge>
+        <edge j="19">
+            <Name>A</Name>
+            <Ends>(C, 4, R, 4)</Ends>
+        </edge>
+    </edgeBlock>
+</Pathway>

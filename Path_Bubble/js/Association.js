@@ -7,11 +7,11 @@ function Association(id, x, y, w, h) {
     this.id = id || 0;
     this.x = x;
     this.y = y;
-    this.w = w;
-    this.h = h;
-    this.r = w;
+    this.w = 6;
+    this.h = 6;
+    this.r = this.w/2;
     this.strokeColor = "#666666";
-    this.lineWidth = 2;
+    this.lineWidth = 1;
     this.fillColor = "#ffffff";
     this.flag = false;
 }

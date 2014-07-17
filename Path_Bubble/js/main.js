@@ -5,15 +5,48 @@
 //Global variable for counting the bubble number
 var Bubbles = null;
 var mainManagement = null;
+var graphs = [];
+var log = {};
+var springy =null;
 $(document).ready(function () {
-    THREEx.FullScreen.bindKey({ charCode: 'f'.charCodeAt(0) });
-    var str = "./data/SMAD23 Phosphorylation Motif Mutants in Cancer_26_new.xml";
-    var xmlLoader = new XMLLoader();
-    xmlLoader.load(str);
+    WindowResize($("#bgCanvas")[0]);
+    //THREEx.FullScreen.bindKey({ charCode: 'f'.charCodeAt(0) });
+    var str = "./data/Apoptosis_new.xml";
+    //var str = "./data/Apoptosis.json";
+    var check = new Check();
+    var format = check.checkFileFormat(str);
+    var loader;
+    if(format === "XML")
+    {
+        loader = new XMLLoader();
+        loader.load(str);
+    }
+    else if(format === "JSON")
+    {
+        loader = new JsonLoader();
+        loader.load(str);
+    }
+
     var workerId ="";
+    var startTime = new Date();
+    log.screenSize = {width: window.innerWidth, height: window.innerHeight};
+    log.startTime = startTime.toLocaleTimeString() + " " + startTime.toLocaleDateString();
+
+    var endTime=0;
+    var elapsedTime=0;
     var params = {
         loadFile: function () {
             $('#myInput').click();
+        },
+        stop: function(){
+            if(springy!==null)
+            {
+                graphs.length = 0;
+                springy.stopLayout();
+                springy = null;
+                mainManagement.valid = false;
+                mainManagement.draw();
+            }
         },
         load: function () {
             var selected_file = $('#myInput').get(0).files[0];
@@ -21,6 +54,12 @@ $(document).ready(function () {
                 alert("Please select data file!");
             }
             else {
+                graphs.length = 0;
+                if(springy !== null)
+                {
+                    springy.stopLayout();
+                    springy = null;
+                }
                 mainManagement.shapes.length = 0;
                 mainManagement.clear();
                 var localFileLoader = new LocalFileLoader();
@@ -29,8 +68,8 @@ $(document).ready(function () {
         },
         text: "",
         planarity: function() {
-            if(xmlLoader.v >3)
-                if(xmlLoader.e <= 3* xmlLoader.v - 6)
+            if(loader.v >3)
+                if(loader.e <= 3* loader.v - 6)
                 {
                     alert("This is a planner graph!");
                 }
@@ -41,7 +80,7 @@ $(document).ready(function () {
         },
         leftCrossing: function(){
 
-            var detection = new Detection(mainManagement.shapes, xmlLoader.e);
+            var detection = new Detection(mainManagement.shapes, loader.e);
             var crossingNum = detection.findCrossing();
             alert(crossingNum);
         },
@@ -51,6 +90,11 @@ $(document).ready(function () {
                 alert("Please input your amazon mechnical turk Worker Id.");
                 return;
             }
+            endTime = new Date();
+            log.endTime = endTime.toLocaleTimeString() + " " + endTime.toLocaleDateString();
+            elapsedTime = (endTime.getTime() - startTime.getTime()) / 1000;
+            log.elapsedTime = elapsedTime;
+
             var objects = mainManagement.shapes;
             var w = mainManagement.shapes[0].w;
             var h = mainManagement.shapes[0].h;
@@ -258,18 +302,25 @@ $(document).ready(function () {
                 type: "POST",  // type should be POST
                 data: {
                     json: JSON.stringify(jsonData),
-
-                    name: workerId+".json"
+                    name: workerId+".json",
+                    logName: workerId+"log.json",
+                    log: JSON.stringify(log)
                 }, // send the string directly
                 dataType: "json",
-                success: function (response) {
-                    if(response['status'] === '200')
-                        alert("Success!");
+                success: function(data){
+                    console.log(data);
+                    return true;
+                },
+                complete: function() {},
+                error: function(xhr, textStatus, errorThrown) {
+                    console.log('ajax loading error...');
+                    return false;
                 }
             });
         }
     };
     var gui = new dat.GUI();
+    gui.add(params, 'stop').name('Stop Force layout');
     var f1 = gui.addFolder('Load data');
     f1.add(params, 'loadFile').name('Choose Data File');
     f1.add(params, 'load').name('Load');

@@ -30,15 +30,27 @@ function MainManage(canvas) {
     var _this = this;
     //canvas.addEventListener('selectstart', function(e) { e.preventDefault(); return false; }, false);
     // Up, down, and move are for dragging
+
+    log.Control = [];   //For ctrl key event
     document.addEventListener('keydown',function(e){
             if(e.keyCode === 17)//Ctrl
             {
+                var control ={};  //log event
+                control.time = (new Date()).toLocaleTimeString();
+                control.log = "Ctrl key down for multi selection.";
+                log.Control.push(control);
+
                 _this.Ctrl = true;
             }
     },true);
     document.addEventListener('keyup',function(e){
         if(e.keyCode === 17)//Ctrl
         {
+            var control ={};  //log event
+            control.time = (new Date()).toLocaleTimeString();
+            control.log = "Ctrl key up, this time select " + _this.selection.length + " elements";
+            log.Control.push(control);
+
             _this.Ctrl = false;
             for(i=0; i< _this.selection.length; ++i)
                 _this.selection[i].flag = false;
@@ -48,6 +60,8 @@ function MainManage(canvas) {
     },true);
     var oldMouseX;
     var oldMouseY;
+
+    log.MouseDown = [];
     canvas.addEventListener('mousedown', function (e) {
         if (_this.expectResize !== -1) {
             _this.resizeDragging = true;
@@ -62,6 +76,8 @@ function MainManage(canvas) {
         var mouse = _this.getMouse(e);
         var mx = mouse.x;
         var my = mouse.y;
+
+
         for (i = _this.shapes.length - 1; i >= 0; i--) {
             if (_this.shapes[i] === null || _this.shapes[i].type === "J" || _this.shapes[i].type === "I" || _this.shapes[i].type === "A")
                 continue;
@@ -77,15 +93,36 @@ function MainManage(canvas) {
                 if(j>= _this.selection.length)
                     if(_this.Ctrl && _this.shapes[i].type !== "M")
                     {
+                        var mousedown ={};  //log event
+                        mousedown.time = (new Date()).toLocaleTimeString();
+                        mousedown.pos = {x:mx, y:my};
+                        mousedown.log = _this.shapes[i].type + " "+ _this.shapes[i].id + " Selected for multi-selection";
+                        log.MouseDown.push(mousedown);
+
                         _this.selection.push(_this.shapes[i]);
                     }
                     else if(_this.Ctrl && _this.shapes[i].type === "M")
                     {
                         _this.shapes[i].flag = false;
+
+                        var mousedown ={};  //log event
+                        mousedown.time = (new Date()).toLocaleTimeString();
+                        mousedown.pos = {x:mx, y:my};
+                        mousedown.log = "Click the compartment, when doing Multi-selection, but it will not be selected as the default setting";
+                        log.MouseDown.push(mousedown);
+
                     }
                     else if(!_this.Ctrl)
-                        _this.selection.push(_this.shapes[i]);
+                    {
 
+                        var mousedown ={};  //log event
+                        mousedown.time = (new Date()).toLocaleTimeString();
+                        mousedown.pos = {x:mx, y:my};
+                        mousedown.log = _this.shapes[i].type + " " + _this.shapes[i].id + " Selected(single selection)";
+                        log.MouseDown.push(mousedown);
+
+                        _this.selection.push(_this.shapes[i]);
+                    }
                 _this.dragging = true;
                 _this.valid = false;
                 return;
@@ -93,6 +130,9 @@ function MainManage(canvas) {
         }
         this.style.cursor = 'auto';
     }, true);
+
+    log.MouseMove = [];
+    log.MouseResize = [];
     canvas.addEventListener('mousemove', function (e) {
         var mouse = _this.getMouse(e),
             mx = mouse.x,
@@ -112,11 +152,24 @@ function MainManage(canvas) {
                 {
                     _this.selection[i].x += offsetX;  //mouse move relative to the navigation viewpoint
                     _this.selection[i].y += offsetY;
+                    var mousemove ={};  //log event
+                    mousemove.time = (new Date()).toLocaleTimeString();
+                    mousemove.toPos = {x:mx, y:my};
+                    mousemove.offset = {x:offsetX, y:offsetY};
+                    mousemove.log = _this.shapes[i].type + " is Dragged(Multi-selection)";
+                    log.MouseMove.push(mousemove);
                 }
                 else if(!_this.Ctrl)
                 {
                     _this.selection[i].x += offsetX;  //mouse move relative to the navigation viewpoint
                     _this.selection[i].y += offsetY;
+
+                    var mousemove ={};  //log event
+                    mousemove.time = (new Date()).toLocaleTimeString();
+                    mousemove.toPos = {x:mx, y:my};
+                    mousemove.offset = {x:offsetX, y:offsetY};
+                    mousemove.log = _this.shapes[i].type + " "+_this.shapes[i].id + " is Dragged";
+                    log.MouseMove.push(mousemove);
                 }
                 //console.log( "Length:" + _this.selection.length);
                 //console.log(i + "offsetX:" + offsetX +", offsetY" + offsetY);
@@ -124,6 +177,13 @@ function MainManage(canvas) {
                 {
                     _this.selection[i].childOffsetx += offsetX;  //mouse move relative to the navigation viewpoint
                     _this.selection[i].childOffsety += offsetY;
+
+                    var mousemove ={};  //log event
+                    mousemove.time = (new Date()).toLocaleTimeString();
+                    mousemove.toPos = {x:mx, y:my};
+                    mousemove.offset = {x:offsetX, y:offsetY};
+                    mousemove.log = _this.shapes[i].type + " "+ _this.shapes[i].id + " is Dragged";
+                    log.MouseMove.push(mousemove);
                 }
             }
             this.style.cursor = 'move';
@@ -149,36 +209,100 @@ function MainManage(canvas) {
             // 5  6  7
             switch (_this.expectResize) {
                 case 0:
+
+                    var mouseresize ={};  //log event
+                    mouseresize.time = (new Date()).toLocaleTimeString();
+                    mouseresize.startPos = {x:_this.selection[0].x, y:_this.selection[0].y};
+                    mouseresize.endPos = {x:mx, y:my};
+                    mouseresize.log = _this.selection[0].type +" "+_this.selection[0].id + " Top-Left corner is Dragged to resize";
+                    log.MouseResize.push(mouseresize);
+
                     _this.selection[0].x = mx;
                     _this.selection[0].y = my;
                     _this.selection[0].w += oldx - mx;
                     _this.selection[0].h += oldy - my;
                     break;
                 case 1:
+
+                    var mouseresize ={};  //log event
+                    mouseresize.time = (new Date()).toLocaleTimeString();
+                    mouseresize.startPos = {x:_this.selection[0].x, y:_this.selection[0].y};
+                    mouseresize.endPos = {x:mx, y:my};
+                    mouseresize.log = _this.selection[0].type +" " + _this.selection[0].id + " Top-Middle corner is Dragged to resize";
+                    log.MouseResize.push(mouseresize);
+
                     _this.selection[0].y = my;
                     _this.selection[0].h += oldy - my;
                     break;
                 case 2:
+
+                    var mouseresize ={};  //log event
+                    mouseresize.time = (new Date()).toLocaleTimeString();
+                    mouseresize.startPos = {x:_this.selection[0].x, y:_this.selection[0].y};
+                    mouseresize.endPos = {x:mx, y:my};
+                    mouseresize.log = _this.selection[0].type +" "+ _this.selection[0].id + " Top-Right corner is Dragged to resize";
+                    log.MouseResize.push(mouseresize);
+
                     _this.selection[0].y = my;
                     _this.selection[0].w = mx - oldx;
                     _this.selection[0].h += oldy - my;
                     break;
                 case 3:
+
+                    var mouseresize ={};  //log event
+                    mouseresize.time = (new Date()).toLocaleTimeString();
+                    mouseresize.startPos = {x:_this.selection[0].x, y:_this.selection[0].y};
+                    mouseresize.endPos = {x:mx, y:my};
+                    mouseresize.log = _this.selection[0].type +" "+ _this.selection[0].id + " Middle-Left corner is Dragged to resize";
+                    log.MouseResize.push(mouseresize);
+
                     _this.selection[0].x = mx;
                     _this.selection[0].w += oldx - mx;
                     break;
                 case 4:
+
+                    var mouseresize ={};  //log event
+                    mouseresize.time = (new Date()).toLocaleTimeString();
+                    mouseresize.startPos = {x:_this.selection[0].x, y:_this.selection[0].y};
+                    mouseresize.endPos = {x:mx, y:my};
+                    mouseresize.log = _this.selection[0].type +" "+ _this.selection[0].id + " Middle-Right corner is Dragged to resize";
+                    log.MouseResize.push(mouseresize);
+
                     _this.selection[0].w = mx - oldx;
                     break;
                 case 5:
+
+                    var mouseresize ={};  //log event
+                    mouseresize.time = (new Date()).toLocaleTimeString();
+                    mouseresize.startPos = {x:_this.selection[0].x, y:_this.selection[0].y};
+                    mouseresize.endPos = {x:mx, y:my};
+                    mouseresize.log = _this.selection[0].type + " " +_this.selection[0].id + " Bottom-Left corner is Dragged to resize";
+                    log.MouseResize.push(mouseresize);
+
                     _this.selection[0].x = mx;
                     _this.selection[0].w += oldx - mx;
                     _this.selection[0].h = my - oldy;
                     break;
                 case 6:
+
+                    var mouseresize ={};  //log event
+                    mouseresize.time = (new Date()).toLocaleTimeString();
+                    mouseresize.startPos = {x:_this.selection[0].x, y:_this.selection[0].y};
+                    mouseresize.endPos = {x:mx, y:my};
+                    mouseresize.log = _this.selection[0].type + " " +_this.selection[0].id + " Bottom-Middle corner is Dragged to resize";
+                    log.MouseResize.push(mouseresize);
+
                     _this.selection[0].h = my - oldy;
                     break;
                 case 7:
+
+                    var mouseresize ={};  //log event
+                    mouseresize.time = (new Date()).toLocaleTimeString();
+                    mouseresize.startPos = {x:_this.selection[0].x, y:_this.selection[0].y};
+                    mouseresize.endPos = {x:mx, y:my};
+                    mouseresize.log = _this.selection[0].type + " " +_this.selection[0].id + " Bottom-Right corner is Dragged to resize";
+                    log.MouseResize.push(mouseresize);
+
                     _this.selection[0].w = mx - oldx;
                     _this.selection[0].h = my - oldy;
                     break;
@@ -300,14 +424,16 @@ MainManage.prototype = {
         this.ctx.clearRect(0, 0, this.width, this.height);
     },
     draw: function () {
-        // if our state is invalid, redraw and validate!
-        if (!this.valid) {
+        if(springy !== null)
+            this.valid = true;
+       if (!this.valid) {
             this.clear();
             if (Bubbles)
                 Bubbles.draw(this.ctx);
 
             this.valid = true;
         }
+
     },
     getMouse: function (e) {
         var element = this.canvas, offsetX = 0, offsetY = 0, mx, my;

@@ -145,4 +145,17 @@ Some Abbrevations:
   1. write the d3 direct force layout.
   2. Spend a night to find the output problem. Finally find the problem is the relative position coordinate.
   
+  * 7/13/2014
+  1. write a file log event to save the activity of the users
+  2. tring to apply the force direct alogrithm 
+  
+  * 7/14/2014 
+  1. Processing the data with the mechnical turk task intruction design [http://younyzhu.github.io/mturk/index.html](http://younyzhu.github.io/mturk/index.html)    
+  2. Reading some force direct alogrithm, and fix some bugs
+  
+  * 7/15/2014
+  1. As convert to d3 to process the data takes too much time, so I deside to implement the force direct alogrithm in my bubble program.
+  2. I just generate the initial position from force direct alogithm.
+  3. Pick the alogrithm from [Springy](http://getspringy.com/), thanks to `Dennis Hotson`, I changed part of the code to adjust our dataset.
+  
   

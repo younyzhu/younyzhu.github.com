@@ -6,10 +6,10 @@ function Transition(id, x, y, w, h) {
     this.id = id || 0;
     this.x = x;
     this.y = y;
-    this.w = w;
-    this.h = h;
+    this.w = 6;
+    this.h = 6;
     this.strokeColor = "#666666";
-    this.lineWidth = 2;
+    this.lineWidth = 1;
     this.fillColor = "#ffffff";
     //Complex is contained in the Compartment and the Compartment is contained in the Bubble
     //So Offset = offsetBubble + offsetCompartment

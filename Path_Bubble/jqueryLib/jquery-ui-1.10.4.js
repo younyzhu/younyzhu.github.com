@@ -2595,7 +2595,7 @@ $.widget( "ui.autocomplete", $.ui.autocomplete, {
 		messages: {
 			noResults: "No search results.",
 			results: function( amount ) {
-				return amount + ( amount > 1 ? " results are" : " result is" ) +
+				return amount + ( amount > 1 ? " results are" : " result.json is" ) +
 					" available, use up and down arrow keys to navigate.";
 			}
 		}

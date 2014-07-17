@@ -39,6 +39,9 @@ XMLLoader.prototype = {
         this.edgeBlock = $this.find("edgeBlock");
         this.parseCompartmentBlock(compartmentBlock);
         this.parseEdges();
+        this.processLinks();
+        if (graphs.length !== 0)
+            springy = new Manage({graphs: graphs});
     },
     parseEdges: function () {
         var length = this.edgeBlock.children().length;
@@ -202,6 +205,10 @@ XMLLoader.prototype = {
     },
     parseCompartmentBlock: function (compartmentBlock) {
         var length = compartmentBlock.children().length;
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        var graphId = 0; //belongs to which graph
+
         for (var i = 0; i < length; ++i) {
             var currentCompartment = compartmentBlock.find('compartment[j="' + i + '"]');
             var name = currentCompartment.find("Name").text();
@@ -219,38 +226,28 @@ XMLLoader.prototype = {
                 var y = parseFloat(position[1]);
                 var w = parseFloat(position[2]);
                 var h = parseFloat(position[3]);
+                var graph = new Graph();
+                graph.setBoundingCB(x * width, y * height, width * w, height * h);
+                var nodeIndex = 0; //the index in each graph
                 Bubbles.addCompartment(i, x, y, w, h, name);
                 var len = contain.length / 2;
                 for (var j = 0; j < len; ++j) {
                     var type = contain[2 * j];
                     var index = parseInt(contain[2 * j + 1]);
-                    this.addElement(i, type, index);
+                    this.addElement(i, type, index,graph, graphId, nodeIndex);
+                    nodeIndex++;
                 }
+                graphs.push(graph);
+                graphId++;
             }
         }
-        /*
-         Bubbles.addCompartment(1, 0.1, 0.2, 0.6, 0.6, "Compartment");
-         mainManagement.shapes[1].addProtein(2,0.4,0.2,0.2,0.1,"Protein");
-         mainManagement.shapes[1].addComplex(3,0.1,0.2,0.2,0.1);
-         mainManagement.shapes[1].addDNA(4,0.6,0.2,0.2,0.1,"DNA");
-         mainManagement.shapes[1].addSmall_Molecule(5,0.6,0.6,0.2,0.1,"Small_Molecule");
-         mainManagement.shapes[1].addPhysical_Entity(65,0.3,0.6,0.5,0.8,"Physical_Entity");
-         mainManagement.shapes[1].addDissociation(6,0.4,0.4);
-         mainManagement.shapes[1].addAssociation(7,0.3,0.3);
-         mainManagement.shapes[1].addTransition(8,0.5,0.5);
-         Bubbles.addActivation(11, "PROTEIN", 2, "ASSOCIATION", 7);
-         Bubbles.addInhibition(12, "DNA", 4, "MOLECULE", 5);
-         Bubbles.addArrow(13, "MOLECULE", 5, "PROTEIN", 2);
-         Bubbles.addArrow(14, "MOLECULE", 5, "DISSOCIATION", 6);
-         Bubbles.addInhibition(15, "DISSOCIATION", 6, "TRANSITION", 8);
-         */
     },
-    addElement: function (comparmentId, type, index) {
+    addElement: function (comparmentId, type, index,graph, graphId, nodeIndex) {
         this.v ++;
         switch (type) {
             case "C":  //COMPLEX
             {
-                if (comparmentId < mainManagement.shapes.length) {
+                //if (comparmentId < mainManagement.shapes.length) {
                     var complexE = this.complexBlock.find('complex[j="' + index + '"]'); //Complex we do not need to use the name
                     var position = complexE.find("Position").text()
                         .replace("(", "")   //remove the right bracket
@@ -259,14 +256,23 @@ XMLLoader.prototype = {
                     for (var i = 0; i < mainManagement.shapes.length; i++) {
                         if (mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "M") {
                             mainManagement.shapes[i].addComplex(index, position[0], position[1], position[2], position[3],comparmentId);
+
+                            for (var m = 0; m < mainManagement.shapes.length; ++m) {
+                                if (mainManagement.shapes[m].id === index && mainManagement.shapes[m].type === "C") {
+                                    mainManagement.shapes[m].graphId = graphId;
+                                    mainManagement.shapes[m].nodeIndex = nodeIndex;
+                                    graph.addEachNode(nodeIndex, mainManagement.shapes[m]);
+                                    break;
+                                }
+                            }
                         }
                     }
-                }
+                //}
                 break;
             }
             case "E": //Entity
             {
-                if (comparmentId < mainManagement.shapes.length) {
+                //if (comparmentId < mainManagement.shapes.length) {
                     var entityE = this.physicalEntityBlock.find('physicalEntity[j="' + index + '"]'); //Complex we do not need to use the name
                     var position = entityE.find("Position").text()
                         .replace("(", "")   //remove the right bracket
@@ -276,14 +282,23 @@ XMLLoader.prototype = {
                     for (var i = 0; i < mainManagement.shapes.length; i++) {
                         if (mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "M") {
                             mainManagement.shapes[i].addPhysical_Entity(index, position[0], position[1], position[2], position[3], name,comparmentId);
+
+                            for (var m = 0; m < mainManagement.shapes.length; ++m) {
+                                if (mainManagement.shapes[m].id === index && mainManagement.shapes[m].type === "E") {
+                                    mainManagement.shapes[m].graphId = graphId;
+                                    mainManagement.shapes[m].nodeIndex = nodeIndex;
+                                    graph.addEachNode(nodeIndex, mainManagement.shapes[m]);
+                                    break;
+                                }
+                            }
                         }
                     }
-                }
+               // }
                 break;
             }
             case "S":     //MOLECULE
             {
-                if (comparmentId < mainManagement.shapes.length) {
+               // if (comparmentId < mainManagement.shapes.length) {
                     var moleculeE = this.smallMoleculeBlock.find('smallMolecule[j="' + index + '"]'); //Complex we do not need to use the name
                     var position = moleculeE.find("Position").text()
                         .replace("(", "")   //remove the right bracket
@@ -293,14 +308,23 @@ XMLLoader.prototype = {
                     for (var i = 0; i < mainManagement.shapes.length; i++) {
                         if (mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "M") {
                             mainManagement.shapes[i].addSmall_Molecule(index, position[0], position[1], position[2], position[3], name,comparmentId);
+
+                            for (var m = 0; m < mainManagement.shapes.length; ++m) {
+                                if (mainManagement.shapes[m].id === index && mainManagement.shapes[m].type === "S") {
+                                    mainManagement.shapes[m].graphId = graphId;
+                                    mainManagement.shapes[m].nodeIndex = nodeIndex;
+                                    graph.addEachNode(nodeIndex, mainManagement.shapes[m]);
+                                    break;
+                                }
+                            }
                         }
                     }
-                }
+               // }
                 break;
             }
             case "P":     //PROTEIN
             {
-                if (comparmentId < mainManagement.shapes.length) {
+                //if (comparmentId < mainManagement.shapes.length) {
                     var proteinE = this.proteinBlock.find('protein[j="' + index + '"]'); //Complex we do not need to use the name
                     var position = proteinE.find("Position").text()
                         .replace("(", "")   //remove the right bracket
@@ -310,14 +334,23 @@ XMLLoader.prototype = {
                     for (var i = 0; i < mainManagement.shapes.length; i++) {
                         if (mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "M") {
                             mainManagement.shapes[i].addProtein(index, position[0], position[1], position[2], position[3], name,comparmentId);
+
+                            for (var m = 0; m < mainManagement.shapes.length; ++m) {
+                                if (mainManagement.shapes[m].id === index && mainManagement.shapes[m].type === "P") {
+                                    mainManagement.shapes[m].graphId = graphId;
+                                    mainManagement.shapes[m].nodeIndex = nodeIndex;
+                                    graph.addEachNode(nodeIndex, mainManagement.shapes[m]);
+                                    break;
+                                }
+                            }
                         }
                     }
-                }
+               // }
                 break;
             }
             case "D":     //DNA
             {
-                if (comparmentId < mainManagement.shapes.length) {
+                //if (comparmentId < mainManagement.shapes.length) {
                     var dnaE = this.dnaBlock.find('Dna[j="' + index + '"]'); //Complex we do not need to use the name
                     var position = dnaE.find("Position").text()
                         .replace("(", "")   //remove the right bracket
@@ -327,14 +360,23 @@ XMLLoader.prototype = {
                     for (var i = 0; i < mainManagement.shapes.length; i++) {
                         if (mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "M") {
                             mainManagement.shapes[i].addDNA(index, position[0], position[1], position[2], position[3], name,comparmentId);
+
+                            for (var m = 0; m < mainManagement.shapes.length; ++m) {
+                                if (mainManagement.shapes[m].id === index && mainManagement.shapes[m].type === "D") {
+                                    mainManagement.shapes[m].graphId = graphId;
+                                    mainManagement.shapes[m].nodeIndex = nodeIndex;
+                                    graph.addEachNode(nodeIndex, mainManagement.shapes[m]);
+                                    break;
+                                }
+                            }
                         }
                     }
-                }
+                //}
                 break;
             }
             case "R":   //Reaction
             {
-                if (comparmentId < mainManagement.shapes.length) {
+                //if (comparmentId < mainManagement.shapes.length) {
                     var reactionE = this.reactionBlock.find('reaction[j="' + index + '"]'); //Complex we do not need to use the name
                     var position = reactionE.find("Position").text()
                         .replace("(", "")   //remove the right bracket
@@ -345,16 +387,145 @@ XMLLoader.prototype = {
                     for (var i = 0; i < mainManagement.shapes.length; i++) {
                         if (mainManagement.shapes[i].id === comparmentId && mainManagement.shapes[i].type === "M") {
                             if(typeR === "K")
+                            {
                                 mainManagement.shapes[i].addDissociation(index, position[0], position[1], position[2], position[3],comparmentId);
+                                for (var m = 0; m < mainManagement.shapes.length; ++m) {
+                                    if (mainManagement.shapes[m].id === index && mainManagement.shapes[m].type === "K") {
+                                        mainManagement.shapes[m].graphId = graphId;
+                                        mainManagement.shapes[m].nodeIndex = nodeIndex;
+                                        graph.addEachNode(nodeIndex, mainManagement.shapes[m]);
+                                        break;
+                                    }
+                                }
+                            }
                             else if(typeR === "T")
+                            {
                                 mainManagement.shapes[i].addTransition(index, position[0], position[1], position[2], position[3]);
+                                for (var m = 0; m < mainManagement.shapes.length; ++m) {
+                                    if (mainManagement.shapes[m].id === index && mainManagement.shapes[m].type === "T") {
+                                        mainManagement.shapes[m].graphId = graphId;
+                                        mainManagement.shapes[m].nodeIndex = nodeIndex;
+                                        graph.addEachNode(nodeIndex, mainManagement.shapes[m]);
+                                        break;
+                                    }
+                                }
+                            }
                             else if(typeR === "B")
+                            {
                                 mainManagement.shapes[i].addAssociation(index, position[0], position[1], position[2], position[3]);
+                                for (var m = 0; m < mainManagement.shapes.length; ++m) {
+                                    if (mainManagement.shapes[m].id === index && mainManagement.shapes[m].type === "B") {
+                                        mainManagement.shapes[m].graphId = graphId;
+                                        mainManagement.shapes[m].nodeIndex = nodeIndex;
+                                        graph.addEachNode(nodeIndex, mainManagement.shapes[m]);
+                                        break;
+                                    }
+                                }
+                            }
                         }
                     }
-                }
+                //}
                 break;
             }
         }
-    }
+    },
+    processLinks: function () {
+        for (var i = 0; i < Bubbles.activations.length; ++i) {
+            var graphId1, graphId2;//belongs to which graph
+            var nodeIndex1, nodeIndex2;
+            var flag = 0;
+
+            for (var j = 0; j < mainManagement.shapes.length; ++j) {
+                if (mainManagement.shapes[j].id === Bubbles.activations[i]) {
+                    for (var k = 0; k < mainManagement.shapes.length; ++k) {
+                        if (mainManagement.shapes[k].id === mainManagement.shapes[j].beginNodeId && mainManagement.shapes[k].type === mainManagement.shapes[j].beginType) {
+                            graphId1 = mainManagement.shapes[k].graphId;
+                            nodeIndex1 = mainManagement.shapes[k].nodeIndex;
+                            flag++;
+                            continue;
+                        }
+                        if (mainManagement.shapes[k].id === mainManagement.shapes[j].endNodeId && mainManagement.shapes[k].type === mainManagement.shapes[j].endType) {
+                            graphId2 = mainManagement.shapes[k].graphId;
+                            nodeIndex2 = mainManagement.shapes[k].nodeIndex;
+                            flag++;
+                            continue;
+                        }
+                        if (flag === 2) {
+                            break;
+                        }
+                    }
+                    if ((flag === 2) && (graphId1 === graphId2)) {
+                        if (graphId1 >= 0 && graphId1 < graphs.length) {
+                            graphs[graphId1].addEachLink(nodeIndex1, nodeIndex2);
+                        }
+                    }
+                }
+            }
+        }
+
+        for (var i = 0; i < Bubbles.arrows.length; ++i) {
+
+            var graphId1, graphId2;//belongs to which graph
+            var nodeIndex1, nodeIndex2;
+            var flag = 0;
+            for (var j = 0; j < mainManagement.shapes.length; ++j) {
+                if (mainManagement.shapes[j].id === Bubbles.arrows[i]) {
+                    for (var k = 0; k < mainManagement.shapes.length; ++k) {
+                        if (mainManagement.shapes[k].id === mainManagement.shapes[j].beginNodeId && mainManagement.shapes[k].type === mainManagement.shapes[j].beginType) {
+                            graphId1 = mainManagement.shapes[k].graphId;
+                            nodeIndex1 = mainManagement.shapes[k].nodeIndex;
+                            flag++;
+                            continue;
+                        }
+                        if (mainManagement.shapes[k].id === mainManagement.shapes[j].endNodeId && mainManagement.shapes[k].type === mainManagement.shapes[j].endType) {
+                            graphId2 = mainManagement.shapes[k].graphId;
+                            nodeIndex2 = mainManagement.shapes[k].nodeIndex;
+                            flag++;
+                            continue;
+                        }
+                        if (flag === 2) {
+                            break;
+                        }
+                    }
+                    if ((flag === 2) && (graphId1 === graphId2)) {
+                        if (graphId1 >= 0 && graphId1 < graphs.length) {
+                            graphs[graphId1].addEachLink(nodeIndex1, nodeIndex2);
+                        }
+                    }
+                }
+            }
+        }
+
+        for (var i = 0; i < Bubbles.inhibitions.length; ++i) {
+            var graphId1, graphId2;//belongs to which graph
+            var nodeIndex1, nodeIndex2;
+            var flag = 0;
+            for (var j = 0; j < mainManagement.shapes.length; ++j) {
+                if (mainManagement.shapes[j].id === Bubbles.inhibitions[i]) {
+                    for (var k = 0; k < mainManagement.shapes.length; ++k) {
+                        if (mainManagement.shapes[k].id === mainManagement.shapes[j].beginNodeId && mainManagement.shapes[k].type === mainManagement.shapes[j].beginType) {
+                            graphId1 = mainManagement.shapes[k].graphId;
+                            nodeIndex1 = mainManagement.shapes[k].nodeIndex;
+                            flag++;
+                            continue;
+                        }
+                        if (mainManagement.shapes[k].id === mainManagement.shapes[j].endNodeId && mainManagement.shapes[k].type === mainManagement.shapes[j].endType) {
+                            graphId2 = mainManagement.shapes[k].graphId;
+                            nodeIndex2 = mainManagement.shapes[k].nodeIndex;
+                            flag++;
+                            continue;
+                        }
+                        if (flag === 2) {
+                            break;
+                        }
+                    }
+                    if ((flag === 2) && (graphId1 === graphId2)) {
+                        if (graphId1 >= 0 && graphId1 < graphs.length) {
+                            graphs[graphId1].addEachLink(nodeIndex1, nodeIndex2);
+                        }
+                    }
+                }
+            }
+        }
+    },
 };
