@@ -185,11 +185,11 @@ Compartment.prototype = {
         }
     },
     draw: function (ctx, offsetX, offsetY) {
-        var tw = this.textObj.getTextWidth(ctx)+5;
+        /*var tw = this.textObj.getTextWidth(ctx)+5;
         if(this.w <=tw)
         {
             this.w = tw;
-        }
+        }*/
         this.offsetX =offsetX;
         this.offsetY =offsetY;
         this.drawCompartment(ctx);

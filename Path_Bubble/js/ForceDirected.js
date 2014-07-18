@@ -11,10 +11,15 @@ function ForceDirected(graph, ctx, boundingX, boundingY, boundingW, boundingH, m
     this.edgeSprings = {}; // keep track of springs associated with edges
 
     this.compartmentX = boundingX+30;
-    this.compartmentY = boundingY+30;
+    this.compartmentY = boundingY+15;
     this.compartmentWidth = boundingW-60;
-    this.compartmentHeight = boundingH-60;
-
+    this.compartmentHeight = boundingH-30;
+     /*
+    this.compartmentX = boundingX;
+    this.compartmentY = boundingY;
+    this.compartmentWidth = boundingW;
+    this.compartmentHeight = boundingH;
+    */
     this.nodeFont = "10px Verdana, sans-serif";
     //this.edgeLabelsUpright = true;
 }
@@ -56,14 +61,17 @@ ForceDirected.prototype = {
         var s = this.toScreen(p);
         // Pulled out the padding aspect sso that the size functions could be used in multiple places
         // These should probably be settable by the user (and scoped higher) but this suffices for now
-        var paddingX = 6;
-        var paddingY = 6;
-
+        var paddingX = 0;
+        var paddingY = 0;
+        /*
         var contentWidth = node.getWidth(ctx, this.nodeFont);
         var contentHeight = node.getHeight();
 
         var boxWidth = contentWidth + paddingX;  //Node rectangle
         var boxHeight = contentHeight + paddingY;
+        */
+        var boxWidth = node.data.w + paddingX;  //Node rectangle
+        var boxHeight = node.data.h + paddingY;
         var rectx = s.x - boxWidth / 2;
         var recty = s.y - boxHeight / 2;
         var offsetX;
@@ -85,12 +93,12 @@ ForceDirected.prototype = {
         ctx.clearRect(rectx, recty, boxWidth, boxHeight);
         ctx.fillStyle = "#C2C2C2";
         ctx.fillRect(rectx, recty, boxWidth, boxHeight);
-        ctx.textAlign = "left";
-        ctx.textBaseline = "top";
-        ctx.font = this.nodeFont;
-        ctx.fillStyle = "#000000";
-        var text = node.id;
-        ctx.fillText(text, s.x - contentWidth / 2, s.y - contentHeight / 2);
+       // ctx.textAlign = "left";
+        //ctx.textBaseline = "top";
+        //ctx.font = this.nodeFont;
+        //ctx.fillStyle = "#000000";
+        //var text = node.id;
+        //ctx.fillText(text, s.x - contentWidth / 2, s.y - contentHeight / 2);
         ctx.restore();
     },
     arrowInsideCompartment: function (x1, y1, x2, y2) {
@@ -127,28 +135,29 @@ ForceDirected.prototype = {
         }
 
         //change default to  10.0 to allow text fit between edges
-        var spacing = 12.0;
+        var spacing = 0.0;   //default 12
 
         // Figure out how far off center the line should be drawn
         var offset = normal.multiply(-((total - 1) * spacing) / 2.0 + (n * spacing));
 
-        var paddingX = 6;
-        var paddingY = 6;
+        var paddingX = 0;
+        var paddingY = 0;
 
         var s1 = this.toScreen(p1).add(offset);
         var s2 = this.toScreen(p2).add(offset);
 
-        var boxWidth = edge.target.getWidth(ctx, this.nodeFont) + paddingX;
-        var boxHeight = edge.target.getHeight() + paddingY;
-
+        //var boxWidth = edge.target.getWidth(ctx, this.nodeFont) + paddingX;
+        //var boxHeight = edge.target.getHeight() + paddingY;
+        var boxWidth = edge.target.data.w + paddingX;  //Node rectangle
+        var boxHeight = edge.target.data.h + paddingY;
         var intersection = this.intersect_line_box(s1, s2, {x: x2 - boxWidth / 2.0, y: y2 - boxHeight / 2.0}, boxWidth, boxHeight);
 
         if (!intersection) {
             intersection = s2;
         }
 
-       // var stroke = (edge.data.color !== undefined) ? edge.data.color : '#000000';
-        var stroke = '#000000';
+        var stroke = (edge.data.color !== undefined) ? edge.data.color : '#000000';
+        //var stroke = '#000000';
         var arrowWidth;
         var arrowLength;
 
@@ -169,6 +178,7 @@ ForceDirected.prototype = {
         }
         if (!this.arrowInsideCompartment(s1.x, s1.y, lineEnd.x, lineEnd.y))
             return;
+
         ctx.save();
         ctx.strokeStyle = stroke;
         ctx.beginPath();
@@ -358,7 +368,7 @@ ForceDirected.prototype = {
     attractToCentre: function () {
         this.eachNode(function (node, point) {
             var direction = point.p.multiply(-1.0);
-            point.applyForce(direction.multiply(this.repulsion / 50.0));
+            point.applyForce(direction.multiply(this.repulsion / 10.0)); // 50 to 10
         });
     },
     updateVelocity: function (timestep) {

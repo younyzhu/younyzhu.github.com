@@ -11,8 +11,9 @@ var springy = null;
 $(document).ready(function () {
     WindowResize($("#bgCanvas")[0]);
     //THREEx.FullScreen.bindKey({ charCode: 'f'.charCodeAt(0) });
-    var str = "./data/Urea cycle_new.xml";
-    //var str = "./data/Apoptosis.json";
+    //var str = "./data/SMAD23 Phosphorylation Motif Mutants in Cancer_26_new.xml";
+    //var str = "./data/Apoptosis_new.xml";
+    var str = "./data/Apoptosis.json";
     var check = new Check();
     var format = check.checkFileFormat(str);
     var loader;
@@ -291,12 +292,21 @@ $(document).ready(function () {
                 complete: function () {
                 },
                 error: function (xhr, textStatus, errorThrown) {
-                    console.log('ajax loading error...');
+                    console.log('ajax saving json file error...');
                     return false;
                 }
             });
         },
         sendXML: function () {
+            if (workerId === "") {
+                alert("Please input your amazon mechnical turk Worker Id.");
+                return;
+            }
+            endTime = new Date();
+            log.endTime = endTime.toLocaleTimeString() + " " + endTime.toLocaleDateString();
+            elapsedTime = (endTime.getTime() - startTime.getTime()) / 1000;
+            log.elapsedTime = elapsedTime;
+
             var results = [ ];
             results.push('<?xml version="1.0" encoding="ISO-8859-1"?>');
             results.push(preElement(false, "Pathway"));
@@ -308,6 +318,7 @@ $(document).ready(function () {
             results.push(preElement(false, "compartmentBlock ", num));  //has /
             var width = window.innerWidth;
             var height = window.innerHeight;
+
             var complexLength = 0, entityLength = 0, proteinLength = 0, smallMoleculeLength = 0, dnaLength = 0, reactionLength = 0;
             for (var i = 0; i < compartments.length; ++i) {
                 var a = " j = '";
@@ -400,8 +411,11 @@ $(document).ready(function () {
                     var graphId = mainManagement.shapes[i].graphId;
                     for (var j = 0; j < mainManagement.shapes.length; ++j) {
                         if (mainManagement.shapes[j].id === mainManagement.shapes[0].compartments[graphId] && mainManagement.shapes[j].type === "M") {
-                            var offsetX = mainManagement.shapes[j].childOffsetx;
-                            var offsetY = mainManagement.shapes[j].childOffsetx;
+
+                            var childOffsetx = mainManagement.shapes[j].childOffsetx;
+                            var childOffsety = mainManagement.shapes[j].childOffsety;
+                            var offsetX = childOffsetx - mainManagement.shapes[j].x;
+                            var offsetY = childOffsety - mainManagement.shapes[j].y;
 
                             var w = mainManagement.shapes[j].w;
                             var h = mainManagement.shapes[j].h;
@@ -413,9 +427,9 @@ $(document).ready(function () {
                             results.push(preElement(false, "complex", a));
 
                             var position = "(";
-                            position += (mainManagement.shapes[i].x - offsetX) / w;
+                            position += (mainManagement.shapes[i].x+offsetX)  / w;
                             position += ",";
-                            position += (mainManagement.shapes[i].y - offsetY) / h;
+                            position += (mainManagement.shapes[i].y+offsetY) / h;
                             position += ",";
                             position += mainManagement.shapes[i].w / w;
                             position += ",";
@@ -439,8 +453,11 @@ $(document).ready(function () {
                     var graphId = mainManagement.shapes[i].graphId;
                     for (var j = 0; j < mainManagement.shapes.length; ++j) {
                         if (mainManagement.shapes[j].id === mainManagement.shapes[0].compartments[graphId] && mainManagement.shapes[j].type === "M") {
-                            var offsetX = mainManagement.shapes[j].childOffsetx;
-                            var offsetY = mainManagement.shapes[j].childOffsetx;
+
+                            var childOffsetx = mainManagement.shapes[j].childOffsetx;
+                            var childOffsety = mainManagement.shapes[j].childOffsety;
+                            var offsetX = childOffsetx - mainManagement.shapes[j].x;
+                            var offsetY = childOffsety - mainManagement.shapes[j].y;
 
                             var w = mainManagement.shapes[j].w;
                             var h = mainManagement.shapes[j].h;
@@ -450,9 +467,9 @@ $(document).ready(function () {
                             results.push(preElement(false, "physicalEntity", a));
 
                             var position = "(";
-                            position += (mainManagement.shapes[i].x - offsetX) / w;
+                            position += (mainManagement.shapes[i].x+offsetX)  / w;
                             position += ",";
-                            position += (mainManagement.shapes[i].y - offsetY) / h;
+                            position += (mainManagement.shapes[i].y+offsetY) / h;
                             position += ",";
                             position += mainManagement.shapes[i].w / w;
                             position += ",";
@@ -475,8 +492,12 @@ $(document).ready(function () {
                     var graphId = mainManagement.shapes[i].graphId;
                     for (var j = 0; j < mainManagement.shapes.length; ++j) {
                         if (mainManagement.shapes[j].id === mainManagement.shapes[0].compartments[graphId] && mainManagement.shapes[j].type === "M") {
-                            var offsetX = mainManagement.shapes[j].childOffsetx;
-                            var offsetY = mainManagement.shapes[j].childOffsetx;
+
+                            var childOffsetx = mainManagement.shapes[j].childOffsetx;
+                            var childOffsety = mainManagement.shapes[j].childOffsety;
+                            var offsetX = childOffsetx - mainManagement.shapes[j].x;
+                            var offsetY = childOffsety - mainManagement.shapes[j].y;
+
                             var w = mainManagement.shapes[j].w;
                             var h = mainManagement.shapes[j].h;
                             var a = " j = '";
@@ -486,9 +507,9 @@ $(document).ready(function () {
                             var name = mainManagement.shapes[i].text;
                             results.push(element("Name", name));
                             var position = "(";
-                            position += (mainManagement.shapes[i].x - offsetX) / w;
+                            position += (mainManagement.shapes[i].x+offsetX) / w;
                             position += ",";
-                            position += (mainManagement.shapes[i].y - offsetY) / h;
+                            position += (mainManagement.shapes[i].y+offsetY) / h;
                             position += ",";
                             position += mainManagement.shapes[i].w / w;
                             position += ",";
@@ -511,8 +532,11 @@ $(document).ready(function () {
                     var graphId = mainManagement.shapes[i].graphId;
                     for (var j = 0; j < mainManagement.shapes.length; ++j) {
                         if (mainManagement.shapes[j].id === mainManagement.shapes[0].compartments[graphId] && mainManagement.shapes[j].type === "M") {
-                            var offsetX = mainManagement.shapes[j].childOffsetx;
-                            var offsetY = mainManagement.shapes[j].childOffsetx;
+                            var childOffsetx = mainManagement.shapes[j].childOffsetx;
+                            var childOffsety = mainManagement.shapes[j].childOffsety;
+                            var offsetX = childOffsetx - mainManagement.shapes[j].x;
+                            var offsetY = childOffsety - mainManagement.shapes[j].y;
+
                             var w = mainManagement.shapes[j].w;
                             var h = mainManagement.shapes[j].h;
                             var a = " j = '";
@@ -522,9 +546,9 @@ $(document).ready(function () {
                             var name = mainManagement.shapes[i].text;
                             results.push(element("Name", name));
                             var position = "(";
-                            position += (mainManagement.shapes[i].x - offsetX) / w;
+                            position += (mainManagement.shapes[i].x+offsetX)  / w;
                             position += ",";
-                            position += (mainManagement.shapes[i].y - offsetY) / h;
+                            position += (mainManagement.shapes[i].y+offsetY) / h;
                             position += ",";
                             position += mainManagement.shapes[i].w / w;
                             position += ",";
@@ -548,8 +572,11 @@ $(document).ready(function () {
                     var graphId = mainManagement.shapes[i].graphId;
                     for (var j = 0; j < mainManagement.shapes.length; ++j) {
                         if (mainManagement.shapes[j].id === mainManagement.shapes[0].compartments[graphId] && mainManagement.shapes[j].type === "M") {
-                            var offsetX = mainManagement.shapes[j].childOffsetx;
-                            var offsetY = mainManagement.shapes[j].childOffsetx;
+                            var childOffsetx = mainManagement.shapes[j].childOffsetx;
+                            var childOffsety = mainManagement.shapes[j].childOffsety;
+                            var offsetX = childOffsetx - mainManagement.shapes[j].x;
+                            var offsetY = childOffsety - mainManagement.shapes[j].y;
+
                             var w = mainManagement.shapes[j].w;
                             var h = mainManagement.shapes[j].h;
                             var a = " j = '";
@@ -563,12 +590,12 @@ $(document).ready(function () {
                             var type = mainManagement.shapes[i].type;
                             results.push(element("Type", type));
                             var position = "(";
-                            position += (mainManagement.shapes[i].x - offsetX) / w;
-                            position += ", ";
-                            position += (mainManagement.shapes[i].y - offsetY) / h;
-                            position += ", ";
+                            position += (mainManagement.shapes[i].x+offsetX)  / w;
+                            position += ",";
+                            position += (mainManagement.shapes[i].y+offsetY) / h;
+                            position += ",";
                             position += mainManagement.shapes[i].w / w;
-                            position += ", ";
+                            position += ",";
                             position += mainManagement.shapes[i].h / h;
                             position += ")";
                             results.push(element("Position", position));
@@ -626,12 +653,12 @@ $(document).ready(function () {
                 type: "POST",  // type should be POST
                 data: {
                     xml: end_result,
-                    name: workerId + ".xml"
-                    //,
-                    //logName: workerId + "log.json",
-                    //log: JSON.stringify(log)
+                    name: workerId + ".xml",
+
+                    logName: workerId + "log.json",
+                    log: JSON.stringify(log)
                 }, // send the string directly
-                dataType: "xml",
+                dataType: "text",
                 success: function (data) {
                     console.log(data);
                     return true;

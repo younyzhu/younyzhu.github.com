@@ -40,8 +40,152 @@ XMLLoader.prototype = {
         this.parseCompartmentBlock(compartmentBlock);
         this.parseEdges();
         this.processLinks();
+        this.arrangeGraphBox();
         if (graphs.length !== 0)
             springy = new Manage({graphs: graphs});
+    },
+    arrangeGraphBox: function(){
+        if(graphs.length>=1) {
+            for (var i = 0; i < graphs.length - 1; ++i)
+                for (var j = i + 1; j < graphs.length; ++j) {
+                    if (graphs[i].boundingY > graphs[j].boundingY) {
+                        var tmp = graphs[i];
+                        graphs[i] = graphs[j];
+                        graphs[j] = tmp;
+                    }
+                }
+            var index = [];
+            index.push(0);
+            for (i = 0, j = i + 1; i < graphs.length && j < graphs.length; j++) {
+                if (graphs[i].boundingY === graphs[j].boundingY) {
+                    continue;
+                }
+                index.push(j);
+                i = j;
+            }
+
+            if (index[graphs.length - 1] !== graphs.length) {
+                index.push(graphs.length);
+            }
+            var levels = [];
+            if(index.length === 1)
+            {
+                var level = [];
+                for(i=0; i<graphs.length && i<index[0]; ++i)
+                {
+                    level.push(graphs[i]);
+                }
+                levels.push(level);
+            }
+            else {
+                for (i = 0,j = i + 1; j < index.length; ++i, j++)
+                    {
+                        var level = [];
+                        for(var k=index[i]; k<graphs.length && k<index[j]; ++k)
+                        {
+                            level.push(graphs[k]);
+                        }
+                        levels.push(level);
+                    }
+            }
+        }
+        for(var k=0; k<levels.length; ++k)
+        {
+            if(levels[k].length >1)
+            {
+                for (var i = 0; i < levels[k].length - 1; ++i)
+                    for (var j = i + 1; j < levels[k].length; ++j) {
+                        if (levels[k][i].boundingX > levels[k][j].boundingX) {
+                            var tmp = levels[k][i];
+                            levels[k][i] = levels[k][j];
+                            levels[k][j] = tmp;
+                        }
+                    }
+            }
+        }
+        //   num / (w * h) === k  here, k = 0.0007
+        //   w/h = 1/0.618 ==>   num / (h/0.618 * h)  === 0.0007  ==>       h = sqrt(num * 0.618/0.0007) ~= sqrt(num * 883)
+        for(var i=0; i< levels.length; ++i)
+        {
+            var max = 0;
+            for(var j=0; j< levels[i].length; ++j)
+            {
+                var nodeNum = levels[i][j].nodes.length;
+                var idealH = Math.sqrt(nodeNum * 1200);
+                var idealW = idealH / 0.618;
+                levels[i][j].boundingH = idealH;
+                levels[i][j].boundingW = idealW;
+                if(max <idealH)
+                {
+                    max = idealH;
+                }
+            }
+            levels[i].maxHeight = max;
+        }
+        var paddingX = 5;
+        var paddingY = 5;
+        for(var i=0; i< levels.length; ++i)
+        {
+            var tempy=0;
+            if(i===0)
+            {
+                tempy = paddingY;
+            }
+            else
+            {
+                tempy = (i+1) * paddingY;
+                for(k =0; k<i; k++)
+                {
+                    tempy+=levels[k].maxHeight;
+                }
+            }
+            //Now we know the ypos, width, height
+            //so we need to get xpos
+            var needWidth = -paddingX;
+            for(var j=0; j< levels[i].length; ++j)
+            {
+                needWidth += paddingX+ levels[i][j].boundingW;
+            }
+            var offsetX= 0;
+            if(needWidth < window.innerWidth)
+            {
+               offsetX =  (window.innerWidth - needWidth)/2.0;
+            }
+            var tempx = 0;
+            for(var j=0; j< levels[i].length; ++j)
+            {
+                if(j===0)
+                {
+                    tempx = 0;
+                }
+                else
+                {
+                    tempx = j * paddingY;
+                    for(k =0; k<j; k++)
+                    {
+                        tempx+=levels[i][k].boundingW;
+                    }
+                }
+                levels[i][j].boundingX = tempx + offsetX;
+                levels[i][j].boundingY = tempy;
+            }
+        }
+        for(var i=0; i<levels.length; ++i)
+        {
+            for(var j=0; j<levels[i].length; ++j)
+            {
+                for(var k=0; k<mainManagement.shapes.length; ++k)
+                {
+                    if(levels[i][j].compartmentId === mainManagement.shapes[k].id  && mainManagement.shapes[k].type === "M")
+                    {
+                        mainManagement.shapes[k].x = levels[i][j].boundingX;
+                        mainManagement.shapes[k].y = levels[i][j].boundingY;
+                        mainManagement.shapes[k].w = levels[i][j].boundingW;
+                        mainManagement.shapes[k].h = levels[i][j].boundingH;
+                    }
+                }
+            }
+        }
     },
     parseEdges: function () {
         var length = this.edgeBlock.children().length;
@@ -227,8 +371,22 @@ XMLLoader.prototype = {
                 var w = parseFloat(position[2]);
                 var h = parseFloat(position[3]);
                 var graph = new Graph();
-                graph.setBoundingCB(x * width, y * height, width * w, height * h);
-                var nodeIndex = 0; //the index in each graph
+                graph.compartmentId = i;
+                var tX = x*width;
+                var tY = y*height;
+                var tWidth = width * w;
+                var tHeight = height * h;
+                if(tWidth/tHeight !== 1/0.618)
+                {
+                    var tw = tHeight/0.618;
+                    var offsetX = (tw - tWidth)/2.0;
+                    tX = tX - offsetX;
+                    tWidth = tw;
+                }
+                graph.setBoundingCB(tX, tY, tWidth, tHeight);
+
+                 /*graph.setBoundingCB(x*width, y*height, width * w, height * h);
+                */var nodeIndex = 0; //the index in each graph
                 Bubbles.addCompartment(i, x, y, w, h, name);
                 var len = contain.length / 2;
                 for (var j = 0; j < len; ++j) {
@@ -527,5 +685,5 @@ XMLLoader.prototype = {
                 }
             }
         }
-    },
+    }
 };

@@ -18,6 +18,12 @@ LocalFileLoader.prototype = {
         var _this = this;
 
         var check = new Check();
+        if(typeof url === 'undefined')
+        {
+            alert("Please Choose the data which needs to load!");
+            return;
+        }
+
         var format = check.checkFileFormat(url.name);
         if(format ==="")
             return;

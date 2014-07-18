@@ -165,5 +165,10 @@ Some Abbrevations:
   3. Write a `xml, json loader` for pre-processing through force directed algorithm, And when we press the `Stop Force layout` button in the menu bar, 
   the system will stop the automatic layout calculation. When you mouse click any where on the screen, the final layout would be generated. 
   You can go further study for reducing the edge crossing, node crossing or some other task.
-  4. Write a xml output format for KeQin
+  * 7/17/2014
+  1.Try to find ways to adjust the layout, reading some papers about space filling algorithm.
+  
+  * 7/18/2014
+  1. Finished changing the layout of the compartment
+  2. Changing the relation of the replusion of the arrow, so that we can reduce the length of the arrow by increase the replusion.
   
