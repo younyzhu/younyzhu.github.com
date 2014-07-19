@@ -2,24 +2,27 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>PathWay Graph adjusting Task-----Instructions</title>
+    <title>PathWay Graph adjusting Task</title>
     <link rel=stylesheet href="css/index.css"/>
 </head>
 <body>
-<div class="bigTitle">PathWay Graph adjusting Task-----Instructions </div>
+<div class="bigTitle">PathWay Graph adjusting Task</div>
 <br/>
+
 <div class="centerBox">
     <br/>
+
     <p class="superText2"> Welcome and thank you for agreeing to participate in this study.</p>
     <hr/>
     <h2>Attentation</h2>
+
     <p>
         You should see a Rectangle with black stroke and yellow filled color. <br/>
-        If you do not, please visit the  <a href= https://support.google.com/chrome/answer/1220892 target = "_bank">
+        If you do not, please visit the <a href=https://support.google.com/chrome/answer/1220892 target="_bank">
         support site</a> for your browser.<br/>
         If you browser does not support WebGL, Please do not accept the task.<br/>
     </p>
-    <canvas id="myCanvas" ></canvas>
+    <canvas id="myCanvas"></canvas>
     <script>
         var canvas = document.getElementById('myCanvas');
         var context = canvas.getContext('2d');
@@ -31,76 +34,148 @@
         context.strokeStyle = 'black';
         context.stroke();
     </script>
-    <h2>Description</h2>
+    <h2>Introduction</h2>
     <p>
-        This study is a supplement of PathBubble for manually adjusting biological pathways.
+        This study is a supplement of PathBubble for manually adjusting biological pathways.<br/>
         If you want to know detailed information, please visit our PathBubble website:
         <a class="link" href="http://sites.google.com/a/umbc.edu/pathbubbles/pathbubbles-1-0/pathbubbles-wiki"
-           target = "_bank"> PathBubble</a> <br/>
-        <b>Procedures</b>:
-        In this task, you will be shown a <a href= "http://en.wikipedia.org/wiki/Metabolic_pathway" target = "_bank">
-        pathway graph</a>.<br/>
-        1. You should carefully move the nodes(elements) of the graph, which should obey the following <a class="toc" href="#rule">Rules</a>. <br/>
-        2. During the operation, you can click the <b>Left Crossing</b> button on the <a class="toc" href="#menu">menu control</a>( see image below),
-        It will tell you the number of edge crossing right now.<br/>
-        3. After finishing arranging the graph, you should find your <b> amazon mechnical turk worker Id </b>, and input your worker Id in the menu. And then press <b>Send</b>,
-        it will come out an alert with you work Id, you should make sure you worker Id is correct, and then press <b>Send</b> again.<br/>
-        (If you can not find your worker Id, please visit <a href= "https://www.mturk.com/mturk/dashboard" target = "_bank">https://www.mturk.com/mturk/dashboard</a>, in you account dashboard, you can find you <b>Worker Id</b>)
+           target="_bank"> PathBubble</a> <br/>
+        As our study involves graph layout, so we should make an agreement on some terms. <br/>
+        A graph is consist of nodes, edges. As you can see from the image below:<br/>
+        <b>A</b> , <b>B</b>, <b>C</b> , <b>D</b>, <b>E</b>, <b>F</b> are six nodes with different shapes,<br/>
+        Edge <b>I</b> connects Node <b>E</b> , Node <b>F</b>;<br/>
+        Edge <b>J</b> connects Node <b>F</b> , Node <b>C</b>;<br/>
+        Edge <b>K</b> connects Node <b>C</b> , Node <b>A</b>;<br/>
+        Edge <b>L</b> connects Node <b>C</b> , Node <b>D</b>;<br/>
+        Edge <b>M</b> connects Node <b>B</b> , Node <b>D</b>;<br/>
+        Those edges are directional, which has the start point and endpoint.<br/>
+        And we call <b>G</b> as compartment, which is the container of group of nodes <b>E</b>, <b>F</b> and edge
+        <b>I</b>.<br/>
+        Also <b>H</b> is another compartment, which is the container of group of nodes <b>A</b>, <b>B</b>, <b>C</b>, <b>D</b>
+        and edges <b>K</b>, <b>L</b>, <b>M</b> .<br/>
         <br/>
-        <a name="menu"> <img alt="menu"  src="http://www.csee.umbc.edu/~yongnan/images/menu.PNG"/></a>
     </p>
-    <a name="rule"><h2>Rules</h2></a>
+        <img alt="simbols" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/simbols.PNG"/>
+        <p style="text-align: center">Fig.1 simbols of a graph.</p>
+
+    <br/>
+    <h3>Goals</h3>
+    <img alt="simbols" width="1000"  src="http://www.csee.umbc.edu/~yongnan/images/exp.png"/>
+    <p style="text-align: center">Fig.2 Study images.</p>
+    <p>
+    Our goal is to re-arrange the image (Fig.2 Left) in our dataset, to reduce the interaction of edges and with some other rules (please see the section Rules).<br/>
+    However, those original datasets are too messy, lots of nodes overlapped and edges interaction. It is time-consuming for you to process. So we will not let you arrange those images.<br/>
+    We just write a program to automatically arrange it, you just need to stop it, when it seems pretty good or the nodes seems stop moving (You can wait until the nodes stop moving,
+        it will generate the best layout).<br/>
+    After our algorithm processed, the graph will reduce the numbers of the interactions of edges just like this (Fig.2 Middle). But the result does not meet our rules.<br/>
+    So We <b>NEED</b> you to arrange it.<br/>
+    After arranging it, our final graph is a bit like this (Fig.2 Right).
+    </p>
+    <h3>Procedures</h3>
+    <p>
+    1. Open the website through the link we give you in the task. After you open the website you will see an interface like this (see Fig.3 Interface below).<br/>
+        &nbsp;&nbsp;&nbsp;(1) In the right corner of the screen is the menu bar, which has 4 types of buttons.<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Stop Force Direct</b>: you can press this to stop automatic layout.<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Left edge Intersection</b>: you can press this to detect how many edge intersection in the current graph.<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Your Worker ID</b>: you should input your amazon mechnical turk worker Id to get the pay.<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Send</b>: After you finish your work and input you worker ID, you can send the data to our server.<br/>
+        &nbsp;&nbsp;&nbsp;(2) In the center of the interface, you will see many of the nodes in the compartment which are moving automatically.
+        (We automatically layout the graph, when loading the graph)<br/>
+    2. After you find all the nodes become stable, or the number of the overlapping and intersection is less, you can Press the <b>Stop Force Direct</b>
+        in the menubar to stop the automatic adjust.And then you can press any white space in the screen, it will show you the graph you need to adjust.(just like Fig.2 Middle)<br/>
+    3. So you should adjust the graph, and also you should follow the rules in the <b>Rule</b> section.<br/>
+        &nbsp;&nbsp;&nbsp; Here, I tell you some operations to move the nodes.<br/>
+    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;(1) <b>Drag operation:</b> you can drag any node, compartment by mouse clicking to select the certain one.
+   you can also click the white area outside the compartment to move the current view. And also you can press the <b>Ctrl</b> key on your keyboard,
+    to multi-select the nodes and then drag.(But when you doing multi-selection, you should not release the <b>Ctrl</b> Key.<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (2) <b>Resize operation:</b> when you select the compartment, you will see 8 red little rectangles in the border of the rectangle. You can drag the corner to resize the compartment.<br/>
+    4. After finishing arranging the graph, you should find your <b> amazon mechnical turk worker Id </b>, and input
+    your worker Id in the menu. And then press <b>Send</b>,
+    it will come out an alert with you work Id, you should make sure you worker Id is correct, and then press
+    <b>Send</b> again.<br/>
+    (If you can not find your worker Id, please visit <a href="https://www.mturk.com/mturk/dashboard" target="_bank">https://www.mturk.com/mturk/dashboard</a>,
+    in you account dashboard, you can find you <b>Worker Id</b>)
+    <br/>
+    <img alt="interface" width="1000"  src="http://www.csee.umbc.edu/~yongnan/images/interface.PNG"/>
+    <p style="text-align: center">Fig.3 Interface.</p>
+    <h2>Rules</h2>
     <p>
     <ol>
-        <li> Avoid Edge crossing.</li>
-        <li> Try to reduce the length of the edges.</li>
-        <li> When moving the compartment, nodes inside it should not be moved.</li>
-        <li> If the compartment has no connections with other compartment, it should be put on the top. </li>
-        <li> In the final graph, the direction of the majority of the arrows should go down. </li>
-        <li> All the nodes in a graph should not be overlaped. </li>
+        <li> Avoid Edge crossing, or reduce the number of intersections among edges.</li>
+        <li> Try to reduce the sum of lengths of edges.</li>
+        <li> We split the nodes according to the compartment(big round rectangle in the image) they belong to,
+            so when moving the nodes, please do not move to another compartment.
+        </li>
+        <li> If the compartment has no connections with other compartment, it should be put on the top.</li>
+        <li> In the final graph, the direction of the majority of the arrows should go down.</li>
+        <li> Avoid the overlapping of nodes.</li>
         <li> You should balance the trade between the beauty of the graph and uniform distribution of the nodes.</li>
     </ol>
     <h3> Let's take some simple images for example: </h3>
-    <b>Simbol illustration:</b>
-    <br/><p>In the following examples, we will show you some graph images, and guide you how to arrange it.
-    Here, We should make an agreement on some terms. A graph is consist of nodes, edges. As you can see from the image below:
-    <b>A</b> and <b>B</b> are two nodes, Edges <b>C</b> connects those two nodes. And we call <b>D</b> as compartment,
-    which is the container of those nodes and edges groups.
     <br/>
-    <img alt="simbols" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/simbols.PNG"/>
-    <br/>
+    <p>In the following examples, we will show you some graph images, and guide you how to arrange it.
     <h4>Example 1</h4>
-    <p>
-        <img alt="edge_crossing" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing.PNG"/>
+
+
+        <img alt="edge_crossing" width="150" height="150"
+             src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing.PNG"/>
+            <p style="text-align: center">Fig.4 edge_crossing.</p>
         <br/>
-        As you can see from this image, there is a crossing, so you need to move the node to avoid this Edge crossing(Rule 1).
+    <p>
+        As you can see from this image (Fig.4), there is a crossing, so you need to move the node to avoid this Edge
+        crossing(Rule 1).
         You can move the node <b> C </b>,
         you can move the node <b> A </b> or you can move node <b> D</b>. It's up to you. Here I move the mode <b> C </b>.
-        <img alt="edge_crossing1" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing1.PNG"/>
-        <br/>After this, you will find there are too many horizonizal arrows, From <b> Rule 5 </b>, we should make the arrow go down.
-        <img alt="edge_crossing2.PNG" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing2.PNG"/>
-        <br/>
-    </p>
-    <h4>Example 2</h4>
+        The result is this (Fig.5).
+    </p><br/>
+        <img alt="edge_crossing1" width="150" height="150"
+             src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing1.PNG"/>
+    <p style="text-align: center">Fig.5 edge_crossing change 1.</p>
+    <br/>
     <p>
-        <img alt="length" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/length.PNG"/>
-        <br/>As you can see, there are two compartments in a graph, there is an edge <b>C F</b> that combines nodes of those compartments.
-        However, <b>C F</b> is too long, we need to make it shorter, and also the direction of Arrow <b>C A </b> is not going down.
-        We can exchange Node<b> A </b>and Node <b> C </b>.
-        <img alt="length1" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/length1.PNG"/>
-        <br/>Here you can see the length of the  <b>C F</b> is almost the distance of the two compartments. Also you can exchanged the  <b>E F</b> to make it shorter.
+        After this, you will find there are too many horizonizal arrows, From <b> Rule 5 </b>, we should make the
+        arrow go down. The result is this (Fig.5).
+    </p>
+    <br/>
+        <img alt="edge_crossing2.PNG" width="150" height="150"
+             src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing2.PNG"/>
+        <p style="text-align: center">Fig.6 edge_crossing change 2.</p>
         <br/>
+
+    <h4>Example 2</h4>
+        <br/>
+        <img alt="length" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/length.PNG"/>
+    <p style="text-align: center">Fig.7 Length.</p>
+        <br/>
+    <p> As you can see image (Fig.7), there are two compartments in a graph, there is an edge <b>C F</b> that combines nodes of
+        those compartments.
+        However, <b>C F</b> is too long, we need to make it shorter, and also the direction of Arrow <b>C A </b> is not
+        going down.
+        We can exchange Node<b> A </b>and Node <b> C </b>, the result is image (Fig.8).
+    </p>
+    <br/>
+    <img alt="length1" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/length1.PNG"/>
+    <p style="text-align: center">Fig.8 Reduce length.</p>
+    <br/>
+    <p>Here you can see the length of the <b>C F</b> is almost the distance of the two compartments. Also you can
+        exchanged the <b>E F</b> to make it shorter.
     </p>
 
     <h4>Example 3</h4>
-    <p>
+
+    <br/>
         <img alt="overlap" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/overlap.PNG"/>
-        <br/>Here you can see Node <b>D</b> and Node <b>E</b> are overlaped together. From <b>Rule Six </b> we should avoid node overlapping. So we need to split them.
+        <p style="text-align: center">Fig.9 Node overlapping.</p>
+    <br/>
+    <p> Here, in image (Fig.9) you can see Node <b>D</b> and Node <b>E</b> are overlaped together. From <b>Rule Six </b> we should
+    </p>  avoid node overlapping. So we need to split them.
+    <br/>
         <img alt="overlap" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/overlap1.PNG"/>
         <br/>
-    </p>
+
 
     <h2>Note about Payment</h2>
+
     <p> We will rate each graph very carefully.
         <br/>Your time and mouse activity will be recoded, please take this task seriously.
         <br/>We do try to be fairly lenient,
