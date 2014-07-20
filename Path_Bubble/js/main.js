@@ -44,6 +44,9 @@ $(document).ready(function () {
                 springy = null;
                 mainManagement.valid = false;
                 mainManagement.draw();
+                var time = new Date();
+                log.StopForceDirectTime = time.toLocaleTimeString() + " " + time.toLocaleDateString();
+                log.log = "Stop Force direct";
             }
         },
         load: function () {
