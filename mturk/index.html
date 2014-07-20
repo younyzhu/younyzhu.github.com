@@ -17,6 +17,7 @@
 </p>
 <hr/>
 <h2>1. System Requirement</h2>
+
 <p>
     Your brower must support WebGL, i.e., your browser must be either
     Safari or
@@ -44,6 +45,7 @@
     Your task is to re-arrange components in biological pathways
     to produce legible and
     aesthetically pleasing layout.</p>
+
 <p>
     For example, Fig.2(a) is the original graph and Fig.2(b) is the re-arranged
     ones that obey the rules in Section 3.1.
@@ -129,11 +131,11 @@ aesthetically pleasing layout.
         <td> there are some unnecessarily long edges in the graphs, please
             drag the nodes (or a group of nodes) to shorten the edges.
         </td>
-        <td>             <img alt="edge_Length" width="200" height="200"
-                              src="http://www.csee.umbc.edu/~yongnan/images/edgeLength.PNG"/>
+        <td><img alt="edge_Length" width="200" height="200"
+                 src="http://www.csee.umbc.edu/~yongnan/images/edgeLength.PNG"/>
         </td>
-        <td>             <img alt="edge_Length" width="200" height="200"
-                              src="http://www.csee.umbc.edu/~yongnan/images/edgeLength1.PNG"/>
+        <td><img alt="edge_Length" width="200" height="200"
+                 src="http://www.csee.umbc.edu/~yongnan/images/edgeLength1.PNG"/>
         </td>
     </tr>
 
@@ -148,8 +150,8 @@ aesthetically pleasing layout.
         </td>
         <td>
             <img alt="edge_Length" width="200" height="200"
-                              src="http://www.csee.umbc.edu/~yongnan/images/noConnection1.PNG"/>
-    </td>
+                 src="http://www.csee.umbc.edu/~yongnan/images/noConnection1.PNG"/>
+        </td>
     </tr>
 
     <tr>
@@ -172,7 +174,7 @@ aesthetically pleasing layout.
         </td>
         <td><font color="red">In your final graph, never place a node outside of
             a compartment it belongs to.
-            </font>
+        </font>
         </td>
         <td>
             <img alt="edge_Length" width="200" height="200"
@@ -191,117 +193,48 @@ aesthetically pleasing layout.
 </p>
 <ul>
     <LI> make the nodes evenly distributed in the space.</LI>
-    <LI> avoid edge crossing and overlaps by all means. </LI>
-    <LI> resize the compartment to take less screen space.   </LI>
-    <LI> reize the compartment to fit better.                     </LI>
-    <LI> make sure the graph looked balanced.                          </LI>
+    <LI> avoid edge crossing and overlaps by all means.</LI>
+    <LI> resize the compartment to take less screen space.</LI>
+    <LI> reize the compartment to fit better.</LI>
+    <LI> make sure the graph looked balanced.</LI>
 </ul>
-
-
 
 <h3>3.2 Procedures</h3>
 
-<p>
-
 <UL>
-    <LI> You may begin by dragging the nodes and compartments using left mouse button.
+    <Li>Please open the website through the link we give you in each task, After you open the website you will see an interface
+        like this (see Fig.3 Interface below)<br/>
+        &nbsp;&nbsp;&nbsp;(1) In the right corner of the screen is the menu bar, which has 4 types of buttons.<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Stop Force Direct</b>: you can press this to stop automatic layout.<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Left edge Intersection</b>: you can press this to detect how many edge intersection in the current graph.<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Your Worker ID</b>: you should input your amazon mechnical turk worker Id to get the pay.<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Send</b>: After you finish your work and input you worker ID, you can send the data to our server.<br/>
+        &nbsp;&nbsp;&nbsp;(2) In the center of the interface, you will see many of the nodes in the compartment which are moving automatically.
+        (We automatically layout the graph, when loading the graph)<br/>
+    </Li>
+    <Li>After you find all the nodes become stable, or the number of the overlapping and intersection is less, you can Press the <b>Stop Force Direct</b>
+        in the menubar to stop the automatic adjust. And then you can press any white space in the screen, it will show you the graph you need to adjust.</Li>
+    <LI>You may begin by dragging the nodes and compartments using left mouse button.
         Compartment are also resizable. To do this, you can click the empty
         space in an compartment, you will see the compartment turns yellow and eight
         red-colored widgets on the edges. You may
         drag the widgets to resize it).
         You can also select a group of nodes by holding down the "Ctrl" key on your
-        keyboard while using left-mouse selection.
+        keyboard while using left-mouse selection.</Li>
     <LI> You may save intermedidate results. To save your result,
         put your "worker ID" in the menu bar located in the upper right corner of the screen
-        and then click the "send" button.
+        and then click the "send" button.</Li>
     <LI> You can click "Number of edge crossing" to test whether or not your layout
         is valid (fewer the better.) The original number of edge crossing is displayed
-        on the screen already.
-    <LI> When you are done, again, put your "worker ID" and click the "send" button.
-    <LI> Just in case you put in a wrong "worker ID", simply put it again.
+        on the screen already.</Li>
+    <LI> When you are done, again, put your "worker ID" and click the "send" button.</Li>
+    <LI> Just in case you put in a wrong "worker ID", simply put it again.</Li>
 </UL>
 
 <br/>
 <img alt="interface" width="1000" src="http://www.csee.umbc.edu/~yongnan/images/interface.PNG"/>
 
-<p style="text-align: center">Fig.3 Traing case.</p>
-
-</ol>
-<h3> 3.3 Examples Explained </h3>
-<br/>
-
-<p>In the following examples, we will show you some graph images, and guide you how to arrange it.
-<h4>Example 1: Reduce edge crossing</h4>
-
-<img alt="edge_crossing" width="150" height="150"
-     src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing.PNG"/>
-
-<p style="text-align: center">Fig.4 edge_crossing.</p>
-<br/>
-
-<p>
-    As you can see from this image (Fig.4), there is a crossing, so you need to move the node to avoid this Edge
-    crossing(Rule 1).
-    You can move the node <b> C </b>,
-    you can move the node <b> A </b> or you can move node <b> D</b>. It's up to you. Here I move the mode <b> C </b>.
-    The result is this (Fig.5).
-</p><br/>
-<img alt="edge_crossing1" width="150" height="150"
-     src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing1.PNG"/>
-
-<p style="text-align: center">Fig.5 edge_crossing change 1.</p>
-<br/>
-
-<p>
-    After this, you will find there are too many horizonizal arrows, From <b> Rule 5 </b>, we should make the
-    arrow go down. The result is this (Fig.5).
-</p>
-<br/>
-<img alt="edge_crossing2.PNG" width="150" height="150"
-     src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing2.PNG"/>
-
-<p style="text-align: center">Fig.6 edge_crossing change 2.</p>
-<br/>
-
-<h4>Example 2</h4>
-<br/>
-<img alt="length" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/length.PNG"/>
-
-<p style="text-align: center">Fig.7 Length.</p>
-<br/>
-
-<p> As you can see image (Fig.7), there are two compartments in a graph, there is an edge <b>C F</b> that combines nodes
-    of
-    those compartments.
-    However, <b>C F</b> is too long, we need to make it shorter, and also the direction of Arrow <b>C A </b> is not
-    going down.
-    We can exchange Node<b> A </b>and Node <b> C </b>, the result is image (Fig.8).
-</p>
-<br/>
-<img alt="length1" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/length1.PNG"/>
-
-<p style="text-align: center">Fig.8 Reduce length.</p>
-<br/>
-
-<p>Here you can see the length of the <b>C F</b> is almost the distance of the two compartments. Also you can
-    exchanged the <b>E F</b> to make it shorter.
-</p>
-
-<h4>Example 3</h4>
-
-<br/>
-<img alt="overlap" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/overlap.PNG"/>
-
-<p style="text-align: center">Fig.9 Node overlapping.</p>
-<br/>
-
-<p> Here, in image (Fig.9) you can see Node <b>D</b> and Node <b>E</b> are overlaped together. From <b>Rule Six </b> we
-    should
-</p> avoid node overlapping. So we need to split them.
-<br/>
-<img alt="overlap" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/overlap1.PNG"/>
-<br/>
-
+<p style="text-align: center">Fig.3 Interface.</p>
 
 <h2>Notes</h2>
 
