@@ -6,7 +6,7 @@ body
 	background-attachment: fixed;   /* scroll, fixed */
 	background-position: top left;  /* for no-repeat setting: top/bottom, left/right */
 	margin: 0px;            /* top, left, bottom, right or TRBL */
-    overflow: hidden;
+    /* overflow: hidden;*/
 	font-family: Georgia, Serif;	/* list font names in order of preference */
 	font-weight: normal;            /* normal, bold */
 	font-style: normal;             /* normal, italic */
