@@ -173,8 +173,8 @@ Some Abbrevations:
   1. Finished changing the layout of the compartment
   2. Changing the relation of the replusion of the arrow, so that we can reduce the length of the arrow by increase the replusion.
   
-  * 7/19/2014
-  Modify the program and write the [training document](younyzhu.github.com/mturk/index.html)   
+  * 7/19/2014     
+  1. Modify the program and write the [training document](http://younyzhu.github.io/mturk/index.html)          
     
   * 7/20/2014
   1. write the php to read all the filename in the server directory  
