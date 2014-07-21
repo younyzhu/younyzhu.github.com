@@ -166,16 +166,16 @@ Some Abbrevations:
   the system will stop the automatic layout calculation. When you mouse click any where on the screen, the final layout would be generated. 
   You can go further study for reducing the edge crossing, node crossing or some other task.
   
-    * 7/17/2014
-    1.Try to find ways to adjust the layout, reading some papers about space filling algorithm.
+  * 7/17/2014
+  1.Try to find ways to adjust the layout, reading some papers about space filling algorithm.
     
-    * 7/18/2014
-    1. Finished changing the layout of the compartment
-    2. Changing the relation of the replusion of the arrow, so that we can reduce the length of the arrow by increase the replusion.
+  * 7/18/2014
+  1. Finished changing the layout of the compartment
+  2. Changing the relation of the replusion of the arrow, so that we can reduce the length of the arrow by increase the replusion.
   
-    * 7/19/2014
-    Modify the program and write the [training document](younyzhu.github.com/mturk/index.html)   
+  * 7/19/2014
+  Modify the program and write the [training document](younyzhu.github.com/mturk/index.html)   
     
-    * 7/20/2014
-    1. write the php to read all the filename in the server directory  
-    2. using those file name to read the file randomly [http://www.csee.umbc.edu/~yongnan/experiment/Path_Bubbles/pathBubble.html](http://www.csee.umbc.edu/~yongnan/experiment/Path_Bubbles/pathBubble.html)
+  * 7/20/2014
+  1. write the php to read all the filename in the server directory  
+  2. using those file name to read the file randomly [http://www.csee.umbc.edu/~yongnan/experiment/Path_Bubbles/pathBubble.html](http://www.csee.umbc.edu/~yongnan/experiment/Path_Bubbles/pathBubble.html)
