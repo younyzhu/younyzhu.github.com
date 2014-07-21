@@ -28,7 +28,8 @@
     you see the image with a <b>UMBC</b> logo. <br/>
     Otherwise, thank you and please do not accept the study.
 </p>
-<canvas id="myCanvas"></canvas>
+<canvas id="myCanvas" width="200" height="200" style="border:1px solid #d3d3d3;"></canvas>
+<p style="text-align: center">Fig.1 UMBC Logo</p>
 <script>
     var canvas = document.getElementById('myCanvas');
     var context = canvas.getContext('2d');
@@ -48,7 +49,7 @@
 
 <p>
     For example, Fig.2(a) is the original graph and Fig.2(b) is the re-arranged
-    ones that obey the rules in Section 3.1.
+    one that obeys the rules in Section 3.1.
 </p>
 <img alt="simbols" width="1000" src="http://www.csee.umbc.edu/~yongnan/images/exp.png"/>
 
@@ -56,11 +57,11 @@
 
 <p>To make your layout acceptable, your graph MUST</p>
 <UL>
-    <LI> contains less numbers of edge crossing than the time your started.
+    <LI> contain less numbers of edge crossing than the time your start.
     <LI> have no nodes overlapping.
     <LI> have no nodes moving out of a compartment.
 </UL>
-<p>To reach these goals, please follow the instructions.</p>
+<p>To reach these goals, please follow the instruction.</p>
 
 <h2>3. Introduction</h2>
 
@@ -73,14 +74,14 @@
 </p>
 <img alt="simbols" src="http://www.csee.umbc.edu/~yongnan/images/fig31.PNG"/>
 
-<p style="text-align: center">Fig.1 A simple pathway graph.</p>
+<p style="text-align: center">Fig.3 A simple pathway graph.</p>
 
 <p>
     <b>Compartments (blocks)</b>: G, H<br>
     <b>Nodes</b>: A, B, C , D, E, F<br>
     <b>Edges</b>: E->F, F->C, C->A, C->D, B->D
     <br>
-    All edges are directional, which has a start point and an endpoint.<br/>
+    All edges are directional, which have a start point and an endpoint.<br/>
 </p>
 
 <h3> 3.1 Rules </h3>
@@ -100,7 +101,7 @@ aesthetically pleasing layout.
 
     <tr>
         <td>Avoid overlapping nodes</td>
-        <td> drag a node so nodes won't overlap.</td>
+        <td> drag the overlapping node so nodes won't overlap.</td>
         <td>
             <img alt="edge_crossing" width="200" height="200"
                  src="http://www.csee.umbc.edu/~yongnan/images/nodeOverlapping.PNG"/>
@@ -129,7 +130,7 @@ aesthetically pleasing layout.
     <tr>
         <td>Reduce edge length.</td>
         <td> there are some unnecessarily long edges in the graphs, please
-            drag the nodes (or a group of nodes) to shorten the edges.
+            drag the node (or a group of nodes) to shorten the edges.
         </td>
         <td><img alt="edge_Length" width="200" height="200"
                  src="http://www.csee.umbc.edu/~yongnan/images/edgeLength.PNG"/>
@@ -188,15 +189,14 @@ aesthetically pleasing layout.
 </table>
 
 <p>
-
     To make a graph aesthetically pleasing, you may
 </p>
 <ul>
     <LI> make the nodes evenly distributed in the space.</LI>
-    <LI> avoid edge crossing and overlaps by all means.</LI>
+    <LI> avoid edge crossing and node overlapping by all means.</LI>
     <LI> resize the compartment to take less screen space.</LI>
     <LI> reize the compartment to fit better.</LI>
-    <LI> make sure the graph looked balanced.</LI>
+    <LI> make sure the graph balance legibility and node distance or edge length.</LI>
 </ul>
 
 <h3>3.2 Procedures</h3>
@@ -204,17 +204,17 @@ aesthetically pleasing layout.
 <UL>
     <Li>Please open the website through the link we give you in each task, After you open the website you will see an interface
         like this (see Fig.3 Interface below)<br/>
-        &nbsp;&nbsp;&nbsp;(1) In the right corner of the screen is the menu bar, which has 4 types of buttons.<br/>
+        &nbsp;&nbsp;&nbsp;(1) In the right corner of the screen is the menu bar, which has 4 types of buttons:<br/>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Stop Force Direct</b>: you can press this to stop automatic layout.<br/>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Number of edge crossing</b>: you can press this to detect how many edge intersection in the current graph.<br/>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Your Worker ID</b>: you should input your amazon mechnical turk worker Id to get the pay.<br/>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Send</b>: After you finish your work and input you worker ID, you can send the data to our server.<br/>
-        &nbsp;&nbsp;&nbsp;(2) In the center of the interface, you will see many of the nodes in the compartment which are moving automatically.
+        &nbsp;&nbsp;&nbsp;(2) In the center of the interface, you will see many nodes in the compartment which are moving automatically.
         (We automatically layout the graph, when loading the graph)<br/>
     </Li>
-    <Li>After you find all the nodes become stable, or the number of the overlapping and intersection is less, you can Press the <b>Stop Force Direct</b>
-        in the menubar to stop the automatic adjust. And then you can press any white space in the screen, it will show you the graph you need to adjust.</Li>
-    <LI>You may begin by dragging the nodes and compartments using left mouse button.
+    <Li>After you find all the nodes become stable, or the number of the nodes overlapping and edges intersection is less, you can press the <b>Stop Force Direct</b>
+        in the menubar to stop the automatic adjust. And then you can press any spare space in the screen, it will show you the graph you need to adjust.</Li>
+    <LI>You may begin by dragging the nodes and compartments by clicking left mouse.
         Compartment are also resizable. To do this, you can click the empty
         space in an compartment, you will see the compartment turns yellow and eight
         red-colored widgets on the edges. You may
@@ -222,7 +222,7 @@ aesthetically pleasing layout.
         You can also select a group of nodes by holding down the "Ctrl" key on your
         keyboard while using left-mouse selection.</Li>
     <LI> You may save intermedidate results. To save your result,
-        put your "worker ID" in the menu bar located in the upper right corner of the screen
+        put your "worker ID" in the menu bar which is located in the upper right corner of the screen
         and then click the "send" button.</Li>
     <LI> You can click "Number of edge crossing" to test whether or not your layout
         is valid (fewer the better.) The original number of edge crossing is displayed
@@ -238,12 +238,13 @@ aesthetically pleasing layout.
 
 <h2>Notes</h2>
 
-<p> Please rearrange the layout as fast and as carefully as you can.
-    All your activities will be recorded including all mouse actions.
+<p> Please rearrange the layout as fast and carefully as you can.
+    All of your activities will be recorded including mouse actions and times.
  </p>
 <h2>Disclaims</h2>
-<p>We reserve the right to not to accept your layout based on the rules
-described above.
+<p>We do try to be fairly lenient,
+    but if your work are terribly bad (like you randomly drag the nodes of the graph and do not obey the rules described above),
+    we reserve the right not to accept it
 If you think your layout is better but your layout gets rejected, please contact
 Yongnan Zhu at <a href="mailto:yongnan@umbc.edu">
     <span style='font-family:Helvetica'>yongnan@umbc.edu</span></a>

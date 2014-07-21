@@ -1,12 +1,12 @@
-body 
+
+body
 {
 	background-color: #eeeeee;
 	background-repeat: repeat;      /* repeat, no-repeat */
 	background-attachment: fixed;   /* scroll, fixed */
 	background-position: top left;  /* for no-repeat setting: top/bottom, left/right */
 	margin: 0px;            /* top, left, bottom, right or TRBL */
-    padding: 0px;
-
+    overflow: hidden;
 	font-family: Georgia, Serif;	/* list font names in order of preference */
 	font-weight: normal;            /* normal, bold */
 	font-style: normal;             /* normal, italic */
@@ -38,12 +38,11 @@ canvas {
 	height: 150px;
 	
 	/* Background color and gradients */
-	background: #eeeeee;
-	background: -moz-linear-gradient(top, #ffffff, #cccccc);
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#cccccc));
-	/* really nifty translucence */
-	background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.8), rgba(200, 200, 200, 0.8) );
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from( rgba(255, 255, 255, 0.8) ), to( rgba(200, 200, 200, 0.8) ));
+	background: #ffffff;
+    /*background: -moz-linear-gradient(top, #ffffff, #ffffff);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#ffffff))    /* really nifty translucence
+    background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.8), rgba(200, 200, 200, 0.8) );
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from( rgba(255, 255, 255, 0.8) ), to( rgba(200, 200, 200, 0.8) ));*/
 	
 	/* Rounded corners */
 	-moz-border-radius: 15px 15px 15px 15px;
@@ -58,12 +57,12 @@ canvas {
     margin:0 auto;
 
     /* Background color and gradients */
-    background: #eeeeee;
-    background: -moz-linear-gradient(top, #ffffff, #cccccc);
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#cccccc));
-    /* really nifty translucence */
+    background: #ffffff;
+    /*background: -moz-linear-gradient(top, #ffffff, #ffffff);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#ffffff));
+     really nifty translucence
     background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.8), rgba(200, 200, 200, 0.8) );
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from( rgba(255, 255, 255, 0.8) ), to( rgba(200, 200, 200, 0.8) ));
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from( rgba(255, 255, 255, 0.8) ), to( rgba(200, 200, 200, 0.8) ));*/
 
     /* Rounded corners */
     -moz-border-radius: 15px 15px 15px 15px;
