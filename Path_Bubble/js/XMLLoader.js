@@ -45,6 +45,8 @@ XMLLoader.prototype = {
             springy = new Manage({graphs: graphs});
     },
     arrangeGraphBox: function(){
+        var index = [];
+        var levels = [];
         if(graphs.length>=1) {
             for (var i = 0; i < graphs.length - 1; ++i)
                 for (var j = i + 1; j < graphs.length; ++j) {
@@ -54,7 +56,7 @@ XMLLoader.prototype = {
                         graphs[j] = tmp;
                     }
                 }
-            var index = [];
+
             index.push(0);
             for (i = 0, j = i + 1; i < graphs.length && j < graphs.length; j++) {
                 if (graphs[i].boundingY === graphs[j].boundingY) {
@@ -63,11 +65,9 @@ XMLLoader.prototype = {
                 index.push(j);
                 i = j;
             }
-
             if (index[graphs.length - 1] !== graphs.length) {
                 index.push(graphs.length);
             }
-            var levels = [];
             if(index.length === 1)
             {
                 var level = [];

@@ -11,7 +11,7 @@ function DNA(id, x, y, w, h, text) {
     this.textObj = new Text( this.text );
     this.w = 40 ;
     this.h = 15 ;
-    this.strokeColor = "#666666";
+    this.strokeColor = "#C2C2C2";
     this.lineWidth = 1;
     this.fillColor = "#D6EAAC";
     //Complex is contained in the Compartment and the Compartment is contained in the Bubble
@@ -26,7 +26,7 @@ DNA.prototype = {
         this.offsetY =offsetY;
         var x = this.x + this.offsetX;
         var y = this.y + this.offsetY;
-        this.w = this.textObj.getTextWidth(ctx)+2;
+        this.w = this.textObj.getTextWidth(ctx)+10;
         if(this.w >=40)
         {
             this.w = 40;

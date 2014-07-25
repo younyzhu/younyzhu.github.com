@@ -6,7 +6,7 @@
  */
 function Text(text )
 {
-    this.fillColor = 'blue';
+    this.fillColor = '#666666';
     this.text = text;
     this.font = '8pt Calibri';
 }

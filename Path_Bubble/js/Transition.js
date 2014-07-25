@@ -8,7 +8,7 @@ function Transition(id, x, y, w, h) {
     this.y = y;
     this.w = 6;
     this.h = 6;
-    this.strokeColor = "#666666";
+    this.strokeColor = "#C2C2C2";
     this.lineWidth = 1;
     this.fillColor = "#ffffff";
     //Complex is contained in the Compartment and the Compartment is contained in the Bubble

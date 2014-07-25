@@ -10,7 +10,7 @@ function Physical_Entity(id, x, y, w, h, text) {
     this.h = 15;
     this.text = text;
     this.textObj = new Text(this.text);
-    this.strokeColor = "#666666";
+    this.strokeColor = "#C2C2C2";
     this.lineWidth = 1;
     this.fillColor = "#E6EAAC";
     //Complex is contained in the Compartment and the Compartment is contained in the Bubble
@@ -25,7 +25,7 @@ Physical_Entity.prototype = {
         this.offsetY =offsetY;
         var x = this.x + this.offsetX;
         var y = this.y + this.offsetY;
-        //this.w = this.textObj.getTextWidth(ctx)+2;
+        //this.w = this.textObj.getTextWidth(ctx)+10;
         if(this.w >=40)
         {
             this.w = 40;
@@ -35,10 +35,10 @@ Physical_Entity.prototype = {
         ctx.fillStyle = this.fillColor;
         ctx.strokeStyle = this.strokeColor;
         ctx.lineWidth = this.lineWidth;
-        var mx1 = x + 10;
-        var mx2 = x + w -10;
-        var my1 = y + 10;
-        var my2 = y + h - 10;
+        var mx1 = x + this.h/2;
+        var mx2 = x + w -this.h/2;
+        var my1 = y + this.h/2;
+        var my2 = y + h - this.h/2;
         ctx.save();	// save the context so we don't mess up others
         ctx.beginPath();
         ctx.moveTo(x, my1);

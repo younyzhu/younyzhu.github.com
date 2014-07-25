@@ -10,7 +10,7 @@ function Association(id, x, y, w, h) {
     this.w = 6;
     this.h = 6;
     this.r = this.w/2;
-    this.strokeColor = "#666666";
+    this.strokeColor = "#C2C2C2";
     this.lineWidth = 1;
     this.fillColor = "#ffffff";
     this.flag = false;

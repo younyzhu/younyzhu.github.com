@@ -15,6 +15,7 @@ body
 	color: #000000;                 /* hexadecimal RGB color code */
 	text-decoration: none;          /* none, underline, overline, line-through */
 	text-align: left;               /* left, right, center, justify */
+    line-height: 1.3em;
 }
 img{
     display: block;

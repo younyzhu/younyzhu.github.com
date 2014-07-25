@@ -9,7 +9,7 @@ function Complex(id, x, y, w, h) {
     this.w = 20;    // Change to fixed size 7/14/2014
     this.h = 6;
 
-    this.strokeColor = "#666666";
+    this.strokeColor = "#C2C2C2";
     this.lineWidth = 1;
     this.fillColor = "#FFE2B7";
     //Complex is contained in the Compartment and the Compartment is contained in the Bubble

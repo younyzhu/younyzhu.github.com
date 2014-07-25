@@ -9,7 +9,7 @@ function Dissociation(id, x, y, w ,h) {
     this.w = 6;
     this.h = 6;
     this.l = this.w;
-    this.strokeColor = "#666666";
+    this.strokeColor = "#C2C2C2";
     this.lineWidth = 1;
     this.fillColor = "#ffffff";
     //Complex is contained in the Compartment and the Compartment is contained in the Bubble

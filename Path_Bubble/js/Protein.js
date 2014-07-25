@@ -10,7 +10,7 @@ function Protein(id, x, y, w, h, text) {
     this.h = 15;
     this.text = text;
     this.textObj = new Text(this.text);
-    this.strokeColor = "#666666";
+    this.strokeColor = "#C2C2C2";
     this.lineWidth = 1;
     this.fillColor = "#FFFFCC";
     //Complex is contained in the Compartment and the Compartment is contained in the Bubble
@@ -25,7 +25,7 @@ Protein.prototype = {
         this.offsetY =offsetY;
         var x = this.x+this.offsetX;
         var y = this.y+this.offsetY;
-        this.w = this.textObj.getTextWidth(ctx)+2;
+        this.w = this.textObj.getTextWidth(ctx)+10;
         if(this.w >=40)
         {
             this.w = 40;

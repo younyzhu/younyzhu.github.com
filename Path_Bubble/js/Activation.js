@@ -11,7 +11,7 @@ function Activation(id, beginType, beginNodeId, endType, endNodeId ) {
 
     this.dotRadius = 2;
     this.dotLimitRadius = 0.5;
-    this.fillColor = "#00FF00";
+    this.fillColor = "#2ca25f";
     //Complex is contained in the Compartment and the Compartment is contained in the Bubble
     //So Offset = offsetBubble + offsetCompartment
     this.offsetX =0;
