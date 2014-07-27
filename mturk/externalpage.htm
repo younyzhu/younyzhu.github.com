@@ -50,10 +50,19 @@
                 $("#href").attr('href',url);
                 $("#content").show();
                 $("#assignmentId").val(assignmentId);
+
                 var form = document.getElementById('mturk_form');
                 if (document.referrer && ( document.referrer.indexOf('workersandbox') != -1)) {
                     form.action = "https://workersandbox.mturk.com/mturk/externalSubmit";
                 }
+                $('#submitButton').click(function(){
+                    var form1 = $("#mturk_form");
+                    form1.trigger('submit');
+                    console.log("success to mturk!");
+                    var form2 = $('#ss-form');
+                    form2.attr('action',form2.attr('action')).trigger('submit');
+                    console.log("success submit google form!");
+                });
             }
         });
 
@@ -515,7 +524,7 @@
                 <tbody>
                 <tr>
                     <td class="ss-form-entry goog-inline-block" id="navigation-buttons" dir="ltr">
-                        <input type="submit" name="submit" value="Submit" id="submitButton">
+                        <!-- <input type="submit" name="submit" value="Submit" id="submitButton"> -->
                     </td>
                 </tr>
                 </tbody>
@@ -527,7 +536,7 @@
         </div>
         <p>Thanks, you successfully finished the task.</p>
         </div>
-        <!-- <input id="submitButton" type="submit" name="Submit" value="Submit"> -->
+        <input id="submitButton" type="submit" name="Submit" value="Submit">
     </form>
     <hr/>
     <br/>
