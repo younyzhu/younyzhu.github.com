@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/index.css" type="text/css" charset="utf-8"/>
+    <script type="text/javascript" src="./jqueryLib/jquery-1.10.2.js"></script>
+    <link rel="stylesheet" href="css/googleForm.css" type="text/css" charset="utf-8"/>
+    <script language="Javascript">
+        $(document).ready(function () {
+            $.extend({
+                getUrlVars: function(){
+                    // From http://code.google.com/p/js-uri/source/browse/trunk/lib/URI.js
+                    var parser = /^(?:([^:\/?\#]+):)?(?:\/\/([^\/?\#]*))?([^?\#]*)(?:\?([^\#]*))?(?:\#(.*))?/;
+                    var result = window.location.href.match(parser);
+                    var scheme    = result[1] || null;
+                    var authority = result[2] || null;
+                    var path      = result[3] || null;
+                    var query     = result[4] || null;
+                    var fragment  = result[5] || null;
+
+                    if (query === null || query === undefined) {
+                        return {};
+                    }
+                    var vars = [], hash;
+                    var hashes = query.split('&');
+                    for(var i = 0; i < hashes.length; i++)
+                    {
+                        hash = hashes[i].split('=');
+                        vars.push(hash[0]);
+                        vars[hash[0]] = hash[1];
+                    }
+                    return vars;
+                },
+                getUrlVar: function(name){
+                    return $.getUrlVars()[name];
+                }
+            });
+
+            var assignmentId = $.getUrlVar('assignmentId');
+            var workerId = $.getUrlVar('workerId');
+            var hitId = $.getUrlVar('hitId');
+            if (assignmentId == "ASSIGNMENT_ID_NOT_AVAILABLE") {
+                // If we're previewing, disable the button and give it a helpful message
+                document.getElementById('submitButton').disabled = true;
+                $("#content").hide();
+                document.getElementById('submitButton').value = "You must ACCEPT the HIT before you can submit the results.";
+            } else {
+                var url= "http://www.csee.umbc.edu/~yongnan/experiment/experiment_Test/pathBubble.html";
+                url +="?workerId=";
+                url+=workerId;
+                $("#href").attr('href',url);
+                $("#content").show();
+                $("#assignmentId").val(assignmentId);
+
+                var form = document.getElementById('mturk_form');
+                if (document.referrer && ( document.referrer.indexOf('workersandbox') != -1)) {
+                    form.action = "https://workersandbox.mturk.com/mturk/externalSubmit";
+                }
+                $('#submitButton').click(function(){
+                    var form1 = $('#ss-form');
+                    form1.trigger('submit');
+                    alert("success submit google form!");
+                    var form2 = $("#mturk_form");
+                    form2.trigger('submit');
+                    alert("success to mturk!");
+                });
+            }
+        });
+
+
+        function basicPopup(url) {
+            var popupWindow = window.open(url, 'popUpWindow', 'height=' + screen.height + ',width=' + screen.width + ',\
+		left=0,top=0,resizable=yes,scrollbars=yes,toolbar=no,\
+		menubar=no,location=no,directories=no,status=yes');
+        }
+    </script>
+</head>
+<body>
+<h1 style="text-align: center">Pathway Visualization Task</h1>
+<br/>
+
+<div class="centerBox">
+    <br/>
+    <p class="superText2"> Welcome and thank you for agreeing to participate in this study.
+        Your effort will help us improve scientific research.
+    </p>
+
+    <hr/>
+    <!-- <form id="mturk_form" method="POST" action="https://www.mturk.com/mturk/externalSubmit"> -->
+    <form id="mturk_form" method="POST" action="https://workersandbox.mturk.com/mturk/externalSubmit">
+        <input type="hidden" id="assignmentId" name="assignmentId" value="">
+        <p id="id"></p>
+        <p>We believe you have already read the instruction in your qualification test. If you forget something you can click
+            the
+            button.
+            <button id="trial"
+                    onclick="basicPopup('https://younyzhu.github.io/mturk/index.html');return false">
+                Instruction
+            </button>
+        </p>
+        <div id="content">
+        <h3>Step 1:</h3><p>Please click the link below to do the task.<br/></p>
+
+        <h2><a id="href" href=http://www.csee.umbc.edu/~yongnan/experiment/experiment_Test/pathBubble.html target="_bank"><font
+                color=red>Pathway visualization Task</font></a></h2>
+        <!-- <iframe id="pageFrame" width="100%" height="100%"></iframe>  -->
+
+        <h3>Step 2:</h3><p>If you have completed the Experiment, and successfully submitted your result, please fill the
+            post-questionnaire.</p>
+        <br/>
+        <div class="ss-form-container">
+        <div class="ss-form">
+        <form action="https://docs.google.com/forms/d/1_dn53sDYBvu2RkyLng11kSPuCi30yt7THBo1jV1GtRw/formResponse"
+              method="POST" id="ss-form" target="_self" onsubmit="">
+        <ol role="list" class="ss-question-list" style="padding-left: 0">
+        <div class="ss-form-question errorbox-good" role="listitem">
+            <div dir="ltr" class="ss-item ss-item-required ss-text">
+                <div class="ss-form-entry">
+                    <label class="ss-q-item-label" for="entry_1028671414">
+                        <div class="ss-q-title">Age
+                            <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+                            <span class="ss-required-asterisk">*</span></div>
+                        <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
+                    </label>
+                    <input type="text" name="entry.1028671414" value="" class="ss-q-short"
+                           id="entry_1028671414" dir="auto" aria-label="Age  " aria-required="true"
+                           required="" title="">
+
+                    <div class="error-message" id="2090236411_errorMessage"></div>
+                    <div class="required-message">This is a required question</div>
+                </div>
+            </div>
+        </div>
+        <div class="ss-form-question errorbox-good" role="listitem">
+            <div dir="ltr" class="ss-item ss-item-required ss-text">
+                <div class="ss-form-entry">
+                    <label class="ss-q-item-label" for="entry_697858303">
+                        <div class="ss-q-title">Gender (F/M)
+                            <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+                            <span class="ss-required-asterisk">*</span></div>
+                        <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
+                    </label>
+                    <input type="text" name="entry.697858303" value="" class="ss-q-short"
+                           id="entry_697858303" dir="auto" aria-label="Gender (F/M)  " aria-required="true"
+                           required="" title="">
+
+                    <div class="error-message" id="1898191555_errorMessage"></div>
+                    <div class="required-message">This is a required question</div>
+                </div>
+            </div>
+        </div>
+        <div class="ss-form-question errorbox-good" role="listitem">
+            <div dir="ltr" class="ss-item ss-item-required ss-text">
+                <div class="ss-form-entry">
+                    <label class="ss-q-item-label" for="entry_164629962">
+                        <div class="ss-q-title">Degree / job title
+                            <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+                            <span class="ss-required-asterisk">*</span></div>
+                        <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
+                    </label>
+                    <input type="text" name="entry.164629962" value="" class="ss-q-short"
+                           id="entry_164629962" dir="auto" aria-label="Degree / job title  "
+                           aria-required="true" required="" title="">
+
+                    <div class="error-message" id="1832528894_errorMessage"></div>
+                    <div class="required-message">This is a required question</div>
+                </div>
+            </div>
+        </div>
+        <div class="ss-form-question errorbox-good" role="listitem">
+            <div dir="ltr" class="ss-item ss-item-required ss-text">
+                <div class="ss-form-entry">
+                    <label class="ss-q-item-label" for="entry_1460827648">
+                        <div class="ss-q-title">Areas of expertise
+                            <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+                            <span class="ss-required-asterisk">*</span></div>
+                        <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
+                    </label>
+                    <input type="text" name="entry.1460827648" value="" class="ss-q-short"
+                           id="entry_1460827648" dir="auto" aria-label="Areas of expertise  "
+                           aria-required="true" required="" title="">
+
+                    <div class="error-message" id="1705743661_errorMessage"></div>
+                    <div class="required-message">This is a required question</div>
+                </div>
+            </div>
+        </div>
+        <div class="ss-form-question errorbox-good" role="listitem">
+            <div dir="ltr" class="ss-item ss-item-required ss-text">
+                <div class="ss-form-entry">
+                    <label class="ss-q-item-label" for="entry_99526100">
+                        <div class="ss-q-title">Years of experience
+                            <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+                            <span class="ss-required-asterisk">*</span></div>
+                        <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
+                    </label>
+                    <input type="text" name="entry.99526100" value="" class="ss-q-short" id="entry_99526100"
+                           dir="auto" aria-label="Years of experience  " aria-required="true" required=""
+                           title="">
+
+                    <div class="error-message" id="1030209719_errorMessage"></div>
+                    <div class="required-message">This is a required question</div>
+                </div>
+            </div>
+        </div>
+        <div class="ss-form-question errorbox-good" role="listitem">
+            <div dir="ltr" class="ss-item ss-item-required ss-radio">
+                <div class="ss-form-entry">
+                    <label class="ss-q-item-label" for="entry_2031342787">
+                        <div class="ss-q-title">What operating system do you use?
+                            <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+                            <span class="ss-required-asterisk">*</span></div>
+                        <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
+                    </label>
+
+                    <ul class="ss-choices" role="radiogroup"
+                        aria-label="What operating system do you use?  ">
+                        <li class="ss-choice-item"><label><span
+                                class="ss-choice-item-control goog-inline-block"><input type="radio"
+                                                                                        name="entry.129277038"
+                                                                                        value="Windows"
+                                                                                        id="group_129277038_1"
+                                                                                        role="radio"
+                                                                                        class="ss-q-radio"
+                                                                                        aria-label="Windows"
+                                                                                        required=""
+                                                                                        aria-required="true"></span>
+                            <span class="ss-choice-label">Windows</span>
+                        </label></li>
+                        <li class="ss-choice-item"><label><span
+                                class="ss-choice-item-control goog-inline-block"><input type="radio"
+                                                                                        name="entry.129277038"
+                                                                                        value="Linux"
+                                                                                        id="group_129277038_2"
+                                                                                        role="radio"
+                                                                                        class="ss-q-radio"
+                                                                                        aria-label="Linux"
+                                                                                        required=""
+                                                                                        aria-required="true"></span>
+                            <span class="ss-choice-label">Linux</span>
+                        </label></li>
+                        <li class="ss-choice-item"><label><span
+                                class="ss-choice-item-control goog-inline-block"><input type="radio"
+                                                                                        name="entry.129277038"
+                                                                                        value="Mac"
+                                                                                        id="group_129277038_3"
+                                                                                        role="radio"
+                                                                                        class="ss-q-radio"
+                                                                                        aria-label="Mac"
+                                                                                        required=""
+                                                                                        aria-required="true"></span>
+                            <span class="ss-choice-label">Mac</span>
+                        </label></li>
+                        <li class="ss-choice-item"><label><span
+                                class="ss-choice-item-control goog-inline-block"><input type="radio"
+                                                                                        name="entry.129277038"
+                                                                                        value="other"
+                                                                                        id="group_129277038_4"
+                                                                                        role="radio"
+                                                                                        class="ss-q-radio"
+                                                                                        aria-label="other"
+                                                                                        required=""
+                                                                                        aria-required="true"></span>
+                            <span class="ss-choice-label">other</span>
+                        </label></li>
+                    </ul>
+                    <div class="error-message" id="2031342787_errorMessage"></div>
+                    <div class="required-message">This is a required question</div>
+                </div>
+            </div>
+        </div>
+        <div class="ss-form-question errorbox-good" role="listitem">
+            <div dir="ltr" class="ss-item ss-item-required ss-radio">
+                <div class="ss-form-entry">
+                    <label class="ss-q-item-label" for="entry_1620387020">
+                        <div class="ss-q-title">Which Internet browser do you mostly use?
+                            <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+                            <span class="ss-required-asterisk">*</span></div>
+                        <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
+                    </label>
+
+                    <ul class="ss-choices" role="radiogroup"
+                        aria-label="Which Internet browser do you mostly use?  ">
+                        <li class="ss-choice-item"><label><span
+                                class="ss-choice-item-control goog-inline-block"><input type="radio"
+                                                                                        name="entry.1848649119"
+                                                                                        value="Google Chrome"
+                                                                                        id="group_1848649119_1"
+                                                                                        role="radio"
+                                                                                        class="ss-q-radio"
+                                                                                        aria-label="Google Chrome"
+                                                                                        required=""
+                                                                                        aria-required="true"></span>
+                            <span class="ss-choice-label">Google Chrome</span>
+                        </label></li>
+                        <li class="ss-choice-item"><label><span
+                                class="ss-choice-item-control goog-inline-block"><input type="radio"
+                                                                                        name="entry.1848649119"
+                                                                                        value="Mozilla Firefox"
+                                                                                        id="group_1848649119_2"
+                                                                                        role="radio"
+                                                                                        class="ss-q-radio"
+                                                                                        aria-label="Mozilla Firefox"
+                                                                                        required=""
+                                                                                        aria-required="true"></span>
+                            <span class="ss-choice-label">Mozilla Firefox</span>
+                        </label></li>
+                        <li class="ss-choice-item"><label><span
+                                class="ss-choice-item-control goog-inline-block"><input type="radio"
+                                                                                        name="entry.1848649119"
+                                                                                        value="Microsoft Internet Explorer"
+                                                                                        id="group_1848649119_3"
+                                                                                        role="radio"
+                                                                                        class="ss-q-radio"
+                                                                                        aria-label="Microsoft Internet Explorer"
+                                                                                        required=""
+                                                                                        aria-required="true"></span>
+                            <span class="ss-choice-label">Microsoft Internet Explorer</span>
+                        </label></li>
+                        <li class="ss-choice-item"><label><span
+                                class="ss-choice-item-control goog-inline-block"><input type="radio"
+                                                                                        name="entry.1848649119"
+                                                                                        value="Safari"
+                                                                                        id="group_1848649119_4"
+                                                                                        role="radio"
+                                                                                        class="ss-q-radio"
+                                                                                        aria-label="Safari"
+                                                                                        required=""
+                                                                                        aria-required="true"></span>
+                            <span class="ss-choice-label">Safari</span>
+                        </label></li>
+                        <li class="ss-choice-item"><label><span
+                                class="ss-choice-item-control goog-inline-block"><input type="radio"
+                                                                                        name="entry.1848649119"
+                                                                                        value="Opera"
+                                                                                        id="group_1848649119_5"
+                                                                                        role="radio"
+                                                                                        class="ss-q-radio"
+                                                                                        aria-label="Opera"
+                                                                                        required=""
+                                                                                        aria-required="true"></span>
+                            <span class="ss-choice-label">Opera</span>
+                        </label></li>
+                        <li class="ss-choice-item"><label><span
+                                class="ss-choice-item-control goog-inline-block"><input type="radio"
+                                                                                        name="entry.1848649119"
+                                                                                        value="other"
+                                                                                        id="group_1848649119_6"
+                                                                                        role="radio"
+                                                                                        class="ss-q-radio"
+                                                                                        aria-label="other"
+                                                                                        required=""
+                                                                                        aria-required="true"></span>
+                            <span class="ss-choice-label">other</span>
+                        </label></li>
+                    </ul>
+                    <div class="error-message" id="1620387020_errorMessage"></div>
+                    <div class="required-message">This is a required question</div>
+                </div>
+            </div>
+        </div>
+        <div class="ss-form-question errorbox-good" role="listitem">
+            <div dir="ltr" class="ss-item ss-item-required ss-checkbox">
+                <div class="ss-form-entry">
+                    <label class="ss-q-item-label" for="entry_1362941612">
+                        <div class="ss-q-title">What are the software tools you use for your research
+                            (please select all that apply)?
+                            <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+                            <span class="ss-required-asterisk">*</span></div>
+                        <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
+                    </label>
+
+                    <ul class="ss-choices ss-choices-required" role="group"
+                        aria-label="What are the software tools you use for your research (please select all that apply)?  ">
+                        <li class="ss-choice-item"><label><span
+                                class="ss-choice-item-control goog-inline-block"><input type="checkbox"
+                                                                                        name="entry.834130934"
+                                                                                        value="Ingenuity Pathways Analysis"
+                                                                                        id="group_834130934_1"
+                                                                                        role="checkbox"
+                                                                                        class="ss-q-checkbox"
+                                                                                        aria-required="true"></span>
+                            <span class="ss-choice-label">Ingenuity Pathways Analysis</span>
+                        </label></li>
+                        <li class="ss-choice-item"><label><span
+                                class="ss-choice-item-control goog-inline-block"><input type="checkbox"
+                                                                                        name="entry.834130934"
+                                                                                        value="Pathway Studio"
+                                                                                        id="group_834130934_2"
+                                                                                        role="checkbox"
+                                                                                        class="ss-q-checkbox"
+                                                                                        aria-required="true"></span>
+                            <span class="ss-choice-label">Pathway Studio</span>
+                        </label></li>
+                        <li class="ss-choice-item"><label><span
+                                class="ss-choice-item-control goog-inline-block"><input type="checkbox"
+                                                                                        name="entry.834130934"
+                                                                                        value="Metacore"
+                                                                                        id="group_834130934_3"
+                                                                                        role="checkbox"
+                                                                                        class="ss-q-checkbox"
+                                                                                        aria-required="true"></span>
+                            <span class="ss-choice-label">Metacore</span>
+                        </label></li>
+                        <li class="ss-choice-item"><label><span
+                                class="ss-choice-item-control goog-inline-block"><input type="checkbox"
+                                                                                        name="entry.834130934"
+                                                                                        value="Reactome"
+                                                                                        id="group_834130934_4"
+                                                                                        role="checkbox"
+                                                                                        class="ss-q-checkbox"
+                                                                                        aria-required="true"></span>
+                            <span class="ss-choice-label">Reactome</span>
+                        </label></li>
+                        <li class="ss-choice-item"><label><span
+                                class="ss-choice-item-control goog-inline-block"><input type="checkbox"
+                                                                                        name="entry.834130934"
+                                                                                        value="KEGG"
+                                                                                        id="group_834130934_5"
+                                                                                        role="checkbox"
+                                                                                        class="ss-q-checkbox"
+                                                                                        aria-required="true"></span>
+                            <span class="ss-choice-label">KEGG</span>
+                        </label></li>
+                        <li class="ss-choice-item"><label><span
+                                class="ss-choice-item-control goog-inline-block"><input type="checkbox"
+                                                                                        name="entry.834130934"
+                                                                                        value="Weka"
+                                                                                        id="group_834130934_6"
+                                                                                        role="checkbox"
+                                                                                        class="ss-q-checkbox"
+                                                                                        aria-required="true"></span>
+                            <span class="ss-choice-label">Weka</span>
+                        </label></li>
+                        <li class="ss-choice-item"><label><span
+                                class="ss-choice-item-control goog-inline-block"><input type="checkbox"
+                                                                                        name="entry.834130934"
+                                                                                        value="Blast"
+                                                                                        id="group_834130934_7"
+                                                                                        role="checkbox"
+                                                                                        class="ss-q-checkbox"
+                                                                                        aria-required="true"></span>
+                            <span class="ss-choice-label">Blast</span>
+                        </label></li>
+                        <li class="ss-choice-item"><label><span
+                                class="ss-choice-item-control goog-inline-block"><input type="checkbox"
+                                                                                        name="entry.834130934"
+                                                                                        value="Cytoscape"
+                                                                                        id="group_834130934_8"
+                                                                                        role="checkbox"
+                                                                                        class="ss-q-checkbox"
+                                                                                        aria-required="true"></span>
+                            <span class="ss-choice-label">Cytoscape</span>
+                        </label></li>
+                    </ul>
+                    <div class="error-message" id="1362941612_errorMessage"></div>
+                    <div class="required-message">This is a required question</div>
+                </div>
+            </div>
+        </div>
+        <div class="ss-form-question errorbox-good" role="listitem">
+            <div dir="ltr" class="ss-item ss-item-required ss-paragraph-text">
+                <div class="ss-form-entry">
+                    <label class="ss-q-item-label" for="entry_1243387507">
+                        <div class="ss-q-title">From the software you use, Does it has a good graph layout?
+                            <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+                            <span class="ss-required-asterisk">*</span></div>
+                        <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
+                    </label>
+                    <textarea name="entry.1243387507" rows="8" cols="0" class="ss-q-long"
+                              id="entry_1243387507" dir="auto"
+                              aria-label="From the software you use, Does it has a good graph layout?  "
+                              aria-required="true" required=""></textarea>
+
+                    <div class="error-message" id="1323845226_errorMessage"></div>
+                    <div class="required-message">This is a required question</div>
+                </div>
+            </div>
+        </div>
+        <div class="ss-form-question errorbox-good" role="listitem">
+            <div dir="ltr" class="ss-item ss-item-required ss-paragraph-text">
+                <div class="ss-form-entry">
+                    <label class="ss-q-item-label" for="entry_1197881901">
+                        <div class="ss-q-title">What do you think of manually layouting the pathway graph?
+                            <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+                            <span class="ss-required-asterisk">*</span></div>
+                        <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
+                    </label>
+                    <textarea name="entry.1197881901" rows="8" cols="0" class="ss-q-long"
+                              id="entry_1197881901" dir="auto"
+                              aria-label="What do you think of manually layouting the pathway graph?  "
+                              aria-required="true" required=""></textarea>
+
+                    <div class="error-message" id="1705462604_errorMessage"></div>
+                    <div class="required-message">This is a required question</div>
+                </div>
+            </div>
+        </div>
+        <div class="ss-form-question errorbox-good" role="listitem">
+            <div dir="ltr" class="ss-item  ss-paragraph-text">
+                <div class="ss-form-entry">
+                    <label class="ss-q-item-label" for="entry_163442447">
+                        <div class="ss-q-title">Comments / Suggestions
+                        </div>
+                        <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
+                    </label>
+                    <textarea name="entry.163442447" rows="8" cols="0" class="ss-q-long"
+                              id="entry_163442447" dir="auto"
+                              aria-label="Comments / Suggestions  "></textarea>
+
+                    <div class="error-message" id="69055765_errorMessage"></div>
+                    <div class="required-message">This is a required question</div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="draftResponse" value="[,,&quot;-2614375543395726248&quot;]
+">
+        <input type="hidden" name="pageHistory" value="0">
+
+
+        <input type="hidden" name="fbzx" value="-2614375543395726248">
+
+        <div class="ss-item ss-navigate">
+            <table id="navigation-table">
+                <tbody>
+                <tr>
+                    <td class="ss-form-entry goog-inline-block" id="navigation-buttons" dir="ltr">
+                        <!-- <input type="submit" name="submit" value="Submit" id="submitButton"> -->
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        </ol>
+        </form>
+        </div>
+        </div>
+        <p>Thanks, you successfully finished the task.</p>
+        </div>
+        <input id="submitButton" type="submit" name="Submit" value="Submit">
+    </form>
+    <hr/>
+    <br/>
+</div>
+</body>
+</html>

@@ -23,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="externalpage.htm" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/externalpage.htm">
+      <file leaf-file-name="externalpage_old.htm" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/externalpage_old.htm">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.56305504" vertical-offset="1321" max-vertical-offset="3952">
-              <caret line="63" column="59" selection-start-line="63" selection-start-column="59" selection-end-line="63" selection-end-column="59" />
+            <state vertical-scroll-proportion="-3.3392856" vertical-offset="3349" max-vertical-offset="4212">
+              <caret line="525" column="86" selection-start-line="525" selection-start-column="68" selection-end-line="525" selection-end-column="86" />
               <folding>
                 <element signature="n#style#0;n#h1#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#ol#0;n#form#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -42,8 +42,17 @@
                 <element signature="tag#div#8;tag#ol#0;tag#form#0;tag#div#0;tag#div#0;tag#div#0;tag#form#0;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
                 <element signature="tag#div#9;tag#ol#0;tag#form#0;tag#div#0;tag#div#0;tag#div#0;tag#form#0;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
                 <element signature="tag#div#10;tag#ol#0;tag#form#0;tag#div#0;tag#div#0;tag#div#0;tag#form#0;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
-                <element signature="tag#div#11;tag#ol#0;tag#form#0;tag#div#0;tag#div#0;tag#div#0;tag#form#0;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="externalpage.htm" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/externalpage.htm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3809524" vertical-offset="2220" max-vertical-offset="3094">
+              <caret line="94" column="71" selection-start-line="94" selection-start-column="71" selection-end-line="94" selection-end-column="71" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -195,28 +204,8 @@
       <recent name="C:\Users\Yongnan\Documents\GitHub\younyzhu.github.com\mturk" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.externalpage.htm (1)">
-    <configuration default="false" name="task1.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" uri="http://localhost:63342/mturk/task1.html">
-      <RunnerSettings RunnerId="JavascriptDebugRunner" />
-      <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="exp1.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" uri="http://localhost:63342/mturk/exp1.html">
-      <RunnerSettings RunnerId="JavascriptDebugRunner" />
-      <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="externalpage.htm (1)" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" uri="http://localhost:63342/mturk/externalpage.htm">
-      <RunnerSettings RunnerId="JavascriptDebugRunner" />
-      <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="form.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" uri="http://localhost:63342/mturk/form.html">
-      <RunnerSettings RunnerId="JavascriptDebugRunner" />
-      <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="1.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" uri="http://localhost:63342/mturk/1.html">
+  <component name="RunManager" selected="JavaScript Debug.externalpage.htm">
+    <configuration default="false" name="externalpage.htm" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" uri="http://localhost:63342/mturk/externalpage.htm">
       <RunnerSettings RunnerId="JavascriptDebugRunner" />
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
       <method />
@@ -262,26 +251,12 @@
     <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
       <method />
     </configuration>
-    <configuration default="false" name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" uri="http://localhost:63342/mturk/index.html">
-      <RunnerSettings RunnerId="JavascriptDebugRunner" />
-      <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
-      <method />
-    </configuration>
-    <list size="6">
-      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
-      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.task1.html" />
-      <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.exp1.html" />
-      <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.externalpage.htm (1)" />
-      <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.form.html" />
-      <item index="5" class="java.lang.String" itemvalue="JavaScript Debug.1.html" />
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.externalpage.htm" />
     </list>
     <recent_temporary>
-      <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.externalpage.htm (1)" />
-        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.1.html" />
-        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.task1.html" />
-        <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.form.html" />
-        <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.exp1.html" />
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.externalpage.htm" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="JUnit" default="true" selected="false">
@@ -400,7 +375,7 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/externalpage.htm">
+    <entry file="file://$PROJECT_DIR$/externalpage_old.htm">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2210">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -418,7 +393,6 @@
             <element signature="tag#div#8;tag#ol#0;tag#form#0;tag#div#0;tag#div#0;tag#div#0;tag#form#0;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
             <element signature="tag#div#9;tag#ol#0;tag#form#0;tag#div#0;tag#div#0;tag#div#0;tag#form#0;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
             <element signature="tag#div#10;tag#ol#0;tag#form#0;tag#div#0;tag#div#0;tag#div#0;tag#form#0;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
-            <element signature="tag#div#11;tag#ol#0;tag#form#0;tag#div#0;tag#div#0;tag#div#0;tag#form#0;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -762,14 +736,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/externalpageOld.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3042">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/core-scripting.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.542811" vertical-offset="6632" max-vertical-offset="8970">
@@ -798,10 +764,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/externalpage.htm">
+    <entry file="file://$PROJECT_DIR$/externalpage_old.htm">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56305504" vertical-offset="1321" max-vertical-offset="3952">
-          <caret line="63" column="59" selection-start-line="63" selection-start-column="59" selection-end-line="63" selection-end-column="59" />
+        <state vertical-scroll-proportion="-3.3392856" vertical-offset="3349" max-vertical-offset="4212">
+          <caret line="525" column="86" selection-start-line="525" selection-start-column="68" selection-end-line="525" selection-end-column="86" />
           <folding>
             <element signature="n#style#0;n#h1#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#ol#0;n#form#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -816,8 +782,15 @@
             <element signature="tag#div#8;tag#ol#0;tag#form#0;tag#div#0;tag#div#0;tag#div#0;tag#form#0;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
             <element signature="tag#div#9;tag#ol#0;tag#form#0;tag#div#0;tag#div#0;tag#div#0;tag#form#0;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
             <element signature="tag#div#10;tag#ol#0;tag#form#0;tag#div#0;tag#div#0;tag#div#0;tag#form#0;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
-            <element signature="tag#div#11;tag#ol#0;tag#form#0;tag#div#0;tag#div#0;tag#div#0;tag#form#0;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/externalpage.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3809524" vertical-offset="2220" max-vertical-offset="3094">
+          <caret line="94" column="71" selection-start-line="94" selection-start-column="71" selection-end-line="94" selection-end-column="71" />
+          <folding />
         </state>
       </provider>
     </entry>
