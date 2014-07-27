@@ -44,6 +44,7 @@
                 document.getElementById('submitButton').value = "You must ACCEPT the HIT before you can submit the results.";
             } else {
                 $("#content").show();
+                $("id").innerHTML =  workerId;
                 var form = document.getElementById('mturk_form');
                 if (document.referrer && ( document.referrer.indexOf('workersandbox') != -1)) {
                     form.action = "http://workersandbox.mturk.com/mturk/externalSubmit";
@@ -71,9 +72,9 @@
 
     <hr/>
     <!-- <form id="mturk_form" method="POST" action="http://www.mturk.com/mturk/externalSubmit"> -->
-    <form id="mturk_form" method="POST" action="http://workersandbox.mturk.com/mturk/externalSubmit">
+    <form id="mturk_form" method="POST" action="http://www.mturk.com/mturk/externalSubmit">
         <input type="hidden" id="assignmentId" name="assignmentId" value="">
-
+        <p id="id"></p>
         <p>We believe you have already read the instruction in your qualification. If you forget something you can click
             the
             button.
@@ -83,13 +84,13 @@
             </button>
         </p>
         <div id="content">
-        <p>Please click the link below to do the task.<br/>
+        <h3>Step 1:</h3><p>Please click the link below to do the task.<br/></p>
 
         <h2><a href=http://www.csee.umbc.edu/~yongnan/experiment/experiment_Test/pathBubble.html target="_bank"><font
-                color=red>Pathway visualization Task</font></a></h2></p>
+                color=red>Pathway visualization Task</font></a></h2>
         <!-- <iframe id="pageFrame" width="100%" height="100%"></iframe>  -->
 
-        <p>If you have completed the Experiment, and successfully submitted your result, please fill the
+        <h3>Step 2:</h3><p>If you have completed the Experiment, and successfully submitted your result, please fill the
             post-questionnaire.</p>
         <br/>
         <iframe src="https://docs.google.com/forms/d/1_dn53sDYBvu2RkyLng11kSPuCi30yt7THBo1jV1GtRw/viewform?embedded=true"
