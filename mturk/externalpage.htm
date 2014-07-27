@@ -40,8 +40,10 @@
             if (assignmentId == "ASSIGNMENT_ID_NOT_AVAILABLE") {
                 // If we're previewing, disable the button and give it a helpful message
                 document.getElementById('submitButton').disabled = true;
+                $("#content").hide();
                 document.getElementById('submitButton').value = "You must ACCEPT the HIT before you can submit the results.";
             } else {
+                $("#content").show();
                 var form = document.getElementById('mturk_form');
                 if (document.referrer && ( document.referrer.indexOf('workersandbox') != -1)) {
                     form.action = "http://workersandbox.mturk.com/mturk/externalSubmit";
@@ -80,6 +82,7 @@
                 Instruction
             </button>
         </p>
+        <div id="content">
         <p>Please click the link below to do the task.<br/>
 
         <h2><a href=http://www.csee.umbc.edu/~yongnan/experiment/experiment_Test/pathBubble.html target="_bank"><font
@@ -93,6 +96,7 @@
                 width="1000" height="850" frameborder="0" marginheight="0" marginwidth="0">Loading...
         </iframe>
         <p>Thanks, you successfully finished the task.</p>
+        </div>
         <input id="submitButton" type="submit" name="Submit" value="Submit">
     </form>
     <hr/>
