@@ -43,6 +43,10 @@
                 $("#content").hide();
                 document.getElementById('submitButton').value = "You must ACCEPT the HIT before you can submit the results.";
             } else {
+                var url= "http://www.csee.umbc.edu/~yongnan/experiment/experiment_Test/pathBubble.html";
+                url +="?workerId=";
+                url+=workerId;
+                $("#href").attr('href',url);
                 $("#content").show();
                 $("#assignmentId").val(assignmentId);
                 var form = document.getElementById('mturk_form');
@@ -75,7 +79,7 @@
     <form id="mturk_form" method="POST" action="https://workersandbox.mturk.com/mturk/externalSubmit">
         <input type="hidden" id="assignmentId" name="assignmentId" value="">
         <p id="id"></p>
-        <p>We believe you have already read the instruction in your qualification. If you forget something you can click
+        <p>We believe you have already read the instruction in your qualification test. If you forget something you can click
             the
             button.
             <button id="trial"
@@ -86,7 +90,7 @@
         <div id="content">
         <h3>Step 1:</h3><p>Please click the link below to do the task.<br/></p>
 
-        <h2><a href=http://www.csee.umbc.edu/~yongnan/experiment/experiment_Test/pathBubble.html target="_bank"><font
+        <h2><a id="href" href=http://www.csee.umbc.edu/~yongnan/experiment/experiment_Test/pathBubble.html target="_bank"><font
                 color=red>Pathway visualization Task</font></a></h2>
         <!-- <iframe id="pageFrame" width="100%" height="100%"></iframe>  -->
 
