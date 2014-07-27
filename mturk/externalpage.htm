@@ -1,79 +1,91 @@
-<!-- This file needs to be hosted on an external server.  -->
+<!DOCTYPE html>
 <html>
-<script language="Javascript">
-//
-// This method Gets URL Parameters (GUP)
-//
-function gup( name )
-{
-  var regexS = "[\\?&]"+name+"=([^&#]*)";
-  var regex = new RegExp( regexS );
-  var tmpURL = window.location.href;
-  var results = regex.exec( tmpURL );
-  if( results == null )
-    return "";
-  else
-    return results[1];
-}
-
-//
-// This method decodes the query parameters that were URL-encoded
-//
-function decode(strToDecode)
-{
-  var encoded = strToDecode;
-  return unescape(encoded.replace(/\+/g,  " "));
-}
-
-</script>
-<body>
-<form id="mturk_form" method="POST" action="http://www.mturk.com/mturk/externalSubmit">
-<input type="hidden" id="assignmentId" name="assignmentId" value="">
-<table border="0" height="100%" width="100%">
-<tr>
-    <td>
-    <h1>What type of webpage is shown below?</h1>
-    <p>
-    <input type="radio" name="category" value="news">&nbsp;News Site<br>
-    <input type="radio" name="category" value="search">&nbsp;Search Engine<br>
-    <input type="radio" name="category" value="retail">&nbsp;Online Retailer<br>
-    <input type="radio" name="category" value="other" selected>&nbsp;Other<br>
-    <p>
-    <input id="submitButton" type="submit" name="Submit" value="Submit">
-    <p>
-    </td>
-</tr>
-<tr>
-    <td height="100%">
-        <iframe src="http://www.csee.umbc.edu/~yongnan/experiment/Path_Bubbles/pathBubble.html" width="100%" height="100%" scrolling="auto">
-            Your browser doesn't support 'iframe'. Click here to see the referenced
-            URL in a new browser instance: &lt;a class="link" href="http://www.csee.umbc.edu/~yongnan/experiment/Path_Bubbles/pathBubble.html" target="_blank"&gt;link&lt;/a&gt;
-        </iframe>
-    </td>
-    <td height="100%">
-    <iframe id="pageFrame" width="100%" height="100%"></iframe>
-    </td>
-</tr>
-</table>
-</form>
-<script language="Javascript">
-    document.getElementById('pageFrame').src = decode(gup('url'));
-    document.getElementById('assignmentId').value = gup('assignmentId');
-    //
-    // Check if the worker is PREVIEWING the HIT or if they've ACCEPTED the HIT
-    //
-    if (gup('assignmentId') == "ASSIGNMENT_ID_NOT_AVAILABLE")
-    {
-  // If we're previewing, disable the button and give it a helpful message
-  document.getElementById('submitButton').disabled = true;
-  document.getElementById('submitButton').value = "You must ACCEPT the HIT before you can submit the results.";
-    } else {
-        var form = document.getElementById('mturk_form');
-        if (document.referrer && ( document.referrer.indexOf('workersandbox') != -1) ) {
-            form.action = "http://workersandbox.mturk.com/mturk/externalSubmit";
+<head>
+    <link rel="stylesheet" href="css/index.css" type="text/css" charset="utf-8"/>
+    <script type="text/javascript" src="./jqueryLib/jquery-1.10.2.js"></script>
+    <script language="Javascript">
+        //document.getElementById('pageFrame').src = decode(gup('url'));
+        document.getElementById('assignmentId').value = gup('assignmentId');
+        //
+        // Check if the worker is PREVIEWING the HIT or if they've ACCEPTED the HIT
+        //
+        if (gup('assignmentId') == "ASSIGNMENT_ID_NOT_AVAILABLE") {
+            // If we're previewing, disable the button and give it a helpful message
+            document.getElementById('submitButton').disabled = true;
+            document.getElementById('submitButton').value = "You must ACCEPT the HIT before you can submit the results.";
+        } else {
+            var form = document.getElementById('mturk_form');
+            if (document.referrer && ( document.referrer.indexOf('workersandbox') != -1)) {
+                form.action = "http://workersandbox.mturk.com/mturk/externalSubmit";
+            }
         }
-    }
+        //
+        // This method Gets URL Parameters (GUP)
+        //
+        function gup(name) {
+            var regexS = "[\\?&]" + name + "=([^&#]*)";
+            var regex = new RegExp(regexS);
+            var tmpURL = window.location.href;
+            var results = regex.exec(tmpURL);
+            if (results == null)
+                return "";
+            else
+                return results[1];
+        }
 
-</script>
+        //
+        // This method decodes the query parameters that were URL-encoded
+        //
+        function decode(strToDecode) {
+            var encoded = strToDecode;
+            return unescape(encoded.replace(/\+/g, " "));
+        }
+        function basicPopup(url) {
+            popupWindow = window.open(url, 'popUpWindow', 'height=' + screen.height + ',width=' + screen.width + ',\
+		left=0,top=0,resizable=yes,scrollbars=yes,toolbar=no,\
+		menubar=no,location=no,directories=no,status=yes');
+        }
+
+    </script>
+</head>
+<body>
+<h1 style="text-align: center">Pathway Visualization Task</h1>
+<br/>
+
+<div class="centerBox">
+    <br/>
+    <p class="superText2"> Welcome and thank you for agreeing to participate in this study.
+        Your effort will help us improve scientific research.
+    </p>
+
+<hr/>
+    <form id="mturk_form" method="POST" action="http://www.mturk.com/mturk/externalSubmit">
+        <input type="hidden" id="assignmentId" name="assignmentId" value="">
+
+        <p>We believe you have already read the instruction in your qualification. If you forget something you can click the
+            button.
+            <button id="trial"
+                    onclick="basicPopup('http://younyzhu.github.io/mturk/index.html');return false">
+                Instruction
+            </button>
+        </p>
+        <p>Please click the link below to do the task.<br/>
+        <h2><a href=https://support.google.com/chrome/answer/1220892 target="_bank"><font color = red>Pathway visualization Task</font></a></h2></p>
+        <!-- <iframe id="pageFrame" width="100%" height="100%"></iframe>  -->
+        <table border="0" height="0%" width="100%">
+            <tr>
+                <td>
+                    <p>If you have completed the Experiment, and successfully submitted your result, please fill the post-questionnaire.</p>
+                    <input id="submitButton" type="submit" name="Submit" value="Submit"> <br/>
+                    <textarea cols="40" rows="5" name="Comments" id="Comments"> </textarea>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+    <hr/>
+    <br/>
+</div>
 </body>
 </html>
