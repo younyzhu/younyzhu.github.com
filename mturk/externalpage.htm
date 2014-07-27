@@ -32,19 +32,21 @@
                 return $.getUrlVars()[name];
             }
         });
-        var assignmentId = $.getUrlVar('assignmentId');
-        var workerId = $.getUrlVar('workerId');
-        var hitId = $.getUrlVar('hitId');
-        if (assignmentId == "ASSIGNMENT_ID_NOT_AVAILABLE") {
-            // If we're previewing, disable the button and give it a helpful message
-            document.getElementById('submitButton').disabled = true;
-            document.getElementById('submitButton').value = "You must ACCEPT the HIT before you can submit the results.";
-        } else {
-            var form = document.getElementById('mturk_form');
-            if (document.referrer && ( document.referrer.indexOf('workersandbox') != -1)) {
-                form.action = "http://workersandbox.mturk.com/mturk/externalSubmit";
+        $(document).ready(function () {
+            var assignmentId = $.getUrlVar('assignmentId');
+            var workerId = $.getUrlVar('workerId');
+            var hitId = $.getUrlVar('hitId');
+            if (assignmentId == "ASSIGNMENT_ID_NOT_AVAILABLE") {
+                // If we're previewing, disable the button and give it a helpful message
+                document.getElementById('submitButton').disabled = true;
+                document.getElementById('submitButton').value = "You must ACCEPT the HIT before you can submit the results.";
+            } else {
+                var form = document.getElementById('mturk_form');
+                if (document.referrer && ( document.referrer.indexOf('workersandbox') != -1)) {
+                    form.action = "http://workersandbox.mturk.com/mturk/externalSubmit";
+                }
             }
-        }
+        });
 
 
     </script>
