@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c7e6a216-82a3-4cf0-ade1-a5ba1a283c89" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Yongnan\Downloads\younyzhu.github.com\LineDrawingTask" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LineDrawingTasks/index.html" afterPath="$PROJECT_DIR$/LineDrawingTasks/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LineDrawingTasks/task_Type.html" afterPath="$PROJECT_DIR$/LineDrawingTasks/task_Type.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="younyzhu.github.com.iws" />
@@ -26,31 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="pathBubble.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Path_Bubble/pathBubble.html">
+      <file leaf-file-name="task_Type.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/LineDrawingTasks/task_Type.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="624" max-vertical-offset="1664">
-              <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Path_Bubble/js/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1274" max-vertical-offset="19318">
-              <caret line="49" column="34" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="visualization.css" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Path_Bubble/css/visualization.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="364" max-vertical-offset="2704">
-              <caret line="14" column="30" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.49851632" vertical-offset="2706" max-vertical-offset="4628">
+              <caret line="117" column="67" selection-start-line="117" selection-start-column="13" selection-end-line="117" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -91,12 +72,14 @@
         <option value="$PROJECT_DIR$/Path_Bubble/js/BubbleWidget.js" />
         <option value="$PROJECT_DIR$/Path_Bubble/pathBubble.html" />
         <option value="$PROJECT_DIR$/Path_Bubble/css/visualization.css" />
+        <option value="$PROJECT_DIR$/LineDrawingTasks/index.html" />
+        <option value="$PROJECT_DIR$/LineDrawingTasks/task_Type.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="112" />
+    <option name="y" value="509" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -145,6 +128,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="younyzhu.github.com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="younyzhu.github.com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LineDrawingTasks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -170,13 +167,18 @@
       <recent name="C:\Users\Yongnan\Documents\GitHub\younyzhu.github.com\Composition_Visualization\js" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.pathBubble.html">
+  <component name="RunManager" selected="JavaScript Debug.index.html (1)">
     <configuration default="false" name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" uri="http://localhost:63342/younyzhu.github.com/index.html">
       <RunnerSettings RunnerId="JavascriptDebugRunner" />
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
       <method />
     </configuration>
     <configuration default="false" name="pathBubble.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" uri="http://localhost:63342/younyzhu.github.com/Path_Bubble/pathBubble.html">
+      <RunnerSettings RunnerId="JavascriptDebugRunner" />
+      <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="index.html (1)" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" uri="http://localhost:63342/younyzhu.github.com/LineDrawingTasks/index.html">
       <RunnerSettings RunnerId="JavascriptDebugRunner" />
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
       <method />
@@ -227,15 +229,17 @@
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
       <method />
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.visualization.htm" />
       <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
       <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.pathBubble.html" />
+      <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.index.html (1)" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.pathBubble.html" />
-        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.index.html (1)" />
+        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.pathBubble.html" />
+        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="JUnit" default="true" selected="false">
@@ -291,15 +295,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <frame x="112" y="509" width="1936" height="1056" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3303671" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3303671" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1858873" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3718919" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1868743" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -354,29 +358,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Path_Bubble/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1274" max-vertical-offset="19318">
-          <caret line="49" column="34" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Path_Bubble/css/visualization.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="364" max-vertical-offset="2704">
-          <caret line="14" column="30" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Composition_Visualization/jqueryLib/jquery-ui-1.10.4.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="20410" max-vertical-offset="390364">
-          <caret line="785" column="0" selection-start-line="785" selection-start-column="0" selection-end-line="785" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Composition_Visualization/js/connections.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1987" max-vertical-offset="2886">
@@ -699,6 +680,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Path_Bubble/css/visualization.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="364" max-vertical-offset="2704">
+          <caret line="14" column="30" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Path_Bubble/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1274" max-vertical-offset="19318">
@@ -707,18 +696,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/LineDrawingTasks/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38165137" vertical-offset="702" max-vertical-offset="1742">
+          <caret line="35" column="80" selection-start-line="35" selection-start-column="68" selection-end-line="35" selection-end-column="110" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Path_Bubble/pathBubble.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="624" max-vertical-offset="1664">
+        <state vertical-scroll-proportion="-12.580646" vertical-offset="234" max-vertical-offset="1638">
           <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Path_Bubble/css/visualization.css">
+    <entry file="file://$PROJECT_DIR$/LineDrawingTasks/brainTractography_Depth_task.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="364" max-vertical-offset="2704">
-          <caret line="14" column="30" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+        <state vertical-scroll-proportion="-17.65748" vertical-offset="8970" max-vertical-offset="11518">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LineDrawingTasks/task_Type.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49851632" vertical-offset="2706" max-vertical-offset="4628">
+          <caret line="117" column="67" selection-start-line="117" selection-start-column="13" selection-end-line="117" selection-end-column="13" />
           <folding />
         </state>
       </provider>
