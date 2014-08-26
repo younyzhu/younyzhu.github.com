@@ -43,7 +43,7 @@
                 $("#content").hide();
                 document.getElementById('submitButton').value = "You must ACCEPT the HIT before you can submit the results.";
             } else {
-                var url= "http://www.csee.umbc.edu/~yongnan/experiment/experiment_Test/pathBubbles.html";
+                var url= "http://www.csee.umbc.edu/~yongnan/PathwayPilot/pilotTask1.html";
                 url +="?workerId=";
                 url+=workerId;
                 $("#href").attr('href',url);
@@ -75,13 +75,12 @@
     </p>
 
     <hr/>
-    <!-- <form id="mturk_form" method="POST" action="https://www.mturk.com/mturk/externalSubmit"> -->
     <form id="mturk_form" method="POST" action="https://workersandbox.mturk.com/mturk/externalSubmit">
         <input type="hidden" id="assignmentId" name="assignmentId" value="">
         <p id="id"></p>
         <p> You can open this page
             <button id="trial"
-                    onclick="basicPopup('https://younyzhu.github.io/mturk/index.html');return false">
+                    onclick="basicPopup('http://www.csee.umbc.edu/~yongnan/mturk/index.html');return false">
                              Introduction
             </button>
             for your references.
@@ -89,7 +88,7 @@
         <div id="content">
         <h3>Step 1:</h3><p>Please click the link below for opening a task.<br/></p>
 
-        <h3><a id="href" href=http://www.csee.umbc.edu/~yongnan/experiment/experiment_Test/pathBubbles.html target="_bank"><font
+        <h3><a id="href" href=http://www.csee.umbc.edu/~yongnan/PathwayPilot/pilotTask1.html target="_bank"><font
                 color=blue>Pathway visualization Task</font></a></h3>
         <h3>Step 2:</h3><p>If you have completed the experiment and successfully submitted your result, please click the button below to submit your hit.</p>
         </div>
