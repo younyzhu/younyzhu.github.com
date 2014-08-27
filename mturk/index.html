@@ -77,7 +77,8 @@ The pathway includes two compartments: nucleoplasm and nuclear envelope. </p>
             <p>
                 <b>Compartments (blocks)</b>: G, H<br>
                 <b>Nodes</b>: A, B, C , D, E, F<br>
-                <b>Edges</b>: E->F, F->C, C->A, C->D, B->D, D->A
+                <b>Edges</b>: E->F, F->C, C->A, C->D, B->D, D->A<br>
+                <b>Reaction</b>:F, D (it is represented with a small circle, rectangle or triangle filled with white color)
                 <p>
                 All edges are directional, each of which have a start point and an endpoint.<br/>
             </p>
@@ -222,8 +223,11 @@ aesthetically pleasing layout.
     <LI>Here is the list of mouse actions for graph rearrangement. <br/>
    <ul>
        <li>Select: you can click left-mouse to select any nodes or comparment. The border of the selected one will become yellow.</li>
-       <li>Multi-select: you can select a group of nodes by holding down the "Ctrl" key on your
-           keyboard while using left-mouse selection.</li>
+       <li>Multi-select:<br/>
+           (1) you can select a group of nodes by holding down the "Ctrl" key on your
+           keyboard while using left-mouse selection.<br/>
+           (2) you can select a group of nodes which is connected with a reaction, just by clicking the reaction while pressing down the "Shift" key on your keyboard. <br/>
+           (3) you can select the same color of nodes inside a compartment, just by pressing down the "Alt" key on your keyboard while selecting a colored node</li>
        <li>Move: you can move any nodes and compartments by left-mouse drag, when they are selected.</li>
        <li>Resize: you can resize the compartment by putting your cursor on the edge, and then left-mouse click and drag it.</li>
    </ul>
