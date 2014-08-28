@@ -65,34 +65,31 @@
     </script>
 </head>
 <body>
-<h1 style="text-align: center">Pathway Visualization Task</h1>
+<h1 style="text-align: center">Graph arrangement task</h1>
 <br/>
 
 <div class="centerBox">
     <br/>
-    <p class="superText2"> Welcome and thank you for agreeing to participate in this study.
-        Your effort will help us improve visualization used in biological pathway analyses.
-    </p>
-
     <hr/>
     <form id="mturk_form" method="POST" action="https://workersandbox.mturk.com/mturk/externalSubmit">
         <input type="hidden" id="assignmentId" name="assignmentId" value="">
         <p id="id"></p>
-        <p> This task is to rearrange the nodes of a network in a way that follows rules in the training document.<br/>
-            Please note that there is no time limit and you can take as long as you want to generate a better result.<br/>
-            You can open this page
+        <p> This task is to rearrange the nodes in a graph in a way that follows rules in the training document.<br/>
+            Please note that your payment will depend on how well you follow those rules. 
+			There is no time limit and you can take as long as you want to generate a better result.<br/>
+            Please use  
             <button id="trial"
                     onclick="basicPopup('http://www.csee.umbc.edu/~yongnan/mturk/index.html');return false">
-                             Introduction
+                            Training Document 
             </button>
             for your references.
         </p>
         <div id="content">
-        <h3>Step 1:</h3><p>Please click the link below for opening a task.<br/></p>
+        <h3>Step 1:</h3><p>Please click the link below to load the task.<br/></p>
 
         <h3><a id="href" href=http://www.csee.umbc.edu/~yongnan/PathwayPilot/pilotTask1.html target="_bank"><font
-                color=blue>Pathway visualization Task</font></a></h3>
-        <h3>Step 2:</h3><p>If you have completed the experiment and successfully submitted your result, please click the button below to submit your hit.</p>
+                color=blue>Graph arrangement task</font></a></h3>
+        <h3>Step 2:</h3><p>Once you finish the experiment and submit your result, please click the button below to submit your hit.</p>
         </div>
         <input id="submitButton" type="submit" name="Submit" value="Submit">
     </form>

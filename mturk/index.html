@@ -43,12 +43,12 @@
     to produce legible and
     aesthetically pleasing layout.</p>
 <p>
-    For example, Fig.2(a) is the original pathway graph of "chromosome maintenance", and Fig.2(b) is the re-arranged
+    For example, Fig.2(a) is the original pathway graph of "Amine-derived hormones", and Fig.2(b) is the re-arranged
     one that obeys the rules in Section 3.1.
 </p>
-<img alt="simbols" width="1000" src="http://www.csee.umbc.edu/~yongnan/images/exp.png"/>
-<p style="text-align: center">Fig.2 An Example Pathway "Chromosome maintenance": (a) original layout. (b) new layout.
-The pathway includes two compartments: nucleoplasm and nuclear envelope. </p>
+<img alt="simbols" width="1000" src="http://www.csee.umbc.edu/~yongnan/images/example.png"/>
+<p style="text-align: center">Fig.2 An Example Pathway "Amine-derived hormones": (a) original layout. (b) new layout.
+The pathway includes five compartments: plasma membrane, clathrin-sculpted monoamine transport vesicle lumen, extracellular region, secretory granule lumen and cytosol. </p>
 <p>To make your layout acceptable, your graph MUST</p>
 <UL>
     <LI> contain less numbers of edge crossing than the time your start.
@@ -78,7 +78,6 @@ The pathway includes two compartments: nucleoplasm and nuclear envelope. </p>
                 <b>Compartments (blocks)</b>: G, H<br>
                 <b>Nodes</b>: A, B, C , D, E, F<br>
                 <b>Edges</b>: E->F, F->C, C->A, C->D, B->D, D->A<br>
-                <b>Reaction</b>:F, D (it is represented with a small circle, rectangle or triangle filled with white color)
                 <p>
                 All edges are directional, each of which have a start point and an endpoint.<br/>
             </p>
@@ -222,14 +221,16 @@ aesthetically pleasing layout.
     </Li>
     <LI>Here is the list of mouse actions for graph rearrangement. <br/>
    <ul>
-       <li>Select: you can click left-mouse to select any nodes or comparment. The border of the selected one will become yellow.</li>
-       <li>Multi-select:<br/>
-           (1) you can select a group of nodes by holding down the "Ctrl" key on your
-           keyboard while using left-mouse selection.<br/>
-           (2) you can select a group of nodes which is connected with a reaction, just by clicking the reaction while pressing down the "Shift" key on your keyboard. <br/>
-           (3) you can select the same color of nodes inside a compartment, just by pressing down the "Alt" key on your keyboard while selecting a colored node</li>
-       <li>Move: you can move any nodes and compartments by left-mouse drag, when they are selected.</li>
-       <li>Resize: you can resize the compartment by putting your cursor on the edge, and then left-mouse click and drag it.</li>
+       <li>Single node movement<br/>
+	   You can click left-mouse to drag any nodes or comparment. The selected node or compartment will be highlighted in yellow.</li>
+       <li>Group movement (there are multiple ways)<br/>
+           (1) <i>Of sparse nodes</i>: select a group of nodes by holding down the "Ctrl" key 
+           while using left-mouse button to select nodes sequentially.<br/>
+           (2) <i>Nodes connected to the same reaction</i>:  All nodes connected to a reaction (small white rectangular box or triangles or circles) can be moved together by dragging the reaction symbol while holding down the "Shift" key. <br/>
+           (3) <i>Nodes with the same color</i>: All nodes with the same color 
+		   inside a compartment can be moved together by dragging while 
+		   holding down the "Alt" key.</li> 
+       <li>Resizing: you can resize the compartment by putting your cursor on a red widget and using left-mouse drag.</li>
    </ul>
     <LI>When you are done, please click the "send" button to submit your result. If the showed "worker id" is not your "worker id", please input your worker id first.
     After finishing inputting the text, please click the "Your worker ID" button on the menu bar or just press the "Enter" button on your keyboard to confirm your worker id.
@@ -282,19 +283,15 @@ aesthetically pleasing layout.
 <br/>
 <h2>Notes</h2>
 <p>
-    You payments is composed of fixed wages and benefit rewards.<br/>
-    Benefit rewards is based on the complexity of the graph of each task and your finial submitted result,<br/>
-    Please try your best to reduce the statistic information and follow the rules<br/>
-    There is no time limit and you can take as long as you want.<br/>
-  </p>
-<h2>Disclaims</h2>
-<p> We reserve the right not to accept your layout.
-If you think your layout is better but it gets rejected, please contact
+    The payments include a fixed reward and a bonus.<br/>
+    The bonus is based on the complexity of the graph of each task and your finial result.<br/>
+	You must finish the task and submit the result in order to get paid. <br/>
+If you think your layout is good but it gets rejected, please contact
 Yongnan Zhu at <a href="mailto:yongnan@umbc.edu">
     <span style='font-family:Helvetica'>yongnan@umbc.edu</span></a>.
-    We will be able to recover your results since all activities are recorded.
+    We will be able to recover your results from our server and refund you as needed.
 </p>
-<h2> Thank you very much Again! </h2>
+<h2> Thanks! </h2>
 <br/>
 <hr/>
 <br/>
