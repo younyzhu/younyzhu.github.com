@@ -6,7 +6,10 @@
   You can get detailed informaiton from [https://sites.google.com/a/umbc.edu/pathbubbles/pathbubbles-1-0](https://sites.google.com/a/umbc.edu/pathbubbles/pathbubbles-1-0)   
   This part of project is trying to let human adjust the layout of the bubble, and find the best and beautiful layout.   
 ##Current ProjectWebsite
-  Please visit [website](http://younyzhu.github.io/Path_Bubble/pathBubble.html) 
+  
+  Please visit [website](http://younyzhu.github.io/Path_Bubble/pathBubble.html)     
+  For Education Purpose, Please visit [website](http://www.csee.umbc.edu/~yongnan/)     
+  
 ##Operation
   
   1. Click `f` on your keyboard for full screen, Click `ESC` for exiting `Full Screen` mode.    
