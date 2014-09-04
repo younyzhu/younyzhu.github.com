@@ -8,7 +8,7 @@
 ##Current ProjectWebsite
   
   Please visit [website](http://younyzhu.github.io/Path_Bubble/pathBubble.html)     
-  For Education Purpose, Please visit [website](http://www.csee.umbc.edu/~yongnan/)     
+  For Education Purpose, Please visit [website](http://www.csee.umbc.edu/~yongnan/drawPathway/)     
   
 ##Operation
   
