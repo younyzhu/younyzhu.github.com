@@ -2,195 +2,297 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>PathWay Graph adjusting Task</title>
+    <meta name="DC.title" content="Training Video" />
+    <title>PathWay Visualization Task</title>
     <link rel=stylesheet href="css/index.css"/>
 </head>
 <body>
-<div class="bigTitle">PathWay Graph adjusting Task</div>
+<h1 style="text-align: center">Pathway Visualization Task</h1>
 <br/>
-
 <div class="centerBox">
+<br/>
+<p > Welcome and thank you for agreeing to participate in this study.
+    Your effort will help us improve scientific research in biological pathway analysis.
+</p>
+<hr/>
+<h2>1. System Requirement</h2>
+<p>
+    Your browser must support WebGL, i.e., your browser must be either
+    Safari or
+    firefox or Google Chrome or IE 11.
+    <br>
+    You can continue if
+    you see the image with a <b>UMBC</b> logo. <br/>
+    Otherwise, thank you and please refer to <a href=https://support.google.com/chrome/answer/1220892 target="_bank">google support</a> to
+    set up your browser before participating in this study.
+</p>
+<canvas id="myCanvas" width="200" height="200" style="border:1px solid #d3d3d3;"></canvas>
+<p style="text-align: center">Fig.1 UMBC Logo.</p>
+<script>
+    var canvas = document.getElementById('myCanvas');
+    var context = canvas.getContext('2d');
+    var imageObj = new Image();
+    imageObj.onload = function () {
+        context.drawImage(imageObj, 0, 0);
+    };
+    imageObj.src = 'http://www.csee.umbc.edu/~yongnan/images/UMBCretrievers_LOGO.jpg';
+</script>
+<h2>2. Your Task</h2>
+<p>
+    Your task is to re-arrange components in biological pathways
+    to produce legible and
+    aesthetically pleasing layout.</p>
+<p>
+    For example, Fig.2(a) is the original pathway graph of "Amine-derived hormones", and Fig.2(b) is the re-arranged
+    one that obeys the rules in Section 3.1.
+</p>
+<img alt="simbols" width="1000" src="http://www.csee.umbc.edu/~yongnan/images/example.png"/>
+<p style="text-align: center">Fig.2 An Example Pathway "Amine-derived hormones": (a) original layout. (b) new layout.
+The pathway includes five compartments: plasma membrane, clathrin-sculpted monoamine transport vesicle lumen, extracellular region, secretory granule lumen and cytosol. </p>
+<p>To make your layout acceptable, your graph MUST</p>
+<UL>
+    <LI> contain less numbers of edge crossing than the time your start.
+    <LI> have no nodes overlapping.
+    <LI> have no nodes moving out of a compartment.
+    <LI> follow other rules in Section 3.1.</LI>
+</UL>
+<p>To reach these goals, please follow the instruction below.</p>
+<h2>3. Introduction</h2>
+<p>A pathway graph is represented using
+    compartment (blocks), nodes, and edges. Here a compartment(block)
+    contains nodes
+    and edges as well.
     <br/>
+    An example graph is shown below (Table.1):
+</p>
 
-    <p class="superText2"> Welcome and thank you for agreeing to participate in this study.</p>
-    <hr/>
-    <h2>Attentation</h2>
+<table border="1" style="width:600px" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+        <td> A pathway graph</td>
+        <td> Nodes and their Relationships</td>
+    </tr>
+    <tr>
+        <td><img alt="simbols" src="http://www.csee.umbc.edu/~yongnan/images/fig31.PNG"/></td>
+        <td>
+            <p>
+                <b>Compartments (blocks)</b>: G, H<br>
+                <b>Nodes</b>: A, B, C , D, E, F<br>
+                <b>Edges</b>: E->F, F->C, C->A, C->D, B->D, D->A<br>
+                <p>
+                All edges are directional, each of which have a start point and an endpoint.<br/>
+            </p>
+        </td>
+    </tr>
+ </table>
+<p style="text-align: center">Table.1 A graph: nodes and their relationships.</p>
+<h3> 3.1 Rules </h3>
+Table 2 lists some operation rules. Each rule is illustrated with an example.
+Please follow them as much as you can. Following these rules will help you produce more legible and
+aesthetically pleasing layout.
+<p>
+<table border="1" style="width:800px" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+        <td> Rules</td>
+        <td> Operation</td>
+        <td> Input</td>
+        <td> Example Output</td>
+    </tr>
+    <tr>
+        <td>Avoid node overlapping </td>
+        <td> Drag the overlapping node so nodes won't overlap.</td>
+        <td>
+            <img alt="edge_crossing"
+                 src="http://www.csee.umbc.edu/~yongnan/images/nodeOverlapping.PNG"/>
+        </td>
 
-    <p>
-        You should see a Rectangle with black stroke and yellow filled color. <br/>
-        If you do not, please visit the <a href=https://support.google.com/chrome/answer/1220892 target="_bank">
-        support site</a> for your browser.<br/>
-        If you finally find your browser or your system does not support WebGL, Please do not accept the task.<br/>
-    </p>
-    <canvas id="myCanvas"></canvas>
-    <script>
-        var canvas = document.getElementById('myCanvas');
-        var context = canvas.getContext('2d');
-        context.beginPath();
-        context.rect(100, 20, 100, 50);
-        context.fillStyle = 'yellow';
-        context.fill();
-        context.lineWidth = 7;
-        context.strokeStyle = 'black';
-        context.stroke();
-    </script>
-    <h2>Introduction</h2>
-    <p>
-        This study is a supplement of PathBubble for manually adjusting biological pathways.<br/>
-        If you want to know detailed information, please visit our PathBubble website:
-        <a class="link" href="http://sites.google.com/a/umbc.edu/pathbubbles/pathbubbles-1-0/pathbubbles-wiki"
-           target="_bank"> PathBubble</a> <br/>
-        As our study involves graph layout, at first we give some simple intructions here. <br/>
-        A graph is consist of nodes, edges. As you can see from the image below (Fig.1):<br/>
-        <b>A</b> , <b>B</b>, <b>C</b> , <b>D</b>, <b>E</b>, <b>F</b> are six nodes with different shapes,<br/>
-        Edge <b>I</b> connects Node <b>E</b> , Node <b>F</b>;<br/>
-        Edge <b>J</b> connects Node <b>F</b> , Node <b>C</b>;<br/>
-        Edge <b>K</b> connects Node <b>C</b> , Node <b>A</b>;<br/>
-        Edge <b>L</b> connects Node <b>C</b> , Node <b>D</b>;<br/>
-        Edge <b>M</b> connects Node <b>B</b> , Node <b>D</b>;<br/>
-        Those edges are directional, which has the start point and endpoint.<br/>
-        And we call <b>G</b> as compartment, which is the container of group of nodes <b>E</b>, <b>F</b> and edge
-        <b>I</b>.<br/>
-        Also <b>H</b> is another compartment, which is the container of group of nodes <b>A</b>, <b>B</b>, <b>C</b>, <b>D</b>
-        and edges <b>K</b>, <b>L</b>, <b>M</b> .<br/>
-        <br/>
-    </p>
-        <img alt="simbols" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/simbols.PNG"/>
-        <p style="text-align: center">Fig.1 simbols of a graph.</p>
-    <br/>
-    <h3>Goals</h3>
-    <img alt="simbols" width="1000"  src="http://www.csee.umbc.edu/~yongnan/images/exp.png"/>
-    <p style="text-align: center">Fig.2 Study images.</p>
-    <p>
-    Our goal is to re-arrange the image (Fig.2 Left) in our dataset, to reduce the interaction of edges and with some other rules (please see the section Rules).<br/>
-    However, those original datasets are too messy, lots of nodes overlapped and edges interaction. It is time-consuming for you to process. So we will not let you arrange those images.<br/>
-    We just write a program to automatically arrange it, you just need to stop it, when it seems pretty good or the nodes seems stop moving (You can wait until the nodes stop moving,
-        it will generate the best layout).<br/>
-    After our algorithm processed, the graph will reduce the numbers of the interactions of edges just like this (Fig.2 Middle). But the result does not meet our rules.<br/>
-    So We <b>NEED</b> you to arrange it.<br/>
-    After arranging it, our final graph is a bit like this (Fig.2 Right).
-    </p>
-    <h3>Procedures</h3>
-    <p>
-    1. Open the website through the link we give you in the task. After you open the website you will see an interface like this (see Fig.3 Interface below).<br/>
-        &nbsp;&nbsp;&nbsp;(1) In the right corner of the screen is the menu bar, which has 4 types of buttons.<br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Stop Force Direct</b>: you can press this to stop automatic layout.<br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Left edge Intersection</b>: you can press this to detect how many edge intersection in the current graph.<br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Your Worker ID</b>: you should input your amazon mechnical turk worker Id to get the pay.<br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Send</b>: After you finish your work and input you worker ID, you can send the data to our server.<br/>
-        &nbsp;&nbsp;&nbsp;(2) In the center of the interface, you will see many of the nodes in the compartment which are moving automatically.
-        (We automatically layout the graph, when loading the graph)<br/>
-    2. After you find all the nodes become stable, or the number of the overlapping and intersection is less, you can Press the <b>Stop Force Direct</b>
-        in the menubar to stop the automatic adjust.And then you can press any white space in the screen, it will show you the graph you need to adjust.(just like Fig.2 Middle)<br/>
-    3. So you should adjust the graph, and also you should follow the rules in the <b>Rule</b> section.<br/>
-        &nbsp;&nbsp;&nbsp; Here, I tell you some operations to move the nodes.<br/>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;(1) <b>Drag operation:</b> you can drag any node, compartment by mouse clicking to select the certain one.
-   you can also click the white area outside the compartment to move the current view. And also you can press the <b>Ctrl</b> key on your keyboard,
-    to multi-select the nodes and then drag.(But when you doing multi-selection, you should not release the <b>Ctrl</b> Key.<br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (2) <b>Resize operation:</b> when you select the compartment, you will see 8 red little rectangles in the border of the rectangle. You can drag the corner to resize the compartment.<br/>
-    4. After finishing arranging the graph, you should find your <b> amazon mechnical turk worker Id </b>, and input
-    your worker Id in the menu. And then press <b>Send</b>,
-    it will come out an alert with you work Id, you should make sure you worker Id is correct, and then press
-    <b>Send</b> again.<br/>
-    (If you can not find your worker Id, please visit <a href="https://www.mturk.com/mturk/dashboard" target="_bank">https://www.mturk.com/mturk/dashboard</a>,
-    in you account dashboard, you can find you <b>Worker Id</b>)
-    <br/>
-    <img alt="interface" width="1000"  src="http://www.csee.umbc.edu/~yongnan/images/interface.PNG"/>
-    <p style="text-align: center">Fig.3 Interface.</p>
-    <h2>Rules</h2>
-    <p>
-    <ol>
-        <li> Avoid Edge crossing, or reduce the number of intersections among edges.</li>
-        <li> Try to reduce the sum of lengths of edges.</li>
-        <li> We split the nodes according to the compartment(big round rectangle in the image) they belong to,
-            so when moving the nodes, please do not move to another compartment.
-        </li>
-        <li> If the compartment has no connections with other compartment, it should be put on the top.</li>
-        <li> In the final graph, the direction of the majority of the arrows should go down.</li>
-        <li> Avoid the overlapping of nodes.</li>
-        <li> You should balance the trade between the beauty of the graph and uniform distribution of the nodes.</li>
-    </ol>
-    <h3> Let's take some simple images for example: </h3>
-    <br/>
-    <p>In the following examples, we will show you some graph images, and guide you how to arrange it.
-    <h4>Example 1</h4>
+        <td>
+            <img alt="edge_crossing"
+                 src="http://www.csee.umbc.edu/~yongnan/images/nodeOverlapping1.PNG"/>
+        </td>
+    </tr>
+    <tr>
+        <td>Reduce edge crossing</td>
+        <td> Drag a node so edges won't intersect.</td>
+        <td>
+            <img alt="edge_crossing"
+                 src="http://www.csee.umbc.edu/~yongnan/images/edgeCrossing.PNG"/>
+        </td>
+        <td>
+            <img alt="edge_crossing1"
+                 src="http://www.csee.umbc.edu/~yongnan/images/edgeCrossing1.PNG"/>
+        </td>
+    </tr>
+    <tr>
+        <td>Reduce edge length</td>
+        <td> There are some unnecessarily long edges in the graphs, please
+            drag the node (or a group of nodes) to shorten the edges.
+        </td>
+        <td><img alt="edge_Length"
+                 src="http://www.csee.umbc.edu/~yongnan/images/edgeLength.PNG"/>
+        </td>
+        <td><img alt="edge_Length"
+                 src="http://www.csee.umbc.edu/~yongnan/images/edgeLength1.PNG"/>
+        </td>
+    </tr>
+    <tr>
+        <td>Move a compartment</td>
+        <td>
+            If a compartment has no connections to any other compartments,
+            move it to the top of the graph.
+        </td>
+        <td><img alt="edge_Length"
+                 src="http://www.csee.umbc.edu/~yongnan/images/noConnection.PNG"/>
+        </td>
+        <td>
+            <img alt="edge_Length"
+                 src="http://www.csee.umbc.edu/~yongnan/images/noConnection1.PNG"/>
+        </td>
+    </tr>
+    <tr>
+        <td>Resize a compartment to fit the width of its name</td>
+        <td>
+            If the name of a compartment is too long which exceeds the width of this compartment,
+            adjust the width of the compartment to fit it.
+        </td>
+        <td><img alt="name_fit"
+                 src="http://www.csee.umbc.edu/~yongnan/images/nameFitCompartment1.PNG"/>
+        </td>
+        <td>
+            <img alt="name_fit"
+                 src="http://www.csee.umbc.edu/~yongnan/images/nameFitCompartment2.PNG"/>
+        </td>
+    </tr>
+    <tr>
+        <td>Direction of the arrows</td>
+        <td>Move nodes and compartment to make sure most arrows are
+            pointing downwards.
+        </td>
+        <td>
+            <img alt="edge_Length"
+                 src="http://www.csee.umbc.edu/~yongnan/images/arrowDirection.PNG"/>
+        </td>
+        <td>
+            <img alt="edge_Length"
+                 src="http://www.csee.umbc.edu/~yongnan/images/arrowDirection1.PNG"/>
+        </td>
+    </tr>
+    <tr>
+        <td>Never ever change the containing relationships
+        </td>
+        <td>In your final graph, never place a node outside of
+            a compartment to which it belongs.
 
+        </td>
+        <td>
+            <img alt="edge_Length"
+                 src="http://www.csee.umbc.edu/~yongnan/images/nodeOutside.PNG"/>
+        </td>
+        <td>
+            <img alt="edge_Length"
+                 src="http://www.csee.umbc.edu/~yongnan/images/nodeOutside1.PNG"/>
+        </td>
+    </tr>
+</table>
+<p style="text-align: center">Table.2 Rules.</p>
+<p>
+    To make a graph aesthetically pleasing, you may
+</p>
+<ul>
+    <LI> make the nodes evenly distributed in the space.</LI>
+    <LI> avoid edge crossing and node overlapping by all means.</LI>
+    <LI> resize the compartment to take less screen space.</LI>
+    <LI> reize the compartment to fit the nodes better.</LI>
+    <LI> balance legibility, node distribution, and edge length.</LI>
+</ul>
+<h3>3.2 Procedures</h3>
+<UL>
+    <Li>Please open the website through the link provided in the task. An interface, e.g. Fig. 4, will be shown.
+        <ul>
+            <Li> There are four buttons on the upper right corner of the screen. <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Your Worker ID</b>: your amazon mechnical turk worker Id.<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Send</b>: for saving your layout on our server.<br/>
+            </Li>
+            <li>In the upper left corner of the screen, you will see the current pathway information. <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Name of the Pathway</b><br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Numbers of Edge crossing</b>: for counting the number of intersecting edges of the current graph.<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Numbers of Node Overlapping</b>: for counting the number of overlapping nodes of the current graph. <br/>
+            </li>
+        </ul>
+    </Li>
+    <LI>Here is the list of mouse actions for graph rearrangement. <br/>
+   <ul>
+       <li>Single node movement<br/>
+	   You can click left-mouse to drag any nodes or comparment. The selected node or compartment will be highlighted in yellow.</li>
+       <li>Group movement (there are multiple ways)<br/>
+           (1) <i>Of sparse nodes</i>: select a group of nodes by holding down the "Ctrl" key 
+           while using left-mouse button to select nodes sequentially.<br/>
+           (2) <i>Nodes connected to the same reaction</i>:  All nodes connected to a reaction (small white rectangular box or triangles or circles) can be moved together by dragging the reaction symbol while holding down the "Shift" key. <br/>
+           (3) <i>Nodes with the same color</i>: All nodes with the same color 
+		   inside a compartment can be moved together by dragging while 
+		   holding down the "Alt" key.</li> 
+       <li>Resizing: you can resize the compartment by putting your cursor on a red widget and using left-mouse drag.</li>
+   </ul>
+    <LI>When you are done, please click the "send" button to submit your result. If the showed "worker id" is not your "worker id", please input your worker id first.
+    After finishing inputting the text, please click the "Your worker ID" button on the menu bar or just press the "Enter" button on your keyboard to confirm your worker id.
+    (If you can not find your worker Id,
+        please visit <a href="https://www.mturk.com/mturk/dashboard" target="_bank">https://www.mturk.com/mturk/dashboard</a>,
+        in your account dashboard, you can find your Worker Id. )
+    </Li>
+</UL>
+<br/>
+<img alt="interface" width="1000" src="http://www.csee.umbc.edu/~yongnan/images/interface.PNG"/>
+<p style="text-align: center">Fig.4 Interface.</p>
+<h3>3.3 Video</h3>
+<p>
+    We provide a video below to show you the interactions and operations.
+</p>
 
-        <img alt="edge_crossing" width="150" height="150"
-             src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing.PNG"/>
-            <p style="text-align: center">Fig.4 edge_crossing.</p>
-        <br/>
-    <p>
-        As you can see from this image (Fig.4), there is a crossing, so you need to move the node to avoid this Edge
-        crossing(Rule 1).
-        You can move the node <b> C </b>,
-        you can move the node <b> A </b> or you can move node <b> D</b>. It's up to you. Here I move the mode <b> C </b>.
-        The result is this (Fig.5).
-    </p><br/>
-        <img alt="edge_crossing1" width="150" height="150"
-             src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing1.PNG"/>
-    <p style="text-align: center">Fig.5 edge_crossing change 1.</p>
-    <br/>
-    <p>
-        After this, you will find there are too many horizonizal arrows, From <b> Rule 5 </b>, we should make the
-        arrow go down. The result is this (Fig.5).
-    </p>
-    <br/>
-        <img alt="edge_crossing2.PNG" width="150" height="150"
-             src="http://www.csee.umbc.edu/~yongnan/images/edge_crossing2.PNG"/>
-        <p style="text-align: center">Fig.6 edge_crossing change 2.</p>
-        <br/>
-
-    <h4>Example 2</h4>
-        <br/>
-        <img alt="length" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/length.PNG"/>
-    <p style="text-align: center">Fig.7 Length.</p>
-        <br/>
-    <p> As you can see image (Fig.7), there are two compartments in a graph, there is an edge <b>C F</b> that combines nodes of
-        those compartments.
-        However, <b>C F</b> is too long, we need to make it shorter, and also the direction of Arrow <b>C A </b> is not
-        going down.
-        We can exchange Node<b> A </b>and Node <b> C </b>, the result is image (Fig.8).
-    </p>
-    <br/>
-    <img alt="length1" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/length1.PNG"/>
-    <p style="text-align: center">Fig.8 Reduce length.</p>
-    <br/>
-    <p>Here you can see the length of the <b>C F</b> is almost the distance of the two compartments. Also you can
-        exchanged the <b>E F</b> to make it shorter.
-    </p>
-
-    <h4>Example 3</h4>
-
-    <br/>
-        <img alt="overlap" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/overlap.PNG"/>
-        <p style="text-align: center">Fig.9 Node overlapping.</p>
-    <br/>
-    <p> Here, in image (Fig.9) you can see Node <b>D</b> and Node <b>E</b> are overlaped together. From <b>Rule Six </b> we should
-    </p>  avoid node overlapping. So we need to split them.
-    <br/>
-        <img alt="overlap" width="150" height="150" src="http://www.csee.umbc.edu/~yongnan/images/overlap1.PNG"/>
-        <br/>
-
-
-    <h2>Note about Payment</h2>
-
-    <p> We will rate each graph very carefully.
-        <br/>Your time and mouse activity will be recoded, please take this task seriously.
-        <br/>We do try to be fairly lenient,
-        but if your work are terribly bad (like you randomly drag the graph or do not obey the rules),
-        we reserve the right to not accept it.
-        <br/>All the data will be used in a scientific study, please do it carefully.
-        <br/>
-    </p>
-    <hr/>
-    <p>You can ask questions about this research study
-        now or any time during the study by e-mailing Yongnan at <a href="mailto:yongnan@umbc.edu">
-            <span style='font-family:Helvetica'>yongnan@umbc.edu</span></a>
-        <span style='font-family:Helvetica'><o:p></o:p></span>
-    </p>
-    <br/>
+<script type="text/javascript" src="swfobject.js"></script>
+<script type="text/javascript">
+    swfobject.registerObject("csSWF", "9.0.115", "expressInstall.swf");
+</script>
+<div id="media" style="text-align: center">
+    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="640" height="498" id="csSWF">
+        <param name="movie" value="trainingVideo_controller.swf" />
+        <param name="quality" value="best" />
+        <param name="bgcolor" value="#1a1a1a" />
+        <param name="allowfullscreen" value="true" />
+        <param name="scale" value="showall" />
+        <param name="allowscriptaccess" value="always" />
+        <param name="flashvars" value="autostart=false&thumb=FirstFrame.png&thumbscale=45&color=0x000000,0x000000" />
+        <!--[if !IE]>-->
+        <object type="application/x-shockwave-flash" data="trainingVideo_controller.swf" width="640" height="498">
+            <param name="quality" value="best" />
+            <param name="bgcolor" value="#1a1a1a" />
+            <param name="allowfullscreen" value="true" />
+            <param name="scale" value="showall" />
+            <param name="allowscriptaccess" value="always" />
+            <param name="flashvars" value="autostart=false&thumb=FirstFrame.png&thumbscale=45&color=0x000000,0x000000" />
+            <!--<![endif]-->
+            <div id="noUpdate">
+                <p>The video content presented here requires JavaScript to be enabled and the latest version of the Adobe Flash Player.
+                    If you are using a browser with JavaScript disabled please enable it now.
+                    Otherwise, please update your version of the free Adobe Flash Player by <a href="http://www.adobe.com/go/getflashplayer">downloading here</a>.
+                </p>
+            </div>
+            <!--[if !IE]>-->
+        </object>
+        <!--<![endif]-->
+    </object>
 </div>
 <br/>
+<h2>Notes</h2>
+<p>
+    The payments include a fixed reward and a bonus.<br/>
+    The bonus is based on the complexity of the graph of each task and your finial result.<br/>
+	You must finish the task and submit the result in order to get paid. <br/>
+If you think your layout is good but it gets rejected, please contact
+Yongnan Zhu at <a href="mailto:yongnan@umbc.edu">
+    <span style='font-family:Helvetica'>yongnan@umbc.edu</span></a>.
+    We will be able to recover your results from our server and refund you as needed.
+</p>
+<hr/>
+    <div id="copyright"><strong>Copyright ©2014  University of Maryland, Baltimore County Data Visualization Lab</strong></div>
+</div>
 </body>
 </html>

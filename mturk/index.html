@@ -7,23 +7,15 @@
     <link rel=stylesheet href="css/index.css"/>
 </head>
 <body>
-<h1 style="text-align: center">Pathway Visualization Task</h1>
 <br/>
 <div class="centerBox">
 <br/>
-<p > Welcome and thank you for agreeing to participate in this study.
-    Your effort will help us improve scientific research in biological pathway analysis.
-</p>
 <hr/>
 <h2>1. System Requirement</h2>
 <p>
-    Your browser must support WebGL, i.e., your browser must be either
-    Safari or
-    firefox or Google Chrome or IE 11.
-    <br>
-    You can continue if
-    you see the image with a <b>UMBC</b> logo. <br/>
-    Otherwise, thank you and please refer to <a href=https://support.google.com/chrome/answer/1220892 target="_bank">google support</a> to
+    You can continue if you see the image with a <b>UMBC</b> logo. <br/>
+    Otherwise, please refer to
+    <a href=https://support.google.com/chrome/answer/1220892 target="_bank">google support</a> to
     set up your browser before participating in this study.
 </p>
 <canvas id="myCanvas" width="200" height="200" style="border:1px solid #d3d3d3;"></canvas>
@@ -37,38 +29,16 @@
     };
     imageObj.src = 'http://www.csee.umbc.edu/~yongnan/images/UMBCretrievers_LOGO.jpg';
 </script>
-<h2>2. Your Task</h2>
-<p>
-    Your task is to re-arrange components in biological pathways
-    to produce legible and
-    aesthetically pleasing layout.</p>
-<p>
-    For example, Fig.2(a) is the original pathway graph of "Amine-derived hormones", and Fig.2(b) is the re-arranged
-    one that obeys the rules in Section 3.1.
-</p>
-<img alt="simbols" width="1000" src="http://www.csee.umbc.edu/~yongnan/images/example.png"/>
-<p style="text-align: center">Fig.2 An Example Pathway "Amine-derived hormones": (a) original layout. (b) new layout.
-The pathway includes five compartments: plasma membrane, clathrin-sculpted monoamine transport vesicle lumen, extracellular region, secretory granule lumen and cytosol. </p>
-<p>To make your layout acceptable, your graph MUST</p>
-<UL>
-    <LI> contain less numbers of edge crossing than the time your start.
-    <LI> have no nodes overlapping.
-    <LI> have no nodes moving out of a compartment.
-    <LI> follow other rules in Section 3.1.</LI>
-</UL>
-<p>To reach these goals, please follow the instruction below.</p>
-<h2>3. Introduction</h2>
-<p>A pathway graph is represented using
-    compartment (blocks), nodes, and edges. Here a compartment(block)
-    contains nodes
-    and edges as well.
+<h2>2. Introduction</h2>
+<p>In this study, your task is to rearrange the nodes in a network in a way that follows the rules in Table 2.
+    An example network graph is shown below (Table 1), which is represented using
+    compartment (blocks), nodes, and edges. Here a compartment(block) contains nodes and edges as well.
     <br/>
-    An example graph is shown below (Table.1):
 </p>
 
 <table border="1" style="width:600px" cellspacing="0" cellpadding="0" align="center">
     <tr>
-        <td> A pathway graph</td>
+        <td> A network graph</td>
         <td> Nodes and their Relationships</td>
     </tr>
     <tr>
@@ -84,12 +54,17 @@ The pathway includes five compartments: plasma membrane, clathrin-sculpted monoa
         </td>
     </tr>
  </table>
-<p style="text-align: center">Table.1 A graph: nodes and their relationships.</p>
-<h3> 3.1 Rules </h3>
-Table 2 lists some operation rules. Each rule is illustrated with an example.
-Please follow them as much as you can. Following these rules will help you produce more legible and
-aesthetically pleasing layout.
+<p style="text-align: center">Table 1. A graph: nodes and their relationships.</p>
 <p>
+    To make a graph aesthetically pleasing, you may
+</p>
+<ul>
+    <LI> make the nodes evenly distributed in the space.</LI>
+    <LI> avoid edge crossing and node overlapping by all means.</LI>
+    <LI> resize the compartment to take less screen space.</LI>
+    <LI> reize the compartment to fit the nodes better.</LI>
+    <LI> balance legibility, node distribution, and edge length.</LI>
+</ul>
 <table border="1" style="width:800px" cellspacing="0" cellpadding="0" align="center">
     <tr>
         <td> Rules</td>
@@ -193,27 +168,18 @@ aesthetically pleasing layout.
         </td>
     </tr>
 </table>
-<p style="text-align: center">Table.2 Rules.</p>
-<p>
-    To make a graph aesthetically pleasing, you may
-</p>
-<ul>
-    <LI> make the nodes evenly distributed in the space.</LI>
-    <LI> avoid edge crossing and node overlapping by all means.</LI>
-    <LI> resize the compartment to take less screen space.</LI>
-    <LI> reize the compartment to fit the nodes better.</LI>
-    <LI> balance legibility, node distribution, and edge length.</LI>
-</ul>
-<h3>3.2 Procedures</h3>
+<p style="text-align: center">Table 2. Rules.</p>
+
+<h3>3 Procedures</h3>
 <UL>
     <Li>Please open the website through the link provided in the task. An interface, e.g. Fig. 4, will be shown.
         <ul>
-            <Li> There are four buttons on the upper right corner of the screen. <br/>
+            <Li> There are two buttons on the upper right corner of the screen. <br/>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Your Worker ID</b>: your amazon mechnical turk worker Id.<br/>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Send</b>: for saving your layout on our server.<br/>
             </Li>
-            <li>In the upper left corner of the screen, you will see the current pathway information. <br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Name of the Pathway</b><br/>
+            <li>In the upper left corner of the screen, you will see the current newwork graph information. <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Name of the Graph</b><br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Numbers of Edge crossing</b>: for counting the number of intersecting edges of the current graph.<br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Numbers of Node Overlapping</b>: for counting the number of overlapping nodes of the current graph. <br/>
             </li>
@@ -241,8 +207,8 @@ aesthetically pleasing layout.
 </UL>
 <br/>
 <img alt="interface" width="1000" src="http://www.csee.umbc.edu/~yongnan/images/interface.PNG"/>
-<p style="text-align: center">Fig.4 Interface.</p>
-<h3>3.3 Video</h3>
+<p style="text-align: center">Fig 4. Interface.</p>
+<h3>3.1 Video</h3>
 <p>
     We provide a video below to show you the interactions and operations.
 </p>
@@ -291,10 +257,8 @@ Yongnan Zhu at <a href="mailto:yongnan@umbc.edu">
     <span style='font-family:Helvetica'>yongnan@umbc.edu</span></a>.
     We will be able to recover your results from our server and refund you as needed.
 </p>
-<h2> Thanks! </h2>
-<br/>
 <hr/>
-<br/>
+    <div id="copyright"><strong>Copyright ©2014  University of Maryland, Baltimore County Data Visualization Lab</strong></div>
 </div>
 </body>
 </html>
