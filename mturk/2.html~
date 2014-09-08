@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Graph layout</title>
+    <link rel=stylesheet href="css/index.css"/>
+</head>
+<body>
+<h1 style="text-align: center">Graph layout</h1>
+<br/>
+<div class="centerBox">
+<br/>
+<hr/>
+<h2>1. System Requirement</h2>
+<p>
+    Your browser must be up-to-date. Otherwise, you may or maynot be able to do the study.
+	
+<h2>2. Your Task</h2>
+<p>
+    Your task is to re-arrange components in graphs (biological pathways)
+    to produce legible and
+    aesthetically pleasing layout.</p>
+	There are some numbers displayed on the screen (e.g., number of edge crossing, number of downward edges, etc.) You must minimize those numbers as much as you can.
+	<p>
+	All edges are directional. 
+	<p>
+	The end result must have clear flow of the information. Edges should pointing downwards.
+	<p>
+
+	Please feel free to use any strategies you think that will help interpret the structure. 
+	<p>
+	Please note you must not change the "belonging" relationship, i.e., each node lives in a box and it cannot be moved out of the box. 
+	<p>
+
+<p>
+
+<br/>
+</div>
+</body>
+</html>

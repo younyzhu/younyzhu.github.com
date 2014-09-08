@@ -2,263 +2,78 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <title>Graph layout</title>
     <meta name="DC.title" content="Training Video" />
-    <title>PathWay Visualization Task</title>
     <link rel=stylesheet href="css/index.css"/>
 </head>
 <body>
+<h1 style="text-align: center">Graph layout</h1>
 <br/>
 <div class="centerBox">
 <br/>
 <hr/>
 <h2>1. System Requirement</h2>
 <p>
-    You can continue if you see the image with a <b>UMBC</b> logo. <br/>
-    Otherwise, please refer to
-    <a href=https://support.google.com/chrome/answer/1220892 target="_bank">google support</a> to
-    set up your browser before participating in this study.
-</p>
-<canvas id="myCanvas" width="200" height="200" style="border:1px solid #d3d3d3;"></canvas>
-<p style="text-align: center">Fig.1 UMBC Logo.</p>
-<script>
-    var canvas = document.getElementById('myCanvas');
-    var context = canvas.getContext('2d');
-    var imageObj = new Image();
-    imageObj.onload = function () {
-        context.drawImage(imageObj, 0, 0);
-    };
-    imageObj.src = 'http://www.csee.umbc.edu/~yongnan/images/UMBCretrievers_LOGO.jpg';
-</script>
-<h2>2. Introduction</h2>
-<p>In this study, your task is to rearrange the nodes in a network in a way that follows the rules in Table 2.
-    An example network graph is shown below (Table 1), which is represented using
-    compartment (blocks), nodes, and edges. Here a compartment(block) contains nodes and edges as well.
-    <br/>
-</p>
-
-<table border="1" style="width:600px" cellspacing="0" cellpadding="0" align="center">
-    <tr>
-        <td> A network graph</td>
-        <td> Nodes and their Relationships</td>
-    </tr>
-    <tr>
-        <td><img alt="simbols" src="http://www.csee.umbc.edu/~yongnan/images/fig31.PNG"/></td>
-        <td>
-            <p>
-                <b>Compartments (blocks)</b>: G, H<br>
-                <b>Nodes</b>: A, B, C , D, E, F<br>
-                <b>Edges</b>: E->F, F->C, C->A, C->D, B->D, D->A<br>
-                <p>
-                All edges are directional, each of which have a start point and an endpoint.<br/>
-            </p>
-        </td>
-    </tr>
- </table>
-<p style="text-align: center">Table 1. A graph: nodes and their relationships.</p>
+    Your browser must be up-to-date. Otherwise, you may or maynot be able to do the study.
+	
+<h2>2. Your Task</h2>
 <p>
-    To make a graph aesthetically pleasing, you may
-</p>
-<ul>
-    <LI> make the nodes evenly distributed in the space.</LI>
-    <LI> avoid edge crossing and node overlapping by all means.</LI>
-    <LI> resize the compartment to take less screen space.</LI>
-    <LI> reize the compartment to fit the nodes better.</LI>
-    <LI> balance legibility, node distribution, and edge length.</LI>
-</ul>
-<table border="1" style="width:800px" cellspacing="0" cellpadding="0" align="center">
-    <tr>
-        <td> Rules</td>
-        <td> Operation</td>
-        <td> Input</td>
-        <td> Example Output</td>
-    </tr>
-    <tr>
-        <td>Avoid node overlapping </td>
-        <td> Drag the overlapping node so nodes won't overlap.</td>
-        <td>
-            <img alt="edge_crossing"
-                 src="http://www.csee.umbc.edu/~yongnan/images/nodeOverlapping.PNG"/>
-        </td>
+    Your task is to re-arrange components in graphs (biological pathways)
+    to produce legible and
+    aesthetically pleasing layout.</p>
+    <p>There are some numbers displayed on the screen (e.g., number of edge crossing, number of downward edges, etc.) You must minimize those numbers as much as you can.</p>
+	<p>
+	All edges are directional.</p>
+	<p>
+	The end result must have clear flow of the information. Edges should pointing downwards.</p>
+	<p>
 
-        <td>
-            <img alt="edge_crossing"
-                 src="http://www.csee.umbc.edu/~yongnan/images/nodeOverlapping1.PNG"/>
-        </td>
-    </tr>
-    <tr>
-        <td>Reduce edge crossing</td>
-        <td> Drag a node so edges won't intersect.</td>
-        <td>
-            <img alt="edge_crossing"
-                 src="http://www.csee.umbc.edu/~yongnan/images/edgeCrossing.PNG"/>
-        </td>
-        <td>
-            <img alt="edge_crossing1"
-                 src="http://www.csee.umbc.edu/~yongnan/images/edgeCrossing1.PNG"/>
-        </td>
-    </tr>
-    <tr>
-        <td>Reduce edge length</td>
-        <td> There are some unnecessarily long edges in the graphs, please
-            drag the node (or a group of nodes) to shorten the edges.
-        </td>
-        <td><img alt="edge_Length"
-                 src="http://www.csee.umbc.edu/~yongnan/images/edgeLength.PNG"/>
-        </td>
-        <td><img alt="edge_Length"
-                 src="http://www.csee.umbc.edu/~yongnan/images/edgeLength1.PNG"/>
-        </td>
-    </tr>
-    <tr>
-        <td>Move a compartment</td>
-        <td>
-            If a compartment has no connections to any other compartments,
-            move it to the top of the graph.
-        </td>
-        <td><img alt="edge_Length"
-                 src="http://www.csee.umbc.edu/~yongnan/images/noConnection.PNG"/>
-        </td>
-        <td>
-            <img alt="edge_Length"
-                 src="http://www.csee.umbc.edu/~yongnan/images/noConnection1.PNG"/>
-        </td>
-    </tr>
-    <tr>
-        <td>Resize a compartment to fit the width of its name</td>
-        <td>
-            If the name of a compartment is too long which exceeds the width of this compartment,
-            adjust the width of the compartment to fit it.
-        </td>
-        <td><img alt="name_fit"
-                 src="http://www.csee.umbc.edu/~yongnan/images/nameFitCompartment1.PNG"/>
-        </td>
-        <td>
-            <img alt="name_fit"
-                 src="http://www.csee.umbc.edu/~yongnan/images/nameFitCompartment2.PNG"/>
-        </td>
-    </tr>
-    <tr>
-        <td>Direction of the arrows</td>
-        <td>Move nodes and compartment to make sure most arrows are
-            pointing downwards.
-        </td>
-        <td>
-            <img alt="edge_Length"
-                 src="http://www.csee.umbc.edu/~yongnan/images/arrowDirection.PNG"/>
-        </td>
-        <td>
-            <img alt="edge_Length"
-                 src="http://www.csee.umbc.edu/~yongnan/images/arrowDirection1.PNG"/>
-        </td>
-    </tr>
-    <tr>
-        <td>Never ever change the containing relationships
-        </td>
-        <td>In your final graph, never place a node outside of
-            a compartment to which it belongs.
+	Please feel free to use any strategies you think that will help interpret the structure.</p>
+	<p>
+	Please note you must not change the "belonging" relationship, i.e., each node lives in a box and it cannot be moved out of the box. 
+	</p>
+    <h2>3 Video</h2>
+    <p>
+        We provide a video below to show you the interactions and operations.
+    </p>
 
-        </td>
-        <td>
-            <img alt="edge_Length"
-                 src="http://www.csee.umbc.edu/~yongnan/images/nodeOutside.PNG"/>
-        </td>
-        <td>
-            <img alt="edge_Length"
-                 src="http://www.csee.umbc.edu/~yongnan/images/nodeOutside1.PNG"/>
-        </td>
-    </tr>
-</table>
-<p style="text-align: center">Table 2. Rules.</p>
-
-<h3>3 Procedures</h3>
-<UL>
-    <Li>Please open the website through the link provided in the task. An interface, e.g. Fig. 4, will be shown.
-        <ul>
-            <Li> There are two buttons on the upper right corner of the screen. <br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Your Worker ID</b>: your amazon mechnical turk worker Id.<br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Send</b>: for saving your layout on our server.<br/>
-            </Li>
-            <li>In the upper left corner of the screen, you will see the current newwork graph information. <br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Name of the Graph</b><br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Numbers of Edge crossing</b>: for counting the number of intersecting edges of the current graph.<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Numbers of Node Overlapping</b>: for counting the number of overlapping nodes of the current graph. <br/>
-            </li>
-        </ul>
-    </Li>
-    <LI>Here is the list of mouse actions for graph rearrangement. <br/>
-   <ul>
-       <li>Single node movement<br/>
-	   You can click left-mouse to drag any nodes or comparment. The selected node or compartment will be highlighted in yellow.</li>
-       <li>Group movement (there are multiple ways)<br/>
-           (1) <i>Of sparse nodes</i>: select a group of nodes by holding down the "Ctrl" key 
-           while using left-mouse button to select nodes sequentially.<br/>
-           (2) <i>Nodes connected to the same reaction</i>:  All nodes connected to a reaction (small white rectangular box or triangles or circles) can be moved together by dragging the reaction symbol while holding down the "Shift" key. <br/>
-           (3) <i>Nodes with the same color</i>: All nodes with the same color 
-		   inside a compartment can be moved together by dragging while 
-		   holding down the "Alt" key.</li> 
-       <li>Resizing: you can resize the compartment by putting your cursor on a red widget and using left-mouse drag.</li>
-   </ul>
-    <LI>When you are done, please click the "send" button to submit your result. If the showed "worker id" is not your "worker id", please input your worker id first.
-    After finishing inputting the text, please click the "Your worker ID" button on the menu bar or just press the "Enter" button on your keyboard to confirm your worker id.
-    (If you can not find your worker Id,
-        please visit <a href="https://www.mturk.com/mturk/dashboard" target="_bank">https://www.mturk.com/mturk/dashboard</a>,
-        in your account dashboard, you can find your Worker Id. )
-    </Li>
-</UL>
-<br/>
-<img alt="interface" width="1000" src="http://www.csee.umbc.edu/~yongnan/images/interface.PNG"/>
-<p style="text-align: center">Fig 4. Interface.</p>
-<h3>3.1 Video</h3>
-<p>
-    We provide a video below to show you the interactions and operations.
-</p>
-
-<script type="text/javascript" src="swfobject.js"></script>
-<script type="text/javascript">
-    swfobject.registerObject("csSWF", "9.0.115", "expressInstall.swf");
-</script>
-<div id="media" style="text-align: center">
-    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="640" height="498" id="csSWF">
-        <param name="movie" value="trainingVideo_controller.swf" />
-        <param name="quality" value="best" />
-        <param name="bgcolor" value="#1a1a1a" />
-        <param name="allowfullscreen" value="true" />
-        <param name="scale" value="showall" />
-        <param name="allowscriptaccess" value="always" />
-        <param name="flashvars" value="autostart=false&thumb=FirstFrame.png&thumbscale=45&color=0x000000,0x000000" />
-        <!--[if !IE]>-->
-        <object type="application/x-shockwave-flash" data="trainingVideo_controller.swf" width="640" height="498">
+    <script type="text/javascript" src="swfobject.js"></script>
+    <script type="text/javascript">
+        swfobject.registerObject("csSWF", "9.0.115", "expressInstall.swf");
+    </script>
+    <div id="media" style="text-align: center">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="640" height="498" id="csSWF">
+            <param name="movie" value="trainingVideo_controller.swf" />
             <param name="quality" value="best" />
             <param name="bgcolor" value="#1a1a1a" />
             <param name="allowfullscreen" value="true" />
             <param name="scale" value="showall" />
             <param name="allowscriptaccess" value="always" />
             <param name="flashvars" value="autostart=false&thumb=FirstFrame.png&thumbscale=45&color=0x000000,0x000000" />
-            <!--<![endif]-->
-            <div id="noUpdate">
-                <p>The video content presented here requires JavaScript to be enabled and the latest version of the Adobe Flash Player.
-                    If you are using a browser with JavaScript disabled please enable it now.
-                    Otherwise, please update your version of the free Adobe Flash Player by <a href="http://www.adobe.com/go/getflashplayer">downloading here</a>.
-                </p>
-            </div>
             <!--[if !IE]>-->
+            <object type="application/x-shockwave-flash" data="trainingVideo_controller.swf" width="640" height="498">
+                <param name="quality" value="best" />
+                <param name="bgcolor" value="#1a1a1a" />
+                <param name="allowfullscreen" value="true" />
+                <param name="scale" value="showall" />
+                <param name="allowscriptaccess" value="always" />
+                <param name="flashvars" value="autostart=false&thumb=FirstFrame.png&thumbscale=45&color=0x000000,0x000000" />
+                <!--<![endif]-->
+                <div id="noUpdate">
+                    <p>The video content presented here requires JavaScript to be enabled and the latest version of the Adobe Flash Player.
+                        If you are using a browser with JavaScript disabled please enable it now.
+                        Otherwise, please update your version of the free Adobe Flash Player by <a href="http://www.adobe.com/go/getflashplayer">downloading here</a>.
+                    </p>
+                </div>
+                <!--[if !IE]>-->
+            </object>
+            <!--<![endif]-->
         </object>
-        <!--<![endif]-->
-    </object>
-</div>
+    </div>
+    <br/>
+
+
 <br/>
-<h2>Notes</h2>
-<p>
-    The payments include a fixed reward and a bonus.<br/>
-    The bonus is based on the complexity of the graph of each task and your finial result.<br/>
-	You must finish the task and submit the result in order to get paid. <br/>
-If you think your layout is good but it gets rejected, please contact
-Yongnan Zhu at <a href="mailto:yongnan@umbc.edu">
-    <span style='font-family:Helvetica'>yongnan@umbc.edu</span></a>.
-    We will be able to recover your results from our server and refund you as needed.
-</p>
-<hr/>
-    <div id="copyright"><strong>Copyright ©2014  University of Maryland, Baltimore County Data Visualization Lab</strong></div>
 </div>
 </body>
 </html>
