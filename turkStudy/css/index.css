@@ -1,0 +1,71 @@
+
+body
+{
+	background-color: #eeeeee;
+	background-repeat: repeat;      /* repeat, no-repeat */
+	background-attachment: fixed;   /* scroll, fixed */
+	background-position: top left;  /* for no-repeat setting: top/bottom, left/right */
+	margin: 0px;            /* top, left, bottom, right or TRBL */
+    /* overflow: hidden;*/
+	font-family: Georgia, Serif;	/* list font names in order of preference */
+	font-weight: normal;            /* normal, bold */
+	font-style: normal;             /* normal, italic */
+	font-variant: normal;           /* normal, small-caps */
+	font-size: 16px;                /* font size */
+	color: #000000;                 /* hexadecimal RGB color code */
+	text-decoration: none;          /* none, underline, overline, line-through */
+	text-align: left;               /* left, right, center, justify */
+    line-height: 1.3em;
+}
+
+img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+canvas {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+.fancy
+{
+	min-height: 150px;
+	height: auto;
+	background: #ffffff;
+
+	-moz-border-radius: 15px 15px 15px 15px;
+	-webkit-border-radius: 15px 15px 15px 15px;
+	border-radius: 15px 15px 15px 15px;
+   /* align-content: center; */
+}
+
+.centerBox
+{
+    width:1020px;
+    margin:0 auto;
+
+    /* Background color and gradients */
+    background: #ffffff;
+
+    /* Rounded corners */
+    -moz-border-radius: 15px 15px 15px 15px;
+    -webkit-border-radius: 15px 15px 15px 15px;
+    border-radius: 15px 15px 15px 15px;
+    /* align-content: center; */
+}
+#copyright{
+    position: relative;
+    text-align: center;
+    font-size:12px;
+    color: #999;
+    width:100%;
+    padding:1em;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+

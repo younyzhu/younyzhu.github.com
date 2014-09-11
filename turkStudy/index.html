@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Graph layout</title>
+    <meta name="DC.title" content="Training Video" />
+    <link rel=stylesheet href="css/index.css"/>
+</head>
+<body>
+<h1 style="text-align: center">Graph layout</h1>
+<br/>
+<div class="centerBox">
+    <br/>
+    <hr/>
+    <h2>1. Browser</h2>
+    <p>
+        All modern ones, such as Safari, google chrome (best), and IE are supported.
+
+    <h2>2. Tasks</h2>
+    <p>
+        Biologists like to use the graph to trace information
+        (the path or edges between nodes).
+        Thus the only requirement in graph layout is to have a clear information flow,
+        which can be achieved by re-arranging nodes and edges in the graph.
+    <p>
+
+        A couple of numbers are shown on the screen, such as edge crossing and downward edges to give you some sense of complexity.
+        Please try to minimize these numbers, though
+        an optimal solution is not always possible.</p>
+    <p>
+        Please note that the "belonging" relationship cannot be changed.  Each node lives in a box and it cannot be moved out of the box.
+    </p>
+    <h2>3. Video</h2>
+    <p>
+        Please watch this short video for instrutions on interaction.
+        A couple of important ones  include  (1) moving a group by holding
+        down 'G' to select and drag a group;
+        (2) dragging the small rectangle (representing reaction in biology)
+        by hold down the 'shift' key to move everything connected to it.
+    <p>
+        Thanks and Have Fun!
+
+    </p>
+
+    <script type="text/javascript" src="swfobject.js"></script>
+    <script type="text/javascript">
+        swfobject.registerObject("csSWF", "9.0.115", "expressInstall.swf");
+    </script>
+    <div id="media" style="text-align: center">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="640" height="498" id="csSWF">
+            <param name="movie" value="trainingVideo_controller.swf" />
+            <param name="quality" value="best" />
+            <param name="bgcolor" value="#1a1a1a" />
+            <param name="allowfullscreen" value="true" />
+            <param name="scale" value="showall" />
+            <param name="allowscriptaccess" value="always" />
+            <param name="flashvars" value="autostart=false&thumb=FirstFrame.png&thumbscale=45&color=0x000000,0x000000" />
+            <!--[if !IE]>-->
+            <object type="application/x-shockwave-flash" data="trainingVideo_controller.swf" width="640" height="498">
+                <param name="quality" value="best" />
+                <param name="bgcolor" value="#1a1a1a" />
+                <param name="allowfullscreen" value="true" />
+                <param name="scale" value="showall" />
+                <param name="allowscriptaccess" value="always" />
+                <param name="flashvars" value="autostart=false&thumb=FirstFrame.png&thumbscale=45&color=0x000000,0x000000" />
+                <!--<![endif]-->
+                <div id="noUpdate">
+                    <p>The video content presented here requires JavaScript to be enabled and the latest version of the Adobe Flash Player.
+                        If you are using a browser with JavaScript disabled please enable it now.
+                        Otherwise, please update your version of the free Adobe Flash Player by <a href="http://www.adobe.com/go/getflashplayer">downloading here</a>.
+                    </p>
+                </div>
+                <!--[if !IE]>-->
+            </object>
+            <!--<![endif]-->
+        </object>
+    </div>
+    <br/>
+
+
+    <br/>
+</div>
+</body>
+</html>
