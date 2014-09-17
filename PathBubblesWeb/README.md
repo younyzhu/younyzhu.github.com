@@ -8,8 +8,9 @@ PathBubbles--A web-version of biological data visualization framework
 
 Introduction
 ============
-
-
+   Pathbubbles Project from  [https://sites.google.com/a/umbc.edu/pathbubbles/home](https://sites.google.com/a/umbc.edu/pathbubbles/home)     
+   You can get detailed informaiton from [https://sites.google.com/a/umbc.edu/pathbubbles/pathbubbles-1-0](https://sites.google.com/a/umbc.edu/pathbubbles/pathbubbles-1-0)  
+   This project is trying to design a web version of Pathbubbles to assist biologist in interactive exploring and analyzing dataset.
 Framework
 ============
 
