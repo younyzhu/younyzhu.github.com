@@ -44,3 +44,6 @@ Study Log
 
  ![image2](https://raw.githubusercontent.com/younyzhu/younyzhu.github.com/master/PathBubblesWeb/image/framework2.PNG)
 
+* 9/17/2014
+
+Try to add group, add space management (bug needs to be fixed)    

@@ -27,9 +27,9 @@ PATHBUBBLES.Render = function(canvas, scene){
     // 0  1  2
     // 3     4
     // 5  6  7
-    this.selectionHandles = [];
+    PATHBUBBLES.selectionHandles = [];
     for (var i = 0; i < 8; i += 1) {
-        this.selectionHandles.push(new PATHBUBBLES.Shape.Rectangle());   //here we just keep 8 rectangle for resizing
+        PATHBUBBLES.selectionHandles.push(new PATHBUBBLES.Shape.Rectangle(this));   //here we just keep 8 rectangle for resizing
     }
 
     var _this = this;
@@ -58,17 +58,29 @@ PATHBUBBLES.Render = function(canvas, scene){
         var mouse = _this.getMouse(e);
         var mx = mouse.x;
         var my = mouse.y;
-
-        for(i=_this.scene.children.length -1; i>=0; i--)
+        _this.valid = false;
+        for(i=PATHBUBBLES.objects.length -1; i>=0; i--)
         {
-            if(_this.scene.children[i] === null)
+            if(PATHBUBBLES.objects[i] === null)
                 continue;
-            if( _this.scene.children[i].contains(mx, my))
+            if( PATHBUBBLES.objects[i].type == "Bubble" && PATHBUBBLES.objects[i].containsInHalo(mx, my))
             {
                 oldMouseX = mx;
                 oldMouseY = my;
-                _this.scene.children[i].HighLight_State = true;
-                _this.selection[0] = _this.scene.children[i].shape;
+
+                _this.selection[0] = PATHBUBBLES.objects[i].shape;
+                _this.selection[0].HighLight_State = true;
+                _this.dragging = true;
+                _this.valid = false;
+                return;
+            }
+            else if ( PATHBUBBLES.objects[i].type != "Bubble" &&PATHBUBBLES.objects[i].type != "Group" &&PATHBUBBLES.objects[i].type != "" && PATHBUBBLES.objects[i].contains(mx, my))
+            {
+                oldMouseX = mx;
+                oldMouseY = my;
+                _this.selection[0] = PATHBUBBLES.objects[i].shape;
+                _this.selection[0].HighLight_State = true;
+
                 _this.dragging = true;
                 _this.valid = false;
                 return;
@@ -99,10 +111,10 @@ PATHBUBBLES.Render = function(canvas, scene){
         }
         else if (_this.resizeDragging ) {
 
-                oldx = _this.selection[0].x; //resize is just the relative position,, not absolute position
-                oldy = _this.selection[0].y;
-                mx -= _this.selection[0].x;
-                my -= _this.selection[0].y;
+            oldx = _this.selection[0].x; //resize is just the relative position,, not absolute position
+            oldy = _this.selection[0].y;
+            //mx -= _this.selection[0].offsetX;
+            //my -= _this.selection[0].offsetY;
             // 0  1  2
             // 3     4
             // 5  6  7
@@ -150,13 +162,13 @@ PATHBUBBLES.Render = function(canvas, scene){
         }
 
         // if there's a selection see if we grabbed one of the selection handles
-        if (_this.selection[0] !== null && !_this.resizeDragging ) {
+        if (_this.selection[0] !== undefined && !_this.resizeDragging ) {
             for (i = 0; i < 8; i += 1) {
                 // 0  1  2
                 // 3     4
                 // 5  6  7
 
-                cur = _this.selectionHandles[i];
+                cur = PATHBUBBLES.selectionHandles[i];
 
                 // we dont need to use the ghost context because
                 // selection handles will always be rectangles
@@ -192,7 +204,7 @@ PATHBUBBLES.Render = function(canvas, scene){
                             this.style.cursor = 'se-resize';
                             break;
                     }
-                    _this.selection[0].flag = true;
+                    _this.selection[0].HighLight_State = true;
                     return;
                 }
 
@@ -206,10 +218,13 @@ PATHBUBBLES.Render = function(canvas, scene){
 
     canvas.addEventListener('mouseup',function(e) {
         this.style.cursor = 'auto';
+        if(_this.selection[0])
+            _this.selection[0].HighLight_State = false;
+        _this.selection.splice(1);
         _this.dragging = false;
         _this.resizeDragging = false;
         _this.expectResize = -1;
-
+        //_this.valid = false;
     }, true);
 
     canvas.addEventListener('mousewheel', mousewheel, false);
@@ -226,7 +241,7 @@ PATHBUBBLES.Render = function(canvas, scene){
         _this.valid = false;
     }
 
-    this.selectionBoxSize = 6;
+    this.selectionBoxSize = PATHBUBBLES.selectionBoxSize;
 
     function animate() {
         requestAnimationFrame(animate);
@@ -243,7 +258,7 @@ PATHBUBBLES.Render.prototype ={
         var _this = this;
         // update Skeleton objects
         function drawObject( object ) {
-            if(! (object instanceof PATHBUBBLES.Scene) )
+            if(! (object instanceof PATHBUBBLES.Scene) && !( object instanceof PATHBUBBLES.Object2D ))
             {
                 object.draw(_this.ctx);
             }

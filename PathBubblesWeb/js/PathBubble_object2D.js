@@ -9,8 +9,16 @@ PATHBUBBLES.Object2D = function () {
     this.name = '';
     this.parent = undefined;
     this.children = [];
+    this.offsetX = 0;
+    this.offsetY = 0;
     this.x =0;
     this.y =0;
+    Object.defineProperties( this, {
+        position: {
+            x: this.x,
+            y: this.y
+        }
+    } );
 };
 PATHBUBBLES.Object2D.prototype = {
 
@@ -28,7 +36,8 @@ PATHBUBBLES.Object2D.prototype = {
             return this;
         }
 
-        if (object instanceof PATHBUBBLES.Object2D) {
+        if (object)
+        {
             if (object.parent !== undefined) {
                 object.parent.remove(object);
             }
@@ -48,8 +57,6 @@ PATHBUBBLES.Object2D.prototype = {
                 scene.addObject(object);
             }
 
-        } else {
-            console.error("PATHBUBBLES.Object2D.add:", object, "is not an instance of PATHBUBBLES.Object2D.");
         }
         return this;
     },
