@@ -37,14 +37,6 @@ Chart.prototype = {
                 this.lineChart.addItem(selectedFibers[i].object.id, selectedFibers[i].object.FA);
             }
         }
-       /*
-        var childs = Bubbles[id].mainGroup.children;
-        for (var i = 0; i < childs.length; ++i) {
-            for (var j = 0; j < childs[i].children.length; ++j) {
-                lineChart.addItem(childs[i].children[j].id, childs[i].children[j].FA);
-            }
-        }
-        */
         var parent = $('#chart' + id).draggable({ containment: '#bgCanvas', scroll: false,  //just dragable, do not need to move
             drag: function (ev, ui) {
                 var position = ui.position;  //drag stop position
@@ -109,6 +101,20 @@ Chart.prototype = {
                     pathConnection.remove(Bubbles[id].getlinkNodes()[i].connectionId);
                     Bubbles[id].spliceNodeLink(i);
                     $('#chart' + id).remove();
+                }
+            }
+        }
+    },
+    updateChart: function(){
+        if(this.lineChart)
+        {
+            this.lineChart.data.values.length =0;
+            var selectedFibers = Bubbles[this.id].fiberSelector.selectedFibers;
+            for(var i=0; i< selectedFibers.length; ++i)
+            {
+                if(selectedFibers[i].object.FA)
+                {
+                    this.lineChart.addItem(selectedFibers[i].object.id, selectedFibers[i].object.FA);
                 }
             }
         }

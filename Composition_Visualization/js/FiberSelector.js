@@ -78,6 +78,10 @@ FiberSelector.prototype = {
                 tmp = this.Logic_AND(tmp, intersects);
             }
             this.selectedFibers = tmp;
+            if(Charts)
+            {
+                Charts.updateChart();
+            }
             this.UPDATE = false;
         }
         //this.unique(this.selectedFibers);
@@ -106,6 +110,10 @@ FiberSelector.prototype = {
                 for (var k = 0, l2 = intersects.length; k < l2; k++) {
                     this.selectedFibers.push(intersects[k]);
                 }
+            }
+            if(Charts)
+            {
+                Charts.updateChart();
             }
             this.UPDATE = false;
             if (this.selectedFibers.length > 1)
@@ -137,6 +145,10 @@ FiberSelector.prototype = {
                 for (var k = 0, l2 = intersects.length; k < l2; k++) {
                     this.deletedFibers.push(intersects[k]);
                 }
+            }
+            if(Charts)
+            {
+                Charts.updateChart();
             }
             this.UPDATE = false;
             if (this.deletedFibers.length > 1)

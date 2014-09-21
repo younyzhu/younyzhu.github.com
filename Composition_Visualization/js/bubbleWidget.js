@@ -287,7 +287,8 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
                 //addChart(id, $bubbleId);
                 var chart = new Chart(id);
                 chart.initChart();
-                Charts.push(chart);
+                //Charts.push(chart);
+                Charts = chart;
 
                 var connection = new Connection(getWidgetCenter(id), getChartCenter(id));
                 pathConnection.addConnection(connection);

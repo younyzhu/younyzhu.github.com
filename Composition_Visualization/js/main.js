@@ -10,7 +10,7 @@ var navigationCanvas = null;
 var pathConnection = null;
 var nvWidth = 0;
 var Compares = [];
-var Charts = [];
+var Charts = null;   //change to 1;
 function getPositions(id) {
 
     var $bubble = $('#bubble' + id);
