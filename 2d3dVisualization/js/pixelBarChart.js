@@ -1,14 +1,14 @@
 /**
  * Created by Yongnan on 6/8/2014.
  */
-var PIXEL_WIDTH = 1;
-var PIXEL_HEIGHT = 1;
+//var PIXEL_WIDTH = 1;
+//var PIXEL_HEIGHT = 1;
 function Pixel(x,y,fa)
 {
     this.x = x;
     this.y = y;
-    this.w = PIXEL_WIDTH;
-    this.h = PIXEL_HEIGHT;
+//    this.w = PIXEL_WIDTH;
+//    this.h = PIXEL_HEIGHT;
 
     this.fillColor = this.getColor(fa);
     this.HIGHLIGHT = false;
@@ -21,8 +21,10 @@ Pixel.prototype = {
         var b = 255;
         return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
     },
-    draw: function(ctx)
+    draw: function(ctx, w, h)
     {
+        this.w =w;
+        this.h =h;
         ctx.save();
         ctx.fillStyle = this.fillColor;
         ctx.fillRect(this.x,this.y,this.w,this.h);
@@ -58,7 +60,8 @@ function PixelBarChart(id, canvas) {
     this.ctx = canvas.getContext('2d');
     this.valid = false; // when set to false, the canvas will redraw everything
     this.just_click = false;
-
+    this.PIXEL_WIDTH =1;
+    this.PIXEL_HEIGHT =1;
     var _this = this;
     this.SORTFLAG = false;
 
@@ -84,13 +87,13 @@ PixelBarChart.prototype = {
                 max = this.data[i].fas.length;
             }
         }
-        if(((this.width - 2 * this.xPadding) / this.data.length)>PIXEL_WIDTH)
+        //if(((this.width - 2 * this.xPadding) / this.data.length)> this.PIXEL_WIDTH)
         {
-            PIXEL_WIDTH = (this.width - 2 * this.xPadding) / this.data.length;
+            this.PIXEL_WIDTH = (this.width - 2 * this.xPadding) / this.data.length;
         }
-        if( (this.height - 2 * this.yPadding) /max  > PIXEL_HEIGHT)
+        //if( (this.height - 2 * this.yPadding) /max  > this.PIXEL_HEIGHT)
         {
-            PIXEL_HEIGHT = (this.height - 2 * this.yPadding) /max ;
+            this.PIXEL_HEIGHT = (this.height - 2 * this.yPadding) /max ;
         }
 
         for(var i=0; i<this.data.length; ++i)
@@ -119,12 +122,12 @@ PixelBarChart.prototype = {
     // Returns the max Y value in our data list
     getXPixel: function (val) {
         //return ((this.width - 2 * this.xPadding) / this.data.values.length) * val + this.xPadding;//left and right keep padding
-        return PIXEL_WIDTH * val + this.xPadding;//left and right keep padding
+        return this.PIXEL_WIDTH * val + this.xPadding;//left and right keep padding
     },
     // Return the y pixel for a graph point
     getYPixel: function (val) {
         //return this.height - this.yPadding - (( (this.height - 2 * this.yPadding) ) * val);
-        return this.height - this.yPadding - PIXEL_HEIGHT * (val+1);
+        return this.height - this.yPadding - this.PIXEL_HEIGHT * (val+1);
     },
     clear: function () {
         this.ctx.fillStyle = "#ffffff";
@@ -227,7 +230,7 @@ PixelBarChart.prototype = {
          {
              for(var j=0; j<this.data[i].values.length; ++j)
              {
-                 this.data[i].values[j].draw(ctx);
+                 this.data[i].values[j].draw(ctx, this.PIXEL_WIDTH, this.PIXEL_HEIGHT);
              }
          }
     },
