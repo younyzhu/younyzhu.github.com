@@ -130,6 +130,7 @@ PixelBarChart.prototype = {
         this.ctx.fillStyle = "#ffffff";
         this.ctx.fillRect(0, 0, this.width, this.height);
     },
+
     draw: function () {
         // if our state is invalid, redraw!
         if (!this.valid) {
@@ -144,7 +145,7 @@ PixelBarChart.prototype = {
                     {
                         for(var j=0; j<this.data[i].fas.length; ++j)
                         {
-                            for( var k=j+1; k<this.data[i].fas.length -1; ++k)
+                            for( var k=0; k<this.data[i].fas.length -1; ++k)
                             {
                                 if(this.data[i].fas[j].z > this.data[i].fas[k].z )
                                 {
