@@ -1,8 +1,8 @@
 /**
  * Created by Yongnan on 6/8/2014.
  */
-var PIXEL_WIDTH = 0.1;
-var PIXEL_HEIGHT = 0.1;
+var PIXEL_WIDTH = 1;
+var PIXEL_HEIGHT = 1;
 function Pixel(x,y,fa)
 {
     this.x = x;
@@ -60,6 +60,8 @@ function PixelBarChart(id, canvas) {
     this.just_click = false;
 
     var _this = this;
+    this.SORTFLAG = false;
+
     function animate() {
         requestAnimationFrame(animate);
         _this.draw();
@@ -82,21 +84,24 @@ PixelBarChart.prototype = {
                 max = this.data[i].fas.length;
             }
         }
-        //if(((this.width - 2 * this.xPadding) / this.data.length)>PIXEL_WIDTH)
+        if(((this.width - 2 * this.xPadding) / this.data.length)>PIXEL_WIDTH)
         {
             PIXEL_WIDTH = (this.width - 2 * this.xPadding) / this.data.length;
         }
-        //if( (this.height - 2 * this.yPadding) /max  > PIXEL_HEIGHT)
+        if( (this.height - 2 * this.yPadding) /max  > PIXEL_HEIGHT)
         {
             PIXEL_HEIGHT = (this.height - 2 * this.yPadding) /max ;
         }
 
         for(var i=0; i<this.data.length; ++i)
         {
+            this.data[i].values.length =0;
             for(var j=0; j<this.data[i].fas.length; ++j)
             {
                 var pixel = new Pixel(this.getXPixel(i), this.getYPixel(j), this.data[i].fas[j].z);
-                this.data[i].values.push(pixel);
+//                var index = this.data[i].values.indexOf(pixel);
+//                if(index != -1)
+                    this.data[i].values.push(pixel);
             }
         }
     },
@@ -104,7 +109,6 @@ PixelBarChart.prototype = {
         this.width = this.canvas.width;
         this.height = this.canvas.height;
         this.valid = false;
-        this.draw();
     },
     removeItem: function (index) {
         var l = this.data.values.length;
@@ -133,7 +137,31 @@ PixelBarChart.prototype = {
               //  this.dataProcessing();
             this.clear();
             if(this.data.length)
+            {
+                if(this.SORTFLAG)
+                {
+                    for(var i=0; i<this.data.length; ++i)
+                    {
+                        for(var j=0; j<this.data[i].fas.length; ++j)
+                        {
+                            for( var k=j+1; k<this.data[i].fas.length -1; ++k)
+                            {
+                                if(this.data[i].fas[j].z > this.data[i].fas[k].z )
+                                {
+                                    var temp1 = this.data[i].fas[j];
+                                    this.data[i].fas[j] = this.data[i].fas[k];
+                                    this.data[i].fas[k] = temp1;
+
+                                    var temp2 = this.data[i].values[j];
+                                    this.data[i].values[j] = this.data[i].values[k];
+                                    this.data[i].values[k] = temp2;
+                                }
+                            }
+                        }
+                    }
+                }
                 this.generatePixelPos();
+            }
 //            this.ctx.save();
 //            this.ctx.fillStyle = '#000';
 //            this.ctx.font = 'italic 8pt sans-serif';

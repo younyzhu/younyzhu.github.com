@@ -48,7 +48,7 @@ Chart.prototype = {
                 this.pixelBarChart.addItem(selectedFibers[i].object.id, selectedFibers[i].object.geometry.colors);
             }
         }
-        var parent = $('#chart' + id).draggable({ containment: '#bgCanvas', scroll: false,  //just dragable, do not need to move
+        var parent = $chartId.draggable({ containment: '#bgCanvas', scroll: false,  //just dragable, do not need to move
             drag: function (ev, ui) {
                 var position = ui.position;  //drag stop position
                 var currentPos = currentToBoxPos(position.left, position.top);
@@ -93,9 +93,35 @@ Chart.prototype = {
             }
         });
 
-        parent.children(".dragheader").children(".close").click(function () {
-             _this.removeChart();
+//        parent.children(".dragheader").children(".close").click(function () {
+//             _this.removeChart();
+//        });
+
+        $chartId.contextMenu({
+           selector: ".dragheader",
+           callback: function(key, options){
+               if(key==="delete")
+               {
+                   _this.removeChart();
+               }
+               else if(key==="sort")
+               {
+                   _this.pixelBarChart.SORTFLAG = true;
+                   _this.pixelBarChart.valid = false;
+               }
+               else if(key==="unSort")
+               {
+                   _this.pixelBarChart.SORTFLAG = false;
+                   _this.pixelBarChart.valid = false;
+               }
+           },
+           items: {
+                "delete": {name: "Delete"},
+                "sort": {name: "Sort"},
+                "unSort": {name: "UnSort"}
+           }
         });
+
     },
     removeChart: function(){
         var id = this.id;
@@ -151,7 +177,7 @@ Chart.prototype = {
         var tmp = '';
         tmp += '<div id ="chart' + id + '" class="chart shadow drag" style="position: absolute; left:' + mousePosX + 'px; top:' + mousePosY + 'px; ">';
         tmp += '    <div id ="drag' + id + '" class="dragheader">' + name;
-        tmp += '        <span class="close">X</span>';
+       // tmp += '        <span class="close">X</span>';
         tmp += '    </div>';
         tmp += '    <canvas id ="chartCanvas' + id + '"width="250" height="250" >';
         tmp += '    </canvas>';
