@@ -161,8 +161,7 @@ Chart.prototype = {
         if(this.pixelBarChart)
         {
             this.pixelBarChart.data.length =0;
-            PIXEL_WIDTH = 1;
-            PIXEL_HEIGHT = 1;
+            this.pixelBarChart.unsortData.length =0;
             var selectedFibers = Bubbles[this.id].fiberSelector.selectedFibers;
             for(var i=0; i< selectedFibers.length; ++i)
             {

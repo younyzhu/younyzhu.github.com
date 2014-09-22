@@ -64,7 +64,7 @@ function PixelBarChart(id, canvas) {
     this.PIXEL_HEIGHT =1;
     var _this = this;
     this.SORTFLAG = false;
-
+    this.unsortData =[];
     function animate() {
         requestAnimationFrame(animate);
         _this.draw();
@@ -74,49 +74,37 @@ function PixelBarChart(id, canvas) {
 PixelBarChart.prototype = {
     addItem: function (id, colors) {
         this.data.push({ Id: id, fas: colors, values:[] });//This id means which line it belongs to
+        this.unsortData.push({ Id: id, fas: colors, values:[] });//This id means which line it belongs to
         this.valid = false; //For redrawing the chart, the data is changed
     },
-    generatePixelPos: function(){
-        if(this.data.length ==0)
-        return;
+    generatePixelPos: function(data){
+        if(data.length ==0)
+            return;
         var max = -Infinity;
-        for(var i=0; i< this.data.length; ++i)
+        for(var i=0; i< data.length; ++i)
         {
-            if(this.data[i].fas.length >max)
+            if(data[i].fas.length >max)
             {
-                max = this.data[i].fas.length;
+                max = data[i].fas.length;
             }
         }
-        //if(((this.width - 2 * this.xPadding) / this.data.length)> this.PIXEL_WIDTH)
-        {
-            this.PIXEL_WIDTH = (this.width - 2 * this.xPadding) / this.data.length;
-        }
-        //if( (this.height - 2 * this.yPadding) /max  > this.PIXEL_HEIGHT)
-        {
-            this.PIXEL_HEIGHT = (this.height - 2 * this.yPadding) /max ;
-        }
 
-        for(var i=0; i<this.data.length; ++i)
+        this.PIXEL_WIDTH = (this.width - 2 * this.xPadding) / data.length;
+        this.PIXEL_HEIGHT = (this.height - 2 * this.yPadding) /max ;
+
+        for(var i=0; i<data.length; ++i)
         {
-            this.data[i].values.length =0;
-            for(var j=0; j<this.data[i].fas.length; ++j)
+            data[i].values.length =0;
+            for(var j=0; j<data[i].fas.length; ++j)
             {
-                var pixel = new Pixel(this.getXPixel(i), this.getYPixel(j), this.data[i].fas[j].z);
-//                var index = this.data[i].values.indexOf(pixel);
-//                if(index != -1)
-                    this.data[i].values.push(pixel);
+                var pixel = new Pixel(this.getXPixel(i), this.getYPixel(j), data[i].fas[j].z);
+                    data[i].values.push(pixel);
             }
         }
     },
     resize: function () {
         this.width = this.canvas.width;
         this.height = this.canvas.height;
-        this.valid = false;
-    },
-    removeItem: function (index) {
-        var l = this.data.values.length;
-        if (index > 0 && index < l)
-            this.data.values[index] = null;
         this.valid = false;
     },
     // Returns the max Y value in our data list
@@ -140,7 +128,7 @@ PixelBarChart.prototype = {
             //if(!this.just_click)
               //  this.dataProcessing();
             this.clear();
-            if(this.data.length)
+            if(this.data.length||this.unsortData.length)
             {
                 if(this.SORTFLAG)
                 {
@@ -175,8 +163,12 @@ PixelBarChart.prototype = {
                             }
                         }
                     }
+                    this.generatePixelPos(this.data);
                 }
-                this.generatePixelPos();
+                else
+                {
+                    this.generatePixelPos(this.unsortData);
+                }
             }
 //            this.ctx.save();
 //            this.ctx.fillStyle = '#000';
@@ -219,18 +211,23 @@ PixelBarChart.prototype = {
 //                this.ctx.fillText(i / 5, this.xPadding * 4 / 5.0, this.height - this.yPadding - (this.height - 2 * this.yPadding) / 5.0 * i);
 //            }
 //            this.ctx.restore();
-            if(this.data.length)
-            this.drawBar(this.ctx);
+            if(this.data.length||this.unsortData.length)
+            {
+                if(this.SORTFLAG)
+                    this.drawBar(this.data, this.ctx);
+                else
+                    this.drawBar(this.unsortData, this.ctx);
+            }
             this.valid = true;
             this.just_click = false;
         }
     },
-    drawBar: function(ctx){
-         for(var i=0; i<this.data.length; ++i)
+    drawBar: function(data,ctx){
+         for(var i=0; i<data.length; ++i)
          {
-             for(var j=0; j<this.data[i].values.length; ++j)
+             for(var j=0; j<data[i].values.length; ++j)
              {
-                 this.data[i].values[j].draw(ctx, this.PIXEL_WIDTH, this.PIXEL_HEIGHT);
+                 data[i].values[j].draw(ctx, this.PIXEL_WIDTH, this.PIXEL_HEIGHT);
              }
          }
     },
