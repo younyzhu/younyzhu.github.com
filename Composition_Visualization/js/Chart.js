@@ -6,6 +6,7 @@ function Chart(id)//every chart belongs to specific bubble
 {
     this.id = id;
     this.lineChart = null;
+    this.pixelBarChart = null;
 }
 
 Chart.prototype = {
@@ -15,7 +16,7 @@ Chart.prototype = {
         var $bubbleId = $("#bubble" + id);
         var posx = $bubbleId.offset().left;//offset() or position()
         var posy = $bubbleId.offset().top;
-        var chartdiv = $(this.chart_div(id, "FA Line Chart", posx + $bubbleId.width() + 30, posy));
+        var chartdiv = $(this.chart_div(id, "FA Chart", posx + $bubbleId.width() + 30, posy));
         $("#bubble").append(chartdiv);
 
         var $chartId = $('#chart' + id);
@@ -27,14 +28,24 @@ Chart.prototype = {
         navigationCanvas.addShape(chartView);
 
         var linechartCanvas = document.getElementById('chartCanvas' + id);
-        this.lineChart = new LineChart(id, linechartCanvas);
+//        this.lineChart = new LineChart(id, linechartCanvas);
+//
+//        var selectedFibers = Bubbles[id].fiberSelector.selectedFibers;
+//        for(var i=0; i< selectedFibers.length; ++i)
+//        {
+//            if(selectedFibers[i].object.FA)
+//            {
+//                this.lineChart.addItem(selectedFibers[i].object.id, selectedFibers[i].object.FA);
+//            }
+//        }
 
+        this.pixelBarChart = new PixelBarChart(id, linechartCanvas);
         var selectedFibers = Bubbles[id].fiberSelector.selectedFibers;
         for(var i=0; i< selectedFibers.length; ++i)
         {
-            if(selectedFibers[i].object.FA)
+            if(selectedFibers[i].object.geometry.colors)
             {
-                this.lineChart.addItem(selectedFibers[i].object.id, selectedFibers[i].object.FA);
+                this.pixelBarChart.addItem(selectedFibers[i].object.id, selectedFibers[i].object.geometry.colors);
             }
         }
         var parent = $('#chart' + id).draggable({ containment: '#bgCanvas', scroll: false,  //just dragable, do not need to move
@@ -67,7 +78,10 @@ Chart.prototype = {
                 var width_ = $canvas.width();
                 var height_ = $canvas.height();
                 $canvas.attr({width: width_, height: height_});
+                if(_this.lineChart)
                 _this.lineChart.resize(width_, height_);
+                if(_this.pixelBarChart)
+                    _this.pixelBarChart.resize(width_, height_);
                 var width = width_ / window.innerWidth * nvWidth;
                 var height = height_ / (window.innerHeight - 50) * 50;
                 for (var i = 0; i < navigationCanvas.shapes.length; ++i) {
@@ -115,6 +129,20 @@ Chart.prototype = {
                 if(selectedFibers[i].object.FA)
                 {
                     this.lineChart.addItem(selectedFibers[i].object.id, selectedFibers[i].object.FA);
+                }
+            }
+        }
+        if(this.pixelBarChart)
+        {
+            this.pixelBarChart.data.length =0;
+            PIXEL_WIDTH = 1;
+            PIXEL_HEIGHT = 1;
+            var selectedFibers = Bubbles[this.id].fiberSelector.selectedFibers;
+            for(var i=0; i< selectedFibers.length; ++i)
+            {
+                if(selectedFibers[i].object.geometry.colors)
+                {
+                    this.pixelBarChart.addItem(selectedFibers[i].object.id, selectedFibers[i].object.geometry.colors);
                 }
             }
         }

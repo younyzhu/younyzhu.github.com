@@ -418,7 +418,6 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
             }
         }
     });
-
     //var $bubbleparaMenu = $("#bubble" + id).children().children().children();
     $bubbleId.find("#select").click(function () {
     //$bubbleparaMenu.children('select').change(function () {

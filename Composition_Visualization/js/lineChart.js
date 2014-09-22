@@ -12,10 +12,12 @@ function Dot(id, x, y) {
 Dot.prototype = {
     drawDot: function (ctx) {
         // Draw the dots
+        ctx.save();
         ctx.fillStyle = this.fillStyle;
         ctx.beginPath();   //Center, Start angle, End angle
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
         ctx.fill();
+        ctx.restore();
     },
     contains: function (mx, my) {    //if (mx, my) inside the circle, we said it contains.
         return ( (mx - this.x) * (mx - this.x) + (my - this.y) * (my - this.y) ) - this.radius * this.radius <= 0;
@@ -124,7 +126,6 @@ LineChart.prototype = {
         return this.height - this.yPadding - (( (this.height - 2 * this.yPadding) ) * val);  // Y value range[0,1]
     },
     clear: function () {
-        //this.ctx.clearRect(0, 0, this.width, this.height);
         this.ctx.fillStyle = "#ffffff";
         this.ctx.fillRect(0, 0, this.width, this.height);
     },
@@ -152,6 +153,7 @@ LineChart.prototype = {
             if(!this.just_click)
                 this.dataProcessing();
             this.clear();
+            this.ctx.save();
             this.ctx.lineWidth = 2;
             this.ctx.strokeStyle = '#333';
             this.ctx.font = 'italic 8pt sans-serif';
@@ -201,6 +203,7 @@ LineChart.prototype = {
             for (i = 1; i <= 5; i++) {
                 this.ctx.fillText(i / 5, this.xPadding * 4 / 5.0, this.height - this.yPadding - (this.height - 2 * this.yPadding) / 5.0 * i);
             }
+            this.ctx.restore();
             this.valid = true;
             this.just_click = false;
         }
