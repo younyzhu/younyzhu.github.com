@@ -386,6 +386,7 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
     });
     $bubbleId.find("#remove").click(function () {
         bubble.removeSelector();
+
         if(bubble.COMPARE_FLAG)
         {
             var compareGroup = Compares[bubble.compareId].group;

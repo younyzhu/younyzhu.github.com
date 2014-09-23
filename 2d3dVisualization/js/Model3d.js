@@ -489,6 +489,7 @@ Model3d.prototype = {
         this.resetAllResult();
         for (var i = 0; i < this.selectors.length; ++i)
             this.selectors[ i ].setUpdateState(true);
+        this.selectors[this.selectors.length -1].chart.removeChart();
         this.selectors.pop();
         this.scene.remove(this.objects.pop());
     },
