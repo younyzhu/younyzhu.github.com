@@ -461,7 +461,7 @@ Model3d.prototype = {
             }
         }
     },
-    addSelector: function () {
+    addSelector: function (chart) {
         this.resetAllResult();
         var geometry = new THREE.SphereGeometry(10, 40, 40);
         var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: 0x800080 }));
@@ -473,6 +473,7 @@ Model3d.prototype = {
         this.scene.add(object);
         this.objects.push(object);
         var sphereSelector = new SphereSelector(this.id, object, true);
+        sphereSelector.chart = chart;
         this.selectors.push(sphereSelector);  //When add a sphere, we should build a selector;
         object.selectId = this.selectors.length - 1;
         this.selectors[ object.selectId ].setUpdateState(true);
@@ -684,6 +685,16 @@ Model3d.prototype = {
             }
             for (var i = 0; i < this.selectors.length; i++) {
                 this.selectors[i].intersectObjects(this.mainGroup.children, true);
+                this.selectors[i].chart.updateChart();
+                var select_Fibers = this.selectors[i].intersects;
+
+                for (var j = 0; j < select_Fibers.length; ++j) {
+                    var select_object = select_Fibers[j].object;
+                    if (select_object !== undefined) {
+                        select_object.material.color.setRGB(1, 1, 0);
+                    }
+                }
+
                 if(this.niiSlice!==null)
                     if(this.niiSlice.metaData)
                     {
@@ -691,30 +702,30 @@ Model3d.prototype = {
                         this.selectors[i].getVoxelFA(this.niiSlice.metaData);
                     }
             }
-            if (this.ANDOR === "DELETE") {
-                this.fiberSelector.updateSelectResult("DELETE");   //{ AND: 0, OR: 1}
-                var delete_Fibers = this.fiberSelector.deletedFibers;
-                if (delete_Fibers.length > 0) {
-                    for (i = 0; i < delete_Fibers.length; ++i) {
-                        var delete_object = delete_Fibers[i].object;
-                        if (delete_object !== undefined) {
-                            delete_object.visible = false;
-                        }
-                    }
-                }
-            }
-            else {
-                this.fiberSelector.updateSelectResult(this.ANDOR);   //{ AND: 0, OR: 1}
-                var select_Fibers = this.fiberSelector.selectedFibers;
-                if (select_Fibers.length > 0) {
-                    for (i = 0; i < select_Fibers.length; ++i) {
-                        var select_object = select_Fibers[i].object;
-                        if (select_object !== undefined) {
-                            select_object.material.color.setRGB(1, 1, 0);
-                        }
-                    }
-                }
-            }
+//            if (this.ANDOR === "DELETE") {
+//                this.fiberSelector.updateSelectResult("DELETE");   //{ AND: 0, OR: 1}
+//                var delete_Fibers = this.fiberSelector.deletedFibers;
+//                if (delete_Fibers.length > 0) {
+//                    for (i = 0; i < delete_Fibers.length; ++i) {
+//                        var delete_object = delete_Fibers[i].object;
+//                        if (delete_object !== undefined) {
+//                            delete_object.visible = false;
+//                        }
+//                    }
+//                }
+//            }
+//            else {
+//                this.fiberSelector.updateSelectResult(this.ANDOR);   //{ AND: 0, OR: 1}
+//                var select_Fibers = this.fiberSelector.selectedFibers;
+//                if (select_Fibers.length > 0) {
+//                    for (i = 0; i < select_Fibers.length; ++i) {
+//                        var select_object = select_Fibers[i].object;
+//                        if (select_object !== undefined) {
+//                            select_object.material.color.setRGB(1, 1, 0);
+//                        }
+//                    }
+//                }
+//            }
 
         }
     },

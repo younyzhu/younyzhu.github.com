@@ -10,7 +10,7 @@ var navigationCanvas = null;
 var pathConnection = null;
 var nvWidth = 0;
 var Compares = [];
-//var Charts = [];   //change to 1;     every chart belongs to a bubble
+var ChartsId = [];   //change to 1;     every chart belongs to a bubble
 function getPositions(id) {
 
     var $bubble = $('#bubble' + id);

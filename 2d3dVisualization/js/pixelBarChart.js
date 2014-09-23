@@ -1,15 +1,10 @@
 /**
  * Created by Yongnan on 6/8/2014.
  */
-//var PIXEL_WIDTH = 1;
-//var PIXEL_HEIGHT = 1;
 function Pixel(x,y,fa)
 {
     this.x = x;
     this.y = y;
-//    this.w = PIXEL_WIDTH;
-//    this.h = PIXEL_HEIGHT;
-
     this.fillColor = this.getColor(fa);
     this.HIGHLIGHT = false;
 }
@@ -170,12 +165,6 @@ PixelBarChart.prototype = {
                     this.generatePixelPos(this.unsortData);
                 }
             }
-//            this.ctx.save();
-//            this.ctx.fillStyle = '#000';
-//            this.ctx.font = 'italic 8pt sans-serif';
-//            this.ctx.textAlign = "center";
-//            this.ctx.fillText("(0,0)", this.xPadding / 2.0, this.height - this.yPadding / 2.0, 30);
-//            this.ctx.restore();
 
             this.ctx.save();
             this.ctx.lineWidth = 2;
@@ -190,27 +179,6 @@ PixelBarChart.prototype = {
             this.ctx.stroke();
             this.ctx.restore();
 
-            // Draw the X value texts
-//            var i, l = this.data.length;
-//            var step = parseInt(l / 5);
-//            this.ctx.save();
-//            for (i = step; i < l; i += step) {
-//                this.ctx.lineWidth = 2;
-//                this.ctx.strokeStyle = '#333';
-//                this.ctx.font = 'italic 8pt Calibri';
-//                this.ctx.fillText(i, this.getXPixel(i), this.height - this.yPadding / 2.0, 30);
-//            }
-//            this.ctx.restore();
-            // Draw the Y value texts
-//            this.ctx.save();
-//            this.ctx.lineWidth = 2;
-//            this.ctx.strokeStyle = '#333';
-//            this.ctx.textAlign = "right";
-//            this.ctx.textBaseline = "middle";
-//            for (i = 1; i <= 5; i++) {
-//                this.ctx.fillText(i / 5, this.xPadding * 4 / 5.0, this.height - this.yPadding - (this.height - 2 * this.yPadding) / 5.0 * i);
-//            }
-//            this.ctx.restore();
             if(this.data.length||this.unsortData.length)
             {
                 if(this.SORTFLAG)

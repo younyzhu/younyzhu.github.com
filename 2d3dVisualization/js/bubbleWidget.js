@@ -136,7 +136,11 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
                             }
                         }
                         else if (type === "CHART") {
-                            pathConnection.update(Bubbles[currentId].getlinkNodes()[i].connectionId, getWidgetCenter(currentId), getChartCenter(currentId));
+//                            pathConnection.update(Bubbles[currentId].getlinkNodes()[i].connectionId, getWidgetCenter(currentId), getChartCenter(currentId));
+                            var next = Bubbles[currentId].getlinkNodes()[i].connectTo;
+                            if (Bubbles[currentId].getlinkNodes()[i].connectionId !== null && Bubbles[currentId] !== null ) {
+                                pathConnection.update(Bubbles[currentId].getlinkNodes()[i].connectionId, getWidgetCenter(currentId), getChartCenter(next));
+                            }
                         }
                     }
                 }
@@ -177,18 +181,23 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
                     navigationCanvas.updateRectResize(i, width, height);
             }
             bubble.onDivResize(size.width, size.height);
-            if (Bubbles[id] !== null) {
-                var le = Bubbles[id].getlinkNodes().length;
+            var currentId = this.id;
+            if (Bubbles[currentId] !== null) {
+                var le = Bubbles[currentId].getlinkNodes().length;
                 for (var i = 0; i < le; ++i) {
-                    var type = Bubbles[id].getlinkNodes()[i].type;
+                    var type = Bubbles[currentId].getlinkNodes()[i].type;
                     if (type === "BUBBLE") {
-                        var next = Bubbles[id].getlinkNodes()[i].connectTo;
-                        if (Bubbles[id].getlinkNodes()[i].connectionId !== null && Bubbles[id] !== null && Bubbles[next] !== null) {
-                            pathConnection.update(Bubbles[id].getlinkNodes()[i].connectionId, getWidgetCenter(id), getWidgetCenter(next));
+                        var next = Bubbles[currentId].getlinkNodes()[i].connectTo;
+                        if (Bubbles[currentId].getlinkNodes()[i].connectionId !== null && Bubbles[currentId] !== null && Bubbles[next] !== null) {
+                            pathConnection.update(Bubbles[currentId].getlinkNodes()[i].connectionId, getWidgetCenter(currentId), getWidgetCenter(next));
                         }
                     }
                     else if (type === "CHART") {
-                        pathConnection.update(Bubbles[id].getlinkNodes()[i].connectionId, getWidgetCenter(id), getChartCenter(id));
+//                            pathConnection.update(Bubbles[currentId].getlinkNodes()[i].connectionId, getWidgetCenter(currentId), getChartCenter(currentId));
+                        var next = Bubbles[currentId].getlinkNodes()[i].connectTo;
+                        if (Bubbles[currentId].getlinkNodes()[i].connectionId !== null && Bubbles[currentId] !== null ) {
+                            pathConnection.update(Bubbles[currentId].getlinkNodes()[i].connectionId, getWidgetCenter(currentId), getChartCenter(next));
+                        }
                     }
                 }
             }
@@ -251,7 +260,13 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
                             }
                         }
                     }
-
+                    for(var i=0; i<Bubbles[id].selectors.length; ++i)
+                    {
+                        if(Bubbles[id].selectors[i].chart)
+                        {
+                            Bubbles[id].selectors[i].chart.removeChart();
+                        }
+                    }
                     var le = Bubbles[id].getlinkNodes().length;      //If the bubble has Node link
                     for (var i = 0; i < le; ++i) {
                         var type = Bubbles[id].getlinkNodes()[i].type;
@@ -284,11 +299,9 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
                 $("#bubble" + id).children().children("#select_menu").show();
             }
             else if (key === "faChart") {
-                //addChart(id, $bubbleId);
+
                 var chart = new Chart(id);
                 chart.initChart();
-                //Charts.push(chart);
-//                Charts = chart;
                 Bubbles[id].chart = chart;
 
                 var connection = new Connection(getWidgetCenter(id), getChartCenter(id));
@@ -344,7 +357,21 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
     //var $bubbleRefineMenu = $("#bubble" + id).children().children().children();
     $bubbleId.find("#add").click(function () {
     //$bubbleRefineMenu.children('#add').click(function () {
-        bubble.addSelector();
+        //var chartId = ChartsId.length;
+        var chartId =CHART_COUNT;
+        var selectorId = bubble.selectors.length;
+        var chart = new Chart(id, chartId, selectorId);
+
+//        Bubbles[id].chart = chart;
+        bubble.addSelector(chart);
+        chart.initChart();
+
+        var connection = new Connection(getWidgetCenter(id), getChartCenter(chartId));
+        pathConnection.addConnection(connection);
+        var connectId = pathConnection.connections.length - 1;
+        var node1 = new NodeLink("CHART", connectId, chartId);
+        Bubbles[id].addlinkNode(node1);
+
         if(bubble.COMPARE_FLAG)
         {
             var compareGroup = Compares[bubble.compareId].group;
@@ -358,7 +385,6 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
         }
     });
     $bubbleId.find("#remove").click(function () {
-    //$bubbleRefineMenu.children("#remove").click(function () {
         bubble.removeSelector();
         if(bubble.COMPARE_FLAG)
         {
@@ -372,53 +398,53 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
             }
         }
     });
-    $bubbleId.find("#and").click(function () {
-    //$bubbleRefineMenu.children("#and").click(function () {
-        bubble.And();
-        bubble.resetAllResult();
-        if(bubble.COMPARE_FLAG)
-        {
-            var compareGroup = Compares[bubble.compareId].group;
-            for(var i=0; i<compareGroup.length; ++i)
-            {
-                if( compareGroup[i] !== id)
-                {
-                    Bubbles[ compareGroup[i] ].And();
-                    Bubbles[ compareGroup[i] ].resetAllResult();
-                }
-            }
-        }
-    });
-    $bubbleId.find("#delete").click(function () {
-    //$bubbleRefineMenu.children("#delete").click(function () {
-        bubble.Delete();
-        if(bubble.COMPARE_FLAG)
-        {
-            var compareGroup = Compares[bubble.compareId].group;
-            for(var i=0; i<compareGroup.length; ++i)
-            {
-                if( compareGroup[i] !== id)
-                {
-                    Bubbles[ compareGroup[i] ].Delete();
-                }
-            }
-        }
-    });
-    $bubbleId.find("#or").click(function () {
-    //$bubbleRefineMenu.children("#or").click(function () {
-        bubble.Or();
-        if(bubble.COMPARE_FLAG)
-        {
-            var compareGroup = Compares[bubble.compareId].group;
-            for(var i=0; i<compareGroup.length; ++i)
-            {
-                if( compareGroup[i] !== id)
-                {
-                    Bubbles[ compareGroup[i] ].Or();
-                }
-            }
-        }
-    });
+//    $bubbleId.find("#and").click(function () {
+//    //$bubbleRefineMenu.children("#and").click(function () {
+//        bubble.And();
+//        bubble.resetAllResult();
+//        if(bubble.COMPARE_FLAG)
+//        {
+//            var compareGroup = Compares[bubble.compareId].group;
+//            for(var i=0; i<compareGroup.length; ++i)
+//            {
+//                if( compareGroup[i] !== id)
+//                {
+//                    Bubbles[ compareGroup[i] ].And();
+//                    Bubbles[ compareGroup[i] ].resetAllResult();
+//                }
+//            }
+//        }
+//    });
+//    $bubbleId.find("#delete").click(function () {
+//    //$bubbleRefineMenu.children("#delete").click(function () {
+//        bubble.Delete();
+//        if(bubble.COMPARE_FLAG)
+//        {
+//            var compareGroup = Compares[bubble.compareId].group;
+//            for(var i=0; i<compareGroup.length; ++i)
+//            {
+//                if( compareGroup[i] !== id)
+//                {
+//                    Bubbles[ compareGroup[i] ].Delete();
+//                }
+//            }
+//        }
+//    });
+//    $bubbleId.find("#or").click(function () {
+//    //$bubbleRefineMenu.children("#or").click(function () {
+//        bubble.Or();
+//        if(bubble.COMPARE_FLAG)
+//        {
+//            var compareGroup = Compares[bubble.compareId].group;
+//            for(var i=0; i<compareGroup.length; ++i)
+//            {
+//                if( compareGroup[i] !== id)
+//                {
+//                    Bubbles[ compareGroup[i] ].Or();
+//                }
+//            }
+//        }
+//    });
     //var $bubbleparaMenu = $("#bubble" + id).children().children().children();
     $bubbleId.find("#select").click(function () {
     //$bubbleparaMenu.children('select').change(function () {
@@ -470,10 +496,8 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
     });
 
     function toggle(i) {
-        //var $sectionId = $("#bubble" + id).children().children().children("#section_" + i);
         var $sectionId = $bubbleId.find("#section_" + i);
         var scn = $sectionId.css('display');
-        //var btn = $("#bubble" + id).children().children().children("#plus_" + i).children("#tog")[0];
         var btn = $bubbleId.find("#tog")[0];
         if (scn == "block") {
             $sectionId.hide();
@@ -492,9 +516,7 @@ function addBubble(id, name, mousePosX, mousePosY, selectedFibers, deletedFibers
     }
 
     for (var i = 1; i <= 6; i++) {
-        //$( "plus_" + i).addEventListener( 'click', createToggle( i ), false );
         $bubbleId.find("#plus_" + i).click(createToggle(i));
-        //$("#bubble" + id).children().children().children("#plus_" + i).click(createToggle(i));
     }
 
     $bubbleId.find('#compareCheck').change(function(){
@@ -513,11 +535,11 @@ function bubble_div(id, name, mousePosX, mousePosY) {
     tmp += '                <button class="selectItem" id = "add" > + </button>';
     tmp += '                <button class="selectItem" id = "remove" > - </button>';
     tmp += '            </span>';
-    tmp += '            <span id="selector_operation">';
-    tmp += '                <button class="selectItem" id = "and" > and </button>';
-    tmp += '                <button class="selectItem" id = "delete" > delete </button>';
-    tmp += '                <button class="selectItem" id  = "or"  > or </button>';
-    tmp += '            </span>';
+//    tmp += '            <span id="selector_operation">';
+//    tmp += '                <button class="selectItem" id = "and" > and </button>';
+//    tmp += '                <button class="selectItem" id = "delete" > delete </button>';
+//    tmp += '                <button class="selectItem" id  = "or"  > or </button>';
+//    tmp += '            </span>';
     tmp += '        </div>';
     tmp += '    </div>';
 
@@ -627,112 +649,6 @@ function getWidgetInformation(index) {
     var center = {x: posx + $bubbleId.width() / 2, y: posy + $bubbleId.height() / 2};
     return {w: width, h: height, left: posx, top: posy, center: center};
 }
-function manageBubblePos(index) {
-    /*
-     var childs = $('#bubble').children('.bubble');
-     for(var i=0; i<childs.length; ++i)
-     {
-     if(i!==index)
-     {
-
-     if(checkCollisions(i,index))
-     {
-     // alert("Collision!");
-     var $bubbleId = $('#bubble'+i);
-     var $bubbleIndex = $('#bubble'+index);
-     // $bubbleId.animate({ "left": "-="+step1+"px" }, "fast" );
-
-     var bubble1 = getWidgetInformation(i);
-     var bubble2 = getWidgetInformation(index);
-
-     var center = {x:(bubble1.center.x+bubble2.center.x)/2.0, y:(bubble1.center.y+bubble2.center.y)/2.0};
-
-     if(Math.abs(center.x-bubble1.center.x) < bubble1.w/2.0 || Math.abs(center.y-bubble1.center.y) < bubble1.h/2.0)
-     {
-     var Wlen = (bubble1.w/2 +bubble2.w/2) - Math.abs(bubble2.center.x - bubble1.center.x);
-     var Hlen = (bubble1.h/2 +bubble2.h/2) - Math.abs(bubble2.center.y - bubble1.center.y);
-     var step11 = Wlen * (bubble1.w)/(bubble1.w +bubble2.w);
-     var step12 = Wlen * (bubble2.w)/(bubble1.w +bubble2.w);
-     var step21 = Hlen * (bubble1.h)/(bubble1.h +bubble2.h);
-     var step22 = Hlen * (bubble2.h)/(bubble1.h +bubble2.h);
-     var IdLeft, IdTop;
-     var IndexLeft, IndexTop;
-     if(bubble1.center.x <center.x)
-     {
-     IdLeft = "-="+step11+"px";
-     IndexLeft = "+="+step12+"px";
-     }
-     else
-     {
-     IdLeft = "+="+step11+"px";
-     IndexLeft = "-="+step12+"px";
-     }
-
-     if(bubble1.center.y <center.y)
-     {
-     IdTop = "+="+step21+"px" ;
-     IndexTop = "-="+ step22 +"px" ;
-     }
-     else
-     {
-     IdTop = "-="+step21+"px" ;
-     IndexTop = "+="+ step22 +"px" ;
-     }
-     $bubbleId.animate({"left": IdLeft, "top": IdTop });
-     $bubbleIndex.animate({ "left": IndexLeft, "top": IndexTop  } );
-     }
-     }
-     }
-     }
-     */
-    $('#bubble').children('.bubble').each(function () {
-        var id = parseInt($(this).attr('id').replace(/bubble/, ''));
-        if (id !== index) {
-
-            if (checkCollisions(id, index)) {
-                // alert("Collision!");
-                var $bubbleId = $('#bubble' + id);
-                var $bubbleIndex = $('#bubble' + index);
-                // $bubbleId.animate({ "left": "-="+step1+"px" }, "fast" );
-
-                var bubble1 = getWidgetInformation(id);
-                var bubble2 = getWidgetInformation(index);
-
-                var center = {x: (bubble1.center.x + bubble2.center.x) / 2.0, y: (bubble1.center.y + bubble2.center.y) / 2.0};
-
-                if (Math.abs(center.x - bubble1.center.x) < bubble1.w / 2.0 || Math.abs(center.y - bubble1.center.y) < bubble1.h / 2.0) {
-                    var Wlen = (bubble1.w / 2 + bubble2.w / 2) - Math.abs(bubble2.center.x - bubble1.center.x);
-                    var Hlen = (bubble1.h / 2 + bubble2.h / 2) - Math.abs(bubble2.center.y - bubble1.center.y);
-                    var step11 = Wlen * (bubble1.w) / (bubble1.w + bubble2.w);
-                    var step12 = Wlen * (bubble2.w) / (bubble1.w + bubble2.w);
-                    var step21 = Hlen * (bubble1.h) / (bubble1.h + bubble2.h);
-                    var step22 = Hlen * (bubble2.h) / (bubble1.h + bubble2.h);
-                    var IdLeft, IdTop;
-                    var IndexLeft, IndexTop;
-                    if (bubble1.center.x < center.x) {
-                        IdLeft = "-=" + step11 + "px";
-                        IndexLeft = "+=" + step12 + "px";
-                    }
-                    else {
-                        IdLeft = "+=" + step11 + "px";
-                        IndexLeft = "-=" + step12 + "px";
-                    }
-
-                    if (bubble1.center.y < center.y) {
-                        IdTop = "+=" + step21 + "px";
-                        IndexTop = "-=" + step22 + "px";
-                    }
-                    else {
-                        IdTop = "-=" + step21 + "px";
-                        IndexTop = "+=" + step22 + "px";
-                    }
-                    $bubbleId.animate({"left": IdLeft, "top": IdTop });
-                    $bubbleIndex.animate({ "left": IndexLeft, "top": IndexTop  });
-                }
-            }
-        }
-    });
-}
 
 function bubble_visual_cue() {
     var tmp = '';
@@ -762,102 +678,4 @@ function addVisualCueMenu() {
         parent.remove();
         vcMenu_status = false
     });
-}/*
-function addChart(id, $bubbleId) {
-    var posx = $bubbleId.offset().left;//offset() or position()
-    var posy = $bubbleId.offset().top;
-    var chartdiv = $(chart_div(id, "FA Line Chart", posx + $bubbleId.width() + 30, posy));
-    $("#bubble").append(chartdiv);
-
-    var $chartId = $('#chart' + id);
-    var boxWidth = $chartId.width() / window.innerWidth * nvWidth;
-    var boxHeight = $chartId.height() / (window.innerHeight - 50) * 50;
-    var pos = currentToBoxPos(posx + $bubbleId.width() + 30, posy);
-    var color = '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
-    var chartView = new Rectangle(navigationCanvas, pos.x, pos.y, boxWidth, boxHeight, color, true, id, "CHART");
-    navigationCanvas.addShape(chartView);
-
-    var linechartCanvas = document.getElementById('chartCanvas' + id);
-    var lineChart = new LineChart(id, linechartCanvas);
-
-    var childs = Bubbles[id].mainGroup.children;
-    for (var i = 0; i < childs.length; ++i) {
-        for (var j = 0; j < childs[i].children.length; ++j) {
-            lineChart.addItem(childs[i].children[j].id, childs[i].children[j].FA);
-        }
-    }
-    var parent = $('#chart' + id).draggable({ containment: '#bgCanvas', scroll: false,  //just dragable, do not need to move
-        drag: function (ev, ui) {
-            var position = ui.position;  //drag stop position
-            var currentPos = currentToBoxPos(position.left, position.top);
-            //navigationCanvas.updateRectPos(id, currentPos.x, currentPos.y);
-            var currentId = parseInt($(this).attr('id').replace(/chart/, ''));
-
-            for (var i = 0; i < navigationCanvas.shapes.length; ++i) {
-                if (navigationCanvas.shapes[i] === null)
-                    continue;
-                if (navigationCanvas.shapes[i].type === "CHART" && navigationCanvas.shapes[i].Id === currentId)
-                    navigationCanvas.updateRectPos(i, currentPos.x, currentPos.y);
-            }
-            if (Bubbles[currentId] !== null) {
-                var le = Bubbles[currentId].getlinkNodes().length;
-                for (var i = 0; i < le; ++i) {
-                    var type = Bubbles[currentId].getlinkNodes()[i].type;
-                    if (type === "CHART") {
-                        pathConnection.update(Bubbles[currentId].getlinkNodes()[i].connectionId, getWidgetCenter(currentId), getChartCenter(currentId));
-                    }
-                }
-            }
-        }
-    });
-    $('#chartCanvas' + id).resizable({
-        resize: function () {
-            var $canvas = $('#chartCanvas' + id);
-            var width_ = $canvas.width();
-            var height_ = $canvas.height();
-            $canvas.attr({width: width_, height: height_});
-            lineChart.resize(width_, height_);
-            var width = width_ / window.innerWidth * nvWidth;
-            var height = height_ / (window.innerHeight - 50) * 50;
-            for (var i = 0; i < navigationCanvas.shapes.length; ++i) {
-                if (navigationCanvas.shapes[i] === null)
-                    continue;
-                if (navigationCanvas.shapes[i].type === "CHART" && navigationCanvas.shapes[i].Id === id)
-                    navigationCanvas.updateRectResize(i, width, height);
-            }
-        }
-    });
-
-    parent.children(".dragheader").children(".close").click(function () {
-        for (var i = 0; i < navigationCanvas.shapes.length; ++i) {
-            if (navigationCanvas.shapes[i] === null)
-                continue;
-            if (navigationCanvas.shapes[i].type === "CHART" && navigationCanvas.shapes[i].Id === id)
-                navigationCanvas.remove(i);
-        }
-        parent.remove();
-        if (Bubbles[id] !== null) {
-            var le = Bubbles[id].getlinkNodes().length;
-            for (var i = 0; i < le; ++i) {
-                var type = Bubbles[id].getlinkNodes()[i].type;
-                if (type === "CHART") //if chart has node
-                {
-                    pathConnection.remove(Bubbles[id].getlinkNodes()[i].connectionId);
-                    Bubbles[id].spliceNodeLink(i);
-                    $('#chart' + id).remove();
-                }
-            }
-        }
-    });
 }
-function chart_div(id, name, mousePosX, mousePosY) {   //Every Bubble has a char to show FA value.
-    var tmp = '';
-    tmp += '<div id ="chart' + id + '" class="chart shadow drag" style="position: absolute; left:' + mousePosX + 'px; top:' + mousePosY + 'px; ">';
-    tmp += '    <div id ="drag' + id + '" class="dragheader">' + name;
-    tmp += '        <span class="close">X</span>';
-    tmp += '    </div>';
-    tmp += '    <canvas id ="chartCanvas' + id + '"width="250" height="250" >';
-    tmp += '    </canvas>';
-    tmp += '</div>';
-    return tmp;
-}  */
