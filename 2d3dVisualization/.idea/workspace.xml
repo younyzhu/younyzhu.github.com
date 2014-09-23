@@ -26,7 +26,7 @@
       <file leaf-file-name="visualization.htm" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/visualization.htm">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.310345" vertical-offset="936" max-vertical-offset="1872">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1032" max-vertical-offset="1920">
               <caret line="43" column="60" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
               <folding />
             </state>
@@ -46,12 +46,9 @@
       <file leaf-file-name="bubbleWidget.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/bubbleWidget.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3696" max-vertical-offset="11064">
+            <state vertical-scroll-proportion="0.0" vertical-offset="9288" max-vertical-offset="16488">
               <caret line="387" column="23" selection-start-line="387" selection-start-column="23" selection-end-line="387" selection-end-column="23" />
               <folding>
-                <element signature="e#4522#7732#0" expanded="false" />
-                <element signature="e#7918#9942#0" expanded="false" />
-                <element signature="e#10005#16842#0" expanded="false" />
                 <marker date="1411440432724" expanded="false" signature="24607:24663" placeholder="..." />
                 <marker date="1411440432724" expanded="false" signature="25114:25127" placeholder="..." />
                 <marker date="1411440432724" expanded="false" signature="25540:25553" placeholder="..." />
@@ -82,13 +79,9 @@
       <file leaf-file-name="Chart.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/Chart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2487" max-vertical-offset="3840">
+            <state vertical-scroll-proportion="0.0" vertical-offset="3000" max-vertical-offset="5568">
               <caret line="125" column="17" selection-start-line="125" selection-start-column="17" selection-end-line="125" selection-end-column="17" />
-              <folding>
-                <element signature="e#6841#7580#0" expanded="false" />
-                <element signature="e#7618#8650#0" expanded="false" />
-                <element signature="e#8679#9697#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -103,21 +96,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="main.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="4560">
-              <caret line="11" column="35" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-              <folding />
+            <state vertical-scroll-proportion="1.2849829" vertical-offset="1311" max-vertical-offset="2232">
+              <caret line="185" column="58" selection-start-line="185" selection-start-column="58" selection-end-line="185" selection-end-column="58" />
+              <folding>
+                <element signature="e#2481#6766#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Model3d.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Model3d.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/Model3d.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33333334" vertical-offset="11593" max-vertical-offset="18264">
-              <caret line="491" column="68" selection-start-line="491" selection-start-column="68" selection-end-line="491" selection-end-column="68" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="13177" max-vertical-offset="18264">
+              <caret line="487" column="0" selection-start-line="487" selection-start-column="0" selection-end-line="488" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -134,10 +129,10 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/js/pixelBarChart.js" />
-        <option value="$PROJECT_DIR$/js/main.js" />
         <option value="$PROJECT_DIR$/js/Chart.js" />
         <option value="$PROJECT_DIR$/js/bubbleWidget.js" />
         <option value="$PROJECT_DIR$/js/Model3d.js" />
+        <option value="$PROJECT_DIR$/js/main.js" />
       </list>
     </option>
   </component>
@@ -173,7 +168,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -222,6 +216,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -233,7 +228,7 @@
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PathBubblesWeb" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager" selected="JavaScript Debug.visualization.htm">
     <configuration default="false" name="visualization.htm" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" uri="http://localhost:63342/2d3dVisualization/visualization.htm">
@@ -331,7 +326,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24960506" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2080042" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3192436" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -339,11 +334,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -370,6 +365,164 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/visualization.htm">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1032" max-vertical-offset="1920">
+          <caret line="43" column="60" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/pixelBarChart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="48" max-vertical-offset="5304">
+          <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/bubbleWidget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="9288" max-vertical-offset="16488">
+          <caret line="387" column="23" selection-start-line="387" selection-start-column="23" selection-end-line="387" selection-end-column="23" />
+          <folding>
+            <marker date="1411440432724" expanded="false" signature="24607:24663" placeholder="..." />
+            <marker date="1411440432724" expanded="false" signature="25114:25127" placeholder="..." />
+            <marker date="1411440432724" expanded="false" signature="25540:25553" placeholder="..." />
+            <marker date="1411440432724" expanded="false" signature="25848:25861" placeholder="..." />
+            <marker date="1411440432724" expanded="false" signature="26645:26658" placeholder="..." />
+            <marker date="1411440432724" expanded="false" signature="27064:27077" placeholder="..." />
+            <marker date="1411440432724" expanded="false" signature="27483:27496" placeholder="..." />
+            <marker date="1411440432724" expanded="false" signature="27727:27740" placeholder="..." />
+            <marker date="1411440432724" expanded="false" signature="28280:28293" placeholder="..." />
+            <marker date="1411440432724" expanded="false" signature="28602:28615" placeholder="..." />
+            <marker date="1411440432724" expanded="false" signature="28804:28817" placeholder="..." />
+            <marker date="1411440432724" expanded="false" signature="30798:30838" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/connections.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1125" max-vertical-offset="2664">
+          <caret line="51" column="48" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/Chart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3000" max-vertical-offset="5568">
+          <caret line="125" column="17" selection-start-line="125" selection-start-column="17" selection-end-line="125" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/FiberSelector.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4560" max-vertical-offset="10464">
+          <caret line="190" column="65" selection-start-line="190" selection-start-column="37" selection-end-line="190" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="4560">
+          <caret line="11" column="35" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+          <folding>
+            <element signature="e#2481#6766#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/Model3d.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="11593" max-vertical-offset="18264">
+          <caret line="487" column="0" selection-start-line="487" selection-start-column="0" selection-end-line="488" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/visualization.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1920">
+          <caret line="43" column="60" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/pixelBarChart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="48" max-vertical-offset="5304">
+          <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/bubbleWidget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="9288" max-vertical-offset="16488">
+          <caret line="387" column="23" selection-start-line="387" selection-start-column="23" selection-end-line="387" selection-end-column="23" />
+          <folding>
+            <marker date="1411440432724" expanded="false" signature="24607:24663" placeholder="..." />
+            <marker date="1411440432724" expanded="false" signature="25114:25127" placeholder="..." />
+            <marker date="1411440432724" expanded="false" signature="25540:25553" placeholder="..." />
+            <marker date="1411440432724" expanded="false" signature="25848:25861" placeholder="..." />
+            <marker date="1411440432724" expanded="false" signature="26645:26658" placeholder="..." />
+            <marker date="1411440432724" expanded="false" signature="27064:27077" placeholder="..." />
+            <marker date="1411440432724" expanded="false" signature="27483:27496" placeholder="..." />
+            <marker date="1411440432724" expanded="false" signature="27727:27740" placeholder="..." />
+            <marker date="1411440432724" expanded="false" signature="28280:28293" placeholder="..." />
+            <marker date="1411440432724" expanded="false" signature="28602:28615" placeholder="..." />
+            <marker date="1411440432724" expanded="false" signature="28804:28817" placeholder="..." />
+            <marker date="1411440432724" expanded="false" signature="30798:30838" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/connections.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1125" max-vertical-offset="2664">
+          <caret line="51" column="48" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/Chart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3000" max-vertical-offset="5568">
+          <caret line="125" column="17" selection-start-line="125" selection-start-column="17" selection-end-line="125" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/FiberSelector.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4560" max-vertical-offset="10464">
+          <caret line="190" column="65" selection-start-line="190" selection-start-column="37" selection-end-line="190" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="4560">
+          <caret line="11" column="35" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+          <folding>
+            <element signature="e#2481#6766#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/Model3d.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="11593" max-vertical-offset="18264">
+          <caret line="485" column="161" selection-start-line="485" selection-start-column="9" selection-end-line="485" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/visualization.htm">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1920">
           <caret line="39" column="28" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
           <folding />
@@ -389,9 +542,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="4488" max-vertical-offset="16464">
           <caret line="187" column="64" selection-start-line="183" selection-start-column="0" selection-end-line="202" selection-end-column="13" />
           <folding>
-            <element signature="e#4522#7732#0" expanded="false" />
-            <element signature="e#7918#9942#0" expanded="false" />
-            <element signature="e#10005#16842#0" expanded="false" />
             <marker date="1411440432724" expanded="false" signature="24607:24663" placeholder="..." />
             <marker date="1411440432724" expanded="false" signature="25114:25127" placeholder="..." />
             <marker date="1411440432724" expanded="false" signature="25540:25553" placeholder="..." />
@@ -420,11 +570,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2487" max-vertical-offset="3840">
           <caret line="125" column="17" selection-start-line="125" selection-start-column="17" selection-end-line="125" selection-end-column="17" />
-          <folding>
-            <element signature="e#6841#7580#0" expanded="false" />
-            <element signature="e#7618#8650#0" expanded="false" />
-            <element signature="e#8679#9697#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -440,7 +586,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="4560">
           <caret line="11" column="35" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-          <folding />
+          <folding>
+            <element signature="e#2481#6766#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -472,11 +620,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3528" max-vertical-offset="4704">
           <caret line="164" column="58" selection-start-line="164" selection-start-column="58" selection-end-line="164" selection-end-column="58" />
-          <folding>
-            <element signature="e#6841#7580#0" expanded="false" />
-            <element signature="e#7618#8650#0" expanded="false" />
-            <element signature="e#8679#9697#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -484,7 +628,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="611" max-vertical-offset="14040">
           <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -492,7 +635,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="560505" max-vertical-offset="907728">
           <caret line="23361" column="9" selection-start-line="23361" selection-start-column="6" selection-end-line="23361" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -508,7 +650,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4560">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#2481#6766#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -540,7 +684,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334" vertical-offset="8310" max-vertical-offset="10824">
           <caret line="356" column="4" selection-start-line="356" selection-start-column="4" selection-end-line="356" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -556,15 +699,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.37521815" vertical-offset="2185" max-vertical-offset="14040">
           <caret line="100" column="28" selection-start-line="100" selection-start-column="13" selection-end-line="100" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4560">
-          <caret line="11" column="35" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -580,7 +714,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="487307" max-vertical-offset="907728">
           <caret line="20314" column="13" selection-start-line="20314" selection-start-column="13" selection-end-line="20314" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -588,17 +721,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2487" max-vertical-offset="3840">
           <caret line="125" column="17" selection-start-line="125" selection-start-column="17" selection-end-line="125" selection-end-column="17" />
-          <folding>
-            <element signature="e#6841#7580#0" expanded="false" />
-            <element signature="e#7618#8650#0" expanded="false" />
-            <element signature="e#8679#9697#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/visualization.htm">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.310345" vertical-offset="936" max-vertical-offset="1872">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1032" max-vertical-offset="1920">
           <caret line="43" column="60" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
           <folding />
         </state>
@@ -617,9 +746,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="3696" max-vertical-offset="11064">
           <caret line="387" column="23" selection-start-line="387" selection-start-column="23" selection-end-line="387" selection-end-column="23" />
           <folding>
-            <element signature="e#4522#7732#0" expanded="false" />
-            <element signature="e#7918#9942#0" expanded="false" />
-            <element signature="e#10005#16842#0" expanded="false" />
             <marker date="1411440432724" expanded="false" signature="24607:24663" placeholder="..." />
             <marker date="1411440432724" expanded="false" signature="25114:25127" placeholder="..." />
             <marker date="1411440432724" expanded="false" signature="25540:25553" placeholder="..." />
@@ -640,15 +766,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3327645" vertical-offset="2685" max-vertical-offset="22488">
           <caret line="120" column="16" selection-start-line="120" selection-start-column="16" selection-end-line="120" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/Model3d.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334" vertical-offset="11593" max-vertical-offset="18264">
-          <caret line="491" column="68" selection-start-line="491" selection-start-column="68" selection-end-line="491" selection-end-column="68" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="13177" max-vertical-offset="18264">
+          <caret line="487" column="0" selection-start-line="487" selection-start-column="0" selection-end-line="488" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2849829" vertical-offset="1311" max-vertical-offset="2232">
+          <caret line="185" column="58" selection-start-line="185" selection-start-column="58" selection-end-line="185" selection-end-column="58" />
+          <folding>
+            <element signature="e#2481#6766#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

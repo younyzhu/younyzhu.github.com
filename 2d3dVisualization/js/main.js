@@ -182,4 +182,6 @@ $(document).ready(function () {
     navigationCanvas.addShape(currentView);
     pathConnection = new PathConnections(document.getElementById('bgCanvas'), window.innerWidth, window.innerHeight);
 
+    BUBBLE_COUNT++;
+    addBubble(BUBBLE_COUNT, 'DMRI brain bundles', 100, 100, null, null, null, null);
 });
