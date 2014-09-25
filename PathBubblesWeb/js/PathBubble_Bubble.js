@@ -92,6 +92,8 @@ PATHBUBBLES.Bubble.prototype ={
         this.shape.offsetY = this.offsetY;
         this.shape.x = this.x;
         this.shape.y = this.y;
+        this.shape.w = this.w;
+        this.shape.h = this.h;
     },
     drawSelection: function(ctx) {
         var i, cur, half;
@@ -166,5 +168,43 @@ PATHBUBBLES.Bubble.prototype ={
         var w2 = this.shape.w + 10;
         var h2 = this.shape.h + 10;
         return (!this.insideRect(mx,my,x,y,w,h) && this.insideRect(mx,my,x2,y2,w2,h2));
+    },
+    clone: function(){
+        var bubble = new PATHBUBBLES.Bubble();
+        bubble.id = this.id;
+        bubble.name = this.name;
+        bubble.parent = this.parent;
+        for(var i=0; i<this.children.length; ++i)
+        {
+            var a = this.children[i];
+            bubble.children.push(a);
+        }
+
+        bubble.type=this.type;
+        bubble.x = this.x;
+        bubble.y = this.y;
+        bubble.w = this.w;
+        bubble.h = this.h;
+        bubble.strokeColor = this.strokeColor;
+        bubble.fillColor = this.fillColor;
+        bubble.cornerRadius = this.cornerRadius ;
+
+        bubble.shape = new PATHBUBBLES.Shape.Rectangle(this.x, this.y, this.w ,this.h, this.strokeColor, this.fillColor, 10, this.cornerRadius);
+        bubble.offsetX = this.offsetX;
+        bubble.offsetY = this.offsetY;
+
+
+        for ( var i = 0, il =  this.__objectsAdded.length; i < il; i ++ ) {
+            var a = this.__objectsAdded[ i ];
+            bubble.__objectsAdded.push(  a );
+        }
+        for ( var i = 0, il =  this.__objectsRemoved.length; i < il; i ++ ) {
+            var a = this.__objectsRemoved[ i ];
+            bubble.__objectsRemoved.push(  a );
+        }
+        bubble.__objectsRemoved = this.__objectsRemoved;
+        bubble.center = this.center;
+        bubble.GROUP = this.GROUP;
+        return bubble;
     }
 };

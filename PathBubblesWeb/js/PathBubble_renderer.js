@@ -21,48 +21,11 @@ PATHBUBBLES.Renderer = function(canvas, scene){
 PATHBUBBLES.Renderer.prototype ={
     constructor: PATHBUBBLES.Renderer,
 
-//    setSize : function ( width, height, updateStyle ) {
-//
-//        this.canvasWidth  = width * this.devicePixelRatio;
-//        this.canvasHeight = height * this.devicePixelRatio;
-//
-//        this.canvasWidthHalf = Math.floor( this.canvasWidth / 2 );
-//        this.canvasHeightHalf = Math.floor( this.canvasHeight / 2 );
-//
-//        if ( updateStyle !== false ) {
-//            this.canvas.style.width = width + 'px';
-//            this.canvas.style.height = height + 'px';
-//        }
-//        this.setViewport( 0, 0, width, height );
-//    },
-//    setViewport : function ( x, y, width, height ) {
-//
-//    this.viewportX = x * this.devicePixelRatio;
-//    this.viewportY = y * this.devicePixelRatio;
-//
-//    this.viewportWidth = width * this.devicePixelRatio;
-//    this.viewportHeight = height * this.devicePixelRatio;
-//
-//    },
     clear: function () {
         this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
     },
     render: function () {
         var _this = this;
-//        function drawObject( object ) {
-//            if (object instanceof PATHBUBBLES.Groups)
-//            {
-//                object.draw(_this.ctx);
-//                return;
-//            }
-//            if (!(object instanceof PATHBUBBLES.Groups) && !(object instanceof PATHBUBBLES.Scene)) {
-//                object.draw(_this.ctx);
-//                for (var i = 0, l = object.children.length; i < l; i++) {
-//                    drawObject(object.children[ i ]);
-//                }
-//            }
-//
-//        }
         function drawObject( object ) {
             if(! (object instanceof PATHBUBBLES.Scene) && !( object instanceof PATHBUBBLES.Object2D ))
             {
@@ -78,9 +41,9 @@ PATHBUBBLES.Renderer.prototype ={
         if(!_this.valid)
         {
             _this.clear();
-            if (this.scene)
+            if (scene)
             {
-                drawObject(this.scene);
+                drawObject(scene);
             }
         }
 

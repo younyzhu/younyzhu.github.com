@@ -11,8 +11,8 @@ $(document).ready(function (){
     scene.addObject(bubble2);
     var bubble3 = new PATHBUBBLES.Bubble(150,200,200,200,'#0000ff', '#00ff00',40,3);
     scene.addObject(bubble3);
-   var complex = new PATHBUBBLES.Biomolecule.Complex(130,130,"TEXT");
-    bubble3.addObject(complex);
+//   var complex = new PATHBUBBLES.Biomolecule.Complex(130,130,"TEXT");
+//    bubble3.addObject(complex);
 
 //    var bubble4 = new PATHBUBBLES.Bubble(220,220,520,250,'#00ffff', '#ffffff',40,5);
 //    scene.addObject(bubble4);
@@ -53,12 +53,6 @@ $(document).ready(function (){
             }
             else if(key === 'Delete_All')
             {
-//                for(var i=0; i<scene.children.length; ++i)
-//                {
-//                    var index=PATHBUBBLES.objects.indexOf(scene.children[i]);
-//                    PATHBUBBLES.objects.splice(index,1);
-//                    delete scene.children[i];
-//                }
                 PATHBUBBLES.objects.length =0;
                 scene.children.length =0;
             }

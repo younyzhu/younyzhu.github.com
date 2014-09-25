@@ -14,19 +14,41 @@ PATHBUBBLES.Groups = function () {
 PATHBUBBLES.Groups.prototype = Object.create(PATHBUBBLES.Object2D.prototype);
 PATHBUBBLES.Groups.prototype = {
     constructor: PATHBUBBLES.Groups,
-    addToGroup: function (object) {
+    addToGroup: function(object){
+        if(object.parent instanceof PATHBUBBLES.Groups)
+        {
+            var temp = object.parent;
+            var childrenObjs = [];
+            for(var i=0; i<object.parent.children.length; ++i)
+            {
+                var a =object.parent.children[i];
+                a.offsetX =0;
+                a.offsetY =0;
+                childrenObjs.push(a);
+            }
+            scene.removeObject(temp);
+            for(var i=0; i<childrenObjs.length; ++i)
+            {
+                this.objectAddToGroup(childrenObjs[i]);
+                //scene.removeObject(childrenObjs[i]);
+            }
+
+
+        }
+        else
+        {
+            this.objectAddToGroup(object);
+        }
+    },
+    objectAddToGroup: function (object) {
         if (object) {
             object.GROUP = true;
             object.parent = this;
 
-//            if (this.children.length == 0) {
-//                this.children.push(object);
-//
-//                return;
-//            }
+
             if (this.children.indexOf(object) == -1)
             {
-
+                scene.addObject(object);
                 this.children.push(object);
                 if (this.arranged.length == 0) {
                 this.tempPoints.length = 0;
@@ -66,7 +88,8 @@ PATHBUBBLES.Groups.prototype = {
                     }
                 }
                 var tempCompare = [];
-                for (var j = 0; j < this.arranged.length; ++j) {
+                for (var j = 0; j < this.arranged.length; ++j)
+                {
                     if (this.arranged[j] !== object) {
                         var objs = this.calculateUpDownLeftRight(this.arranged[j], object);
                         for (var ji = 0; ji < objs.length; ++ji) {
@@ -76,8 +99,7 @@ PATHBUBBLES.Groups.prototype = {
                         }
                     }
                 }
-                //if(tempCompare.length ==0)
-                    //continue;
+
                 var moveDistance = Infinity;
                 var at = null;
                 for (var ii = 0; ii < tempCompare.length; ++ii) {
@@ -262,189 +284,6 @@ PATHBUBBLES.Groups.prototype = {
                         this.processPolygon();
                     }
                 }
-//                var j=0;
-//                while(this.arranged.length!== this.children.length)
-//                {
-//                    if (this.arranged[j] !== this.children[i]) {
-//                        var at = this.calculateUpDownLeftRight(this.arranged[j], this.children[i]);
-//                        if( at )
-//                        {
-//                            this.children[i].shape.x = at.x;
-//                            this.children[i].shape.y = at.y;
-//                            this.children[i].x = at.x;
-//                            this.children[i].y = at.y;
-//                            this.children[i].w = at.w;
-//                            this.children[i].h = at.h;
-//                            if(this.arranged.indexOf(this.children[i])==-1)
-//                                this.arranged.push(this.children[i]);
-//
-//                            switch (at.type)
-//                            {
-//                                case "left":   //find left-up corner coordinate position
-//                                    var begin = -1;
-//                                    var end = -1;
-//                                    for(var k=0; k<this.tempPoints.length; ++k)
-//                                    {
-//                                        if(this.arranged[j].x == this.tempPoints[k].x  &&
-//                                            this.arranged[j].y == this.tempPoints[k].y  )  //left-up
-//                                        {
-//                                            begin = k;
-//                                        }
-//                                        if(this.arranged[j].x == this.tempPoints[k].x  &&  //left-down
-//                                            this.arranged[j].y + this.arranged[j].h == this.tempPoints[k].y  )
-//                                        {
-//                                            end = k;
-//                                        }
-//                                        if(begin!==-1 && end !== -1)
-//                                        {
-//                                            break;
-//                                        }
-//                                    }
-//                                    //put points before begin and after end
-//
-//                                    var right ={};
-//                                    right.x = this.children[i].x + this.children[i].w;
-//                                    right.y = this.children[i].y;
-//                                    right.type = "QCT";
-//                                    this.tempPoints.splice(begin,0,right);
-//                                    var left ={};
-//                                    left.x = this.children[i].x;
-//                                    left.y = this.children[i].y;
-//                                    left.type = "QCT";
-//                                    this.tempPoints.splice(begin,0,left);
-//
-//                                    var bleft ={};
-//                                    bleft.x = this.children[i].x;
-//                                    bleft.y = this.children[i].y + this.children[i].h;
-//                                    bleft.type = "QCT";
-//                                    this.tempPoints.splice(end+3,0,bleft);
-//
-//                                    var bright ={};
-//                                    bright.x = this.children[i].x + this.children[i].w;
-//                                    bright.y = this.children[i].y + this.children[i].h;
-//                                    bright.type = "QCT";
-//                                    this.tempPoints.splice(end+3,0,bright);
-//
-//                                    break;
-//                                case "right":
-//                                    var begin = -1;
-//                                    for(var k=0; k< this.tempPoints.length; ++k)
-//                                    {
-//                                        if(this.arranged[j].x + this.arranged[j].w== this.tempPoints[k].x  &&
-//                                            this.arranged[j].y == this.tempPoints[k].y  )  //left-up
-//                                        {
-//                                            begin = k;
-//                                            break;
-//                                        }
-//
-//                                    }
-//                                    //put points after begin and before end
-//                                    var left ={};
-//                                    left.x = this.children[i].x;
-//                                    left.y = this.children[i].y;
-//                                    left.type = "QCT";
-//
-//                                    this.tempPoints.splice(begin+1,0,left);
-//                                    var right ={};
-//                                    right.x = this.children[i].x + this.children[i].w;
-//                                    right.y = this.children[i].y;
-//                                    right.type = "QCT";
-//                                    this.tempPoints.splice(begin+2,0,right);
-//
-//                                    var bright ={};
-//                                    bright.x = this.children[i].x + this.children[i].w;
-//                                    bright.y = this.children[i].y + this.children[i].h;
-//                                    bright.type = "QCT";
-//                                    this.tempPoints.splice(begin+3,0,bright);
-//
-//                                    var bleft ={};
-//                                    bleft.x = this.children[i].x;
-//                                    bleft.y = this.children[i].y + this.children[i].h;
-//                                    bleft.type = "QCT";
-//                                    this.tempPoints.splice(begin+4,0,bleft);
-//                                    break;
-//                                case "up":
-//                                    var begin = -1;
-//                                    for(var k=0; k<this.tempPoints.length; ++k)
-//                                    {
-//                                        if(this.arranged[j].x== this.tempPoints[k].x  &&
-//                                            this.arranged[j].y == this.tempPoints[k].y  )  //left-up
-//                                        {
-//                                            begin = k;
-//                                            break;
-//                                        }
-//
-//                                    }
-//                                    //put points after begin and before end
-//                                    var bleft ={};
-//                                    bleft.x = this.children[i].x;
-//                                    bleft.y = this.children[i].y + this.children[i].h;
-//                                    bleft.type = "QCT";
-//                                    this.tempPoints.splice(begin+1,0,bleft);
-//
-//                                    var left ={};
-//                                    left.x = this.children[i].x;
-//                                    left.y = this.children[i].y;
-//                                    left.type = "QCT";
-//                                    this.tempPoints.splice(begin+2,0,left);
-//                                    var right ={};
-//                                    right.x = this.children[i].x + this.children[i].w;
-//                                    right.y = this.children[i].y;
-//                                    right.type = "QCT";
-//                                    this.tempPoints.splice(begin+3,0,right);
-//
-//                                    var bright ={};
-//                                    bright.x = this.children[i].x + this.children[i].w;
-//                                    bright.y = this.children[i].y + this.children[i].h;
-//                                    bright.type = "QCT";
-//                                    this.tempPoints.splice(begin+4,0,bright);
-//
-//
-//                                    break;
-//                                case "down":
-//                                    var begin = -1;
-//                                    for(var k=0; k<this.tempPoints.length; ++k)
-//                                    {
-//                                        if(this.arranged[j].x + this.arranged[j].w == this.tempPoints[k].x  &&
-//                                            this.arranged[j].y + this.arranged[j].h == this.tempPoints[k].y  )  //left-up
-//                                        {
-//                                            begin = k;
-//                                            break;
-//                                        }
-//
-//                                    }
-//                                    //put points after begin and before end
-//                                    var right ={};
-//                                    right.x = this.children[i].x + this.children[i].w;
-//                                    right.y = this.children[i].y;
-//                                    right.type = "QCT";
-//                                    this.tempPoints.splice(begin+1,0,right);
-//
-//                                    var bright ={};
-//                                    bright.x = this.children[i].x + this.children[i].w;
-//                                    bright.y = this.children[i].y + this.children[i].h;
-//                                    bright.type = "QCT";
-//                                    this.tempPoints.splice(begin+2,0,bright);
-//
-//                                    var bleft ={};
-//                                    bleft.x = this.children[i].x;
-//                                    bleft.y = this.children[i].y + this.children[i].h;
-//                                    bleft.type = "QCT";
-//                                    this.tempPoints.splice(begin+3,0,bleft);
-//                                    var left ={};
-//
-//                                    left.x = this.children[i].x;
-//                                    left.y = this.children[i].y;
-//                                    left.type = "QCT";
-//                                    this.tempPoints.splice(begin+4,0,left);
-//                                    break;
-//                            }
-//                            break;
-//                        }
-//                    j++;
-//                    }
-//                }
-
             }
             return this;
         }
@@ -566,6 +405,28 @@ PATHBUBBLES.Groups.prototype = {
             this.setOffset();
             this.shape.draw(ctx);
         }
-    }
+    },
+    clone: function() {
 
+
+       var group = new PATHBUBBLES.Groups();
+        group.shape = new PATHBUBBLES.Shape.Path("#0000ff", "#ffffff", 10);
+        group.type = "Group";
+        for(var i=0; i<this.arranged.length; ++i)
+        {
+            group.arranged.push(this.arranged[i].clone());
+        }
+        for(var i=0; i<this.arranged.length; ++i)
+        {
+            var a = this.arranged[i];
+            group.arranged.push(a);
+        }
+        for(var i=0; i<this.tempPoints.length; ++i)
+        {
+            var a = this.tempPoints[i];
+            group.tempPoints.push(a);
+        }
+
+        return group;
+    }
 };

@@ -129,39 +129,39 @@ PATHBUBBLES.Interaction = function(renderer, canvas)
                 case 0:
                     _this.selection[0].x = mx;
                     _this.selection[0].y = my;
-                    _this.selection[0].shape.w += oldx - mx;
-                    _this.selection[0].shape.h += oldy - my;
+                    _this.selection[0].w += oldx - mx;
+                    _this.selection[0].h += oldy - my;
                     break;
                 case 1:
                     _this.selection[0].y = my;
-                    _this.selection[0].shape.h += oldy - my;
+                    _this.selection[0].h += oldy - my;
                     break;
                 case 2:
 
                     _this.selection[0].y = my;
-                    _this.selection[0].shape.w = mx - oldx;
-                    _this.selection[0].shape.h += oldy - my;
+                    _this.selection[0].w = mx - oldx;
+                    _this.selection[0].h += oldy - my;
                     break;
                 case 3:
                     _this.selection[0].x = mx;
-                    _this.selection[0].shape.w += oldx - mx;
+                    _this.selection[0].w += oldx - mx;
                     break;
                 case 4:
-                    _this.selection[0].shape.w = mx - oldx;
+                    _this.selection[0].w = mx - oldx;
                     break;
                 case 5:
 
                     _this.selection[0].x = mx;
-                    _this.selection[0].shape.w += oldx - mx;
-                    _this.selection[0].shape.h = my - oldy;
+                    _this.selection[0].w += oldx - mx;
+                    _this.selection[0].h = my - oldy;
                     break;
                 case 6:
-                    _this.selection[0].shape.h = my - oldy;
+                    _this.selection[0].h = my - oldy;
                     break;
                 case 7:
 
-                    _this.selection[0].shape.w = mx - oldx;
-                    _this.selection[0].shape.h = my - oldy;
+                    _this.selection[0].w = mx - oldx;
+                    _this.selection[0].h = my - oldy;
                     break;
             }
 

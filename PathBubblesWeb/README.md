@@ -60,3 +60,7 @@ The Great *challenge* is to add right click context menu for a certain object [I
 
 I will try to find a way.
 
+* 9/25/2014   
+ 
+Fix bugs, add bubble to group, add group bubble to group.
+ 
