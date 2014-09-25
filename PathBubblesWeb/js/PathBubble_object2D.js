@@ -13,12 +13,6 @@ PATHBUBBLES.Object2D = function () {
     this.offsetY = 0;
     this.x =0;
     this.y =0;
-    Object.defineProperties( this, {
-        position: {
-            x: this.x,
-            y: this.y
-        }
-    } );
 };
 PATHBUBBLES.Object2D.prototype = {
 

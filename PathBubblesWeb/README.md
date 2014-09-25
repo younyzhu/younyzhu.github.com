@@ -4,7 +4,7 @@ PathBubbles--A web-version of biological data visualization framework
 
 **Website** : [http://younyzhu.github.io/PathBubblesWeb/](http://younyzhu.github.io/PathBubblesWeb/)
 
-
+**Operation** : `Right Click`   ===>  `Select Menu`
 
 Introduction
 ============
@@ -47,3 +47,16 @@ Study Log
 * 9/17/2014
 
 Try to add group, add space management (bug needs to be fixed)    
+
+
+
+* 9/24/2014 
+
+Add mouse move interaction, and if two object intersect with each other, they will group together (it seems still has some problems for grouping layout algorithm)
+
+Add mouse right click on `cavas`, you can open a bubble.
+
+The Great *challenge* is to add right click context menu for a certain object [It seems nobody has done this before!]
+
+I will try to find a way.
+

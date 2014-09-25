@@ -259,27 +259,25 @@ PATHBUBBLES.Shape.Ellipse.prototype ={
     }
 };
 
-PATHBUBBLES.Shape.TempPoint = function(x,y,type){
-    this.x = x;
-    this.y = y;
-    this.type = type;
-};
-PATHBUBBLES.Shape.PathPoint =  function(x, y, type, x2, y2, r){
+PATHBUBBLES.Shape.PathPoint =  function(x, y, type, x2, y2){
     this.x = x;
     this.y = y;
     this.type = type;
     this.x2 = x2; //The other part of point is used for quadraticCurveTo
     this.y2 = y2;
-    this.r = r; //just for corner
+    this.r = 10; //just for corner
 };
 //if type
 //QCT: quadraticCurveTo(r, y, r, y + this.cornerRadius);
 //LT: ctx.lineTo(r - this.cornerRadius, y);
 PATHBUBBLES.Shape.Path = function(strokeColor, fillColor , lineWidth){
-    this.lineWidth = lineWidth||2;
+    this.lineWidth = lineWidth||10;
     this.strokeColor = strokeColor||"#000000";
     this.fillColor = fillColor||"#ffffff";
     this.points = [];
+
+    this.offsetX = 0;
+    this.offsetY = 0;
 };
 PATHBUBBLES.Shape.Path.prototype={
     draw:function(ctx){
@@ -292,22 +290,24 @@ PATHBUBBLES.Shape.Path.prototype={
         {
             ctx.beginPath();
             // move to the beginning point of this path
-            ctx.moveTo(this.points[0].x,this.points[0].y);
+            ctx.moveTo(this.points[0].x+ this.offsetX,this.points[0].y+ this.offsetY);
             // draw lines to each point on the path
             for(var pt=1;pt<this.points.length;pt++){
                 var point=this.points[pt];
                 if(point.type === "LT")
                 {
-                    ctx.lineTo(point.x,point.y);
+                    ctx.lineTo(point.x + this.offsetX,point.y + this.offsetY);
                 }
                 else if(point.type === "QCT")
                 {
-                    ctx.quadraticCurveTo(point.x, point.y, point.x2, point.y2 + this.r);
+                    ctx.quadraticCurveTo(point.x + this.offsetX, point.y+ this.offsetY, point.x2 + this.offsetX, point.y2 + this.r+ this.offsetY);
                 }
             }
+            ctx.closePath();
+            ctx.fill();
             // stroke this path
             ctx.stroke();
-            ctx.fill();
+
             ctx.restore();	// restore context to what it was on entry
         }
     },

@@ -5,21 +5,25 @@
  * @name        PathBubble_Bubble
  */
 
-PATHBUBBLES.Bubble = function(x, y, w ,h, strokeColor, fillColor, cornerRadius){
+PATHBUBBLES.Bubble = function(x, y, w ,h, strokeColor, fillColor, cornerRadius,text){
     PATHBUBBLES.Object2D.call(this);
     this.type = "Bubble";
-    this.shape = new PATHBUBBLES.Shape.Rectangle(x, y, w ,h, strokeColor, fillColor, 10, cornerRadius);
-    this.x = this.shape.x;
-    this.y = this.shape.y;
-    this.w = this.shape.w;
-    this.h = this.shape.h;
-    this.name = "bubble";
+    this.x = x||0;
+    this.y = y||0;
+    this.w = w||400;
+    this.h = h||400;
+    this.strokeColor=strokeColor||"#0000ff";
+    this.fillColor=fillColor||"#ffffff";
+    this.cornerRadius = cornerRadius||20;
+
+    this.shape = new PATHBUBBLES.Shape.Rectangle(this.x, this.y, this.w ,this.h, this.strokeColor, this.fillColor, 10, this.cornerRadius);
+
+    this.name = text;
     this.__objectsAdded = [];
     this.__objectsRemoved = [];
-    this.parentObject = null;
-    this.offsetX =0;
-    this.offsetY =0;
     this.center = {x: this.x + this.w/2, y: this.y + this.h/2};
+    this.GROUP = false;
+
 };
 
 PATHBUBBLES.Bubble.prototype = Object.create( PATHBUBBLES.Object2D.prototype );
@@ -27,9 +31,10 @@ PATHBUBBLES.Bubble.prototype = Object.create( PATHBUBBLES.Object2D.prototype );
 PATHBUBBLES.Bubble.prototype ={
     constructor: PATHBUBBLES.Bubble,
     addObject : function(object){
-        object.parentObject = this;
-        object.shape.parentObject = this;
-        PATHBUBBLES.objects.push(object);
+        object.parent = this;
+        object.shape.parent = this;
+        if(PATHBUBBLES.objects.indexOf(object)==-1)
+            PATHBUBBLES.objects.push(object);
         this.children.push(object);
         this.__objectsAdded.push( object );
         // check if previously removed
@@ -62,42 +67,46 @@ PATHBUBBLES.Bubble.prototype ={
         }
     },
     draw: function(ctx){
-        if(this.parentObject)
-        {
-            if(this.parentObject instanceof PATHBUBBLES.Scene)
-            {
-                this.shape.offsetX = this.parentObject.x;
-                this.shape.offsetY = this.parentObject.y;
-            }
-            else
-            {
-                this.shape.offsetX = this.parentObject.shape.x;
-                this.shape.offsetY = this.parentObject.shape.y;
-            }
-        }
-        this.shape.draw(ctx);
-        this.updateInforamtion();
+        this.setOffset();
+
+        if( !this.GROUP)
+            this.shape.draw(ctx);
         if(this.shape.HighLight_State)
+        {
+            this.shape.drawStroke(ctx);
             this.drawSelection(ctx);
+        }
     },
-    updateInforamtion: function(){
-        this.x = this.shape.x;
-        this.y = this.shape.y;
-        this.w = this.shape.w;
-        this.h = this.shape.h;
-        this.center = {x: this.x + this.w/2, y: this.y + this.h/2};
+    setOffset: function(){
+        if(this.parent!==undefined)
+        {
+            this.offsetX = this.parent.x;
+            this.offsetY = this.parent.y;
+        }
+        else
+        {
+            this.offsetX = 0;
+            this.offsetY = 0;
+        }
+        this.shape.offsetX = this.offsetX;
+        this.shape.offsetY = this.offsetY;
+        this.shape.x = this.x;
+        this.shape.y = this.y;
     },
     drawSelection: function(ctx) {
         var i, cur, half;
-        var x = this.shape.x + this.offsetX;
-        var y = this.shape.y + this.offsetY;
-        if(this.parentObject)
-        {
-            x+= this.parentObject.x;
-            y+= this.parentObject.y;
-        }
+        var x = this.shape.offsetX + this.shape.x;
+        var y = this.shape.offsetY + this.shape.y;
+
         var w = this.shape.w;
         var h = this.shape.h;
+        if(this.GROUP)
+        {
+            x-=6;
+            y-=6;
+            w+=12;
+            h+=12;
+        }
         // draw the boxes
         half = PATHBUBBLES.selectionBoxSize / 2;
         // 0  1  2
@@ -141,24 +150,19 @@ PATHBUBBLES.Bubble.prototype ={
     },
     contains : function(mx, my)
     {
-        if(this.parentObject)
-        {
-            this.shape.offsetX = this.parentObject.shape.x;
-            this.shape.offsetY = this.parentObject.shape.y;
-        }
         return this.shape.contains(mx,my);
     },
     insideRect: function( mx, my, x, y, w, h){
         return  (x<= mx) && (x + w >= mx) && (y <= my) && (y + h >= my);
     },
     containsInHalo: function(mx, my){
-        var x= this.shape.x+5 + this.offsetX;    //inner
-        var y= this.shape.y+5 + this.offsetY;
+        var x = this.shape.offsetX + this.shape.x+5;
+        var y = this.shape.offsetY + this.shape.y+5;
         var w= this.shape.w-10;
         var h= this.shape.h-10;
 
-        var x2= this.shape.x - 5 + this.offsetX;    //inner
-        var y2= this.shape.y - 5 + this.offsetY;
+        var x2 = this.shape.offsetX + this.shape.x-5;
+        var y2 = this.shape.offsetY + this.shape.y-5;
         var w2 = this.shape.w + 10;
         var h2 = this.shape.h + 10;
         return (!this.insideRect(mx,my,x,y,w,h) && this.insideRect(mx,my,x2,y2,w2,h2));

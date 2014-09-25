@@ -10,8 +10,9 @@ PATHBUBBLES.Biomolecule.Complex = function(x, y, text){
     PATHBUBBLES.Object2D.call(this);
     this.type = "Complex";
     this.shape = new PATHBUBBLES.Shape.Rectangle(x, y, 15 ,6, "#C2C2C2", "#FFE2B7", 1, 0);
+    this.x = this.shape.x;
+    this.y = this.shape.y;
     this.name = text;
-    this.parentObject = null;
 };
 
 PATHBUBBLES.Biomolecule.Complex.prototype = Object.create( PATHBUBBLES.Biomolecule.Complex.prototype );
@@ -19,20 +20,29 @@ PATHBUBBLES.Biomolecule.Complex.prototype = Object.create( PATHBUBBLES.Biomolecu
 PATHBUBBLES.Biomolecule.Complex.prototype = {
     constructor: PATHBUBBLES.Biomolecule.Complex,
     draw: function(ctx){
-        if(this.parentObject)
-        {
-            this.shape.offsetX = this.parentObject.shape.x;
-            this.shape.offsetY = this.parentObject.shape.y;
-        }
+        this.setOffset();
         this.shape.draw(ctx);
+    },
+    setOffset: function(){
+        if(this.parent!==undefined)
+        {
+            this.offsetX = this.parent.offsetX + this.parent.x;
+            this.offsetY = this.parent.offsetY + this.parent.y;
+        }
+        else
+        {
+            this.offsetX = 0;
+            this.offsetY = 0;
+        }
+
+        this.shape.offsetX = this.offsetX;
+        this.shape.offsetY = this.offsetY;
+        this.shape.x = this.x;
+        this.shape.y = this.y;
     },
     contains : function(mx, my)
     {
-        if(this.parentObject)
-        {
-            this.shape.offsetX = this.parentObject.shape.x;
-            this.shape.offsetY = this.parentObject.shape.y;
-        }
+        this.setOffset();
         return this.shape.contains(mx,my);
     }
 };

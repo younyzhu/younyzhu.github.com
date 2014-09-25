@@ -21,7 +21,7 @@ PATHBUBBLES.Groups.prototype = {
             this.arranged.length = 0;
             this.tempPoints.length = 0;
             if(this.children.indexOf(object)==-1)
-                this.children.push(object);
+            this.children.push(object);
 
             for (var i = 0; i < this.children.length; ++i) {
                 if(this.arranged.length == 0)
@@ -76,7 +76,7 @@ PATHBUBBLES.Groups.prototype = {
                                         if(this.arranged[j].x == this.tempPoints[k].x  &&
                                             this.arranged[j].y == this.tempPoints[k].y  )  //left-up
                                         {
-                                            begin = k;
+                                                  begin = k;
                                         }
                                         if(this.arranged[j].x == this.tempPoints[k].x  &&  //left-down
                                             this.arranged[j].y + this.arranged[j].h == this.tempPoints[k].y  )
@@ -237,11 +237,11 @@ PATHBUBBLES.Groups.prototype = {
                 for(var i=0; i<this.tempPoints.length; ++i)
                     for(var j=i+1; j<this.tempPoints.length-1; ++j)
                     {
-                        if(this.tempPoints[i] == this.tempPoints[j])
-                        {
-                            this.tempPoints[i] =null;
-                            this.tempPoints[j] = null;
-                        }
+                       if(this.tempPoints[i] == this.tempPoints[j])
+                       {
+                           this.tempPoints[i] =null;
+                           this.tempPoints[j] = null;
+                       }
                     }
                 this.processPolygon();
             }
@@ -250,16 +250,16 @@ PATHBUBBLES.Groups.prototype = {
     },
     processPolygon: function()
     {
-        this.shape.points.length = 0;
-        for( var i=0; i< this.tempPoints.length; ++i)
-        {
-            if(this.tempPoints[i])
-            {
-                var point = new PATHBUBBLES.Shape.PathPoint(this.tempPoints[i].x, this.tempPoints[i].y,"LT");
-                if(this.shape.points.indexOf(point) ==-1)
-                    this.shape.points.push(point);
-            }
-        }
+         this.shape.points.length = 0;
+         for( var i=0; i< this.tempPoints.length; ++i)
+         {
+             if(this.tempPoints[i])
+             {
+                 var point = new PATHBUBBLES.Shape.PathPoint(this.tempPoints[i].x, this.tempPoints[i].y,"LT");
+                 if(this.shape.points.indexOf(point) ==-1)
+                     this.shape.points.push(point);
+             }
+         }
 //         for( var i=0; i< this.tempPoints.length-1; ++i)
 //         {
 //             if(this.tempPoints[i].type ==="QCT")
@@ -384,11 +384,11 @@ PATHBUBBLES.Groups.prototype = {
         this.shape.offsetY = this.offsetY;
     },
     draw: function (ctx) {
-        if(this.shape.points.length)
-        {
-            this.setOffset();
-            this.shape.draw(ctx);
-        }
+         if(this.shape.points.length)
+         {
+             this.setOffset();
+             this.shape.draw(ctx);
+         }
     }
 
 };

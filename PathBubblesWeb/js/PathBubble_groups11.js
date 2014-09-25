@@ -22,8 +22,8 @@ PATHBUBBLES.Groups.prototype = {
             this.tempPoints.length = 0;
             if(this.children.indexOf(object)==-1)
                 this.children.push(object);
-
             for (var i = 0; i < this.children.length; ++i) {
+
                 if(this.arranged.length == 0)
                 {
                     var left ={};
@@ -76,7 +76,7 @@ PATHBUBBLES.Groups.prototype = {
                                         if(this.arranged[j].x == this.tempPoints[k].x  &&
                                             this.arranged[j].y == this.tempPoints[k].y  )  //left-up
                                         {
-                                            begin = k;
+                                                  begin = k;
                                         }
                                         if(this.arranged[j].x == this.tempPoints[k].x  &&  //left-down
                                             this.arranged[j].y + this.arranged[j].h == this.tempPoints[k].y  )
@@ -237,11 +237,11 @@ PATHBUBBLES.Groups.prototype = {
                 for(var i=0; i<this.tempPoints.length; ++i)
                     for(var j=i+1; j<this.tempPoints.length-1; ++j)
                     {
-                        if(this.tempPoints[i] == this.tempPoints[j])
-                        {
-                            this.tempPoints[i] =null;
-                            this.tempPoints[j] = null;
-                        }
+                       if(this.tempPoints[i] == this.tempPoints[j])
+                       {
+                           this.tempPoints[i] =null;
+                           this.tempPoints[j] = null;
+                       }
                     }
                 this.processPolygon();
             }
@@ -250,27 +250,15 @@ PATHBUBBLES.Groups.prototype = {
     },
     processPolygon: function()
     {
-        this.shape.points.length = 0;
-        for( var i=0; i< this.tempPoints.length; ++i)
-        {
-            if(this.tempPoints[i])
-            {
-                var point = new PATHBUBBLES.Shape.PathPoint(this.tempPoints[i].x, this.tempPoints[i].y,"LT");
-                if(this.shape.points.indexOf(point) ==-1)
-                    this.shape.points.push(point);
-            }
-        }
-//         for( var i=0; i< this.tempPoints.length-1; ++i)
-//         {
-//             if(this.tempPoints[i].type ==="QCT")
-//             {
-//                 if(this.tempPoints[i].)
-//                 var point = new PATHBUBBLES.Shape.PathPoint(this.tempPoints[i].x, this.tempPoints[i].y,"LT");
-//                 if(this.shape.points.indexOf(point) ==-1)
-//                     this.shape.points.push(point);
-//             }
-//         }
-        return this;
+         for( var i=0; i< this.tempPoints.length; ++i)
+         {
+             if(this.tempPoints[i])
+             {
+                 var point = new PATHBUBBLES.Shape.PathPoint(this.tempPoints[i].x, this.tempPoints[i].y,"LT");
+                 if(this.shape.points.indexOf(point) ==-1)
+                     this.shape.points.push(point);
+             }
+         }
     },
     calculateUpDownLeftRight: function (object, target) {
         var objects = [];
@@ -290,7 +278,23 @@ PATHBUBBLES.Groups.prototype = {
                 left.flag = false;
             }
         }
-        left.type = "left";
+//        left.type = "left";
+        if(left.y -object.y<=0 && left.y+left.h <= object.y + object.h) {
+
+            left.type = "left-top-middle";
+        }
+        else if(left.y -object.y<=0 && left.y+left.h > object.y + object.h) {
+
+            left.type = "left-top-down";
+        }
+        else if(left.y -object.y>0 && left.y+left.h < object.y + object.h) {
+
+            left.type = "left-middle-middle";
+        }
+        else if(left.y -object.y>0 && left.y+left.h > object.y + object.h) {
+
+            left.type = "left-middle-down";
+        }
         objects.push(left);
 
         right.x = object.x;
@@ -304,8 +308,25 @@ PATHBUBBLES.Groups.prototype = {
                 right.flag = false;
             }
         }
-        right.type = "right";
+//        right.type = "right";
+        if(right.y -object.y<=0 && right.y+right.h <= object.y + object.h) {
+
+            right.type = "right-top-middle";
+        }
+        else if(right.y -object.y<=0 && right.y+right.h > object.y + object.h) {
+
+            right.type = "right-top-down";
+        }
+        else if(right.y -object.y>0 && right.y+right.h < object.y + object.h) {
+
+            right.type = "right-middle-middle";
+        }
+        else if(right.y -object.y>0 && right.y+right.h > object.y + object.h) {
+
+            right.type = "right-middle-down";
+        }
         objects.push(right);
+
         up.x = target.x;
         up.y = object.y - target.h;
         up.w = target.w;
@@ -317,9 +338,25 @@ PATHBUBBLES.Groups.prototype = {
                 up.flag = false;
             }
         }
-        up.type = "up";
+        //        up.type = "up";
+        if(up.x -object.x<=0 && up.x+up.w <= object.x + object.w) {
 
+            up.type = "up-left-middle";
+        }
+        else if(up.x -object.x<=0 && up.x+up.w > object.x + object.w) {
+
+            up.type = "up-left-right";
+        }
+        else if(up.x -object.x>0 && up.x+up.w <= object.x + object.w) {
+
+            up.type = "up-middle-middle";
+        }
+        else if(up.x -object.x>0 && up.x+up.w > object.x + object.w) {
+
+            up.type = "up-middle-right";
+        }
         objects.push(up);
+
         down.x = target.x;
         down.y = object.y + object.h;
         down.w = target.w;
@@ -331,9 +368,24 @@ PATHBUBBLES.Groups.prototype = {
                 down.flag = false;
             }
         }
-        down.type = "down";
-        objects.push(down);
+//        down.type = "down";
+        if(down.x -object.x<=0 && down.x+down.w <= object.x + object.w) {
 
+            down.type = "down-left-middle";
+        }
+        else if(down.x -object.x<=0 && down.x+down.w > object.x + object.w) {
+
+            down.type = "down-left-right";
+        }
+        else if(down.x -object.x>0 && down.x+down.w <= object.x + object.w) {
+
+            down.type = "down-middle-middle";
+        }
+        else if(down.x -object.x>0 && down.x+down.w > object.x + object.w) {
+
+            down.type = "down-middle-right";
+        }
+        objects.push(down);
         var index=-1;
         var distance= Infinity;
         for (var i = 0; i < objects.length; ++i) {
@@ -384,11 +436,11 @@ PATHBUBBLES.Groups.prototype = {
         this.shape.offsetY = this.offsetY;
     },
     draw: function (ctx) {
-        if(this.shape.points.length)
-        {
-            this.setOffset();
-            this.shape.draw(ctx);
-        }
+         if(this.shape.points.length)
+         {
+             this.setOffset();
+             this.shape.draw(ctx);
+         }
     }
 
 };

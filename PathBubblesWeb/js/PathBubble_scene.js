@@ -7,10 +7,9 @@
 //A management class to manage objects inside the scene
 PATHBUBBLES.Scene = function(){
     PATHBUBBLES.Object2D.call(this);
+    this.type = "Scene";
     this.__objectsAdded = [];
     this.__objectsRemoved = [];
-    this.x = 0;
-    this.y = 0;
 };
 PATHBUBBLES.Scene.prototype = Object.create( PATHBUBBLES.Scene.prototype );
 
@@ -18,7 +17,13 @@ PATHBUBBLES.Scene.prototype ={
     addObject : function(object){
         object.parentObject = this;
         PATHBUBBLES.objects.push(object);
+        var index = this.children.indexOf(object);
+
+        if (index > -1) {
+            this.children.splice(index, 1);
+        }
         this.children.push(object);
+
         this.__objectsAdded.push( object );
         // check if previously removed
         var i = this.__objectsRemoved.indexOf( object );
