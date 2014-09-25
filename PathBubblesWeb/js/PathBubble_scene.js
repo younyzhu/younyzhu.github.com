@@ -16,7 +16,8 @@ PATHBUBBLES.Scene.prototype = Object.create( PATHBUBBLES.Scene.prototype );
 PATHBUBBLES.Scene.prototype ={
     addObject : function(object){
         object.parentObject = this;
-        PATHBUBBLES.objects.push(object);
+        if(PATHBUBBLES.objects.indexOf(object)==-1)
+            PATHBUBBLES.objects.push(object);
         var index = this.children.indexOf(object);
 
         if (index > -1) {
