@@ -4,17 +4,19 @@
  * @time        9/16/2014
  * @name        PathBubble_render
  */
-PATHBUBBLES.Renderer = function(canvas, scene){
+PATHBUBBLES.Renderer = function(){
 
-    this.canvas = canvas;
+
     this.canvasWidth = canvas.clientWidth;
     this.canvasHeight = canvas.clientHeight;
-
-    this.scene = scene||null;//manage objects inside scene
+    this.navCanvasWidth = navCanvas.clientWidth;
+    this.navCanvasHeight = navCanvas.clientHeight;
     this.alpha = false;
-    this.ctx = canvas.getContext('2d');
     this.ctx = canvas.getContext('2d', {
-        alpha: this.alpha === true
+//        alpha: this.alpha === true
+    });  // when set to false, the canvas will redraw everything
+    this.nav_ctx = navCanvas.getContext('2d', {
+//        alpha: this.alpha === true
     });  // when set to false, the canvas will redraw everything
     this.valid =false;
 };
@@ -23,6 +25,10 @@ PATHBUBBLES.Renderer.prototype ={
 
     clear: function () {
         this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+        this.nav_ctx.fillStyle = "#666699";
+        this.nav_ctx.fillRect(0,0,300,150);
+        this.nav_ctx.clearRect(0, 0, this.navCanvasWidth, this.navCanvasHeight);
+
     },
     render: function () {
         var _this = this;
@@ -41,9 +47,15 @@ PATHBUBBLES.Renderer.prototype ={
         if(!_this.valid)
         {
             _this.clear();
-            if (scene)
+            viewpoint.draw(_this.nav_ctx, 1);
+            if (scene.children.length>0)
             {
-                drawObject(scene);
+                for(var i=0; i<scene.children.length; ++i)
+                {
+                    scene.children[i].draw(_this.ctx, 1);
+                    scene.children[i].draw(_this.nav_ctx, this.navCanvasHeight/this.canvasHeight);
+
+                }
             }
         }
 

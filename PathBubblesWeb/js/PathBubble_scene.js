@@ -24,8 +24,8 @@ PATHBUBBLES.Scene.prototype ={
             this.children.splice(index, 1);
         }
         this.children.push(object);
-
-        this.__objectsAdded.push( object );
+        if( this.__objectsAdded.indexOf( object )  == -1)
+            this.__objectsAdded.push( object );
         // check if previously removed
         var i = this.__objectsRemoved.indexOf( object );
         if ( i !== - 1 ) {

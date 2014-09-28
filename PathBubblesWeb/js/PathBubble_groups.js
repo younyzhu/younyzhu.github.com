@@ -13,32 +13,45 @@ PATHBUBBLES.Groups = function () {
 };
 PATHBUBBLES.Groups.prototype = Object.create(PATHBUBBLES.Object2D.prototype);
 PATHBUBBLES.Groups.prototype = {
+
     constructor: PATHBUBBLES.Groups,
-    addToGroup: function(object){
-        if(object.parent instanceof PATHBUBBLES.Groups)
-        {
+    removeObject: function (object) {
+        var index = this.children.indexOf(object);
+        this.children.splice(index, 1);
+
+    },
+    resetShapes: function (object) {
+        this.arranged.length = 0;
+        this.tempPoints.length = 0;
+        this.shape.points.length = 0;
+        var index = this.children.indexOf(object);
+        if (index == -1)
+            this.children.push(object);
+        for (var i = 0; i < this.children.length; ++i) {
+            this.RESET = true;
+            this.objectAddToGroup(this.children[i]);
+        }
+        this.RESET = false;
+    },
+    addToGroup: function (object) {
+        if (object.parent instanceof PATHBUBBLES.Groups) {
             var temp = object.parent;
             var childrenObjs = [];
-            for(var i=0; i<object.parent.children.length; ++i)
-            {
-                var a =object.parent.children[i];
-                a.offsetX =0;
-                a.offsetY =0;
+            for (var i = 0; i < object.parent.children.length; ++i) {
+                var a = object.parent.children[i];
+                a.offsetX = 0;
+                a.offsetY = 0;
                 childrenObjs.push(a);
             }
             scene.removeObject(temp);
-            for(var i=0; i<childrenObjs.length; ++i)
-            {
+            for (var i = 0; i < childrenObjs.length; ++i) {
                 this.objectAddToGroup(childrenObjs[i]);
-                //scene.removeObject(childrenObjs[i]);
             }
-
-
         }
-        else
-        {
+        else {
             this.objectAddToGroup(object);
         }
+
     },
     objectAddToGroup: function (object) {
         if (object) {
@@ -46,41 +59,47 @@ PATHBUBBLES.Groups.prototype = {
             object.parent = this;
 
 
-            if (this.children.indexOf(object) == -1)
-            {
+            if (this.children.indexOf(object) == -1 || this.RESET) {
                 scene.addObject(object);
-                this.children.push(object);
+                if (this.children.indexOf(object) == -1)
+                    this.children.push(object);
                 if (this.arranged.length == 0) {
-                this.tempPoints.length = 0;
-                var left = {};
-                left.x = object.x;
-                left.y = object.y;
-                left.type = "QCT";
-                this.tempPoints.push(left);
+                    this.tempPoints.length = 0;
+                    var left = {};
+                    left.x = object.x;
+                    left.y = object.y;
+                    left.type = "QCT";
+                    left.id = object.id;
+                    left.pos = "left";
+                    this.tempPoints.push(left);
 
-                var right = {};
-                right.x = object.x + object.w;
-                right.y = object.y;
-                right.type = "QCT";
-                this.tempPoints.push(right);
+                    var right = {};
+                    right.x = object.x + object.w;
+                    right.y = object.y;
+                    right.type = "QCT";
+                    right.id = object.id;
+                    right.pos = "right";
+                    this.tempPoints.push(right);
 
-                var bright = {};
-                bright.x = object.x + object.w;
-                bright.y = object.y + object.h;
-                bright.type = "QCT";
-                this.tempPoints.push(bright);
-                var bleft = {};
-                bleft.x = object.x;
-                bleft.y = object.y + object.h;
+                    var bright = {};
+                    bright.x = object.x + object.w;
+                    bright.y = object.y + object.h;
+                    bright.id = object.id;
+                    bright.pos = "bright";
+                    bright.type = "QCT";
+                    this.tempPoints.push(bright);
 
-                bleft.type = "QCT";
-                this.tempPoints.push(bleft);
-                this.arranged.push(object);
-            }
-                if(this.tempPoints.length!==0)
-                {
-                    for(var i=0; i<this.tempPoints.length; ++i)
-                    {
+                    var bleft = {};
+                    bleft.x = object.x;
+                    bleft.y = object.y + object.h;
+                    bleft.type = "QCT";
+                    bleft.id = object.id;
+                    bleft.pos = "bleft";
+                    this.tempPoints.push(bleft);
+                    this.arranged.push(object);
+                }
+                if (this.tempPoints.length !== 0 || !this.RESET) {
+                    for (var i = 0; i < this.tempPoints.length; ++i) {
                         this.tempPoints[i].x += this.offsetX;
                         this.tempPoints[i].offsetX = this.offsetX;
                         this.tempPoints[i].y += this.offsetY;
@@ -88,8 +107,7 @@ PATHBUBBLES.Groups.prototype = {
                     }
                 }
                 var tempCompare = [];
-                for (var j = 0; j < this.arranged.length; ++j)
-                {
+                for (var j = 0; j < this.arranged.length; ++j) {
                     if (this.arranged[j] !== object) {
                         var objs = this.calculateUpDownLeftRight(this.arranged[j], object);
                         for (var ji = 0; ji < objs.length; ++ji) {
@@ -124,13 +142,8 @@ PATHBUBBLES.Groups.prototype = {
                             var begin = -1;
                             var end = -1;
                             for (var k = 0; k < this.tempPoints.length; ++k) {
-                                if (at.object.x == this.tempPoints[k].x &&
-                                    at.object.y == this.tempPoints[k].y)  //left-up
-                                {
-                                    begin = k;
-                                }
-                                if (at.object.x == this.tempPoints[k].x &&  //left-down
-                                    at.object.y + at.object.h == this.tempPoints[k].y) {
+                                if (Math.floor(at.object.x) == Math.floor(this.tempPoints[k].x) &&  //left-down
+                                    Math.floor(at.object.y + at.object.h) == Math.floor(this.tempPoints[k].y)) {
                                     end = k;
                                 }
                                 if (begin !== -1 && end !== -1) {
@@ -138,36 +151,41 @@ PATHBUBBLES.Groups.prototype = {
                                 }
                             }
                             //put points before begin and after end
-
-                            var right = {};
-                            right.x = object.x + object.w;
-                            right.y = object.y;
-                            right.type = "QCT";
-                            this.tempPoints.splice(begin, 0, right);
-                            var left = {};
-                            left.x = object.x;
-                            left.y = object.y;
-                            left.type = "QCT";
-                            this.tempPoints.splice(begin, 0, left);
-
-                            var bleft = {};
-                            bleft.x = object.x;
-                            bleft.y = object.y + object.h;
-                            bleft.type = "QCT";
-                            this.tempPoints.splice(end + 3, 0, bleft);
-
                             var bright = {};
                             bright.x = object.x + object.w;
                             bright.y = object.y + object.h;
                             bright.type = "QCT";
-                            this.tempPoints.splice(end + 3, 0, bright);
+                            bright.id = object.id;
+                            bright.pos = "bright";
+                            this.tempPoints.splice(end + 1, 0, bright);
+                            var bleft = {};
+                            bleft.x = object.x;
+                            bleft.y = object.y + object.h;
+                            bleft.type = "QCT";
+                            bleft.id = object.id;
+                            bleft.pos = "bleft";
+                            this.tempPoints.splice(end + 2, 0, bleft);
+                            var left = {};
+                            left.x = object.x;
+                            left.y = object.y;
+                            left.type = "QCT";
+                            left.id = object.id;
+                            left.pos = "left";
+                            this.tempPoints.splice(end + 3, 0, left);
+                            var right = {};
+                            right.x = object.x + object.w;
+                            right.y = object.y;
+                            right.type = "QCT";
+                            right.id = object.id;
+                            right.pos = "right";
+                            this.tempPoints.splice(end + 4, 0, right);
 
                             break;
                         case "right":
                             var begin = -1;
                             for (var k = 0; k < this.tempPoints.length; ++k) {
-                                if (at.object.x + at.object.w == this.tempPoints[k].x &&
-                                    at.object.y == this.tempPoints[k].y)  //left-up
+                                if (Math.floor(at.object.x + at.object.w) == Math.floor(this.tempPoints[k].x) &&
+                                    Math.floor(at.object.y) == Math.floor(this.tempPoints[k].y))  //left-up
                                 {
                                     begin = k;
                                     break;
@@ -179,31 +197,39 @@ PATHBUBBLES.Groups.prototype = {
                             left.x = object.x;
                             left.y = object.y;
                             left.type = "QCT";
-
+                            left.id = object.id;
+                            left.pos = "left";
                             this.tempPoints.splice(begin + 1, 0, left);
+
                             var right = {};
                             right.x = object.x + object.w;
                             right.y = object.y;
                             right.type = "QCT";
+                            right.id = object.id;
+                            right.pos = "right";
                             this.tempPoints.splice(begin + 2, 0, right);
 
                             var bright = {};
                             bright.x = object.x + object.w;
                             bright.y = object.y + object.h;
                             bright.type = "QCT";
+                            bright.id = object.id;
+                            bright.pos = "bright";
                             this.tempPoints.splice(begin + 3, 0, bright);
 
                             var bleft = {};
                             bleft.x = object.x;
                             bleft.y = object.y + object.h;
                             bleft.type = "QCT";
+                            bleft.id = object.id;
+                            bleft.pos = "bleft";
                             this.tempPoints.splice(begin + 4, 0, bleft);
                             break;
                         case "up":
                             var begin = -1;
                             for (var k = 0; k < this.tempPoints.length; ++k) {
-                                if (at.object.x == this.tempPoints[k].x &&
-                                    at.object.y == this.tempPoints[k].y)  //left-up
+                                if (Math.floor(at.object.x) == Math.floor(this.tempPoints[k].x) &&
+                                    Math.floor(at.object.y) == Math.floor(this.tempPoints[k].y))  //left-up
                                 {
                                     begin = k;
                                     break;
@@ -215,23 +241,31 @@ PATHBUBBLES.Groups.prototype = {
                             bleft.x = object.x;
                             bleft.y = object.y + object.h;
                             bleft.type = "QCT";
+                            bleft.pos = "bleft";
+                            bleft.id = object.id;
                             this.tempPoints.splice(begin + 1, 0, bleft);
 
                             var left = {};
                             left.x = object.x;
                             left.y = object.y;
                             left.type = "QCT";
+                            left.id = object.id;
+                            left.pos = "left";
                             this.tempPoints.splice(begin + 2, 0, left);
                             var right = {};
                             right.x = object.x + object.w;
                             right.y = object.y;
                             right.type = "QCT";
+                            right.id = object.id;
+                            right.pos = "right";
                             this.tempPoints.splice(begin + 3, 0, right);
 
                             var bright = {};
                             bright.x = object.x + object.w;
                             bright.y = object.y + object.h;
                             bright.type = "QCT";
+                            bright.id = object.id;
+                            bright.pos = "bright";
                             this.tempPoints.splice(begin + 4, 0, bright);
 
 
@@ -239,8 +273,8 @@ PATHBUBBLES.Groups.prototype = {
                         case "down":
                             var begin = -1;
                             for (var k = 0; k < this.tempPoints.length; ++k) {
-                                if (at.object.x + at.object.w == this.tempPoints[k].x &&
-                                    at.object.y + at.object.h == this.tempPoints[k].y)  //left-up
+                                if (Math.floor(at.object.x + at.object.w) == Math.floor(this.tempPoints[k].x) &&
+                                    Math.floor(at.object.y + at.object.h) == Math.floor(this.tempPoints[k].y)) //left-up
                                 {
                                     begin = k;
                                     break;
@@ -252,35 +286,43 @@ PATHBUBBLES.Groups.prototype = {
                             right.x = object.x + object.w;
                             right.y = object.y;
                             right.type = "QCT";
+                            right.id = object.id;
+                            right.pos = "right";
                             this.tempPoints.splice(begin + 1, 0, right);
 
                             var bright = {};
                             bright.x = object.x + object.w;
                             bright.y = object.y + object.h;
                             bright.type = "QCT";
+                            bright.id = object.id;
+                            bright.pos = "bright";
                             this.tempPoints.splice(begin + 2, 0, bright);
 
                             var bleft = {};
                             bleft.x = object.x;
                             bleft.y = object.y + object.h;
                             bleft.type = "QCT";
+                            bleft.id = object.id;
+                            bleft.pos = "bleft";
                             this.tempPoints.splice(begin + 3, 0, bleft);
-                            var left = {};
 
+                            var left = {};
                             left.x = object.x;
                             left.y = object.y;
                             left.type = "QCT";
+                            left.id = object.id;
+                            bleft.pos = "left";
                             this.tempPoints.splice(begin + 4, 0, left);
                             break;
                     }
                     if (this.tempPoints.length !== 0) {
-                        for (var iii = 0; iii < this.tempPoints.length; ++iii)
-                            for (var j = iii + 1; j < this.tempPoints.length - 1; ++j) {
-                                if (this.tempPoints[iii] == this.tempPoints[j]) {
-                                    this.tempPoints[iii] = null;
-                                    this.tempPoints[j] = null;
-                                }
-                            }
+//                        for (var iii = 0; iii < this.tempPoints.length; ++iii)
+//                            for (var j = iii + 1; j < this.tempPoints.length - 1; ++j) {
+//                                if (this.tempPoints[iii] == this.tempPoints[j]) {
+//                                    this.tempPoints[iii] = null;
+//                                    this.tempPoints[j] = null;
+//                                }
+//                            }
                         this.processPolygon();
                     }
                 }
@@ -292,12 +334,12 @@ PATHBUBBLES.Groups.prototype = {
         this.shape.points.length = 0;
         for (var i = 0; i < this.tempPoints.length; ++i) {
             if (this.tempPoints[i]) {
-                if(this.tempPoints[i])       //Here we need to know when draw the shape, we also add the offset again.
+                if (this.tempPoints[i] || !this.RESET)       //Here we need to know when draw the shape, we also add the offset again.
                 {
-                    this.tempPoints[i].x-=this.offsetX;
-                    this.tempPoints[i].y-=this.offsetY;
+                    this.tempPoints[i].x -= this.offsetX;
+                    this.tempPoints[i].y -= this.offsetY;
                 }
-                var point = new PATHBUBBLES.Shape.PathPoint(this.tempPoints[i].x, this.tempPoints[i].y, "LT");
+                var point = new PATHBUBBLES.Shape.PathPoint(this.tempPoints[i].id, this.tempPoints[i].pos, this.tempPoints[i].x, this.tempPoints[i].y, "LT");
                 if (this.shape.points.indexOf(point) == -1)
                     this.shape.points.push(point);
             }
@@ -400,33 +442,17 @@ PATHBUBBLES.Groups.prototype = {
         this.shape.offsetX = this.offsetX;
         this.shape.offsetY = this.offsetY;
     },
-    draw: function (ctx) {
+    draw: function (ctx, scale) {
+
         if (this.shape.points.length) {
             this.setOffset();
-            this.shape.draw(ctx);
-        }
-    },
-    clone: function() {
+            ctx.save();
+            this.shape.draw(ctx, scale);
 
-
-       var group = new PATHBUBBLES.Groups();
-        group.shape = new PATHBUBBLES.Shape.Path("#0000ff", "#ffffff", 10);
-        group.type = "Group";
-        for(var i=0; i<this.arranged.length; ++i)
-        {
-            group.arranged.push(this.arranged[i].clone());
+            for (var i = 0; i < this.children.length; ++i) {
+                this.children[i].draw(ctx, scale);
+            }
+            ctx.restore();
         }
-        for(var i=0; i<this.arranged.length; ++i)
-        {
-            var a = this.arranged[i];
-            group.arranged.push(a);
-        }
-        for(var i=0; i<this.tempPoints.length; ++i)
-        {
-            var a = this.tempPoints[i];
-            group.tempPoints.push(a);
-        }
-
-        return group;
     }
 };

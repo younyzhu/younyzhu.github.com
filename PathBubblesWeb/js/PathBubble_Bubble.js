@@ -12,12 +12,13 @@ PATHBUBBLES.Bubble = function(x, y, w ,h, strokeColor, fillColor, cornerRadius,t
     this.y = y||0;
     this.w = w||400;
     this.h = h||400;
-    this.strokeColor=strokeColor||"#0000ff";
-    this.fillColor=fillColor||"#ffffff";
+    this.strokeColor = strokeColor||"#0000ff";
+    this.fillColor = fillColor||"#ffffff";
     this.cornerRadius = cornerRadius||20;
 
-    this.shape = new PATHBUBBLES.Shape.Rectangle(this.x, this.y, this.w ,this.h, this.strokeColor, this.fillColor, 10, this.cornerRadius);
-
+    this.shape = new PATHBUBBLES.Shape.Rectangle(this,this.x, this.y, this.w ,this.h, this.strokeColor, this.fillColor, 10, this.cornerRadius);
+    this.menu = new PATHBUBBLES.Shape.Circle(this.x + this.w - this.cornerRadius/2, this.y + this.cornerRadius/2,10,"#ff0000",this.strokeColor,1 )||null;
+    this.menuBar = new PATHBUBBLES.Menu(this);
     this.name = text;
     this.__objectsAdded = [];
     this.__objectsRemoved = [];
@@ -66,15 +67,33 @@ PATHBUBBLES.Bubble.prototype ={
             this.removeObject( object.children[ c ] );
         }
     },
-    draw: function(ctx){
+    draw: function(ctx,scale){
         this.setOffset();
-
         if( !this.GROUP)
-            this.shape.draw(ctx);
+        {
+            ctx.save();
+            this.shape.draw(ctx,scale);
+
+            for(var i=0; i<this.children.length; ++i)
+            {
+                this.children[i].draw(ctx,scale);
+            }
+            ctx.restore();
+            ctx.save();
+            if(this.menu && scale ==1)
+                this.menu.draw(ctx,scale);
+            if(this.menu.HighLight_State && scale ==1)
+            {
+                this.menuBar.draw(ctx,scale);
+            }
+            ctx.restore();
+        }
         if(this.shape.HighLight_State)
         {
-            this.shape.drawStroke(ctx);
-            this.drawSelection(ctx);
+            ctx.save();
+            this.shape.drawStroke(ctx,scale);
+            this.drawSelection(ctx,scale);
+            ctx.restore();
         }
     },
     setOffset: function(){
@@ -92,10 +111,14 @@ PATHBUBBLES.Bubble.prototype ={
         this.shape.offsetY = this.offsetY;
         this.shape.x = this.x;
         this.shape.y = this.y;
+        this.menu.x = this.x + this.w - this.cornerRadius/2;
+        this.menu.y = this.y + this.cornerRadius/2;
+//        this.menuBar.x = this.x + this.w+this.offsetX;
+//        this.menuBar.y = this.y + this.offsetY;
         this.shape.w = this.w;
         this.shape.h = this.h;
     },
-    drawSelection: function(ctx) {
+    drawSelection: function(ctx,scale) {
         var i, cur, half;
         var x = this.shape.offsetX + this.shape.x;
         var y = this.shape.offsetY + this.shape.y;
@@ -144,10 +167,10 @@ PATHBUBBLES.Bubble.prototype ={
 
         for (i = 0; i < 8; i += 1) {
             cur = PATHBUBBLES.selectionHandles[i];
-            ctx.save();	// save the context so we don't mess up others
+//            ctx.save();	// save the context so we don't mess up others
             ctx.fillStyle = "#ff0000";
-            ctx.fillRect(cur.x, cur.y, PATHBUBBLES.selectionBoxSize, PATHBUBBLES.selectionBoxSize);
-            ctx.restore();
+            ctx.fillRect(cur.x*scale, cur.y*scale, PATHBUBBLES.selectionBoxSize*scale, PATHBUBBLES.selectionBoxSize*scale);
+//            ctx.restore();
         }
     },
     contains : function(mx, my)
@@ -156,6 +179,11 @@ PATHBUBBLES.Bubble.prototype ={
     },
     insideRect: function( mx, my, x, y, w, h){
         return  (x<= mx) && (x + w >= mx) && (y <= my) && (y + h >= my);
+    },
+    containsInMenu: function(mx,my){
+        var x = this.menu.x;
+        var y = this.menu.y;
+        return  (x - mx ) * (x - mx) + (y - my ) * (y - my) <= 10 * 10;
     },
     containsInHalo: function(mx, my){
         var x = this.shape.offsetX + this.shape.x+5;
@@ -177,6 +205,7 @@ PATHBUBBLES.Bubble.prototype ={
         for(var i=0; i<this.children.length; ++i)
         {
             var a = this.children[i];
+            if(bubble.children.indexOf(a)==-1)
             bubble.children.push(a);
         }
 

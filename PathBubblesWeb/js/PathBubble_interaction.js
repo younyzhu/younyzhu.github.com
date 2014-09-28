@@ -6,12 +6,13 @@
  */
 
 //Select, Drag, Resize
-PATHBUBBLES.Interaction = function(renderer, canvas)
+PATHBUBBLES.Interaction = function(renderer)
 {
-    this.canvas = canvas;
     this.dragging = false; // Keep track of when we are dragging
     this.resizeDragging = false; // Keep track of resize
     this.expectResize = -1; // save the # of the selection handle
+    this.groupResize = false;
+    this.menu = false;
 
     this.selection = [];// the current selected objects.
     // New, holds the 8 tiny boxes that will be our selection handles
@@ -51,8 +52,12 @@ PATHBUBBLES.Interaction = function(renderer, canvas)
         var my = mouse.y;
         renderer.valid = false;
         if(_this.selection[0])
-        {
-            _this.selection[0].shape.HighLight_State = false;
+        {   if(_this.selection[0].shape.HighLight_State)
+                _this.selection[0].shape.HighLight_State = false;
+//            if(_this.selection[0].menu!==undefined)
+//                {
+//                    _this.selection[0].menu.HighLight_State = !_this.selection[0].menu.HighLight_State;
+//                }
         }
         for(i=PATHBUBBLES.objects.length -1; i>=0; i--)
         {
@@ -66,6 +71,17 @@ PATHBUBBLES.Interaction = function(renderer, canvas)
                 _this.selection[0] = PATHBUBBLES.objects[i];
                 _this.selection[0].shape.HighLight_State = true;
                 _this.dragging = true;
+                renderer.valid = false;
+                return;
+            }
+            else if( PATHBUBBLES.objects[i].type == "Bubble" && PATHBUBBLES.objects[i].containsInMenu(mx, my)) {
+                oldMouseX = mx;
+                oldMouseY = my;
+
+                _this.selection[0] = PATHBUBBLES.objects[i];
+//                _this.selection[0].menu.HighLight_State = true;
+                _this.selection[0].menu.HighLight_State = !_this.selection[0].menu.HighLight_State;
+//                _this.menu = true;
                 renderer.valid = false;
                 return;
             }
@@ -164,7 +180,43 @@ PATHBUBBLES.Interaction = function(renderer, canvas)
                     _this.selection[0].h = my - oldy;
                     break;
             }
+            if(_this.selection[0].GROUP)
+            {
+               var id = _this.selection[0].id;
 
+               for(var i=0; i<_this.selection[0].parent.shape.points.length; ++i)
+               {
+                   if(_this.selection[0].parent.shape.points[i].bubbleId === id)
+                   {
+                       var x = _this.selection[0].x - _this.selection[0].parent.offsetX;
+                       var y = _this.selection[0].y - _this.selection[0].parent.offsetY;
+                       if(_this.selection[0].parent.shape.points[i].bubblePos == "left")
+                       {
+                           _this.selection[0].parent.shape.points[i].x = x;
+                           _this.selection[0].parent.shape.points[i].y = y;
+                           continue;
+                       }
+                       if(_this.selection[0].parent.shape.points[i].bubblePos == "right")
+                       {
+                           _this.selection[0].parent.shape.points[i].x = x + _this.selection[0].w;
+                           _this.selection[0].parent.shape.points[i].y = y;
+                           continue;
+                       }
+                       if(_this.selection[0].parent.shape.points[i].bubblePos == "bleft")
+                       {
+                           _this.selection[0].parent.shape.points[i].x = x;
+                           _this.selection[0].parent.shape.points[i].y = y + _this.selection[0].h;
+                           continue;
+                       }
+                       if(_this.selection[0].parent.shape.points[i].bubblePos == "bright")
+                       {
+                           _this.selection[0].parent.shape.points[i].x = x + _this.selection[0].w;
+                           _this.selection[0].parent.shape.points[i].y = y + _this.selection[0].h;
+                       }
+                   }
+               }
+                _this.groupResize = true;
+            }
             renderer.valid = false;
         }
 
@@ -225,7 +277,13 @@ PATHBUBBLES.Interaction = function(renderer, canvas)
 
     canvas.addEventListener('mouseup',function(e) {
         this.style.cursor = 'auto';
-        if(_this.selection[0])
+//        if(_this.selection[0]&&  _this.menu)
+//        {
+//            _this.menu = false;
+//            _this.selection[0].menu.HighLight_State = false;
+//
+//        }
+        if(_this.selection[0]&&  !_this.groupResize)
         {
             for(var i=0; i<PATHBUBBLES.objects.length; ++i)
             {
@@ -288,7 +346,7 @@ PATHBUBBLES.Interaction.prototype ={
                 object2.h + object2.y > object1.y);
     },
     getMouse: function (e) {
-        var element = this.canvas, offsetX = 0, offsetY = 0, mx, my;
+        var element = canvas, offsetX = 0, offsetY = 0, mx, my;
         if (element.offsetParent !== undefined) {
             do {
                 offsetX += element.offsetLeft;

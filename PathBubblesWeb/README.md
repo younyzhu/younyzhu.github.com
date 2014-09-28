@@ -64,3 +64,18 @@ I will try to find a way.
  
 Fix bugs, add bubble to group, add group bubble to group.
  
+It seems hard to control the event detection, and I found there is a pretty cool Libray called KineticJs, maybe I should try that api.
+[KineticJS](http://kineticjs.com/)   
+ 
+* 9/27/2014    
+
+Spend lots of time, it seems I solved the group program, and I consider the KineticJS, but I think My own framework is ok now.[For right now] 
+
+Navigation Bar add
+
+* 9/28/2014 
+
+Finished clipped region, so when the biomolecule goes outside the bubble, it will not be drawn.
+Menu add.
+
+
