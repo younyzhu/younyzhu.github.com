@@ -489,14 +489,15 @@ PATHBUBBLES.Shape.Hexahedron.prototype ={
     draw: function (ctx,scale) {
         var x = this.x + this.offsetX;
         var y = this.y + this.offsetY;
+        var w = this.w;
+        var h = this.h;
 //        ctx.save();	// save the context so we don't mess up others
         ctx.fillStyle = this.fillColor;
         ctx.strokeStyle = this.strokeColor;
         ctx.lineWidth = this.lineWidth*scale;
         ctx.setLineDash([0]);
         ctx.lineDashOffset = 0;
-        var w = this.w;
-        var h = this.h;
+
         var mx1 = x + w / 4;
         var mx2 = x + w * 3 / 4;
         var my1 = y + h / 3;

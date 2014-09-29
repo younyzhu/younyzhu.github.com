@@ -215,6 +215,38 @@ PATHBUBBLES.Interaction = function(renderer)
                        }
                    }
                }
+                for(var i=0; i<_this.selection[0].parent.tempPoints.length; ++i)
+                {
+                    if(_this.selection[0].parent.tempPoints[i].id === id)
+                    {
+                        var x = _this.selection[0].x - _this.selection[0].parent.offsetX;
+                        var y = _this.selection[0].y - _this.selection[0].parent.offsetY;
+                        if(_this.selection[0].parent.tempPoints[i].pos == "left")
+                        {
+                            _this.selection[0].parent.tempPoints[i].x = x;
+                            _this.selection[0].parent.tempPoints[i].y = y;
+                            continue;
+                        }
+                        if(_this.selection[0].parent.tempPoints[i].pos == "right")
+                        {
+                            _this.selection[0].parent.tempPoints[i].x = x + _this.selection[0].w;
+                            _this.selection[0].parent.tempPoints[i].y = y;
+                            continue;
+                        }
+                        if(_this.selection[0].parent.tempPoints[i].pos == "bleft")
+                        {
+                            _this.selection[0].parent.tempPoints[i].x = x;
+                            _this.selection[0].parent.tempPoints[i].y = y + _this.selection[0].h;
+                            continue;
+                        }
+                        if(_this.selection[0].parent.tempPoints[i].pos == "bright")
+                        {
+                            _this.selection[0].parent.tempPoints[i].x = x + _this.selection[0].w;
+                            _this.selection[0].parent.tempPoints[i].y = y + _this.selection[0].h;
+                        }
+                    }
+                }
+
                 _this.groupResize = true;
             }
             renderer.valid = false;
@@ -287,7 +319,9 @@ PATHBUBBLES.Interaction = function(renderer)
         {
             for(var i=0; i<PATHBUBBLES.objects.length; ++i)
             {
-                if(_this.selection[0]!== PATHBUBBLES.objects[i])
+                if((_this.selection[0]!== PATHBUBBLES.objects[i])
+                    && (PATHBUBBLES.objects[i] instanceof PATHBUBBLES.Bubble
+                    ||PATHBUBBLES.objects[i].parent instanceof PATHBUBBLES.Groups))
                 {
                     if(_this.detectOverlap(_this.selection[0], PATHBUBBLES.objects[i]) )
                     {
@@ -315,6 +349,7 @@ PATHBUBBLES.Interaction = function(renderer)
         _this.dragging = false;
         _this.resizeDragging = false;
         _this.expectResize = -1;
+        _this.groupResize= false;
         //renderer.valid = false;
     }, true);
 

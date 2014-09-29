@@ -11,7 +11,7 @@
     this.y =0;
     this.h = 50;
     this.w=window.innerWidth / window.innerHeight*50;
-    this.shape = new PATHBUBBLES.Shape.Rectangle(this.x, this.y, this.w ,this.h, "#C2C2C2", "#00ff00", 2, 0);
+    this.shape = new PATHBUBBLES.Shape.Rectangle(this,this.x, this.y, this.w ,this.h, "#C2C2C2", "#00ff00", 2, 0);
     this.shape.fillState = false;
  };
 PATHBUBBLES.ViewPoint.prototype = Object.create( PATHBUBBLES.Object2D.prototype );

@@ -89,7 +89,7 @@ $(document).ready(function (){
                 for(var i= 0, l=scene.children.length;i<l; ++i)
                 {
                     if(scene.children[i])
-                    scene.removeObject(scene.children[i]);
+                        scene.removeObject(scene.children[i]);
                 }
                 scene.children.length =0;
             }
