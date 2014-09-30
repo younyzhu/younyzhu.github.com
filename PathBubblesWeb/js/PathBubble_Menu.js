@@ -11,14 +11,15 @@ PATHBUBBLES.Menu= function(bubble)
     this.x = this.bubble.x + this.bubble.w+5;
     this.y = this.bubble.y+20;
     this.flag = false;
-    this.w = 100;
-    this.h = 115;
+    this.w = 200;
+    this.h = 215;
     this.text = new PATHBUBBLES.Text(this, "Menu");
     this.shape = new PATHBUBBLES.Shape.Rectangle(this, this.x, this.y, this.w ,this.h, "#666666", "#282525", 2, 0);
 };
 PATHBUBBLES.Menu.prototype ={
     constructor: PATHBUBBLES.Menu,
     draw: function(ctx,scale){
+
         this.setOffset();
 //        ctx.save();	// save the context so we don't mess up others
         this.shape.draw(ctx,scale);

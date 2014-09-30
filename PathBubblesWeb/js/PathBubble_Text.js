@@ -12,6 +12,8 @@ PATHBUBBLES.Text = function(object, text)
     this.fillColor = '#0000ff';
     this.text = text;
     this.font = '20pt Calibri';
+    this.textAlign = 'center';   //
+    this.textBaseline= 'middle';   //bottom
 };
 PATHBUBBLES.Text.prototype ={
     constructor: PATHBUBBLES.Text,
@@ -21,9 +23,9 @@ PATHBUBBLES.Text.prototype ={
 //        ctx.save();	// save the context so we don't mess up others
         ctx.font = this.font;
         // textAlign aligns text horizontally relative to placement
-        ctx.textAlign = 'center';
+        ctx.textAlign = this.textAlign;
         // textBaseline aligns text vertically relative to font style
-        ctx.textBaseline = 'middle';
+        ctx.textBaseline = this.textBaseline;
         ctx.fillStyle = this.fillColor;
         ctx.fillText(this.text, x, y);
 //        ctx.restore();	// restore context to what it was on entry

@@ -317,10 +317,10 @@ PATHBUBBLES.Shape.Ellipse.prototype ={
         else
         {
             ctx.moveTo(x*scale+viewpoint.x, my*scale);
-            ctx.quadraticCurveTo(x*scale+viewpoint.x, y*scale, mx*scale, y*scale);
-            ctx.quadraticCurveTo((x + w)*scale+viewpoint.x, y*scale, (x + w)*scale, my*scale);
-            ctx.quadraticCurveTo((x + w)*scale+viewpoint.x, (y + h)*scale, mx*scale, (y + h)*scale);
-            ctx.quadraticCurveTo(x*scale+viewpoint.x, (y + h)*scale, x*scale, my*scale);
+            ctx.quadraticCurveTo(x*scale+viewpoint.x, y*scale, mx*scale+viewpoint.x, y*scale);
+            ctx.quadraticCurveTo((x + w)*scale+viewpoint.x, y*scale, (x + w)*scale+viewpoint.x, my*scale);
+            ctx.quadraticCurveTo((x + w)*scale+viewpoint.x, (y + h)*scale, mx*scale+viewpoint.x, (y + h)*scale);
+            ctx.quadraticCurveTo(x*scale+viewpoint.x, (y + h)*scale, x*scale+viewpoint.x, my*scale);
         }
         ctx.fill();
         ctx.stroke();
@@ -352,10 +352,10 @@ PATHBUBBLES.Shape.Ellipse.prototype ={
         else
         {
             ctx.moveTo(x*scale+viewpoint.x, my*scale);
-            ctx.quadraticCurveTo(x*scale+viewpoint.x, y*scale, mx*scale, y*scale);
-            ctx.quadraticCurveTo((x + w)*scale+viewpoint.x, y*scale, (x + w)*scale, my*scale);
-            ctx.quadraticCurveTo((x + w)*scale+viewpoint.x, (y + h)*scale, mx*scale, (y + h)*scale);
-            ctx.quadraticCurveTo(x*scale+viewpoint.x, (y + h)*scale, x*scale, my*scale);
+            ctx.quadraticCurveTo(x*scale+viewpoint.x, y*scale, mx*scale+viewpoint.x, y*scale);
+            ctx.quadraticCurveTo((x + w)*scale+viewpoint.x, y*scale, (x + w)*scale+viewpoint.x, my*scale);
+            ctx.quadraticCurveTo((x + w)*scale+viewpoint.x, (y + h)*scale, mx*scale+viewpoint.x, (y + h)*scale);
+            ctx.quadraticCurveTo(x*scale+viewpoint.x, (y + h)*scale, x*scale+viewpoint.x, my*scale);
         }
         ctx.closePath();
         ctx.stroke();
@@ -488,8 +488,7 @@ PATHBUBBLES.Shape.Hexahedron.prototype ={
     constructor: PATHBUBBLES.Shape.Hexahedron,
     draw: function (ctx,scale) {
         var x = this.x + this.offsetX;
-        var y = this.y + this.offsetY;
-        var w = this.w;
+        var y = this.y + this.offsetY;       var w = this.w;
         var h = this.h;
 //        ctx.save();	// save the context so we don't mess up others
         ctx.fillStyle = this.fillColor;

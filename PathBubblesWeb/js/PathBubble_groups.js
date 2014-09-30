@@ -342,6 +342,14 @@ PATHBUBBLES.Groups.prototype = {
                 var point = new PATHBUBBLES.Shape.PathPoint(this.tempPoints[i].id, this.tempPoints[i].pos, this.tempPoints[i].x, this.tempPoints[i].y, "LT");
                 if (this.shape.points.indexOf(point) == -1)
                     this.shape.points.push(point);
+
+                for (var ii = 0; ii < PATHBUBBLES.objects.length; ++ii) {
+                    if (PATHBUBBLES.objects[ii] instanceof  PATHBUBBLES.Bubble && PATHBUBBLES.objects[ii].id == this.tempPoints[i].id && this.tempPoints.pos == "left") {
+                        PATHBUBBLES.objects[ii].x = this.tempPoints[i].x;
+                        PATHBUBBLES.objects[ii].y = this.tempPoints[i].y;
+                        break;
+                    }
+                }
             }
         }
         return this;
@@ -424,7 +432,6 @@ PATHBUBBLES.Groups.prototype = {
 //            return null;
 
     },
-
     detectOverlap: function (object1, object2) {
         return (object1.x < object2.x + object2.w &&
             object1.x + object1.w > object2.x &&
@@ -446,13 +453,13 @@ PATHBUBBLES.Groups.prototype = {
 
         if (this.shape.points.length) {
             this.setOffset();
-            ctx.save();
-            this.shape.draw(ctx, scale);
-
+            //ctx.save();
+//            this.shape.draw(ctx, scale);
+//
             for (var i = 0; i < this.children.length; ++i) {
                 this.children[i].draw(ctx, scale);
             }
-            ctx.restore();
+            //ctx.restore();
         }
     }
 };

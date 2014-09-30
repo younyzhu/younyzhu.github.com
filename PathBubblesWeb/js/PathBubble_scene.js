@@ -24,19 +24,47 @@ PATHBUBBLES.Scene.prototype ={
             this.children.splice(index, 1);
         }
         this.children.push(object);
-        if( this.__objectsAdded.indexOf( object )  == -1)
-            this.__objectsAdded.push( object );
-        // check if previously removed
-        var i = this.__objectsRemoved.indexOf( object );
-        if ( i !== - 1 ) {
-            this.__objectsRemoved.splice( i, 1 );
-        }
+//        if( this.__objectsAdded.indexOf( object )  == -1)
+//            this.__objectsAdded.push( object );
+//        // check if previously removed
+//        var i = this.__objectsRemoved.indexOf( object );
+//        if ( i !== - 1 ) {
+//            this.__objectsRemoved.splice( i, 1 );
+//        }
         for ( var c = 0; c < object.children.length; c ++ ) {
             this.addObject( object.children[ c ] );
         }
     },
+    moveObjectToFront: function(object){
+        var indexThis = this.children.indexOf(object);
+        var indexObjects = PATHBUBBLES.objects.indexOf(object);
+        if (indexThis > -1) {
+            this.children.splice(indexThis, 1);
+            this.children.splice(0, 0, object);
+        }
+        if (indexObjects > -1) {
+            PATHBUBBLES.objects.splice(indexObjects, 1);
+            PATHBUBBLES.objects.splice(0, 0, object);
+        }
+    },
     removeObject : function(object){
-        this.__objectsRemoved.push( object );
+//        this.__objectsRemoved.push( object );
+
+//        var i = this.__objectsAdded.indexOf( object );
+//        if ( i !== - 1 ) {
+//            this.__objectsAdded.splice( i, 1 );
+//        }
+        if(object instanceof PATHBUBBLES.Groups)
+        {
+            for ( var c = 0; c < object.children.length; c ++ ) {
+                this.removeObject( object.children[ c ] );
+            }
+        }
+        else if(object instanceof PATHBUBBLES.Bubble)
+        {
+            object.menu.HighLight_State = false;
+            object.bubbleView = null;
+        }
         var index = PATHBUBBLES.objects.indexOf(object);
         if(index !== -1)
         {
@@ -47,13 +75,6 @@ PATHBUBBLES.Scene.prototype ={
         if(index !== -1)
         {
             this.children.splice(index, 1);
-        }
-        var i = this.__objectsAdded.indexOf( object );
-        if ( i !== - 1 ) {
-            this.__objectsAdded.splice( i, 1 );
-        }
-        for ( var c = 0; c < object.children.length; c ++ ) {
-            this.removeObject( object.children[ c ] );
         }
     }
 };
