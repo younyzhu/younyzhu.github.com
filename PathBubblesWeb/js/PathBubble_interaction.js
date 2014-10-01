@@ -14,7 +14,7 @@ PATHBUBBLES.Interaction = function(renderer)
     this.groupResize = false;
     this.menu = false;
     this.bubbleViewDrag = false;
-
+    this.moleculeDrag = false;
     this.selection = [];// the current selected objects.
     // New, holds the 8 tiny boxes that will be our selection handles
     // the selection handles will be in this order:
@@ -25,7 +25,6 @@ PATHBUBBLES.Interaction = function(renderer)
     for (var i = 0; i < 8; i += 1) {
         PATHBUBBLES.selectionHandles.push(new PATHBUBBLES.Shape.Rectangle());   //here we just keep 8 rectangle for resizing
     }
-
     var _this = this;
 //    document.addEventListener('keydown',function(e){
 //        if(e.keyCode === 17)//Ctrl
@@ -66,7 +65,7 @@ PATHBUBBLES.Interaction = function(renderer)
         {
             if(PATHBUBBLES.objects[i] === null)
                 continue;
-            if( PATHBUBBLES.objects[i] instanceof PATHBUBBLES.Bubble&& PATHBUBBLES.objects[i].containsInHalo(mx, my))
+            if( PATHBUBBLES.objects[i] instanceof PATHBUBBLES.Bubble && PATHBUBBLES.objects[i].containsInHalo(mx, my))
             {
                 oldMouseX = mx;
                 oldMouseY = my;
@@ -77,7 +76,8 @@ PATHBUBBLES.Interaction = function(renderer)
                 renderer.valid = false;
                 return;
             }
-            else if( PATHBUBBLES.objects[i] instanceof PATHBUBBLES.Bubble && PATHBUBBLES.objects[i].containsInMenu(mx, my)) {
+            else if( PATHBUBBLES.objects[i] instanceof PATHBUBBLES.Bubble && PATHBUBBLES.objects[i].containsInMenu(mx, my))
+            {
                 oldMouseX = mx;
                 oldMouseY = my;
 
@@ -89,16 +89,38 @@ PATHBUBBLES.Interaction = function(renderer)
                 renderer.valid = false;
                 return;
             }
-            if(_this.selection[0].bubbleView !==undefined)
-            if( PATHBUBBLES.objects[i] instanceof PATHBUBBLES.Bubble&& PATHBUBBLES.objects[i].containsInsideBubble(mx, my))
+            else if(PATHBUBBLES.objects[i] instanceof PATHBUBBLES.Bubble && PATHBUBBLES.objects[i].containsInsideBubble(mx, my))
             {
-                oldMouseX = mx;
-                oldMouseY = my;
+                var flag = false;
+                for(var ii = 0; ii<PATHBUBBLES.objects[i].children.length; ii++)
+                {
+                    if( !(PATHBUBBLES.objects[i].children[ii] instanceof PATHBUBBLES.Arrow)
+                        && !(PATHBUBBLES.objects[i].children[ii] instanceof PATHBUBBLES.Activation)
+                        && !(PATHBUBBLES.objects[i].children[ii] instanceof PATHBUBBLES.Inhibition)
+                        && (PATHBUBBLES.objects[i].children[ii].contains(mx, my)))
+                    {
+                        oldMouseX = mx;
+                        oldMouseY = my;
 
-                _this.selection[0] = PATHBUBBLES.objects[i];
-                if( _this.selection[0].bubbleView)
-                    _this.selection[0].bubbleView.shape.HighLight_State = true;
-                _this.bubbleViewDrag = true;
+                        _this.selection[0] = PATHBUBBLES.objects[i].children[ii];
+                        _this.selection[0].shape.HighLight_State = true;
+                        _this.moleculeDrag = true;
+                        flag = true;
+                        break;
+                    }
+                }
+                if(!flag)
+                {
+                    oldMouseX = mx;
+                    oldMouseY = my;
+
+                    _this.selection[0] = PATHBUBBLES.objects[i];
+                    if( _this.selection[0].bubbleView)
+                    {
+                        _this.selection[0].bubbleView.shape.HighLight_State = true;
+                        _this.bubbleViewDrag = true;
+                    }
+                }
                 renderer.valid = false;
                 return;
             }
@@ -118,7 +140,6 @@ PATHBUBBLES.Interaction = function(renderer)
         }
         this.style.cursor = 'auto';
     },true);
-
     canvas.addEventListener('mousemove', function (e) {
         var mouse = _this.getMouse(e),
             mx = mouse.x,
@@ -133,8 +154,15 @@ PATHBUBBLES.Interaction = function(renderer)
         oldMouseY = mouse.y;
         if(_this.bubbleViewDrag)
         {
-            _this.selection[0].bubbleView.x += offsetX;
-            _this.selection[0].bubbleView.y += offsetY;
+            if (_this.selection[0].bubbleView) {
+                _this.selection[0].bubbleView.x += offsetX;
+                _this.selection[0].bubbleView.y += offsetY;
+            }
+        }
+        if(_this.moleculeDrag)
+        {
+            _this.selection[0].x += offsetX;
+            _this.selection[0].y += offsetY;
         }
         if (_this.dragging) {
 
@@ -330,7 +358,6 @@ PATHBUBBLES.Interaction = function(renderer)
 
         }
     }, true);
-
     canvas.addEventListener('mouseup',function(e) {
         this.style.cursor = 'auto';
 //        if(_this.selection[0]&&  _this.menu)
@@ -372,15 +399,14 @@ PATHBUBBLES.Interaction = function(renderer)
         }
         _this.bubbleViewDrag = false;
         _this.dragging = false;
+        _this.moleculeDrag = false;
         _this.resizeDragging = false;
         _this.expectResize = -1;
         _this.groupResize= false;
         //renderer.valid = false;
     }, true);
-
     canvas.addEventListener('mousewheel', mousewheel, false);
     canvas.addEventListener('DOMMouseScroll', mousewheel, false); // firefox
-
     function mousewheel() {
         var delta = 0;
         if (event.wheelDelta) { // WebKit / Opera / Explorer 9
@@ -392,7 +418,6 @@ PATHBUBBLES.Interaction = function(renderer)
         renderer.valid = false;
     }
     this.selectionBoxSize = PATHBUBBLES.selectionBoxSize;
-
 };
 PATHBUBBLES.Interaction.prototype ={
     detectOverlap: function (object1, object2) {

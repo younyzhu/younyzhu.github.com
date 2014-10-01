@@ -25,7 +25,26 @@ PATHBUBBLES.BubbleView = function(bubble,w,h,radius){
     this.activations =[];
 };
 PATHBUBBLES.BubbleView.prototype ={
-    setOffset: function () {
+    setCenterCoordinate: function(x, y, w ,h){
+        var oldx = x;
+        var oldy = y;
+        this.w = w;
+        this.h = h;
+        var OffsetX = - oldx ;
+        var OffsetY = - oldy ;
+        this.x = this.parent.w/2 - this.w/2;
+        this.y = this.parent.h/2 - this.h/2;
+        this.offsetX = 0;
+        this.offsetY = 0;
+
+        for(var i=0; i<this.compartments.length; ++i)
+        {
+            this.compartments[i].x+= OffsetX;
+            this.compartments[i].y+= OffsetY;
+        }
+        return;
+    },
+    setOffset: function() {
         if (this.parent !== undefined) {
             this.offsetX = this.parent.x;
             this.offsetY = this.parent.y;
@@ -98,8 +117,7 @@ PATHBUBBLES.BubbleView.prototype ={
     },
     addCompartment: function(compartmentId, x, y, w, h, name){
         var compartment = new PATHBUBBLES.Biomolecule.Compartment(this, compartmentId, x *this.w, y*this.h, w*this.w, h*this.h, name);
-        if(PATHBUBBLES.objects.indexOf(compartment)==-1)
-            PATHBUBBLES.objects.push(compartment);
+        this.parent.addObject(compartment);
         this.compartments.push(compartment);
     },
     drawCompartment: function(ctx,scale){

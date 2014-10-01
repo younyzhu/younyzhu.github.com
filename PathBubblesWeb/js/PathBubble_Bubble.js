@@ -10,8 +10,8 @@ PATHBUBBLES.Bubble = function (x, y, w, h, strokeColor, fillColor, cornerRadius,
     this.type = "Bubble";
     this.x = x || 0;
     this.y = y || 0;
-    this.w = w || 400;
-    this.h = h || 400;
+    this.w = w || 500;
+    this.h = h || 500;
     this.strokeColor = strokeColor || "#00ffff";
     this.fillColor = fillColor || "#ffffff";
     this.cornerRadius = cornerRadius || 20;
@@ -41,8 +41,11 @@ PATHBUBBLES.Bubble.prototype = {
 //        object.parent = this;
 //        object.shape.parent = this;
 
-        if (this.children.indexOf(object) == -1)
-            this.children.push(object);
+        var index = this.children.indexOf(object);
+        if (index > -1) {
+            this.children.splice(index, 1);
+        }
+        this.children.push(object);
 //        if (PATHBUBBLES.objects.indexOf(object) == -1)
 //            PATHBUBBLES.objects.push(object);
 //        this.__objectsAdded.push(object);

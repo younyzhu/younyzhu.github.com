@@ -80,7 +80,37 @@ PATHBUBBLES.LocalFileLoader.prototype ={
         function updateProgress() {
             $("#status")[0].style.display = 'none';
         }
-
+        for(var i=this.bubble.bubbleView.compartments.length - 1; i>=0; i--)
+        {
+             var compartment = this.bubble.bubbleView.compartments[i];
+             this.bubble.bubbleView.compartments[i].Left = compartment.x;
+             this.bubble.bubbleView.compartments[i].Top = compartment.y;
+             this.bubble.bubbleView.compartments[i].Bottom = compartment.y + compartment.h ;
+             this.bubble.bubbleView.compartments[i].Right = compartment.x + compartment.w;
+             this.bubble.addObject(this.bubble.bubbleView.compartments[i]);
+        }
+        var Left = Infinity, Right=-Infinity, Top = Infinity, Bottom= -Infinity;
+        for(var i=this.bubble.bubbleView.compartments.length - 1; i>=0; i--) {
+            var compartment = this.bubble.bubbleView.compartments[i];
+            if(compartment.Left <= Left)
+            {
+                Left = compartment.Left;
+            }
+            if(compartment.Top <= Top)
+            {
+                Top = compartment.Top;
+            }
+            if(compartment.Bottom >=Bottom)
+            {
+                Bottom =compartment.Bottom;
+            }
+            if(compartment.Right >=Right)
+            {
+                Right =compartment.Right;
+            }
+        }
+        this.bubble.bubbleView.setCenterCoordinate(Left, Top, Right-Left, Bottom - Top);
+        return;
     },
     addStatusElement: function () {
         var e = document.getElementById('status');

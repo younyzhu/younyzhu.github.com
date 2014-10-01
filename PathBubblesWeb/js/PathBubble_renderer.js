@@ -5,8 +5,6 @@
  * @name        PathBubble_render
  */
 PATHBUBBLES.Renderer = function () {
-
-
     this.canvasWidth = canvas.clientWidth;
     this.canvasHeight = canvas.clientHeight;
     this.navCanvasWidth = navCanvas.clientWidth;
