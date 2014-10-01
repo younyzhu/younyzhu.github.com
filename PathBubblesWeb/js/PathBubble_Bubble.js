@@ -22,7 +22,7 @@ PATHBUBBLES.Bubble = function (x, y, w, h, strokeColor, fillColor, cornerRadius,
     this.menu = new PATHBUBBLES.Shape.Circle(this.x + this.w - this.cornerRadius / 2, this.y + this.cornerRadius / 2, this.lineWidth, "#ff0000", this.strokeColor, 1) || null;
     this.bubbleView = null;
     this.menuBar = new PATHBUBBLES.Menu(this);
-    var button = new PATHBUBBLES.Button(this.menuBar, 0);   //Button 0 for file selection
+    var button = new PATHBUBBLES.Button(this.menuBar);   //Button 0 for file selection
     button.addButton();
 
     this.name = text;
@@ -59,7 +59,7 @@ PATHBUBBLES.Bubble.prototype = {
 //        }
     },
     removeObject: function (object) {
-        this.__objectsRemoved.push(object);
+//        this.__objectsRemoved.push(object);
         var index = PATHBUBBLES.objects.indexOf(object);
         if (index !== -1) {
             PATHBUBBLES.objects.splice(index, 1);
@@ -68,19 +68,19 @@ PATHBUBBLES.Bubble.prototype = {
         if (index !== -1) {
             this.children.splice(index, 1);
         }
-        var i = this.__objectsAdded.indexOf(object);
-        if (i !== -1) {
-            this.__objectsAdded.splice(i, 1);
-        }
-        for (var c = 0; c < object.children.length; c++) {
-            this.removeObject(object.children[ c ]);
-        }
+//        var i = this.__objectsAdded.indexOf(object);
+//        if (i !== -1) {
+//            this.__objectsAdded.splice(i, 1);
+//        }
+//        for (var c = 0; c < object.children.length; c++) {
+//            this.removeObject(object.children[ c ]);
+//        }
     },
     menuOperation: function(){
         var _this=this;
         var $menuBarbubble = $('#menuView'+ this.id);
-        $menuBarbubble.find('#button'+ 0).on('click', function(){
-            _this.selected_file = $menuBarbubble.find('#file'+ 0).get(0).files[0];
+        $menuBarbubble.find('#load').on('click', function(){
+            _this.selected_file = $menuBarbubble.find('#file').get(0).files[0];
             if ( !_this.selected_file) {
                 alert("Please select data file!");
             }
@@ -92,8 +92,94 @@ PATHBUBBLES.Bubble.prototype = {
 
                 localFileLoader.load(_this.selected_file);
             }
-
         });
+        $menuBarbubble.find('#delete').on('click',function(){
+            if(!_this.GROUP)
+               _this.deleteBubble();
+            else
+            {
+                var id = _this.id;
+                var group = _this.parent;
+                _this.GROUP = false;
+                var tempdata = [];
+                for(var i=0; i<group.children.length; ++i)
+                {
+                    if(group.children[i].id!==_this.id)
+                    {
+                        var a =group.children[i];
+                        a.parent = undefined;
+                        tempdata.push(a);
+                    }
+                }
+                _this.parent = undefined;
+                _this.deleteBubble();
+                group.tempPoints.length =0;
+                group.arranged.length =0;
+                group.children.length =0;
+                for(var i=0; i<tempdata.length; ++i)
+                {
+                    group.RESET = true;
+                    group.addToGroup(tempdata[i]);
+                }
+                group.RESET = false;
+                scene.addObject(group);
+
+            }
+        });
+        $menuBarbubble.find('#ungroup').on('click',function(){
+            if(!_this.GROUP)
+            {
+                alert("It is not Grouped, right now!");
+            }
+            else
+            {
+                var id = _this.id;
+                var group = _this.parent;
+                _this.GROUP = false;
+                var tempdata = [];
+                for(var i=0; i<group.children.length; ++i)
+                {
+                    if(group.children[i].id!==_this.id)
+                    {
+                        var a =group.children[i];
+                        a.parent = undefined;
+                        tempdata.push(a);
+                    }
+                }
+                _this.parent = undefined;
+                group.tempPoints.length =0;
+                group.arranged.length =0;
+                group.children.length =0;
+                for(var i=0; i<tempdata.length; ++i)
+                {
+                    group.RESET = true;
+                    group.addToGroup(tempdata[i]);
+                }
+                group.RESET = false;
+                scene.addObject(group);
+            }
+        });
+        $menuBarbubble.find('#colorpickerField').ColorPicker({
+            color: '#0000ff',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $menuBarbubble.find('#colorpickerField').css('backgroundColor', '#' + hex);
+            }
+        });
+    },
+    deleteBubble: function(){
+        if(this.menuBar.button)
+        {
+            this.menuBar.button.remove();
+        }
+        scene.removeObject(this);
     },
     draw: function (ctx, scale) {
         this.setOffset();
@@ -107,22 +193,25 @@ PATHBUBBLES.Bubble.prototype = {
         ctx.save();
         if (this.menu && scale == 1) {
             this.menu.draw(ctx, scale);
-
         }
         if (this.menu.HighLight_State && scale == 1) {
             this.menuBar.draw(ctx, scale);
         }
         if (this.menu.HighLight_State) {
-            for (var i = 0; i < this.menuBar.buttons.length; ++i) {
-                this.menuBar.buttons[i].update();
-                this.menuBar.buttons[i].show();
-            }
+                this.menuBar.button.update();
+                this.menuBar.button.show();
+//            for (var i = 0; i < this.menuBar.buttons.length; ++i) {
+//                this.menuBar.buttons[i].update();
+//                this.menuBar.buttons[i].show();
+//            }
         }
         else {
-            for (var i = 0; i < this.menuBar.buttons.length; ++i) {
-                this.menuBar.buttons[i].update();
-                this.menuBar.buttons[i].hide();
-            }
+            this.menuBar.button.update();
+            this.menuBar.button.hide();
+//            for (var i = 0; i < this.menuBar.buttons.length; ++i) {
+//                this.menuBar.buttons[i].update();
+//                this.menuBar.buttons[i].hide();
+//            }
         }
         ctx.restore();
         if (this.shape.HighLight_State) {

@@ -339,9 +339,9 @@ PATHBUBBLES.Groups.prototype = {
                     this.tempPoints[i].x -= this.offsetX;
                     this.tempPoints[i].y -= this.offsetY;
                 }
-                var point = new PATHBUBBLES.Shape.PathPoint(this.tempPoints[i].id, this.tempPoints[i].pos, this.tempPoints[i].x, this.tempPoints[i].y, "LT");
-                if (this.shape.points.indexOf(point) == -1)
-                    this.shape.points.push(point);
+//                var point = new PATHBUBBLES.Shape.PathPoint(this.tempPoints[i].id, this.tempPoints[i].pos, this.tempPoints[i].x, this.tempPoints[i].y, "LT");
+//                if (this.shape.points.indexOf(point) == -1)
+//                    this.shape.points.push(point);
 
                 for (var ii = 0; ii < PATHBUBBLES.objects.length; ++ii) {
                     if (PATHBUBBLES.objects[ii] instanceof  PATHBUBBLES.Bubble && PATHBUBBLES.objects[ii].id == this.tempPoints[i].id && this.tempPoints.pos == "left") {
@@ -441,9 +441,6 @@ PATHBUBBLES.Groups.prototype = {
                 object2.x + object2.w > object1.x &&
                 object2.y < object1.y + object1.h &&
                 object2.h + object2.y > object1.y);
-    },
-    upGroup: function (object) {
-
     },
     setOffset: function () {
         this.shape.offsetX = this.offsetX;

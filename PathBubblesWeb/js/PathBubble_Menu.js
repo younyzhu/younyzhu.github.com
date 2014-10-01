@@ -6,7 +6,8 @@
  */
 PATHBUBBLES.Menu= function(bubble)
 {
-    this.buttons = [];
+//    this.buttons = [];
+    this.button = null;
     this.bubble = bubble;
     this.x = this.bubble.x + this.bubble.w+5;
     this.y = this.bubble.y+20;

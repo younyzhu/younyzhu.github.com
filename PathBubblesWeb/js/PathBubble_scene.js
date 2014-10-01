@@ -31,9 +31,9 @@ PATHBUBBLES.Scene.prototype ={
 //        if ( i !== - 1 ) {
 //            this.__objectsRemoved.splice( i, 1 );
 //        }
-        for ( var c = 0; c < object.children.length; c ++ ) {
-            this.addObject( object.children[ c ] );
-        }
+//        for ( var c = 0; c < object.children.length; c ++ ) {
+//            this.addObject( object.children[ c ] );
+//        }
     },
     moveObjectToFront: function(object){
         var indexThis = this.children.indexOf(object);

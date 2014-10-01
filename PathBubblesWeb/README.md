@@ -79,3 +79,8 @@ Finished clipped region, so when the biomolecule goes outside the bubble, it wil
 Menu add.
 
 
+* 10/1/2014
+
+Ungroup, Deleted
+
+

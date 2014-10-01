@@ -4,7 +4,7 @@
  * @time        9/16/2014
  * @name        PathBubble
  */
-var PATHBUBBLES = {
+var PATHBUBBLES  = {
         // public
         REVISION: '0.0',
         selectionBoxSize: 6,
