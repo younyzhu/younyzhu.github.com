@@ -1,0 +1,16 @@
+Metabolism of amino acids and derivatives.xml
+Metabolism of porphyrins.xml
+Biological oxidations.xml
+Mitochondrial Iron-Sulfur Cluster Biogenesis.xml
+O2CO2 exchange in erythrocytes.xml
+Abacavir transport and metabolism.xml
+Reversible Hydration of Carbon Dioxide.xml
+Cytosolic Iron-sulfur Cluster Assembly.xml
+Metabolism of carbohydrates.xml
+Inositol phosphate metabolism.xml
+Integration of energy metabolism.xml
+Metabolism of nitric oxide.xml
+The citric acid TCA cycle and respiratory electron transport.xml
+Metabolism of nucleotides.xml
+Metabolism of vitamins and cofactors.xml
+Metabolism of lipids and lipoproteins.xml

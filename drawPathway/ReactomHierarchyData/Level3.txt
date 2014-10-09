@@ -1,0 +1,71 @@
+Digestion of dietary carbohydrate.xml
+Hexose transport.xml
+Glucose metabolism.xml
+Fructose catabolism.xml
+Galactose catabolism.xml
+Pentose phosphate pathway hexose monophosphate shunt.xml
+5-Phosphoribose 1-diphosphate biosynthesis.xml
+Glycosaminoglycan metabolism.xml
+Synthesis of IP3 and IP4 in the cytosol.xml
+IP3 and IP4 transport between cytosol and nucleus.xml
+Synthesis of IPs in the nucleus.xml
+IPs transport between nucleus and cytosol.xml
+Synthesis of pyrophosphates in the cytosol.xml
+IP6 and IP7 transport between cytosol and nucleus.xml
+IPs transport between cytosol and ER lumen.xml
+Synthesis of IPs in the ER lumen.xml
+IPs transport between ER lumen and cytosol.xml
+IPs transport between ER lumen and nucleus.xml
+IPs transport between nucleus and ER lumen.xml
+Synthesis of IP2 IP and Ins in the cytosol.xml
+Lipid digestion mobilization and transport.xml
+Fatty acid triacylglycerol and ketone body metabolism.xml
+Peroxisomal lipid metabolism.xml
+Cholesterol biosynthesis.xml
+Regulation of Cholesterol Biosynthesis by SREBP SREBF.xml
+Bile acid and bile salt metabolism.xml
+Metabolism of steroid hormones and vitamin D.xml
+Phospholipid metabolism.xml
+alpha-linolenic omega3 and linoleic omega6 acid metabolism.xml
+Arachidonic acid metabolism.xml
+Sphingolipid metabolism.xml
+Ubiquinol biosynthesis.xml
+Regulation of Insulin Secretion.xml
+Glucagon signaling in metabolic regulation.xml
+PKA-mediated phosphorylation of key metabolic factors.xml
+Insulin effects increased synthesis of Xylulose-5-Phosphate.xml
+AMPK inhibits chREBP transcriptional activation activity.xml
+PP2A-mediated dephosphorylation of key metabolic factors.xml
+ChREBP activates metabolic gene expression.xml
+eNOS activation and regulation.xml
+Pyruvate metabolism and Citric Acid TCA cycle.xml
+Respiratory electron transport ATP synthesis by chemiosmotic coupling and heat production by uncoupling proteins.xml
+Purine metabolism.xml
+Pyrimidine metabolism.xml
+Synthesis and interconversion of nucleotide di- and triphosphates.xml
+Phosphate bond hydrolysis by NUDT proteins.xml
+Metabolism of water-soluble vitamins and cofactors.xml
+Amino acid synthesis and interconversion transamination.xml
+Branched-chain amino acid catabolism.xml
+Histidine catabolism.xml
+Lysine catabolism.xml
+Phenylalanine and tyrosine catabolism.xml
+Proline catabolism.xml
+Tryptophan catabolism.xml
+Urea cycle.xml
+Carnitine synthesis.xml
+Creatine metabolism.xml
+Metabolism of polyamines.xml
+Regulation of ornithine decarboxylase ODC.xml
+Amine-derived hormones.xml
+Glyoxylate metabolism.xml
+Sulfur amino acid metabolism.xml
+Heme biosynthesis.xml
+Heme degradation.xml
+Phase 1 - Functionalization of compounds.xml
+Phase II conjugation.xml
+Electron Transport from NADPH to Ferredoxin.xml
+Uptake of Carbon Dioxide and Release of Oxygen by Erythrocytes.xml
+Uptake of Oxygen and Release of Carbon Dioxide by Erythrocytes.xml
+Abacavir transmembrane transport.xml
+Abacavir metabolism.xml

@@ -1,0 +1,156 @@
+/**
+ * Created by Yongnanzhu on 5/3/2014.
+ */
+* { margin:0; padding:0 }
+body {
+    font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;
+    background-color: #ffffff;
+    margin: 0px;
+    overflow: hidden;
+   }
+a {
+    color: #2194CE;
+    text-decoration: none;
+}
+h1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: normal;
+}
+h2 {
+    font-size: 20px;
+    font-weight: normal;
+}
+#panel {
+    position: absolute;
+    width: 300px;
+    height: 100%;
+    left: -300px;
+    overflow: scroll;
+    background: #fafafa;
+}
+#panel #list {
+    padding: 0px 20px;
+    line-height: 18px;
+}
+#panel #list .link {
+    color: #2194CE;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 6px;
+    font-size: 11px;
+}
+#panel #list .selected {
+    color: #ff0000;
+}
+#panel #list .link:hover {
+    text-decoration: underline;
+}
+#button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 8px;
+    color: #fff;
+    background-color: #555;
+    opacity: 0.7;
+}
+#input{
+    display:none;
+}
+#button:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+#bubble {
+    border:solid 0 red;
+    background:#5a5353;
+    float:left;
+    /*margin:0;*/
+    /*position: relative; */
+    width: -webkit-calc(100%); /* Safari */
+    /*width: calc(100%);*/
+    height: 100%;
+ }
+#bubble canvas { margin:0 0 -5px 0; }
+#canvas {background:#ffffff}
+#bgCanvas {cursor:auto;z-index:-10;background:#ffffff}
+#progressbar {
+    position: relative;
+}
+.progress-label {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #fff;
+}
+.dragheader { background:transparent; color:#fff; font-weight:bold; font-size:0.9em;letter-spacing:1px;text-align: center;
+    padding:5px 0 5px 0.5em; cursor:move; position:relative; bottom:0px; margin:0 0 0 0; }
+.dragheader:hover {color:red z-index:120;}
+.close { color:red; float:right; font-family:"Helvetica Neue", Arial, Helvetica, sans-serif; font-weight:bold; cursor:pointer; padding:0 0.4em;
+		position:relative; right:1em; margin-right:-1em }
+.open_para{ color:red; float:right; font-family:"Helvetica Neue", Arial, Helvetica, sans-serif; font-weight:bold; cursor:pointer; padding:0 0.4em;
+    position:relative; right:1em; margin-right:-1em }
+.widget { margin:1em; padding:1em; float:left; background:#0a0a0a; z-index:120;}
+.widget .close { color:red; font-size:0.7em; text-align: center; position:relative; top:-1em; left:1em; margin:0 0 -1em 0; padding:0; }
+.widget .close:hover { color:red }
+.widget .close_para { color:#222; font-size:0.7em; text-align: center; position:relative; top:-1em; left:1em; margin:0 0 -1em 0; padding:0;cursor:pointer; }
+.widget .close_para:hover { color:red }
+.shadow { box-shadow:0px 3px 15px #333333;}
+.clr { clear:both }
+.para_header {
+    background:transparent;
+    color:#fff;
+    font-weight:normal;
+    font-size:1.2em;
+    text-align: center;
+    top:1px;
+    /*padding:1px 0 1px;*/
+    cursor:move;
+    position:relative;
+}
+.para {
+    font-size:0.9em;
+    text-align: left;
+    top:0.1em;
+    cursor:pointer;
+    position:relative;
+}
+#para_items {
+    background:transparent;
+    color:#fff;
+    text-align:left;
+    top:1px;
+    padding:0.3em 0;
+    z-index:200;
+    position:relative;
+    overflow: hidden;
+}
+#para_items li{
+    color:#555;
+    font-size:1.0em;
+}
+#para_items li:hover {
+    cursor:pointer;
+    background:#555;
+    color:rgba(50,0,0,1);
+}
+.chartTooltip
+{
+    z-index: 1500;
+    top: 0px;
+    left: 0px;
+    display: none;
+    border-color: #666;
+    background-color: #fff;
+    color: #666;
+    position: absolute;
+    border: 1px solid #ff0000;
+    padding: 15px 9px 5px 9px;
+    text-align: left;
+    word-wrap: break-word;
+    overflow: hidden;
+}

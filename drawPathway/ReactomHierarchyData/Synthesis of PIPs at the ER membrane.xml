@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Pathway>
+	<Information>
+		<EdgeCrossing>5</EdgeCrossing>
+		<UpwardsArrow>5</UpwardsArrow>
+		<Nodes>12</Nodes>
+		<Edges>10</Edges>
+	</Information>
+	<Canvas>
+		<Size>(1920.000000,955.000000)</Size>
+	</Canvas>
+	<parentName>
+		<Name>()</Name>
+	</parentName>
+	<ChildrenName>
+		<Name>()</Name>
+	</ChildrenName>
+	<compartmentBlock Num="3">
+		<compartment j="0">
+			<Name>cytosol</Name>
+			<Position>(0.457861380798274,0.15531057137381396,0.084277238403452,0.10471204188481675)</Position>
+			<Contain>(P,1,;S,2,;S,4,;S,5,;S,6,;)</Contain>
+		</compartment>
+		<compartment j="1">
+			<Name>endoplasmic reticulum membrane</Name>
+			<Position>(0.45014091337058715,0.015706806282722512,0.09971817325882577,0.12389695880836891)</Position>
+			<Contain>(P,4,;S,1,;S,3,;S,7,;S,8,;R,1,;R,2,;)</Contain>
+		</compartment>
+	</compartmentBlock>
+	<complexBlock Num="1"/>
+	<physicalEntityBlock Num="1"/>
+	<proteinBlock Num="5">
+		<protein j="1">
+			<Name>PI4KA2B</Name>
+			<Position>(0.05760269210813218,0.40276517660770794,0.2472,0.15)</Position>
+		</protein>
+		<protein j="4">
+			<Name>SACM1L</Name>
+			<Position>(0.45061904328755437,0.09311162049376209,0.2089221317688893,0.1267731382092775)</Position>
+		</protein>
+	</proteinBlock>
+	<DnaBlock  Num="1"/>
+	<RnaBlock  Num="1"/>
+	<smallMoleculeBlock Num="9">
+		<smallMolecule j="2">
+			<Name>ATP</Name>
+			<Position>(0.31989873677458003,0.11277415415919251,0.2472,0.15)</Position>
+			<Dumplicate>()</Dumplicate>
+		</smallMolecule>
+		<smallMolecule j="4">
+			<Name>ADP</Name>
+			<Position>(0.19533549188148125,0.7482537543774529,0.2472,0.15)</Position>
+			<Dumplicate>()</Dumplicate>
+		</smallMolecule>
+		<smallMolecule j="5">
+			<Name>H2O</Name>
+			<Position>(0.6703598260212734,0.33191525945983585,0.2472,0.15)</Position>
+			<Dumplicate>()</Dumplicate>
+		</smallMolecule>
+		<smallMolecule j="6">
+			<Name>Pi</Name>
+			<Position>(0.6246427636151152,0.705631882418557,0.2472,0.15)</Position>
+			<Dumplicate>()</Dumplicate>
+		</smallMolecule>
+		<smallMolecule j="1">
+			<Name>PI</Name>
+			<Position>(0.07230941416348681,0.5813588900799406,0.2089221317688893,0.1267731382092775)</Position>
+			<Dumplicate>(1,8)</Dumplicate>
+		</smallMolecule>
+		<smallMolecule j="3">
+			<Name>PI4P</Name>
+			<Position>(0.7150525912017387,0.31837450021669544,0.2089221317688893,0.1267731382092775)</Position>
+			<Dumplicate>(3,7)</Dumplicate>
+		</smallMolecule>
+		<smallMolecule j="7">
+			<Name>PI4P</Name>
+			<Position>(0.07596781616175163,0.24518460863849106,0.2089221317688893,0.1267731382092775)</Position>
+			<Dumplicate>(3,7)</Dumplicate>
+		</smallMolecule>
+		<smallMolecule j="8">
+			<Name>PI</Name>
+			<Position>(0.3913188271218404,0.7859521312261116,0.2089221317688893,0.1267731382092775)</Position>
+			<Dumplicate>(1,8)</Dumplicate>
+		</smallMolecule>
+	</smallMoleculeBlock>
+	<reactionBlock  Num="3">
+		<reaction j="1">
+			<Name>PI is phosphorylated to PI4P by PI4KA2B at the ER membrane</Name>
+			<Type>T</Type>
+			<Position>(0.4166831416310916,0.3983959293655343,0.0313383197653334,0.050709255283710994)</Position>
+		</reaction>
+		<reaction j="2">
+			<Name>PI4P is dephosphorylated to PI by SACM1L at the ER membrane</Name>
+			<Type>T</Type>
+			<Position>(0.5968748521268545,0.5663754609828874,0.0313383197653334,0.050709255283710994)</Position>
+		</reaction>
+	</reactionBlock >
+	<edgeBlock Num="11">
+		<edge j="0">
+			<Name>A</Name>
+			<Ends>(P, 1, R, 1)</Ends>
+		</edge>
+		<edge j="1">
+			<Name>A</Name>
+			<Ends>(P, 4, R, 2)</Ends>
+		</edge>
+		<edge j="2">
+			<Name>J</Name>
+			<Ends>(S, 1, R, 1)</Ends>
+		</edge>
+		<edge j="3">
+			<Name>J</Name>
+			<Ends>(S, 2, R, 1)</Ends>
+		</edge>
+		<edge j="4">
+			<Name>J</Name>
+			<Ends>(R, 1, S, 3)</Ends>
+		</edge>
+		<edge j="5">
+			<Name>J</Name>
+			<Ends>(R, 1, S, 4)</Ends>
+		</edge>
+		<edge j="6">
+			<Name>J</Name>
+			<Ends>(S, 7, R, 2)</Ends>
+		</edge>
+		<edge j="7">
+			<Name>J</Name>
+			<Ends>(S, 5, R, 2)</Ends>
+		</edge>
+		<edge j="8">
+			<Name>J</Name>
+			<Ends>(R, 2, S, 6)</Ends>
+		</edge>
+		<edge j="9">
+			<Name>J</Name>
+			<Ends>(R, 2, S, 8)</Ends>
+		</edge>
+	</edgeBlock>
+</Pathway>
+

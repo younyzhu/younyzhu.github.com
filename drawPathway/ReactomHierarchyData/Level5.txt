@@ -1,0 +1,72 @@
+Regulation of Glucokinase by Glucokinase Regulatory Protein.xml
+Hyaluronan biosynthesis and export.xml
+Hyaluronan uptake and degradation.xml
+Keratan sulfate biosynthesis.xml
+Keratan sulfate degradation.xml
+HS-GAG biosynthesis.xml
+HS-GAG degradation.xml
+A tetrasaccharide linker sequence is required for GAG synthesis.xml
+Chondroitin sulfate biosynthesis.xml
+Dermatan sulfate biosynthesis.xml
+CSDS degradation.xml
+Chylomicron-mediated lipid transport.xml
+HDL-mediated lipid transport.xml
+LDL-mediated lipid transport.xml
+Fatty Acyl-CoA Biosynthesis.xml
+mitochondrial fatty acid beta-oxidation of saturated fatty acids.xml
+mitochondrial fatty acid beta-oxidation of unsaturated fatty acids.xml
+Propionyl-CoA catabolism.xml
+Synthesis of Ketone Bodies.xml
+Utilization of Ketone Bodies.xml
+PPARA Activates Gene Expression.xml
+Synthesis of bile acids and bile salts via 7alpha-hydroxycholesterol.xml
+Synthesis of bile acids and bile salts via 24-hydroxycholesterol.xml
+Synthesis of bile acids and bile salts via 27-hydroxycholesterol.xml
+Synthesis of PA.xml
+Acyl chain remodeling of DAG and TAG.xml
+Synthesis of PE.xml
+Acyl chain remodelling of PE.xml
+Hydrolysis of LPE.xml
+Synthesis of PC.xml
+Acyl chain remodelling of PC.xml
+Hydrolysis of LPC.xml
+Synthesis of PS.xml
+Acyl chain remodelling of PS.xml
+Synthesis of PI.xml
+Acyl chain remodelling of PI.xml
+Synthesis of PG.xml
+Acyl chain remodelling of PG.xml
+Synthesis of CL.xml
+Acyl chain remodeling of CL.xml
+Synthesis of BMP.xml
+Synthesis of PIPs at the ER membrane.xml
+PI and PC transport between ER and Golgi membranes.xml
+Synthesis of PIPs at the Golgi membrane.xml
+PIPs transport between Golgi and plasma membranes.xml
+Synthesis of PIPs at the plasma membrane.xml
+PIPs transport between plasma and early endosome membranes.xml
+Synthesis of PIPs at the early endosome membrane.xml
+PIPs transport between early endosome and Golgi membranes.xml
+PIPs transport between early and late endosome membranes.xml
+Synthesis of PIPs at the late endosome membrane.xml
+PIPs transport between late endosome and Golgi membranes.xml
+Regulation of Insulin Secretion by Fatty Acids Bound to GPR40 FFAR1.xml
+Regulation of pyruvate dehydrogenase PDH complex.xml
+The fatty acid cycling model.xml
+The proton buffering model.xml
+Coenzyme A biosynthesis.xml
+Nicotinamide salvaging.xml
+Regulation of thyroid hormone activity.xml
+Sulfide oxidation to sulfate.xml
+Endogenous sterols.xml
+Xenobiotics.xml
+Fatty acids.xml
+Eicosanoids.xml
+Vitamins.xml
+Miscellaneous substrates.xml
+Monoamines are oxidized to aldehydes by MAOA and MAOB producing NH3 and H2O2.xml
+Polyamines are oxidized to amines aldehydes and H2O2 by PAOs.xml
+Formation of the active cofactor UDP-glucuronate.xml
+Formation of PAPS.xml
+Glutathione synthesis and recycling.xml
+Conjugation of carboxylic acids.xml

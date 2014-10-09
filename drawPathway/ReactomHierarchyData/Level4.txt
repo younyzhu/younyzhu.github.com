@@ -1,0 +1,96 @@
+Cytosolic sulfonation of small molecules.xml
+Acetylation.xml
+Methylation.xml
+Glutathione conjugation.xml
+Amino Acid conjugation.xml
+Glucose transport.xml
+Glycolysis.xml
+Gluconeogenesis.xml
+Glycogen breakdown glycogenolysis.xml
+Hyaluronan metabolism.xml
+Keratan sulfatekeratin metabolism.xml
+Heparan sulfateheparin HS-GAG metabolism.xml
+Chondroitin sulfatedermatan sulfate metabolism.xml
+Digestion of dietary lipid.xml
+Trafficking of dietary sterols.xml
+Lipoprotein metabolism.xml
+Hormone-sensitive lipase HSL-mediated triacylglycerol hydrolysis.xml
+Triglyceride Biosynthesis.xml
+Import of palmitoyl-CoA into the mitochondrial matrix.xml
+Mitochondrial Fatty Acid Beta-Oxidation.xml
+Ketone body metabolism.xml
+Regulation of Lipid Metabolism by Peroxisome proliferator-activated receptor alpha PPARalpha.xml
+Alpha-oxidation of phytanate.xml
+Beta-oxidation of pristanoyl-CoA.xml
+Beta-oxidation of very long chain fatty acids.xml
+Plasmalogen biosynthesis.xml
+NADPH regeneration.xml
+Activation of Gene Expression by SREBP SREBF.xml
+Synthesis of bile acids and bile salts.xml
+Recycling of bile acids and salts.xml
+Pregnenolone biosynthesis.xml
+Glucocorticoid biosynthesis.xml
+Mineralocorticoid biosynthesis.xml
+Androgen biosynthesis.xml
+Estrogen biosynthesis.xml
+Vitamin D calciferol metabolism.xml
+Glycerophospholipid biosynthesis.xml
+PI Metabolism.xml
+alpha-linolenic acid ALA metabolism.xml
+Linoleic acid LA metabolism.xml
+Synthesis of Prostaglandins PG and Thromboxanes TX.xml
+Synthesis of Leukotrienes LT and Eoxins EX.xml
+Synthesis of 5-eicosatetraenoic acids.xml
+Synthesis of 15-eicosatetraenoic acid derivatives.xml
+Synthesis of 12-eicosatetraenoic acid derivatives.xml
+Synthesis of Lipoxins LX.xml
+Synthesis of Hepoxilins HX and Trioxilins TrX.xml
+Synthesis of 16-20-hydroxyeicosatetraenoic acids HETE.xml
+Synthesis of epoxy EET and dihydroxyeicosatrienoic acids DHET.xml
+Sphingolipid de novo biosynthesis.xml
+Glycosphingolipid metabolism.xml
+Inhibition of Insulin Secretion by AdrenalineNoradrenaline.xml
+Regulation of Insulin Secretion by Acetylcholine.xml
+Regulation of Insulin Secretion by Free Fatty Acids.xml
+Regulation of Insulin Secretion by Glucagon-like Peptide-1.xml
+PKA activation in glucagon signalling.xml
+eNOS activation.xml
+NOSIP mediated eNOS trafficking.xml
+NOSTRIN mediated eNOS trafficking.xml
+Tetrahydrobiopterin BH4 synthesis recycling salvage and regulation.xml
+Pyruvate metabolism.xml
+Citric acid cycle TCA cycle.xml
+Interconversion of 2-oxoglutarate and 2-hydroxyglutarate.xml
+Respiratory electron transport.xml
+Formation of ATP by chemiosmotic coupling.xml
+Mitochondrial Uncoupling Proteins.xml
+Purine ribonucleoside monophosphate biosynthesis.xml
+Purine salvage.xml
+Purine catabolism.xml
+Pyrimidine biosynthesis.xml
+Pyrimidine salvage reactions.xml
+Pyrimidine catabolism.xml
+Vitamin C ascorbate metabolism.xml
+Vitamin B1 thiamin metabolism.xml
+Vitamin B2 riboflavin metabolism.xml
+Vitamin B5 pantothenate metabolism.xml
+Vitamins B6 activation to pyridoxal phosphate.xml
+Biotin transport and metabolism.xml
+Nicotinate metabolism.xml
+Metabolism of folate and pterines.xml
+Molybdenum cofactor biosynthesis.xml
+Serine biosynthesis.xml
+Agmatine biosynthesis.xml
+Interconversion of polyamines.xml
+Catecholamine biosynthesis.xml
+Thyroxine biosynthesis.xml
+Serotonin and melatonin biosynthesis.xml
+Methionine salvage pathway.xml
+Cysteine formation from homocysteine.xml
+Degradation of cysteine and homocysteine.xml
+Cytochrome P450 - arranged by substrate type.xml
+FMO oxidizes nucleophiles.xml
+COX reactions.xml
+Amine Oxidase reactions.xml
+Ethanol oxidation.xml
+Glucuronidation.xml

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Pathway>
+	<Information>
+		<EdgeCrossing>1</EdgeCrossing>
+		<UpwardsArrow>3</UpwardsArrow>
+		<Nodes>12</Nodes>
+		<Edges>8</Edges>
+	</Information>
+	<Canvas>
+		<Size>(1920.000000,955.000000)</Size>
+	</Canvas>
+	<parentName>
+		<Name>()</Name>
+	</parentName>
+	<ChildrenName>
+		<Name>()</Name>
+	</ChildrenName>
+	<compartmentBlock Num="3">
+		<compartment j="0">
+			<Name>nucleoplasm</Name>
+			<Position>(0.4466983943472158,0.015706806282722512,0.10660321130556834,0.13245142032118867)</Position>
+			<Contain>(S,1,;S,3,;S,5,;S,7,;R,1,;R,2,;R,3,;R,4,;)</Contain>
+		</compartment>
+		<compartment j="1">
+			<Name>cytosol</Name>
+			<Position>(0.46231007319478507,0.1638650328866337,0.0753798536104298,0.09365729748690219)</Position>
+			<Contain>(S,2,;S,4,;S,6,;S,10,;)</Contain>
+		</compartment>
+	</compartmentBlock>
+	<complexBlock Num="1"/>
+	<physicalEntityBlock Num="1"/>
+	<proteinBlock Num="1"/>
+	<DnaBlock  Num="1"/>
+	<RnaBlock  Num="1"/>
+	<smallMoleculeBlock Num="11">
+		<smallMolecule j="1">
+			<Name>I(13456)P5</Name>
+			<Position>(0.7326235670592798,0.3756181147308874,0.19542875939840587,0.11858541225631422)</Position>
+			<Dumplicate>()</Dumplicate>
+		</smallMolecule>
+		<smallMolecule j="3">
+			<Name>5-PP-IP4</Name>
+			<Position>(0.3489705098650498,0.800616805677959,0.19542875939840587,0.11858541225631422)</Position>
+			<Dumplicate>()</Dumplicate>
+		</smallMolecule>
+		<smallMolecule j="5">
+			<Name>5-PP-IP5</Name>
+			<Position>(0.07849543949833933,0.5501730211379632,0.19542875939840587,0.11858541225631422)</Position>
+			<Dumplicate>()</Dumplicate>
+		</smallMolecule>
+		<smallMolecule j="7">
+			<Name>(PP)2-IP4</Name>
+			<Position>(0.6364338325383554,0.15394959098220212,0.19542875939840587,0.11858541225631422)</Position>
+			<Dumplicate>()</Dumplicate>
+		</smallMolecule>
+		<smallMolecule j="2">
+			<Name>I(13456)P5</Name>
+			<Position>(0.1352550911969842,0.10702594090437344,0.276378002018974,0.16770509831248423)</Position>
+			<Dumplicate>()</Dumplicate>
+		</smallMolecule>
+		<smallMolecule j="4">
+			<Name>5-PP-IP4</Name>
+			<Position>(0.6182763214108026,0.12757775682802283,0.276378002018974,0.16770509831248423)</Position>
+			<Dumplicate>()</Dumplicate>
+		</smallMolecule>
+		<smallMolecule j="6">
+			<Name>5-PP-IP5</Name>
+			<Position>(0.08810311630102971,0.7061498500167047,0.276378002018974,0.16770509831248423)</Position>
+			<Dumplicate>()</Dumplicate>
+		</smallMolecule>
+		<smallMolecule j="10">
+			<Name>(PP)2-IP4</Name>
+			<Position>(0.5526751273864283,0.7009001425843653,0.276378002018974,0.16770509831248423)</Position>
+			<Dumplicate>()</Dumplicate>
+		</smallMolecule>
+	</smallMoleculeBlock>
+	<reactionBlock  Num="5">
+		<reaction j="1">
+			<Name>I(13456)P5 transports from the nucleus to the cytosol</Name>
+			<Type>T</Type>
+			<Position>(0.4748702082843019,0.12699453730378377,0.02931431390976088,0.047434164902525694)</Position>
+		</reaction>
+		<reaction j="2">
+			<Name>5-PP-IP4 transports from the nucleus to the cytosol</Name>
+			<Type>T</Type>
+			<Position>(0.4735366770300151,0.5353696810244344,0.02931431390976088,0.047434164902525694)</Position>
+		</reaction>
+		<reaction j="3">
+			<Name>5-PP-IP5 transports from the nucleus to the cytosol</Name>
+			<Type>T</Type>
+			<Position>(0.21231890178048338,0.28474873314183907,0.02931431390976088,0.047434164902525694)</Position>
+		</reaction>
+		<reaction j="4">
+			<Name>(PP)2-IP4 transports from the nucleus to the cytosol</Name>
+			<Type>T</Type>
+			<Position>(0.7507171258885342,0.6872640941540399,0.02931431390976088,0.047434164902525694)</Position>
+		</reaction>
+	</reactionBlock >
+	<edgeBlock Num="9">
+		<edge j="0">
+			<Name>J</Name>
+			<Ends>(S, 1, R, 1)</Ends>
+		</edge>
+		<edge j="1">
+			<Name>J</Name>
+			<Ends>(R, 1, S, 2)</Ends>
+		</edge>
+		<edge j="2">
+			<Name>J</Name>
+			<Ends>(S, 3, R, 2)</Ends>
+		</edge>
+		<edge j="3">
+			<Name>J</Name>
+			<Ends>(R, 2, S, 4)</Ends>
+		</edge>
+		<edge j="4">
+			<Name>J</Name>
+			<Ends>(S, 5, R, 3)</Ends>
+		</edge>
+		<edge j="5">
+			<Name>J</Name>
+			<Ends>(R, 3, S, 6)</Ends>
+		</edge>
+		<edge j="6">
+			<Name>J</Name>
+			<Ends>(S, 7, R, 4)</Ends>
+		</edge>
+		<edge j="7">
+			<Name>J</Name>
+			<Ends>(R, 4, S, 10)</Ends>
+		</edge>
+	</edgeBlock>
+</Pathway>
+
