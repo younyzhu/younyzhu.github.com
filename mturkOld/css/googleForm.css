@@ -1,0 +1,572 @@
+
+
+body {
+
+}
+
+.ss-form-container {
+    background-color: #fff;
+    /*border: 1px solid #ccc*/
+}
+
+.ss-form-container {
+    margin: 0.5em auto 0;
+    padding: 1em;
+    width: 45em
+}
+
+.ss-header-image-container {
+    height: 0
+}
+
+.ss-confirmation-banner {
+    background-color: #ffff87;
+    color: #333
+}
+
+.ss-confirmation-header {
+    font-size: 140%
+}
+
+.ss-confirmation-content {
+    margin-top: 1em
+}
+
+input#emailReceipt {
+    margin-left: 0;
+    margin-top: 0;
+    vertical-align: middle
+}
+
+.jfk-button {
+    height: auto;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+.ss-logo-container::before {
+    content: url(//ssl.gstatic.com/docs/forms/forms_logo_small_dark.png)
+}
+
+.no-chrome .powered-by-logo, .no-chrome .ss-legal, .no-chrome .ss-edit-link {
+    display: none
+}
+
+.ss-prepopulate-input, .ss-submit-url-input {
+    width: 100%
+}
+
+.goog-date-picker, .goog-date-picker th, .goog-date-picker td {
+    font: 13px Arial, sans-serif
+}
+
+.goog-date-picker {
+    -moz-user-focus: normal;
+    -moz-user-select: none;
+    position: relative;
+    border: 1px solid #000;
+    float: left;
+    padding: 2px;
+    color: #000;
+    background: #c3d9ff;
+    cursor: default
+}
+
+.goog-date-picker th {
+    text-align: center
+}
+
+.goog-date-picker td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 1px 3px
+}
+
+.goog-date-picker-menu {
+    position: absolute;
+    background: threedface;
+    border: 1px solid gray;
+    -moz-user-focus: normal;
+    z-index: 1;
+    outline: none
+}
+
+.goog-date-picker-menu ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px
+}
+
+.goog-date-picker-menu ul li {
+    cursor: default
+}
+
+.goog-date-picker-menu-selected {
+    background: #ccf
+}
+
+.goog-date-picker th {
+    font-size: .9em
+}
+
+.goog-date-picker td div {
+    float: left
+}
+
+.goog-date-picker button {
+    padding: 0px;
+    margin: 1px 0;
+    border: 0;
+    color: #20c;
+    font-weight: bold;
+    background: transparent
+}
+
+.goog-date-picker-date {
+    background: #fff
+}
+
+.goog-date-picker-week, .goog-date-picker-wday {
+    padding: 1px 3px;
+    border: 0;
+    border-color: #a2bbdd;
+    border-style: solid
+}
+
+.goog-date-picker-week {
+    border-right-width: 1px
+}
+
+.goog-date-picker-wday {
+    border-bottom-width: 1px
+}
+
+.goog-date-picker-head td {
+    text-align: center
+}
+
+td.goog-date-picker-today-cont {
+    text-align: center
+}
+
+td.goog-date-picker-none-cont {
+    text-align: center
+}
+
+.goog-date-picker-month {
+    min-width: 11ex;
+    white-space: nowrap
+}
+
+.goog-date-picker-year {
+    min-width: 6ex;
+    white-space: nowrap
+}
+
+.goog-date-picker-monthyear {
+    white-space: nowrap
+}
+
+.goog-date-picker table {
+    border-collapse: collapse
+}
+
+.goog-date-picker-other-month {
+    color: #888
+}
+
+.goog-date-picker-wkend-start, .goog-date-picker-wkend-end {
+    background: #eee
+}
+
+td.goog-date-picker-selected {
+    background: #c3d9ff
+}
+
+.goog-date-picker-today {
+    background: #9ab;
+    font-weight: bold !important;
+    border-color: #246 #9bd #9bd #246;
+    color: #fff
+}
+
+.ss-date input, .ss-datetime input, .ss-time input {
+    font: inherit
+}
+
+.ss-hidden-button {
+    border: none;
+    display: none;
+    height: 0;
+    padding: 0;
+    width: 0
+}
+
+.ss-picker-button-container {
+    background-color: #f5f5f5;
+    background-image: -webkit-linear-gradient(top, #f5f5f5, #f1f1f1);
+    background-image: -moz-linear-gradient(top, #f5f5f5, #f1f1f1);
+    background-image: -ms-linear-gradient(top, #f5f5f5, #f1f1f1);
+    background-image: -o-linear-gradient(top, #f5f5f5, #f1f1f1);
+    background-image: linear-gradient(top, #f5f5f5, #f1f1f1);
+    border: 1px solid #dcdcdc;
+    height: 32px;
+    margin: -1px -1px -1px 1ex
+}
+
+.ss-picker-container {
+    left: 2ex;
+    position: absolute;
+    z-index: 2
+}
+
+.ss-calendar-button {
+    padding: 5px 4px 4px 4px;
+    z-index: 1
+}
+
+.ss-datetime-box {
+    border: 1px solid #dcdcdc;
+    margin-right: 2em;
+    min-height: 32px;
+    padding-left: 3px;
+    vertical-align: middle
+}
+
+.ss-datetime-box select {
+    margin: 4px 3px;
+    vertical-align: middle
+}
+
+.ss-datetime-box-spacer {
+    height: 32px;
+    vertical-align: middle
+}
+
+.ss-grid {
+    overflow-x: auto
+}
+
+.ss-gridnumbers {
+    text-align: center;
+    border-bottom: 1px solid #d3d8d3
+}
+
+.ss-gridnumber {
+    display: block;
+    padding: 0.5em 0 .5em
+}
+
+.ss-gridrow {
+    text-align: center;
+    color: #666;
+    border-bottom: 1px solid #d3d8d3;
+    padding: 0
+}
+
+.ss-grid-button-label {
+    display: block
+}
+
+.ss-grid-button-wrapper {
+    padding: .5em .25em
+}
+
+.ss-grid-row-even {
+    background-color: #fff
+}
+
+.ss-grid-row-odd {
+    background-color: #f2f2f2
+}
+
+.ss-gridrow-leftlabel {
+    min-width: 100px;
+    max-width: 200px;
+    padding-left: 15px;
+    text-align: left
+}
+
+.ss-grideditor-columns input {
+    line-height: 150%
+}
+
+.ss-grideditor-editor .ss-magiclist-ul span.ss-header {
+    font-weight: bold;
+    padding-right: 1em
+}
+
+.ss-grid-separator {
+    border: 1px solid #e5e5e5
+}
+
+.ss-scale {
+    overflow-x: auto
+}
+
+.ss-scalenumbers {
+    text-align: center
+}
+
+.ss-scalenumber {
+    display: block;
+    padding: 0.5em 0 .5em
+}
+
+.ss-scalerow {
+    text-align: center;
+    color: #666;
+    border: 1px solid #d3d8d3;
+    border-left: 0;
+    border-right: 0;
+    padding: .5em .25em
+}
+
+td.ss-leftlabel {
+    text-align: right;
+    padding-left: 0
+}
+
+td.ss-rightlabel {
+    text-align: left;
+    padding-right: 0
+}
+
+.ss-form-entry {
+    margin-bottom: 1.5em
+}
+
+.ss-form-entry input {
+    vertical-align: middle;
+    margin-left: 0;
+    margin-top: 0
+}
+
+.ss-form-entry select {
+    max-width: 100%
+}
+
+.ss-q-title {
+    display: block;
+    font-weight: bold
+}
+
+h2.ss-q-title {
+    margin-top: .83em;
+    margin-bottom: .83em
+}
+
+.ss-q-help {
+    display: block
+}
+
+.ss-q-help {
+    margin: .1em 0 .25em 0
+}
+
+.ss-secondary-text {
+    color: #666
+}
+
+.ss-textarea {
+    max-width: 99%
+}
+
+.ss-q-long {
+    resize: vertical;
+    width: 70%
+}
+
+.ss-choices {
+    list-style: none;
+    padding: 0
+}
+
+.ss-choices {
+    margin: .5em 0 0
+}
+
+.ss-choice-item {
+    margin: 0;
+    line-height: 1.3em;
+    padding-bottom: .5em
+}
+
+.ss-required-asterisk {
+    color: #c43b1d
+}
+
+.ss-section-title {
+    background-color: #eee;
+    padding: 0.4em;
+    margin: 2em -0.4em 0
+}
+
+.ss-section-description {
+    margin-top: 0.5em
+}
+
+.ss-page-title {
+    margin: 0;
+    padding: 0
+}
+
+.ss-formwidget-container:focus {
+    outline: none
+}
+
+.ss-item {
+    margin: 12px 0
+}
+
+.ss-image, .ss-video, .ss-embeddable-object-container {
+    max-width: 100%;
+    position: relative
+}
+
+.ss-video {
+    border: none
+}
+
+.ss-video-badge {
+    left: 0;
+    position: absolute
+}
+
+.ss-video:focus, .ss-image:focus {
+    outline: none
+}
+
+.ss-edit-link, .ss-edit-link:active, .ss-edit-link:visited, .ss-edit-link:hover, .ss-edit-link:link {
+    background: url(//www.gstatic.com/docs/spreadsheets/forms/edit_dark.png) 7px 8px no-repeat #1f1f1d;
+    border: 1px solid #fff;
+    color: #fff;
+    float: right;
+    font: normal 13px arial, sans-serif;
+    font-weight: bold;
+    padding: 7px 7px 7px 27px;
+    position: absolute;
+    text-decoration: none;
+    top: 7px;
+    right: 7px
+}
+
+.disclaimer .ss-terms a:link {
+    text-decoration: none
+}
+
+.disclaimer .ss-terms a:hover {
+    text-decoration: underline
+}
+
+.disclaimer .ss-terms a:link {
+    color: #15c
+}
+
+.disclaimer .ss-terms a:active {
+    color: #d14836
+}
+
+.disclaimer .ss-terms a:visited {
+    color: #61c
+}
+
+.disclaimer {
+    color: #777;
+    font: normal 11px arial, sans-serif
+}
+
+.disclaimer {
+    margin-top: 11px
+}
+
+.disclaimer-separator {
+    border-top: 1px solid #ebebeb
+}
+
+.powered-by-logo {
+    float: left;
+    vertical-align: bottom
+}
+
+.powered-by-text {
+    line-height: 16px
+}
+
+.ss-terms {
+    line-height: 20px
+}
+
+.ss-terms {
+    text-align: center
+}
+
+.ss-submit-message {
+    font: normal 13px arial, sans-serif;
+    margin-bottom: 20px
+}
+
+.error, .required, .errorbox-bad {
+    border: 2px solid
+}
+
+.error, .required, .errorbox-bad {
+    border-color: #c43b1d
+}
+
+.required-message, .error-message {
+    color: #c43b1d;
+    display: none;
+    font-size: 13px
+}
+
+.required ~ .required-message, .error ~ .error-message {
+    display: block
+}
+
+ul.ss-choices.required {
+    margin-left: -3px;
+    margin-top: -3px;
+    padding-left: 4px;
+    padding-top: 4px
+}
+
+.docs-offscreen {
+    position: absolute;
+    left: -10000px;
+    top: -10000px
+}
+
+.errorbox-bad {
+    background-color: #ffe6cc;
+    padding: 2px
+}
+
+.errorheader {
+    color: #c43b1d
+}
+
+.jfk-progressBar-nonBlocking .progress-bar-horizontal {
+    background: #fff;
+    border: 1px solid #999;
+    height: 10px;
+    padding: 1px;
+    width: 150px
+}
+
+.jfk-progressBar-nonBlocking .progress-bar-thumb {
+    height: 10px;
+    width: 150px
+}
+
+#navigation-table {
+    width: 100%
+}
+
+#navigation-buttons {
+    margin-bottom: 0
+}
+
+#progress-container {
+    text-align: right
+}

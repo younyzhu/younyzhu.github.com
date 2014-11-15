@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/index.css" type="text/css" charset="utf-8"/>
+    <script type="text/javascript" src="./jqueryLib/jquery-1.10.2.js"></script>
+    <script language="Javascript">
+        function basicPopup(url) {
+            var popupWindow = window.open(url, 'popUpWindow', 'height=' + screen.height + ',width=' + screen.width + ',\
+		left=0,top=0,resizable=yes,scrollbars=yes,toolbar=no,\
+		menubar=no,location=no,directories=no,status=yes');
+        }
+    </script>
+</head>
+<body>
+<h1 style="text-align: center">Pathway Visualization Task</h1>
+<br/>
+
+<div class="centerBox">
+    <br/>
+    <hr/>
+    <form id="mturk_form" method="POST" action="https://workersandbox.mturk.com/mturk/externalSubmit">
+        <input type="hidden" id="assignmentId" name="assignmentId" value="">
+        <p id="id"></p>
+    <div id="content">
+        <h3>Step 1:</h3><p>Please click
+            <button id="trial"
+                    onclick="basicPopup('http://www.csee.umbc.edu/~yongnan/mturk/index.html');return false">
+                Instruction
+            </button>  to do the training study. <br/>
+
+        <h3>Step 2:</h3><p>Please click the link below to do the task.<br/></p>
+
+        <h3><a id="href" href=http://www.csee.umbc.edu/~yongnan/GraphLayout/task9.html target="_bank"><font
+                color=blue>Pathway visualization Task</font></a></h3>
+        <h3>Step 3:</h3><p>Once you finish the experiment and submit your result, please click the button below to submit your hit.</p>
+    </div>
+    <input id="submitButton" type="submit" name="Submit" value="Submit">
+    </form>
+    <hr/>
+    <br/>
+</div>
+</body>
+</html>
